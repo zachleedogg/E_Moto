@@ -92,7 +92,7 @@ typedef enum{
 
 /* string-ifies the event list */
 #define STRING_FORM(WORD) #WORD,
-static char *EventStrings[] = {
+static char __attribute__ ((unused)) *EventStrings[] = {
     EVENT_LIST(STRING_FORM)
 };
 

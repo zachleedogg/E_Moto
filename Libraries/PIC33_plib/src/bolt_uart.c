@@ -65,7 +65,7 @@ static uint8_t TX1status = 0;
 static uint8_t TX2status = 0;
 static uint16_t delayTime;
 
-uint8_t Uart1Init(tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate) {
+uint8_t Uart1Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate) {
     // Configure oscillator as needed
     uint32_t FP = clockFreq() / 2;
     if (FP <= FREQ_250KHZ) {
@@ -236,7 +236,7 @@ uint8_t Uart1Read(char* returnString) {
 
 uint8_t Uart1RXdataReady(void) {
     uint8_t returnVal = 0;
-    if (RX1dataReady) {
+    if (deQ(&RX1Q)) {
         returnVal = 1;
         RX1dataReady = 0;
     }
@@ -272,6 +272,7 @@ void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void) {
     while (U1STAbits.URXDA) {/*while data is available*/
         RX1buffer.buff[RX1buffer.pointEnd] = U1RXREG; // receive one character
         if (RX1buffer.buff[RX1buffer.pointEnd] == STOP_CHAR) {
+            enQ(&RX2Q);
             RX1dataReady = 1;
         }
         RX1buffer.pointEnd++;
@@ -281,7 +282,7 @@ void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void) {
     }
 }
 
-uint8_t Uart2Init(tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate) {
+uint8_t Uart2Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate) {
     U2MODEbits.UARTEN = 0; // Enable UART
     // Configure oscillator as needed
     uint32_t FP = clockFreq() / 2;
@@ -492,7 +493,6 @@ void __attribute__((__interrupt__, auto_psv)) _U2RXInterrupt(void) {
 }
 
 void enQ(uartDataQueue * thisQ) {
-    //Uart1Write("Enquing\n");
     thisQ->buff[thisQ->head++] = 1; /*Put Data in the Q*/
     if (thisQ->head >= QUEUE_SIZE) {/*wrap-around protection*/
         thisQ->head = 0;
@@ -501,7 +501,6 @@ void enQ(uartDataQueue * thisQ) {
 
 uint8_t deQ(uartDataQueue * thisQ) {
     if (thisQ->tail != thisQ->head) {/*If the Queue is not empty*/
-        //Uart1Write("Dequing\n");
         thisQ->buff[thisQ->tail++] = 0; /*Dequeue the data*/
         if (thisQ->tail >= QUEUE_SIZE) {/*wrap-around protection*/
             thisQ->tail = 0;

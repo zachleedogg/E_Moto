@@ -25,7 +25,7 @@ typedef enum{
     FSM_TEMPLATE_States_List(ENUM_FORM)
 }FSM_TEMPLATE_State_t;
 
-static const char *StateStrings[] = {
+static const char __attribute__ ((unused)) *StateStrings[] = {
     FSM_TEMPLATE_States_List(STRING_FORM)
 };
 

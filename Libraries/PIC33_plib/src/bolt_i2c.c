@@ -67,7 +67,7 @@ typedef struct _i2cQueue {
     uint8_t queueTail;
 } i2cQueue;
 
-static i2cQueue i2c1Queue;
+static i2cQueue __attribute__ ((unused)) i2c1Queue ;
 static i2cQueue i2c2Queue;
 
 static uint8_t index;

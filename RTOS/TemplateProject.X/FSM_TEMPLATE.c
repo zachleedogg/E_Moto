@@ -1,8 +1,9 @@
 #include "FSM_TEMPLATE.h"
+#include "Defines.h"
 #include <stdio.h>
 
 /* Uncomment to for custom Debugging */
-//#define FSM_TEMPLATE_DEBUG
+#define FSM_TEMPLATE_DEBUG
 
 #ifdef FSM_TEMPLATE_DEBUG
 #define DEBUG

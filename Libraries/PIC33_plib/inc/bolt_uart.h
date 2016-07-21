@@ -32,41 +32,41 @@
 
 /*Select Pin for RX*/
 /*Not all of these are available on every device, check pin-out sheet*/
-#define RP20_RX    0x14
-#define RPI24_RX   0x18
-#define RPI25_RX   0x19
-#define RPI27_RX   0x1B
-#define RPI28_RX   0x1C
-#define RPI32_RX   0x20
-#define RPI33_RX   0x21
-#define RPI34_RX   0x22
-#define RP35_RX    0x23
-#define RP36_RX    0x24
-#define RP37_RX    0x25
-#define RP38_RX    0x26
-#define RP39_RX    0x27
-#define RP40_RX    0x28
-#define RP41_RX    0x29
-#define RP42_RX    0x2A
-#define RP43_RX    0x2B
-#define RPI44_RX   0x2C
-#define RPI45_RX   0x2D
-#define RPI46_RX   0x2E
-#define RPI47_RX   0x2F
-#define RPI51_RX   0x33
-#define RPI52_RX   0x34
-#define RPI53_RX   0x35
-#define RP54_RX    0x36
-#define RP55_RX    0x37
-#define RP56_RX    0x38
-#define RP57_RX    0x39
-#define RPI58_RX   0x3A
+#define RP20_UART_RX    0x14
+#define RPI24_UART_RX   0x18
+#define RPI25_UART_RX   0x19
+#define RPI27_UART_RX   0x1B
+#define RPI28_UART_RX   0x1C
+#define RPI32_UART_RX   0x20
+#define RPI33_UART_RX   0x21
+#define RPI34_UART_RX   0x22
+#define RP35_UART_RX    0x23
+#define RP36_UART_RX    0x24
+#define RP37_UART_RX    0x25
+#define RP38_UART_RX    0x26
+#define RP39_UART_RX    0x27
+#define RP40_UART_RX    0x28
+#define RP41_UART_RX    0x29
+#define RP42_UART_RX    0x2A
+#define RP43_UART_RX    0x2B
+#define RPI44_UART_RX   0x2C
+#define RPI45_UART_RX   0x2D
+#define RPI46_UART_RX   0x2E
+#define RPI47_UART_RX   0x2F
+#define RPI51_UART_RX   0x33
+#define RPI52_UART_RX   0x34
+#define RPI53_UART_RX   0x35
+#define RP54_UART_RX    0x36
+#define RP55_UART_RX    0x37
+#define RP56_UART_RX    0x38
+#define RP57_UART_RX    0x39
+#define RPI58_UART_RX   0x3A
 
 /*Select pins for TX*/
 
 /*Not all of these are available on every device, check pin-out sheet*/
 
-typedef enum _tx_pin_number {
+typedef enum _UART_tx_pin_number {
     RP20_TX,
     RP35_TX,
     RP36_TX,
@@ -82,7 +82,7 @@ typedef enum _tx_pin_number {
     RP56_TX,
     RP57_TX,
     NUMBER_OF_TX_PINS,
-} tx_pin_number;
+} UART_tx_pin_number;
 
 
 #define DELAY_105uS asm volatile ("REPEAT, #4201"); Nop(); // 105uS delay
@@ -94,7 +94,7 @@ typedef enum _tx_pin_number {
  * @param baudRate: use any define Baud rate
  * @return 
  */
-uint8_t Uart1Init(tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate);
+uint8_t Uart1Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate);
 
 /**
  * 
@@ -130,7 +130,7 @@ uint8_t Uart1TXbusy(void);
  * @param baudRate: use any define Baud rate
  * @return 
  */
-uint8_t Uart2Init(tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate);
+uint8_t Uart2Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate);
 
 /**
  * 
