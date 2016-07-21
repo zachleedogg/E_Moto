@@ -1,4 +1,3 @@
-Makefile
 memoryfile.xml
 *.X.production.elf
 *.X.production.hex
