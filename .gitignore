@@ -1,0 +1,11 @@
+Makefile
+memoryfile.xml
+*.X.production.elf
+*.X.production.hex
+*.X.production.map
+*.o
+*.o.d
+*.mk
+*.bash
+*.properties
+private

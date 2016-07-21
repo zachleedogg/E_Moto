@@ -17,7 +17,7 @@ int main(void) {
     clockInit(FREQ_80MHZ, EXTERNAL);
     Timer_Init(clockFreq());
     
-    printf("\n\n\nhello this is the test program for the DASH V2\n");
+    printf("\n\n\nhello this is the test program for the Template Project\n");
         
     Init();
     
