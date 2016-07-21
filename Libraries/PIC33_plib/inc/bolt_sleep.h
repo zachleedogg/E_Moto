@@ -13,7 +13,7 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 
-#include "pins.h"
+#include "bolt_pins.h"
 
 /*WAKE UP LIST*/
 #define WAKE_UP(INT) \

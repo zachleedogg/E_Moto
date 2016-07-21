@@ -11,10 +11,8 @@
  4/6/16: successful communication and modularization; brdgordo
  5/15/16: fixed math error in module and app codes
  ****************************************************************************************/
-#include <xc.h>
+#include "bolt_CAN.h"
 #include <string.h>
-#include <stdio.h>
-#include "CAN_Functions.h"
 
 /*DEBUGGING*/
 

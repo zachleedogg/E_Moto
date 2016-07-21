@@ -13,7 +13,7 @@
 // *****************************************************************************
 #include "bolt_i2c.h"
 #include "bolt_uart.h"
-#include "init.h"
+#include "bolt_init.h"
 
 #define DEBUG
 

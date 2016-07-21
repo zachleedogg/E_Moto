@@ -1,13 +1,11 @@
-#include "bolt_spi.h"
-
-#include <xc.h>
-
 /*
  * File:   bolt_spi.c
  * Author: Zach Levenberg
  *
  * Created on February 10, 2016, 10:23 PM
  */
+
+#include "bolt_spi.h"
 
 /*Output PPS registers*/
 #define RP20_SPI_PPS    _RP20R
@@ -24,7 +22,6 @@
 /*Output PPS functions*/
 #define SCK2 0x09
 #define SDO2 0x08
-
 
 #define  SEC_PRESCAL_1_1        0b111  /* Secondary Prescale 1:1   */
 #define  SEC_PRESCAL_2_1        0b110  /* Secondary Prescale 2:1   */
@@ -172,6 +169,7 @@ void __attribute__((__interrupt__, auto_psv)) _SPI1Interrupt(void) {
     _SPI1IF = 0; /* Clear the Interrupt flag*/
     spi1Status = 1;
     uint16_t temp = SPI1BUF; /*clear input buffer because it just always fills up*/
+    temp = 0; /*Suppress Warning*/
 }
 
 void __attribute__((__interrupt__, auto_psv)) _SPI2Interrupt(void) {

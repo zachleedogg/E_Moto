@@ -1,5 +1,5 @@
 #include "bolt_uart.h"
-#include "Init.h"
+#include "bolt_init.h"
 
 #define BUFFER_SIZE 2048
 #define QUEUE_SIZE 255

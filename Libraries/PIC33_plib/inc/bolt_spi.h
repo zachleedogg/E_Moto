@@ -12,7 +12,7 @@
 
 #include <xc.h> // include processor files - each processor file is guarded.
 #include <stdint.h>
-#include "Init.h"
+
 
 #define SPI_4MHZ FREQ
 

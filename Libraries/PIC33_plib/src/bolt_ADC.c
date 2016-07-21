@@ -23,8 +23,6 @@
 #define ADC_ON() AD1CON1bits.ADON=1
 #define ADC_OFF() AD1CON1bits.ADON=0
 
-uint8_t uartFlag;
-
 typedef struct _ADCmodule {
     uint8_t numberOfInputs;
     uint8_t pinList[NUMBER_OF_ADC_PINS];
@@ -71,60 +69,8 @@ void ADC_Init(void) {
     AD1CHS0bits.CH0NA = 0; // Select VREF- for CH0 -ve input
     
     /* Do not Enable ADC module or interrupt, wait to add the pins. */
-    //_AD1IP = 4; /*Interrupt Priority*/
-    //_AD1IE = 1;
-    //AD1CON1bits.ADON = 1;
 }
 
-void __attribute__((__interrupt__, __auto_psv__)) _AD1Interrupt(void) {
-
-    _AD1IF = 0; // Clear conversion done status bit
-
-    uint8_t currentInput = 0;
-    /*For each input, read ADC1BUFx value into correct pin buffer*/
-    uint8_t i = 0;
-    for (i = 0; i < thisADC.numberOfInputs; i++) {
-        /*search for pins that are active*/
-        for (; currentInput < NUMBER_OF_ADC_PINS; currentInput++) {
-            if (thisADC.pinList[currentInput]) {
-                switch (i) {
-                    case 0:
-                        thisADC.buffer[currentInput] = ADC1BUF0;
-                        break;
-                    case 1:
-                        thisADC.buffer[currentInput] = ADC1BUF1;
-                        break;
-                    case 2:
-                        thisADC.buffer[currentInput] = ADC1BUF2;
-                        break;
-                    case 3:
-                        thisADC.buffer[currentInput] = ADC1BUF3;
-                        break;
-                    case 4:
-                        thisADC.buffer[currentInput] = ADC1BUF4;
-                        break;
-                    case 5:
-                        thisADC.buffer[currentInput] = ADC1BUF5;
-                        break;
-                    case 6:
-                        thisADC.buffer[currentInput] = ADC1BUF6;
-                        break;
-                    case 7:
-                        thisADC.buffer[currentInput] = ADC1BUF7;
-                        break;
-                    case 8:
-                        thisADC.buffer[currentInput] = ADC1BUF8;
-                        break;
-                    default:
-                        break;
-                }
-                currentInput++;
-                break;
-            }
-        }
-    }
-    uartFlag = 1;
-}
 
 uint8_t ADC_SetPin(adc_pin_number newPin) {
     ADC_OFF(); /*Turn off ADC*/
@@ -175,7 +121,6 @@ uint8_t ADC_SetPin(adc_pin_number newPin) {
     thisADC.pinList[newPin] = 1; /*set new pin to active state*/
     AD1CSSL |= (1 << newPin); /*add pin to input sweep*/
     AD1CON2bits.SMPI = thisADC.numberOfInputs - 1; /*Number of pins to sweep*/
-    //_AD1IE = 1;
     ADC_ON();
     return 0;
 }
@@ -224,6 +169,5 @@ uint16_t ADC_GetValue(adc_pin_number thisPin) {
             }
         }
     }
-    uartFlag = 1;
     return thisADC.buffer[thisPin];
 }
