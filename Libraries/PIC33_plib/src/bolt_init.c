@@ -13,14 +13,14 @@
 #include "bolt_init.h"
 
 /*Communicate on PGED1 and PGED1, JTAG is OFF*/
-
+_FPOR(ALTI2C1_OFF & ALTI2C2_OFF & WDTWIN_WIN25)
 _FICD(ICS_PGD1 & JTAGEN_OFF);
 
 // FPOR
 /* ALTI2C1 = OFF        Alternate I2C1 pins (I2C1 mapped to SDA1/SCL1 pins)*/
 /* ALTI2C2 = OFF        Alternate I2C2 pins (I2C2 mapped to SDA2/SCL2 pins)*/
 /* WDTWIN = WIN25       Watchdog Window Select bits (WDT Window is 25% of WDT period)*/
-_FPOR(ALTI2C1_OFF & ALTI2C2_OFF & WDTWIN_WIN25)
+
 
 // FWDT
 /* WDTPOST = PS32768    Watchdog Timer Postscaler bits (1:32,768)*/
