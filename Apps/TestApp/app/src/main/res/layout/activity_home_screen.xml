@@ -52,27 +52,6 @@
         style="`"
         android:gravity="center_horizontal" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
-        android:layout_below="@+id/editText"
-        android:layout_toLeftOf="@+id/analogClock"
-        android:layout_toStartOf="@+id/analogClock" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:gravity="left"
-        android:text="Searching for devices..."
-        android:textColor="#ffffff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,6 +60,31 @@
         android:layout_below="@+id/lets_ride"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/availableDevices"
+        android:textSize="16dp"
+        android:text="@string/Available_device_message"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/timer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:enabled="false"
+        android:onClick="scanForBluetoothOnClick"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/availableDevicesList"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/availableDevices"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/analogClock"/>
+
+
 
 
 </RelativeLayout>

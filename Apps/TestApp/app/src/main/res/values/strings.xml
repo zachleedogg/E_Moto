@@ -1,7 +1,11 @@
 <resources>
+
     <string name="app_name">TestApp</string>
     <string name="user_id_input_message">User ID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ </string>
     <string name="user_id_button">Enter</string>
     <string name="Home_Screen_message">Wassup, Bitch.\n Welcome to the \n E-Moto</string>
     <string name="Welcome_Screen_message">Good Morning</string>
+    <string name="Paired_device_message">Paried Devices...</string>
+    <string name="Available_device_message">Available Devices...</string>
+
 </resources>
