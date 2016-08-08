@@ -101,7 +101,7 @@ static uint8_t i2cReadDone;
 /*Repeat start condition*/
 #define REP_START2() I2C2CONbits.RSEN=1;
 
-uint8_t i2cInit(float baudRate) {
+uint8_t i2c_Init(float baudRate) {
     //I2C Config 1 I2C2CONbits
     I2C2CONbits.I2CEN = 0;
 
@@ -128,12 +128,12 @@ uint8_t i2cInit(float baudRate) {
     return 0;
 }
 
-uint8_t i2cSetDeviceID(uint8_t deviceID) {
+uint8_t i2c_SetDeviceID(uint8_t deviceID) {
     thisTransmission.deviceAddress = deviceID;
     return 0;
 }
 
-uint8_t i2cSetAddress(uint16_t address, uint8_t addressSpace) {
+uint8_t i2c_SetAddress(uint16_t address, uint8_t addressSpace) {
     if (addressSpace == ADDRESS_SPACE_8_BIT) {
         thisTransmission.addressHigh = (uint8_t) address;
     } else {
@@ -144,7 +144,7 @@ uint8_t i2cSetAddress(uint16_t address, uint8_t addressSpace) {
     return 0;
 }
 
-uint8_t i2cWrite(char *message, uint8_t numberOfBytes) {
+uint8_t i2c_Write(char *message, uint8_t numberOfBytes) {
     int i = 0;
     for (i = 0; i < numberOfBytes; i++) {
         thisTransmission.TX[i] = message[i];
@@ -161,7 +161,7 @@ uint8_t i2cWrite(char *message, uint8_t numberOfBytes) {
     return 0;
 }
 
-uint8_t i2cRead(char *message, uint8_t numberOfBytes) {
+uint8_t i2c_Read(char *message, uint8_t numberOfBytes) {
     thisTransmission.numberOfBytes = numberOfBytes;
     thisTransmission.readWrite = READ;
     thisTransmission.RX = message;
@@ -175,7 +175,7 @@ uint8_t i2cRead(char *message, uint8_t numberOfBytes) {
     return 0;
 }
 
-uint8_t i2cReadReady(void) {
+uint8_t i2c_ReadReady(void) {
     uint8_t returnVal = 0;
     if (i2cReadDone) {
         i2cReadDone = 0;

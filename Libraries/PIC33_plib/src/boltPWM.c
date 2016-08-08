@@ -6,8 +6,8 @@
  */
 
 
-#include "xc.h"
-#include "boltPWM.h"
+#include <xc.h>
+#include "bolt_PWM.h"
 
 uint8_t pwmPinStatus[3] = {0, 0, 0};
 

@@ -26,14 +26,14 @@
  * @param baudRate can be 1M, 400k, or 100k
  * @return success or failure
  */
-uint8_t i2cInit(float baudRate);
+uint8_t i2c_Init(float baudRate);
 
 /**
  * Set the device ID number for the next device to interface with
  * @param deviceID is the unique ID in the device datasheet
  * @return success or failure
  */
-uint8_t i2cSetDeviceID(uint8_t deviceID);
+uint8_t i2c_SetDeviceID(uint8_t deviceID);
 
 /**
  * Sets the address to read or write to in the device specified by Device ID
@@ -41,7 +41,7 @@ uint8_t i2cSetDeviceID(uint8_t deviceID);
  * @param addressSpace: 8 or 16 bit specifier
  * @return 
  */
-uint8_t i2cSetAddress(uint16_t address, uint8_t addressSpace);
+uint8_t i2c_SetAddress(uint16_t address, uint8_t addressSpace);
 
 /**
  * Writes to the device.
@@ -49,7 +49,7 @@ uint8_t i2cSetAddress(uint16_t address, uint8_t addressSpace);
  * @param numberOfBytes: length of data string
  * @return success or failure
  */
-uint8_t i2cWrite(char *message, uint8_t numberOfBytes);
+uint8_t i2c_Write(char *message, uint8_t numberOfBytes);
 
 /**
  * Reads from device
@@ -57,13 +57,13 @@ uint8_t i2cWrite(char *message, uint8_t numberOfBytes);
  * @param numberOfBytes: length of data to read
  * @return success or failure
  */
-uint8_t i2cRead(char *message, uint8_t numberOfBytes);
+uint8_t i2c_Read(char *message, uint8_t numberOfBytes);
 
 /**
  * When true, the data last read using i2cRead() is ready for use.
  * @return True or False
  */
-uint8_t i2cReadReady(void);
+uint8_t i2c_ReadReady(void);
 
 
 #endif	/* BOLT_I2C_H */

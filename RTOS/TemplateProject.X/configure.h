@@ -16,11 +16,11 @@
 /* Put the names of any events here is this list */
 #define EVENT_LIST(EVENT) \
 EVENT(NO_EVENT) \
-EVENT(FAIL) /* Runtime failure in the state machine */ \
-EVENT(INIT) /* The transition out of init state */ \
-EVENT(ENTRY) /* Put any entry code for a state when this state is thrown */ \
-EVENT(EXIT) /* Exit code for states triggered by this event */ \
-EVENT(TIMEUP) /* The timer-up event for timers */ \
+EVENT(FAIL_EVENT) /* Runtime failure in the state machine */ \
+EVENT(INIT_EVENT) /* The transition out of init state */ \
+EVENT(ENTRY_EVENT) /* Put any entry code for a state when this state is thrown */ \
+EVENT(EXIT_EVENT) /* Exit code for states triggered by this event */ \
+EVENT(TIMEUP_EVENT) /* The timer-up event for timers */ \
 
 /***********************************************************************************************
  List of Background Event Checkers
@@ -29,16 +29,26 @@ EVENT(TIMEUP) /* The timer-up event for timers */ \
 /*list the background function names in EventCheckers.h*/
 #define EVENT_CHECK_FUNCS 
 
+/* enum-ifies the event list*/
+#define ENUM_FORM(WORD) WORD,
+typedef enum{
+    EVENT_LIST(ENUM_FORM)
+    EVENTCOUNT
+} EventType_t;
+
+/* string-ifies the event list */
+#define STRING_FORM(WORD) #WORD,
+static char __attribute__ ((unused)) *EventStrings[] = {
+    EVENT_LIST(STRING_FORM)
+};
+
 /***********************************************************************************************
  List of Services
  ***********************************************************************************************/
-/*Put the name of any service */
-#define SERVICE_LIST(SERVICE) \
-SERVICE(FSM_TEMPLATE_SERVICE) /*Main state machine, This is always first (the default Service)*/ \
-
 
 /*Put the name of each service*/
-#define SERVICES FSM_TEMPLATE
+#define SERVICE_LIST(SERVICE) \
+SERVICE(FSM_TEMPLATE) /*Main state machine, This is always first (the default Service)*/ \
 
 /* file name of each service IN THE SAME ORDER AS ABOVE*/
 #define SERVICE_1 "FSM_Template.h"
@@ -50,50 +60,18 @@ SERVICE(FSM_TEMPLATE_SERVICE) /*Main state machine, This is always first (the de
 //#define SERVICE_7 
 //#define SERVICE_8 
 
-/***********************************************************************************************
- * Timers
- ***********************************************************************************************/
 
-/*Select to which Service a timer posts a TimeUp Event, 0 is the Default Service*/
-#define TIMER_0 0
-#define TIMER_1 0
-#define TIMER_2 0
-#define TIMER_3 0
-#define TIMER_4 0
-#define TIMER_5 0
-#define TIMER_6 0
-#define TIMER_7 0
-#define TIMER_8 0
-#define TIMER_9 0
-#define TIMER_10 0
-#define TIMER_11 0
-#define TIMER_12 0
-#define TIMER_13 0
-#define TIMER_14 0
-#define TIMER_15 0
-
-
-
-
-
-#define ENUM_FORM(WORD) WORD,
-
-/* enum-ifies the event list*/
+/* enum-ifies the service list*/
+#define SERVICE_FORM(WORD) WORD##_SERVICE,
+#define SERVICES SERVICE_LIST(ENUM_FORM)
 typedef enum{
-    EVENT_LIST(ENUM_FORM)
-    EVENTCOUNT
-} EventType_t;
-
-/* enum-ifies the event list*/
-typedef enum{
-    SERVICE_LIST(ENUM_FORM)
+    SERVICE_LIST(SERVICE_FORM)
     SERVICECOUNT
 } ServiceType_t;
 
-/* string-ifies the event list */
-#define STRING_FORM(WORD) #WORD,
-static char __attribute__ ((unused)) *EventStrings[] = {
-    EVENT_LIST(STRING_FORM)
+/* string-ifies the service list */
+static char __attribute__ ((unused)) *ServiceStrings[] = {
+    SERVICE_LIST(STRING_FORM)
 };
 
 /* The Event type */
@@ -101,12 +79,8 @@ typedef struct Event_t{
     EventType_t EventType;
     uint16_t EventParam;
     uint8_t EventPriority;
-    uint8_t Service;
+    ServiceType_t Service;
 } Event;
-
-
-
-
 
 #endif	/* CONFIGURE_H */
 

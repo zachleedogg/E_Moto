@@ -1,9 +1,15 @@
-/*This is a Framework for the BOLT MOTORBIKES embedded system*/
+/* 
+ * File:   framework.h
+ * Author: Zachary Levenberg
+ *
+ * Created on June 9, 2016, 7:52 PM
+ */
+
+#include <xc.h>
+#include <stdio.h>
 
 #include "framework.h"
 #include EVENTCHECKER_HEADER
-#include <xc.h>
-#include <stdio.h>
 #include SERVICE_1
 #ifdef SERVICE_2
 #include SERVICE_2
@@ -36,41 +42,31 @@ typedef struct _queue {
     uint16_t tail;
 } queue;
 
-
-
-/* Event check function pointer type*/
-typedef uint8_t(*EventFunc_t)();
-typedef Event(*ServiceFuncList)(Event);
-EventFunc_t const EventCheckList[] = {EVENT_CHECK_FUNCS};
-ServiceFuncList const ServiceList[] = {SERVICES};
-static uint8_t numberofCheckers = (uint8_t)sizeof (EventCheckList) / sizeof (EventFunc_t);
-static uint8_t numberofServices = (uint8_t)sizeof (ServiceList) / sizeof (ServiceFuncList);
-
 /*Queue Array*/
 static queue QueueList[PRIORITY_LEVELS] = {};
 
-/*Timer Array*/
-static const uint8_t TimerArray[] = {TIMER_0, TIMER_1, TIMER_2,
-    TIMER_3, TIMER_4, TIMER_5, TIMER_6, TIMER_7, TIMER_8, TIMER_9,
-    TIMER_10, TIMER_11, TIMER_12, TIMER_13, TIMER_14, TIMER_15};
+/* Event check function pointer*/
+typedef uint8_t(*EventFunc_t)();
+EventFunc_t const EventCheckList[] = {EVENT_CHECK_FUNCS};
+static uint8_t numberofCheckers = (uint8_t)sizeof (EventCheckList) / sizeof (EventFunc_t);
 
+/* Service function pointer*/
+typedef Event(*ServiceFuncList)(Event);
+ServiceFuncList const ServiceList[] = {SERVICES};
+static uint8_t numberofServices = (uint8_t)sizeof (ServiceList) / sizeof (ServiceFuncList);
+
+/*Helper Function Prototypes*/
 uint8_t EnQueue(queue *thisQueue, Event thisEvent);
 Event DeQueue(queue *thisQueue);
 uint8_t CheckForEvents();
 
 uint8_t Post(Event thisEvent) {
-    uint8_t i = 0;
-    for (i = 0; i < PRIORITY_LEVELS; i++) {
-        if (thisEvent.EventPriority == i) {
-            EnQueue(&QueueList[i], thisEvent);
-            break;
-        }
-    }
+    EnQueue(&QueueList[thisEvent.EventPriority], thisEvent);
     return 0;
 }
 
 uint8_t Init() {
-    Event ThisEvent = INIT_EVENT;
+    Event ThisEvent = INIT;
     uint8_t S = 0;
 
     for (S = 0; S < numberofServices; S++) {/*Check through each service*/
@@ -83,20 +79,12 @@ uint8_t Init() {
 uint8_t Run() {
     Event ThisEvent;
     int8_t Q = 0;
-    uint8_t S = 0;
-
-    //printf("# of Event Checkers: %d,\n# of Services: %d\n", numberofCheckers, numberofServices);
 
     while (1) {
         for (Q = PRIORITY_LEVELS - 1; Q >= 0; Q--) {/*Check each priority level*/
             while (QueueList[Q].size != 0) {/*If the queue is not empty*/
                 ThisEvent = DeQueue(&QueueList[Q]); /*DeQueue the event*/
-                for (S = 0; S < numberofServices; S++) {/*Check through each service*/
-                    if (ThisEvent.Service == S) {/*post event to the correct service*/
-                        ServiceList[S](ThisEvent);
-                        break;
-                    }
-                }
+                ServiceList[ThisEvent.Service](ThisEvent); /*Run the Serice with the Event*/
             }
         }
         /* empty queues, check for user events */
@@ -142,10 +130,10 @@ uint8_t EnQueue(queue *thisQueue, Event thisEvent) {
 }
 
 Event DeQueue(queue *thisQueue) {
-    Event thisEvent = EMPTY_EVENT;
+    Event thisEvent = EMPTY;
     if (thisQueue->tail != thisQueue->head) {/*If the Queue is not empty*/
         thisEvent = thisQueue->eventQueue[thisQueue->tail]; /*Dequeue the data*/
-        thisQueue->eventQueue[thisQueue->tail++] = EMPTY_EVENT;
+        thisQueue->eventQueue[thisQueue->tail++] = EMPTY;
         thisQueue->size--;
         if (thisQueue->tail == QUEUE_SIZE) {/*wrap-around protection*/
             thisQueue->tail = 0;
@@ -163,6 +151,7 @@ typedef struct _sw_timer {
     uint16_t time;
     uint16_t threshold;
     sw_timer_status status;
+    ServiceType_t service;
 } sw_timer;
 
 static sw_timer SW_timers[NUMBER_OF_SW_TIMERS];
@@ -217,9 +206,10 @@ uint32_t FreeRunningTimer(void) {
     return runningTime;
 }
 
-void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time) {
+void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time, ServiceType_t service) {
     SW_timers[thisTimer].time = time;
     SW_timers[thisTimer].status = RUNNING;
+    SW_timers[thisTimer].service = service;
 }
 
 void SW_Timer_Stop(sw_timer_number thisTimer) {
@@ -248,10 +238,10 @@ void __attribute__((__interrupt__, __auto_psv__)) _T5Interrupt(void) {
                 if (SW_timers[i].time == 0) {
                     SW_timers[i].status = DONE;
                     Event ThisEvent = {};
-                    ThisEvent.EventType = TIMEUP;
+                    ThisEvent.EventType = TIMEUP_EVENT;
                     ThisEvent.EventParam = i;
                     ThisEvent.EventPriority = 2;
-                    ThisEvent.Service = TimerArray[i];
+                    ThisEvent.Service = SW_timers[i].service;
                     Post(ThisEvent);
                 }
             }

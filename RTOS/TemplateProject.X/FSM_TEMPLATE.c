@@ -3,14 +3,11 @@
 #include <stdio.h>
 
 /* Uncomment to for custom Debugging */
-#define FSM_TEMPLATE_DEBUG
 
-#ifdef FSM_TEMPLATE_DEBUG
-#define DEBUG
-#define FSM_TEMPLATE_print(...) ({char tempArray[100]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);})
-#else
-#define FSM_TEMPLATE_print(...) 
-#endif
+static uint8_t debugEnable = 1;
+
+#define FSM_TEMPLATE_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
+
 
 static FSM_TEMPLATE_State_t prevState = init; /* initialize previous state */
 static FSM_TEMPLATE_State_t curState = init; /* initialize current state */
@@ -21,7 +18,7 @@ Event FSM_TEMPLATE(Event ThisEvent) {
     ThisEvent.EventPriority = 0;
 
     /*Debugging print statement*/
-    FSM_TEMPLATE_print("%s Event: %s %d\n", StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
+    FSM_TEMPLATE_print("Service: %s\tState: %s\tEvent: %s %d\n", ServiceStrings[FSM_TEMPLATE_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
 
     /*Initialize next state so we can check for a transistion*/
     FSM_TEMPLATE_State_t nextState = curState;
@@ -29,7 +26,7 @@ Event FSM_TEMPLATE(Event ThisEvent) {
     /*State Machine Begins Here.*/
     switch (curState) {
         case init: /* SM starts here */
-            if (ThisEvent.EventType == INIT) {
+            if (ThisEvent.EventType == INIT_EVENT) {
                 /*Initialization stuff here*/
                 nextState = someState;
             }
@@ -37,12 +34,21 @@ Event FSM_TEMPLATE(Event ThisEvent) {
 
         case someState: /* initial idle state before ignition */
             switch (ThisEvent.EventType) {
-                case ENTRY:
+                case ENTRY_EVENT:
+                    ThisEvent.EventParam = 100;
+                    ThisEvent.EventType = TIMEUP_EVENT;
+                    Post(ThisEvent);
+                    Post(ThisEvent);
+                    Post(ThisEvent);
+                    Post(ThisEvent);
+                    Post(ThisEvent);
+                    Post(ThisEvent);
+                    nextState = anotherState;
                     break;
                     /*Put custom states below here*/
 
                     /*Put custom states above here*/
-                case EXIT:
+                case EXIT_EVENT:
                     break;
                 default:
                     break;
@@ -52,12 +58,12 @@ Event FSM_TEMPLATE(Event ThisEvent) {
         case anotherState: /* Welcomes the user after the ignition wake up*/
             if (ThisEvent.EventType != NO_EVENT) {
                 switch (ThisEvent.EventType) {
-                    case ENTRY:
+                    case ENTRY_EVENT:
                         break;
                         /*Put custom states below here*/
 
                         /*Put custom states above here*/
-                    case EXIT:
+                    case EXIT_EVENT:
                         break;
                     default:
                         break;
@@ -68,12 +74,12 @@ Event FSM_TEMPLATE(Event ThisEvent) {
         case yetAnotherState: /* Welcomes the user after the ignition wake up*/
             if (ThisEvent.EventType != NO_EVENT) {
                 switch (ThisEvent.EventType) {
-                    case ENTRY:
+                    case ENTRY_EVENT:
                         break;
                         /*Put custom states below here*/
 
                         /*Put custom states above here*/
-                    case EXIT:
+                    case EXIT_EVENT:
                         break;
                     default:
                         break;
@@ -88,10 +94,10 @@ Event FSM_TEMPLATE(Event ThisEvent) {
     if (nextState != curState) {
         FSM_TEMPLATE_print("\nTransistioning\n");
         ThisEvent.EventType = NO_EVENT;
-        FSM_TEMPLATE(EXIT_EVENT);
+        FSM_TEMPLATE(EXIT);
         prevState = curState;
         curState = nextState;
-        FSM_TEMPLATE(ENTRY_EVENT);
+        FSM_TEMPLATE(ENTRY);
     }
 
     return ThisEvent;

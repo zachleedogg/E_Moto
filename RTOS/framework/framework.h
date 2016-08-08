@@ -1,16 +1,15 @@
 /* 
  * File:   framework.h
- * Author: kid group
+ * Author: Zachary Levenberg
  *
  * Created on June 9, 2016, 7:52 PM
  */
 
-#include <stdint.h>
-#include "configure.h"
-
 #ifndef FRAMEWORK_H
 #define	FRAMEWORK_H
 
+#include <stdint.h>
+#include "configure.h"
 /******************************************************************************/
 /*Framework Global Defines*/
 /******************************************************************************/
@@ -45,10 +44,10 @@ typedef enum _sw_timer_status {
 } sw_timer_status;
 
 /* Event defines */
-#define EMPTY_EVENT (Event){NO_EVENT, 0x0000, 0x0000, 0x0000}
-#define INIT_EVENT (Event){INIT, 0x0000, 0x0000, 0x0000}
-#define EXIT_EVENT (Event){EXIT, 0x0000, 0x0000, 0x0000}
-#define ENTRY_EVENT (Event){ENTRY, 0x0000, 0x0000, 0x0000}
+#define EMPTY (Event){NO_EVENT, 0x0000, 0x0000, 0x0000}
+#define INIT (Event){INIT_EVENT, 0x0000, 0x0000, 0x0000}
+#define EXIT (Event){EXIT_EVENT, 0x0000, 0x0000, 0x0000}
+#define ENTRY (Event){ENTRY_EVENT, 0x0000, 0x0000, 0x0000}
 
 
 /******************************************************************************/
@@ -70,7 +69,7 @@ void FreeRunningTimerReset(void);
 
 uint32_t FreeRunningTimer(void);
 
-void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time);
+void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time, ServiceType_t service);
 
 void SW_Timer_Stop(sw_timer_number thisTimer);
 

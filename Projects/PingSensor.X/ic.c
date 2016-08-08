@@ -63,19 +63,15 @@ static ic_module modules[NUMBER_IC_MODULES];
  * @return 
  */
 uint8_t ic_Init(ic_pin_number newICPin) {
-
     uint8_t returnVal = 0;
 
-    ic_module currentModule = {0, 0, 0, 0}; /*variable to hold module to assign*/
-    uint8_t i = 0;
-
     /*check the pin for available modules*/
+        uint8_t i = 0;
     for (i = 0; i < NUMBER_IC_MODULES; i++) {/*check modules in use*/
         if (modules[i].availability == AVAILABLE) {
             modules[i].availability = UNAVAILABLE;
             modules[i].moduleNumber = i;
             modules[i].Pin = newICPin;
-            currentModule = modules[i];
             break;
         }
     }
@@ -140,7 +136,7 @@ uint8_t ic_Init(ic_pin_number newICPin) {
  * @return 
  */
 uint8_t ic_Ready(void) {
-    return (*(uint8_t*) & icReadyStatus);
+    return icReadyStatus.theInt;
 }
 
 /**
@@ -163,6 +159,12 @@ uint16_t ic_getTime(ic_pin_number thisModule) {
     return time;
 }
 
+/**
+ * 
+ * @param thisModule
+ * @param mode
+ * @return 
+ */
 uint8_t ic_moduleMode(ic_pin_number thisModule, uint8_t mode) {
 
     /*Set returnVal to success*/

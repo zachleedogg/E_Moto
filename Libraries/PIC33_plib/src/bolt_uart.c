@@ -142,10 +142,7 @@ uint8_t Uart1Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate)
             RP57_TX_PPS = UART1_PPS;
             break;
 #endif
-
-
-
-
+            
         default:
             return 1;
             break;
