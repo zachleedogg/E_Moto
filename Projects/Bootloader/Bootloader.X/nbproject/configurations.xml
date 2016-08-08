@@ -4,26 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <logicalFolder name="f2" displayName="framework" projectFiles="true">
-        <itemPath>../framework/framework.h</itemPath>
-        <itemPath>configure.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="libs" projectFiles="true">
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_CAN.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_i2c.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_OC.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_pins.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_PWM.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_sleep.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_spi.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f3" displayName="Services" projectFiles="true">
-        <itemPath>FSM_TEMPLATE.h</itemPath>
-      </logicalFolder>
-      <itemPath>Defines.h</itemPath>
+      <itemPath>../../../Libraries/PIC33_plib/inc/bolt_CAN.h</itemPath>
+      <itemPath>../../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
+      <itemPath>../../../Libraries/PIC33_plib/inc/bolt_sleep.h</itemPath>
+      <itemPath>../../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -32,27 +16,13 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="framework" displayName="framework" projectFiles="true">
-        <itemPath>../framework/framework.c</itemPath>
-        <itemPath>EventCheckers.c</itemPath>
-      </logicalFolder>
-      <logicalFolder name="PIC33_plib" displayName="PIC33_plib" projectFiles="true">
-        <logicalFolder name="src" displayName="src" projectFiles="true">
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_i2c.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_OC.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_pins.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_sleep.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_spi.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
-        </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="Services" projectFiles="true">
-        <itemPath>FSM_TEMPLATE.c</itemPath>
-      </logicalFolder>
+      <itemPath>bootloader.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>eewiki_FLASH_selfwrite_funcs.c</itemPath>
+      <itemPath>../../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
+      <itemPath>../../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
+      <itemPath>../../../Libraries/PIC33_plib/src/bolt_sleep.c</itemPath>
+      <itemPath>../../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -61,9 +31,9 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../../Libraries/PIC33_plib</Elem>
-    <Elem>../framework</Elem>
     <Elem>.</Elem>
+    <Elem>../../../Libraries/PIC33_plib/inc</Elem>
+    <Elem>../../../Libraries/PIC33_plib/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -116,7 +86,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\framework"/>
+                  value="..\..\..\Libraries\PIC33_plib\inc;..\..\..\Libraries\PIC33_plib\src"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -202,7 +172,7 @@
       </C30Global>
       <PICkit3PlatformTool>
         <property key="ADC 1" value="true"/>
-        <property key="AutoSelectMemRanges" value="manual"/>
+        <property key="AutoSelectMemRanges" value="auto"/>
         <property key="COMPARATOR" value="true"/>
         <property key="CRC" value="true"/>
         <property key="CTMU" value="true"/>
@@ -248,7 +218,7 @@
                   value="${memories.programmemory.partition2.end.value}"/>
         <property key="memories.programmemory.partition2.start"
                   value="${memories.programmemory.partition2.start.value}"/>
-        <property key="memories.programmemory.start" value="0x0000"/>
+        <property key="memories.programmemory.start" value="0x0"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmertogo.imagename" value=""/>
         <property key="programoptions.donoteraseauxmem" value="false"/>

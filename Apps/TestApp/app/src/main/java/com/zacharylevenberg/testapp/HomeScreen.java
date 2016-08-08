@@ -26,16 +26,16 @@ import java.util.Set;
 
 public class HomeScreen extends AppCompatActivity {
 
+    /***********************************************************************************************
+     *  Variable definitions
+     **********************************************************************************************/
+
     // Bluetooth variables.
     private static final int REQUEST_ENABLE_BT = 1234;
     private static final int SCANNING_TIME = 10000;
     private BluetoothAdapter mBluetoothAdapter;
-    private Set<BluetoothDevice> pairedDevices;
+    private Set<BluetoothDevice> btDevices;
 
-    //Paried Device List
-    ListView bondedDevicesView;
-    ArrayList<String> pairedDeviceList=new ArrayList<String>();
-    ArrayAdapter bondedDeviceAdapter;
 
     //Discoverable Device List
     public TextView availDeviceText;
@@ -50,8 +50,13 @@ public class HomeScreen extends AppCompatActivity {
     private static long millis;
 
 
+    /**********************************************************************************************
+     *   Methods
+     **********************************************************************************************/
 
-
+    /*On Create
+    *   When the App first opens up this Activity
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,12 +97,6 @@ public class HomeScreen extends AppCompatActivity {
         availDeviceAdapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1, availDeviceList);
         availDevicesView.setAdapter(availDeviceAdapter);
 
-/*        //Set the list view
-        bondedDevicesView = (ListView)findViewById(R.id.listView);
-        bondedDeviceAdapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1, pairedDeviceList);
-        bondedDevicesView.setAdapter(bondedDeviceAdapter);
-        listit();*/
-
         //set the timer display
         timerText = (EditText) findViewById(R.id.timer);
         availDeviceText = (TextView)(findViewById(R.id.availableDevices));
@@ -105,17 +104,21 @@ public class HomeScreen extends AppCompatActivity {
 
 
 
-    //When we arrive at this state again some time
+    /* onResume
+    *   When we arrive at this state again some time
+    */
     @Override
     public void onResume() {
         super.onResume();
+        //Do stuff here
         if(timerState == 1) {
             secondsTimer.postDelayed(secondsTimerRunnable, 0);
         }
-        //Do stuff here
     }
 
-    //When we leave this state...
+    /* onPause
+    *   When we pause state...
+    */
     @Override
     public void onPause() {
         super.onPause();
@@ -123,13 +126,20 @@ public class HomeScreen extends AppCompatActivity {
         secondsTimer.removeCallbacks(secondsTimerRunnable);
     }
 
-    //When we end the activity...
+    /* onDestroy
+    *   When we end the activity...
+    */
     @Override
     public void onDestroy() {
         super.onDestroy();
         //Do stuff here
     }
 
+    /**********************************************************************************************
+     *  Handlers
+     **********************************************************************************************/
+
+    //Bluetooth timer handler
     Handler scanningTimer = new Handler();
     Runnable scanningTimerRunnable = new Runnable() {
         @Override
@@ -140,7 +150,7 @@ public class HomeScreen extends AppCompatActivity {
         }
     };
 
-    //runs without a timer by reposting this handler at the end of the runnable
+    //Clock timer handler
     Handler secondsTimer = new Handler();
     Runnable secondsTimerRunnable = new Runnable() {
         @Override
@@ -154,6 +164,10 @@ public class HomeScreen extends AppCompatActivity {
         }
     };
 
+    /**********************************************************************************************
+     *   Public Methods (Button presses, etc...)
+     **********************************************************************************************/
+
     public void startTimer(View v) {
         if (timerState == 1) {
             timerState = 0;
@@ -165,11 +179,17 @@ public class HomeScreen extends AppCompatActivity {
         }
     }
 
-    public void listit(){
-        pairedDevices = mBluetoothAdapter.getBondedDevices();
-        for(BluetoothDevice bt : pairedDevices)
-            addItems(pairedDeviceList, bt.getName());
+    public void scanForBluetoothOnClick(View view){
+        availDeviceText.setEnabled(false);
+        availDeviceText.setText("Available Devices...");
+        availDeviceList.clear();
+        availDeviceAdapter.notifyDataSetChanged();
+        scanForBluetooth();
     }
+
+    /**********************************************************************************************
+     *   Broadcase Receivers
+     **********************************************************************************************/
 
     final BroadcastReceiver bReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
@@ -179,34 +199,38 @@ public class HomeScreen extends AppCompatActivity {
                 // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // add the name and the MAC address of the object to the arrayAdapter
+
+                //btDevices.add(device);
+
                 String newDevice = device.getName() + "\n" + device.getAddress();
                 if(!availDeviceList.contains(newDevice)) {
-                    addItems(availDeviceList, device.getName() + "\n" + device.getAddress());
+                    addItems(availDeviceList, newDevice);
                     availDeviceAdapter.notifyDataSetChanged();
                 }
             }
         }
     };
 
+
+    /**********************************************************************************************
+     *   Private Methods (helper functions)
+     **********************************************************************************************/
+
     //METHOD WHICH WILL HANDLE DYNAMIC LIST INSERTION
-    public void addItems(ArrayList someList, String thisItem) {
+    private void addItems(ArrayList someList, String thisItem) {
         someList.add(thisItem);
     }
 
-    public void scanForBluetoothOnClick(View view){
-        availDeviceText.setEnabled(false);
-        availDeviceText.setText("Available Devices...");
-        availDeviceList.clear();
-        availDeviceAdapter.notifyDataSetChanged();
-        scanForBluetooth();
-    }
 
+    /**
+     *
+     */
     private void scanForBluetooth(){
 
         IntentFilter bluetoothFilter = new IntentFilter();
-        bluetoothFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        //bluetoothFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
         bluetoothFilter.addAction(BluetoothDevice.ACTION_FOUND);
-        bluetoothFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        //bluetoothFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 
         registerReceiver(bReceiver, bluetoothFilter);
 

@@ -4,26 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <logicalFolder name="f2" displayName="framework" projectFiles="true">
-        <itemPath>../framework/framework.h</itemPath>
-        <itemPath>configure.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="libs" projectFiles="true">
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_CAN.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_i2c.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_OC.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_pins.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_PWM.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_sleep.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_spi.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="f3" displayName="Services" projectFiles="true">
-        <itemPath>FSM_TEMPLATE.h</itemPath>
-      </logicalFolder>
-      <itemPath>Defines.h</itemPath>
+      <itemPath>ic.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -32,26 +13,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="framework" displayName="framework" projectFiles="true">
-        <itemPath>../framework/framework.c</itemPath>
-        <itemPath>EventCheckers.c</itemPath>
-      </logicalFolder>
-      <logicalFolder name="PIC33_plib" displayName="PIC33_plib" projectFiles="true">
-        <logicalFolder name="src" displayName="src" projectFiles="true">
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_i2c.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_OC.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_pins.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_sleep.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_spi.c</itemPath>
-          <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
-        </logicalFolder>
-      </logicalFolder>
-      <logicalFolder name="f1" displayName="Services" projectFiles="true">
-        <itemPath>FSM_TEMPLATE.c</itemPath>
-      </logicalFolder>
+      <itemPath>ic.c</itemPath>
       <itemPath>main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -61,8 +23,6 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../../Libraries/PIC33_plib</Elem>
-    <Elem>../framework</Elem>
     <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
@@ -115,8 +75,7 @@
         <property key="enable-short-double" value="false"/>
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
-        <property key="extra-include-directories"
-                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\framework"/>
+        <property key="extra-include-directories" value=""/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -200,73 +159,6 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <PICkit3PlatformTool>
-        <property key="ADC 1" value="true"/>
-        <property key="AutoSelectMemRanges" value="manual"/>
-        <property key="COMPARATOR" value="true"/>
-        <property key="CRC" value="true"/>
-        <property key="CTMU" value="true"/>
-        <property key="Freeze All Other Peripherals" value="true"/>
-        <property key="I2C1" value="true"/>
-        <property key="I2C2" value="true"/>
-        <property key="INPUT CAPTURE 1" value="true"/>
-        <property key="INPUT CAPTURE 2" value="true"/>
-        <property key="INPUT CAPTURE 3" value="true"/>
-        <property key="INPUT CAPTURE 4" value="true"/>
-        <property key="OUTPUT COMPARE 1" value="true"/>
-        <property key="OUTPUT COMPARE 2" value="true"/>
-        <property key="OUTPUT COMPARE 3" value="true"/>
-        <property key="OUTPUT COMPARE 4" value="true"/>
-        <property key="PTG" value="true"/>
-        <property key="PWM" value="true"/>
-        <property key="SPI 1" value="true"/>
-        <property key="SPI 2" value="true"/>
-        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
-        <property key="TIMER1" value="true"/>
-        <property key="TIMER2" value="true"/>
-        <property key="TIMER3" value="true"/>
-        <property key="TIMER4" value="true"/>
-        <property key="TIMER5" value="true"/>
-        <property key="ToolFirmwareFilePath"
-                  value="Press to browse for a specific firmware version"/>
-        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
-        <property key="UART 1" value="true"/>
-        <property key="UART 2" value="true"/>
-        <property key="hwtoolclock.frcindebug" value="false"/>
-        <property key="memories.aux" value="false"/>
-        <property key="memories.bootflash" value="true"/>
-        <property key="memories.configurationmemory" value="true"/>
-        <property key="memories.configurationmemory2" value="true"/>
-        <property key="memories.dataflash" value="true"/>
-        <property key="memories.eeprom" value="true"/>
-        <property key="memories.flashdata" value="true"/>
-        <property key="memories.id" value="true"/>
-        <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.end" value="0x2afeb"/>
-        <property key="memories.programmemory.partition2" value="true"/>
-        <property key="memories.programmemory.partition2.end"
-                  value="${memories.programmemory.partition2.end.value}"/>
-        <property key="memories.programmemory.partition2.start"
-                  value="${memories.programmemory.partition2.start.value}"/>
-        <property key="memories.programmemory.start" value="0x0000"/>
-        <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmertogo.imagename" value=""/>
-        <property key="programoptions.donoteraseauxmem" value="false"/>
-        <property key="programoptions.eraseb4program" value="true"/>
-        <property key="programoptions.pgmspeed" value="2"/>
-        <property key="programoptions.preservedataflash" value="false"/>
-        <property key="programoptions.preserveeeprom" value="false"/>
-        <property key="programoptions.preserveprogramrange" value="false"/>
-        <property key="programoptions.preserveprogramrange.end" value="0x2afeb"/>
-        <property key="programoptions.preserveprogramrange.start" value="0x0"/>
-        <property key="programoptions.preserveuserid" value="false"/>
-        <property key="programoptions.programcalmem" value="false"/>
-        <property key="programoptions.programuserotp" value="false"/>
-        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
-        <property key="programoptions.usehighvoltageonmclr" value="false"/>
-        <property key="programoptions.uselvpprogramming" value="false"/>
-        <property key="voltagevalue" value="3.25"/>
-      </PICkit3PlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>
