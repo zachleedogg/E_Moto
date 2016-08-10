@@ -1,6 +1,9 @@
+#include <stdio.h>
+
 #include "FSM_TEMPLATE.h"
 #include "Defines.h"
-#include <stdio.h>
+#include "configure.h"
+#include "framework.h"
 
 /* Uncomment to for custom Debugging */
 
@@ -12,10 +15,33 @@ static uint8_t debugEnable = 1;
 static FSM_TEMPLATE_State_t prevState = init; /* initialize previous state */
 static FSM_TEMPLATE_State_t curState = init; /* initialize current state */
 
+void print1(void);
+void print2(void);
+void print3(void);
+void print4(void);
+void print5(void);
+
+void print1(void) {
+    Uart1Write("1");
+}
+
+void print2(void) {
+    Uart1Write("2");
+}
+
+void print3(void) {
+    Uart1Write("3");
+}
+
+void print4(void) {
+    Uart1Write("4");
+}
+
+void print5(void) {
+    Uart1Write("5\n");
+}
+
 Event FSM_TEMPLATE(Event ThisEvent) {
-    /*Clear priority and service*/
-    ThisEvent.Service = 0;
-    ThisEvent.EventPriority = 0;
 
     /*Debugging print statement*/
     FSM_TEMPLATE_print("Service: %s\tState: %s\tEvent: %s %d\n", ServiceStrings[FSM_TEMPLATE_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
@@ -28,6 +54,12 @@ Event FSM_TEMPLATE(Event ThisEvent) {
         case init: /* SM starts here */
             if (ThisEvent.EventType == INIT_EVENT) {
                 /*Initialization stuff here*/
+                scheduler_add(&print1, 10);
+                scheduler_add(&print2, 20);
+                scheduler_add(&print3, 300);
+                scheduler_add(&print4, 150);
+                scheduler_add(&print5, 500);
+
                 nextState = someState;
             }
             break;
@@ -42,11 +74,18 @@ Event FSM_TEMPLATE(Event ThisEvent) {
                     Post(ThisEvent);
                     Post(ThisEvent);
                     Post(ThisEvent);
+                    ThisEvent.EventType = EXIT_EVENT;
+                    ThisEvent.EventPriority = 2;
                     Post(ThisEvent);
-                    nextState = anotherState;
+                    ThisEvent.EventType = EXIT_EVENT;
+                    ThisEvent.EventPriority = 3;
+                    ThisEvent.EventParam = 42;
+                    Post(ThisEvent);
                     break;
                     /*Put custom states below here*/
-
+                case TIMEUP_EVENT:
+                    scheduler_add(&print1, 310);
+                    break;
                     /*Put custom states above here*/
                 case EXIT_EVENT:
                     break;
@@ -70,7 +109,7 @@ Event FSM_TEMPLATE(Event ThisEvent) {
                 }
             }
             break;
-            
+
         case yetAnotherState: /* Welcomes the user after the ignition wake up*/
             if (ThisEvent.EventType != NO_EVENT) {
                 switch (ThisEvent.EventType) {

@@ -16,6 +16,7 @@ int main(void) {
     Micro_Init();
     clockInit(FREQ_80MHZ, EXTERNAL);
     Timer_Init(clockFreq());
+    scheduler_init();
     
     printf("\n\n\nhello this is the test program for the Template Project\n");
         

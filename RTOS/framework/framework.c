@@ -9,6 +9,12 @@
 #include <stdio.h>
 
 #include "framework.h"
+
+/*******************************************************************************
+ *******************************************************************************
+ * Event Framework Queue
+ *******************************************************************************
+ *******************************************************************************/
 #include EVENTCHECKER_HEADER
 #include SERVICE_1
 #ifdef SERVICE_2
@@ -30,9 +36,11 @@
 #include SERVICE_7
 #endif
 
-
 #define QUEUE_SIZE 32
-#define PRIORITY_LEVELS 3
+
+/*******************************************************************************
+ * Datatypes and Variables
+ ******************************************************************************/
 
 /*Event queue*/
 typedef struct _queue {
@@ -45,6 +53,9 @@ typedef struct _queue {
 /*Queue Array*/
 static queue QueueList[PRIORITY_LEVELS] = {};
 
+/*Active Priority Level*/
+static int8_t activePriorityLevel = -1;
+
 /* Event check function pointer*/
 typedef uint8_t(*EventFunc_t)();
 EventFunc_t const EventCheckList[] = {EVENT_CHECK_FUNCS};
@@ -55,12 +66,27 @@ typedef Event(*ServiceFuncList)(Event);
 ServiceFuncList const ServiceList[] = {SERVICES};
 static uint8_t numberofServices = (uint8_t)sizeof (ServiceList) / sizeof (ServiceFuncList);
 
-/*Helper Function Prototypes*/
+/*******************************************************************************
+ * Module Function Prototypes
+ ******************************************************************************/
+
+/*Event Queue functions*/
 uint8_t EnQueue(queue *thisQueue, Event thisEvent);
 Event DeQueue(queue *thisQueue);
 uint8_t CheckForEvents();
 
+/*Timer functions*/
+uint8_t timerHasTicked();
+void checkTimers(void);
+
+/*Task Scheduler functions*/
+uint8_t scheduler_remove(uint32_t time);
+
+/*******************************************************************************
+ * Public Functions
+ ******************************************************************************/
 uint8_t Post(Event thisEvent) {
+    activePriorityLevel = thisEvent.EventPriority;
     EnQueue(&QueueList[thisEvent.EventPriority], thisEvent);
     return 0;
 }
@@ -78,17 +104,33 @@ uint8_t Init() {
 
 uint8_t Run() {
     Event ThisEvent;
-    int8_t Q = 0;
 
     while (1) {
-        for (Q = PRIORITY_LEVELS - 1; Q >= 0; Q--) {/*Check each priority level*/
-            while (QueueList[Q].size != 0) {/*If the queue is not empty*/
-                ThisEvent = DeQueue(&QueueList[Q]); /*DeQueue the event*/
-                ServiceList[ThisEvent.Service](ThisEvent); /*Run the Serice with the Event*/
+
+        /*If priority Level is active, run services.*/
+        while (activePriorityLevel >= 0) {
+            while (QueueList[activePriorityLevel].size > 0) {
+                ThisEvent = DeQueue(&QueueList[activePriorityLevel]); /*DeQueue the event*/
+                Event cleanEvent = ThisEvent;
+                cleanEvent.Service = 0;
+                cleanEvent.EventPriority = 0;
+                ServiceList[ThisEvent.Service](cleanEvent); /*Run the Serice with the Event*/
             }
+            /*when the priority level is clear, reduce the priority*/
+            activePriorityLevel--;
         }
-        /* empty queues, check for user events */
+
+        /*Background check for events*/
         CheckForEvents();
+
+        /*Background check timers*/
+        if (timerHasTicked()) {
+            /*run timer service*/
+            checkTimers();
+
+            /*run task scheduler*/
+            scheduler_remove(FreeRunningTimer());
+        }
     }
 }
 
@@ -104,18 +146,6 @@ uint8_t CheckForEvents() {
     }
     return EventFound;
 }
-
-//uint8_t CheckTimers(){
-//    while(TimerQueue.tail != TimerQueue.head) {/*If the Queue is not empty*/
-//        Post(TimerQueue.eventQueue[TimerQueue.tail]); /*Dequeue the data and post it*/
-//        TimerQueue.eventQueue[TimerQueue.tail++] = EMPTY_EVENT;
-//        TimerQueue.size--;
-//        if (TimerQueue.tail == QUEUE_SIZE) {/*wrap-around protection*/
-//            TimerQueue.tail = 0;
-//        }
-//
-//    }
-//}
 
 uint8_t EnQueue(queue *thisQueue, Event thisEvent) {
     thisQueue->eventQueue[thisQueue->head++] = thisEvent; /*Put Data in the Q*/
@@ -144,8 +174,21 @@ Event DeQueue(queue *thisQueue) {
 }
 
 
+/******************************************************************************
+ *******************************************************************************
+ *******************************************************************************
+ * Software Timers
+ *******************************************************************************
+ *******************************************************************************
+ *******************************************************************************/
+
+#define STATUS_Q_SIZE 256
+
+/*******************************************************************************
+ * Data Structures and variables
+ *******************************************************************************/
 static volatile uint32_t runningTime = 0;
-static uint8_t milliseond = 0;
+static uint8_t timeUpdate = 0;
 
 typedef struct _sw_timer {
     uint16_t time;
@@ -156,28 +199,65 @@ typedef struct _sw_timer {
 
 static sw_timer SW_timers[NUMBER_OF_SW_TIMERS];
 
-/*
- Function: T5_Interrupt_Init()
- Param: period: the peroid at which the interrupt fires, 0-0xFFFF
-        priority: the priority of the interrupt, 1-7
- Return: void
- Description: Initializes timer 5 interrupt
- author: brdgordo - 1/28/16
- */
+typedef struct _statusQ {
+    uint8_t queue[STATUS_Q_SIZE];
+    uint8_t head;
+    uint8_t tail;
+} statusQ;
+
+static statusQ timerStatus = {};
+
+/*******************************************************************************
+ * Private Functions
+ *******************************************************************************/
+uint8_t timerHasTicked() {
+    uint8_t returnVal = 0;
+    /*Check if timer has ticked and deQueue timer bit*/
+    if (timerStatus.queue[timerStatus.tail]) {
+        timerStatus.tail = 0;
+        /*Wrap around protection*/
+        if (++timerStatus.tail >= STATUS_Q_SIZE) {
+            timerStatus.tail = 0;
+        }
+        returnVal = 1;
+    }
+    return returnVal;
+}
+
+void checkTimers(void) {
+
+    /*Check active timers*/
+    int i;
+    for (i = 0; i < NUMBER_OF_SW_TIMERS; i++) {
+        /*If timer is running, decriment timer and post event if expired*/
+        if (SW_timers[i].status == RUNNING) {
+            SW_timers[i].time--;
+            if (SW_timers[i].time == 0) {
+                SW_timers[i].status = DONE;
+                Event ThisEvent = {};
+                ThisEvent.EventType = TIMEUP_EVENT;
+                ThisEvent.EventParam = i;
+                ThisEvent.EventPriority = 2;
+                ThisEvent.Service = SW_timers[i].service;
+                Post(ThisEvent);
+            }
+        }
+    }
+}
+
+/*******************************************************************************
+ * Public Functions
+ *******************************************************************************/
+
 uint8_t Timer_Init(uint32_t clockFreq) {
     uint32_t currentSpeed = clockFreq / 2;
 
-    uint16_t TicksPerMS = (uint16_t) (currentSpeed / 2000);
+    uint16_t TicksPerMS = (uint16_t) (currentSpeed / 1000);
     /* Initialize timer */
     T5CONbits.TON = 0;
-
     T5CON = 0; /* Clear timer config register */
-
     T5CONbits.TCKPS = 0; /* prescaler set to 0 */
-
-
     TMR5 = 0x00; /*Clear Timers*/
-
     PR5 = TicksPerMS; /*set timer period */
 
     /* Enable level 1-7 interrupts */
@@ -186,10 +266,8 @@ uint8_t Timer_Init(uint32_t clockFreq) {
 
     /* set timer interrupt priority */
     _T5IP = 4;
-
     /* reset timer interrupt */
     _T5IF = 0;
-
     /* Enable timer interrupt */
     _T5IE = 1;
 
@@ -224,27 +302,124 @@ void __attribute__((__interrupt__, __auto_psv__)) _T5Interrupt(void) {
     /* clear timer x interrupt */
     _T5IF = 0;
 
-    /*This is a 1/2 millisecond timer, so only count every other for milliseconds*/
-    milliseond = ~milliseond;
-
     /*Put your code here*/
-    if (!milliseond) {
-        runningTime++;
-        int i;
-        for (i = 0; i < NUMBER_OF_SW_TIMERS; i++) {
-
-            if (SW_timers[i].status == RUNNING) {
-                SW_timers[i].time--;
-                if (SW_timers[i].time == 0) {
-                    SW_timers[i].status = DONE;
-                    Event ThisEvent = {};
-                    ThisEvent.EventType = TIMEUP_EVENT;
-                    ThisEvent.EventParam = i;
-                    ThisEvent.EventPriority = 2;
-                    ThisEvent.Service = SW_timers[i].service;
-                    Post(ThisEvent);
-                }
-            }
-        }
+    runningTime++;
+    timerStatus.queue[timerStatus.head++] = 1;
+    if (timerStatus.head >= STATUS_Q_SIZE) {
+        timerStatus.head = 0;
     }
+
 }
+
+
+/******************************************************************************
+ *******************************************************************************
+ *******************************************************************************
+ * Task Scheduler
+ *******************************************************************************
+ *******************************************************************************
+ *******************************************************************************/
+
+#define SCHEDULE_SIZE 32
+
+/*******************************************************************************
+ * Data Structures
+ ******************************************************************************/
+typedef struct _node {
+    uint32_t time;
+    pfunc thisFunction;
+    struct _node * nextNode;
+    struct _node * prevNode;
+} node;
+
+typedef struct _stack {
+    node* stack[SCHEDULE_SIZE];
+    uint8_t stackPtr;
+} stack;
+
+static node scheduleArray[SCHEDULE_SIZE];
+
+static stack scheduleStack;
+
+static node Head;
+
+/*******************************************************************************
+ * Private Functions
+ ******************************************************************************/
+uint8_t push(node* thisNode);
+node* pop(void);
+
+/*******************************************************************************
+ * Scheduler Functions
+ ******************************************************************************/
+void scheduler_init(void) {
+    int i = 0;
+    for (i = 0; i < SCHEDULE_SIZE; i++) {
+        scheduleStack.stack[i] = &scheduleArray[i];
+    }
+    scheduleStack.stackPtr = SCHEDULE_SIZE;
+    Head.nextNode = 0;
+    Head.prevNode = 0;
+    Head.thisFunction = 0;
+    Head.time = 0;
+}
+
+uint8_t scheduler_add(pfunc someFunction, uint32_t time) {
+    time = time + FreeRunningTimer();
+    uint8_t returnVal = 0;
+    /*Pop a new node off the stack*/
+    node* newNode = pop();
+    if (newNode != 0) {
+        /*Search for insertion point*/
+        node* thisNode = &Head;
+        while (thisNode->nextNode != 0 && thisNode->nextNode->time <= time) {
+            thisNode = thisNode->nextNode;
+        }
+        /*Insert new node*/
+        newNode->prevNode = thisNode;
+        newNode->nextNode = thisNode->nextNode;
+        newNode->prevNode->nextNode = newNode;
+        newNode->nextNode->prevNode = newNode;
+        newNode->time = time;
+        newNode->thisFunction = someFunction;
+        returnVal = 1;
+
+    }
+    return returnVal;
+}
+
+uint8_t scheduler_remove(uint32_t time) {
+    uint8_t returnVal = 0;
+    if (Head.nextNode->time > time) {
+        /*Do nothing*/
+    } else {
+        node* thisNode = Head.nextNode;
+        while (thisNode != 0 && thisNode->time <= time) {
+            thisNode->prevNode->nextNode = thisNode->nextNode;
+            thisNode->nextNode->prevNode = thisNode->prevNode;
+            thisNode->thisFunction();
+            push(thisNode);
+            thisNode = thisNode->nextNode;
+        }
+        returnVal = 1;
+    }
+    return returnVal;
+}
+
+uint8_t push(node* thisNode) {
+    uint8_t returnVal = 0;
+    if (scheduleStack.stackPtr <= SCHEDULE_SIZE) {
+        scheduleStack.stack[scheduleStack.stackPtr++] = thisNode;
+        returnVal = 1;
+    }
+    return returnVal;
+}
+
+node* pop(void) {
+    node* thisNode = 0;
+    if (scheduleStack.stackPtr > 0) {
+        thisNode = scheduleStack.stack[--scheduleStack.stackPtr];
+    }
+    return thisNode;
+}
+
