@@ -1,0 +1,232 @@
+\documentclass[12pt compsoc]{article}
+\usepackage{graphicx}
+\graphicspath{ {./images/} } %if you have a folder with images, put the folder in directory and name it
+\usepackage{subfig}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{placeins}
+\usepackage{float}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%IMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGEIMAGE%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%use this for standard images
+
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=4in]{IMAGE_NAME}
+%\caption{CAPTION HERE}
+%\label{fig_LABEL_NAME}
+%\end{figure}
+
+
+
+%use this for side-by-side images, add more if you like to get 3 in a row....
+
+%\begin{figure}[H]
+%\centering
+%\subfloat{\includegraphics[width=3in]{IMAGE_NAME}}
+%\hspace{5mm}
+%\subfloat{\includegraphics[width=3in]{IMAGE_NAME}}
+%\caption{CAPTION HERE}
+%\label{fig_LABEL_NAME}
+%\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLETABLE%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{table}[H]
+%\centering
+%\hspace{0cm}\begin{tabular}{| c | c |} %Add more columns here
+%\hline
+%Hex Value & Description\\
+%\hline
+%STUFF & STUFF\\
+%\hline
+%STUFF & STUFF\\
+%\hline
+%STUFF & STUFF\\
+%\hline
+%STUFF & STUFF\\
+%\hline
+%STUFF & STUFF\\
+%\hline
+%STUFF & STUFF\\
+%\hline
+%\end{tabular} 
+%\caption{CAPTION HERE}
+%\label{fig_LABEL_NAME}
+%\end{table}
+
+
+
+
+\begin{document}
+
+\title{E-Moto Project}
+
+\author{Zach Levenberg}
+
+\maketitle
+
+
+\begin{figure}[b!]
+\centering
+\includegraphics[width=6in]{triumph-speed-triple.jpg}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\abstract{This paper describes the Behavioral and Performance specifications for the electric motorcycle.}
+\newpage
+
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Behavioral Specifications}
+\subsection{Features}
+\begin{enumerate}
+\item Keyless Entry
+\item LCD touch Screen
+\item Analog Turbo Guage (Power in kW)
+\item Digital Speedometer
+\item Analog Regen
+\item Bluetooth Link
+\item LED lights
+\item Turn Signals
+\item Novelty Horn
+\item Dual 5v usb 2.0 \& c chargers
+\item Ram Mount Phone Holder
+\item Rack System + Dog Holder
+\item Motion Sensor and Alarm system
+\item Hand Warmers
+\item Seat Warmers - maybe
+\item Electronic Fork Lock
+\item Electronic Seat Lock
+\end{enumerate}
+
+\subsection{Behavior}
+\subsubsection{Sleep Mode}
+\begin{enumerate}
+\item Sleep mode shall consume no more than 20mA
+\item Bike shall transition from sleep when the ignition button is pressed or a BLE signal is received.
+\item Bike shall wake from sleep and transition into Panic Mode if motion-sensor is triggered.
+\end{enumerate}
+
+\subsubsection{Locked Mode}
+\begin{enumerate}
+\item The keyless entry system shall be accessible by password on the resistive touch screen or the bluetooth app. \item The password shall be user configurable via the app or touch screen. 
+\item The touch screen shall feature a wake up screen and then prompt the user for a password. 
+\item More than 5 incorrect PW attemps will disable BLE connectivity until PW is entered correctly and it is reactivated from within the system. More than 10 PW attemps and the system will default to a 20 character default PW.
+\end{enumerate}
+
+\subsubsection{Safe Mode}
+\begin{enumerate}
+\item Upon entry the user can access battery health, trip data, BLE connectivity, and user settings.
+\item Ignition hold will place the bike into Running Mode
+\end{enumerate}
+
+\subsubsection{Running Mode}
+\begin{enumerate}
+\item The bike shall run according to user input including throttle, brake, and any command via touch screen or ignition switch.
+\item The bike shall not run if the kickstand is down, and an alert will displauy on screen.
+\item While running, ingnition switch presses shall scroll though the LCD menu screen.
+\item Safe mode may only be re-entered while stopped by pressing and holding the ignition button.
+\end{enumerate}
+
+\section{Performance}
+\subsection{Electronics}
+\subsubsection{High Voltage Battery}
+\begin{enumerate}
+\item The battery shall be a 90V system.
+\item The battery shall be a 100Ahr system.
+\item The battery shall be comprised of 3.6V 2000mAhr NMC 18650 cells
+\item The battery shall be an array of 50 cells in parallel and 25 in series.
+\item The battery shall be capable of discharging 600 Amps for a 1 minute burst.
+\end{enumerate}
+
+\subsubsection{DCDC Converter}
+\begin{enumerate}
+\item DCDC converter shall provide at least 10 Amps at 13.7 Volts
+\item DCDC converter shall be on a switched circuit controlled by the MCU
+\item DCDC converter shall be switched on only when 12V battery falls below 12v for more than 1 minute.
+\end{enumerate}
+
+\subsubsection{12V Battery}
+\begin{enumerate}
+\item The system shall be powered by a 12V Lead Acid battery.
+\item The battery shall have a nominal voltage of 13.7 Volts.
+\item The battery shall be at least 10Ahrs.
+\item The battery shall power all electronics excluding the Motor and Motor Controller
+\end{enumerate}
+
+\subsubsection{Motor}
+\begin{enumerate}
+\item Motor shall be capable of 50kW bursts
+\item Motor shall be capable of 20kW continuous (May want to increase this)
+\item Motor shall be 3phase Brushless DC
+\end{enumerate}
+
+\subsubsection{Motor Controller}
+\begin{enumerate}
+\item The Controller shall be a True Sine Wave controller
+\item Must be capable of delivering 600 Amps at 90V
+\item Must feature regererative braking
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{System Architecture}
+\begin{figure}[H]
+\centering
+\includegraphics[width=7.5in]{E-MotoSystemArch}
+\end{figure}t
+\subsection{Some other shit}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{SomeShit}
+\subsection{Some other shit}
+\subsection{Some other shit}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{SomeShit}
+\subsection{Some other shit}
+\subsection{Some other shit}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{SomeShit}
+\subsection{Some other shit}
+\subsection{Some other shit}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

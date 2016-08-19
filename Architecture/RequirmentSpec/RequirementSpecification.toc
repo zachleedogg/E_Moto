@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Behavioral Specifications}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Features}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Behavior}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Sleep Mode}{3}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Locked Mode}{3}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}Safe Mode}{3}{subsubsection.1.2.3}
+\contentsline {subsubsection}{\numberline {1.2.4}Running Mode}{3}{subsubsection.1.2.4}
+\contentsline {section}{\numberline {2}Performance}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Electronics}{4}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}High Voltage Battery}{4}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}DCDC Converter}{4}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}12V Battery}{4}{subsubsection.2.1.3}
+\contentsline {subsubsection}{\numberline {2.1.4}Motor}{4}{subsubsection.2.1.4}
+\contentsline {subsubsection}{\numberline {2.1.5}Motor Controller}{4}{subsubsection.2.1.5}
+\contentsline {section}{\numberline {3}System Architecture}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Some other shit}{5}{subsection.3.1}
+\contentsline {section}{\numberline {4}SomeShit}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Some other shit}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Some other shit}{5}{subsection.4.2}
+\contentsline {section}{\numberline {5}SomeShit}{5}{section.5}
+\contentsline {subsection}{\numberline {5.1}Some other shit}{5}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Some other shit}{5}{subsection.5.2}
+\contentsline {section}{\numberline {6}SomeShit}{5}{section.6}
+\contentsline {subsection}{\numberline {6.1}Some other shit}{5}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Some other shit}{5}{subsection.6.2}
