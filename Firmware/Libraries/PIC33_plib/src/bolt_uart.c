@@ -1,8 +1,8 @@
 #include "bolt_uart.h"
 #include "bolt_init.h"
 
-#define BUFFER_SIZE 2048
-#define QUEUE_SIZE 255
+#define BUFFER_SIZE 255
+#define QUEUE_SIZE 32
 
 #define STOP_CHAR '\n'
 #define NULL 0

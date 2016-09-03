@@ -14,7 +14,8 @@
 #include <xc.h> // include processor files - each processor file is guarded. 
 #include <stdint.h>
 
-#ifdef __dsPIC33EP256MC502__
+#if 1 //def __dsPIC33EP256MC502__
+
 #define NUMBER_PINS_PORTA 5
 #define NUMBER_PINS_PORTB 16
 #elif __dsPIC33EP256MC504__
