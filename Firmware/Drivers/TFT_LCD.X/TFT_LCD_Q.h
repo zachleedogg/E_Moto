@@ -19,7 +19,7 @@ typedef enum _dataCommand {
 typedef struct _lcdData {
     uint8_t *Data;
     dataCommand Command;
-    uint16_t Length;
+    uint32_t Length;
 } lcdData;
 
 /*This function will add to the current Queue whatever is incoming and put it
@@ -38,15 +38,6 @@ uint8_t checkQueueFull(void);
 
 /*This function will check if the Queue is completely empty*/
 uint8_t checkQueueEmpty(void);
-
-/*This function writes to the SPI and checks the DC values*/
-void queueWrite(uint16_t theIndex);
-
-/*This will return the length of the array that is held at currentIndexQueue*/
-uint16_t getArrayLength(void);
-
-/*Checks if the empty index is right after currentIndex*/
-uint8_t emptyIndexNext(void);
 
 #endif	/* QUEUE_H */
 

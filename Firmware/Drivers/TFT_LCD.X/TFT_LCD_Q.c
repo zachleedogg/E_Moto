@@ -20,7 +20,7 @@
 
 
 /*Change QUEUESIZE varible to work or test*/
-#define QUEUESIZE 500
+#define QUEUESIZE 255
 #define TRUE 1
 #define FALSE 0
 

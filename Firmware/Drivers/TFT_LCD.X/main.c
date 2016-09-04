@@ -19,8 +19,6 @@ uint8_t colorarr[5] = {
     0x55
 };
 
-static uint8_t red[640] = {};
-
 static uint8_t colorpt = 0x45;
 
 static uint8_t count = 0;
@@ -34,33 +32,34 @@ int main(void) {
 
     Micro_Init();
     clockInit(FREQ_80MHZ, INTERNAL);
-
+    TFT_LCD_INIT(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
     IO_setPinDir(IO_PIN_RB15, OUTPUT);
     T1_Interrupt_Init(60, 3);
-    LCDInit(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
 
-    uint16_t i = 0;
-    for (i = 0; i < 640; i++) {
-        red[i] = colorarr[2];
-    }
-    for (i = 0; i < 480; i++) {
-        //writedata(red, 640);
-        writeconst(&colorpt, 640);
-    }
+
+    TFT_LCD_fillBackground(0x89);
+
+    uint8_t col = 0x2A;
+    uint8_t row = 0x2B;
+    uint8_t ramw = 0x2C;
+    
+    TFT_LCD_drawRect(0,0,100,100,0x73);
+    TFT_LCD_drawRect(0,200,100,250,0x73);
+    TFT_LCD_drawRect(0,300,100,350,0x73);
+    TFT_LCD_drawRect(0,400,100,450,0x73);
+    
+
+    
+    TFT_LCD_drawRect(200,100,250,400,0x21);
 
     while (1) {
 
 
-                if (flag) {
-                    flag = 0;
-                    int i = 0;
-//                    for (i = 0; i < 640; i++) {
-//                        red[i] = colorarr[color];
-//                    }
-                    for (i = 0; i < 480; i++) {
-                        writeconst(&colorarr[color], 640);
-                    }
-                }
+        if (flag) {
+            flag = 0;
+            int i = 0;
+            //writeconst(colorarr[color], 307200);
+        }
 
 
     }

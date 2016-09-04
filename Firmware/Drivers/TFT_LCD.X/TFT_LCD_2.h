@@ -23,8 +23,12 @@
 #define HX8357_YELLOW  0xFFE0  
 #define HX8357_WHITE   0xFFFF
 
+/*Screen size*/
+#define TFT_LCD_WIDTH 320
+#define TFT_LCD_HEIGHT 480
+
 /*This initializes the screen*/
-void LCDInit(uint8_t reset, uint8_t CE, uint8_t DC);
+void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC);
 
 /*This clears the screen by writing a bunch of 0x00*/
 void LCDClear(void);
@@ -33,11 +37,13 @@ void LCDClear(void);
 void writecommand(uint8_t *commandString);
 
 /*This function will write data to the LCD screen ie. DC value is 1*/
-void writedata(uint8_t *dataString, uint16_t stringLength);
+void writedata(uint8_t *dataString, uint32_t stringLength);
 
-void writeconst(uint8_t *dataString, uint16_t stringLength);
+void writeconst(uint8_t dataString, uint32_t stringLength);
 
+void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_t color);
 
+void TFT_LCD_fillBackground(uint8_t color);
 #define HX8357D 0xD
 #define HX8357B 0xB
 

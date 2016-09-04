@@ -14,7 +14,7 @@
 
 /*Variables to hold certain data*/
 static lcdData thisItem;
-static uint16_t dataIndex = 0;
+static uint32_t dataIndex = 0;
 
 /*pin variables*/
 static uint8_t CEPIN;
@@ -149,7 +149,7 @@ static void spiWrite(uint8_t input);
 static void tftBootUpSequence(void);
 
 /*This will initialize the Nokia 5110 LCD screen*/
-void LCDInit(uint8_t reset, uint8_t CE, uint8_t DC) {
+void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     RSTPIN = reset;
     CEPIN = CE;
     DCPIN = DC;
@@ -206,6 +206,29 @@ void LCDInit(uint8_t reset, uint8_t CE, uint8_t DC) {
     tftBootUpSequence();
 }
 
+void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_t color) {
+
+    x1 = x1 - 1;
+    y1 = y1 - 1;
+    writecommand(&caset_cmd);
+    writeconst((uint8_t) (x0 >> 8), 1);
+    writeconst((uint8_t) (x0 & 0x00FF), 1);
+    writeconst((uint8_t) (x1 >> 8), 1);
+    writeconst((uint8_t) (x1 & 0x00FF), 1);
+    writecommand(&paset_cmd);
+    writeconst((uint8_t) (y0 >> 8), 1);
+    writeconst((uint8_t) (y0 & 0x00FF), 1);
+    writeconst((uint8_t) (y1 >> 8), 1);
+    writeconst((uint8_t) (y1 & 0x00FF), 1);
+    writecommand(&rawr_cmd);
+    uint32_t size = 2 * ((uint32_t) (x1 - x0 + 1)*(uint32_t) (y1 - y0 + 1));
+    writeconst(color, size);
+}
+
+void TFT_LCD_fillBackground(uint8_t color) {
+    TFT_LCD_drawRect(0, 0, TFT_LCD_WIDTH, TFT_LCD_HEIGHT, color);
+}
+
 /*This function will write a command to the LCD screen ie. DC value is 0*/
 
 /*First param is the command data, and the second param is the length of that data*/
@@ -233,7 +256,7 @@ void writecommand(uint8_t* commandString) {
 /*This function will write data to the LCD screen ie. DC value is 1*/
 
 /*First param is the actual data, second is the length of that data*/
-void writedata(uint8_t *dataString, uint16_t stringLength) {
+void writedata(uint8_t *dataString, uint32_t stringLength) {
 
     lcdData newItem;
     newItem.Length = stringLength;
@@ -253,10 +276,10 @@ void writedata(uint8_t *dataString, uint16_t stringLength) {
     IEC0bits.SPI1IE = 1; // Enable the interrupt
 }
 
-void writeconst(uint8_t *dataString, uint16_t stringLength) {
+void writeconst(uint8_t dataString, uint32_t stringLength) {
     lcdData newItem;
     newItem.Length = stringLength;
-    newItem.Data = dataString;
+    newItem.Data = (uint8_t*) (uint16_t) dataString;
     newItem.Command = CONST;
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
@@ -285,6 +308,8 @@ void Write() {
         case 0:
             /*DC pin high or low*/
             IO_pinWrite(DCPIN, HIGH);
+            
+            //SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
                 spiWrite(thisItem.Data[dataIndex++]);
@@ -292,6 +317,7 @@ void Write() {
             break;
         case 1:
             IO_pinWrite(DCPIN, LOW);
+            //SPI1CON1bits.MODE16 = 0; /*8 bit mode for commands*/
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
                 spiWrite(thisItem.Data[dataIndex++]);
@@ -299,10 +325,11 @@ void Write() {
             break;
         case 2:
             IO_pinWrite(DCPIN, HIGH);
+            //SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
                 dataIndex++;
-                spiWrite(thisItem.Data[0]);
+                spiWrite((uint8_t) (uint16_t) thisItem.Data);
             }
             break;
 
@@ -323,15 +350,12 @@ void __attribute__((__interrupt__, __auto_psv__)) _SPI1Interrupt(void) {
     IFS0bits.SPI1IF = 0; /* Clear the Interrupt flag*/
 
     /*Clear Rx FIFO buffer*/
-    while (SPI2STATbits.SPITBF == 1) {
-        uint16_t temp = SPI2BUF;
-    }
+    //    while (SPI2STATbits.SPITBF == 1) {
+    //        uint16_t temp = SPI2BUF;
+    //    }
 
     /*if there is still data in the current item*/
     if (dataIndex < thisItem.Length) {
-        //        while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-        //            spiWrite(thisItem.Data[dataIndex++]);
-        //        }
         Write();
     } else {
         dataIndex = 0;
