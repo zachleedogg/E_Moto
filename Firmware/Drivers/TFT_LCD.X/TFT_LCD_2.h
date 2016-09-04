@@ -35,6 +35,8 @@ void writecommand(uint8_t *commandString);
 /*This function will write data to the LCD screen ie. DC value is 1*/
 void writedata(uint8_t *dataString, uint16_t stringLength);
 
+void writeconst(uint8_t *dataString, uint16_t stringLength);
+
 
 #define HX8357D 0xD
 #define HX8357B 0xB

@@ -13,13 +13,15 @@
 
 uint8_t colorarr[5] = {
     0x00,
-    0x07,
-    0x1F,
-    0xF8,
-    0xFF
+    0x0A,
+    0x2F,
+    0xA8,
+    0x55
 };
 
 static uint8_t red[640] = {};
+
+static uint8_t colorpt = 0x45;
 
 static uint8_t count = 0;
 static uint8_t color = 0;
@@ -38,11 +40,12 @@ int main(void) {
     LCDInit(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
 
     uint16_t i = 0;
-    for (i = 0; i < 320; i++) {
-        red[i] = colorarr[color];
+    for (i = 0; i < 640; i++) {
+        red[i] = colorarr[2];
     }
     for (i = 0; i < 480; i++) {
-        writedata(red, 640);
+        //writedata(red, 640);
+        writeconst(&colorpt, 640);
     }
 
     while (1) {
@@ -51,11 +54,11 @@ int main(void) {
                 if (flag) {
                     flag = 0;
                     int i = 0;
-                    for (i = 0; i < 320; i++) {
-                        red[i] = colorarr[color];
-                    }
+//                    for (i = 0; i < 640; i++) {
+//                        red[i] = colorarr[color];
+//                    }
                     for (i = 0; i < 480; i++) {
-                        writedata(red, 640);
+                        writeconst(&colorarr[color], 640);
                     }
                 }
 
@@ -70,7 +73,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void) {
 
 
     count++;
-    if (count == 20) {
+    if (count == 5) {
         IO_pinToggle(IO_PIN_RB15);
         flag = 1;
         count = 0;

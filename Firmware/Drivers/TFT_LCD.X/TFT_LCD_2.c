@@ -175,15 +175,19 @@ void LCDInit(uint8_t reset, uint8_t CE, uint8_t DC) {
       10 = Primary prescale 4:1
       01 = Primary prescale 16:1
       00 = Primary prescale 64:1*/
-    SPI1CON1bits.PPRE = 0b01;
+    //SPI1CON1bits.PPRE = 0b01;
+    SPI1CON1bits.PPRE = 0b11;
 
     /*111 = Secondary prescale 1:1
       110 = Secondary prescale 2:1
-     * 
-     * 
-     * 
+      101 = Secondary prescale 3:1
+      100 = Secondary prescale 4:1
+      011 = Secondary prescale 5:1
+      010 = Secondary prescale 6:1
+      001 = Secondary prescale 7:1
       000 = Secondary prescale 8:1*/
-    SPI1CON1bits.SPRE = 0b011;
+    //SPI1CON1bits.SPRE = 0b011;
+    SPI1CON1bits.SPRE = 0b110;
 
     IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
     //IEC0bits.SPI1IE = 1; // Enable the interrupt
@@ -210,7 +214,7 @@ void writecommand(uint8_t* commandString) {
     lcdData cmdItem = {};
     cmdItem.Length = 1;
     cmdItem.Data = commandString;
-    cmdItem.Command = 0;
+    cmdItem.Command = COMMAND;
     addToQueue(cmdItem); /*Adds what came in into Queue DC low*/
 
     /*Enter Critical Thread*/
@@ -234,14 +238,33 @@ void writedata(uint8_t *dataString, uint16_t stringLength) {
     lcdData newItem;
     newItem.Length = stringLength;
     newItem.Data = dataString;
-    newItem.Command = 1;
+    newItem.Command = DATA;
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
     /*Enter thread-Critical area*/
     IEC0bits.SPI1IE = 0; // Disable the interrupt
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
+        SPIbusy = TRUE;
         thisItem = deleteFromQueue();
-        dataIndex = 0;
+        Write(); /*Writes from the Queue*/
+    } else {
+        ; /*Do nothing*/
+    }
+    IEC0bits.SPI1IE = 1; // Enable the interrupt
+}
+
+void writeconst(uint8_t *dataString, uint16_t stringLength) {
+    lcdData newItem;
+    newItem.Length = stringLength;
+    newItem.Data = dataString;
+    newItem.Command = CONST;
+
+    addToQueue(newItem); /*Adds what came in into Queue DC high*/
+    /*Enter thread-Critical area*/
+    IEC0bits.SPI1IE = 0; // Disable the interrupt
+    if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
+        SPIbusy = TRUE;
+        thisItem = deleteFromQueue();
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -252,30 +275,40 @@ void writedata(uint8_t *dataString, uint16_t stringLength) {
 void Write() {
     /*CE Pin is low during transmission*/
     IO_pinWrite(CEPIN, LOW);
-    IO_pinWrite(DCPIN, thisItem.Command);
-    /*Write byte to SPI module*/
-    while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-        spiWrite(thisItem.Data[dataIndex++]);
-    }
+    //        IO_pinWrite(DCPIN, thisItem.Command);
+    //        /*Write byte to SPI module*/
+    //        while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
+    //            spiWrite(thisItem.Data[dataIndex++]);
+    //        }
 
-    //    switch (thisItem.Command) {
-    //        case 0:
-    //        case 2:
-    //            IO_pinWrite(DCPIN, LOW);
-    //            /*Write byte to SPI module*/
-    //            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-    //                spiWrite(thisItem.Data[0]);
-    //            }
-    //        case 1:
-    //            /*DC pin high or low*/
-    //            IO_pinWrite(DCPIN, HIGH);
-    //            /*Write byte to SPI module*/
-    //            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-    //                spiWrite(thisItem.Data[dataIndex++]);
-    //            }
-    //        default:
-    //            break;
-    //    }
+    switch (thisItem.Command) {
+        case 0:
+            /*DC pin high or low*/
+            IO_pinWrite(DCPIN, HIGH);
+            /*Write byte to SPI module*/
+            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
+                spiWrite(thisItem.Data[dataIndex++]);
+            }
+            break;
+        case 1:
+            IO_pinWrite(DCPIN, LOW);
+            /*Write byte to SPI module*/
+            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
+                spiWrite(thisItem.Data[dataIndex++]);
+            }
+            break;
+        case 2:
+            IO_pinWrite(DCPIN, HIGH);
+            /*Write byte to SPI module*/
+            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
+                dataIndex++;
+                spiWrite(thisItem.Data[0]);
+            }
+            break;
+
+        default:
+            break;
+    }
 }
 
 /*This will start writing to the screen through the SPI*/
@@ -296,9 +329,10 @@ void __attribute__((__interrupt__, __auto_psv__)) _SPI1Interrupt(void) {
 
     /*if there is still data in the current item*/
     if (dataIndex < thisItem.Length) {
-        while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-            spiWrite(thisItem.Data[dataIndex++]);
-        }
+        //        while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
+        //            spiWrite(thisItem.Data[dataIndex++]);
+        //        }
+        Write();
     } else {
         dataIndex = 0;
         if (!checkQueueEmpty()) {/*There are more items in the Queue*/
@@ -335,10 +369,10 @@ static void tftBootUpSequence(void) {
 
     /*Reset the display and gets the Nokia 5110 to work*/
     IO_pinWrite(RSTPIN, 0); /*Sets reset high*/
-//    while (counter++ != 100000) {
-//        ;
-//    }
-//    counter = 0;
+    while (counter++ != 100000) {
+        ;
+    }
+    counter = 0;
     IO_pinWrite(RSTPIN, 1); /*Sets reset low*/
 
     writecommand(&swreset_cmd);
