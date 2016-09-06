@@ -10,6 +10,7 @@
       </logicalFolder>
       <itemPath>TFT_LCD_2.h</itemPath>
       <itemPath>TFT_LCD_Q.h</itemPath>
+      <itemPath>ASCII_5X7.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

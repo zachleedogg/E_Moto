@@ -14,36 +14,35 @@
 #include <stdint.h>
 
 // Color definitions
-#define	HX8357_BLACK   0x0000
-#define	HX8357_BLUE    0x001F
-#define	HX8357_RED     0xF800
-#define	HX8357_GREEN   0x07E0
-#define HX8357_CYAN    0x07FF
-#define HX8357_MAGENTA 0xF81F
-#define HX8357_YELLOW  0xFFE0  
-#define HX8357_WHITE   0xFFFF
+#define	TFT_LCD_BLACK   0x0000
+#define	TFT_LCD_BLUE    0x001F
+#define	TFT_LCD_RED     0xF800
+#define	TFT_LCD_GREEN   0x07E0
+#define TFT_LCD_CYAN    0x07FF
+#define TFT_LCD_MAGENTA 0xF81F
+#define TFT_LCD_YELLOW  0xFFE0  
+#define TFT_LCD_WHITE   0xFFFF
 
 /*Screen size*/
 #define TFT_LCD_WIDTH 320
 #define TFT_LCD_HEIGHT 480
 
+typedef enum _dataCommand {
+    DATA,
+    COMMAND,
+    CONST,
+    STRING
+} dataCommand;
+
 /*This initializes the screen*/
 void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC);
 
-/*This clears the screen by writing a bunch of 0x00*/
-void LCDClear(void);
+void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 
-/*This function will write a command to the LCD screen ie. DC value is 0*/
-void writecommand(uint8_t *commandString);
+void TFT_LCD_fillBackground(uint16_t color);
 
-/*This function will write data to the LCD screen ie. DC value is 1*/
-void writedata(uint8_t *dataString, uint32_t stringLength);
+void TFT_LCD_writeString(uint8_t* anystring, uint16_t x, uint16_t y);
 
-void writeconst(uint8_t dataString, uint32_t stringLength);
-
-void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_t color);
-
-void TFT_LCD_fillBackground(uint8_t color);
 #define HX8357D 0xD
 #define HX8357B 0xB
 

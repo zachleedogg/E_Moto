@@ -9,7 +9,9 @@
 
 static uint16_t IO_pinPortAInterruptStatus = 0;
 static uint16_t IO_pinPortBInterruptStatus = 0;
+#ifdef PORTC
 static uint16_t IO_pinPortCInterruptStatus = 0;
+#endif
 
 uint8_t IO_setPinDir(pin_number pin, uint8_t direction) {
 

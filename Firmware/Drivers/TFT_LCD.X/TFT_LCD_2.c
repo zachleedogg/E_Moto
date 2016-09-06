@@ -5,12 +5,23 @@
  * Created on February 20, 2016, 7:11 PM
  */
 
+#include <string.h>
+
 #include "TFT_LCD_2.h"
 #include "bolt_pins.h"
 #include "TFT_LCD_Q.h"
+#include "ASCII_5X7.h"
 
 #define TRUE 1
 #define FALSE 0
+
+typedef struct _stringBuff {
+    uint16_t buffer[700];
+    uint16_t head;
+    uint16_t tail;
+} stringBuff;
+
+static stringBuff TFT_LCD_stringbuffer;
 
 /*Variables to hold certain data*/
 static lcdData thisItem;
@@ -23,27 +34,22 @@ static uint8_t RSTPIN;
 
 static uint8_t SPIbusy = FALSE;
 
+static uint16_t black = TFT_LCD_BLACK;
+
+/*Initialization Data*/
 static uint8_t swreset_cmd = HX8357_SWRESET;
-
-// setextc
 static uint8_t setc_cmd = HX8357D_SETC;
-static uint8_t setc_data[] = {0xFF, 0x83, 0x57};
-
-// setRGB which also enables SDO
+static uint16_t setc_data[] = {0xFF, 0x83, 0x57};
 static uint8_t setrgb_cmd = HX8357_SETRGB;
-static uint8_t setrgb_data[] = {0x80, 0x00, 0x06, 0x06};
-
+static uint16_t setrgb_data[] = {0x80, 0x00, 0x06, 0x06};
 static uint8_t setcom_cmd = HX8357D_SETCOM;
-static uint8_t setcom_data[] = {0x25}; // -1.52V
-
+static uint16_t setcom_data[] = {0x25}; // -1.52V
 static uint8_t setosc_cmd = HX8357_SETOSC;
-static uint8_t setosc_data[] = {0x68}; // Normal mode 70Hz, Idle mode 55 Hz
-
+static uint16_t setosc_data[] = {0x68}; // Normal mode 70Hz, Idle mode 55 Hz
 static uint8_t setpanel_cmd = HX8357_SETPANEL; //Set Panel
-static uint8_t setpanel_data[] = {0x05}; // BGR, Gate direction swapped
-
+static uint16_t setpanel_data[] = {0x05}; // BGR, Gate direction swapped
 static uint8_t setpwr1_cmd = HX8357_SETPWR1;
-static uint8_t setpwr1_data[] = {
+static uint16_t setpwr1_data[] = {
     0x00, // Not deep standby
     0x15, //BT
     0x1C, //VSPR
@@ -51,9 +57,8 @@ static uint8_t setpwr1_data[] = {
     0x83, //AP
     0xAA
 }; //FS
-
 static uint8_t setstba_cmd = HX8357D_SETSTBA;
-static uint8_t setstba_data[] = {
+static uint16_t setstba_data[] = {
     0x50, //OPON normal
     0x50, //OPON idle
     0x01, //STBA
@@ -61,9 +66,8 @@ static uint8_t setstba_data[] = {
     0x1E, //STBA
     0x08
 }; //GEN
-
 static uint8_t setcyc_cmd = HX8357D_SETCYC;
-static uint8_t setcyc_data[] = {
+static uint16_t setcyc_data[] = {
     0x02, //NW 0x02
     0x40, //RTN
     0x00, //DIV
@@ -72,9 +76,8 @@ static uint8_t setcyc_data[] = {
     0x0D, //GDON
     0x78
 }; //GDOFF
-
 static uint8_t setgamma_cmd = HX8357D_SETGAMMA;
-static uint8_t setgamma_data[] = {
+static uint16_t setgamma_data[] = {
     0x02,
     0x0A,
     0x11,
@@ -110,42 +113,30 @@ static uint8_t setgamma_data[] = {
     0x00,
     0x01
 };
-
 static uint8_t colmod_cmd = HX8357_COLMOD;
-static uint8_t colmod_data[] = {
-    0x55 // 16 bit 
-};
-
+static uint16_t colmod_data[] = {0x55}; // 16 bit 
 static uint8_t madctl_cmd = HX8357_MADCTL;
-static uint8_t madctl_data[] = {
-    0xC0
-};
-
+static uint16_t madctl_data[] = {0xC0};
 static uint8_t teon_cmd = HX8357_TEON; // TE off
-static uint8_t teon_data[] = {
-    0x00
-};
-
+static uint16_t teon_data[] = {0x00};
 static uint8_t tearline_cmd = HX8357_TEARLINE; // tear line
-static uint8_t tearline_data[] = {
-    0x00,
-    0x02
-};
-
+static uint16_t tearline_data[] = {0x00, 0x02};
 static uint8_t slpout_cmd = HX8357_SLPOUT; //Exit Sleep
-
 static uint8_t dispon_cmd = HX8357_DISPON; // display on
-
 static uint8_t caset_cmd = HX8357_CASET; // Column addr set
-static uint8_t caset_data[] = {0x00, 0x00, 0x01, 0x3F};
-
+static uint16_t caset_data[] = {0x00, 0x00, 0x01, 0x3F};
 static uint8_t paset_cmd = HX8357_PASET;
-static uint8_t paset_data[] = {0x00, 0x00, 0x01, 0xDF};
-
+static uint16_t paset_data[] = {0x00, 0x00, 0x01, 0xDF};
 static uint8_t rawr_cmd = HX8357_RAMWR; // write to RAM
 
+
+static void writecommand(uint8_t *commandString);
+static void writedata(uint16_t *dataString, uint32_t stringLength);
+static void writeconst(uint16_t dataString, uint32_t stringLength);
 static void Write();
-static void spiWrite(uint8_t input);
+static inline void spiWrite8(uint8_t input);
+static inline void spiWrite16(uint16_t input);
+static void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 static void tftBootUpSequence(void);
 
 /*This will initialize the Nokia 5110 LCD screen*/
@@ -175,7 +166,6 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
       10 = Primary prescale 4:1
       01 = Primary prescale 16:1
       00 = Primary prescale 64:1*/
-    //SPI1CON1bits.PPRE = 0b01;
     SPI1CON1bits.PPRE = 0b11;
 
     /*111 = Secondary prescale 1:1
@@ -186,7 +176,6 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
       010 = Secondary prescale 6:1
       001 = Secondary prescale 7:1
       000 = Secondary prescale 8:1*/
-    //SPI1CON1bits.SPRE = 0b011;
     SPI1CON1bits.SPRE = 0b110;
 
     IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
@@ -206,27 +195,65 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     tftBootUpSequence();
 }
 
-void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_t color) {
-
+void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1) {
     x1 = x1 - 1;
     y1 = y1 - 1;
     writecommand(&caset_cmd);
-    writeconst((uint8_t) (x0 >> 8), 1);
-    writeconst((uint8_t) (x0 & 0x00FF), 1);
-    writeconst((uint8_t) (x1 >> 8), 1);
-    writeconst((uint8_t) (x1 & 0x00FF), 1);
+    writeconst(x0, 1);
+    writeconst(x1, 1);
     writecommand(&paset_cmd);
-    writeconst((uint8_t) (y0 >> 8), 1);
-    writeconst((uint8_t) (y0 & 0x00FF), 1);
-    writeconst((uint8_t) (y1 >> 8), 1);
-    writeconst((uint8_t) (y1 & 0x00FF), 1);
+    writeconst(y0, 1);
+    writeconst(y1, 1);
     writecommand(&rawr_cmd);
-    uint32_t size = 2 * ((uint32_t) (x1 - x0 + 1)*(uint32_t) (y1 - y0 + 1));
+}
+
+void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
+    setCanvas(x0, y0, x1, y1);
+    uint32_t size = ((uint32_t) (x1 - x0)*(uint32_t) (y1 - y0));
     writeconst(color, size);
 }
 
-void TFT_LCD_fillBackground(uint8_t color) {
+void TFT_LCD_fillBackground(uint16_t color) {
     TFT_LCD_drawRect(0, 0, TFT_LCD_WIDTH, TFT_LCD_HEIGHT, color);
+}
+
+void TFT_LCD_writeString(uint8_t* anystring, uint16_t x, uint16_t y) {
+    uint16_t size = strlen(anystring);
+    setCanvas(x, y, (x + size * 6), y + 7);
+    uint16_t tempPt = TFT_LCD_stringbuffer.head;
+    uint16_t i = 0;
+    uint8_t j = 0;
+    uint8_t k = 0;
+    for (j = 0; j < 7; j++) {
+        for (i = 0; i < size; i++) {
+            for (k = 0; k < 6; k++) {
+                if (font[anystring[i]*6 + k]&(1 << j)) {
+                    TFT_LCD_stringbuffer.buffer[TFT_LCD_stringbuffer.head++] = TFT_LCD_BLACK;
+                } else {
+                    TFT_LCD_stringbuffer.buffer[TFT_LCD_stringbuffer.head++] = TFT_LCD_RED;
+                }
+                if (TFT_LCD_stringbuffer.head > 700) {
+                    TFT_LCD_stringbuffer.head = 0;
+                }
+            }
+        }
+    }
+    lcdData newItem;
+    newItem.Length = (size * 7 * 6);
+    newItem.Data = &TFT_LCD_stringbuffer.buffer[tempPt];
+    newItem.Command = STRING;
+
+    addToQueue(newItem); /*Adds what came in into Queue DC high*/
+    /*Enter thread-Critical area*/
+    IEC0bits.SPI1IE = 0; // Disable the interrupt
+    if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
+        SPIbusy = TRUE;
+        thisItem = deleteFromQueue();
+        Write(); /*Writes from the Queue*/
+    } else {
+        ; /*Do nothing*/
+    }
+    IEC0bits.SPI1IE = 1; // Enable the interrupt
 }
 
 /*This function will write a command to the LCD screen ie. DC value is 0*/
@@ -236,7 +263,7 @@ void writecommand(uint8_t* commandString) {
 
     lcdData cmdItem = {};
     cmdItem.Length = 1;
-    cmdItem.Data = commandString;
+    cmdItem.Data = (uint16_t*) commandString;
     cmdItem.Command = COMMAND;
     addToQueue(cmdItem); /*Adds what came in into Queue DC low*/
 
@@ -256,7 +283,7 @@ void writecommand(uint8_t* commandString) {
 /*This function will write data to the LCD screen ie. DC value is 1*/
 
 /*First param is the actual data, second is the length of that data*/
-void writedata(uint8_t *dataString, uint32_t stringLength) {
+void writedata(uint16_t *dataString, uint32_t stringLength) {
 
     lcdData newItem;
     newItem.Length = stringLength;
@@ -276,10 +303,10 @@ void writedata(uint8_t *dataString, uint32_t stringLength) {
     IEC0bits.SPI1IE = 1; // Enable the interrupt
 }
 
-void writeconst(uint8_t dataString, uint32_t stringLength) {
+void writeconst(uint16_t dataString, uint32_t stringLength) {
     lcdData newItem;
     newItem.Length = stringLength;
-    newItem.Data = (uint8_t*) (uint16_t) dataString;
+    newItem.Data = (uint16_t*) dataString;
     newItem.Command = CONST;
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
@@ -298,38 +325,54 @@ void writeconst(uint8_t dataString, uint32_t stringLength) {
 void Write() {
     /*CE Pin is low during transmission*/
     IO_pinWrite(CEPIN, LOW);
-    //        IO_pinWrite(DCPIN, thisItem.Command);
-    //        /*Write byte to SPI module*/
-    //        while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-    //            spiWrite(thisItem.Data[dataIndex++]);
-    //        }
 
     switch (thisItem.Command) {
-        case 0:
+        case DATA:
             /*DC pin high or low*/
             IO_pinWrite(DCPIN, HIGH);
-            
-            //SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
+            SPI1STATbits.SPIEN = 0; // DIsable SPI mo
+            SPI1CON1bits.MODE16 = 0; /*8 bit mode*/
+            SPI1STATbits.SPIEN = 1; // Enable SPI mo
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-                spiWrite(thisItem.Data[dataIndex++]);
+                spiWrite8((uint8_t) (thisItem.Data[dataIndex++]&0x00FF));
             }
             break;
-        case 1:
+        case COMMAND:
             IO_pinWrite(DCPIN, LOW);
-            //SPI1CON1bits.MODE16 = 0; /*8 bit mode for commands*/
+            SPI1STATbits.SPIEN = 0; // Disable SPI mo
+            SPI1CON1bits.MODE16 = 0; /*8 bit mode*/
+            SPI1STATbits.SPIEN = 1; // Enable SPI mo
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-                spiWrite(thisItem.Data[dataIndex++]);
+                uint8_t* temp = (uint8_t*) thisItem.Data;
+                dataIndex++;
+                spiWrite8(*temp);
             }
             break;
-        case 2:
+        case CONST:
             IO_pinWrite(DCPIN, HIGH);
-            //SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
+            SPI1STATbits.SPIEN = 0; // Disable SPI mo
+            SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
+            SPI1STATbits.SPIEN = 1; // Enable SPI mo
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
                 dataIndex++;
-                spiWrite((uint8_t) (uint16_t) thisItem.Data);
+                spiWrite16((uint16_t) thisItem.Data);
+            }
+            break;
+        case STRING:
+            IO_pinWrite(DCPIN, HIGH);
+            SPI1STATbits.SPIEN = 0; // Disable SPI mo
+            SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
+            SPI1STATbits.SPIEN = 1; // Enable SPI mo
+            /*Write byte to SPI module*/
+            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
+                dataIndex++;
+                spiWrite16((uint16_t) thisItem.Data[TFT_LCD_stringbuffer.tail++]);
+                if (TFT_LCD_stringbuffer.tail > 700) {
+                    TFT_LCD_stringbuffer.tail = 0;
+                }
             }
             break;
 
@@ -339,7 +382,11 @@ void Write() {
 }
 
 /*This will start writing to the screen through the SPI*/
-static void spiWrite(uint8_t input) {
+static inline void spiWrite8(uint8_t input) {
+    SPI1BUF = input;
+}
+
+static inline void spiWrite16(uint16_t input) {
     SPI1BUF = input;
 }
 
@@ -348,11 +395,6 @@ static void spiWrite(uint8_t input) {
 void __attribute__((__interrupt__, __auto_psv__)) _SPI1Interrupt(void) {
 
     IFS0bits.SPI1IF = 0; /* Clear the Interrupt flag*/
-
-    /*Clear Rx FIFO buffer*/
-    //    while (SPI2STATbits.SPITBF == 1) {
-    //        uint16_t temp = SPI2BUF;
-    //    }
 
     /*if there is still data in the current item*/
     if (dataIndex < thisItem.Length) {
@@ -370,11 +412,6 @@ void __attribute__((__interrupt__, __auto_psv__)) _SPI1Interrupt(void) {
             /*Do Nothing*/
         }
     }
-}
-
-/*This clears the screen by writing a bunch of 0x00*/
-void LCDClear(void) {
-
 }
 
 /*This function can be used for debugging but isnt used in the code. This will

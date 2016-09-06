@@ -10,15 +10,11 @@
 
 #include <stdint.h>
 
-typedef enum _dataCommand {
-    DATA,
-    COMMAND,
-    CONST
-} dataCommand;
+
 
 typedef struct _lcdData {
-    uint8_t *Data;
-    dataCommand Command;
+    uint16_t *Data;
+    uint16_t Command;
     uint32_t Length;
 } lcdData;
 

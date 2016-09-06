@@ -8,3 +8,4 @@ memoryfile.xml
 *.bash
 *.properties
 private
+thumbs.db
