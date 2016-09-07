@@ -39,6 +39,8 @@ void ADC_Init(void);
  */
 uint8_t ADC_SetPin(adc_pin_number newPin);
 
+uint8_t ADC_RemovePin(adc_pin_number newPin);
+
 /**
  * Get the Converted Analog value
  * @param thisPin from the assigned pins

@@ -7,10 +7,12 @@
       <logicalFolder name="f1" displayName="inc" projectFiles="true">
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_pins.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>
       </logicalFolder>
       <itemPath>TFT_LCD_2.h</itemPath>
       <itemPath>TFT_LCD_Q.h</itemPath>
       <itemPath>ASCII_5X7.h</itemPath>
+      <itemPath>TFT_TOUCH.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -22,10 +24,12 @@
       <logicalFolder name="f1" displayName="src" projectFiles="true">
         <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_pins.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>TFT_LCD_2.c</itemPath>
       <itemPath>TFT_LCD_Q.c</itemPath>
+      <itemPath>TFT_TOUCH.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -35,6 +39,8 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
+    <Elem>../../Libraries/PIC33_plib/inc</Elem>
+    <Elem>../../Libraries/PIC33_plib/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -202,6 +208,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

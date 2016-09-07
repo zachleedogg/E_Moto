@@ -41,7 +41,7 @@ void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16
 
 void TFT_LCD_fillBackground(uint16_t color);
 
-void TFT_LCD_writeString(uint8_t* anystring, uint16_t x, uint16_t y);
+void TFT_LCD_writeString(const char* anystring, uint16_t x, uint16_t y);
 
 #define HX8357D 0xD
 #define HX8357B 0xB

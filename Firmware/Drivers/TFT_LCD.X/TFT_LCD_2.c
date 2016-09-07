@@ -15,17 +15,13 @@
 #define TRUE 1
 #define FALSE 0
 
-typedef struct _stringBuff {
-    uint16_t buffer[700];
-    uint16_t head;
-    uint16_t tail;
-} stringBuff;
-
-static stringBuff TFT_LCD_stringbuffer;
-
-/*Variables to hold certain data*/
+/*Variables to hold Current Queue Item Data*/
 static lcdData thisItem;
 static uint32_t dataIndex = 0;
+
+static uint8_t charac = 0;
+static uint8_t pixelRow = 0;
+static uint16_t pixelCol = 0;
 
 /*pin variables*/
 static uint8_t CEPIN;
@@ -33,8 +29,6 @@ static uint8_t DCPIN;
 static uint8_t RSTPIN;
 
 static uint8_t SPIbusy = FALSE;
-
-static uint16_t black = TFT_LCD_BLACK;
 
 /*Initialization Data*/
 static uint8_t swreset_cmd = HX8357_SWRESET;
@@ -217,30 +211,13 @@ void TFT_LCD_fillBackground(uint16_t color) {
     TFT_LCD_drawRect(0, 0, TFT_LCD_WIDTH, TFT_LCD_HEIGHT, color);
 }
 
-void TFT_LCD_writeString(uint8_t* anystring, uint16_t x, uint16_t y) {
-    uint16_t size = strlen(anystring);
-    setCanvas(x, y, (x + size * 6), y + 7);
-    uint16_t tempPt = TFT_LCD_stringbuffer.head;
-    uint16_t i = 0;
-    uint8_t j = 0;
-    uint8_t k = 0;
-    for (j = 0; j < 7; j++) {
-        for (i = 0; i < size; i++) {
-            for (k = 0; k < 6; k++) {
-                if (font[anystring[i]*6 + k]&(1 << j)) {
-                    TFT_LCD_stringbuffer.buffer[TFT_LCD_stringbuffer.head++] = TFT_LCD_BLACK;
-                } else {
-                    TFT_LCD_stringbuffer.buffer[TFT_LCD_stringbuffer.head++] = TFT_LCD_RED;
-                }
-                if (TFT_LCD_stringbuffer.head > 700) {
-                    TFT_LCD_stringbuffer.head = 0;
-                }
-            }
-        }
-    }
+void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y) {
+    uint16_t size = (uint16_t) strlen(anystring);
+    setCanvas(x, y, (x + 2*(size * ASCII_FONT_WIDTH)), (y + 2*ASCII_FONT_HEIGHT));
+
     lcdData newItem;
-    newItem.Length = (size * 7 * 6);
-    newItem.Data = &TFT_LCD_stringbuffer.buffer[tempPt];
+    newItem.Length = size;
+    newItem.Data = (uint16_t*) (anystring);
     newItem.Command = STRING;
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
@@ -250,8 +227,6 @@ void TFT_LCD_writeString(uint8_t* anystring, uint16_t x, uint16_t y) {
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
         Write(); /*Writes from the Queue*/
-    } else {
-        ; /*Do nothing*/
     }
     IEC0bits.SPI1IE = 1; // Enable the interrupt
 }
@@ -367,12 +342,33 @@ void Write() {
             SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
             SPI1STATbits.SPIEN = 1; // Enable SPI mo
             /*Write byte to SPI module*/
+            uint8_t* thisString = (uint8_t*) thisItem.Data;
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-                dataIndex++;
-                spiWrite16((uint16_t) thisItem.Data[TFT_LCD_stringbuffer.tail++]);
-                if (TFT_LCD_stringbuffer.tail > 700) {
-                    TFT_LCD_stringbuffer.tail = 0;
+
+                if (font[thisString[charac] * ASCII_FONT_WIDTH + pixelCol]&(1 << pixelRow)) {
+                    spiWrite16(TFT_LCD_BLACK);
+                    spiWrite16(TFT_LCD_BLACK);
+                } else {
+                    spiWrite16(TFT_LCD_CYAN);
+                    spiWrite16(TFT_LCD_CYAN);
                 }
+                if (++pixelCol == ASCII_FONT_WIDTH) {
+                    pixelCol = 0;
+                    if (++charac == thisItem.Length) {
+                        charac = 0;
+                        pixelRow++;
+
+                    }
+                    if (pixelRow == ASCII_FONT_HEIGHT-1) {
+                        dataIndex++;
+                    }
+                }
+
+            }
+            if(dataIndex>=thisItem.Length){
+                pixelCol = 0;
+                pixelRow = 0;
+                charac = 0;
             }
             break;
 
@@ -430,7 +426,7 @@ static void tftBootUpSequence(void) {
 
     /*Reset the display and gets the Nokia 5110 to work*/
     IO_pinWrite(RSTPIN, 0); /*Sets reset high*/
-    while (counter++ != 100000) {
+    while (counter++ != 500000) {
         ;
     }
     counter = 0;

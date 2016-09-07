@@ -8,6 +8,9 @@
 #ifndef ASCII_5X7_H
 #define	ASCII_5X7_H
 
+#define ASCII_FONT_WIDTH 6
+#define ASCII_FONT_HEIGHT 7
+
 // This is the 'classic' fixed-space bitmap font for Adafruit_GFX since 1.0.
 // See gfxfont.h for newer custom bitmap font info.
 // Standard ASCII 5x7 font
