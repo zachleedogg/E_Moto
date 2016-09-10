@@ -61,24 +61,33 @@ int main(void) {
     //    _IC1IP = 4;
     //    _IC1IE = 1;
     //    IFS0bits.IC1IF = 0;           // Clear the IC1 interrupt status flag
-    IEC0bits.IC1IE = 1; // Enable IC1 interrupts
-    IPC0bits.IC1IP = 1; // Set module interrupt priority as 1
+    
+    while (IC1CON1bits.ICBNE) { //clear buffer
+        uint16_t temp = IC1BUF;
+    }
+    
+    
     IC1CON1bits.ICSIDL = 0; // Input capture will continue to operate in CPU idle mode
     IC1CON1bits.ICTSEL = 0b111; // Peripheral (FP) is the clock source for the IC1 module
     IC1CON1bits.ICI = 0; // Interrupt on every capture event
-    IC1CON1bits.ICBNE = 0; // Input capture is empty
-    IC1CON1bits.ICM = 0b001; // Capture mode; every fourth rising edge (Prescaler Capture mode)
+    
     IC1CON2bits.IC32 = 0; // Cascade module operation is disabled
-    IC1CON2bits.ICTRIG = 0; // Input source used to synchronize the input capture timer of    
-    //    another    module    (Synchronization    mode)
+    IC1CON2bits.ICTRIG = 0; // Input source used to synchronize the input capture timer of  
+    IC1CON2bits.SYNCSEL = 0; // No Sync or Trigger source for the IC1 module
+
     IC1CON2bits.TRIGSTAT = 0; // IC1TMR has not been triggered and is being held clear
-    IC1CON2bits.SYNCSEL = 0; // No Sync or Trigger source for the IC1 modul
+    
+    
+    IEC0bits.IC1IE = 1; // Enable IC1 interrupts
+    IPC0bits.IC1IP = 1; // Set module interrupt priority as 1
+    
+    IC1CON1bits.ICM = 0b001; // Enable Capture Mode on every edge
+    
+    
     IO_setPinDir(TEST_LED, OUTPUT);
     IO_setPinDir(PING_TRIGGER, OUTPUT);
     IO_pinWrite(PING_TRIGGER, LOW);
-    while (IC1CON1bits.ICBNE) {
-        uint16_t temp = IC1BUF;
-    }
+    
     TFT_LCD_fillBackground(TFT_LCD_BLACK);
 
     numbers[0] = "0";
