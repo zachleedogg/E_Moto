@@ -269,7 +269,7 @@ void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void) {
     while (U1STAbits.URXDA) {/*while data is available*/
         RX1buffer.buff[RX1buffer.pointEnd] = U1RXREG; // receive one character
         if (RX1buffer.buff[RX1buffer.pointEnd] == STOP_CHAR) {
-            enQ(&RX2Q);
+            enQ(&RX1Q);
             RX1dataReady = 1;
         }
         RX1buffer.pointEnd++;

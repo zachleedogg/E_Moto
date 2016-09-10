@@ -25,10 +25,7 @@ typedef enum {
     NUMBER_IC_MODULES,
 } ic_module_number;
 
-typedef enum _ic_status{
-    IDLE,
-    RUNNING
-} ic_status;
+
 
 /*******************************************************************************
  * MODULE VARIABLES

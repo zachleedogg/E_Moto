@@ -15,6 +15,10 @@ typedef enum {
     IC_MODE_ENABLE,
 } ic_mode;
 
+typedef enum _ic_status{
+    IDLE,
+    RUNNING
+} ic_status;
 
 
 /*Select Pin for Input Capture*/
