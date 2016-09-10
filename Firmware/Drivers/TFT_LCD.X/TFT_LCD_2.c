@@ -31,19 +31,19 @@ static uint8_t RSTPIN;
 static uint8_t SPIbusy = FALSE;
 
 /*Initialization Data*/
-static uint8_t swreset_cmd = HX8357_SWRESET;
-static uint8_t setc_cmd = HX8357D_SETC;
-static uint16_t setc_data[] = {0xFF, 0x83, 0x57};
-static uint8_t setrgb_cmd = HX8357_SETRGB;
-static uint16_t setrgb_data[] = {0x80, 0x00, 0x06, 0x06};
-static uint8_t setcom_cmd = HX8357D_SETCOM;
-static uint16_t setcom_data[] = {0x25}; // -1.52V
-static uint8_t setosc_cmd = HX8357_SETOSC;
-static uint16_t setosc_data[] = {0x68}; // Normal mode 70Hz, Idle mode 55 Hz
-static uint8_t setpanel_cmd = HX8357_SETPANEL; //Set Panel
-static uint16_t setpanel_data[] = {0x05}; // BGR, Gate direction swapped
-static uint8_t setpwr1_cmd = HX8357_SETPWR1;
-static uint16_t setpwr1_data[] = {
+static const uint8_t swreset_cmd = HX8357_SWRESET;
+static const uint8_t setc_cmd = HX8357D_SETC;
+static const uint16_t setc_data[] = {0xFF, 0x83, 0x57};
+static const uint8_t setrgb_cmd = HX8357_SETRGB;
+static const uint16_t setrgb_data[] = {0x80, 0x00, 0x06, 0x06};
+static const uint8_t setcom_cmd = HX8357D_SETCOM;
+static const uint16_t setcom_data[] = {0x25}; // -1.52V
+static const uint8_t setosc_cmd = HX8357_SETOSC;
+static const uint16_t setosc_data[] = {0x68}; // Normal mode 70Hz, Idle mode 55 Hz
+static const uint8_t setpanel_cmd = HX8357_SETPANEL; //Set Panel
+static const uint16_t setpanel_data[] = {0x05}; // BGR, Gate direction swapped
+static const uint8_t setpwr1_cmd = HX8357_SETPWR1;
+static const uint16_t setpwr1_data[] = {
     0x00, // Not deep standby
     0x15, //BT
     0x1C, //VSPR
@@ -51,8 +51,8 @@ static uint16_t setpwr1_data[] = {
     0x83, //AP
     0xAA
 }; //FS
-static uint8_t setstba_cmd = HX8357D_SETSTBA;
-static uint16_t setstba_data[] = {
+static const uint8_t setstba_cmd = HX8357D_SETSTBA;
+static const uint16_t setstba_data[] = {
     0x50, //OPON normal
     0x50, //OPON idle
     0x01, //STBA
@@ -60,8 +60,8 @@ static uint16_t setstba_data[] = {
     0x1E, //STBA
     0x08
 }; //GEN
-static uint8_t setcyc_cmd = HX8357D_SETCYC;
-static uint16_t setcyc_data[] = {
+static const uint8_t setcyc_cmd = HX8357D_SETCYC;
+static const uint16_t setcyc_data[] = {
     0x02, //NW 0x02
     0x40, //RTN
     0x00, //DIV
@@ -70,8 +70,8 @@ static uint16_t setcyc_data[] = {
     0x0D, //GDON
     0x78
 }; //GDOFF
-static uint8_t setgamma_cmd = HX8357D_SETGAMMA;
-static uint16_t setgamma_data[] = {
+static const uint8_t setgamma_cmd = HX8357D_SETGAMMA;
+static const uint16_t setgamma_data[] = {
     0x02,
     0x0A,
     0x11,
@@ -107,25 +107,25 @@ static uint16_t setgamma_data[] = {
     0x00,
     0x01
 };
-static uint8_t colmod_cmd = HX8357_COLMOD;
-static uint16_t colmod_data[] = {0x55}; // 16 bit 
-static uint8_t madctl_cmd = HX8357_MADCTL;
-static uint16_t madctl_data[] = {0xC0};
-static uint8_t teon_cmd = HX8357_TEON; // TE off
-static uint16_t teon_data[] = {0x00};
-static uint8_t tearline_cmd = HX8357_TEARLINE; // tear line
-static uint16_t tearline_data[] = {0x00, 0x02};
-static uint8_t slpout_cmd = HX8357_SLPOUT; //Exit Sleep
-static uint8_t dispon_cmd = HX8357_DISPON; // display on
-static uint8_t caset_cmd = HX8357_CASET; // Column addr set
-static uint16_t caset_data[] = {0x00, 0x00, 0x01, 0x3F};
-static uint8_t paset_cmd = HX8357_PASET;
-static uint16_t paset_data[] = {0x00, 0x00, 0x01, 0xDF};
-static uint8_t rawr_cmd = HX8357_RAMWR; // write to RAM
+static const uint8_t colmod_cmd = HX8357_COLMOD;
+static const uint16_t colmod_data[] = {0x55}; // 16 bit 
+static const uint8_t madctl_cmd = HX8357_MADCTL;
+static const uint16_t madctl_data[] = {0xC0};
+static const uint8_t teon_cmd = HX8357_TEON; // TE off
+static const uint16_t teon_data[] = {0x00};
+static const uint8_t tearline_cmd = HX8357_TEARLINE; // tear line
+static const uint16_t tearline_data[] = {0x00, 0x02};
+static const uint8_t slpout_cmd = HX8357_SLPOUT; //Exit Sleep
+static const uint8_t dispon_cmd = HX8357_DISPON; // display on
+static const uint8_t caset_cmd = HX8357_CASET; // Column addr set
+static const uint16_t caset_data[] = {0x00, 0x00, 0x01, 0x3F};
+static const uint8_t paset_cmd = HX8357_PASET;
+static const uint16_t paset_data[] = {0x00, 0x00, 0x01, 0xDF};
+static const uint8_t rawr_cmd = HX8357_RAMWR; // write to RAM
 
 
-static void writecommand(uint8_t *commandString);
-static void writedata(uint16_t *dataString, uint32_t stringLength);
+static void writecommand(const uint8_t *commandString);
+static void writedata(const uint16_t *dataString, uint32_t stringLength);
 static void writeconst(uint16_t dataString, uint32_t stringLength);
 static void Write();
 static inline void spiWrite8(uint8_t input);
@@ -154,7 +154,7 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     SPI1CON1bits.CKP = 0; // Idle state for clock is a low level;
 
     SPI1CON2bits.SPIBEN = 1; /*Enable FIFO transmit buffer*/
-    SPI1STATbits.SISEL = 0b101; /*interupt on last bit out*/
+    SPI1STATbits.SISEL = 0b101; /*interrupt on last bit out*/
 
     /*11 = Primary prescale 1:1
       10 = Primary prescale 4:1
@@ -176,15 +176,12 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     //IEC0bits.SPI1IE = 1; // Enable the interrupt
     IPC2bits.SPI1EIP = 7; //priority 5
 
-    SPI1STATbits.SPIEN = 1; // Enable SPI mo
+    SPI1STATbits.SPIEN = 1; // Enable SPI module
 
     IO_setPinDir(RSTPIN, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
     IO_setPinDir(CEPIN, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
     IO_setPinDir(DCPIN, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
-
-
-
-
+    
     /*Write the initialization sequence*/
     tftBootUpSequence();
 }
@@ -211,7 +208,7 @@ void TFT_LCD_fillBackground(uint16_t color) {
     TFT_LCD_drawRect(0, 0, TFT_LCD_WIDTH, TFT_LCD_HEIGHT, color);
 }
 
-void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y) {
+void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor) {
     uint16_t size = (uint16_t) strlen(anystring);
     setCanvas(x, y, (x + 2*(size * ASCII_FONT_WIDTH)), (y + 2*ASCII_FONT_HEIGHT));
 
@@ -234,7 +231,7 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y) {
 /*This function will write a command to the LCD screen ie. DC value is 0*/
 
 /*First param is the command data, and the second param is the length of that data*/
-void writecommand(uint8_t* commandString) {
+void writecommand(const uint8_t* commandString) {
 
     lcdData cmdItem = {};
     cmdItem.Length = 1;
@@ -258,11 +255,11 @@ void writecommand(uint8_t* commandString) {
 /*This function will write data to the LCD screen ie. DC value is 1*/
 
 /*First param is the actual data, second is the length of that data*/
-void writedata(uint16_t *dataString, uint32_t stringLength) {
+void writedata(const uint16_t *dataString, uint32_t stringLength) {
 
     lcdData newItem;
     newItem.Length = stringLength;
-    newItem.Data = dataString;
+    newItem.Data = (uint16_t *)dataString;
     newItem.Command = DATA;
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
