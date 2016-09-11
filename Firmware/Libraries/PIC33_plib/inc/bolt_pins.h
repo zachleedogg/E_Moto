@@ -31,19 +31,54 @@
 #define OUTPUT 0
 
 typedef enum _pin_number {
+#ifdef _RA0
     IO_PIN_RA0,
+#endif
+#ifdef _RA1
     IO_PIN_RA1,
+#endif
+#ifdef _RA2
     IO_PIN_RA2,
+#endif
+#ifdef _RA3
     IO_PIN_RA3,
+#endif
+#ifdef _RA4
     IO_PIN_RA4,
-//#ifdef __dsPIC33EP256MC504__
-//    IO_PIN_RA5,/*Does Not Exist*/
-//    IO_PIN_RA6,/*Does Not Exist*/
-//    IO_PIN_RA7,
-//    IO_PIN_RA8,
-//    IO_PIN_RA9,
-//    IO_PIN_RA10,
-//#endif
+#endif
+#ifdef _RA5
+    IO_PIN_RA5,
+#endif
+#ifdef _RA6
+    IO_PIN_RA6,
+#endif
+#ifdef _RA7
+    IO_PIN_RA7,
+#endif
+#ifdef _RA8
+    IO_PIN_RA8,
+#endif
+#ifdef _RA9
+    IO_PIN_RA9,
+#endif
+#ifdef _RA10
+    IO_PIN_RA10,
+#endif
+#ifdef _RA11
+    IO_PIN_RA10,
+#endif
+#ifdef _RA12
+    IO_PIN_RA10,
+#endif
+#ifdef _RA13
+    IO_PIN_RA10,
+#endif
+#ifdef _RA14
+    IO_PIN_RA10,
+#endif
+#ifdef _RA15
+    IO_PIN_RA10,
+#endif
     IO_PIN_RB0,
     IO_PIN_RB1,
     IO_PIN_RB2,
@@ -60,24 +95,24 @@ typedef enum _pin_number {
     IO_PIN_RB13,
     IO_PIN_RB14,
     IO_PIN_RB15,
-//#ifdef __dsPIC33EP256MC504__
-//    IO_PIN_RC0,
-//    IO_PIN_RC1,
-//    IO_PIN_RC2,
-//    IO_PIN_RC3,
-//    IO_PIN_RC4,
-//    IO_PIN_RC5,
-//    IO_PIN_RC6,
-//    IO_PIN_RC7,
-//    IO_PIN_RC8,
-//    IO_PIN_RC9,
-//    IO_PIN_RC10,
-//    IO_PIN_RC11,/*Does Not Exist*/
-//    IO_PIN_RC12,/*Does Not Exist*/
-//    IO_PIN_RC13,/*Does Not Exist*/
-//    IO_PIN_RC14,/*Does Not Exist*/
-//    IO_PIN_RC15,/*Does Not Exist*/
-//#endif
+#ifdef __dsPIC33EP256MC504__
+    IO_PIN_RC0,
+    IO_PIN_RC1,
+    IO_PIN_RC2,
+    IO_PIN_RC3,
+    IO_PIN_RC4,
+    IO_PIN_RC5,
+    IO_PIN_RC6,
+    IO_PIN_RC7,
+    IO_PIN_RC8,
+    IO_PIN_RC9,
+    IO_PIN_RC10,
+    IO_PIN_RC11, /*Does Not Exist*/
+    IO_PIN_RC12, /*Does Not Exist*/
+    IO_PIN_RC13, /*Does Not Exist*/
+    IO_PIN_RC14, /*Does Not Exist*/
+    IO_PIN_RC15, /*Does Not Exist*/
+#endif
     NUMBER_OF_PINS,
 } pin_number;
 

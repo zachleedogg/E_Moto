@@ -6,8 +6,8 @@
                    projectFiles="true">
       <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
       <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
-      <itemPath>../../Libraries/PIC33_plib/inc/ic.h</itemPath>
       <itemPath>../../Libraries/PIC33_plib/inc/bolt_pins.h</itemPath>
+      <itemPath>ping.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,8 +19,8 @@
       <itemPath>main.c</itemPath>
       <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
       <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
-      <itemPath>../../Libraries/PIC33_plib/src/ic.c</itemPath>
       <itemPath>../../Libraries/PIC33_plib/src/bolt_pins.c</itemPath>
+      <itemPath>ping.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -84,7 +84,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value="..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src"/>
+                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>

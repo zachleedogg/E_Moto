@@ -10,14 +10,16 @@
 
 #include <stdint.h>
 
-typedef enum {
-    IC_MODE_DISABLE,
-    IC_MODE_ENABLE,
+typedef enum _ic_mode {
+    IC_16_BIT, 
+    IC_32_BIT /*Select this option for 32-bit IC module, uses 1&2 or 3&4*/
 } ic_mode;
 
-typedef enum _ic_status{
-    IDLE,
-    RUNNING
+typedef enum _ic_status {
+    CHARGING,
+    RESLEASED,
+    RUNNING,
+    DONE
 } ic_status;
 
 
@@ -61,17 +63,10 @@ static uint8_t testVar = 0;
 /**
  * Init an Input Capture module on the specified Pin
  * @param newICPin from #define list above
+ * @param mode 16 or 32 bit
  * @return success (1) or failure (0)
  */
-uint8_t ic_Init(ic_pin_number newICPin);
-
-/**
- * Set a module to Enabled or Disabled state
- * @param thisModule from pin list above
- * @param mode either IC_MODULE_ENABLE or IC_MODULE_DISABLE
- * @return 
- */
-uint8_t ic_moduleMode(ic_pin_number thisModule, uint8_t mode);
+uint8_t ic_Init(ic_pin_number newICPin, ic_mode mode);
 
 /**
  * Check to see if pulse width has been captured

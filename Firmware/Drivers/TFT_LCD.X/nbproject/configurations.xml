@@ -8,12 +8,12 @@
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_pins.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/ic.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
       </logicalFolder>
-      <itemPath>TFT_LCD_2.h</itemPath>
       <itemPath>TFT_LCD_Q.h</itemPath>
       <itemPath>ASCII_5X7.h</itemPath>
       <itemPath>TFT_TOUCH.h</itemPath>
+      <itemPath>TFT_LCD.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -26,12 +26,12 @@
         <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_pins.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/src/ic.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
-      <itemPath>TFT_LCD_2.c</itemPath>
       <itemPath>TFT_LCD_Q.c</itemPath>
       <itemPath>TFT_TOUCH.c</itemPath>
+      <itemPath>TFT_LCD.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -95,7 +95,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value="..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src"/>
+                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -123,6 +123,25 @@
       <C30-AR>
         <property key="additional-options-chop-files" value="false"/>
       </C30-AR>
+      <C30-AS>
+        <property key="assembler-symbols" value=""/>
+        <property key="expand-macros" value="false"/>
+        <property key="extra-include-directories-for-assembler" value=""/>
+        <property key="extra-include-directories-for-preprocessor" value=""/>
+        <property key="false-conditionals" value="false"/>
+        <property key="keep-locals" value="false"/>
+        <property key="list-assembly" value="false"/>
+        <property key="list-section-info" value="false"/>
+        <property key="list-source" value="false"/>
+        <property key="list-symbols" value="false"/>
+        <property key="oXC16asm-extra-opts" value=""/>
+        <property key="oXC16asm-list-to-file" value="false"/>
+        <property key="omit-debug-dirs" value="false"/>
+        <property key="omit-forms" value="false"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="relax" value="false"/>
+        <property key="warning-level" value="emit-warnings"/>
+      </C30-AS>
       <C30-LD>
         <property key="additional-options-use-response-files" value="false"/>
         <property key="boot-eeprom" value="no_eeprom"/>
@@ -210,7 +229,6 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

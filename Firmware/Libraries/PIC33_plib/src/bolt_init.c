@@ -14,7 +14,7 @@
 
 /*Communicate on PGED1 and PGED1, JTAG is OFF*/
 _FPOR(ALTI2C1_OFF & ALTI2C2_OFF & WDTWIN_WIN25)
-_FICD(ICS_PGD1 & JTAGEN_OFF);
+_FICD(ICS_PGD3 & JTAGEN_OFF);
 
 // FPOR
 /* ALTI2C1 = OFF        Alternate I2C1 pins (I2C1 mapped to SDA1/SCL1 pins)*/

@@ -1,4 +1,12 @@
 #include "TFT_TOUCH.h"
+#include "TFT_LCD.h"
+
+#define HIEGHT_LOWER 120
+#define HIEGHT_UPPER 875
+
+#define WIDTH_LOWER 120
+#define WIDTH_UPPER 925
+
 
 static pin_number _x0 = 0;
 static pin_number _x1 = 0;
@@ -16,6 +24,7 @@ static uint8_t debounce = 0;
 void setXpins();
 void setYpins();
 uint8_t inRange(uint16_t item1, uint16_t item2, uint8_t range);
+uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
 
 void TFT_TOUCH_INIT(pin_number x0, pin_number x1, pin_number y0, pin_number y1, adc_pin_number an_x, adc_pin_number an_y) {
     _x0 = x0;
@@ -31,23 +40,31 @@ void TFT_TOUCH_INIT(pin_number x0, pin_number x1, pin_number y0, pin_number y1, 
 touchData TFT_TOUCH_run(void) {
 
     thisScreenData.status = IDLE;
-        if (toggler) {
-            toggler = 0;
-            thisScreenData.xPos = TFT_TOUCH_get_x_pos()/2 -75;
+    if (toggler) {
+        toggler = 0;
+        thisScreenData.xPos = TFT_TOUCH_get_x_pos();
+        if (thisScreenData.xPos < HIEGHT_LOWER || thisScreenData.xPos > HIEGHT_UPPER) {
+            thisScreenData.xPos = 0;
+        }
+    } else {
+        toggler = 1;
+        thisScreenData.yPos = TFT_TOUCH_get_y_pos(); ///2;
+        if (thisScreenData.yPos < WIDTH_LOWER || thisScreenData.yPos > WIDTH_UPPER) {
+            thisScreenData.yPos = 0;
         } else {
-            toggler = 1;
-            thisScreenData.yPos = TFT_TOUCH_get_y_pos()/2;
-
             /*If the reading seems stable, then consider the read as current position*/
             if (inRange(thisScreenData.xPos, prevSample.xPos, TFT_TOUCH_SENSITIVITY) &&
                     inRange(thisScreenData.yPos, prevSample.yPos, TFT_TOUCH_SENSITIVITY)) {
-                thisScreenData.status = 1;
+                thisScreenData.status = TOUCHING;
             } else { /*Debounce stray data, if too many stray dots, switch to IDLE mode*/
                 thisScreenData.status = IDLE;
             }
             prevSample.xPos = thisScreenData.xPos;
             prevSample.yPos = thisScreenData.yPos;
+            thisScreenData.xPos = map(thisScreenData.xPos, HIEGHT_LOWER, HIEGHT_UPPER,0, TFT_LCD_height());
+            thisScreenData.yPos = map(thisScreenData.yPos, WIDTH_LOWER, WIDTH_UPPER,0, TFT_LCD_width());
         }
+    }
     return thisScreenData;
 }
 
@@ -84,9 +101,9 @@ void setYpins(void) {
     /*Turn on AN pin Y and enable y pins*/
     ADC_SetPin(an_Y);
     IO_setPinDir(_y0, OUTPUT);
-    IO_pinWrite(_y0, HIGH);
+    IO_pinWrite(_y0, LOW);
     IO_setPinDir(_y1, OUTPUT);
-    IO_pinWrite(_y1, LOW);
+    IO_pinWrite(_y1, HIGH);
 }
 
 uint8_t inRange(uint16_t item1, uint16_t item2, uint8_t range) {
@@ -102,3 +119,9 @@ uint8_t inRange(uint16_t item1, uint16_t item2, uint8_t range) {
     }
     return returnVal;
 }
+
+uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max)
+{
+  return (uint16_t)((uint32_t)(x - in_min) * (uint32_t)(out_max - out_min) / (uint32_t)((in_max - in_min) + out_min));
+}
+

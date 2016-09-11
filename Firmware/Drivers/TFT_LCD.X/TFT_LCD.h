@@ -1,54 +1,60 @@
-/* 
- * File:   TFT_LCD.h
+/*
+ * File:   LCD_SPI.c
  * Author: Zachary Levenberg
  *
- * Created on September 1, 2016, 8:05 AM
+ * Created on February 20, 2016, 7:11 PM
  */
 
+#include "TFT_TOUCH.h"
+
+// This is a guard condition so that contents of this file are not included
+// more than once.
+#ifndef LCD_SPI_H
+#define	LCD_SPI_H
+
+#include <xc.h> // include processor files - each processor file is guarded.
 #include <stdint.h>
 
-#include "bolt_pins.h"
-#include "bolt_uart.h"
-
-
-#ifndef TFT_LCD_H
-#define	TFT_LCD_H
-
 // Color definitions
-#define	HX8357_BLACK   0x0000
-#define	HX8357_BLUE    0x001F
-#define	HX8357_RED     0xF800
-#define	HX8357_GREEN   0x07E0
-#define HX8357_CYAN    0x07FF
-#define HX8357_MAGENTA 0xF81F
-#define HX8357_YELLOW  0xFFE0  
-#define HX8357_WHITE   0xFFFF
+#define	TFT_LCD_BLACK   0x0000
+#define	TFT_LCD_BLUE    0x001F
+#define	TFT_LCD_RED     0xF800
+#define	TFT_LCD_GREEN   0x07E0
+#define TFT_LCD_CYAN    0x07FF
+#define TFT_LCD_MAGENTA 0xF81F
+#define TFT_LCD_YELLOW  0xFFE0  
+#define TFT_LCD_WHITE   0xFFFF
 
-/**
- * Initialize the tft lcd screen
- * @param systemClockSpeed is the main clock speed in Hz
- * @return success or failure
- */
-uint8_t TFT_LCD_init(uint32_t systemClockSpeed, pin_number CS, pin_number CD, pin_number WR, pin_number RD);
+typedef enum _dataCommand {
+    DATA,
+    COMMAND,
+    CONST,
+    STRING
+} dataCommand;
 
-/**
- * Fill the screen with color
- * @param color
- */
-void fillScreen(uint16_t color);
+typedef enum _orientation{
+    VERTICAL,
+    HORIZONTAL
+} orientation;
 
-/**
- * Fill rectangle with color
- * @param x
- * @param y
- * @param w
- * @param h
- * @param color
- */
-void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
+/*This initializes the screen*/
+void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC);
+
+void TFT_LCD_ORIENTATION(orientation thisWay);
+
+void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
+
+void TFT_LCD_fillBackground(uint16_t color);
+
+void TFT_LCD_writeString(const char* anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size);
+
+void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size);
+
+uint16_t TFT_LCD_height(void);
+
+uint16_t TFT_LCD_width(void);
 
 #define HX8357D 0xD
-#define HX8357B 0xB
 
 #define HX8357_TFTWIDTH  320
 #define HX8357_TFTHEIGHT 480
@@ -66,8 +72,6 @@ void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
 
 #define HX8357_SLPIN   0x10
 #define HX8357_SLPOUT  0x11
-#define HX8357B_PTLON   0x12
-#define HX8357B_NORON   0x13
 
 #define HX8357_INVOFF  0x20
 #define HX8357_INVON   0x21
@@ -79,50 +83,37 @@ void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
 #define HX8357_RAMWR   0x2C
 #define HX8357_RAMRD   0x2E
 
-#define HX8357B_PTLAR   0x30
 #define HX8357_TEON  0x35
 #define HX8357_TEARLINE  0x44
+
 #define HX8357_MADCTL  0x36
+#define MADCTL_MY  0x80
+#define MADCTL_MX  0x40
+#define MADCTL_MV  0x20
+#define MADCTL_ML  0x10
+#define MADCTL_RGB 0x00
+#define MADCTL_BGR 0x08
+#define MADCTL_MH  0x04
+
 #define HX8357_COLMOD  0x3A
 
 #define HX8357_SETOSC 0xB0
 #define HX8357_SETPWR1 0xB1
-#define HX8357B_SETDISPLAY 0xB2
 #define HX8357_SETRGB 0xB3
 #define HX8357D_SETCOM  0xB6
 
-#define HX8357B_SETDISPMODE  0xB4
 #define HX8357D_SETCYC  0xB4
-#define HX8357B_SETOTP 0xB7
 #define HX8357D_SETC 0xB9
 
 #define HX8357B_SET_PANEL_DRIVING 0xC0
 #define HX8357D_SETSTBA 0xC0
-#define HX8357B_SETDGC  0xC1
-#define HX8357B_SETID  0xC3
-#define HX8357B_SETDDB  0xC4
-#define HX8357B_SETDISPLAYFRAME 0xC5
-#define HX8357B_GAMMASET 0xC8
-#define HX8357B_SETCABC  0xC9
+
 #define HX8357_SETPANEL  0xCC
-
-
-#define HX8357B_SETPOWER 0xD0
-#define HX8357B_SETVCOM 0xD1
-#define HX8357B_SETPWRNORMAL 0xD2
-
-#define HX8357B_RDID1   0xDA
-#define HX8357B_RDID2   0xDB
-#define HX8357B_RDID3   0xDC
-#define HX8357B_RDID4   0xDD
 
 #define HX8357D_SETGAMMA 0xE0
 
 #define HX8357B_SETGAMMA 0xC8
 #define HX8357B_SETPANELRELATED  0xE9
 
-
-
-
-#endif	/* TFT_LCD_H */
+#endif	/* LCD_SPI_H */
 

@@ -46,10 +46,8 @@ static uint16_t icTime[NUMBER_IC_MODULES] = {};
 
 typedef struct _ic_module {
     uint8_t moduleNumber;
-    uint8_t ppsMap;
     ic_pin_number Pin;
     uint8_t availability;
-    ic_status status;
     uint16_t time;
 } ic_module;
 
@@ -65,7 +63,7 @@ static ic_module modules[NUMBER_IC_MODULES];
  * @param newICPin
  * @return 
  */
-uint8_t ic_Init(ic_pin_number newICPin) {
+uint8_t ic_Init(ic_pin_number newICPin, ic_mode mode) {
     uint8_t returnVal = 0;
 
     /*check the pin for available modules*/
@@ -75,7 +73,6 @@ uint8_t ic_Init(ic_pin_number newICPin) {
             modules[i].availability = UNAVAILABLE;
             modules[i].moduleNumber = i;
             modules[i].Pin = newICPin;
-            modules[i].status = IDLE;
             break;
         }
     }
@@ -162,44 +159,6 @@ uint16_t ic_getTime(ic_pin_number thisModule) {
     return time;
 }
 
-/**
- * 
- * @param thisModule
- * @param mode
- * @return 
- */
-uint8_t ic_moduleMode(ic_pin_number thisModule, uint8_t mode) {
-
-    /*Set returnVal to success*/
-    uint8_t returnVal = 0;
-
-    /*check the pin for available modules*/
-    uint8_t i = 0;
-    for (i = 0; i < NUMBER_IC_MODULES; i++) {/*check modules in use*/
-        if (modules[i].Pin == thisModule) {
-            break;
-        }
-    }
-
-    switch (i) {
-        case IC_MODULE1:
-            IC1CON1bits.ICM = mode; /*Disable the Module*/
-            break;
-        case IC_MODULE2:
-            IC2CON1bits.ICM = mode; /*Disable the Module*/
-            break;
-        case IC_MODULE3:
-            IC3CON1bits.ICM = mode; /*Disable the Module*/
-            break;
-        case IC_MODULE4:
-            IC4CON1bits.ICM = mode; /*Disable the Module*/
-            break;
-        default:
-            returnVal = 1; /*Not a valid pin*/
-            break;
-    }
-    return returnVal;
-}
 
 //void __attribute__((__interrupt__, auto_psv)) _IC1Interrupt(void) {
 //    /*clear the interrupt*/
