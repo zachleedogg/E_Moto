@@ -1,11 +1,14 @@
 #include "bolt_uart.h"
 #include "bolt_init.h"
 
-#define BUFFER_SIZE 255
-#define QUEUE_SIZE 32
+#define BUFFER_SIZE 64
+#define QUEUE_SIZE 8
 
 #define STOP_CHAR '\n'
 #define NULL 0
+
+#define UART1_ENABLE 1
+#define UART2_ENABLE 0
 
 typedef struct _uartBuffer {
     char buff[BUFFER_SIZE];
@@ -48,21 +51,22 @@ typedef struct _uartDataQueue {
 void enQ(uartDataQueue * thisQ);
 uint8_t deQ(uartDataQueue * thisQ);
 
-
+#if UART1_ENABLE
 static uartBuffer RX1buffer;
-static uartBuffer RX2buffer;
-
 static uartBuffer TX1buffer;
-static uartBuffer TX2buffer;
-
 static uartDataQueue RX1Q;
-static uartDataQueue RX2Q;
-
 static uint8_t RX1dataReady = 0;
-static uint8_t RX2dataReady = 0;
-
 static uint8_t TX1status = 0;
+#endif
+
+#if UART2_ENABLE
+static uartBuffer RX2buffer;
+static uartBuffer TX2buffer;
+static uartDataQueue RX2Q;
+static uint8_t RX2dataReady = 0;
 static uint8_t TX2status = 0;
+#endif
+
 static uint16_t delayTime;
 
 uint8_t Uart1Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate) {
@@ -279,6 +283,7 @@ void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void) {
     }
 }
 
+#if UART2_ENABLE
 uint8_t Uart2Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate) {
     U2MODEbits.UARTEN = 0; // Enable UART
     // Configure oscillator as needed
@@ -488,6 +493,8 @@ void __attribute__((__interrupt__, auto_psv)) _U2RXInterrupt(void) {
         }
     }
 }
+
+#endif
 
 void enQ(uartDataQueue * thisQ) {
     thisQ->buff[thisQ->head++] = 1; /*Put Data in the Q*/

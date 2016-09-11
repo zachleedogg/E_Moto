@@ -10,6 +10,7 @@
 
 #include "framework.h"
 
+
 /*******************************************************************************
  *******************************************************************************
  * Event Framework Queue
@@ -36,7 +37,7 @@
 #include SERVICE_7
 #endif
 
-#define QUEUE_SIZE 32
+#define QUEUE_SIZE 8
 
 /*******************************************************************************
  * Datatypes and Variables
@@ -188,7 +189,6 @@ Event DeQueue(queue *thisQueue) {
  * Data Structures and variables
  *******************************************************************************/
 static volatile uint32_t runningTime = 0;
-static uint8_t timeUpdate = 0;
 
 typedef struct _sw_timer {
     uint16_t time;
@@ -237,7 +237,7 @@ void checkTimers(void) {
                 Event ThisEvent = {};
                 ThisEvent.EventType = TIMEUP_EVENT;
                 ThisEvent.EventParam = i;
-                ThisEvent.EventPriority = 2;
+                ThisEvent.EventPriority = PRIORITY_2;
                 ThisEvent.Service = SW_timers[i].service;
                 Post(ThisEvent);
             }
@@ -320,7 +320,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T5Interrupt(void) {
  *******************************************************************************
  *******************************************************************************/
 
-#define SCHEDULE_SIZE 32
+#define SCHEDULE_SIZE 8
 
 /*******************************************************************************
  * Data Structures
@@ -398,7 +398,7 @@ uint8_t scheduler_remove(uint32_t time) {
             thisNode->prevNode->nextNode = thisNode->nextNode;
             thisNode->nextNode->prevNode = thisNode->prevNode;
             thisNode->thisFunction();
-            push(thisNode);
+            push(thisNode); /*put empty node back on stack*/
             thisNode = thisNode->nextNode;
         }
         returnVal = 1;

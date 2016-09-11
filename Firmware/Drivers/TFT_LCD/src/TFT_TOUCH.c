@@ -68,10 +68,6 @@ touchData TFT_TOUCH_run(void) {
     return thisScreenData;
 }
 
-touchData TFT_TOUCH_get_data(void){
-    return thisScreenData;
-}
-
 uint16_t TFT_TOUCH_get_x_pos(void) {
     uint16_t returnVal = ADC_GetValue(an_X);
     setYpins();

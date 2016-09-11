@@ -4,17 +4,16 @@
  *
  * Created on June 9, 2016, 7:52 PM
  */
+#include <stdint.h>
+#include "configure.h"
 
 #ifndef FRAMEWORK_H
 #define	FRAMEWORK_H
 
-#include <stdint.h>
-#include "configure.h"
 /******************************************************************************/
 /*Framework Global Defines*/
-/******************************************************************************/
 
-#define PRIORITY_LEVELS 3
+/******************************************************************************/
 
 #define TRUE 1
 #define FALSE 0

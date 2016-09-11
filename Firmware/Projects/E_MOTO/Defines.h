@@ -9,6 +9,7 @@
 #include "bolt_pins.h"
 #include "bolt_uart.h"
 #include "bolt_ADC.h"
+#include "TFT_LCD.h"
 
 #ifndef DEFINES_H
 #define	DEFINES_H

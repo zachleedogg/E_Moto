@@ -19,7 +19,7 @@ int main(void) {
     scheduler_init();
     Uart1Init(RP36_TX, RP20_UART_RX, BAUD115200);
     
-    printf("\n\n\nhello this is the test program for the Template Project\n");
+    Uart1Write("\n\n\nhello this is the test program for the Template Project\n");
         
     Init();
     
