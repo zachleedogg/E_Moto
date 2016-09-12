@@ -15,6 +15,11 @@
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
       </logicalFolder>
       <logicalFolder name="inc" displayName="inc" projectFiles="true">
+        <itemPath>../../Drivers/TFT_LCD/inc/ASCII_5X7.h</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/inc/TFT_DISPLAY.h</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/inc/TFT_LCD.h</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/inc/TFT_LCD_Q.h</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/inc/TFT_TOUCH.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Services" projectFiles="true">
         <itemPath>FSM_TEMPLATE.h</itemPath>
@@ -41,6 +46,7 @@
         <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_pins.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/src/TFT_DISPLAY.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_LCD.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_LCD_Q.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_TOUCH.c</itemPath>
@@ -59,6 +65,8 @@
     <Elem>.</Elem>
     <Elem>../../Drivers/TFT_LCD/inc</Elem>
     <Elem>../../Drivers/TFT_LCD/src</Elem>
+    <Elem>../../Drivers/TFT_LCD/tft_inc</Elem>
+    <Elem>../../Drivers/TFT_LCD/tft_src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -70,7 +78,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.26</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -82,7 +90,7 @@
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>false</parseOnProdLoad>
+          <parseOnProdLoad>true</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
       </compileType>
@@ -226,7 +234,6 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

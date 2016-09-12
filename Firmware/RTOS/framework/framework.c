@@ -7,6 +7,8 @@
 
 #include <xc.h>
 #include <stdio.h>
+#include<string.h>
+#include "bolt_uart.h"
 
 #include "framework.h"
 
@@ -18,6 +20,7 @@
  *******************************************************************************/
 #include EVENTCHECKER_HEADER
 #include SERVICE_1
+#include "bolt_uart.h"
 #ifdef SERVICE_2
 #include SERVICE_2
 #endif
@@ -55,7 +58,7 @@ typedef struct _queue {
 static queue QueueList[PRIORITY_LEVELS] = {};
 
 /*Active Priority Level*/
-static int8_t activePriorityLevel = -1;
+static volatile int8_t activePriorityLevel = -1;
 
 /* Event check function pointer*/
 typedef uint8_t(*EventFunc_t)();
@@ -111,27 +114,32 @@ uint8_t Run() {
         /*If priority Level is active, run services.*/
         while (activePriorityLevel >= 0) {
             while (QueueList[activePriorityLevel].size > 0) {
-                ThisEvent = DeQueue(&QueueList[activePriorityLevel]); /*DeQueue the event*/
+                /*DeQueue the event and Run the Serice with the Event*/
+                ThisEvent = DeQueue(&QueueList[activePriorityLevel]);
                 Event cleanEvent = ThisEvent;
                 cleanEvent.Service = 0;
                 cleanEvent.EventPriority = 0;
-                ServiceList[ThisEvent.Service](cleanEvent); /*Run the Serice with the Event*/
+                ServiceList[ThisEvent.Service](cleanEvent);
+
+
             }
             /*when the priority level is clear, reduce the priority*/
             activePriorityLevel--;
         }
-
         /*Background check for events*/
         CheckForEvents();
 
         /*Background check timers*/
         if (timerHasTicked()) {
             /*run timer service*/
-            checkTimers();
+            /* I want to put this here, but the framwork runs better with it
+             in the Timer ISR. I can't figure out why, of a for-loop of 16 items.*/
+            //checkTimers();
 
             /*run task scheduler*/
             scheduler_remove(FreeRunningTimer());
         }
+
     }
 }
 
@@ -201,8 +209,8 @@ static sw_timer SW_timers[NUMBER_OF_SW_TIMERS];
 
 typedef struct _statusQ {
     uint8_t queue[STATUS_Q_SIZE];
-    uint8_t head;
-    uint8_t tail;
+    uint16_t head;
+    uint16_t tail;
 } statusQ;
 
 static statusQ timerStatus = {};
@@ -214,9 +222,9 @@ uint8_t timerHasTicked() {
     uint8_t returnVal = 0;
     /*Check if timer has ticked and deQueue timer bit*/
     if (timerStatus.queue[timerStatus.tail]) {
-        timerStatus.tail = 0;
+        timerStatus.queue[timerStatus.tail++] = 0;
         /*Wrap around protection*/
-        if (++timerStatus.tail >= STATUS_Q_SIZE) {
+        if (timerStatus.tail >= STATUS_Q_SIZE) {
             timerStatus.tail = 0;
         }
         returnVal = 1;
@@ -234,7 +242,7 @@ void checkTimers(void) {
             SW_timers[i].time--;
             if (SW_timers[i].time == 0) {
                 SW_timers[i].status = DONE;
-                Event ThisEvent = {};
+                Event ThisEvent;
                 ThisEvent.EventType = TIMEUP_EVENT;
                 ThisEvent.EventParam = i;
                 ThisEvent.EventPriority = PRIORITY_2;
@@ -265,7 +273,7 @@ uint8_t Timer_Init(uint32_t clockFreq) {
     INTCON2bits.GIE = 1;
 
     /* set timer interrupt priority */
-    _T5IP = 4;
+    _T5IP = 7;
     /* reset timer interrupt */
     _T5IF = 0;
     /* Enable timer interrupt */
@@ -308,7 +316,8 @@ void __attribute__((__interrupt__, __auto_psv__)) _T5Interrupt(void) {
     if (timerStatus.head >= STATUS_Q_SIZE) {
         timerStatus.head = 0;
     }
-
+    checkTimers();
+    
 }
 
 
@@ -393,13 +402,18 @@ uint8_t scheduler_remove(uint32_t time) {
     if (Head.nextNode->time > time) {
         /*Do nothing*/
     } else {
+
         node* thisNode = Head.nextNode;
-        while (thisNode != 0 && thisNode->time <= time) {
-            thisNode->prevNode->nextNode = thisNode->nextNode;
-            thisNode->nextNode->prevNode = thisNode->prevNode;
-            thisNode->thisFunction();
-            push(thisNode); /*put empty node back on stack*/
-            thisNode = thisNode->nextNode;
+        if (thisNode == 0) {
+            //do nothing
+        } else {
+            while (thisNode != 0 && thisNode->time <= time) {
+                thisNode->prevNode->nextNode = thisNode->nextNode;
+                thisNode->nextNode->prevNode = thisNode->prevNode;
+                thisNode->thisFunction();
+                push(thisNode); /*put empty node back on stack*/
+                thisNode = thisNode->nextNode;
+            }
         }
         returnVal = 1;
     }

@@ -10,10 +10,13 @@
 #include "bolt_init.h"
 #include "TFT_LCD.h"
 #include "bolt_pins.h"
+#include "TFT_DISPLAY.h"
+#include "bolt_uart.h"
 
 
 #define TEST_LED IO_PIN_RB15
 
+#define FSM_TEMPLATE_print(...) (char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);)
 
 static uint16_t count = 0;
 static uint8_t flag = 0;
@@ -40,11 +43,14 @@ int main(void) {
     clockInit(FREQ_80MHZ, INTERNAL);
     TFT_LCD_INIT(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
     TFT_TOUCH_INIT(IO_PIN_RA0, IO_PIN_RB2, IO_PIN_RA1, IO_PIN_RB3, AN5, AN4);
+    Uart1Init(RP36_TX, RP20_UART_RX, BAUD115200);
+
+    Uart1Write("hello this is the LCD test program\n\n");
 
     T1_Interrupt_Init(1, 3);
     IO_setPinDir(TEST_LED, OUTPUT);
 
-    TFT_LCD_fillBackground(TFT_LCD_BLACK);
+
 
     numbers[0] = "0";
     numbers[1] = "1";
@@ -58,20 +64,21 @@ int main(void) {
     numbers[9] = "9";
 
 
+    TFT_LCD_fillBackground(TFT_LCD_RED);
+    TFT_LCD_drawRect(4, 4, TFT_LCD_width() - 4, TFT_LCD_height() - 4, TFT_LCD_BLACK);
+    TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
 
-
-    TFT_LCD_drawRect(25, 25, TFT_LCD_width() - 25, TFT_LCD_height() - 25, TFT_LCD_RED);
-    
-    TFT_LCD_drawRect(10, 10, TFT_LCD_width()/4 -10, TFT_LCD_height()/4 - 10, TFT_LCD_GREEN);
-    TFT_LCD_drawRect((TFT_LCD_width()/4)+10, 10, TFT_LCD_width()/2 -10, TFT_LCD_height()/4 - 10, TFT_LCD_GREEN);
-    TFT_LCD_drawRect(TFT_LCD_width()/2 +10, 10, (TFT_LCD_width()*3)/4 - 10, TFT_LCD_height()/4 - 10, TFT_LCD_GREEN);
-    TFT_LCD_drawRect((TFT_LCD_width()*3)/4 + 10, 10, TFT_LCD_width() - 10, TFT_LCD_height()/4 - 10, TFT_LCD_GREEN);
-
-    TFT_LCD_writeString(helloString, (TFT_LCD_width()/2)-(strlen(helloString)*12/2), 100, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-    TFT_LCD_writeString(intruction, (TFT_LCD_width()/2)-(strlen(intruction)*12/2), 120, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+    TFT_LCD_writeString(helloString, TFT_LCD_CENTER, 100, TFT_LCD_MAGENTA, TFT_LCD_CYAN, 3);
+    TFT_LCD_writeString(intruction, TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_CYAN, 1);
     TFT_LCD_writeString(numbers[0], 100, 150, TFT_LCD_RED, TFT_LCD_CYAN, 2);
     sprintf(myScreenBuffer, "number is: %d", 27);
-    TFT_LCD_writeVariableString(myScreenBuffer, 100, 175, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+    TFT_LCD_writeVariableString(myScreenBuffer, 100, 175, TFT_LCD_RED, TFT_LCD_CYAN, 3);
+
+    TFT_DISPLAY_place_button("START", 1, 4, TFT_LCD_GREEN, 1);
+    TFT_DISPLAY_place_button("STOP", 2, 4, TFT_LCD_MAGENTA, 3);
+    TFT_DISPLAY_place_button("SUCK", 3, 4, TFT_LCD_YELLOW, 2);
+    TFT_DISPLAY_place_button("DICK", 4, 3, TFT_LCD_WHITE, 2);
+
 
 
     while (1) {
@@ -83,12 +90,15 @@ int main(void) {
 
         if (flag) {
             flag = 0;
+            myScreenPosition = TFT_TOUCH_run();
             if (myScreenPosition.status == TOUCHING) {
                 TFT_LCD_drawRect(myScreenPosition.yPos, myScreenPosition.xPos,
                         myScreenPosition.yPos + 3, myScreenPosition.xPos + 3, TFT_LCD_GREEN);
-                sprintf(myScreenBuffer, "Xraw: %u, Yraw: %u", myScreenPosition.yPos, myScreenPosition.xPos);
-                TFT_LCD_writeVariableString(myScreenBuffer, 100, 175, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             }
+            sprintf(myScreenBuffer, "Xraw: %u, Yraw: %u\n", myScreenPosition.yPos, myScreenPosition.xPos);
+//            TFT_LCD_writeVariableString(myScreenBuffer, 100, 175, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            Uart1Write(myScreenBuffer);
+
 
 
             if (myScreenPosition.yPos > 450) {
@@ -107,13 +117,14 @@ void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void) {
     count2++;
 
     if (count2 == 1000) {
+        Uart1Write("uou idiot\n");
         IO_pinToggle(TEST_LED);
         count2 = 0;
         flag2 = 1;
 
     }
     if (count == 1) {
-        myScreenPosition = TFT_TOUCH_run();
+        
         flag = 1;
         count = 0;
     }

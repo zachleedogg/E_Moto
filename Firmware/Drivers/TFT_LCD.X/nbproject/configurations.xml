@@ -10,10 +10,13 @@
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
       </logicalFolder>
-      <itemPath>TFT_LCD_Q.h</itemPath>
-      <itemPath>ASCII_5X7.h</itemPath>
-      <itemPath>TFT_TOUCH.h</itemPath>
-      <itemPath>TFT_LCD.h</itemPath>
+      <logicalFolder name="inc" displayName="inc" projectFiles="true">
+        <itemPath>../TFT_LCD/inc/ASCII_5X7.h</itemPath>
+        <itemPath>../TFT_LCD/inc/TFT_DISPLAY.h</itemPath>
+        <itemPath>../TFT_LCD/inc/TFT_LCD.h</itemPath>
+        <itemPath>../TFT_LCD/inc/TFT_LCD_Q.h</itemPath>
+        <itemPath>../TFT_LCD/inc/TFT_TOUCH.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -28,10 +31,13 @@
         <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
       </logicalFolder>
+      <logicalFolder name="src" displayName="src" projectFiles="true">
+        <itemPath>../TFT_LCD/src/TFT_LCD.c</itemPath>
+        <itemPath>../TFT_LCD/src/TFT_LCD_Q.c</itemPath>
+        <itemPath>../TFT_LCD/src/TFT_TOUCH.c</itemPath>
+        <itemPath>../TFT_LCD/src/TFT_DISPLAY.c</itemPath>
+      </logicalFolder>
       <itemPath>main.c</itemPath>
-      <itemPath>TFT_LCD_Q.c</itemPath>
-      <itemPath>TFT_TOUCH.c</itemPath>
-      <itemPath>TFT_LCD.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -43,6 +49,8 @@
     <Elem>.</Elem>
     <Elem>../../Libraries/PIC33_plib/inc</Elem>
     <Elem>../../Libraries/PIC33_plib/src</Elem>
+    <Elem>../TFT_LCD/inc</Elem>
+    <Elem>../TFT_LCD/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -54,7 +62,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.26</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -95,7 +103,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src"/>
+                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\TFT_LCD\inc;..\TFT_LCD\src"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -229,6 +237,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

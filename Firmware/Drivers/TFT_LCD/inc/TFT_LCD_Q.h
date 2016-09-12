@@ -16,6 +16,8 @@ typedef struct _lcdData {
     uint16_t *Data;
     uint16_t Command;
     uint32_t Length;
+    uint8_t font;
+    uint16_t color;
 } lcdData;
 
 /*This function will add to the current Queue whatever is incoming and put it

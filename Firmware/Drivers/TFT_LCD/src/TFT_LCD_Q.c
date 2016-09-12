@@ -20,7 +20,7 @@
 
 
 /*Change QUEUESIZE varible to work or test*/
-#define QUEUESIZE 255
+#define QUEUESIZE 64
 #define TRUE 1
 #define FALSE 0
 
@@ -49,6 +49,8 @@ void addToQueue(lcdData newItem) {
         /*Puts the DC value into the DCArray :: DC == 1 means data and
          DC == 0 means commands*/
         thisQueue.thisData[thisQueue.Head].Command = newItem.Command;
+        thisQueue.thisData[thisQueue.Head].color = newItem.color;
+        thisQueue.thisData[thisQueue.Head].font = newItem.font;
         /*Increment the emptyIndex because it is not longer empty anymore*/
         //qprint("head: %d tail: %d length: %d DC %d\n", thisQueue.Head, thisQueue.Tail, thisQueue.thisData[thisQueue.Head].Length, thisQueue.thisData[thisQueue.Head].Command);
         qprint("head: %d tail: %d\n", thisQueue.Head, thisQueue.Tail);
@@ -72,9 +74,9 @@ lcdData deleteFromQueue(void) {
     } else {/*The Queue is not empty*/
         thisItem = thisQueue.thisData[thisQueue.Tail];
         /*Gets rid of the items at the currentIndex*/
-        thisQueue.thisData[thisQueue.Tail].Data = 0;
-        thisQueue.thisData[thisQueue.Tail].Length = 0;
-        thisQueue.thisData[thisQueue.Tail].Command = 0;
+//        thisQueue.thisData[thisQueue.Tail].Data = 0;
+//        thisQueue.thisData[thisQueue.Tail].Length = 0;
+//        thisQueue.thisData[thisQueue.Tail].Command = 0;
         /*Increments the current index because it has no information*/
         thisQueue.Tail++;
         /*This checks if the currentIndex is at the last spot*/

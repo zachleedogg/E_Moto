@@ -5,7 +5,7 @@
  * Created on February 20, 2016, 7:11 PM
  */
 
-#include "TFT_TOUCH.h"
+
 
 // This is a guard condition so that contents of this file are not included
 // more than once.
@@ -24,6 +24,10 @@
 #define TFT_LCD_MAGENTA 0xF81F
 #define TFT_LCD_YELLOW  0xFFE0  
 #define TFT_LCD_WHITE   0xFFFF
+
+/*Arrangement Defintions*/
+#define TFT_LCD_CENTER 0xFFFF
+#define TFT_LCD_MIDLLE 0xFFFF
 
 typedef enum _dataCommand {
     DATA,

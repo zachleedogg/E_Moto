@@ -34,9 +34,11 @@ static struct {
 } stringBuffer;
 
 /*Character Conversion variables*/
-static uint8_t charac = 0;
-static uint8_t pixelRow = 0;
-static uint16_t pixelCol = 0;
+static uint8_t charPtr = 0;
+static uint8_t rowPtr = 0;
+static uint16_t colPtr = 0;
+static uint8_t fontRowCtr = 0;
+static uint8_t fontColCtr = 0;
 
 /*pin variables*/
 static uint8_t CEPIN;
@@ -189,7 +191,7 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
 
     IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
     //IEC0bits.SPI1IE = 1; // Enable the interrupt
-    IPC2bits.SPI1EIP = 7; //priority 5
+    IPC2bits.SPI1EIP = 3; //priority 5
 
     SPI1STATbits.SPIEN = 1; // Enable SPI module
 
@@ -252,13 +254,19 @@ void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint1
 }
 
 void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size) {
+    if(x == TFT_LCD_CENTER){
+        x = (TFT_LCD_width()/2)-(strlen(anystring)*ASCII_FONT_WIDTH*size/2);
+    }
     uint16_t length = (uint16_t) strlen(anystring);
-    setCanvas(x, y, (x + 2 * (length * ASCII_FONT_WIDTH)), (y + 2 * ASCII_FONT_HEIGHT));
+    setCanvas(x, y, (x + size * (length * ASCII_FONT_WIDTH)), (y + size * ASCII_FONT_HEIGHT));
+    //setCanvas(x, y, (x + (length * ASCII_FONT_WIDTH)), (y + ASCII_FONT_HEIGHT));
 
     lcdData newItem;
     newItem.Length = length;
     newItem.Data = (uint16_t*) (anystring);
     newItem.Command = STRING;
+    newItem.color = fillColor;
+    newItem.font = size;
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
     /*Enter thread-Critical area*/
@@ -323,6 +331,7 @@ void writeconst(uint16_t dataString, uint32_t stringLength) {
     newItem.Length = stringLength;
     newItem.Data = (uint16_t*) dataString;
     newItem.Command = CONST;
+    newItem.color = dataString;
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
     /*Enter thread-Critical area*/
@@ -373,7 +382,8 @@ void Write() {
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
                 dataIndex++;
-                spiWrite16((uint16_t) thisItem.Data);
+                //spiWrite16((uint16_t) thisItem.Data);
+                spiWrite16((uint16_t) thisItem.color);
             }
             break;
         case STRING:
@@ -386,33 +396,48 @@ void Write() {
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
                 /*when we reach the last row, increament to data index so
                 we can leave this function when string is done.*/
-                if (pixelRow == ASCII_FONT_HEIGHT) {
+                if (rowPtr == ASCII_FONT_HEIGHT) {
                     dataIndex++;
                 }
 
                 /*Write A pixel from a row of pixels within a specific character*/
-                if (font[thisString[charac] * ASCII_FONT_WIDTH + pixelCol]&(1 << pixelRow)) {
+                if (font[thisString[charPtr] * ASCII_FONT_WIDTH + colPtr]&(1 << rowPtr)) {
                     spiWrite16(TFT_LCD_BLACK);
-                    spiWrite16(TFT_LCD_BLACK);
+                    //spiWrite16(TFT_LCD_BLACK);
                 } else {
-                    spiWrite16(TFT_LCD_RED);
-                    spiWrite16(TFT_LCD_RED);
+                    spiWrite16(thisItem.color);
+                    //spiWrite16(thisItem.color);
                 }
-                /*When character width is reached, advance charPtr to the next character*/
-                if (++pixelCol == ASCII_FONT_WIDTH) {
-                    pixelCol = 0;
-                    /*When string length has been reached, advance to rowptr and
-                     write the next row of pixels*/
-                    if (++charac == thisItem.Length) {
-                        charac = 0;
-                        pixelRow++;
+
+                /*For font size, repeat this pixel*/
+                if (++fontColCtr == thisItem.font) {
+                    fontColCtr = 0;
+                    /*When character width is reached, advance charPtr to the next character*/
+                    if (++colPtr == ASCII_FONT_WIDTH) {
+                        colPtr = 0;
+
+                        /*When string length has been reached, advance to rowptr and
+                         write the next row of pixels*/
+                        if (++charPtr == thisItem.Length) {
+                            charPtr = 0;
+                            if (++fontRowCtr == thisItem.font) {
+                                fontRowCtr = 0;
+                                rowPtr++;
+                            }
+                        }
+
+
+
                     }
                 }
+
             }
             if (dataIndex >= thisItem.Length) {
-                pixelCol = 0;
-                pixelRow = 0;
-                charac = 0;
+                colPtr = 0;
+                rowPtr = 0;
+                charPtr = 0;
+                fontRowCtr = 0;
+                fontColCtr = 0;
             }
             break;
 

@@ -13,7 +13,7 @@
 #ifndef TFT_TOUCH_H
 #define	TFT_TOUCH_H
 
-#define TFT_TOUCH_SENSITIVITY 2 /*Lower is more sensitive*/
+#define TFT_TOUCH_SENSITIVITY 30 /*Lower is more sensitive*/
 
 typedef enum _touchDataStatus {
     IDLE,
@@ -28,11 +28,11 @@ typedef struct _touchData {
 
 void TFT_TOUCH_INIT(pin_number x0, pin_number x1, pin_number y0, pin_number y1, adc_pin_number an_x, adc_pin_number an_y);
 
-uint16_t TFT_TOUCH_get_x_pos(void);
-
-uint16_t TFT_TOUCH_get_y_pos(void);
-
 touchData TFT_TOUCH_run(void);
+
+touchData TFT_TOUCH_get_data(void);
+
+uint8_t TFT_TOUCH_draw(uint16_t color);
 
 #endif	/* TFT_TOUCH_H */
 
