@@ -15,7 +15,7 @@
 #ifndef TFT_DISPLAY_H
 #define	TFT_DISPLAY_H
 
-void TFT_DISPLAY_place_button(const char* string, uint8_t x, uint8_t y, uint16_t color, uint8_t size);
+uint8_t  TFT_DISPLAY_place_button(const char* string, uint8_t x, uint8_t y, uint16_t color, uint8_t size);
 
 uint8_t TFT_DISPLAY_button_handler();
 

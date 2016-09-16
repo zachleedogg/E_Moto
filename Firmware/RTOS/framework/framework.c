@@ -70,6 +70,15 @@ typedef Event(*ServiceFuncList)(Event);
 ServiceFuncList const ServiceList[] = {SERVICES};
 static uint8_t numberofServices = (uint8_t)sizeof (ServiceList) / sizeof (ServiceFuncList);
 
+static uint32_t cpuUsage = 0;
+
+typedef struct _average {
+    uint32_t cpu_ticks[10];
+    uint32_t sum;
+    uint8_t index;
+} average;
+static average cpuUsageAverage = {};
+
 /*******************************************************************************
  * Module Function Prototypes
  ******************************************************************************/
@@ -129,8 +138,25 @@ uint8_t Run() {
         /*Background check for events*/
         CheckForEvents();
 
+        cpuUsage++;
+
         /*Background check timers*/
         if (timerHasTicked()) {
+//            static dumbSecondCounter = 0;
+//            dumbSecondCounter++;
+//            if (dumbSecondCounter == 1000) {
+//                dumbSecondCounter = 0;
+//                uint8_t arrr[30];
+//                sprintf(arrr, "CPU usage val = %lu\n", cpuUsageAverage.sum / 10);
+//                Uart1Write(arrr);
+//            }
+//            cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
+//            cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
+//            cpuUsageAverage.sum += cpuUsage;
+//            cpuUsage = 0;
+//            if (++cpuUsageAverage.index >= 10) {
+//                cpuUsageAverage.index = 0;
+//            }
             /*run timer service*/
             /* I want to put this here, but the framwork runs better with it
              in the Timer ISR. I can't figure out why, of a for-loop of 16 items.*/
@@ -221,7 +247,7 @@ static statusQ timerStatus = {};
 uint8_t timerHasTicked() {
     uint8_t returnVal = 0;
     /*Check if timer has ticked and deQueue timer bit*/
-    if (timerStatus.queue[timerStatus.tail]) {
+    if (timerStatus.queue[timerStatus.tail] == 1) {
         timerStatus.queue[timerStatus.tail++] = 0;
         /*Wrap around protection*/
         if (timerStatus.tail >= STATUS_Q_SIZE) {
@@ -317,7 +343,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T5Interrupt(void) {
         timerStatus.head = 0;
     }
     checkTimers();
-    
+
 }
 
 

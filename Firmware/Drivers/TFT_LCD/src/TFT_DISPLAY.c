@@ -29,7 +29,7 @@ uint8_t checkRange(uint16_t x, uint16_t y, uint16_t target_x1, uint16_t target_x
 
 void animatePress(tftButtons thisButton);
 
-void TFT_DISPLAY_place_button(const char* string, uint8_t x, uint8_t y, uint16_t color, uint8_t size) {
+uint8_t TFT_DISPLAY_place_button(const char* string, uint8_t x, uint8_t y, uint16_t color, uint8_t size) {
     activeButtons[numberActiveButtons]._w1 = (TFT_LCD_width() / 4)*(x - 1) + 10;
     activeButtons[numberActiveButtons]._h1 = (TFT_LCD_height() / 4)*(y - 1) + 10;
     activeButtons[numberActiveButtons]._w2 = (TFT_LCD_width() / 4) * x - 10;
@@ -40,10 +40,7 @@ void TFT_DISPLAY_place_button(const char* string, uint8_t x, uint8_t y, uint16_t
     activeButtons[numberActiveButtons].font = size;
     activeButtons[numberActiveButtons].color = color;
     animatePress(activeButtons[numberActiveButtons++]);
-    //    uint16_t len = strlen(string);
-    //    TFT_LCD_drawRect(w1, h1, w2, h2, color);
-    //    len = w1 + ((w2 - w1) / 2) - len * ASCII_FONT_WIDTH * size / 2;
-    //    TFT_LCD_writeString(string, len, h1 + ((h2 - h1) / 2) - size * 7 / 2, color, TFT_LCD_BLACK, size);
+    return numberActiveButtons;
 }
 
 uint8_t TFT_DISPLAY_button_handler() {

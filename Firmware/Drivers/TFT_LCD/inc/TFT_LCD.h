@@ -54,6 +54,8 @@ void TFT_LCD_writeString(const char* anystring, uint16_t x, uint16_t y, uint16_t
 
 void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size);
 
+void TFT_LCD_goToSleep(void);
+
 uint16_t TFT_LCD_height(void);
 
 uint16_t TFT_LCD_width(void);

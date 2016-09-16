@@ -12,6 +12,7 @@
 #include "TFT_LCD_Q.h"
 
 #include "ASCII_5X7.h"
+#include "bolt_uart.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -133,6 +134,7 @@ static const uint16_t teon_data[] = {0x00};
 static const uint8_t tearline_cmd = HX8357_TEARLINE; // tear line
 static const uint16_t tearline_data[] = {0x00, 0x02};
 static const uint8_t slpout_cmd = HX8357_SLPOUT; //Exit Sleep
+static const uint8_t slpin_cmd = HX8357_SLPIN; //Enter Sleep
 static const uint8_t dispon_cmd = HX8357_DISPON; // display on
 static const uint8_t caset_cmd = HX8357_CASET; // Column addr set
 static const uint16_t caset_data[] = {0x00, 0x00, 0x01, 0x3F};
@@ -191,7 +193,7 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
 
     IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
     //IEC0bits.SPI1IE = 1; // Enable the interrupt
-    IPC2bits.SPI1EIP = 3; //priority 5
+    IPC2bits.SPI1EIP = 1; //priority 5
 
     SPI1STATbits.SPIEN = 1; // Enable SPI module
 
@@ -245,7 +247,12 @@ void TFT_LCD_fillBackground(uint16_t color) {
 }
 
 void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size) {
-    uint16_t length = 0;
+    uint16_t length = (uint16_t) strlen(anystring);
+    if(length == 0){
+        return;
+    } else {
+        length = 0;
+    }
     uint8_t* ptr = &stringBuffer.buffer[stringBuffer.head];
     do {
         stringBuffer.buffer[stringBuffer.head++] = anystring[length++];
@@ -254,10 +261,14 @@ void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint1
 }
 
 void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size) {
+    uint16_t length = (uint16_t) strlen(anystring);
+    if(length == 0){
+        return;
+    }
     if(x == TFT_LCD_CENTER){
         x = (TFT_LCD_width()/2)-(strlen(anystring)*ASCII_FONT_WIDTH*size/2);
     }
-    uint16_t length = (uint16_t) strlen(anystring);
+    
     setCanvas(x, y, (x + size * (length * ASCII_FONT_WIDTH)), (y + size * ASCII_FONT_HEIGHT));
     //setCanvas(x, y, (x + (length * ASCII_FONT_WIDTH)), (y + ASCII_FONT_HEIGHT));
 
@@ -277,6 +288,10 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
         Write(); /*Writes from the Queue*/
     }
     IEC0bits.SPI1IE = 1; // Enable the interrupt
+}
+
+void TFT_LCD_goToSleep(){
+    writecommand(slpin_cmd);
 }
 
 /*This function will write a command to the LCD screen ie. DC value is 0*/
@@ -425,9 +440,6 @@ void Write() {
                                 rowPtr++;
                             }
                         }
-
-
-
                     }
                 }
 
@@ -458,7 +470,7 @@ static inline void spiWrite16(uint16_t input) {
 /*When the SPI has finished writing this function will be called immediately and
  decide whether to keep writing from the Queue or stop writing*/
 void __attribute__((__interrupt__, __auto_psv__)) _SPI1Interrupt(void) {
-
+    
     IFS0bits.SPI1IF = 0; /* Clear the Interrupt flag*/
 
     /*if there is still data in the current item*/

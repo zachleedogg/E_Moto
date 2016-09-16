@@ -12,22 +12,7 @@
 #ifndef FSM_TEMPLATE_H
 #define	FSM_TEMPLATE_H
 
-/**************************************************************************************************
- Define states here
- **************************************************************************************************/
-#define FSM_TEMPLATE_States_List(state)\
-state(init) /* init state for startup code */ \
-state(someState) /* locked state before safemode */ \
-state(anotherState) /* welcome state before locked */ \
-state(yetAnotherState) /* locked state before safemode */ \
 
-typedef enum{
-    FSM_TEMPLATE_States_List(ENUM_FORM)
-}FSM_TEMPLATE_State_t;
-
-static const char __attribute__ ((unused)) *StateStrings[] = {
-    FSM_TEMPLATE_States_List(STRING_FORM)
-};
 
 /**
  * This is the state machine function call
