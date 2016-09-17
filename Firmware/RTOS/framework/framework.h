@@ -38,11 +38,12 @@ typedef enum _sw_timer_number {
     NUMBER_OF_SW_TIMERS,
 } sw_timer_number;
 
-typedef enum _sw_timer_status {
-    OFF,
-    RUNNING,
-    DONE,
-} sw_timer_status;
+typedef enum _ServiceMode {
+    SINGLE_SHOT,
+    CONTINUOUS
+} ServiceMode;
+
+
 
 /*Function pointer protoype for runtime scheduler*/
 typedef void(*pfunc)();
@@ -103,7 +104,7 @@ uint32_t FreeRunningTimer(void);
  * @param time: the time in milliseconds
  * @param service: the service in which the TIMEUP Event is posted to.
  */
-void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time, ServiceType_t service);
+void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time, ServiceType_t service, ServiceMode Mode);
 
 /**
  * Halts a timer before it expires

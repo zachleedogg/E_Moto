@@ -291,7 +291,7 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
 }
 
 void TFT_LCD_goToSleep(){
-    writecommand(slpin_cmd);
+    writecommand(&slpin_cmd);
 }
 
 /*This function will write a command to the LCD screen ie. DC value is 0*/

@@ -53,7 +53,7 @@ void TFT_TOUCH_INIT(pin_number x0, pin_number x1, pin_number y0, pin_number y1, 
     setXpins();
 }
 
-touchData TFT_TOUCH_run(void) {
+uint8_t TFT_TOUCH_run(void) {
     if (toggler) {
         toggler = 0;
         /*get position*/
@@ -95,7 +95,7 @@ touchData TFT_TOUCH_run(void) {
 
     thisScreenData.xPos = map(touchAve.sum_x / AVERAGE_SIZE, HIEGHT_LOWER, HIEGHT_UPPER, 0, TFT_LCD_height());
     thisScreenData.yPos = map(touchAve.sum_y / AVERAGE_SIZE, WIDTH_LOWER, WIDTH_UPPER, 0, TFT_LCD_width());
-    return thisScreenData;
+    return thisScreenData.status;
 }
 
 uint8_t TFT_TOUCH_draw(uint16_t color) {

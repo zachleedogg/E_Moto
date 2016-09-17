@@ -28,7 +28,7 @@ typedef struct _touchData {
 
 void TFT_TOUCH_INIT(pin_number x0, pin_number x1, pin_number y0, pin_number y1, adc_pin_number an_x, adc_pin_number an_y);
 
-touchData TFT_TOUCH_run(void);
+uint8_t TFT_TOUCH_run(void);
 
 touchData TFT_TOUCH_get_data(void);
 

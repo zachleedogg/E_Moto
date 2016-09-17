@@ -5,8 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f2" displayName="framework" projectFiles="true">
-        <itemPath>../framework/framework.h</itemPath>
         <itemPath>configure.h</itemPath>
+        <itemPath>../framework/framework.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="inc" projectFiles="true">
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>

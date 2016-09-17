@@ -129,8 +129,6 @@ uint8_t Run() {
                 cleanEvent.Service = 0;
                 cleanEvent.EventPriority = 0;
                 ServiceList[ThisEvent.Service](cleanEvent);
-
-
             }
             /*when the priority level is clear, reduce the priority*/
             activePriorityLevel--;
@@ -142,21 +140,21 @@ uint8_t Run() {
 
         /*Background check timers*/
         if (timerHasTicked()) {
-//            static dumbSecondCounter = 0;
-//            dumbSecondCounter++;
-//            if (dumbSecondCounter == 1000) {
-//                dumbSecondCounter = 0;
-//                uint8_t arrr[30];
-//                sprintf(arrr, "CPU usage val = %lu\n", cpuUsageAverage.sum / 10);
-//                Uart1Write(arrr);
-//            }
-//            cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
-//            cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
-//            cpuUsageAverage.sum += cpuUsage;
-//            cpuUsage = 0;
-//            if (++cpuUsageAverage.index >= 10) {
-//                cpuUsageAverage.index = 0;
-//            }
+            //            static dumbSecondCounter = 0;
+            //            dumbSecondCounter++;
+            //            if (dumbSecondCounter == 1000) {
+            //                dumbSecondCounter = 0;
+            //                uint8_t arrr[30];
+            //                sprintf(arrr, "CPU usage val = %lu\n", cpuUsageAverage.sum / 10);
+            //                Uart1Write(arrr);
+            //            }
+            //            cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
+            //            cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
+            //            cpuUsageAverage.sum += cpuUsage;
+            //            cpuUsage = 0;
+            //            if (++cpuUsageAverage.index >= 10) {
+            //                cpuUsageAverage.index = 0;
+            //            }
             /*run timer service*/
             /* I want to put this here, but the framwork runs better with it
              in the Timer ISR. I can't figure out why, of a for-loop of 16 items.*/
@@ -224,11 +222,18 @@ Event DeQueue(queue *thisQueue) {
  *******************************************************************************/
 static volatile uint32_t runningTime = 0;
 
+typedef enum _sw_timer_status {
+    OFF,
+    RUNNING,
+    DONE,
+} sw_timer_status;
+
 typedef struct _sw_timer {
     uint16_t time;
     uint16_t threshold;
     sw_timer_status status;
     ServiceType_t service;
+    ServiceMode mode;
 } sw_timer;
 
 static sw_timer SW_timers[NUMBER_OF_SW_TIMERS];
@@ -267,7 +272,11 @@ void checkTimers(void) {
         if (SW_timers[i].status == RUNNING) {
             SW_timers[i].time--;
             if (SW_timers[i].time == 0) {
-                SW_timers[i].status = DONE;
+                if (SW_timers[i].mode == CONTINUOUS) {
+                    SW_timers[i].time = SW_timers[i].threshold;
+                } else {
+                    SW_timers[i].status = DONE;
+                }
                 Event ThisEvent;
                 ThisEvent.EventType = TIMEUP_EVENT;
                 ThisEvent.EventParam = i;
@@ -318,10 +327,12 @@ uint32_t FreeRunningTimer(void) {
     return runningTime;
 }
 
-void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time, ServiceType_t service) {
+void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time, ServiceType_t service, ServiceMode Mode) {
     SW_timers[thisTimer].time = time;
+    SW_timers[thisTimer].threshold = time;
     SW_timers[thisTimer].status = RUNNING;
     SW_timers[thisTimer].service = service;
+    SW_timers[thisTimer].mode = Mode;
 }
 
 void SW_Timer_Stop(sw_timer_number thisTimer) {

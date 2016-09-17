@@ -50,7 +50,6 @@ uint8_t TFT_DISPLAY_button_handler() {
     if (currentData.status == TOUCHING) {
         for (i = 0; i < numberActiveButtons; i++) {
             if (activeButtons[i].status == ACTIVE) {
-
                 if (checkRange(currentData.xPos, currentData.yPos,
                         activeButtons[i]._w2, activeButtons[i]._w1,
                         activeButtons[i]._h2, activeButtons[i]._h1)) {
@@ -58,7 +57,6 @@ uint8_t TFT_DISPLAY_button_handler() {
                     animatePress(activeButtons[i]);
                     break;
                 }
-
             }
         }
     } else {

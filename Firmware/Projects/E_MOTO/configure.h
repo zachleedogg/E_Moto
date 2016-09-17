@@ -61,10 +61,10 @@ static char __attribute__((unused)) * EventStrings[] = {
 
 /*Put the name of each service*/
 #define SERVICE_LIST(SERVICE) \
-SERVICE(FSM_TEMPLATE) /*Main state machine, This is always first (the default Service)*/ \
+SERVICE(touchScreenService) /*Main state machine, This is always first (the default Service)*/ \
 
 /* file name of each service IN THE SAME ORDER AS ABOVE*/
-#define SERVICE_1 "FSM_Template.h"
+#define SERVICE_1 "touchScreenService.h"
 //#define SERVICE_2
 //#define SERVICE_3
 //#define SERVICE_4 
