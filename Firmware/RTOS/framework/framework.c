@@ -40,7 +40,7 @@
 #include SERVICE_7
 #endif
 
-#define QUEUE_SIZE 8
+#define QUEUE_SIZE 12
 
 /*******************************************************************************
  * Datatypes and Variables
@@ -140,28 +140,28 @@ uint8_t Run() {
 
         /*Background check timers*/
         if (timerHasTicked()) {
-            //            static dumbSecondCounter = 0;
-            //            dumbSecondCounter++;
-            //            if (dumbSecondCounter == 1000) {
-            //                dumbSecondCounter = 0;
-            //                uint8_t arrr[30];
-            //                sprintf(arrr, "CPU usage val = %lu\n", cpuUsageAverage.sum / 10);
-            //                Uart1Write(arrr);
-            //            }
-            //            cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
-            //            cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
-            //            cpuUsageAverage.sum += cpuUsage;
-            //            cpuUsage = 0;
-            //            if (++cpuUsageAverage.index >= 10) {
-            //                cpuUsageAverage.index = 0;
-            //            }
+//            static dumbSecondCounter = 0;
+//            dumbSecondCounter++;
+//            if (dumbSecondCounter == 1000) {
+//                dumbSecondCounter = 0;
+//                uint8_t arrr[30];
+//                sprintf(arrr, "CPU usage val = %lu\n", cpuUsageAverage.sum / 10);
+//                Uart1Write(arrr);
+//            }
+//            cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
+//            cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
+//            cpuUsageAverage.sum += cpuUsage;
+//            cpuUsage = 0;
+//            if (++cpuUsageAverage.index >= 10) {
+//                cpuUsageAverage.index = 0;
+//            }
             /*run timer service*/
             /* I want to put this here, but the framwork runs better with it
              in the Timer ISR. I can't figure out why, of a for-loop of 16 items.*/
             //checkTimers();
 
             /*run task scheduler*/
-            scheduler_remove(FreeRunningTimer());
+            //scheduler_remove(FreeRunningTimer());
         }
 
     }
@@ -186,7 +186,8 @@ uint8_t EnQueue(queue *thisQueue, Event thisEvent) {
     if (thisQueue->head == QUEUE_SIZE) {/*wrap-around protection*/
         thisQueue->head = 0;
     }
-    if (thisQueue->size == QUEUE_SIZE) {
+    if (thisQueue->size >= QUEUE_SIZE) {
+        Uart1Write("Framework_Q_Error\n");
         return 1;
     }
     return 0;
@@ -257,6 +258,9 @@ uint8_t timerHasTicked() {
         /*Wrap around protection*/
         if (timerStatus.tail >= STATUS_Q_SIZE) {
             timerStatus.tail = 0;
+        }
+        if(timerStatus.tail != timerStatus.head){
+            Uart1Write("p\n");
         }
         returnVal = 1;
     }
@@ -366,111 +370,111 @@ void __attribute__((__interrupt__, __auto_psv__)) _T5Interrupt(void) {
  *******************************************************************************
  *******************************************************************************/
 
-#define SCHEDULE_SIZE 8
-
-/*******************************************************************************
- * Data Structures
- ******************************************************************************/
-typedef struct _node {
-    uint32_t time;
-    pfunc thisFunction;
-    struct _node * nextNode;
-    struct _node * prevNode;
-} node;
-
-typedef struct _stack {
-    node* stack[SCHEDULE_SIZE];
-    uint8_t stackPtr;
-} stack;
-
-static node scheduleArray[SCHEDULE_SIZE];
-
-static stack scheduleStack;
-
-static node Head;
-
-/*******************************************************************************
- * Private Functions
- ******************************************************************************/
-uint8_t push(node* thisNode);
-node* pop(void);
-
-/*******************************************************************************
- * Scheduler Functions
- ******************************************************************************/
-void scheduler_init(void) {
-    int i = 0;
-    for (i = 0; i < SCHEDULE_SIZE; i++) {
-        scheduleStack.stack[i] = &scheduleArray[i];
-    }
-    scheduleStack.stackPtr = SCHEDULE_SIZE;
-    Head.nextNode = 0;
-    Head.prevNode = 0;
-    Head.thisFunction = 0;
-    Head.time = 0;
-}
-
-uint8_t scheduler_add(pfunc someFunction, uint32_t time) {
-    time = time + FreeRunningTimer();
-    uint8_t returnVal = 0;
-    /*Pop a new node off the stack*/
-    node* newNode = pop();
-    if (newNode != 0) {
-        /*Search for insertion point*/
-        node* thisNode = &Head;
-        while (thisNode->nextNode != 0 && thisNode->nextNode->time <= time) {
-            thisNode = thisNode->nextNode;
-        }
-        /*Insert new node*/
-        newNode->prevNode = thisNode;
-        newNode->nextNode = thisNode->nextNode;
-        newNode->prevNode->nextNode = newNode;
-        newNode->nextNode->prevNode = newNode;
-        newNode->time = time;
-        newNode->thisFunction = someFunction;
-        returnVal = 1;
-
-    }
-    return returnVal;
-}
-
-uint8_t scheduler_remove(uint32_t time) {
-    uint8_t returnVal = 0;
-    if (Head.nextNode->time > time) {
-        /*Do nothing*/
-    } else {
-
-        node* thisNode = Head.nextNode;
-        if (thisNode == 0) {
-            //do nothing
-        } else {
-            while (thisNode != 0 && thisNode->time <= time) {
-                thisNode->prevNode->nextNode = thisNode->nextNode;
-                thisNode->nextNode->prevNode = thisNode->prevNode;
-                thisNode->thisFunction();
-                push(thisNode); /*put empty node back on stack*/
-                thisNode = thisNode->nextNode;
-            }
-        }
-        returnVal = 1;
-    }
-    return returnVal;
-}
-
-uint8_t push(node* thisNode) {
-    uint8_t returnVal = 0;
-    if (scheduleStack.stackPtr <= SCHEDULE_SIZE) {
-        scheduleStack.stack[scheduleStack.stackPtr++] = thisNode;
-        returnVal = 1;
-    }
-    return returnVal;
-}
-
-node* pop(void) {
-    node* thisNode = 0;
-    if (scheduleStack.stackPtr > 0) {
-        thisNode = scheduleStack.stack[--scheduleStack.stackPtr];
-    }
-    return thisNode;
-}
+//#define SCHEDULE_SIZE 8
+//
+///*******************************************************************************
+// * Data Structures
+// ******************************************************************************/
+//typedef struct _node {
+//    uint32_t time;
+//    pfunc thisFunction;
+//    struct _node * nextNode;
+//    struct _node * prevNode;
+//} node;
+//
+//typedef struct _stack {
+//    node* stack[SCHEDULE_SIZE];
+//    uint8_t stackPtr;
+//} stack;
+//
+//static node scheduleArray[SCHEDULE_SIZE];
+//
+//static stack scheduleStack;
+//
+//static node Head;
+//
+///*******************************************************************************
+// * Private Functions
+// ******************************************************************************/
+//uint8_t push(node* thisNode);
+//node* pop(void);
+//
+///*******************************************************************************
+// * Scheduler Functions
+// ******************************************************************************/
+//void scheduler_init(void) {
+//    int i = 0;
+//    for (i = 0; i < SCHEDULE_SIZE; i++) {
+//        scheduleStack.stack[i] = &scheduleArray[i];
+//    }
+//    scheduleStack.stackPtr = SCHEDULE_SIZE;
+//    Head.nextNode = 0;
+//    Head.prevNode = 0;
+//    Head.thisFunction = 0;
+//    Head.time = 0;
+//}
+//
+//uint8_t scheduler_add(pfunc someFunction, uint32_t time) {
+//    time = time + FreeRunningTimer();
+//    uint8_t returnVal = 0;
+//    /*Pop a new node off the stack*/
+//    node* newNode = pop();
+//    if (newNode != 0) {
+//        /*Search for insertion point*/
+//        node* thisNode = &Head;
+//        while (thisNode->nextNode != 0 && thisNode->nextNode->time <= time) {
+//            thisNode = thisNode->nextNode;
+//        }
+//        /*Insert new node*/
+//        newNode->prevNode = thisNode;
+//        newNode->nextNode = thisNode->nextNode;
+//        newNode->prevNode->nextNode = newNode;
+//        newNode->nextNode->prevNode = newNode;
+//        newNode->time = time;
+//        newNode->thisFunction = someFunction;
+//        returnVal = 1;
+//
+//    }
+//    return returnVal;
+//}
+//
+//uint8_t scheduler_remove(uint32_t time) {
+//    uint8_t returnVal = 0;
+//    if (Head.nextNode->time > time) {
+//        /*Do nothing*/
+//    } else {
+//
+//        node* thisNode = Head.nextNode;
+//        if (thisNode == 0) {
+//            //do nothing
+//        } else {
+//            while (thisNode != 0 && thisNode->time <= time) {
+//                thisNode->prevNode->nextNode = thisNode->nextNode;
+//                thisNode->nextNode->prevNode = thisNode->prevNode;
+//                thisNode->thisFunction();
+//                push(thisNode); /*put empty node back on stack*/
+//                thisNode = thisNode->nextNode;
+//            }
+//        }
+//        returnVal = 1;
+//    }
+//    return returnVal;
+//}
+//
+//uint8_t push(node* thisNode) {
+//    uint8_t returnVal = 0;
+//    if (scheduleStack.stackPtr <= SCHEDULE_SIZE) {
+//        scheduleStack.stack[scheduleStack.stackPtr++] = thisNode;
+//        returnVal = 1;
+//    }
+//    return returnVal;
+//}
+//
+//node* pop(void) {
+//    node* thisNode = 0;
+//    if (scheduleStack.stackPtr > 0) {
+//        thisNode = scheduleStack.stack[--scheduleStack.stackPtr];
+//    }
+//    return thisNode;
+//}
 

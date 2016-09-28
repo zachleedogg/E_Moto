@@ -173,7 +173,7 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     SPI1CON1bits.CKP = 0; // Idle state for clock is a low level;
 
     SPI1CON2bits.SPIBEN = 1; /*Enable FIFO transmit buffer*/
-    SPI1STATbits.SISEL = 0b101; /*interrupt on last bit out*/
+    SPI1STATbits.SISEL = 0b100; /*interrupt on last bit out*/
 
     /*11 = Primary prescale 1:1
       10 = Primary prescale 4:1
@@ -191,9 +191,8 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
       000 = Secondary prescale 8:1*/
     SPI1CON1bits.SPRE = 0b110;
 
-    IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
-    //IEC0bits.SPI1IE = 1; // Enable the interrupt
-    IPC2bits.SPI1EIP = 1; //priority 5
+
+    IPC2bits.SPI1EIP = 3; //priority 5
 
     SPI1STATbits.SPIEN = 1; // Enable SPI module
 
@@ -248,7 +247,7 @@ void TFT_LCD_fillBackground(uint16_t color) {
 
 void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size) {
     uint16_t length = (uint16_t) strlen(anystring);
-    if(length == 0){
+    if (length == 0) {
         return;
     } else {
         length = 0;
@@ -262,13 +261,13 @@ void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint1
 
 void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size) {
     uint16_t length = (uint16_t) strlen(anystring);
-    if(length == 0){
+    if (length == 0) {
         return;
     }
-    if(x == TFT_LCD_CENTER){
-        x = (TFT_LCD_width()/2)-(strlen(anystring)*ASCII_FONT_WIDTH*size/2);
+    if (x == TFT_LCD_CENTER) {
+        x = (TFT_LCD_width() / 2)-(strlen(anystring) * ASCII_FONT_WIDTH * size / 2);
     }
-    
+
     setCanvas(x, y, (x + size * (length * ASCII_FONT_WIDTH)), (y + size * ASCII_FONT_HEIGHT));
     //setCanvas(x, y, (x + (length * ASCII_FONT_WIDTH)), (y + ASCII_FONT_HEIGHT));
 
@@ -285,12 +284,14 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
+        /*CE Pin is low during transmission*/
+        IO_pinWrite(CEPIN, LOW);
         Write(); /*Writes from the Queue*/
     }
     IEC0bits.SPI1IE = 1; // Enable the interrupt
 }
 
-void TFT_LCD_goToSleep(){
+void TFT_LCD_goToSleep() {
     writecommand(&slpin_cmd);
 }
 
@@ -310,6 +311,8 @@ void writecommand(const uint8_t* commandString) {
     if (SPIbusy == FALSE) {/*if SPI is idle*/
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
+        /*CE Pin is low during transmission*/
+        IO_pinWrite(CEPIN, LOW);
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -334,6 +337,8 @@ void writedata(const uint16_t *dataString, uint32_t stringLength) {
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
+        /*CE Pin is low during transmission*/
+        IO_pinWrite(CEPIN, LOW);
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -353,6 +358,8 @@ void writeconst(uint16_t dataString, uint32_t stringLength) {
     IEC0bits.SPI1IE = 0; // Disable the interrupt
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
+        /*CE Pin is low during transmission*/
+        IO_pinWrite(CEPIN, LOW);
         thisItem = deleteFromQueue();
         Write(); /*Writes from the Queue*/
     } else {
@@ -362,8 +369,6 @@ void writeconst(uint16_t dataString, uint32_t stringLength) {
 }
 
 void Write() {
-    /*CE Pin is low during transmission*/
-    IO_pinWrite(CEPIN, LOW);
 
     switch (thisItem.Command) {
         case DATA:
@@ -371,16 +376,18 @@ void Write() {
             IO_pinWrite(DCPIN, HIGH);
             SPI1STATbits.SPIEN = 0; // DIsable SPI mo
             SPI1CON1bits.MODE16 = 0; /*8 bit mode*/
+            //SPI1STATbits.SISEL = 0b101; /*interrupt on last bit out*/
             SPI1STATbits.SPIEN = 1; // Enable SPI mo
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-                spiWrite8((uint8_t) (thisItem.Data[dataIndex++]&0x00FF));
+                spiWrite8((uint8_t) (thisItem.Data[dataIndex++]));
             }
             break;
         case COMMAND:
             IO_pinWrite(DCPIN, LOW);
             SPI1STATbits.SPIEN = 0; // Disable SPI mo
             SPI1CON1bits.MODE16 = 0; /*8 bit mode*/
+            //SPI1STATbits.SISEL = 0b101; /*interrupt on last bit out*/
             SPI1STATbits.SPIEN = 1; // Enable SPI mo
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
@@ -393,18 +400,19 @@ void Write() {
             IO_pinWrite(DCPIN, HIGH);
             SPI1STATbits.SPIEN = 0; // Disable SPI mo
             SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
+            //SPI1STATbits.SISEL = 0b110; /*interrupt on last byte out*/
             SPI1STATbits.SPIEN = 1; // Enable SPI mo
             /*Write byte to SPI module*/
             while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
                 dataIndex++;
-                //spiWrite16((uint16_t) thisItem.Data);
-                spiWrite16((uint16_t) thisItem.color);
+                spiWrite16(thisItem.color);
             }
             break;
         case STRING:
             IO_pinWrite(DCPIN, HIGH);
             SPI1STATbits.SPIEN = 0; // Disable SPI mo
             SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
+            //SPI1STATbits.SISEL = 0b110; /*interrupt on last byte out*/
             SPI1STATbits.SPIEN = 1; // Enable SPI mo
             /*Write byte to SPI module*/
             uint8_t* thisString = (uint8_t*) thisItem.Data;
@@ -461,18 +469,20 @@ void Write() {
 /*This will start writing to the screen through the SPI*/
 static inline void spiWrite8(uint8_t input) {
     SPI1BUF = input;
+    uint8_t temp = SPI1BUF;
 }
 
 static inline void spiWrite16(uint16_t input) {
     SPI1BUF = input;
+    uint16_t temp = SPI1BUF;
 }
 
 /*When the SPI has finished writing this function will be called immediately and
  decide whether to keep writing from the Queue or stop writing*/
-void __attribute__((__interrupt__, __auto_psv__)) _SPI1Interrupt(void) {
-    
-    IFS0bits.SPI1IF = 0; /* Clear the Interrupt flag*/
+void __attribute__((__interrupt__, __shadow__, __auto_psv__)) _SPI1Interrupt(void) {
 
+    IFS0bits.SPI1IF = 0; /* Clear the Interrupt flag*/
+    Uart1Write("s");
     /*if there is still data in the current item*/
     if (dataIndex < thisItem.Length) {
         Write();
@@ -571,7 +581,7 @@ static void tftBootUpSequence(void) {
     writedata(tearline_data, 2);
 
     writecommand(&slpout_cmd); //Exit Sleep
-    while (counter++ != 100000) {
+    while (counter++ != 500000) {
         ;
     }
     counter = 0;

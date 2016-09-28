@@ -6,6 +6,7 @@
  */
 
 #include "bolt_spi.h"
+#include "bolt_uart.h"
 
 /*Output PPS registers*/
 #define RP20_SPI_PPS    _RP20R
@@ -40,31 +41,48 @@
 
 static const uint8_t ppsOut[2] = {SCK2, SDO2};
 
-static uint8_t spi1Status;
-static uint8_t spi2Status;
+static uint8_t spi1Status = 1;
+static uint8_t spi2Status = 0;
 
 void spi1Init(void) {
 
-    _SPI1IF = 0; // Clear the Interrupt flag
-    _SPI1IE = 0; // Disable the interrupt
+    IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
+    IEC0bits.SPI1IE = 0; // Disable the interrupt
 
     SPI1CON1bits.DISSCK = 0; // Internal serial clock is enabled
     SPI1CON1bits.DISSDO = 0; // SDOx pin is controlled by the module
-    SPI1CON1bits.MODE16 = 0; // Communication is byte-wide (8 bits)
+    SPI1CON1bits.MODE16 = 0; // Communication is word-wide (8 bits)
     SPI1CON1bits.MSTEN = 1; // Master mode enabled
     SPI1CON1bits.SMP = 0; // Input data is sampled at the middle of data output time
     SPI1CON1bits.CKE = 1; // Serial output data changes on transition from
-    // active clock state to Idle clock state
-    SPI1CON1bits.CKP = 0; // Idle state for clock is a low level; 
-    // active state is a high level
-    SPI1STATbits.SPIEN = 1; // Enable SPI mo
+    // active clock state to idle clock state
+    SPI1CON1bits.CKP = 0; // Idle state for clock is a low level;
 
-    SPI1CON1bits.PPRE = 0b01; /*clock at slowest speed*/
-    SPI1CON1bits.SPRE = 0b111;
+    SPI1CON2bits.SPIBEN = 1; /*Enable FIFO transmit buffer*/
+    SPI1STATbits.SISEL = 0b101; /*interrupt on last byte out*/
 
-    _SPI1IF = 0; // Clear the Interrupt flag
-    _SPI1IE = 1; // Enable the interrupt
-    _SPI1EIP = 5; //priority 5
+    /*11 = Primary prescale 1:1
+      10 = Primary prescale 4:1
+      01 = Primary prescale 16:1
+      00 = Primary prescale 64:1*/
+    SPI1CON1bits.PPRE = 0b01;
+
+    /*111 = Secondary prescale 1:1
+      110 = Secondary prescale 2:1
+      101 = Secondary prescale 3:1
+      100 = Secondary prescale 4:1
+      011 = Secondary prescale 5:1
+      010 = Secondary prescale 6:1
+      001 = Secondary prescale 7:1
+      000 = Secondary prescale 8:1*/
+    SPI1CON1bits.SPRE = 0b110;
+
+
+    IPC2bits.SPI1EIP = 3; //priority 5
+
+    SPI1STATbits.SPIEN = 1; // Enable SPI module
+    IEC0bits.SPI1IE = 1; // Enable the interrupt
+
 }
 
 uint8_t spi2Init(spi_pin_number CLK, spi_pin_number D_OUT) {
@@ -154,7 +172,11 @@ void spi1Write(uint16_t input) {
 }
 
 uint8_t spi1Ready(void) {
-    return spi1Status;
+    if(spi1Status == 1){
+        spi1Status = 0;
+        return 1;
+    }
+    return 0;;
 }
 
 void spi2Write(uint16_t input) {
@@ -166,6 +188,7 @@ uint8_t spi2Ready(void) {
 }
 
 void __attribute__((__interrupt__, auto_psv)) _SPI1Interrupt(void) {
+    //Uart1Write("int");
     _SPI1IF = 0; /* Clear the Interrupt flag*/
     spi1Status = 1;
     uint16_t temp = SPI1BUF; /*clear input buffer because it just always fills up*/

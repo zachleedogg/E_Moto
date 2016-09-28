@@ -24,7 +24,7 @@ int main(void) {
     Init();
 
     Timer_Init(clockFreq());
-    scheduler_init();
+    //scheduler_init();
 
     Run();
 

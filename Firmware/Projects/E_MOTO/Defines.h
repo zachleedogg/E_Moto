@@ -20,9 +20,11 @@
 
 #define TOUCH_TIMER 0
 #define TRANSITION_TIMER 1
+#define SPEEDO_TIMER 2
 
 #define TOUCH_TIME 1
 #define WAKE_UP_TOUCH_TIME 1500
+#define SPEEDO_TIME 250
 
 
 #endif	/* DEFINES_H */

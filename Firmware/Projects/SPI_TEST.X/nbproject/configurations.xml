@@ -4,19 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="inc" projectFiles="true">
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_pins.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
-      </logicalFolder>
-      <logicalFolder name="inc" displayName="inc" projectFiles="true">
-        <itemPath>../TFT_LCD/inc/ASCII_5X7.h</itemPath>
-        <itemPath>../TFT_LCD/inc/TFT_DISPLAY.h</itemPath>
-        <itemPath>../TFT_LCD/inc/TFT_LCD.h</itemPath>
-        <itemPath>../TFT_LCD/inc/TFT_LCD_Q.h</itemPath>
-        <itemPath>../TFT_LCD/inc/TFT_TOUCH.h</itemPath>
-      </logicalFolder>
+      <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
+      <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -25,18 +14,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="src" projectFiles="true">
-        <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/src/bolt_pins.c</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
-      </logicalFolder>
-      <logicalFolder name="src" displayName="src" projectFiles="true">
-        <itemPath>../TFT_LCD/src/TFT_LCD.c</itemPath>
-        <itemPath>../TFT_LCD/src/TFT_LCD_Q.c</itemPath>
-        <itemPath>../TFT_LCD/src/TFT_TOUCH.c</itemPath>
-        <itemPath>../TFT_LCD/src/TFT_DISPLAY.c</itemPath>
-      </logicalFolder>
+      <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
+      <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
       <itemPath>main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -46,11 +25,8 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>.</Elem>
     <Elem>../../Libraries/PIC33_plib/inc</Elem>
     <Elem>../../Libraries/PIC33_plib/src</Elem>
-    <Elem>../TFT_LCD/inc</Elem>
-    <Elem>../TFT_LCD/src</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -60,7 +36,7 @@
         <targetDevice>dsPIC33EP32GP502</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>Simulator</platformTool>
+        <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.26</languageToolchainVersion>
         <platform>3</platform>
@@ -103,7 +79,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\TFT_LCD\inc;..\TFT_LCD\src"/>
+                  value="..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -131,25 +107,6 @@
       <C30-AR>
         <property key="additional-options-chop-files" value="false"/>
       </C30-AR>
-      <C30-AS>
-        <property key="assembler-symbols" value=""/>
-        <property key="expand-macros" value="false"/>
-        <property key="extra-include-directories-for-assembler" value=""/>
-        <property key="extra-include-directories-for-preprocessor" value=""/>
-        <property key="false-conditionals" value="false"/>
-        <property key="keep-locals" value="false"/>
-        <property key="list-assembly" value="false"/>
-        <property key="list-section-info" value="false"/>
-        <property key="list-source" value="false"/>
-        <property key="list-symbols" value="false"/>
-        <property key="oXC16asm-extra-opts" value=""/>
-        <property key="oXC16asm-list-to-file" value="false"/>
-        <property key="omit-debug-dirs" value="false"/>
-        <property key="omit-forms" value="false"/>
-        <property key="preprocessor-macros" value=""/>
-        <property key="relax" value="false"/>
-        <property key="warning-level" value="emit-warnings"/>
-      </C30-AS>
       <C30-LD>
         <property key="additional-options-use-response-files" value="false"/>
         <property key="boot-eeprom" value="no_eeprom"/>
@@ -206,6 +163,78 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
+      <PICkit3PlatformTool>
+        <property key="ADC 1" value="true"/>
+        <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="COMPARATOR" value="true"/>
+        <property key="CRC" value="true"/>
+        <property key="CTMU" value="true"/>
+        <property key="Freeze All Other Peripherals" value="true"/>
+        <property key="I2C1" value="true"/>
+        <property key="I2C2" value="true"/>
+        <property key="INPUT CAPTURE 1" value="true"/>
+        <property key="INPUT CAPTURE 2" value="true"/>
+        <property key="INPUT CAPTURE 3" value="true"/>
+        <property key="INPUT CAPTURE 4" value="true"/>
+        <property key="OUTPUT COMPARE 1" value="true"/>
+        <property key="OUTPUT COMPARE 2" value="true"/>
+        <property key="OUTPUT COMPARE 3" value="true"/>
+        <property key="OUTPUT COMPARE 4" value="true"/>
+        <property key="PTG" value="true"/>
+        <property key="SPI 1" value="true"/>
+        <property key="SPI 2" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="TIMER1" value="true"/>
+        <property key="TIMER2" value="true"/>
+        <property key="TIMER3" value="true"/>
+        <property key="TIMER4" value="true"/>
+        <property key="TIMER5" value="true"/>
+        <property key="ToolFirmwareFilePath"
+                  value="Press to browse for a specific firmware version"/>
+        <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
+        <property key="UART 1" value="true"/>
+        <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
+        <property key="hwtoolclock.frcindebug" value="false"/>
+        <property key="memories.aux" value="false"/>
+        <property key="memories.bootflash" value="true"/>
+        <property key="memories.configurationmemory" value="true"/>
+        <property key="memories.configurationmemory2" value="true"/>
+        <property key="memories.dataflash" value="true"/>
+        <property key="memories.eeprom" value="true"/>
+        <property key="memories.flashdata" value="true"/>
+        <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram" value="true"/>
+        <property key="memories.instruction.ram.end"
+                  value="${memories.instruction.ram.end.value}"/>
+        <property key="memories.instruction.ram.start"
+                  value="${memories.instruction.ram.start.value}"/>
+        <property key="memories.programmemory" value="true"/>
+        <property key="memories.programmemory.end" value="0x57eb"/>
+        <property key="memories.programmemory.partition2" value="true"/>
+        <property key="memories.programmemory.partition2.end"
+                  value="${memories.programmemory.partition2.end.value}"/>
+        <property key="memories.programmemory.partition2.start"
+                  value="${memories.programmemory.partition2.start.value}"/>
+        <property key="memories.programmemory.start" value="0x0"/>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmertogo.imagename" value=""/>
+        <property key="programoptions.donoteraseauxmem" value="false"/>
+        <property key="programoptions.eraseb4program" value="true"/>
+        <property key="programoptions.pgmspeed" value="2"/>
+        <property key="programoptions.preservedataflash" value="false"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
+        <property key="programoptions.preserveprogramrange" value="false"/>
+        <property key="programoptions.preserveprogramrange.end" value="0x57eb"/>
+        <property key="programoptions.preserveprogramrange.start" value="0x0"/>
+        <property key="programoptions.preserveuserid" value="false"/>
+        <property key="programoptions.programcalmem" value="false"/>
+        <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
+        <property key="programoptions.usehighvoltageonmclr" value="false"/>
+        <property key="programoptions.uselvpprogramming" value="false"/>
+        <property key="voltagevalue" value="3.25"/>
+      </PICkit3PlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>

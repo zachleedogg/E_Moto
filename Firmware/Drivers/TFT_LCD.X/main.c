@@ -90,16 +90,10 @@ int main(void) {
 
         if (flag) {
             flag = 0;
-            myScreenPosition = TFT_TOUCH_run();
-            if (myScreenPosition.status == TOUCHING) {
-                TFT_LCD_drawRect(myScreenPosition.yPos, myScreenPosition.xPos,
-                        myScreenPosition.yPos + 3, myScreenPosition.xPos + 3, TFT_LCD_GREEN);
+
+            if (TFT_TOUCH_run() == TOUCHING) {
+                TFT_TOUCH_draw(TFT_LCD_GREEN);
             }
-            sprintf(myScreenBuffer, "Xraw: %u, Yraw: %u\n", myScreenPosition.yPos, myScreenPosition.xPos);
-//            TFT_LCD_writeVariableString(myScreenBuffer, 100, 175, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            Uart1Write(myScreenBuffer);
-
-
 
             if (myScreenPosition.yPos > 450) {
                 //asm("RESET");
@@ -124,7 +118,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void) {
 
     }
     if (count == 1) {
-        
+
         flag = 1;
         count = 0;
     }

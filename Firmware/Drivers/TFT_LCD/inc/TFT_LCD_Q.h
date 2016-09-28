@@ -14,7 +14,7 @@
 
 typedef struct _lcdData {
     uint16_t *Data;
-    uint16_t Command;
+    uint8_t Command;
     uint32_t Length;
     uint8_t font;
     uint16_t color;

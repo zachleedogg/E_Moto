@@ -6,7 +6,7 @@ Tool Name:
 Command:
   -p33EP32GP502 \
   -o \
-  dist/default/production/E_MOTO.production.elf \
+  dist/default/debug/E_MOTO.debug.elf \
   -Lc:/program files (x86)/microchip/xc16/v1.26/bin/bin/.. \
   -Lc:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib \
   -Lc:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../support/PIC24E/gld \
@@ -15,21 +15,31 @@ Command:
   -Lc:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../support/dsPIC30F/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/_ext/1820936309/framework.o \
-  build/default/production/EventCheckers.o \
-  build/default/production/touchScreenSerivce.o \
-  build/default/production/_ext/356824117/bolt_ADC.o \
-  build/default/production/_ext/356824117/bolt_init.o \
-  build/default/production/_ext/356824117/bolt_pins.o \
-  build/default/production/_ext/356824117/bolt_uart.o \
-  build/default/production/_ext/1927342817/TFT_DISPLAY.o \
-  build/default/production/_ext/1927342817/TFT_LCD.o \
-  build/default/production/_ext/1927342817/TFT_LCD_Q.o \
-  build/default/production/_ext/1927342817/TFT_TOUCH.o \
-  build/default/production/main.o \
+  build/default/debug/_ext/1820936309/framework.o \
+  build/default/debug/EventCheckers.o \
+  build/default/debug/touchScreenSerivce.o \
+  build/default/debug/_ext/356824117/bolt_ADC.o \
+  build/default/debug/_ext/356824117/bolt_init.o \
+  build/default/debug/_ext/356824117/bolt_pins.o \
+  build/default/debug/_ext/356824117/bolt_uart.o \
+  build/default/debug/_ext/1927342817/TFT_DISPLAY.o \
+  build/default/debug/_ext/1927342817/TFT_LCD.o \
+  build/default/debug/_ext/1927342817/TFT_LCD_Q.o \
+  build/default/debug/_ext/1927342817/TFT_TOUCH.o \
+  build/default/debug/main.o \
+  -TC:\\Users\\Zach\\AppData\\Local\\Temp\\tmp000020e4.00 \
+  -TC:\\Users\\Zach\\AppData\\Local\\Temp\\tmp000020e4.01 \
+  -TC:\\Users\\Zach\\AppData\\Local\\Temp\\tmp000020e4.02 \
+  -TC:\\Users\\Zach\\AppData\\Local\\Temp\\tmp000020e4.03 \
+  -TC:\\Users\\Zach\\AppData\\Local\\Temp\\tmp000020e4.04 \
+  -TC:\\Users\\Zach\\AppData\\Local\\Temp\\tmp000020e4.05 \
+  -TC:\\Users\\Zach\\AppData\\Local\\Temp\\tmp000020e4.06 \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
-  -Tp33EP32GP502.gld.00 \
+  --defsym=__MPLAB_DEBUG=1 \
+  --defsym=__DEBUG=1 \
+  --defsym=__MPLAB_DEBUGGER_PK3=1 \
+  -Tp33EP32GP502.gld.07 \
   --stack=16 \
   --check-sections \
   --data-init \
@@ -41,10 +51,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/production/E_MOTO.production.map \
+  -Map=dist/default/debug/E_MOTO.debug.map \
   --report-mem \
   --memorysummary \
-  dist/default/production/memoryfile.xml \
+  dist/default/debug/memoryfile.xml \
   -start-group \
   --library=lega-pic30-elf \
   --library=m-elf \
@@ -60,13 +70,13 @@ c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(data_init_extendedep.o)
                               c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extendedep.o) (__data_init_extended)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(addsf3.epeo)
-                              build/default/production/_ext/356824117/bolt_uart.o (___subsf3)
+                              build/default/debug/_ext/356824117/bolt_uart.o (___subsf3)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divsf3.epeo)
-                              build/default/production/_ext/356824117/bolt_init.o (___divsf3)
+                              build/default/debug/_ext/356824117/bolt_init.o (___divsf3)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fixunssfsi.epeo)
-                              build/default/production/_ext/356824117/bolt_init.o (___fixunssfsi)
+                              build/default/debug/_ext/356824117/bolt_init.o (___fixunssfsi)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatunsisf.epeo)
-                              build/default/production/_ext/356824117/bolt_init.o (___floatunsisf)
+                              build/default/debug/_ext/356824117/bolt_init.o (___floatunsisf)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(fpack.epeo)
                               c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(addsf3.epeo) (__fpack)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(funpack.epeo)
@@ -76,17 +86,17 @@ c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(funpack
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(futil.epeo)
                               c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(addsf3.epeo) (__fPropagateNaN)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(mulsf3.epeo)
-                              build/default/production/_ext/356824117/bolt_init.o (___mulsf3)
+                              build/default/debug/_ext/356824117/bolt_init.o (___mulsf3)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(udivsi3.epeo)
-                              build/default/production/_ext/1820936309/framework.o (___udivsi3)
+                              build/default/debug/_ext/1820936309/framework.o (___udivsi3)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatundisf.epeo)
                               c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(floatunsisf.epeo) (___floatundisf)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(memcpy.EPeo)
-                              build/default/production/touchScreenSerivce.o (_memcpy)
+                              build/default/debug/touchScreenSerivce.o (_memcpy)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(strlen.EPeo)
-                              build/default/production/_ext/1927342817/TFT_DISPLAY.o (_strlen)
+                              build/default/debug/_ext/1927342817/TFT_DISPLAY.o (_strlen)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(sprintf_cdnopsuxX.EPeo)
-                              build/default/production/touchScreenSerivce.o (__sprintf_cdnopsuxX)
+                              build/default/debug/touchScreenSerivce.o (__sprintf_cdnopsuxX)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(xprintf_cdnopsuxX.EPeo)
                               c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(sprintf_cdnopsuxX.EPeo) (___Printf_cdnopsuxX)
 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(xputfld_cdnopsuxX.EPeo)
@@ -132,12 +142,12 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0xe5a          0x1587  (5511)
 .const                      0x105a              0x1b80          0x2940  (10560)
-.text                       0x2bda              0x2960          0x3e10  (15888)
-.dinit                      0x553a                0xcc           0x132  (306)
-.text                       0x5606                0x28            0x3c  (60)
-.shared.dinit               0x562e                 0x2             0x3  (3)
+.text                       0x2bda              0x298a          0x3e4f  (15951)
+.dinit                      0x5564                0xcc           0x132  (306)
+.text                       0x5630                0x28            0x3c  (60)
+.shared.dinit               0x5658                 0x2             0x3  (3)
 
-                 Total program memory used (bytes):         0x7e48  (32328) 97%
+                 Total program memory used (bytes):         0x7e87  (32391) 98%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0x1fc]
@@ -155,15 +165,22 @@ Data Memory  [Origin = 0x1000, Length = 0x1000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                       0x1000                   0           0xc40  (3136)
-.ndata                      0x1c40                   0            0x2c  (44)
-.nbss                       0x1c6c                   0            0x40  (64)
-.ndata                      0x1cac                   0            0x22  (34)
-.nbss                       0x1cce                   0             0xc  (12)
-.ndata                      0x1cda                   0             0x4  (4)
-.data                       0x1cde                   0            0x3c  (60)
+reserve_data_0x1000         0x1000                0x1c            0x1c  (28)
+reserve_data_0x101c         0x101c                 0x2             0x2  (2)
+reserve_data_0x101e         0x101e                 0x2             0x2  (2)
+reserve_data_0x1020         0x1020                 0x2             0x2  (2)
+reserve_data_0x1022         0x1022                 0x2             0x2  (2)
+reserve_data_0x1024         0x1024                 0x4             0x4  (4)
+reserve_data_0x1028         0x1028                0x28            0x28  (40)
+.nbss                       0x1050                   0           0xc40  (3136)
+.ndata                      0x1c90                   0            0x2c  (44)
+.nbss                       0x1cbc                   0            0x40  (64)
+.ndata                      0x1cfc                   0            0x22  (34)
+.nbss                       0x1d1e                   0             0xc  (12)
+.ndata                      0x1d2a                   0             0x4  (4)
+.data                       0x1d2e                   0            0x3c  (60)
 
-                 Total data memory used (bytes):          0xd1a  (3354) 81%
+                 Total data memory used (bytes):          0xd6a  (3434) 83%
 
 
 Dynamic Memory Usage
@@ -171,22 +188,22 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x1d1a                               0x2e6  (742)
+stack                       0x1d6a                               0x296  (662)
 
-                 Maximum dynamic memory (bytes):          0x2e6  (742)
+                 Maximum dynamic memory (bytes):          0x296  (662)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x1a28                  _counter
-                    0x1c5e                  _theState
-                    0x1c98                  _thisADC
+                    0x1a78                  _counter
+                    0x1cae                  _theState
+                    0x1ce8                  _thisADC
 
 External Symbols in Data Memory (by name):
 
-                    0x1a28                  _counter
-                    0x1c5e                  _theState
-                    0x1c98                  _thisADC
+                    0x1a78                  _counter
+                    0x1cae                  _theState
+                    0x1ce8                  _thisADC
 
 External Symbols in Program Memory (by address):
 
@@ -230,169 +247,169 @@ External Symbols in Program Memory (by address):
                   0x002bc2                  _EventCheckList
                   0x002bc2                  _ServiceList
                   0x002bda                  _TFT_LCD_INIT
-                  0x002c5a                  _TFT_LCD_ORIENTATION
-                  0x002cd8                  _TFT_LCD_drawRect
-                  0x002d1a                  _TFT_LCD_fillBackground
-                  0x002d38                  _TFT_LCD_writeVariableString
-                  0x002d9a                  _TFT_LCD_writeString
-                  0x002e5e                  _TFT_LCD_goToSleep
-                  0x00317a                  __SPI1Interrupt
-                  0x0031f2                  _SPIisReady
-                  0x003204                  _TFT_LCD_height
-                  0x00320c                  _TFT_LCD_width
-                  0x0033a4                  _Micro_Init
-                  0x0033b0                  _clockInit
-                  0x003678                  _clockFreq
-                  0x003682                  _T1_Interrupt_Init
-                  0x003770                  _T1_Interrupt_Disable
-                  0x00377a                  _T2_Interrupt_Init
-                  0x003868                  _T2_Interrupt_Disable
-                  0x003872                  _T3_Interrupt_Init
-                  0x00395e                  _T3_Interrupt_Disable
-                  0x003968                  _T4_Interrupt_Init
-                  0x003a56                  _T4_Interrupt_Disable
-                  0x003a60                  _touchScreenService
-                  0x003b3e                  _init
-                  0x003ba2                  _welcomeState
-                  0x003c3a                  _lockedState
-                  0x003d8e                  _homeState
-                  0x003e68                  _runningState
-                  0x003f3c                  _batteryState
-                  0x003fe4                  _statisticState
-                  0x00405c                  _passwordHandler
-                  0x0040f0                  _clearPassword
-                  0x0040f6                  _Post
-                  0x00411a                  _Init
-                  0x00415c                  _Run
-                  0x0041d8                  _CheckForEvents
-                  0x004216                  _EnQueue
-                  0x00426c                  _DeQueue
-                  0x0042de                  _timerHasTicked
-                  0x00431e                  _checkTimers
-                  0x0043c4                  _Timer_Init
-                  0x004408                  _FreeRunningTimerReset
-                  0x004412                  _FreeRunningTimer
-                  0x00441c                  _SW_Timer_Set
-                  0x004470                  _SW_Timer_Stop
-                  0x004486                  _SW_Timer_Resume
-                  0x00449c                  __T5Interrupt
-                  0x0044f0                  _Uart1Init
-                  0x0046a8                  _Uart1Write
-                  0x0046e8                  _Uart1Read
-                  0x004778                  _Uart1RXdataReady
-                  0x004792                  _Uart1TXbusy
-                  0x00479a                  __U1TXInterrupt
-                  0x0047ee                  __U1RXInterrupt
-                  0x004856                  _enQ
-                  0x00487e                  _deQ
-                  0x0048b8                  _IO_setPinDir
-                  0x00492e                  _IO_setPortDir
-                  0x004970                  _IO_pinWrite
-                  0x0049e6                  _IO_portWrite
-                  0x004a28                  _IO_pinToggle
-                  0x004ab0                  _IO_pinRead
-                  0x004aec                  _IO_pinPullUpRes
-                  0x004b5c                  _IO_pinPullDownRes
-                  0x004bd8                  _IO_pinInterrupt
-                  0x004c20                  __CNInterrupt
-                  0x004c46                  _TFT_DISPLAY_place_button
-                  0x004d36                  _TFT_DISPLAY_button_handler
-                  0x004e7c                  _TFT_DISPLAY_destroy_buttons
-                  0x004e84                  _checkRange
-                  0x004ebc                  _animatePress
-                  0x004f30                  _ADC_Init
-                  0x004f70                  _ADC_SetPin
-                  0x005004                  _ADC_RemovePin
-                  0x00509a                  _ADC_GetValue
-                  0x0051aa                  _TFT_TOUCH_INIT
-                  0x0051d8                  _TFT_TOUCH_run
-                  0x0052be                  _TFT_TOUCH_draw
-                  0x0052e6                  _TFT_TOUCH_get_data
-                  0x0052f6                  _TFT_TOUCH_get_x_pos
-                  0x005306                  _TFT_TOUCH_get_y_pos
-                  0x005316                  _setXpins
-                  0x005348                  _setYpins
-                  0x00537a                  _inRange
-                  0x0053be                  _map
-                  0x0053fa                  _addToQueue
-                  0x005466                  _deleteFromQueue
-                  0x0054d0                  _peekAtQueue
-                  0x0054fe                  _checkQueueFull
-                  0x005526                  _checkQueueEmpty
-                  0x005606                  _main
+                  0x002c5c                  _TFT_LCD_ORIENTATION
+                  0x002cda                  _TFT_LCD_drawRect
+                  0x002d1c                  _TFT_LCD_fillBackground
+                  0x002d3a                  _TFT_LCD_writeVariableString
+                  0x002d9c                  _TFT_LCD_writeString
+                  0x002e60                  _TFT_LCD_goToSleep
+                  0x0031a4                  __SPI1Interrupt
+                  0x00321c                  _SPIisReady
+                  0x00322e                  _TFT_LCD_height
+                  0x003236                  _TFT_LCD_width
+                  0x0033ce                  _Micro_Init
+                  0x0033da                  _clockInit
+                  0x0036a2                  _clockFreq
+                  0x0036ac                  _T1_Interrupt_Init
+                  0x00379a                  _T1_Interrupt_Disable
+                  0x0037a4                  _T2_Interrupt_Init
+                  0x003892                  _T2_Interrupt_Disable
+                  0x00389c                  _T3_Interrupt_Init
+                  0x003988                  _T3_Interrupt_Disable
+                  0x003992                  _T4_Interrupt_Init
+                  0x003a80                  _T4_Interrupt_Disable
+                  0x003a8a                  _touchScreenService
+                  0x003b68                  _init
+                  0x003bcc                  _welcomeState
+                  0x003c64                  _lockedState
+                  0x003db8                  _homeState
+                  0x003e92                  _runningState
+                  0x003f66                  _batteryState
+                  0x00400e                  _statisticState
+                  0x004086                  _passwordHandler
+                  0x00411a                  _clearPassword
+                  0x004120                  _Post
+                  0x004144                  _Init
+                  0x004186                  _Run
+                  0x004202                  _CheckForEvents
+                  0x004240                  _EnQueue
+                  0x004296                  _DeQueue
+                  0x004308                  _timerHasTicked
+                  0x004348                  _checkTimers
+                  0x0043ee                  _Timer_Init
+                  0x004432                  _FreeRunningTimerReset
+                  0x00443c                  _FreeRunningTimer
+                  0x004446                  _SW_Timer_Set
+                  0x00449a                  _SW_Timer_Stop
+                  0x0044b0                  _SW_Timer_Resume
+                  0x0044c6                  __T5Interrupt
+                  0x00451a                  _Uart1Init
+                  0x0046d2                  _Uart1Write
+                  0x004712                  _Uart1Read
+                  0x0047a2                  _Uart1RXdataReady
+                  0x0047bc                  _Uart1TXbusy
+                  0x0047c4                  __U1TXInterrupt
+                  0x004818                  __U1RXInterrupt
+                  0x004880                  _enQ
+                  0x0048a8                  _deQ
+                  0x0048e2                  _IO_setPinDir
+                  0x004958                  _IO_setPortDir
+                  0x00499a                  _IO_pinWrite
+                  0x004a10                  _IO_portWrite
+                  0x004a52                  _IO_pinToggle
+                  0x004ada                  _IO_pinRead
+                  0x004b16                  _IO_pinPullUpRes
+                  0x004b86                  _IO_pinPullDownRes
+                  0x004c02                  _IO_pinInterrupt
+                  0x004c4a                  __CNInterrupt
+                  0x004c70                  _TFT_DISPLAY_place_button
+                  0x004d60                  _TFT_DISPLAY_button_handler
+                  0x004ea6                  _TFT_DISPLAY_destroy_buttons
+                  0x004eae                  _checkRange
+                  0x004ee6                  _animatePress
+                  0x004f5a                  _ADC_Init
+                  0x004f9a                  _ADC_SetPin
+                  0x00502e                  _ADC_RemovePin
+                  0x0050c4                  _ADC_GetValue
+                  0x0051d4                  _TFT_TOUCH_INIT
+                  0x005202                  _TFT_TOUCH_run
+                  0x0052e8                  _TFT_TOUCH_draw
+                  0x005310                  _TFT_TOUCH_get_data
+                  0x005320                  _TFT_TOUCH_get_x_pos
+                  0x005330                  _TFT_TOUCH_get_y_pos
+                  0x005340                  _setXpins
+                  0x005372                  _setYpins
+                  0x0053a4                  _inRange
+                  0x0053e8                  _map
+                  0x005424                  _addToQueue
+                  0x005490                  _deleteFromQueue
+                  0x0054fa                  _peekAtQueue
+                  0x005528                  _checkQueueFull
+                  0x005550                  _checkQueueEmpty
+                  0x005630                  _main
                   0x0057fa                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x00509a                  _ADC_GetValue
-                  0x004f30                  _ADC_Init
-                  0x005004                  _ADC_RemovePin
-                  0x004f70                  _ADC_SetPin
-                  0x0041d8                  _CheckForEvents
-                  0x00426c                  _DeQueue
-                  0x004216                  _EnQueue
+                  0x0050c4                  _ADC_GetValue
+                  0x004f5a                  _ADC_Init
+                  0x00502e                  _ADC_RemovePin
+                  0x004f9a                  _ADC_SetPin
+                  0x004202                  _CheckForEvents
+                  0x004296                  _DeQueue
+                  0x004240                  _EnQueue
                   0x002bc2                  _EventCheckList
-                  0x004412                  _FreeRunningTimer
-                  0x004408                  _FreeRunningTimerReset
-                  0x004bd8                  _IO_pinInterrupt
-                  0x004b5c                  _IO_pinPullDownRes
-                  0x004aec                  _IO_pinPullUpRes
-                  0x004ab0                  _IO_pinRead
-                  0x004a28                  _IO_pinToggle
-                  0x004970                  _IO_pinWrite
-                  0x0049e6                  _IO_portWrite
-                  0x0048b8                  _IO_setPinDir
-                  0x00492e                  _IO_setPortDir
-                  0x00411a                  _Init
-                  0x0033a4                  _Micro_Init
-                  0x0040f6                  _Post
-                  0x00415c                  _Run
-                  0x0031f2                  _SPIisReady
-                  0x004486                  _SW_Timer_Resume
-                  0x00441c                  _SW_Timer_Set
-                  0x004470                  _SW_Timer_Stop
+                  0x00443c                  _FreeRunningTimer
+                  0x004432                  _FreeRunningTimerReset
+                  0x004c02                  _IO_pinInterrupt
+                  0x004b86                  _IO_pinPullDownRes
+                  0x004b16                  _IO_pinPullUpRes
+                  0x004ada                  _IO_pinRead
+                  0x004a52                  _IO_pinToggle
+                  0x00499a                  _IO_pinWrite
+                  0x004a10                  _IO_portWrite
+                  0x0048e2                  _IO_setPinDir
+                  0x004958                  _IO_setPortDir
+                  0x004144                  _Init
+                  0x0033ce                  _Micro_Init
+                  0x004120                  _Post
+                  0x004186                  _Run
+                  0x00321c                  _SPIisReady
+                  0x0044b0                  _SW_Timer_Resume
+                  0x004446                  _SW_Timer_Set
+                  0x00449a                  _SW_Timer_Stop
                   0x002bc2                  _ServiceList
-                  0x003770                  _T1_Interrupt_Disable
-                  0x003682                  _T1_Interrupt_Init
-                  0x003868                  _T2_Interrupt_Disable
-                  0x00377a                  _T2_Interrupt_Init
-                  0x00395e                  _T3_Interrupt_Disable
-                  0x003872                  _T3_Interrupt_Init
-                  0x003a56                  _T4_Interrupt_Disable
-                  0x003968                  _T4_Interrupt_Init
-                  0x004d36                  _TFT_DISPLAY_button_handler
-                  0x004e7c                  _TFT_DISPLAY_destroy_buttons
-                  0x004c46                  _TFT_DISPLAY_place_button
+                  0x00379a                  _T1_Interrupt_Disable
+                  0x0036ac                  _T1_Interrupt_Init
+                  0x003892                  _T2_Interrupt_Disable
+                  0x0037a4                  _T2_Interrupt_Init
+                  0x003988                  _T3_Interrupt_Disable
+                  0x00389c                  _T3_Interrupt_Init
+                  0x003a80                  _T4_Interrupt_Disable
+                  0x003992                  _T4_Interrupt_Init
+                  0x004d60                  _TFT_DISPLAY_button_handler
+                  0x004ea6                  _TFT_DISPLAY_destroy_buttons
+                  0x004c70                  _TFT_DISPLAY_place_button
                   0x002bda                  _TFT_LCD_INIT
-                  0x002c5a                  _TFT_LCD_ORIENTATION
-                  0x002cd8                  _TFT_LCD_drawRect
-                  0x002d1a                  _TFT_LCD_fillBackground
-                  0x002e5e                  _TFT_LCD_goToSleep
-                  0x003204                  _TFT_LCD_height
-                  0x00320c                  _TFT_LCD_width
-                  0x002d9a                  _TFT_LCD_writeString
-                  0x002d38                  _TFT_LCD_writeVariableString
-                  0x0051aa                  _TFT_TOUCH_INIT
-                  0x0052be                  _TFT_TOUCH_draw
-                  0x0052e6                  _TFT_TOUCH_get_data
-                  0x0052f6                  _TFT_TOUCH_get_x_pos
-                  0x005306                  _TFT_TOUCH_get_y_pos
-                  0x0051d8                  _TFT_TOUCH_run
-                  0x0043c4                  _Timer_Init
-                  0x0044f0                  _Uart1Init
-                  0x004778                  _Uart1RXdataReady
-                  0x0046e8                  _Uart1Read
-                  0x004792                  _Uart1TXbusy
-                  0x0046a8                  _Uart1Write
-                  0x004c20                  __CNInterrupt
+                  0x002c5c                  _TFT_LCD_ORIENTATION
+                  0x002cda                  _TFT_LCD_drawRect
+                  0x002d1c                  _TFT_LCD_fillBackground
+                  0x002e60                  _TFT_LCD_goToSleep
+                  0x00322e                  _TFT_LCD_height
+                  0x003236                  _TFT_LCD_width
+                  0x002d9c                  _TFT_LCD_writeString
+                  0x002d3a                  _TFT_LCD_writeVariableString
+                  0x0051d4                  _TFT_TOUCH_INIT
+                  0x0052e8                  _TFT_TOUCH_draw
+                  0x005310                  _TFT_TOUCH_get_data
+                  0x005320                  _TFT_TOUCH_get_x_pos
+                  0x005330                  _TFT_TOUCH_get_y_pos
+                  0x005202                  _TFT_TOUCH_run
+                  0x0043ee                  _Timer_Init
+                  0x00451a                  _Uart1Init
+                  0x0047a2                  _Uart1RXdataReady
+                  0x004712                  _Uart1Read
+                  0x0047bc                  _Uart1TXbusy
+                  0x0046d2                  _Uart1Write
+                  0x004c4a                  __CNInterrupt
                   0x000304                  __DefaultInterrupt
                   0x0057fa                  __FGS.sec
                   0x000a48                  __Litob
                   0x000cb6                  __Puttxt
-                  0x00317a                  __SPI1Interrupt
-                  0x00449c                  __T5Interrupt
-                  0x0047ee                  __U1RXInterrupt
-                  0x00479a                  __U1TXInterrupt
+                  0x0031a4                  __SPI1Interrupt
+                  0x0044c6                  __T5Interrupt
+                  0x004818                  __U1RXInterrupt
+                  0x0047c4                  __U1TXInterrupt
                   0x000e2e                  __Vacopy
                   0x000654                  ___Printf_cdnopsuxX
                   0x0007b8                  ___Putfld_cdnopsuxX
@@ -422,38 +439,38 @@ External Symbols in Program Memory (by name):
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
                   0x000636                  __sprintf_cdnopsuxX
-                  0x0053fa                  _addToQueue
-                  0x004ebc                  _animatePress
-                  0x003f3c                  _batteryState
-                  0x005526                  _checkQueueEmpty
-                  0x0054fe                  _checkQueueFull
-                  0x004e84                  _checkRange
-                  0x00431e                  _checkTimers
-                  0x0040f0                  _clearPassword
-                  0x003678                  _clockFreq
-                  0x0033b0                  _clockInit
-                  0x00487e                  _deQ
-                  0x005466                  _deleteFromQueue
-                  0x004856                  _enQ
-                  0x003d8e                  _homeState
-                  0x00537a                  _inRange
-                  0x003b3e                  _init
-                  0x003c3a                  _lockedState
-                  0x005606                  _main
-                  0x0053be                  _map
+                  0x005424                  _addToQueue
+                  0x004ee6                  _animatePress
+                  0x003f66                  _batteryState
+                  0x005550                  _checkQueueEmpty
+                  0x005528                  _checkQueueFull
+                  0x004eae                  _checkRange
+                  0x004348                  _checkTimers
+                  0x00411a                  _clearPassword
+                  0x0036a2                  _clockFreq
+                  0x0033da                  _clockInit
+                  0x0048a8                  _deQ
+                  0x005490                  _deleteFromQueue
+                  0x004880                  _enQ
+                  0x003db8                  _homeState
+                  0x0053a4                  _inRange
+                  0x003b68                  _init
+                  0x003c64                  _lockedState
+                  0x005630                  _main
+                  0x0053e8                  _map
                   0x000a1c                  _memchr
                   0x00060e                  _memcpy
-                  0x00405c                  _passwordHandler
-                  0x0054d0                  _peekAtQueue
-                  0x003e68                  _runningState
-                  0x005316                  _setXpins
-                  0x005348                  _setYpins
-                  0x003fe4                  _statisticState
+                  0x004086                  _passwordHandler
+                  0x0054fa                  _peekAtQueue
+                  0x003e92                  _runningState
+                  0x005340                  _setXpins
+                  0x005372                  _setYpins
+                  0x00400e                  _statisticState
                   0x000a30                  _strchr
                   0x00061c                  _strlen
-                  0x0042de                  _timerHasTicked
-                  0x003a60                  _touchScreenService
-                  0x003ba2                  _welcomeState
+                  0x004308                  _timerHasTicked
+                  0x003a8a                  _touchScreenService
+                  0x003bcc                  _welcomeState
                   0x000628                  sprintf_cdnopsuxX.EPeo:_prout
 
 Memory Configuration
@@ -478,19 +495,57 @@ aivt             0x000000           0xffffffff
 
 Linker script and memory map
 
-LOAD build/default/production/_ext/1820936309/framework.o
-LOAD build/default/production/EventCheckers.o
-LOAD build/default/production/touchScreenSerivce.o
-LOAD build/default/production/_ext/356824117/bolt_ADC.o
-LOAD build/default/production/_ext/356824117/bolt_init.o
-LOAD build/default/production/_ext/356824117/bolt_pins.o
-LOAD build/default/production/_ext/356824117/bolt_uart.o
-LOAD build/default/production/_ext/1927342817/TFT_DISPLAY.o
-LOAD build/default/production/_ext/1927342817/TFT_LCD.o
-LOAD build/default/production/_ext/1927342817/TFT_LCD_Q.o
-LOAD build/default/production/_ext/1927342817/TFT_TOUCH.o
-LOAD build/default/production/main.o
+LOAD build/default/debug/_ext/1820936309/framework.o
+LOAD build/default/debug/EventCheckers.o
+LOAD build/default/debug/touchScreenSerivce.o
+LOAD build/default/debug/_ext/356824117/bolt_ADC.o
+LOAD build/default/debug/_ext/356824117/bolt_init.o
+LOAD build/default/debug/_ext/356824117/bolt_pins.o
+LOAD build/default/debug/_ext/356824117/bolt_uart.o
+LOAD build/default/debug/_ext/1927342817/TFT_DISPLAY.o
+LOAD build/default/debug/_ext/1927342817/TFT_LCD.o
+LOAD build/default/debug/_ext/1927342817/TFT_LCD_Q.o
+LOAD build/default/debug/_ext/1927342817/TFT_TOUCH.o
+LOAD build/default/debug/main.o
+
+reserve_data_0x1000
+                    0x1000         0x1c
+                    0x101c                  . = 0x1c
+ *fill*             0x1000         0x1c00
+
+reserve_data_0x101c
+                    0x101c          0x2
+                    0x101e                  . = 0x2
+ *fill*             0x101c          0x200
+
+reserve_data_0x101e
+                    0x101e          0x2
+                    0x1020                  . = 0x2
+ *fill*             0x101e          0x200
+
+reserve_data_0x1020
+                    0x1020          0x2
+                    0x1022                  . = 0x2
+ *fill*             0x1020          0x200
+
+reserve_data_0x1022
+                    0x1022          0x2
+                    0x1024                  . = 0x2
+ *fill*             0x1022          0x200
+
+reserve_data_0x1024
+                    0x1024          0x4
+                    0x1028                  . = 0x4
+ *fill*             0x1024          0x400
+
+reserve_data_0x1028
+                    0x1028         0x28
+                    0x1050                  . = 0x28
+ *fill*             0x1028         0x2800
                     0x0001                  __MPLAB_BUILD = 0x1
+                    0x0001                  __MPLAB_DEBUG = 0x1
+                    0x0001                  __DEBUG = 0x1
+                    0x0001                  __MPLAB_DEBUGGER_PK3 = 0x1
 LOAD p33EP32GP502
 LOAD c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libfx-elf.a
                     0x57f0                  __FICD = 0x57f0
@@ -623,23 +678,23 @@ usercode
 
 __FICD            0x0057f0          0x2
  *(__FICD.sec*)
- __FICD.sec       0x0057f0          0x2 build/default/production/_ext/356824117/bolt_init.o
+ __FICD.sec       0x0057f0          0x2 build/default/debug/_ext/356824117/bolt_init.o
 
 __FPOR            0x0057f2          0x2
  *(__FPOR.sec*)
- __FPOR.sec       0x0057f2          0x2 build/default/production/_ext/356824117/bolt_init.o
+ __FPOR.sec       0x0057f2          0x2 build/default/debug/_ext/356824117/bolt_init.o
 
 __FWDT            0x0057f4          0x2
  *(__FWDT.sec*)
- __FWDT.sec       0x0057f4          0x2 build/default/production/_ext/356824117/bolt_init.o
+ __FWDT.sec       0x0057f4          0x2 build/default/debug/_ext/356824117/bolt_init.o
 
 __FOSC            0x0057f6          0x2
  *(__FOSC.sec*)
- __FOSC.sec       0x0057f6          0x2 build/default/production/_ext/356824117/bolt_init.o
+ __FOSC.sec       0x0057f6          0x2 build/default/debug/_ext/356824117/bolt_init.o
 
 __FOSCSEL         0x0057f8          0x2
  *(__FOSCSEL.sec*)
- __FOSCSEL.sec    0x0057f8          0x2 build/default/production/_ext/356824117/bolt_init.o
+ __FOSCSEL.sec    0x0057f8          0x2 build/default/debug/_ext/356824117/bolt_init.o
 
 __FGS             0x0057fa          0x2
  *(__FGS.sec*)
@@ -661,75 +716,75 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x9750
+.debug_info       0x000000       0x9751
  *(.debug_info)
- .debug_info      0x000000       0x1297 build/default/production/_ext/1820936309/framework.o
- .debug_info      0x001297        0xb9f build/default/production/touchScreenSerivce.o
- .debug_info      0x001e36        0xee7 build/default/production/_ext/356824117/bolt_ADC.o
- .debug_info      0x002d1d       0x1c90 build/default/production/_ext/356824117/bolt_init.o
- .debug_info      0x0049ad        0xa08 build/default/production/_ext/356824117/bolt_pins.o
- .debug_info      0x0053b5       0x19c6 build/default/production/_ext/356824117/bolt_uart.o
- .debug_info      0x006d7b        0x573 build/default/production/_ext/1927342817/TFT_DISPLAY.o
- .debug_info      0x0072ee       0x16e7 build/default/production/_ext/1927342817/TFT_LCD.o
- .debug_info      0x0089d5        0x34e build/default/production/_ext/1927342817/TFT_LCD_Q.o
- .debug_info      0x008d23        0x79a build/default/production/_ext/1927342817/TFT_TOUCH.o
- .debug_info      0x0094bd        0x293 build/default/production/main.o
+ .debug_info      0x000000       0x1297 build/default/debug/_ext/1820936309/framework.o
+ .debug_info      0x001297        0xb9f build/default/debug/touchScreenSerivce.o
+ .debug_info      0x001e36        0xee7 build/default/debug/_ext/356824117/bolt_ADC.o
+ .debug_info      0x002d1d       0x1c90 build/default/debug/_ext/356824117/bolt_init.o
+ .debug_info      0x0049ad        0xa08 build/default/debug/_ext/356824117/bolt_pins.o
+ .debug_info      0x0053b5       0x19c6 build/default/debug/_ext/356824117/bolt_uart.o
+ .debug_info      0x006d7b        0x573 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
+ .debug_info      0x0072ee       0x16e8 build/default/debug/_ext/1927342817/TFT_LCD.o
+ .debug_info      0x0089d6        0x34e build/default/debug/_ext/1927342817/TFT_LCD_Q.o
+ .debug_info      0x008d24        0x79a build/default/debug/_ext/1927342817/TFT_TOUCH.o
+ .debug_info      0x0094be        0x293 build/default/debug/main.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0xfdf
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x26d build/default/production/_ext/1820936309/framework.o
- .debug_abbrev    0x00026d          0x1 build/default/production/EventCheckers.o
- .debug_abbrev    0x00026e        0x190 build/default/production/touchScreenSerivce.o
- .debug_abbrev    0x0003fe        0x166 build/default/production/_ext/356824117/bolt_ADC.o
- .debug_abbrev    0x000564        0x1b5 build/default/production/_ext/356824117/bolt_init.o
- .debug_abbrev    0x000719        0x13f build/default/production/_ext/356824117/bolt_pins.o
- .debug_abbrev    0x000858        0x1b8 build/default/production/_ext/356824117/bolt_uart.o
- .debug_abbrev    0x000a10        0x105 build/default/production/_ext/1927342817/TFT_DISPLAY.o
- .debug_abbrev    0x000b15        0x258 build/default/production/_ext/1927342817/TFT_LCD.o
- .debug_abbrev    0x000d6d         0xd9 build/default/production/_ext/1927342817/TFT_LCD_Q.o
- .debug_abbrev    0x000e46        0x111 build/default/production/_ext/1927342817/TFT_TOUCH.o
- .debug_abbrev    0x000f57         0x88 build/default/production/main.o
+ .debug_abbrev    0x000000        0x26d build/default/debug/_ext/1820936309/framework.o
+ .debug_abbrev    0x00026d          0x1 build/default/debug/EventCheckers.o
+ .debug_abbrev    0x00026e        0x190 build/default/debug/touchScreenSerivce.o
+ .debug_abbrev    0x0003fe        0x166 build/default/debug/_ext/356824117/bolt_ADC.o
+ .debug_abbrev    0x000564        0x1b5 build/default/debug/_ext/356824117/bolt_init.o
+ .debug_abbrev    0x000719        0x13f build/default/debug/_ext/356824117/bolt_pins.o
+ .debug_abbrev    0x000858        0x1b8 build/default/debug/_ext/356824117/bolt_uart.o
+ .debug_abbrev    0x000a10        0x105 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
+ .debug_abbrev    0x000b15        0x258 build/default/debug/_ext/1927342817/TFT_LCD.o
+ .debug_abbrev    0x000d6d         0xd9 build/default/debug/_ext/1927342817/TFT_LCD_Q.o
+ .debug_abbrev    0x000e46        0x111 build/default/debug/_ext/1927342817/TFT_TOUCH.o
+ .debug_abbrev    0x000f57         0x88 build/default/debug/main.o
 
-.debug_line       0x000000       0x1292
+.debug_line       0x000000       0x1296
  *(.debug_line)
- .debug_line      0x000000        0x1bf build/default/production/_ext/1820936309/framework.o
- .debug_line      0x0001bf         0x1a build/default/production/EventCheckers.o
- .debug_line      0x0001d9        0x239 build/default/production/touchScreenSerivce.o
- .debug_line      0x000412        0x1d4 build/default/production/_ext/356824117/bolt_ADC.o
- .debug_line      0x0005e6        0x20a build/default/production/_ext/356824117/bolt_init.o
- .debug_line      0x0007f0        0x1db build/default/production/_ext/356824117/bolt_pins.o
- .debug_line      0x0009cb        0x1e6 build/default/production/_ext/356824117/bolt_uart.o
- .debug_line      0x000bb1        0x134 build/default/production/_ext/1927342817/TFT_DISPLAY.o
- .debug_line      0x000ce5        0x29b build/default/production/_ext/1927342817/TFT_LCD.o
- .debug_line      0x000f80         0xfd build/default/production/_ext/1927342817/TFT_LCD_Q.o
- .debug_line      0x00107d        0x171 build/default/production/_ext/1927342817/TFT_TOUCH.o
- .debug_line      0x0011ee         0xa4 build/default/production/main.o
+ .debug_line      0x000000        0x1bf build/default/debug/_ext/1820936309/framework.o
+ .debug_line      0x0001bf         0x1a build/default/debug/EventCheckers.o
+ .debug_line      0x0001d9        0x239 build/default/debug/touchScreenSerivce.o
+ .debug_line      0x000412        0x1d4 build/default/debug/_ext/356824117/bolt_ADC.o
+ .debug_line      0x0005e6        0x20a build/default/debug/_ext/356824117/bolt_init.o
+ .debug_line      0x0007f0        0x1db build/default/debug/_ext/356824117/bolt_pins.o
+ .debug_line      0x0009cb        0x1e6 build/default/debug/_ext/356824117/bolt_uart.o
+ .debug_line      0x000bb1        0x134 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
+ .debug_line      0x000ce5        0x29f build/default/debug/_ext/1927342817/TFT_LCD.o
+ .debug_line      0x000f84         0xfd build/default/debug/_ext/1927342817/TFT_LCD_Q.o
+ .debug_line      0x001081        0x171 build/default/debug/_ext/1927342817/TFT_TOUCH.o
+ .debug_line      0x0011f2         0xa4 build/default/debug/main.o
 
 .debug_frame      0x000000        0xcca
  *(.debug_frame)
- .debug_frame     0x000000        0x1e8 build/default/production/_ext/1820936309/framework.o
- .debug_frame     0x0001e8        0x178 build/default/production/touchScreenSerivce.o
- .debug_frame     0x000360         0x84 build/default/production/_ext/356824117/bolt_ADC.o
- .debug_frame     0x0003e4        0x166 build/default/production/_ext/356824117/bolt_init.o
- .debug_frame     0x00054a        0x13a build/default/production/_ext/356824117/bolt_pins.o
- .debug_frame     0x000684        0x146 build/default/production/_ext/356824117/bolt_uart.o
- .debug_frame     0x0007ca         0xb4 build/default/production/_ext/1927342817/TFT_DISPLAY.o
- .debug_frame     0x00087e        0x24a build/default/production/_ext/1927342817/TFT_LCD.o
- .debug_frame     0x000ac8         0xa6 build/default/production/_ext/1927342817/TFT_LCD_Q.o
- .debug_frame     0x000b6e        0x12c build/default/production/_ext/1927342817/TFT_TOUCH.o
- .debug_frame     0x000c9a         0x30 build/default/production/main.o
+ .debug_frame     0x000000        0x1e8 build/default/debug/_ext/1820936309/framework.o
+ .debug_frame     0x0001e8        0x178 build/default/debug/touchScreenSerivce.o
+ .debug_frame     0x000360         0x84 build/default/debug/_ext/356824117/bolt_ADC.o
+ .debug_frame     0x0003e4        0x166 build/default/debug/_ext/356824117/bolt_init.o
+ .debug_frame     0x00054a        0x13a build/default/debug/_ext/356824117/bolt_pins.o
+ .debug_frame     0x000684        0x146 build/default/debug/_ext/356824117/bolt_uart.o
+ .debug_frame     0x0007ca         0xb4 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
+ .debug_frame     0x00087e        0x24a build/default/debug/_ext/1927342817/TFT_LCD.o
+ .debug_frame     0x000ac8         0xa6 build/default/debug/_ext/1927342817/TFT_LCD_Q.o
+ .debug_frame     0x000b6e        0x12c build/default/debug/_ext/1927342817/TFT_TOUCH.o
+ .debug_frame     0x000c9a         0x30 build/default/debug/main.o
 
 .debug_str        0x000000        0x37a
  *(.debug_str)
- .debug_str       0x000000         0x74 build/default/production/_ext/1820936309/framework.o
- .debug_str       0x000074         0x33 build/default/production/touchScreenSerivce.o
- .debug_str       0x0000a7         0xab build/default/production/_ext/356824117/bolt_ADC.o
- .debug_str       0x000152        0x101 build/default/production/_ext/356824117/bolt_init.o
- .debug_str       0x000253         0x26 build/default/production/_ext/356824117/bolt_pins.o
- .debug_str       0x000279         0x77 build/default/production/_ext/356824117/bolt_uart.o
- .debug_str       0x0002f0         0x80 build/default/production/_ext/1927342817/TFT_LCD.o
- .debug_str       0x000370          0xa build/default/production/_ext/1927342817/TFT_TOUCH.o
+ .debug_str       0x000000         0x74 build/default/debug/_ext/1820936309/framework.o
+ .debug_str       0x000074         0x33 build/default/debug/touchScreenSerivce.o
+ .debug_str       0x0000a7         0xab build/default/debug/_ext/356824117/bolt_ADC.o
+ .debug_str       0x000152        0x101 build/default/debug/_ext/356824117/bolt_init.o
+ .debug_str       0x000253         0x26 build/default/debug/_ext/356824117/bolt_pins.o
+ .debug_str       0x000279         0x77 build/default/debug/_ext/356824117/bolt_uart.o
+ .debug_str       0x0002f0         0x80 build/default/debug/_ext/1927342817/TFT_LCD.o
+ .debug_str       0x000370          0xa build/default/debug/_ext/1927342817/TFT_TOUCH.o
 
 .debug_loc
  *(.debug_loc)
@@ -741,27 +796,27 @@ __FUID3
                   0x000000        0x7bd
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x123 build/default/production/_ext/1820936309/framework.o
+                  0x000000        0x123 build/default/debug/_ext/1820936309/framework.o
  .debug_pubnames
-                  0x000123         0xc9 build/default/production/touchScreenSerivce.o
+                  0x000123         0xc9 build/default/debug/touchScreenSerivce.o
  .debug_pubnames
-                  0x0001ec         0x5d build/default/production/_ext/356824117/bolt_ADC.o
+                  0x0001ec         0x5d build/default/debug/_ext/356824117/bolt_ADC.o
  .debug_pubnames
-                  0x000249        0x137 build/default/production/_ext/356824117/bolt_init.o
+                  0x000249        0x137 build/default/debug/_ext/356824117/bolt_init.o
  .debug_pubnames
-                  0x000380         0xc5 build/default/production/_ext/356824117/bolt_pins.o
+                  0x000380         0xc5 build/default/debug/_ext/356824117/bolt_pins.o
  .debug_pubnames
-                  0x000445         0x98 build/default/production/_ext/356824117/bolt_uart.o
+                  0x000445         0x98 build/default/debug/_ext/356824117/bolt_uart.o
  .debug_pubnames
-                  0x0004dd         0x8e build/default/production/_ext/1927342817/TFT_DISPLAY.o
+                  0x0004dd         0x8e build/default/debug/_ext/1927342817/TFT_DISPLAY.o
  .debug_pubnames
-                  0x00056b        0x10c build/default/production/_ext/1927342817/TFT_LCD.o
+                  0x00056b        0x10c build/default/debug/_ext/1927342817/TFT_LCD.o
  .debug_pubnames
-                  0x000677         0x6c build/default/production/_ext/1927342817/TFT_LCD_Q.o
+                  0x000677         0x6c build/default/debug/_ext/1927342817/TFT_LCD_Q.o
  .debug_pubnames
-                  0x0006e3         0xbf build/default/production/_ext/1927342817/TFT_TOUCH.o
+                  0x0006e3         0xbf build/default/debug/_ext/1927342817/TFT_TOUCH.o
  .debug_pubnames
-                  0x0007a2         0x1b build/default/production/main.o
+                  0x0007a2         0x1b build/default/debug/main.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -769,27 +824,27 @@ __FUID3
 .debug_aranges    0x000000        0x108
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/_ext/1820936309/framework.o
+                  0x000000         0x18 build/default/debug/_ext/1820936309/framework.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/touchScreenSerivce.o
+                  0x000018         0x18 build/default/debug/touchScreenSerivce.o
  .debug_aranges
-                  0x000030         0x18 build/default/production/_ext/356824117/bolt_ADC.o
+                  0x000030         0x18 build/default/debug/_ext/356824117/bolt_ADC.o
  .debug_aranges
-                  0x000048         0x18 build/default/production/_ext/356824117/bolt_init.o
+                  0x000048         0x18 build/default/debug/_ext/356824117/bolt_init.o
  .debug_aranges
-                  0x000060         0x18 build/default/production/_ext/356824117/bolt_pins.o
+                  0x000060         0x18 build/default/debug/_ext/356824117/bolt_pins.o
  .debug_aranges
-                  0x000078         0x18 build/default/production/_ext/356824117/bolt_uart.o
+                  0x000078         0x18 build/default/debug/_ext/356824117/bolt_uart.o
  .debug_aranges
-                  0x000090         0x18 build/default/production/_ext/1927342817/TFT_DISPLAY.o
+                  0x000090         0x18 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
  .debug_aranges
-                  0x0000a8         0x18 build/default/production/_ext/1927342817/TFT_LCD.o
+                  0x0000a8         0x18 build/default/debug/_ext/1927342817/TFT_LCD.o
  .debug_aranges
-                  0x0000c0         0x18 build/default/production/_ext/1927342817/TFT_LCD_Q.o
+                  0x0000c0         0x18 build/default/debug/_ext/1927342817/TFT_LCD_Q.o
  .debug_aranges
-                  0x0000d8         0x18 build/default/production/_ext/1927342817/TFT_TOUCH.o
+                  0x0000d8         0x18 build/default/debug/_ext/1927342817/TFT_TOUCH.o
  .debug_aranges
-                  0x0000f0         0x18 build/default/production/main.o
+                  0x0000f0         0x18 build/default/debug/main.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -1893,7 +1948,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30
 LOAD c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
-OUTPUT(dist/default/production/E_MOTO.production.elf elf32-pic30)
+OUTPUT(dist/default/debug/E_MOTO.debug.elf elf32-pic30)
 LOAD FGS
 LOAD jump_table
 LOAD default_isr
@@ -1903,54 +1958,54 @@ LOAD shared_data_init
 .debug_pubtypes
                   0x000108        0xc7d
  .debug_pubtypes
-                  0x000108        0x228 build/default/production/_ext/1820936309/framework.o
+                  0x000108        0x228 build/default/debug/_ext/1820936309/framework.o
  .debug_pubtypes
-                  0x000330         0xdf build/default/production/touchScreenSerivce.o
+                  0x000330         0xdf build/default/debug/touchScreenSerivce.o
  .debug_pubtypes
-                  0x00040f        0x17b build/default/production/_ext/356824117/bolt_ADC.o
+                  0x00040f        0x17b build/default/debug/_ext/356824117/bolt_ADC.o
  .debug_pubtypes
-                  0x00058a        0x201 build/default/production/_ext/356824117/bolt_init.o
+                  0x00058a        0x201 build/default/debug/_ext/356824117/bolt_init.o
  .debug_pubtypes
-                  0x00078b         0x9d build/default/production/_ext/356824117/bolt_pins.o
+                  0x00078b         0x9d build/default/debug/_ext/356824117/bolt_pins.o
  .debug_pubtypes
-                  0x000828        0x21d build/default/production/_ext/356824117/bolt_uart.o
+                  0x000828        0x21d build/default/debug/_ext/356824117/bolt_uart.o
  .debug_pubtypes
-                  0x000a45         0x98 build/default/production/_ext/1927342817/TFT_DISPLAY.o
+                  0x000a45         0x98 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
  .debug_pubtypes
-                  0x000add        0x149 build/default/production/_ext/1927342817/TFT_LCD.o
+                  0x000add        0x149 build/default/debug/_ext/1927342817/TFT_LCD.o
  .debug_pubtypes
-                  0x000c26         0x6c build/default/production/_ext/1927342817/TFT_LCD_Q.o
+                  0x000c26         0x6c build/default/debug/_ext/1927342817/TFT_LCD_Q.o
  .debug_pubtypes
-                  0x000c92         0xc9 build/default/production/_ext/1927342817/TFT_TOUCH.o
+                  0x000c92         0xc9 build/default/debug/_ext/1927342817/TFT_TOUCH.o
  .debug_pubtypes
-                  0x000d5b         0x2a build/default/production/main.o
+                  0x000d5b         0x2a build/default/debug/main.o
 
 __c30_signature
                   0x000d85         0xe4
  __c30_signature
-                  0x000d85          0x6 build/default/production/_ext/1820936309/framework.o
+                  0x000d85          0x6 build/default/debug/_ext/1820936309/framework.o
  __c30_signature
-                  0x000d8b          0x6 build/default/production/EventCheckers.o
+                  0x000d8b          0x6 build/default/debug/EventCheckers.o
  __c30_signature
-                  0x000d91          0x6 build/default/production/touchScreenSerivce.o
+                  0x000d91          0x6 build/default/debug/touchScreenSerivce.o
  __c30_signature
-                  0x000d97          0x6 build/default/production/_ext/356824117/bolt_ADC.o
+                  0x000d97          0x6 build/default/debug/_ext/356824117/bolt_ADC.o
  __c30_signature
-                  0x000d9d          0x6 build/default/production/_ext/356824117/bolt_init.o
+                  0x000d9d          0x6 build/default/debug/_ext/356824117/bolt_init.o
  __c30_signature
-                  0x000da3          0x6 build/default/production/_ext/356824117/bolt_pins.o
+                  0x000da3          0x6 build/default/debug/_ext/356824117/bolt_pins.o
  __c30_signature
-                  0x000da9          0x6 build/default/production/_ext/356824117/bolt_uart.o
+                  0x000da9          0x6 build/default/debug/_ext/356824117/bolt_uart.o
  __c30_signature
-                  0x000daf          0x6 build/default/production/_ext/1927342817/TFT_DISPLAY.o
+                  0x000daf          0x6 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
  __c30_signature
-                  0x000db5          0x6 build/default/production/_ext/1927342817/TFT_LCD.o
+                  0x000db5          0x6 build/default/debug/_ext/1927342817/TFT_LCD.o
  __c30_signature
-                  0x000dbb          0x6 build/default/production/_ext/1927342817/TFT_LCD_Q.o
+                  0x000dbb          0x6 build/default/debug/_ext/1927342817/TFT_LCD_Q.o
  __c30_signature
-                  0x000dc1          0x6 build/default/production/_ext/1927342817/TFT_TOUCH.o
+                  0x000dc1          0x6 build/default/debug/_ext/1927342817/TFT_TOUCH.o
  __c30_signature
-                  0x000dc7          0x6 build/default/production/main.o
+                  0x000dc7          0x6 build/default/debug/main.o
  __c30_signature
                   0x000dcd          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extendedep.o)
  __c30_signature
@@ -2004,182 +2059,182 @@ __c30_signature
  __c30_signature
                   0x000e63          0x6 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\libm-elf.a(divmoddi3.epeo)
 
-.nbss               0x1000        0xc40
- .nbss              0x1000        0x604 build/default/production/_ext/1927342817/TFT_LCD_Q.o
- .nbss              0x1604        0x304 build/default/production/_ext/1820936309/framework.o
- .nbss              0x1908        0x124 build/default/production/_ext/1927342817/TFT_LCD.o
-                    0x1a28                  _counter
- .nbss              0x1a2c        0x122 build/default/production/_ext/1927342817/TFT_DISPLAY.o
- .nbss              0x1b4e         0x98 build/default/production/_ext/356824117/bolt_uart.o
- .nbss              0x1be6         0x5a build/default/production/_ext/1927342817/TFT_TOUCH.o
+.nbss               0x1050        0xc40
+ .nbss              0x1050        0x604 build/default/debug/_ext/1927342817/TFT_LCD_Q.o
+ .nbss              0x1654        0x304 build/default/debug/_ext/1820936309/framework.o
+ .nbss              0x1958        0x124 build/default/debug/_ext/1927342817/TFT_LCD.o
+                    0x1a78                  _counter
+ .nbss              0x1a7c        0x122 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
+ .nbss              0x1b9e         0x98 build/default/debug/_ext/356824117/bolt_uart.o
+ .nbss              0x1c36         0x5a build/default/debug/_ext/1927342817/TFT_TOUCH.o
 
-.ndata              0x1c40         0x2c
- .ndata             0x1c40         0x2c build/default/production/touchScreenSerivce.o
-                    0x1c5e                  _theState
+.ndata              0x1c90         0x2c
+ .ndata             0x1c90         0x2c build/default/debug/touchScreenSerivce.o
+                    0x1cae                  _theState
 
-.nbss               0x1c6c         0x40
- .nbss              0x1c6c         0x2c build/default/production/touchScreenSerivce.o
- .nbss              0x1c98         0x14 build/default/production/_ext/356824117/bolt_ADC.o
-                    0x1c98                  _thisADC
+.nbss               0x1cbc         0x40
+ .nbss              0x1cbc         0x2c build/default/debug/touchScreenSerivce.o
+ .nbss              0x1ce8         0x14 build/default/debug/_ext/356824117/bolt_ADC.o
+                    0x1ce8                  _thisADC
 
-.ndata              0x1cac         0x22
- .ndata             0x1cac         0x12 build/default/production/_ext/1820936309/framework.o
- .ndata             0x1cbe         0x10 build/default/production/main.o
+.ndata              0x1cfc         0x22
+ .ndata             0x1cfc         0x12 build/default/debug/_ext/1820936309/framework.o
+ .ndata             0x1d0e         0x10 build/default/debug/main.o
 
-.nbss               0x1cce          0xc
- .nbss              0x1cce          0x8 build/default/production/_ext/356824117/bolt_init.o
- .nbss              0x1cd6          0x4 build/default/production/_ext/356824117/bolt_pins.o
+.nbss               0x1d1e          0xc
+ .nbss              0x1d1e          0x8 build/default/debug/_ext/356824117/bolt_init.o
+ .nbss              0x1d26          0x4 build/default/debug/_ext/356824117/bolt_pins.o
 
-.ndata              0x1cda          0x4
- .ndata             0x1cda          0x2 build/default/production/_ext/1927342817/TFT_LCD.o
- .ndata             0x1cdc          0x2 build/default/production/_ext/1927342817/TFT_TOUCH.o
+.ndata              0x1d2a          0x4
+ .ndata             0x1d2a          0x2 build/default/debug/_ext/1927342817/TFT_LCD.o
+ .ndata             0x1d2c          0x2 build/default/debug/_ext/1927342817/TFT_TOUCH.o
 
-.data               0x1cde         0x3c
- .data              0x1cde         0x22 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(xlitob.EPeo)
- .data              0x1d00         0x1a c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(xprintf_cdnopsuxX.EPeo)
+.data               0x1d2e         0x3c
+ .data              0x1d2e         0x22 c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(xlitob.EPeo)
+ .data              0x1d50         0x1a c:/program files (x86)/microchip/xc16/v1.26/bin/bin/../../lib\liblega-c-elf.a(xprintf_cdnopsuxX.EPeo)
 
 .ivt._T5Interrupt
                   0x00004c          0x2
  .ivt._T5Interrupt
-                  0x00004c          0x2 build/default/production/_ext/1820936309/framework.o
+                  0x00004c          0x2 build/default/debug/_ext/1820936309/framework.o
 
 .ivt._CNInterrupt
                   0x00003a          0x2
  .ivt._CNInterrupt
-                  0x00003a          0x2 build/default/production/_ext/356824117/bolt_pins.o
+                  0x00003a          0x2 build/default/debug/_ext/356824117/bolt_pins.o
 
 .ivt._U1TXInterrupt
                   0x00002c          0x2
  .ivt._U1TXInterrupt
-                  0x00002c          0x2 build/default/production/_ext/356824117/bolt_uart.o
+                  0x00002c          0x2 build/default/debug/_ext/356824117/bolt_uart.o
 
 .ivt._U1RXInterrupt
                   0x00002a          0x2
  .ivt._U1RXInterrupt
-                  0x00002a          0x2 build/default/production/_ext/356824117/bolt_uart.o
+                  0x00002a          0x2 build/default/debug/_ext/356824117/bolt_uart.o
 
 .ivt._SPI1Interrupt
                   0x000028          0x2
  .ivt._SPI1Interrupt
-                  0x000028          0x2 build/default/production/_ext/1927342817/TFT_LCD.o
+                  0x000028          0x2 build/default/debug/_ext/1927342817/TFT_LCD.o
 
 .const              0x905a       0x1b80 load address 0x00105a  
- .const             0x905a        0x7a8 build/default/production/touchScreenSerivce.o
- .const             0x9802        0x6b8 build/default/production/_ext/1927342817/TFT_LCD.o
- .const             0x9eba        0x6a2 build/default/production/main.o
- .const             0xa55c        0x600 build/default/production/_ext/1927342817/TFT_DISPLAY.o
- .const             0xab5c         0x7e build/default/production/_ext/1820936309/framework.o
+ .const             0x905a        0x7a8 build/default/debug/touchScreenSerivce.o
+ .const             0x9802        0x6b8 build/default/debug/_ext/1927342817/TFT_LCD.o
+ .const             0x9eba        0x6a2 build/default/debug/main.o
+ .const             0xa55c        0x600 build/default/debug/_ext/1927342817/TFT_DISPLAY.o
+ .const             0xab5c         0x7e build/default/debug/_ext/1820936309/framework.o
                     0xabc2                  _ServiceList
                     0xabc2                  _EventCheckList
 
-.text             0x002bda       0x2960
- .text            0x002bda        0x7ca build/default/production/_ext/1927342817/TFT_LCD.o
+.text             0x002bda       0x298a
+ .text            0x002bda        0x7f4 build/default/debug/_ext/1927342817/TFT_LCD.o
                   0x002bda                  _TFT_LCD_INIT
-                  0x002c5a                  _TFT_LCD_ORIENTATION
-                  0x002cd8                  _TFT_LCD_drawRect
-                  0x002d1a                  _TFT_LCD_fillBackground
-                  0x002d38                  _TFT_LCD_writeVariableString
-                  0x002d9a                  _TFT_LCD_writeString
-                  0x002e5e                  _TFT_LCD_goToSleep
-                  0x00317a                  __SPI1Interrupt
-                  0x0031f2                  _SPIisReady
-                  0x003204                  _TFT_LCD_height
-                  0x00320c                  _TFT_LCD_width
- .text            0x0033a4        0x6bc build/default/production/_ext/356824117/bolt_init.o
-                  0x0033a4                  _Micro_Init
-                  0x0033b0                  _clockInit
-                  0x003678                  _clockFreq
-                  0x003682                  _T1_Interrupt_Init
-                  0x003770                  _T1_Interrupt_Disable
-                  0x00377a                  _T2_Interrupt_Init
-                  0x003868                  _T2_Interrupt_Disable
-                  0x003872                  _T3_Interrupt_Init
-                  0x00395e                  _T3_Interrupt_Disable
-                  0x003968                  _T4_Interrupt_Init
-                  0x003a56                  _T4_Interrupt_Disable
- .text            0x003a60        0x696 build/default/production/touchScreenSerivce.o
-                  0x003a60                  _touchScreenService
-                  0x003b3e                  _init
-                  0x003ba2                  _welcomeState
-                  0x003c3a                  _lockedState
-                  0x003d8e                  _homeState
-                  0x003e68                  _runningState
-                  0x003f3c                  _batteryState
-                  0x003fe4                  _statisticState
-                  0x00405c                  _passwordHandler
-                  0x0040f0                  _clearPassword
- .text            0x0040f6        0x3fa build/default/production/_ext/1820936309/framework.o
-                  0x0040f6                  _Post
-                  0x00411a                  _Init
-                  0x00415c                  _Run
-                  0x0041d8                  _CheckForEvents
-                  0x004216                  _EnQueue
-                  0x00426c                  _DeQueue
-                  0x0042de                  _timerHasTicked
-                  0x00431e                  _checkTimers
-                  0x0043c4                  _Timer_Init
-                  0x004408                  _FreeRunningTimerReset
-                  0x004412                  _FreeRunningTimer
-                  0x00441c                  _SW_Timer_Set
-                  0x004470                  _SW_Timer_Stop
-                  0x004486                  _SW_Timer_Resume
-                  0x00449c                  __T5Interrupt
- .text            0x0044f0        0x3c8 build/default/production/_ext/356824117/bolt_uart.o
-                  0x0044f0                  _Uart1Init
-                  0x0046a8                  _Uart1Write
-                  0x0046e8                  _Uart1Read
-                  0x004778                  _Uart1RXdataReady
-                  0x004792                  _Uart1TXbusy
-                  0x00479a                  __U1TXInterrupt
-                  0x0047ee                  __U1RXInterrupt
-                  0x004856                  _enQ
-                  0x00487e                  _deQ
- .text            0x0048b8        0x38e build/default/production/_ext/356824117/bolt_pins.o
-                  0x0048b8                  _IO_setPinDir
-                  0x00492e                  _IO_setPortDir
-                  0x004970                  _IO_pinWrite
-                  0x0049e6                  _IO_portWrite
-                  0x004a28                  _IO_pinToggle
-                  0x004ab0                  _IO_pinRead
-                  0x004aec                  _IO_pinPullUpRes
-                  0x004b5c                  _IO_pinPullDownRes
-                  0x004bd8                  _IO_pinInterrupt
-                  0x004c20                  __CNInterrupt
- .text            0x004c46        0x2ea build/default/production/_ext/1927342817/TFT_DISPLAY.o
-                  0x004c46                  _TFT_DISPLAY_place_button
-                  0x004d36                  _TFT_DISPLAY_button_handler
-                  0x004e7c                  _TFT_DISPLAY_destroy_buttons
-                  0x004e84                  _checkRange
-                  0x004ebc                  _animatePress
- .text            0x004f30        0x27a build/default/production/_ext/356824117/bolt_ADC.o
-                  0x004f30                  _ADC_Init
-                  0x004f70                  _ADC_SetPin
-                  0x005004                  _ADC_RemovePin
-                  0x00509a                  _ADC_GetValue
- .text            0x0051aa        0x250 build/default/production/_ext/1927342817/TFT_TOUCH.o
-                  0x0051aa                  _TFT_TOUCH_INIT
-                  0x0051d8                  _TFT_TOUCH_run
-                  0x0052be                  _TFT_TOUCH_draw
-                  0x0052e6                  _TFT_TOUCH_get_data
-                  0x0052f6                  _TFT_TOUCH_get_x_pos
-                  0x005306                  _TFT_TOUCH_get_y_pos
-                  0x005316                  _setXpins
-                  0x005348                  _setYpins
-                  0x00537a                  _inRange
-                  0x0053be                  _map
- .text            0x0053fa        0x140 build/default/production/_ext/1927342817/TFT_LCD_Q.o
-                  0x0053fa                  _addToQueue
-                  0x005466                  _deleteFromQueue
-                  0x0054d0                  _peekAtQueue
-                  0x0054fe                  _checkQueueFull
-                  0x005526                  _checkQueueEmpty
+                  0x002c5c                  _TFT_LCD_ORIENTATION
+                  0x002cda                  _TFT_LCD_drawRect
+                  0x002d1c                  _TFT_LCD_fillBackground
+                  0x002d3a                  _TFT_LCD_writeVariableString
+                  0x002d9c                  _TFT_LCD_writeString
+                  0x002e60                  _TFT_LCD_goToSleep
+                  0x0031a4                  __SPI1Interrupt
+                  0x00321c                  _SPIisReady
+                  0x00322e                  _TFT_LCD_height
+                  0x003236                  _TFT_LCD_width
+ .text            0x0033ce        0x6bc build/default/debug/_ext/356824117/bolt_init.o
+                  0x0033ce                  _Micro_Init
+                  0x0033da                  _clockInit
+                  0x0036a2                  _clockFreq
+                  0x0036ac                  _T1_Interrupt_Init
+                  0x00379a                  _T1_Interrupt_Disable
+                  0x0037a4                  _T2_Interrupt_Init
+                  0x003892                  _T2_Interrupt_Disable
+                  0x00389c                  _T3_Interrupt_Init
+                  0x003988                  _T3_Interrupt_Disable
+                  0x003992                  _T4_Interrupt_Init
+                  0x003a80                  _T4_Interrupt_Disable
+ .text            0x003a8a        0x696 build/default/debug/touchScreenSerivce.o
+                  0x003a8a                  _touchScreenService
+                  0x003b68                  _init
+                  0x003bcc                  _welcomeState
+                  0x003c64                  _lockedState
+                  0x003db8                  _homeState
+                  0x003e92                  _runningState
+                  0x003f66                  _batteryState
+                  0x00400e                  _statisticState
+                  0x004086                  _passwordHandler
+                  0x00411a                  _clearPassword
+ .text            0x004120        0x3fa build/default/debug/_ext/1820936309/framework.o
+                  0x004120                  _Post
+                  0x004144                  _Init
+                  0x004186                  _Run
+                  0x004202                  _CheckForEvents
+                  0x004240                  _EnQueue
+                  0x004296                  _DeQueue
+                  0x004308                  _timerHasTicked
+                  0x004348                  _checkTimers
+                  0x0043ee                  _Timer_Init
+                  0x004432                  _FreeRunningTimerReset
+                  0x00443c                  _FreeRunningTimer
+                  0x004446                  _SW_Timer_Set
+                  0x00449a                  _SW_Timer_Stop
+                  0x0044b0                  _SW_Timer_Resume
+                  0x0044c6                  __T5Interrupt
+ .text            0x00451a        0x3c8 build/default/debug/_ext/356824117/bolt_uart.o
+                  0x00451a                  _Uart1Init
+                  0x0046d2                  _Uart1Write
+                  0x004712                  _Uart1Read
+                  0x0047a2                  _Uart1RXdataReady
+                  0x0047bc                  _Uart1TXbusy
+                  0x0047c4                  __U1TXInterrupt
+                  0x004818                  __U1RXInterrupt
+                  0x004880                  _enQ
+                  0x0048a8                  _deQ
+ .text            0x0048e2        0x38e build/default/debug/_ext/356824117/bolt_pins.o
+                  0x0048e2                  _IO_setPinDir
+                  0x004958                  _IO_setPortDir
+                  0x00499a                  _IO_pinWrite
+                  0x004a10                  _IO_portWrite
+                  0x004a52                  _IO_pinToggle
+                  0x004ada                  _IO_pinRead
+                  0x004b16                  _IO_pinPullUpRes
+                  0x004b86                  _IO_pinPullDownRes
+                  0x004c02                  _IO_pinInterrupt
+                  0x004c4a                  __CNInterrupt
+ .text            0x004c70        0x2ea build/default/debug/_ext/1927342817/TFT_DISPLAY.o
+                  0x004c70                  _TFT_DISPLAY_place_button
+                  0x004d60                  _TFT_DISPLAY_button_handler
+                  0x004ea6                  _TFT_DISPLAY_destroy_buttons
+                  0x004eae                  _checkRange
+                  0x004ee6                  _animatePress
+ .text            0x004f5a        0x27a build/default/debug/_ext/356824117/bolt_ADC.o
+                  0x004f5a                  _ADC_Init
+                  0x004f9a                  _ADC_SetPin
+                  0x00502e                  _ADC_RemovePin
+                  0x0050c4                  _ADC_GetValue
+ .text            0x0051d4        0x250 build/default/debug/_ext/1927342817/TFT_TOUCH.o
+                  0x0051d4                  _TFT_TOUCH_INIT
+                  0x005202                  _TFT_TOUCH_run
+                  0x0052e8                  _TFT_TOUCH_draw
+                  0x005310                  _TFT_TOUCH_get_data
+                  0x005320                  _TFT_TOUCH_get_x_pos
+                  0x005330                  _TFT_TOUCH_get_y_pos
+                  0x005340                  _setXpins
+                  0x005372                  _setYpins
+                  0x0053a4                  _inRange
+                  0x0053e8                  _map
+ .text            0x005424        0x140 build/default/debug/_ext/1927342817/TFT_LCD_Q.o
+                  0x005424                  _addToQueue
+                  0x005490                  _deleteFromQueue
+                  0x0054fa                  _peekAtQueue
+                  0x005528                  _checkQueueFull
+                  0x005550                  _checkQueueEmpty
 
-.dinit            0x00553a         0xcc
- .dinit           0x00553a         0xcc data_init
+.dinit            0x005564         0xcc
+ .dinit           0x005564         0xcc data_init
 
-.text             0x005606         0x28
- .text            0x005606         0x28 build/default/production/main.o
-                  0x005606                  _main
+.text             0x005630         0x28
+ .text            0x005630         0x28 build/default/debug/main.o
+                  0x005630                  _main
 
-.shared.dinit     0x00562e          0x2
- .shared.dinit    0x00562e          0x2 shared_data_init
+.shared.dinit     0x005658          0x2
+ .shared.dinit    0x005658          0x2 shared_data_init

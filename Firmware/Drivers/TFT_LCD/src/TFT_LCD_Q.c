@@ -30,7 +30,11 @@ typedef struct _lcdQueue {
     uint16_t Tail;
 } lcdQueue;
 
-static lcdQueue thisQueue;
+static lcdQueue thisQueue = {
+    .thisData = {},
+    .Head = 0,
+    .Tail = 0,
+};
 
 /*This function will add to the current Queue whatever is incoming and put it
  into the Queue array.*/
