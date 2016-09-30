@@ -40,7 +40,7 @@ static const char* numbers[10];
 int main(void) {
 
     Micro_Init();
-    clockInit(FREQ_80MHZ, INTERNAL);
+    clockInit(FREQ_120MHZ, EXTERNAL);
     TFT_LCD_INIT(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
     TFT_TOUCH_INIT(IO_PIN_RA0, IO_PIN_RB2, IO_PIN_RA1, IO_PIN_RB3, AN5, AN4);
     Uart1Init(RP36_TX, RP20_UART_RX, BAUD115200);
@@ -67,17 +67,18 @@ int main(void) {
     TFT_LCD_fillBackground(TFT_LCD_RED);
     TFT_LCD_drawRect(4, 4, TFT_LCD_width() - 4, TFT_LCD_height() - 4, TFT_LCD_BLACK);
     TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+    TFT_LCD_drawRect(100, 100, 200,200, TFT_LCD_BLACK);
 
-    TFT_LCD_writeString(helloString, TFT_LCD_CENTER, 100, TFT_LCD_MAGENTA, TFT_LCD_CYAN, 3);
-    TFT_LCD_writeString(intruction, TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_CYAN, 1);
-    TFT_LCD_writeString(numbers[0], 100, 150, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-    sprintf(myScreenBuffer, "number is: %d", 27);
-    TFT_LCD_writeVariableString(myScreenBuffer, 100, 175, TFT_LCD_RED, TFT_LCD_CYAN, 3);
-
-    TFT_DISPLAY_place_button("START", 1, 4, TFT_LCD_GREEN, 1);
-    TFT_DISPLAY_place_button("STOP", 2, 4, TFT_LCD_MAGENTA, 3);
-    TFT_DISPLAY_place_button("SUCK", 3, 4, TFT_LCD_YELLOW, 2);
-    TFT_DISPLAY_place_button("DICK", 4, 3, TFT_LCD_WHITE, 2);
+        TFT_LCD_writeString(helloString, 100, 100, TFT_LCD_MAGENTA, TFT_LCD_CYAN, 3);
+    //    TFT_LCD_writeString(intruction, TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_CYAN, 1);
+    //    TFT_LCD_writeString(numbers[0], 100, 150, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+    //    sprintf(myScreenBuffer, "number is: %d", 27);
+    //    TFT_LCD_writeVariableString(myScreenBuffer, 100, 175, TFT_LCD_RED, TFT_LCD_CYAN, 3);
+    //
+    //    TFT_DISPLAY_place_button("START", 1, 4, TFT_LCD_GREEN, 1);
+    //    TFT_DISPLAY_place_button("STOP", 2, 4, TFT_LCD_MAGENTA, 3);
+    //    TFT_DISPLAY_place_button("SUCK", 3, 4, TFT_LCD_YELLOW, 2);
+    //    TFT_DISPLAY_place_button("DICK", 4, 3, TFT_LCD_WHITE, 2);
 
 
 
@@ -92,7 +93,7 @@ int main(void) {
             flag = 0;
 
             if (TFT_TOUCH_run() == TOUCHING) {
-                TFT_TOUCH_draw(TFT_LCD_GREEN);
+                //TFT_TOUCH_draw(TFT_LCD_GREEN);
             }
 
             if (myScreenPosition.yPos > 450) {

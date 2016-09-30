@@ -14,8 +14,25 @@
 #include "ASCII_5X7.h"
 #include "bolt_uart.h"
 
+#define MAX_XFER_SIZE 64
+
 #define TRUE 1
 #define FALSE 0
+
+#define setXferWidth_8bit() SPI1STATbits.SPIEN = 0; /*Disable SPI mo*/\
+                            SPI1CON1bits.MODE16 = 0; /*8 bit mode*/\
+                            SPI1STATbits.SPIEN = 1\
+                            
+#define setXferWidth_16bit() SPI1STATbits.SPIEN = 0; /*Disable SPI mo*/\
+                            SPI1CON1bits.MODE16 = 1; /*16 bit mode*/\
+                            SPI1STATbits.SPIEN = 1\
+                            
+#define setXferCount(x) (DMA2CNT = x-1)
+#define setXferConstant() (DMA2CONbits.AMODE = 0)
+#define setXferBlock() (DMA2CONbits.AMODE = 1)
+#define startXfer() DMA2CONbits.CHEN = 1;\
+                    DMA2REQbits.FORCE = 1\
+
 
 /*Screen orientation*/
 static struct {
@@ -34,6 +51,9 @@ static struct {
     uint8_t head;
 } stringBuffer;
 
+//Set up DMA Channel 0 to Transmit in Continuous Ping-Pong Mode:
+uint16_t TxBufferA[MAX_XFER_SIZE] __attribute__((aligned(MAX_XFER_SIZE)));
+
 /*Character Conversion variables*/
 static uint8_t charPtr = 0;
 static uint8_t rowPtr = 0;
@@ -49,19 +69,19 @@ static uint8_t RSTPIN;
 static uint8_t SPIbusy = FALSE;
 
 /*Initialization Data*/
-static const uint8_t swreset_cmd = HX8357_SWRESET;
-static const uint8_t setc_cmd = HX8357D_SETC;
-static const uint16_t setc_data[] = {0xFF, 0x83, 0x57};
-static const uint8_t setrgb_cmd = HX8357_SETRGB;
-static const uint16_t setrgb_data[] = {0x80, 0x00, 0x06, 0x06};
-static const uint8_t setcom_cmd = HX8357D_SETCOM;
-static const uint16_t setcom_data[] = {0x25}; // -1.52V
-static const uint8_t setosc_cmd = HX8357_SETOSC;
-static const uint16_t setosc_data[] = {0x68}; // Normal mode 70Hz, Idle mode 55 Hz
-static const uint8_t setpanel_cmd = HX8357_SETPANEL; //Set Panel
-static const uint16_t setpanel_data[] = {0x05}; // BGR, Gate direction swapped
-static const uint8_t setpwr1_cmd = HX8357_SETPWR1;
-static const uint16_t setpwr1_data[] = {
+static uint16_t swreset_cmd = HX8357_SWRESET;
+static uint16_t setc_cmd = HX8357D_SETC;
+static uint16_t setc_data[] = {0xFF, 0x83, 0x57};
+static uint16_t setrgb_cmd = HX8357_SETRGB;
+static uint16_t setrgb_data[] = {0x80, 0x00, 0x06, 0x06};
+static uint16_t setcom_cmd = HX8357D_SETCOM;
+static uint16_t setcom_data[] = {0x25}; // -1.52V
+static uint16_t setosc_cmd = HX8357_SETOSC;
+static uint16_t setosc_data[] = {0x68}; // Normal mode 70Hz, Idle mode 55 Hz
+static uint16_t setpanel_cmd = HX8357_SETPANEL; //Set Panel
+static uint16_t setpanel_data[] = {0x05}; // BGR, Gate direction swapped
+static uint16_t setpwr1_cmd = HX8357_SETPWR1;
+static uint16_t setpwr1_data[] = {
     0x00, // Not deep standby
     0x15, //BT
     0x1C, //VSPR
@@ -69,8 +89,8 @@ static const uint16_t setpwr1_data[] = {
     0x83, //AP
     0xAA
 }; //FS
-static const uint8_t setstba_cmd = HX8357D_SETSTBA;
-static const uint16_t setstba_data[] = {
+static uint16_t setstba_cmd = HX8357D_SETSTBA;
+static uint16_t setstba_data[] = {
     0x50, //OPON normal
     0x50, //OPON idle
     0x01, //STBA
@@ -78,8 +98,8 @@ static const uint16_t setstba_data[] = {
     0x1E, //STBA
     0x08
 }; //GEN
-static const uint8_t setcyc_cmd = HX8357D_SETCYC;
-static const uint16_t setcyc_data[] = {
+static uint16_t setcyc_cmd = HX8357D_SETCYC;
+static uint16_t setcyc_data[] = {
     0x02, //NW 0x02
     0x40, //RTN
     0x00, //DIV
@@ -88,8 +108,8 @@ static const uint16_t setcyc_data[] = {
     0x0D, //GDON
     0x78
 }; //GDOFF
-static const uint8_t setgamma_cmd = HX8357D_SETGAMMA;
-static const uint16_t setgamma_data[] = {
+static uint16_t setgamma_cmd = HX8357D_SETGAMMA;
+static uint16_t setgamma_data[] = {
     0x02,
     0x0A,
     0x11,
@@ -125,26 +145,26 @@ static const uint16_t setgamma_data[] = {
     0x00,
     0x01
 };
-static const uint8_t colmod_cmd = HX8357_COLMOD;
-static const uint16_t colmod_data[] = {0x55}; // 16 bit 
-static const uint8_t madctl_cmd = HX8357_MADCTL;
+static uint16_t colmod_cmd = HX8357_COLMOD;
+static uint16_t colmod_data[] = {0x55}; // 16 bit 
+static uint16_t madctl_cmd = HX8357_MADCTL;
 static uint16_t madctl_data[] = {MADCTL_MV | MADCTL_MX | MADCTL_RGB}; //{MADCTL_MX | MADCTL_MV | MADCTL_RGB}//{0xC0};
-static const uint8_t teon_cmd = HX8357_TEON; // TE off
-static const uint16_t teon_data[] = {0x00};
-static const uint8_t tearline_cmd = HX8357_TEARLINE; // tear line
-static const uint16_t tearline_data[] = {0x00, 0x02};
-static const uint8_t slpout_cmd = HX8357_SLPOUT; //Exit Sleep
-static const uint8_t slpin_cmd = HX8357_SLPIN; //Enter Sleep
-static const uint8_t dispon_cmd = HX8357_DISPON; // display on
-static const uint8_t caset_cmd = HX8357_CASET; // Column addr set
-static const uint16_t caset_data[] = {0x00, 0x00, 0x01, 0x3F};
-static const uint8_t paset_cmd = HX8357_PASET;
-static const uint16_t paset_data[] = {0x00, 0x00, 0x01, 0xDF};
-static const uint8_t rawr_cmd = HX8357_RAMWR; // write to RAM
+static uint16_t teon_cmd = HX8357_TEON; // TE off
+static uint16_t teon_data[] = {0x00};
+static uint16_t tearline_cmd = HX8357_TEARLINE; // tear line
+static uint16_t tearline_data[] = {0x00, 0x02};
+static uint16_t slpout_cmd = HX8357_SLPOUT; //Exit Sleep
+static uint16_t slpin_cmd = HX8357_SLPIN; //Enter Sleep
+static uint16_t dispon_cmd = HX8357_DISPON; // display on
+static uint16_t caset_cmd = HX8357_CASET; // Column addr set
+static uint16_t caset_data[] = {0x00, 0x00, 0x01, 0x3F};
+static uint16_t paset_cmd = HX8357_PASET;
+static uint16_t paset_data[] = {0x00, 0x00, 0x01, 0xDF};
+static uint16_t rawr_cmd = HX8357_RAMWR; // write to RAM
 
 
-static void writecommand(const uint8_t *commandString);
-static void writedata(const uint16_t *dataString, uint32_t stringLength);
+static void writecommand(uint16_t *commandString);
+static void writedata(uint16_t *dataString, uint32_t stringLength);
 static void writeconst(uint16_t dataString, uint32_t stringLength);
 static void Write();
 static inline void spiWrite8(uint8_t input);
@@ -158,22 +178,57 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     CEPIN = CE;
     DCPIN = DC;
 
-    //uint16_t delay = 0;
+    DMA2CONbits.SIZE = 0; //word
+    DMA2CONbits.DIR = 1; //transfer from RAM to peripheral
+    DMA2CONbits.HALF = 0; //Interrupt after data moved
+    DMA2CONbits.NULLW = 0; //Normal operation
+    DMA2CONbits.AMODE = 0; //indirect address mode with post increment
+    DMA2CONbits.MODE = 1; //One-Shot
 
-    IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
-    IEC0bits.SPI1IE = 0; // Disable the interrupt
+    DMA2STAL = (uint16_t) & TxBufferA;
+    DMA2STAH = 0x0000;
+    DMA2PAD = (volatile uint16_t) & SPI1BUF;
+    DMA2CNT = MAX_XFER_SIZE - 1;
+    DMA2REQ = 0x000A;
 
+    IFS1bits.DMA2IF = 0;
+    IEC1bits.DMA2IE = 1;
+
+    DMA2CONbits.CHEN = 1;
+
+
+    uint16_t dummyRead __attribute__((aligned(1)));
+
+    DMA3CONbits.SIZE = 0; //word
+    DMA3CONbits.DIR = 0; //transfer from peripheral to RAM
+    DMA3CONbits.HALF = 1; //Interupt after data moved
+    DMA3CONbits.NULLW = 0; //Normal operation
+    DMA3CONbits.AMODE = 1; //indirect address mode without post increment
+    DMA3CONbits.MODE = 0; //continuous mode
+
+    DMA3STAL = (uint16_t) & dummyRead;
+    DMA3STAH = 0x0000;
+    DMA3PAD = (volatile unsigned int) &SPI1BUF;
+    DMA3CNT = 0xFFFF;
+    DMA3REQ = 0x000A;
+
+
+    DMA3CONbits.CHEN = 1;
+
+
+
+
+    // SPI1CON1 Register Settings
     SPI1CON1bits.DISSCK = 0; // Internal serial clock is enabled
     SPI1CON1bits.DISSDO = 0; // SDOx pin is controlled by the module
-    SPI1CON1bits.MODE16 = 0; // Communication is word-wide (8 bits)
+    SPI1CON1bits.MODE16 = 1; // Communication is word-wide (16 bits)
     SPI1CON1bits.MSTEN = 1; // Master mode enabled
     SPI1CON1bits.SMP = 0; // Input data is sampled at the middle of data output time
     SPI1CON1bits.CKE = 1; // Serial output data changes on transition from
     // active clock state to idle clock state
     SPI1CON1bits.CKP = 0; // Idle state for clock is a low level;
-
-    SPI1CON2bits.SPIBEN = 1; /*Enable FIFO transmit buffer*/
-    SPI1STATbits.SISEL = 0b100; /*interrupt on last bit out*/
+    //SPI1CON2bits.SPIBEN = 1; /*Enable FIFO transmit buffer*/
+    //SPI1STATbits.SISEL = 0b100; /*interrupt on last byte out*/
 
     /*11 = Primary prescale 1:1
       10 = Primary prescale 4:1
@@ -189,12 +244,14 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
       010 = Secondary prescale 6:1
       001 = Secondary prescale 7:1
       000 = Secondary prescale 8:1*/
-    SPI1CON1bits.SPRE = 0b110;
+    SPI1CON1bits.SPRE = 0b101;
 
 
     IPC2bits.SPI1EIP = 3; //priority 5
 
     SPI1STATbits.SPIEN = 1; // Enable SPI module
+    IFS0bits.SPI1IF = 0;
+    //IEC0bits.SPI1IE = 1; // Enable the interrupt
 
     IO_setPinDir(RSTPIN, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
     IO_setPinDir(CEPIN, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
@@ -269,7 +326,6 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
     }
 
     setCanvas(x, y, (x + size * (length * ASCII_FONT_WIDTH)), (y + size * ASCII_FONT_HEIGHT));
-    //setCanvas(x, y, (x + (length * ASCII_FONT_WIDTH)), (y + ASCII_FONT_HEIGHT));
 
     lcdData newItem;
     newItem.Length = length;
@@ -280,7 +336,7 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
     /*Enter thread-Critical area*/
-    IEC0bits.SPI1IE = 0; // Disable the interrupt
+    IEC1bits.DMA2IE = 0; /* Disable the interrupt*/
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
@@ -288,7 +344,7 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
         IO_pinWrite(CEPIN, LOW);
         Write(); /*Writes from the Queue*/
     }
-    IEC0bits.SPI1IE = 1; // Enable the interrupt
+    IEC1bits.DMA2IE = 1; /* Enable the interrupt*/
 }
 
 void TFT_LCD_goToSleep() {
@@ -298,7 +354,7 @@ void TFT_LCD_goToSleep() {
 /*This function will write a command to the LCD screen ie. DC value is 0*/
 
 /*First param is the command data, and the second param is the length of that data*/
-void writecommand(const uint8_t* commandString) {
+void writecommand(uint16_t* commandString) {
 
     lcdData cmdItem = {};
     cmdItem.Length = 1;
@@ -307,7 +363,7 @@ void writecommand(const uint8_t* commandString) {
     addToQueue(cmdItem); /*Adds what came in into Queue DC low*/
 
     /*Enter Critical Thread*/
-    IEC0bits.SPI1IE = 0; /* Disable the interrupt*/
+    IEC1bits.DMA2IE = 0; /* Disable the interrupt*/
     if (SPIbusy == FALSE) {/*if SPI is idle*/
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
@@ -317,14 +373,14 @@ void writecommand(const uint8_t* commandString) {
     } else {
         ; /*Do nothing*/
     }
-    IEC0bits.SPI1IE = 1; /* Enable the interrupt */
+    IEC1bits.DMA2IE = 1; /* Enable the interrupt */
 
 }
 
 /*This function will write data to the LCD screen ie. DC value is 1*/
 
 /*First param is the actual data, second is the length of that data*/
-void writedata(const uint16_t *dataString, uint32_t stringLength) {
+void writedata(uint16_t *dataString, uint32_t stringLength) {
 
     lcdData newItem;
     newItem.Length = stringLength;
@@ -333,7 +389,7 @@ void writedata(const uint16_t *dataString, uint32_t stringLength) {
 
     addToQueue(newItem); /*Adds what came in into Queue DC high*/
     /*Enter thread-Critical area*/
-    IEC0bits.SPI1IE = 0; // Disable the interrupt
+    IEC1bits.DMA2IE = 0; // Disable the interrupt
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
@@ -343,19 +399,24 @@ void writedata(const uint16_t *dataString, uint32_t stringLength) {
     } else {
         ; /*Do nothing*/
     }
-    IEC0bits.SPI1IE = 1; // Enable the interrupt
+    IEC1bits.DMA2IE = 1; // Enable the interrupt
 }
 
 void writeconst(uint16_t dataString, uint32_t stringLength) {
     lcdData newItem;
-    newItem.Length = stringLength;
+    //stringLength *= 4;
     newItem.Data = (uint16_t*) dataString;
     newItem.Command = CONST;
     newItem.color = dataString;
-
-    addToQueue(newItem); /*Adds what came in into Queue DC high*/
+    while (stringLength > 0x00003FFF) {
+        newItem.Length = 0x3FFF;
+        addToQueue(newItem); /*Adds what came in into Queue DC high*/
+        stringLength -= 0x00003FFF;
+    }
+    newItem.Length = stringLength;
+    addToQueue(newItem);
     /*Enter thread-Critical area*/
-    IEC0bits.SPI1IE = 0; // Disable the interrupt
+    IEC1bits.DMA2IE = 0; // Disable the interrupt
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
         /*CE Pin is low during transmission*/
@@ -365,70 +426,65 @@ void writeconst(uint16_t dataString, uint32_t stringLength) {
     } else {
         ; /*Do nothing*/
     }
-    IEC0bits.SPI1IE = 1; // Enable the interrupt
+    IEC1bits.DMA2IE = 1; // Enable the interrupt
 }
 
 void Write() {
-
+    uint16_t *ptr = TxBufferA;
+    uint16_t counter = 0;
     switch (thisItem.Command) {
         case DATA:
             /*DC pin high or low*/
             IO_pinWrite(DCPIN, HIGH);
-            SPI1STATbits.SPIEN = 0; // DIsable SPI mo
-            SPI1CON1bits.MODE16 = 0; /*8 bit mode*/
-            //SPI1STATbits.SISEL = 0b101; /*interrupt on last bit out*/
-            SPI1STATbits.SPIEN = 1; // Enable SPI mo
+            setXferWidth_8bit();
             /*Write byte to SPI module*/
-            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-                spiWrite8((uint8_t) (thisItem.Data[dataIndex++]));
+            while (dataIndex < thisItem.Length) {
+                *ptr++ = thisItem.Data[dataIndex++];
             }
+            setXferCount(thisItem.Length);
+            setXferBlock();
+            startXfer();
             break;
         case COMMAND:
             IO_pinWrite(DCPIN, LOW);
-            SPI1STATbits.SPIEN = 0; // Disable SPI mo
-            SPI1CON1bits.MODE16 = 0; /*8 bit mode*/
-            //SPI1STATbits.SISEL = 0b101; /*interrupt on last bit out*/
-            SPI1STATbits.SPIEN = 1; // Enable SPI mo
+            setXferWidth_8bit();
             /*Write byte to SPI module*/
-            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-                uint8_t* temp = (uint8_t*) thisItem.Data;
-                dataIndex++;
-                spiWrite8(*temp);
+            /*Write byte to SPI module*/
+            while (dataIndex < thisItem.Length) {
+                *ptr++ = thisItem.Data[dataIndex++];
             }
+            setXferCount(thisItem.Length);
+            setXferBlock();
+            startXfer();
             break;
         case CONST:
             IO_pinWrite(DCPIN, HIGH);
-            SPI1STATbits.SPIEN = 0; // Disable SPI mo
-            SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
-            //SPI1STATbits.SISEL = 0b110; /*interrupt on last byte out*/
-            SPI1STATbits.SPIEN = 1; // Enable SPI mo
+            setXferWidth_16bit();
             /*Write byte to SPI module*/
-            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
-                dataIndex++;
-                spiWrite16(thisItem.color);
-            }
+            *ptr++ = thisItem.color;
+            dataIndex = thisItem.Length;
+            setXferCount(thisItem.Length);
+            setXferBlock();
+            startXfer();
             break;
         case STRING:
             IO_pinWrite(DCPIN, HIGH);
-            SPI1STATbits.SPIEN = 0; // Disable SPI mo
-            SPI1CON1bits.MODE16 = 1; /*16 bit mode*/
-            //SPI1STATbits.SISEL = 0b110; /*interrupt on last byte out*/
-            SPI1STATbits.SPIEN = 1; // Enable SPI mo
+            setXferWidth_16bit();
             /*Write byte to SPI module*/
             uint8_t* thisString = (uint8_t*) thisItem.Data;
-            while ((SPI1STATbits.SPITBF == 0) && (dataIndex < thisItem.Length)) {
+            
+            while ((counter++<MAX_XFER_SIZE) && (dataIndex < thisItem.Length)) {
                 /*when we reach the last row, increament to data index so
                 we can leave this function when string is done.*/
                 if (rowPtr == ASCII_FONT_HEIGHT) {
                     dataIndex++;
                 }
-
                 /*Write A pixel from a row of pixels within a specific character*/
                 if (font[thisString[charPtr] * ASCII_FONT_WIDTH + colPtr]&(1 << rowPtr)) {
-                    spiWrite16(TFT_LCD_BLACK);
+                    *ptr++ = TFT_LCD_BLACK;
                     //spiWrite16(TFT_LCD_BLACK);
                 } else {
-                    spiWrite16(thisItem.color);
+                    *ptr++ = thisItem.color;
                     //spiWrite16(thisItem.color);
                 }
 
@@ -459,6 +515,9 @@ void Write() {
                 fontRowCtr = 0;
                 fontColCtr = 0;
             }
+            setXferCount(counter);
+            setXferBlock();
+            startXfer();
             break;
 
         default:
@@ -484,6 +543,25 @@ void __attribute__((__interrupt__, __shadow__, __auto_psv__)) _SPI1Interrupt(voi
     IFS0bits.SPI1IF = 0; /* Clear the Interrupt flag*/
     Uart1Write("s");
     /*if there is still data in the current item*/
+    if (dataIndex < thisItem.Length) {
+        Write();
+    } else {
+        dataIndex = 0;
+        if (!checkQueueEmpty()) {/*There are more items in the Queue*/
+            thisItem = deleteFromQueue();
+            Write();
+        } else { /*Transmission is over for now*/
+            /*CE Pin is high after transmission*/
+            IO_pinWrite(CEPIN, HIGH);
+            /*Status bit that the screen isnt writing anything anymore*/
+            SPIbusy = FALSE;
+            /*Do Nothing*/
+        }
+    }
+}
+
+void __attribute__((__interrupt__, auto_psv)) _DMA2Interrupt(void) {
+    IFS1bits.DMA2IF = 0; // Clear the DMA0 Interrupt flag
     if (dataIndex < thisItem.Length) {
         Write();
     } else {
@@ -532,14 +610,14 @@ static void tftBootUpSequence(void) {
     IO_pinWrite(RSTPIN, 1); /*Sets reset low*/
 
     writecommand(&swreset_cmd);
-    while (counter++ != 100000) {
+    while (counter++ != 500000) {
         ;
     }
     counter = 0;
     // setextc
     writecommand(&setc_cmd);
     writedata(setc_data, 3);
-    while (counter++ != 100000) {
+    while (counter++ != 500000) {
         ;
     }
     counter = 0;

@@ -16,7 +16,7 @@
 
 static uint16_t i = 0;
 
-#define MAX_XFER_SIZE 64
+#define MAX_XFER_SIZE 2
 
 /*
  * 
@@ -33,7 +33,7 @@ int main(void) {
     //Set up DMA Channel 0 to Transmit in Continuous Ping-Pong Mode:
     uint16_t TxBufferA[MAX_XFER_SIZE] __attribute__((aligned(MAX_XFER_SIZE)));
     for (i = 0; i < MAX_XFER_SIZE; i++) {
-        TxBufferA[i] = i;
+        TxBufferA[i] = i+32;
     }
 
 
@@ -41,13 +41,13 @@ int main(void) {
     DMA2CONbits.DIR = 1; //transfer from RAM to peripheral
     DMA2CONbits.HALF = 0; //Interrupt after data moved
     DMA2CONbits.NULLW = 0; //Normal operation
-    DMA2CONbits.AMODE = 0; //indirect address mode with post increment
-    DMA2CONbits.MODE = 0; //One-Shot
+    DMA2CONbits.AMODE = 1; //indirect address mode with post increment
+    DMA2CONbits.MODE = 1; //One-Shot
 
-    DMA2STAL = (uint16_t)&TxBufferA;
+    DMA2STAL = (uint16_t) & TxBufferA;
     DMA2STAH = 0x0000;
-    DMA2PAD = (volatile uint16_t) &SPI1BUF;
-    DMA2CNT = MAX_XFER_SIZE-1;
+    DMA2PAD = (volatile uint16_t) & SPI1BUF;
+    DMA2CNT = 0xFFFF;
     DMA2REQ = 0x000A;
 
     IFS1bits.DMA2IF = 0;
@@ -65,7 +65,7 @@ int main(void) {
     DMA3CONbits.AMODE = 1; //indirect address mode without post increment
     DMA3CONbits.MODE = 0; //continuous mode
 
-    DMA3STAL = (uint16_t)&dummyRead;
+    DMA3STAL = (uint16_t) & dummyRead;
     DMA3STAH = 0x0000;
     DMA3PAD = (volatile unsigned int) &SPI1BUF;
     DMA3CNT = 0xFFFF;
@@ -118,6 +118,11 @@ int main(void) {
     //while (DMA2REQbits.FORCE == 1);
     i = 0;
 
+    for (i = 0; i < 10000; i++) {
+
+    }
+    DMA2CONbits.CHEN = 1;
+    DMA2REQbits.FORCE = 1;
 
     /*Sit and Spin*/
     while (1) {
