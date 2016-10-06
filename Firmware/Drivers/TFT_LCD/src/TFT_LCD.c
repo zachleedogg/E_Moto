@@ -19,6 +19,9 @@
 #define TRUE 1
 #define FALSE 0
 
+#define HEIGHT 319
+#define WIDTH 479
+
 #define setXferWidth_8bit() SPI1STATbits.SPIEN = 0; /*Disable SPI mo*/\
                             SPI1CON1bits.MODE16 = 0; /*8 bit mode*/\
                             SPI1STATbits.SPIEN = 1\
@@ -28,8 +31,8 @@
                             SPI1STATbits.SPIEN = 1\
                             
 #define setXferCount(x) (DMA2CNT = x-1)
-#define setXferConstant() (DMA2CONbits.AMODE = 0)
-#define setXferBlock() (DMA2CONbits.AMODE = 1)
+#define setXferConstant() (DMA2CONbits.AMODE = 1)
+#define setXferBlock() (DMA2CONbits.AMODE = 0)
 #define startXfer() DMA2CONbits.CHEN = 1;\
                     DMA2REQbits.FORCE = 1\
 
@@ -52,7 +55,9 @@ static struct {
 } stringBuffer;
 
 //Set up DMA Channel 0 to Transmit in Continuous Ping-Pong Mode:
-uint16_t TxBufferA[MAX_XFER_SIZE] __attribute__((aligned(MAX_XFER_SIZE)));
+static uint16_t TxBufferA[MAX_XFER_SIZE] __attribute__((aligned(MAX_XFER_SIZE)));
+
+static uint16_t dummyRead __attribute__((aligned(1)));
 
 /*Character Conversion variables*/
 static uint8_t charPtr = 0;
@@ -69,19 +74,19 @@ static uint8_t RSTPIN;
 static uint8_t SPIbusy = FALSE;
 
 /*Initialization Data*/
-static uint16_t swreset_cmd = HX8357_SWRESET;
-static uint16_t setc_cmd = HX8357D_SETC;
-static uint16_t setc_data[] = {0xFF, 0x83, 0x57};
-static uint16_t setrgb_cmd = HX8357_SETRGB;
-static uint16_t setrgb_data[] = {0x80, 0x00, 0x06, 0x06};
-static uint16_t setcom_cmd = HX8357D_SETCOM;
-static uint16_t setcom_data[] = {0x25}; // -1.52V
-static uint16_t setosc_cmd = HX8357_SETOSC;
-static uint16_t setosc_data[] = {0x68}; // Normal mode 70Hz, Idle mode 55 Hz
-static uint16_t setpanel_cmd = HX8357_SETPANEL; //Set Panel
-static uint16_t setpanel_data[] = {0x05}; // BGR, Gate direction swapped
-static uint16_t setpwr1_cmd = HX8357_SETPWR1;
-static uint16_t setpwr1_data[] = {
+static const uint16_t swreset_cmd = HX8357_SWRESET;
+static const uint16_t setc_cmd = HX8357D_SETC;
+static const uint16_t setc_data[] = {0xFF, 0x83, 0x57};
+static const uint16_t setrgb_cmd = HX8357_SETRGB;
+static const uint16_t setrgb_data[] = {0x80, 0x00, 0x06, 0x06};
+static const uint16_t setcom_cmd = HX8357D_SETCOM;
+static const uint16_t setcom_data[] = {0x25}; // -1.52V
+static const uint16_t setosc_cmd = HX8357_SETOSC;
+static const uint16_t setosc_data[] = {0x68}; // Normal mode 70Hz, Idle mode 55 Hz
+static const uint16_t setpanel_cmd = HX8357_SETPANEL; //Set Panel
+static const uint16_t setpanel_data[] = {0x05}; // BGR, Gate direction swapped
+static const uint16_t setpwr1_cmd = HX8357_SETPWR1;
+static const uint16_t setpwr1_data[] = {
     0x00, // Not deep standby
     0x15, //BT
     0x1C, //VSPR
@@ -89,8 +94,8 @@ static uint16_t setpwr1_data[] = {
     0x83, //AP
     0xAA
 }; //FS
-static uint16_t setstba_cmd = HX8357D_SETSTBA;
-static uint16_t setstba_data[] = {
+static const uint16_t setstba_cmd = HX8357D_SETSTBA;
+static const uint16_t setstba_data[] = {
     0x50, //OPON normal
     0x50, //OPON idle
     0x01, //STBA
@@ -98,8 +103,8 @@ static uint16_t setstba_data[] = {
     0x1E, //STBA
     0x08
 }; //GEN
-static uint16_t setcyc_cmd = HX8357D_SETCYC;
-static uint16_t setcyc_data[] = {
+static const uint16_t setcyc_cmd = HX8357D_SETCYC;
+static const uint16_t setcyc_data[] = {
     0x02, //NW 0x02
     0x40, //RTN
     0x00, //DIV
@@ -108,8 +113,8 @@ static uint16_t setcyc_data[] = {
     0x0D, //GDON
     0x78
 }; //GDOFF
-static uint16_t setgamma_cmd = HX8357D_SETGAMMA;
-static uint16_t setgamma_data[] = {
+static const uint16_t setgamma_cmd = HX8357D_SETGAMMA;
+static const uint16_t setgamma_data[] = {
     0x02,
     0x0A,
     0x11,
@@ -145,30 +150,26 @@ static uint16_t setgamma_data[] = {
     0x00,
     0x01
 };
-static uint16_t colmod_cmd = HX8357_COLMOD;
-static uint16_t colmod_data[] = {0x55}; // 16 bit 
-static uint16_t madctl_cmd = HX8357_MADCTL;
-static uint16_t madctl_data[] = {MADCTL_MV | MADCTL_MX | MADCTL_RGB}; //{MADCTL_MX | MADCTL_MV | MADCTL_RGB}//{0xC0};
-static uint16_t teon_cmd = HX8357_TEON; // TE off
-static uint16_t teon_data[] = {0x00};
-static uint16_t tearline_cmd = HX8357_TEARLINE; // tear line
-static uint16_t tearline_data[] = {0x00, 0x02};
-static uint16_t slpout_cmd = HX8357_SLPOUT; //Exit Sleep
-static uint16_t slpin_cmd = HX8357_SLPIN; //Enter Sleep
-static uint16_t dispon_cmd = HX8357_DISPON; // display on
-static uint16_t caset_cmd = HX8357_CASET; // Column addr set
-static uint16_t caset_data[] = {0x00, 0x00, 0x01, 0x3F};
-static uint16_t paset_cmd = HX8357_PASET;
-static uint16_t paset_data[] = {0x00, 0x00, 0x01, 0xDF};
-static uint16_t rawr_cmd = HX8357_RAMWR; // write to RAM
+static const uint16_t colmod_cmd = HX8357_COLMOD;
+static const uint16_t colmod_data[] = {0x55}; // 16 bit 
+static const uint16_t madctl_cmd = HX8357_MADCTL;
+static uint16_t madctl_data[] = {MADCTL_MV | MADCTL_MX |MADCTL_RGB}; //{MADCTL_MX | MADCTL_MV | MADCTL_RGB}//{0xC0};
+static const uint16_t teon_cmd = HX8357_TEON; // TE off
+static const uint16_t teon_data[] = {0x00};
+static const uint16_t tearline_cmd = HX8357_TEARLINE; // tear line
+static const uint16_t tearline_data[] = {0x00, 0x02};
+static const uint16_t slpout_cmd = HX8357_SLPOUT; //Exit Sleep
+static const uint16_t slpin_cmd = HX8357_SLPIN; //Enter Sleep
+static const uint16_t dispon_cmd = HX8357_DISPON; // display on
+static const uint16_t caset_cmd = HX8357_CASET; // Column addr set
+static const uint16_t paset_cmd = HX8357_PASET;
+static const uint16_t rawr_cmd = HX8357_RAMWR; // write to RAM
 
 
-static void writecommand(uint16_t *commandString);
-static void writedata(uint16_t *dataString, uint32_t stringLength);
-static void writeconst(uint16_t dataString, uint32_t stringLength);
+static void writecommand(const uint16_t *commandString);
+static void writedata(const uint16_t *dataString, uint32_t stringLength);
+static void writeconst(const uint16_t dataString, uint32_t stringLength);
 static void Write();
-static inline void spiWrite8(uint8_t input);
-static inline void spiWrite16(uint16_t input);
 static void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 static void tftBootUpSequence(void);
 
@@ -196,8 +197,6 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
 
     DMA2CONbits.CHEN = 1;
 
-
-    uint16_t dummyRead __attribute__((aligned(1)));
 
     DMA3CONbits.SIZE = 0; //word
     DMA3CONbits.DIR = 0; //transfer from peripheral to RAM
@@ -257,9 +256,7 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     IO_setPinDir(CEPIN, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
     IO_setPinDir(DCPIN, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
 
-    screenOrientation.status = HORIZONTAL;
-    screenOrientation.height = 320;
-    screenOrientation.width = 480;
+    TFT_LCD_ORIENTATION(LANDSCAPE);
 
     /*Write the initialization sequence*/
     tftBootUpSequence();
@@ -267,22 +264,20 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
 
 void TFT_LCD_ORIENTATION(orientation thisWay) {
     screenOrientation.status = thisWay;
-    if (thisWay == HORIZONTAL) {
-        madctl_data[0] = MADCTL_MX | MADCTL_MY | MADCTL_RGB;
-        screenOrientation.height = 320;
-        screenOrientation.width = 480;
+    if (thisWay == LANDSCAPE) {
+        madctl_data[0] = 0b11101000;//MADCTL_MY | MADCTL_MV | MADCTL_RGB;
+        screenOrientation.height = HEIGHT;
+        screenOrientation.width = WIDTH;
     } else {
-        madctl_data[0] = MADCTL_MX | MADCTL_MV | MADCTL_RGB;
-        screenOrientation.height = 480;
-        screenOrientation.width = 320;
+        madctl_data[0] = MADCTL_MX | MADCTL_MY | MADCTL_RGB;
+        screenOrientation.height =WIDTH;
+        screenOrientation.width = HEIGHT;
     }
     writecommand(&madctl_cmd);
-    writedata(madctl_data, 1);
+    writedata((const uint16_t*)madctl_data, 1);
 }
 
 void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1) {
-    x1 = x1 - 1;
-    y1 = y1 - 1;
     writecommand(&caset_cmd);
     writeconst(x0, 1);
     writeconst(x1, 1);
@@ -294,7 +289,7 @@ void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1) {
 
 void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
     setCanvas(x0, y0, x1, y1);
-    uint32_t size = ((uint32_t) (x1 - x0)*(uint32_t) (y1 - y0));
+    uint32_t size = ((uint32_t) (x1 - x0+1)*(uint32_t) (y1 - y0+1));
     writeconst(color, size);
 }
 
@@ -317,18 +312,19 @@ void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint1
 }
 
 void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size) {
-    uint16_t length = (uint16_t) strlen(anystring);
+    uint16_t length = strlen(anystring);
+    lcdData newItem;
     if (length == 0) {
         return;
     }
     if (x == TFT_LCD_CENTER) {
-        x = (TFT_LCD_width() / 2)-(strlen(anystring) * ASCII_FONT_WIDTH * size / 2);
+        x = (TFT_LCD_width() / 2)-(length * ASCII_FONT_WIDTH * (uint16_t)size / 2);
     }
 
-    setCanvas(x, y, (x + size * (length * ASCII_FONT_WIDTH)), (y + size * ASCII_FONT_HEIGHT));
+    setCanvas(x, y, (x + size * (length * ASCII_FONT_WIDTH))-1, (y + size * ASCII_FONT_HEIGHT)-1);
 
-    lcdData newItem;
-    newItem.Length = length;
+    
+    newItem.Length = (uint32_t)length;
     newItem.Data = (uint16_t*) (anystring);
     newItem.Command = STRING;
     newItem.color = fillColor;
@@ -354,7 +350,7 @@ void TFT_LCD_goToSleep() {
 /*This function will write a command to the LCD screen ie. DC value is 0*/
 
 /*First param is the command data, and the second param is the length of that data*/
-void writecommand(uint16_t* commandString) {
+void writecommand(const uint16_t* commandString) {
 
     lcdData cmdItem = {};
     cmdItem.Length = 1;
@@ -380,7 +376,7 @@ void writecommand(uint16_t* commandString) {
 /*This function will write data to the LCD screen ie. DC value is 1*/
 
 /*First param is the actual data, second is the length of that data*/
-void writedata(uint16_t *dataString, uint32_t stringLength) {
+void writedata(const uint16_t *dataString, uint32_t stringLength) {
 
     lcdData newItem;
     newItem.Length = stringLength;
@@ -402,7 +398,7 @@ void writedata(uint16_t *dataString, uint32_t stringLength) {
     IEC1bits.DMA2IE = 1; // Enable the interrupt
 }
 
-void writeconst(uint16_t dataString, uint32_t stringLength) {
+void writeconst(const uint16_t dataString, uint32_t stringLength) {
     lcdData newItem;
     //stringLength *= 4;
     newItem.Data = (uint16_t*) dataString;
@@ -454,7 +450,7 @@ void Write() {
                 *ptr++ = thisItem.Data[dataIndex++];
             }
             setXferCount(thisItem.Length);
-            setXferBlock();
+            setXferConstant();
             startXfer();
             break;
         case CONST:
@@ -464,28 +460,29 @@ void Write() {
             *ptr++ = thisItem.color;
             dataIndex = thisItem.Length;
             setXferCount(thisItem.Length);
-            setXferBlock();
+            setXferConstant();
             startXfer();
             break;
         case STRING:
             IO_pinWrite(DCPIN, HIGH);
             setXferWidth_16bit();
             /*Write byte to SPI module*/
-            uint8_t* thisString = (uint8_t*) thisItem.Data;
             
-            while ((counter++<MAX_XFER_SIZE) && (dataIndex < thisItem.Length)) {
+            
+            while ((counter<MAX_XFER_SIZE) && (dataIndex < thisItem.Length)) {
+                counter++;
+                uint8_t* thisString = (uint8_t*) thisItem.Data;
                 /*when we reach the last row, increament to data index so
                 we can leave this function when string is done.*/
                 if (rowPtr == ASCII_FONT_HEIGHT) {
                     dataIndex++;
                 }
                 /*Write A pixel from a row of pixels within a specific character*/
+                
                 if (font[thisString[charPtr] * ASCII_FONT_WIDTH + colPtr]&(1 << rowPtr)) {
-                    *ptr++ = TFT_LCD_BLACK;
-                    //spiWrite16(TFT_LCD_BLACK);
+                    *(ptr++) = TFT_LCD_BLACK;
                 } else {
-                    *ptr++ = thisItem.color;
-                    //spiWrite16(thisItem.color);
+                    *(ptr++) = thisItem.color;
                 }
 
                 /*For font size, repeat this pixel*/
@@ -522,41 +519,6 @@ void Write() {
 
         default:
             break;
-    }
-}
-
-/*This will start writing to the screen through the SPI*/
-static inline void spiWrite8(uint8_t input) {
-    SPI1BUF = input;
-    uint8_t temp = SPI1BUF;
-}
-
-static inline void spiWrite16(uint16_t input) {
-    SPI1BUF = input;
-    uint16_t temp = SPI1BUF;
-}
-
-/*When the SPI has finished writing this function will be called immediately and
- decide whether to keep writing from the Queue or stop writing*/
-void __attribute__((__interrupt__, __shadow__, __auto_psv__)) _SPI1Interrupt(void) {
-
-    IFS0bits.SPI1IF = 0; /* Clear the Interrupt flag*/
-    Uart1Write("s");
-    /*if there is still data in the current item*/
-    if (dataIndex < thisItem.Length) {
-        Write();
-    } else {
-        dataIndex = 0;
-        if (!checkQueueEmpty()) {/*There are more items in the Queue*/
-            thisItem = deleteFromQueue();
-            Write();
-        } else { /*Transmission is over for now*/
-            /*CE Pin is high after transmission*/
-            IO_pinWrite(CEPIN, HIGH);
-            /*Status bit that the screen isnt writing anything anymore*/
-            SPIbusy = FALSE;
-            /*Do Nothing*/
-        }
     }
 }
 
@@ -603,24 +565,24 @@ static void tftBootUpSequence(void) {
 
     /*Reset the display and gets the Nokia 5110 to work*/
     IO_pinWrite(RSTPIN, 0); /*Sets reset high*/
-    while (counter++ != 500000) {
+    while (counter++ != 1000) {
         ;
     }
     counter = 0;
     IO_pinWrite(RSTPIN, 1); /*Sets reset low*/
 
     writecommand(&swreset_cmd);
-    while (counter++ != 500000) {
+    while (counter++ != 1000) {
         ;
     }
     counter = 0;
     // setextc
     writecommand(&setc_cmd);
     writedata(setc_data, 3);
-    while (counter++ != 500000) {
-        ;
-    }
-    counter = 0;
+//    while (counter++ != 500000) {
+//        ;
+//    }
+//    counter = 0;
     // setRGB which also enables SDO
     writecommand(&setrgb_cmd);
     writedata(setrgb_data, 4); //enable SDO pin!
@@ -659,17 +621,17 @@ static void tftBootUpSequence(void) {
     writedata(tearline_data, 2);
 
     writecommand(&slpout_cmd); //Exit Sleep
-    while (counter++ != 500000) {
-        ;
-    }
-    counter = 0;
+//    while (counter++ != 500000) {
+//        ;
+//    }
+//    counter = 0;
 
     writecommand(&dispon_cmd); // display on
 
-    while (counter++ != 100000) {
-        ;
-    }
-    counter = 0;
+//    while (counter++ != 100000) {
+//        ;
+//    }
+//    counter = 0;
 
     //    writecommand(&caset_cmd);
     //    writedata(caset_data, 4);

@@ -21,7 +21,7 @@ typedef struct _tftButtons {
     uint8_t debouncer;
 } tftButtons;
 
-static tftButtons activeButtons[16] = {};
+static tftButtons activeButtons[10] = {};
 
 static uint8_t numberActiveButtons = 0;
 

@@ -32,8 +32,6 @@ static const char intruction[] = "SELECT A BUTTON BELOW";
 
 static char myScreenBuffer[100];
 
-static const char* numbers[10];
-
 /*
  * 
  */
@@ -51,25 +49,12 @@ int main(void) {
     IO_setPinDir(TEST_LED, OUTPUT);
 
 
-
-    numbers[0] = "0";
-    numbers[1] = "1";
-    numbers[2] = "2";
-    numbers[3] = "3";
-    numbers[4] = "4";
-    numbers[5] = "5";
-    numbers[6] = "6";
-    numbers[7] = "7";
-    numbers[8] = "8";
-    numbers[9] = "9";
-
-
     TFT_LCD_fillBackground(TFT_LCD_RED);
     TFT_LCD_drawRect(4, 4, TFT_LCD_width() - 4, TFT_LCD_height() - 4, TFT_LCD_BLACK);
     TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
-    TFT_LCD_drawRect(100, 100, 200,200, TFT_LCD_BLACK);
+    //TFT_LCD_drawRect(100, 100, 200,200, TFT_LCD_BLACK);
 
-        TFT_LCD_writeString(helloString, 100, 100, TFT_LCD_MAGENTA, TFT_LCD_CYAN, 3);
+    TFT_LCD_writeString(helloString,TFT_LCD_CENTER, 100, TFT_LCD_MAGENTA, TFT_LCD_CYAN, 3);
     //    TFT_LCD_writeString(intruction, TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_CYAN, 1);
     //    TFT_LCD_writeString(numbers[0], 100, 150, TFT_LCD_RED, TFT_LCD_CYAN, 2);
     //    sprintf(myScreenBuffer, "number is: %d", 27);
@@ -91,9 +76,9 @@ int main(void) {
 
         if (flag) {
             flag = 0;
-
+//
             if (TFT_TOUCH_run() == TOUCHING) {
-                //TFT_TOUCH_draw(TFT_LCD_GREEN);
+                TFT_TOUCH_draw(TFT_LCD_GREEN);
             }
 
             if (myScreenPosition.yPos > 450) {

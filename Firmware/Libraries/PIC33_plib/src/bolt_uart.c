@@ -1,7 +1,7 @@
 #include "bolt_uart.h"
 #include "bolt_init.h"
 
-#define BUFFER_SIZE 64
+#define BUFFER_SIZE 36
 #define QUEUE_SIZE 8
 
 #define STOP_CHAR '\n'
@@ -52,17 +52,41 @@ void enQ(uartDataQueue * thisQ);
 uint8_t deQ(uartDataQueue * thisQ);
 
 #if UART1_ENABLE
-static uartBuffer RX1buffer;
-static uartBuffer TX1buffer;
-static uartDataQueue RX1Q;
+static uartBuffer RX1buffer = {
+    .buff = {},
+    .pointCurrent = 0,
+    .pointEnd = 0,
+};
+static uartBuffer TX1buffer = {
+    .buff = {},
+    .pointCurrent = 0,
+    .pointEnd = 0,
+};
+static uartDataQueue RX1Q = {
+    .buff = {},
+    .head = 0,
+    .tail = 0,
+};
 static uint8_t RX1dataReady = 0;
 static uint8_t TX1status = 0;
 #endif
 
 #if UART2_ENABLE
-static uartBuffer RX2buffer;
-static uartBuffer TX2buffer;
-static uartDataQueue RX2Q;
+static uartBuffer RX2buffer = {
+    .buff = {},
+    .pointCurrent = 0,
+    .pointEnd = 0,
+};
+static uartBuffer TX2buffer = {
+    .buff = {},
+    .pointCurrent = 0,
+    .pointEnd,
+};
+static uartDataQueue RX2Q = {
+    .buff = {},
+    .head = 0,
+    .tail = 0,
+};
 static uint8_t RX2dataReady = 0;
 static uint8_t TX2status = 0;
 #endif
