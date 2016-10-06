@@ -204,19 +204,15 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     DMA3CONbits.NULLW = 0; //Normal operation
     DMA3CONbits.AMODE = 1; //indirect address mode without post increment
     DMA3CONbits.MODE = 0; //continuous mode
-
     DMA3STAL = (uint16_t) & dummyRead;
     DMA3STAH = 0x0000;
     DMA3PAD = (volatile unsigned int) &SPI1BUF;
     DMA3CNT = 0xFFFF;
     DMA3REQ = 0x000A;
 
-
     DMA3CONbits.CHEN = 1;
 
-
-
-
+    
     // SPI1CON1 Register Settings
     SPI1CON1bits.DISSCK = 0; // Internal serial clock is enabled
     SPI1CON1bits.DISSDO = 0; // SDOx pin is controlled by the module
@@ -226,8 +222,6 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     SPI1CON1bits.CKE = 1; // Serial output data changes on transition from
     // active clock state to idle clock state
     SPI1CON1bits.CKP = 0; // Idle state for clock is a low level;
-    //SPI1CON2bits.SPIBEN = 1; /*Enable FIFO transmit buffer*/
-    //SPI1STATbits.SISEL = 0b100; /*interrupt on last byte out*/
 
     /*11 = Primary prescale 1:1
       10 = Primary prescale 4:1
@@ -541,15 +535,6 @@ void __attribute__((__interrupt__, auto_psv)) _DMA2Interrupt(void) {
     }
 }
 
-/*This function can be used for debugging but isnt used in the code. This will
- basically be the blocking code function if we need it*/
-uint8_t SPIisReady(void) {
-    if (SPIbusy) {
-        return 0;
-    } else {
-        return 1;
-    }
-}
 
 uint16_t TFT_LCD_height(void) {
     return screenOrientation.height;
@@ -579,10 +564,7 @@ static void tftBootUpSequence(void) {
     // setextc
     writecommand(&setc_cmd);
     writedata(setc_data, 3);
-//    while (counter++ != 500000) {
-//        ;
-//    }
-//    counter = 0;
+    
     // setRGB which also enables SDO
     writecommand(&setrgb_cmd);
     writedata(setrgb_data, 4); //enable SDO pin!
@@ -621,23 +603,7 @@ static void tftBootUpSequence(void) {
     writedata(tearline_data, 2);
 
     writecommand(&slpout_cmd); //Exit Sleep
-//    while (counter++ != 500000) {
-//        ;
-//    }
-//    counter = 0;
 
     writecommand(&dispon_cmd); // display on
-
-//    while (counter++ != 100000) {
-//        ;
-//    }
-//    counter = 0;
-
-    //    writecommand(&caset_cmd);
-    //    writedata(caset_data, 4);
-    //    writecommand(&paset_cmd);
-    //    writedata(paset_data, 4);
-    //    writecommand(&rawr_cmd);
-
 }
 
