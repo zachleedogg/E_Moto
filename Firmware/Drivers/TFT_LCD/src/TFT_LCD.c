@@ -482,10 +482,8 @@ void Write() {
                 /*Write A pixel from a row of pixels within a specific character*/
                 if (font[thisString[charPtr] * ASCII_FONT_WIDTH + colPtr]&(1 << rowPtr)) {
                     *ptr++ = TFT_LCD_BLACK;
-                    //spiWrite16(TFT_LCD_BLACK);
                 } else {
                     *ptr++ = thisItem.color;
-                    //spiWrite16(thisItem.color);
                 }
 
                 /*For font size, repeat this pixel*/
