@@ -52,16 +52,18 @@ static touchScreenService_State_t curState = init_state; /* initialize current s
  * USER SPACE
  * ****************************************************************************/
 /*Constant messages for the lcd screen*/
-static const char helloString[] = "WELCOME TO THE E-MOTO";
-static const char intruction[] = "Draw a dick on the screen";
+static const char helloString[] = "WELCOME TO THE E-MOTO!";
+static const char intruction[] = "Draw a dick on the screen to begin";
 static const char passwordMessage[] = "Enter Secret Passcode";
 static const char unlocked[] = "Congrats, you unlocked the bike!";
 
 /*Password Stuff*/
-#define PASSCODE_SIZE 10
+static const uint8_t passcode[] = {5,2,3,6};
+#define PASSCODE_SIZE sizeof(passcode)
 static uint8_t code[PASSCODE_SIZE + 1] = {};
 static uint8_t codeIndex = 0;
-static const uint8_t passcode[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 1};
+
+
 
 #define NO_CHAR_INPUT 0xFF
 #define CHAR_INPUT 0
@@ -107,18 +109,19 @@ Event touchScreenService(Event ThisEvent) {
 touchScreenService_State_t init(Event ThisEvent) {
     touchScreenService_State_t nextState = curState;
     if (ThisEvent.EventType == INIT_EVENT) {
-        /*Initialization stuff here*/
+    /*Initialization stuff here*/
 
-        /*LCD Init*/
-        TFT_LCD_INIT(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
-        TFT_TOUCH_INIT(IO_PIN_RA0, IO_PIN_RB2, IO_PIN_RA1, IO_PIN_RB3, AN5, AN4);
+    /*LCD Init*/
+    TFT_LCD_INIT(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
+    TFT_TOUCH_INIT(IO_PIN_RA0, IO_PIN_RB2, IO_PIN_RA1, IO_PIN_RB3, AN5, AN4);
 
-        /*fill background*/
-        TFT_LCD_fillBackground(TFT_LCD_RED);
-        TFT_LCD_drawRect(4, 4, TFT_LCD_width() - 4, TFT_LCD_height() - 4, TFT_LCD_RED);
-        TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
 
-        nextState = welcomeState_state;
+    /*fill background*/
+    TFT_LCD_fillBackground(TFT_LCD_RED);
+    TFT_LCD_drawRect(4, 4, TFT_LCD_width() - 4, TFT_LCD_height() - 4, TFT_LCD_RED);
+    TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+
+    nextState = welcomeState_state;
     }
     return nextState;
 }
@@ -132,8 +135,8 @@ touchScreenService_State_t welcomeState(Event ThisEvent) {
     touchScreenService_State_t nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
-            TFT_LCD_writeString(helloString, TFT_LCD_CENTER, 100, TFT_LCD_MAGENTA, TFT_LCD_CYAN, 3);
-            TFT_LCD_writeString(intruction, TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            TFT_LCD_writeString(helloString, TFT_LCD_CENTER, 100, TFT_LCD_RED, TFT_LCD_CYAN, 3);
+            TFT_LCD_writeString(intruction, TFT_LCD_CENTER, 150, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             /*Start a touch screen timer*/
             SW_Timer_Set(TOUCH_TIMER, TOUCH_TIME, touchScreenService_SERVICE, CONTINUOUS);
             break;
@@ -252,7 +255,7 @@ touchScreenService_State_t homeState(Event ThisEvent) {
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
-            TFT_LCD_writeString(unlocked, TFT_LCD_CENTER, 100, TFT_LCD_MAGENTA, TFT_LCD_CYAN, 2);
+            TFT_LCD_writeString(unlocked, TFT_LCD_CENTER, 100, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             buttonArray[0] = TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
             buttonArray[1] = TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
             buttonArray[2] = TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
@@ -338,11 +341,11 @@ touchScreenService_State_t runningState(Event ThisEvent) {
                     break;
                 case SPEEDO_TIMER:
                     speedo++;
-                    if(speedo == 25){
+                    if (speedo == 25) {
                         speedo = 0;
                     }
-                    char tempStr[3];
-                    sprintf(tempStr,"%d",speedo);
+                    char tempStr[5];
+                    sprintf(tempStr, "%02d", speedo);
                     TFT_LCD_writeVariableString(tempStr, TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_BLACK, 12);
                     break;
                 default:
@@ -375,8 +378,9 @@ touchScreenService_State_t batteryState(Event ThisEvent) {
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
-            buttonArray[0] = TFT_DISPLAY_place_button("MODE", 1, 3, TFT_LCD_GREEN, 2);
-            buttonArray[1] = TFT_DISPLAY_place_button("SELECT", 4, 3, TFT_LCD_GREEN, 2);
+            TFT_LCD_writeString("Battery", TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_BLACK, 6);
+            buttonArray[0] = TFT_DISPLAY_place_button("MODE", 1, 4, TFT_LCD_GREEN, 2);
+            buttonArray[1] = TFT_DISPLAY_place_button("SELECT", 4, 4, TFT_LCD_GREEN, 2);
             /*Start a touch screen timer*/
             SW_Timer_Set(TOUCH_TIMER, TOUCH_TIME, touchScreenService_SERVICE, CONTINUOUS);
             break;
@@ -432,8 +436,9 @@ touchScreenService_State_t statisticState(Event ThisEvent) {
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
-            buttonArray[0] = TFT_DISPLAY_place_button("MODE", 1, 3, TFT_LCD_GREEN, 2);
-            buttonArray[1] = TFT_DISPLAY_place_button("SELECT", 4, 3, TFT_LCD_GREEN, 2);
+            TFT_LCD_writeString("Statistics", TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_BLACK, 6);
+            buttonArray[0] = TFT_DISPLAY_place_button("MODE", 1, 4, TFT_LCD_GREEN, 2);
+            buttonArray[1] = TFT_DISPLAY_place_button("SELECT", 4, 4, TFT_LCD_GREEN, 2);
             /*Start a touch screen timer*/
             SW_Timer_Set(TOUCH_TIMER, TOUCH_TIME, touchScreenService_SERVICE, CONTINUOUS);
             break;
@@ -469,11 +474,11 @@ uint8_t passwordHandler(uint16_t temp) {
         returnVal = CHAR_INPUT;
         code[codeIndex++] = temp + 49;
         code[codeIndex] = 0; /*move terminating NULL character up each time*/
-        if (codeIndex >= 10) {
+        if (codeIndex >= PASSCODE_SIZE) {
             returnVal = PASSED;
             codeIndex = 0;
             uint8_t i = 0;
-            for (i = 0; i < 10; i++) {
+            for (i = 0; i < PASSCODE_SIZE; i++) {
                 if (code[i] != passcode[i] + 48) {
                     returnVal = FAILED;
                     break;

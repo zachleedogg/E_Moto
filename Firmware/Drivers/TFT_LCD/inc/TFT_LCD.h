@@ -37,8 +37,8 @@ typedef enum _dataCommand {
 } dataCommand;
 
 typedef enum _orientation{
-    VERTICAL,
-    HORIZONTAL
+    PORTIAT,
+    LANDSCAPE
 } orientation;
 
 /*This initializes the screen*/
