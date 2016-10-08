@@ -40,7 +40,7 @@
 #include SERVICE_7
 #endif
 
-#define QUEUE_SIZE 12
+#define QUEUE_SIZE 4
 
 /*******************************************************************************
  * Datatypes and Variables
