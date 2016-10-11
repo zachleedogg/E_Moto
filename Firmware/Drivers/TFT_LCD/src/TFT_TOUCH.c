@@ -1,5 +1,6 @@
 #include "TFT_TOUCH.h"
 #include "TFT_LCD.h"
+#include "pins.h"
 
 #define HIEGHT_LOWER 120
 #define HIEGHT_UPPER 875
@@ -8,10 +9,11 @@
 #define WIDTH_UPPER 925
 
 
-static pin_number _x0 = 0;
-static pin_number _x1 = 0;
-static pin_number _y0 = 0;
-static pin_number _y1 = 0;
+static PINS_pin_s _x0;
+static PINS_pin_s _x1;
+static PINS_pin_s _y0;
+static PINS_pin_s _y1;
+
 static adc_pin_number an_X = 0;
 static adc_pin_number an_Y = 0;
 
@@ -42,7 +44,7 @@ uint16_t TFT_TOUCH_get_y_pos(void);
 uint8_t inRange(uint16_t item1, uint16_t item2, uint8_t range);
 uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
 
-void TFT_TOUCH_INIT(pin_number x0, pin_number x1, pin_number y0, pin_number y1, adc_pin_number an_x, adc_pin_number an_y) {
+void TFT_TOUCH_INIT(PINS_pin_s x0, PINS_pin_s x1, PINS_pin_s y0, PINS_pin_s y1, adc_pin_number an_x, adc_pin_number an_y) {
     _x0 = x0;
     _x1 = x1;
     _y0 = y0;
@@ -126,28 +128,28 @@ uint16_t TFT_TOUCH_get_y_pos(void) {
 
 void setXpins(void) {
     /*Set Y pins Hi-Z*/
-    IO_setPinDir(_y0, INPUT);
-    IO_setPinDir(_y1, INPUT);
+    PIN_Direction(_y0.port, _y0.pin, INPUT);
+    PIN_Direction(_y1.port, _y0.pin, INPUT);
     ADC_RemovePin(an_Y);
     /*Turn on AN pin X and enable x pins*/
     ADC_SetPin(an_X);
-    IO_setPinDir(_x0, OUTPUT);
-    IO_pinWrite(_x0, HIGH);
-    IO_setPinDir(_x1, OUTPUT);
-    IO_pinWrite(_x1, LOW);
+    PIN_Direction(_x0.port, _x0.pin, OUTPUT);
+    PIN_Write(_x0.port, _x0.pin, HIGH);
+    PIN_Direction(_x1.port, _x1.pin, OUTPUT);
+    PIN_Write(_x1.port, _x1.pin, LOW);
 }
 
 void setYpins(void) {
     /*Set X pins Hi-Z*/
-    IO_setPinDir(_x0, INPUT);
-    IO_setPinDir(_x1, INPUT);
+    PIN_Direction(_x0.port, _x0.pin, INPUT);
+    PIN_Direction(_x1.port, _x1.pin, INPUT);
     ADC_RemovePin(an_X);
     /*Turn on AN pin Y and enable y pins*/
     ADC_SetPin(an_Y);
-    IO_setPinDir(_y0, OUTPUT);
-    IO_pinWrite(_y0, LOW);
-    IO_setPinDir(_y1, OUTPUT);
-    IO_pinWrite(_y1, HIGH);
+    PIN_Direction(_y0.port, _y0.pin, OUTPUT);
+    PIN_Write(_y0.port, _y0.pin, LOW);
+    PIN_Direction(_y1.port, _y0.pin, OUTPUT);
+    PIN_Write(_y1.port, _y0.pin, HIGH);
 }
 
 uint8_t inRange(uint16_t item1, uint16_t item2, uint8_t range) {

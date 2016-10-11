@@ -4,16 +4,16 @@
  *
  * Created on February 20, 2016, 7:11 PM
  */
-
-
+#include <xc.h> // include processor files - each processor file is guarded.
+#include <stdint.h>
+#include "pins.h"
 
 // This is a guard condition so that contents of this file are not included
 // more than once.
 #ifndef LCD_SPI_H
 #define	LCD_SPI_H
 
-#include <xc.h> // include processor files - each processor file is guarded.
-#include <stdint.h>
+
 
 // Color definitions
 #define	TFT_LCD_BLACK   0x0000
@@ -42,7 +42,7 @@ typedef enum _orientation{
 } orientation;
 
 /*This initializes the screen*/
-void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC);
+void TFT_LCD_INIT(PINS_pin_s reset, PINS_pin_s CE, PINS_pin_s DC);
 
 void TFT_LCD_ORIENTATION(orientation thisWay);
 

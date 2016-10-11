@@ -5,10 +5,10 @@
  * Created on September 6, 2016, 10:20 PM
  */
 
-#include "stdint.h"
+#include <stdint.h>
 
 #include "bolt_ADC.h"
-#include "bolt_pins.h"
+#include "pins.h"
 
 #ifndef TFT_TOUCH_H
 #define	TFT_TOUCH_H
@@ -26,7 +26,7 @@ typedef struct _touchData {
     uint16_t yPos;
 } touchData;
 
-void TFT_TOUCH_INIT(pin_number x0, pin_number x1, pin_number y0, pin_number y1, adc_pin_number an_x, adc_pin_number an_y);
+void TFT_TOUCH_INIT(PINS_pin_s x0, PINS_pin_s x1, PINS_pin_s y0, PINS_pin_s y1, adc_pin_number an_x, adc_pin_number an_y) ;
 
 uint8_t TFT_TOUCH_run(void);
 

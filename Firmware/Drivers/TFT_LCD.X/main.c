@@ -9,12 +9,12 @@
 #include <stdint.h>
 #include "bolt_init.h"
 #include "TFT_LCD.h"
-#include "bolt_pins.h"
+#include "pins.h"
 #include "TFT_DISPLAY.h"
 #include "bolt_uart.h"
 
 
-#define TEST_LED IO_PIN_RB15
+#define TEST_LED B15
 
 #define FSM_TEMPLATE_print(...) (char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);)
 
@@ -39,14 +39,14 @@ int main(void) {
 
     Micro_Init();
     clockInit(FREQ_120MHZ, EXTERNAL);
-    TFT_LCD_INIT(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
-    TFT_TOUCH_INIT(IO_PIN_RA0, IO_PIN_RB2, IO_PIN_RA1, IO_PIN_RB3, AN5, AN4);
+    TFT_LCD_INIT();
+    TFT_TOUCH_INIT(AN5, AN4);
     Uart1Init(RP36_TX, RP20_UART_RX, BAUD115200);
 
     Uart1Write("hello this is the LCD test program\n\n");
 
     T1_Interrupt_Init(1, 3);
-    IO_setPinDir(TEST_LED, OUTPUT);
+    PIN_direction(TEST_LED, OUTPUT);
 
 
     TFT_LCD_fillBackground(TFT_LCD_RED);
@@ -98,7 +98,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void) {
 
     if (count2 == 1000) {
         Uart1Write("uou idiot\n");
-        IO_pinToggle(TEST_LED);
+        PIN_toggle(TEST_LED)
         count2 = 0;
         flag2 = 1;
 

@@ -17,7 +17,7 @@ int main(void) {
     Micro_Init();
     clockInit(FREQ_120MHZ, EXTERNAL);
 
-    Uart1Init(RP36_TX, RP20_UART_RX, BAUD115200);
+    Uart1Init(DEFINES_UART_TX, DEFINES_UART_RX, DEFINES_UART_BAUD);
 
     Uart1Write("\n\n\nhello this is the test program for the Template Project\n");
 

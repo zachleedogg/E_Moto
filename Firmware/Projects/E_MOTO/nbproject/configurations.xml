@@ -13,6 +13,7 @@
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_pins.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/pins.h</itemPath>
       </logicalFolder>
       <logicalFolder name="inc" displayName="inc" projectFiles="true">
         <itemPath>../../Drivers/TFT_LCD/inc/ASCII_5X7.h</itemPath>
@@ -50,6 +51,7 @@
         <itemPath>../../Drivers/TFT_LCD/src/TFT_LCD.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_LCD_Q.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_TOUCH.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/src/pins.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -73,10 +75,10 @@
     <conf name="default" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>dsPIC33EP32GP502</targetDevice>
+        <targetDevice>dsPIC33EP256GP502</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.25</languageToolchainVersion>
         <platform>3</platform>
@@ -234,7 +236,6 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
