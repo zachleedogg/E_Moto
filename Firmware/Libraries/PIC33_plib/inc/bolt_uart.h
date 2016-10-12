@@ -32,55 +32,55 @@
 
 /*Select Pin for RX*/
 /*Not all of these are available on every device, check pin-out sheet*/
-#define RP20_UART_RX    0x14
-#define RPI24_UART_RX   0x18
-#define RPI25_UART_RX   0x19
-#define RPI27_UART_RX   0x1B
-#define RPI28_UART_RX   0x1C
-#define RPI32_UART_RX   0x20
-#define RPI33_UART_RX   0x21
-#define RPI34_UART_RX   0x22
-#define RP35_UART_RX    0x23
-#define RP36_UART_RX    0x24
-#define RP37_UART_RX    0x25
-#define RP38_UART_RX    0x26
-#define RP39_UART_RX    0x27
-#define RP40_UART_RX    0x28
-#define RP41_UART_RX    0x29
-#define RP42_UART_RX    0x2A
-#define RP43_UART_RX    0x2B
-#define RPI44_UART_RX   0x2C
-#define RPI45_UART_RX   0x2D
-#define RPI46_UART_RX   0x2E
-#define RPI47_UART_RX   0x2F
-#define RPI51_UART_RX   0x33
-#define RPI52_UART_RX   0x34
-#define RPI53_UART_RX   0x35
-#define RP54_UART_RX    0x36
-#define RP55_UART_RX    0x37
-#define RP56_UART_RX    0x38
-#define RP57_UART_RX    0x39
-#define RPI58_UART_RX   0x3A
+#define UART_RX_RP20    0x14
+#define UART_RX_RPI24   0x18
+#define UART_RX_RPI25   0x19
+#define UART_RX_RPI27   0x1B
+#define UART_RX_RPI28   0x1C
+#define UART_RX_RPI32   0x20
+#define UART_RX_RPI33   0x21
+#define UART_RX_RPI34   0x22
+#define UART_RX_RP35    0x23
+#define UART_RX_RP36    0x24
+#define UART_RX_RP37    0x25
+#define UART_RX_RP38    0x26
+#define UART_RX_RP39    0x27
+#define UART_RX_RP40    0x28
+#define UART_RX_RP41    0x29
+#define UART_RX_RP42    0x2A
+#define UART_RX_RP43    0x2B
+#define UART_RX_RPI44   0x2C
+#define UART_RX_RPI45   0x2D
+#define UART_RX_RPI46   0x2E
+#define UART_RX_RPI47   0x2F
+#define UART_RX_RPI51   0x33
+#define UART_RX_RPI52   0x34
+#define UART_RX_RPI53   0x35
+#define UART_RX_RP54    0x36
+#define UART_RX_RP55    0x37
+#define UART_RX_RP56    0x38
+#define UART_RX_RP57    0x39
+#define UART_RX_RPI58   0x3A
 
 /*Select pins for TX*/
 
 /*Not all of these are available on every device, check pin-out sheet*/
 
 typedef enum _UART_tx_pin_number {
-    RP20_TX,
-    RP35_TX,
-    RP36_TX,
-    RP37_TX,
-    RP38_TX,
-    RP39_TX,
-    RP40_TX,
-    RP41_TX,
-    RP42_TX,
-    RP43_TX,
-    RP54_TX,
-    RP55_TX,
-    RP56_TX,
-    RP57_TX,
+    UART_TX_RP20,
+    UART_TX_RP35,
+    UART_TX_RP36,
+    UART_TX_RP37,
+    UART_TX_RP38,
+    UART_TX_RP39,
+    UART_TX_RP40,
+    UART_TX_RP41,
+    UART_TX_RP42,
+    UART_TX_RP43,
+    UART_TX_RP54,
+    UART_TX_RP55,
+    UART_TX_RP56,
+    UART_TX_RP57,
     NUMBER_OF_TX_PINS,
 } UART_tx_pin_number;
 

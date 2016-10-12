@@ -123,9 +123,9 @@ touchScreenService_State_t init(Event ThisEvent) {
     if (ThisEvent.EventType == INIT_EVENT) {
         /*Initialization stuff here*/
 
-        /*LCD Init*/
-        TFT_LCD_INIT(IO_PIN_RB12, IO_PIN_RB10, IO_PIN_RB11);
-        TFT_TOUCH_INIT(IO_PIN_RA0, IO_PIN_RB2, IO_PIN_RA1, IO_PIN_RB3, AN5, AN4);
+    /*LCD Init*/
+    TFT_LCD_INIT(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
+    TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
 
 
         /*fill background*/

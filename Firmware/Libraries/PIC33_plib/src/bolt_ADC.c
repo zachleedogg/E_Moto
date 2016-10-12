@@ -21,14 +21,38 @@
 // *****************************************************************************
 // *****************************************************************************
 
+#define ON 1
+#define OFF 0
+
 #define ADC_ON() AD1CON1bits.ADON=1
 #define ADC_OFF() AD1CON1bits.ADON=0
 
+#define set(x,y) (x |= (y))
+#define clear(x,y) (x &= ~(y))
+
 typedef struct _ADCmodule {
     uint8_t numberOfInputs;
-    uint8_t pinList[NUMBER_OF_ADC_PINS];
-    uint16_t buffer[NUMBER_OF_ADC_PINS];
+    uint16_t activePins;
 } ADCmodule;
+
+volatile uint16_t* const adcBuffer[16] = {
+    &ADC1BUF0,
+    &ADC1BUF1,
+    &ADC1BUF2,
+    &ADC1BUF3,
+    &ADC1BUF4,
+    &ADC1BUF5,
+    &ADC1BUF6,
+    &ADC1BUF7,
+    &ADC1BUF8,
+    &ADC1BUF9,
+    &ADC1BUFA,
+    &ADC1BUFB,
+    &ADC1BUFC,
+    &ADC1BUFD,
+    &ADC1BUFE,
+    &ADC1BUFF  
+};
 
 ADCmodule thisADC;
 
@@ -37,6 +61,8 @@ ADCmodule thisADC;
 // Section: Function Definitions
 // *****************************************************************************
 // *****************************************************************************
+
+void selectADCpin(adc_pin_number newPin, uint8_t state);
 
 void ADC_Init(void) {
     /* Initialize ADC module */
@@ -72,160 +98,149 @@ void ADC_Init(void) {
 }
 
 uint8_t ADC_SetPin(adc_pin_number newPin) {
-    if (thisADC.pinList[newPin] == 1) {
+    uint16_t pinMask = 1<<newPin;
+    if (thisADC.activePins & pinMask) {
         return 1;
     }
     ADC_OFF(); /*Turn off ADC*/
     /*set pin as an analog input*/
-    switch (newPin) {
-        case AN0:
-            _ANSA0 = 1;
-            _RA0 = 1;
-            break;
-        case AN1:
-            _ANSA1 = 1;
-            _RA1 = 1;
-            break;
-        case AN2:
-            _ANSB0 = 1;
-            _RB0 = 1;
-            break;
-        case AN3:
-            _ANSB1 = 1;
-            _RB1 = 1;
-            break;
-        case AN4:
-            _ANSB2 = 1;
-            _RB2 = 1;
-            break;
-        case AN5:
-            _ANSB3 = 1;
-            _RB3 = 1;
-            break;
-#ifdef ANSELC
-        case AN6:
-            _ANSC0 = 1;
-            _RC0 = 1;
-            break;
-        case AN7:
-            _ANSC1 = 1;
-            _RC1 = 1;
-            break;
-        case AN8:
-            _ANSC2 = 1;
-            _RC2 = 1;
-            break;
-#endif
-        default:
-            break;
-    }
+    selectADCpin(newPin, 1);
     thisADC.numberOfInputs++; /*add number of inputs*/
-    thisADC.pinList[newPin] = 1; /*set new pin to active state*/
-    AD1CSSL |= (1 << newPin); /*add pin to input sweep*/
+    set(thisADC.activePins, pinMask); /*set new pin to active state*/
+    AD1CSSL = thisADC.activePins; /*add pin to input sweep*/
     AD1CON2bits.SMPI = thisADC.numberOfInputs - 1; /*Number of pins to sweep*/
     ADC_ON();
     return 0;
 }
 
 uint8_t ADC_RemovePin(adc_pin_number newPin) {
-    if (thisADC.pinList[newPin] == 0) {
+    uint16_t pinMask = 1<<newPin;
+    if ((thisADC.activePins & pinMask)== 0) {
         return 1;
     }
     ADC_OFF(); /*Turn off ADC*/
-    /*set pin as an analog input*/
-    switch (newPin) {
-        case AN0:
-            _ANSA0 = 0;
-            _RA0 = 1;
-            break;
-        case AN1:
-            _ANSA1 = 0;
-            _RA1 = 1;
-            break;
-        case AN2:
-            _ANSB0 = 0;
-            _RB0 = 1;
-            break;
-        case AN3:
-            _ANSB1 = 0;
-            _RB1 = 1;
-            break;
-        case AN4:
-            _ANSB2 = 0;
-            _RB2 = 1;
-            break;
-        case AN5:
-            _ANSB3 = 0;
-            _RB3 = 1;
-            break;
-#ifdef ANSELC
-        case AN6:
-            _ANSC0 = 0;
-            _RC0 = 1;
-            break;
-        case AN7:
-            _ANSC1 = 0;
-            _RC1 = 1;
-            break;
-        case AN8:
-            _ANSC2 = 0;
-            _RC2 = 1;
-            break;
-#endif
-        default:
-            break;
-    }
+    /*disable analog input*/
+    selectADCpin(newPin, 0);
     thisADC.numberOfInputs--; /*subtract number of inputs*/
-    thisADC.pinList[newPin] = 0; /*set new pin to inactive state*/
-    AD1CSSL &= ~(1 << newPin); /*add pin to input sweep*/
+    clear(thisADC.activePins, pinMask); /*set new pin to inactive state*/
+    AD1CSSL = thisADC.activePins; /*remove pin from input sweep*/
     AD1CON2bits.SMPI = thisADC.numberOfInputs - 1; /*Number of pins to sweep*/
     ADC_ON();
     return 0;
 }
 
 uint16_t ADC_GetValue(adc_pin_number thisPin) {
-    uint8_t currentInput = 0;
+    uint16_t activePinsBeforeThisPin = 0;
+    uint16_t mask = 0x0001;
     /*For each input, read ADC1BUFx value into correct pin buffer*/
     uint8_t i = 0;
-    for (i = 0; i < thisADC.numberOfInputs; i++) {
-        /*search for pins that are active*/
-        for (; currentInput < NUMBER_OF_ADC_PINS; currentInput++) {
-            if (thisADC.pinList[currentInput]) {
-                switch (i) {
-                    case 0:
-                        thisADC.buffer[currentInput] = ADC1BUF0;
-                        break;
-                    case 1:
-                        thisADC.buffer[currentInput] = ADC1BUF1;
-                        break;
-                    case 2:
-                        thisADC.buffer[currentInput] = ADC1BUF2;
-                        break;
-                    case 3:
-                        thisADC.buffer[currentInput] = ADC1BUF3;
-                        break;
-                    case 4:
-                        thisADC.buffer[currentInput] = ADC1BUF4;
-                        break;
-                    case 5:
-                        thisADC.buffer[currentInput] = ADC1BUF5;
-                        break;
-                    case 6:
-                        thisADC.buffer[currentInput] = ADC1BUF6;
-                        break;
-                    case 7:
-                        thisADC.buffer[currentInput] = ADC1BUF7;
-                        break;
-                    case 8:
-                        thisADC.buffer[currentInput] = ADC1BUF8;
-                        break;
-                    default:
-                        break;
-                }
-                currentInput++;
-                break;
-            }
+    for (i = 0; i < thisPin; i++) {
+        if(thisADC.activePins & (mask<<i)){
+            activePinsBeforeThisPin++;
         }
     }
-    return thisADC.buffer[thisPin];
+    return *adcBuffer[activePinsBeforeThisPin];
+}
+
+void selectADCpin(adc_pin_number newPin, uint8_t state){
+    switch (newPin) {
+#ifdef _ANSA0
+        case AN0:
+            _ANSA0 = state;
+            _RA0 = 1;
+            break;
+#endif
+#ifdef _ANSA1
+        case AN1:
+            _ANSA1 = state;
+            _RA1 = 1;
+            break;
+#endif
+#ifdef _ANSB0
+        case AN2:
+            _ANSB0 = state;
+            _RB0 = 1;
+            break;
+#endif
+#ifdef _ANSB1
+        case AN3:
+            _ANSB1 = state;
+            _RB1 = 1;
+            break;
+#endif
+#ifdef _ANSB2
+        case AN4:
+            _ANSB2 = state;
+            _RB2 = 1;
+            break;
+#endif
+#ifdef _ANSB3
+        case AN5:
+            _ANSB3 = state;
+            _RB3 = 1;
+            break;
+#endif
+#ifdef _ANSC0
+        case AN6:
+            _ANSC0 = state;
+            _RC0 = 1;
+            break;
+#endif
+#ifdef _ANSC1
+        case AN7:
+            _ANSC1 = state;
+            _RC1 = 1;
+            break;
+#endif
+#ifdef _ANSC2
+        case AN8:
+            _ANSC2 = state;
+            _RC2 = 1;
+            break;
+#endif
+#ifdef _ANSA11
+        case AN9:
+            _ANSA11 = state;
+            _RA11 = 1;
+            break;
+#endif
+#ifdef _ANSA12
+        case AN10:
+            _ANSA12 = state;
+            _RA12 = 1;
+            break;
+#endif
+#ifdef _ANSC11
+        case AN11:
+            _ANSC11 = state;
+            _RC11 = 1;
+            break;
+#endif
+#ifdef _ANSE12
+        case AN12:
+            _ANSE12 = state;
+            _RE12 = 1;
+            break;
+#endif
+#ifdef _ANSE13
+        case AN13:
+            _ANSE13 = state;
+            _RE13 = 1;
+            break;
+#endif
+#ifdef _ANSE14
+        case AN14:
+            _ANSE14 = state;
+            _RE14 = 1;
+            break;
+#endif
+#ifdef _ANSE15
+        case AN15:
+            _ANSE15 = state;
+            _RE15 = 1;
+            break;
+#endif
+        default:
+            break;
+    }
 }

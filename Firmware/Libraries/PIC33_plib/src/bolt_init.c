@@ -11,6 +11,7 @@
  *********************************************************************************************/
 
 #include "bolt_init.h"
+#include <xc.h>
 
 /*Communicate on PGED1 and PGED1, JTAG is OFF*/
 _FPOR(ALTI2C1_OFF & ALTI2C2_OFF & WDTWIN_WIN25)
@@ -43,11 +44,9 @@ _FOSC(FCKSM_CSECMD & OSCIOFNC_OFF & POSCMD_XT & IOL1WAY_ON);
 /*IESO = ON           (Start up with internal oscillator source)*/
 /*PWMLOCK = OFF        no unlock for PWM module*/
 /*select Internal Fast RC clock at Power-On Reset*/
-#if defined(__dsPIC33EP256MC502__) || defined(__dsPIC33EP256MC504__)
+#ifdef PWMLOCK_OFF
 _FOSCSEL(FNOSC_FRCDIVN & IESO_ON & PWMLOCK_OFF);
-#endif
-
-#if defined (__dsPIC33EP32GP502__)
+#else
 _FOSCSEL(FNOSC_FRCDIVN & IESO_OFF);
 #endif
 
@@ -79,17 +78,38 @@ static uint32_t freq;
 
 void Micro_Init(void) {
     /* Configure all AD pins as digital */
-    ANSELA = ANSELB = 0x0000;
+#ifdef ANSELA
+    ANSELA = 0x0000;
+#endif
+#ifdef ANSELB
+    ANSELB = 0x0000;
+#endif
 #ifdef ANSELC
     ANSELC = 0x0000;
 #endif
+#ifdef ANSELD
+    ANSELD = 0x0000;
+#endif
+#ifdef ANSELE
+    ANSELE = 0x0000;
+#endif
+#ifdef ANSELF
+    ANSELF = 0x0000;
+#endif
+#ifdef ANSELG
+    ANSELG = 0x0000;
+#endif
 
     /* Set the PWM's off */
-#if defined(__dsPIC33EP256MC502__) || defined(__dsPIC33EP256MC504__)
+#ifdef IOCON1
     IOCON1bits.PENH = 0;
     IOCON1bits.PENL = 0;
+#endif
+#ifdef IOCON2
     IOCON2bits.PENH = 0;
     IOCON2bits.PENL = 0;
+#endif
+#ifdef IOCON3
     IOCON3bits.PENH = 0;
     IOCON3bits.PENL = 0;
 #endif

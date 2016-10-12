@@ -120,53 +120,53 @@ uint8_t Uart1Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate)
 
     //TX
     switch (TX_pin) {
-        case RP20_TX:
+        case UART_TX_RP20:
             RP20_TX_PPS = UART1_PPS;
             break;
-        case RP35_TX:
+        case UART_TX_RP35:
             RP35_TX_PPS = UART1_PPS;
             break;
-        case RP36_TX:
+        case UART_TX_RP36:
             RP36_TX_PPS = UART1_PPS;
             break;
-        case RP37_TX:
+        case UART_TX_RP37:
             RP37_TX_PPS = UART1_PPS;
             break;
-        case RP38_TX:
+        case UART_TX_RP38:
             RP38_TX_PPS = UART1_PPS;
             break;
-        case RP39_TX:
+        case UART_TX_RP39:
             RP39_TX_PPS = UART1_PPS;
             break;
-        case RP40_TX:
+        case UART_TX_RP40:
             RP40_TX_PPS = UART1_PPS;
             break;
-        case RP41_TX:
+        case UART_TX_RP41:
             RP41_TX_PPS = UART1_PPS;
             break;
-        case RP42_TX:
+        case UART_TX_RP42:
             RP42_TX_PPS = UART1_PPS;
             break;
-        case RP43_TX:
+        case UART_TX_RP43:
             RP43_TX_PPS = UART1_PPS;
             break;
 #ifdef _RP54R
-        case RP54_TX:
+        case UART_TX_RP54:
             RP54_TX_PPS = UART1_PPS;
             break;
 #endif
 #ifdef _RP55R
-        case RP55_TX:
+        case UART_TX_RP55:
             RP55_TX_PPS = UART1_PPS;
             break;
 #endif
 #ifdef _RP56R
-        case RP56_TX:
+        case UART_TX_RP56:
             RP56_TX_PPS = UART1_PPS;
             break;
 #endif
 #ifdef _RP57R
-        case RP57_TX:
+        case UART_TX_RP57:
             RP57_TX_PPS = UART1_PPS;
             break;
 #endif

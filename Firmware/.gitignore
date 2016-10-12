@@ -1,7 +1,7 @@
 memoryfile.xml
-*.X.production.elf
-*.X.production.hex
-*.X.production.map
+*.elf
+*.hex
+*.map
 *.o
 *.o.d
 *.mk

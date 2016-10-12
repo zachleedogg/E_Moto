@@ -8,7 +8,7 @@
 #include <string.h>
 
 #include "TFT_LCD.h"
-#include "bolt_pins.h"
+#include "pins.h"
 #include "TFT_LCD_Q.h"
 
 #include "ASCII_5X7.h"
@@ -67,9 +67,9 @@ static uint8_t fontRowCtr = 0;
 static uint8_t fontColCtr = 0;
 
 /*pin variables*/
-static uint8_t CEPIN;
-static uint8_t DCPIN;
-static uint8_t RSTPIN;
+static PINS_pin_s CEPIN;
+static PINS_pin_s DCPIN;
+static PINS_pin_s RSTPIN;
 
 static uint8_t SPIbusy = FALSE;
 
@@ -174,7 +174,7 @@ static void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 static void tftBootUpSequence(void);
 
 /*This will initialize the Nokia 5110 LCD screen*/
-void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
+void TFT_LCD_INIT(PINS_pin_s reset, PINS_pin_s CE, PINS_pin_s DC) {
     RSTPIN = reset;
     CEPIN = CE;
     DCPIN = DC;
@@ -246,9 +246,12 @@ void TFT_LCD_INIT(uint8_t reset, uint8_t CE, uint8_t DC) {
     IFS0bits.SPI1IF = 0;
     //IEC0bits.SPI1IE = 1; // Enable the interrupt
 
-    IO_setPinDir(RSTPIN, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
-    IO_setPinDir(CEPIN, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
-    IO_setPinDir(DCPIN, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
+//    IO_setPinDir(RSTPIN, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
+//    IO_setPinDir(CEPIN, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
+//    IO_setPinDir(DCPIN, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
+    PIN_Direction(RSTPIN.port, RSTPIN.pin, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
+    PIN_Direction(CEPIN.port, CEPIN.pin, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
+    PIN_Direction(DCPIN.port,DCPIN.pin, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
 
     TFT_LCD_ORIENTATION(LANDSCAPE);
 
@@ -331,7 +334,7 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
         /*CE Pin is low during transmission*/
-        IO_pinWrite(CEPIN, LOW);
+        PIN_Write(CEPIN.port, CEPIN.pin, LOW);
         Write(); /*Writes from the Queue*/
     }
     IEC1bits.DMA2IE = 1; /* Enable the interrupt*/
@@ -358,7 +361,7 @@ void writecommand(const uint16_t* commandString) {
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
         /*CE Pin is low during transmission*/
-        IO_pinWrite(CEPIN, LOW);
+        PIN_Write(CEPIN.port, CEPIN.pin, LOW);
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -384,7 +387,7 @@ void writedata(const uint16_t *dataString, uint32_t stringLength) {
         SPIbusy = TRUE;
         thisItem = deleteFromQueue();
         /*CE Pin is low during transmission*/
-        IO_pinWrite(CEPIN, LOW);
+        PIN_Write(CEPIN.port, CEPIN.pin, LOW);
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -410,7 +413,7 @@ void writeconst(const uint16_t dataString, uint32_t stringLength) {
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
         /*CE Pin is low during transmission*/
-        IO_pinWrite(CEPIN, LOW);
+        PIN_Write(CEPIN.port, CEPIN.pin, LOW);
         thisItem = deleteFromQueue();
         Write(); /*Writes from the Queue*/
     } else {
@@ -425,7 +428,7 @@ void Write() {
     switch (thisItem.Command) {
         case DATA:
             /*DC pin high or low*/
-            IO_pinWrite(DCPIN, HIGH);
+            PIN_Write(DCPIN.port, DCPIN.pin, HIGH);
             setXferWidth_8bit();
             /*Write byte to SPI module*/
             while (dataIndex < thisItem.Length) {
@@ -436,7 +439,7 @@ void Write() {
             startXfer();
             break;
         case COMMAND:
-            IO_pinWrite(DCPIN, LOW);
+            PIN_Write(DCPIN.port, DCPIN.pin, LOW);
             setXferWidth_8bit();
             /*Write byte to SPI module*/
             /*Write byte to SPI module*/
@@ -448,7 +451,7 @@ void Write() {
             startXfer();
             break;
         case CONST:
-            IO_pinWrite(DCPIN, HIGH);
+            PIN_Write(DCPIN.port, DCPIN.pin, HIGH);
             setXferWidth_16bit();
             /*Write byte to SPI module*/
             *ptr++ = thisItem.color;
@@ -458,7 +461,7 @@ void Write() {
             startXfer();
             break;
         case STRING:
-            IO_pinWrite(DCPIN, HIGH);
+            PIN_Write(DCPIN.port, DCPIN.pin, HIGH);
             setXferWidth_16bit();
             /*Write byte to SPI module*/
             
@@ -474,9 +477,9 @@ void Write() {
                 /*Write A pixel from a row of pixels within a specific character*/
                 
                 if (font[thisString[charPtr] * ASCII_FONT_WIDTH + colPtr]&(1 << rowPtr)) {
-                    *(ptr++) = TFT_LCD_BLACK;
+                    *ptr++ = TFT_LCD_BLACK;
                 } else {
-                    *(ptr++) = thisItem.color;
+                    *ptr++ = thisItem.color;
                 }
 
                 /*For font size, repeat this pixel*/
@@ -527,7 +530,7 @@ void __attribute__((__interrupt__, auto_psv)) _DMA2Interrupt(void) {
             Write();
         } else { /*Transmission is over for now*/
             /*CE Pin is high after transmission*/
-            IO_pinWrite(CEPIN, HIGH);
+            PIN_Write(CEPIN.port, CEPIN.pin, HIGH);
             /*Status bit that the screen isnt writing anything anymore*/
             SPIbusy = FALSE;
             /*Do Nothing*/
@@ -549,12 +552,12 @@ uint32_t counter = 0;
 static void tftBootUpSequence(void) {
 
     /*Reset the display and gets the Nokia 5110 to work*/
-    IO_pinWrite(RSTPIN, 0); /*Sets reset high*/
+    PIN_Write(RSTPIN.port, RSTPIN.pin, 0); /*Sets reset high*/
     while (counter++ != 1000) {
         ;
     }
     counter = 0;
-    IO_pinWrite(RSTPIN, 1); /*Sets reset low*/
+    PIN_Write(RSTPIN.port, RSTPIN.pin, 1); /*Sets reset low*/
 
     writecommand(&swreset_cmd);
     while (counter++ != 1000) {

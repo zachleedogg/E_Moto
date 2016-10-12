@@ -11,7 +11,6 @@
 #include <xc.h>
 #include <stdint.h>
 
-
 typedef enum _adc_pin_number {
     AN0,
     AN1,
@@ -19,11 +18,16 @@ typedef enum _adc_pin_number {
     AN3,
     AN4,
     AN5,
-#ifdef ANSELC
     AN6,
     AN7,
     AN8,
-#endif
+    AN9,
+    AN10,
+    AN11,
+    AN12,
+    AN13,
+    AN14,
+    AN15,
     NUMBER_OF_ADC_PINS,
 } adc_pin_number;
 
