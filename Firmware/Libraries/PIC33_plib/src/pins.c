@@ -7,12 +7,12 @@
 #define get(reg,val) (*(reg) & (val))
 
 typedef struct _PINS_s {
-    volatile uint16_t* tris;
-    volatile uint16_t* port;
-    volatile uint16_t* lat;
-    volatile uint16_t* pu;
-    volatile uint16_t* pd;
-    volatile uint16_t* inter;
+    volatile uint16_t* const tris;
+    volatile uint16_t* const port;
+    volatile uint16_t* const lat;
+    volatile uint16_t* const pu;
+    volatile uint16_t* const pd;
+    volatile uint16_t* const inter;
 } PINS_s;
 
 /*******************************************************************************

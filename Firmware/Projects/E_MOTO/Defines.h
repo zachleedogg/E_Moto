@@ -11,6 +11,7 @@
 #include "TFT_LCD.h"
 #include "TFT_TOUCH.h"
 #include "TFT_DISPLAY.h"
+#include "pins.h"
 
 #ifndef DEFINES_H
 #define	DEFINES_H
