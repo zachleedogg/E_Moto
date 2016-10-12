@@ -74,7 +74,7 @@ static uint32_t cpuUsage = 0;
 
 typedef struct _average {
     uint16_t cpu_ticks[10];
-    uint16_t sum;
+    uint32_t sum;
     uint8_t index;
 } average;
 static average cpuUsageAverage = {
@@ -149,14 +149,15 @@ uint8_t Run() {
             if (dumbSecondCounter == 1000) {
                 dumbSecondCounter = 0;
                 char arrr[30];
-                sprintf(arrr, "CPU usage val = %u\n", cpuUsageAverage.sum / 10);
+                sprintf(arrr, "CPU usage val = %lu\n", cpuUsageAverage.sum / 10);
                 Uart1Write(arrr);
             }
             cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
             cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
             cpuUsageAverage.sum += cpuUsage;
             cpuUsage = 0;
-            if (++cpuUsageAverage.index >= 10) {
+            cpuUsageAverage.index++;
+            if (cpuUsageAverage.index >= 10) {
                 cpuUsageAverage.index = 0;
             }
             /*run timer service*/

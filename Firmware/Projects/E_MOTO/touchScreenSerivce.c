@@ -575,7 +575,6 @@ touchScreenService_State_t lastRideState(Event ThisEvent) {
 touchScreenService_State_t idleState(Event ThisEvent) {
 
     touchScreenService_State_t nextState = curState;
-    static uint8_t buttonArray[4];
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
