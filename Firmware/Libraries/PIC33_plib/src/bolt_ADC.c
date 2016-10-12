@@ -123,7 +123,7 @@ uint8_t ADC_RemovePin(adc_pin_number newPin) {
     selectADCpin(newPin, 0);
     thisADC.numberOfInputs--; /*subtract number of inputs*/
     clear(thisADC.activePins, pinMask); /*set new pin to inactive state*/
-    AD1CSSL = thisADC.activePins; /*add pin to input sweep*/
+    AD1CSSL = thisADC.activePins; /*remove pin from input sweep*/
     AD1CON2bits.SMPI = thisADC.numberOfInputs - 1; /*Number of pins to sweep*/
     ADC_ON();
     return 0;
