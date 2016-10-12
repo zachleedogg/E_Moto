@@ -1,0 +1,7 @@
+build/default/debug/_ext/1927342817/TFT_LCD.o:  \
+ ../../Drivers/TFT_LCD/src/TFT_LCD.c  \
+../../Drivers/TFT_LCD/inc/TFT_LCD.h  \
+ ../../Libraries/PIC33_plib/inc/pins.h  \
+ ../../Drivers/TFT_LCD/inc/TFT_LCD_Q.h  \
+ ../../Drivers/TFT_LCD/inc/ASCII_5X7.h  \
+ ../../Libraries/PIC33_plib/inc/bolt_uart.h 

@@ -13,6 +13,15 @@
 #include "TFT_DISPLAY.h"
 #include "bolt_uart.h"
 
+#define DEFINES_TOUCH_X0 (PINS_pin_s){PIN_PORTA,0}
+#define DEFINES_TOUCH_X1 (PINS_pin_s){PIN_PORTB,2}
+#define DEFINES_TOUCH_Y0 (PINS_pin_s){PIN_PORTA,1}
+#define DEFINES_TOUCH_Y1 (PINS_pin_s){PIN_PORTB,3}
+
+#define DEFINES_TFT_LCD_RESET (PINS_pin_s){PIN_PORTB,12}
+#define DEFINES_TFT_LCD_CS (PINS_pin_s){PIN_PORTB,10}
+#define DEFINES_TFT_LCD_DC (PINS_pin_s){PIN_PORTB,11}
+
 
 #define TEST_LED B15
 
@@ -39,9 +48,9 @@ int main(void) {
 
     Micro_Init();
     clockInit(FREQ_120MHZ, EXTERNAL);
-    TFT_LCD_INIT();
-    TFT_TOUCH_INIT(AN5, AN4);
-    Uart1Init(RP36_TX, RP20_UART_RX, BAUD115200);
+    TFT_LCD_INIT(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
+    TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, AN5, AN4);
+    Uart1Init(UART_TX_RP36, UART_RX_RP20, BAUD115200);
 
     Uart1Write("hello this is the LCD test program\n\n");
 

@@ -1,7 +1,7 @@
 #include "bolt_uart.h"
 #include "bolt_init.h"
 
-#define BUFFER_SIZE 16
+#define BUFFER_SIZE 64
 #define QUEUE_SIZE 2
 
 #define STOP_CHAR '\n'

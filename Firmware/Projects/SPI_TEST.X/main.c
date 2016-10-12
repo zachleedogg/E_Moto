@@ -24,7 +24,7 @@ static uint16_t i = 0;
 int main(void) {
     Micro_Init();
     clockInit(FREQ_32MHZ, EXTERNAL);
-    Uart1Init(RP36_TX, RP20_UART_RX, BAUD115200);
+    Uart1Init(UART_TX_RP36, UART_RX_RP20, BAUD115200);
 
     Uart1Write("SPI test program\n\n");
     _RB10 = 1;

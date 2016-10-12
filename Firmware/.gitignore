@@ -2,6 +2,9 @@ memoryfile.xml
 *.elf
 *.hex
 *.map
+*.production.elf
+*.production.hex
+*.production.map
 *.o
 *.o.d
 *.mk

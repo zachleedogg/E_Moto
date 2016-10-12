@@ -73,11 +73,15 @@ static uint8_t numberofServices = (uint8_t)sizeof (ServiceList) / sizeof (Servic
 static uint32_t cpuUsage = 0;
 
 typedef struct _average {
-    uint32_t cpu_ticks[10];
-    uint32_t sum;
+    uint16_t cpu_ticks[10];
+    uint16_t sum;
     uint8_t index;
 } average;
-static average cpuUsageAverage = {};
+static average cpuUsageAverage = {
+.cpu_ticks = {},
+.index = 0,
+.sum = 0,
+};
 
 /*******************************************************************************
  * Module Function Prototypes
@@ -140,21 +144,21 @@ uint8_t Run() {
 
         /*Background check timers*/
         if (timerHasTicked()) {
-//            static dumbSecondCounter = 0;
-//            dumbSecondCounter++;
-//            if (dumbSecondCounter == 1000) {
-//                dumbSecondCounter = 0;
-//                uint8_t arrr[30];
-//                sprintf(arrr, "CPU usage val = %lu\n", cpuUsageAverage.sum / 10);
-//                Uart1Write(arrr);
-//            }
-//            cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
-//            cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
-//            cpuUsageAverage.sum += cpuUsage;
-//            cpuUsage = 0;
-//            if (++cpuUsageAverage.index >= 10) {
-//                cpuUsageAverage.index = 0;
-//            }
+            static uint16_t dumbSecondCounter = 0;
+            dumbSecondCounter++;
+            if (dumbSecondCounter == 1000) {
+                dumbSecondCounter = 0;
+                char arrr[30];
+                sprintf(arrr, "CPU usage val = %u\n", cpuUsageAverage.sum / 10);
+                Uart1Write(arrr);
+            }
+            cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
+            cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
+            cpuUsageAverage.sum += cpuUsage;
+            cpuUsage = 0;
+            if (++cpuUsageAverage.index >= 10) {
+                cpuUsageAverage.index = 0;
+            }
             /*run timer service*/
             /* I want to put this here, but the framwork runs better with it
              in the Timer ISR. I can't figure out why, of a for-loop of 16 items.*/

@@ -35,7 +35,12 @@ typedef struct _ADCmodule {
     uint16_t activePins;
 } ADCmodule;
 
-volatile uint16_t* const adcBuffer[16] = {
+ADCmodule thisADC = {
+    .activePins = 0,
+    .numberOfInputs = 0,
+};
+
+volatile uint16_t * const adcBuffer[16] = {
     &ADC1BUF0,
     &ADC1BUF1,
     &ADC1BUF2,
@@ -51,10 +56,8 @@ volatile uint16_t* const adcBuffer[16] = {
     &ADC1BUFC,
     &ADC1BUFD,
     &ADC1BUFE,
-    &ADC1BUFF  
+    &ADC1BUFF
 };
-
-ADCmodule thisADC;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -98,7 +101,7 @@ void ADC_Init(void) {
 }
 
 uint8_t ADC_SetPin(adc_pin_number newPin) {
-    uint16_t pinMask = 1<<newPin;
+    uint16_t pinMask = 1 << newPin;
     if (thisADC.activePins & pinMask) {
         return 1;
     }
@@ -114,8 +117,8 @@ uint8_t ADC_SetPin(adc_pin_number newPin) {
 }
 
 uint8_t ADC_RemovePin(adc_pin_number newPin) {
-    uint16_t pinMask = 1<<newPin;
-    if ((thisADC.activePins & pinMask)== 0) {
+    uint16_t pinMask = 1 << newPin;
+    if ((thisADC.activePins & pinMask) == 0) {
         return 1;
     }
     ADC_OFF(); /*Turn off ADC*/
@@ -124,8 +127,12 @@ uint8_t ADC_RemovePin(adc_pin_number newPin) {
     thisADC.numberOfInputs--; /*subtract number of inputs*/
     clear(thisADC.activePins, pinMask); /*set new pin to inactive state*/
     AD1CSSL = thisADC.activePins; /*remove pin from input sweep*/
-    AD1CON2bits.SMPI = thisADC.numberOfInputs - 1; /*Number of pins to sweep*/
-    ADC_ON();
+    if (thisADC.numberOfInputs == 0) { /*do not enable module if no pins selected*/
+        ADC_OFF();
+    } else {
+        AD1CON2bits.SMPI = thisADC.numberOfInputs - 1; /*Number of pins to sweep*/
+        ADC_ON();
+    }
     return 0;
 }
 
@@ -135,14 +142,14 @@ uint16_t ADC_GetValue(adc_pin_number thisPin) {
     /*For each input, read ADC1BUFx value into correct pin buffer*/
     uint8_t i = 0;
     for (i = 0; i < thisPin; i++) {
-        if(thisADC.activePins & (mask<<i)){
+        if (thisADC.activePins & (mask << i)) {
             activePinsBeforeThisPin++;
         }
     }
     return *adcBuffer[activePinsBeforeThisPin];
 }
 
-void selectADCpin(adc_pin_number newPin, uint8_t state){
+void selectADCpin(adc_pin_number newPin, uint8_t state) {
     switch (newPin) {
 #ifdef _ANSA0
         case AN0:

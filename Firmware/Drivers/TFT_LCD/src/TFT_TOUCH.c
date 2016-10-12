@@ -148,8 +148,8 @@ void setYpins(void) {
     ADC_SetPin(an_Y);
     PIN_Direction(_y0.port, _y0.pin, OUTPUT);
     PIN_Write(_y0.port, _y0.pin, LOW);
-    PIN_Direction(_y1.port, _y0.pin, OUTPUT);
-    PIN_Write(_y1.port, _y0.pin, HIGH);
+    PIN_Direction(_y1.port, _y1.pin, OUTPUT);
+    PIN_Write(_y1.port, _y1.pin, HIGH);
 }
 
 uint8_t inRange(uint16_t item1, uint16_t item2, uint8_t range) {

@@ -28,6 +28,7 @@ state(runningState) /* see your complete dashboard in running mode */ \
 state(statisticState) /*See you ride stats */ \
 state(lastRideState) /*See you ride stats */ \
 state(batteryState) /* Monitor your battery health */ \
+state(idleState) /* Monitor your battery health */ \
 
 /*Creates an enum of states suffixed with _state*/
 #define STATE_FORM(WORD) WORD##_state,
@@ -67,8 +68,9 @@ static const char message_runningMode[] = "Press Ignition to Start";
 static const char message_statistics[] = "Performance Statistics";
 static const char message_lastRide[] = "Last Ride Data";
 static const char message_battery[] = "Battery Usage";
+static const char message_idle[] = "Idle";
 
-static char myst[20];
+//static char myst[20];
 
 /*Screen Locations*/
 #define MENU_MESSAGE_Y_POS 50
@@ -125,8 +127,8 @@ touchScreenService_State_t init(Event ThisEvent) {
 
         /*LCD Init*/
         TFT_LCD_INIT(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
-        //TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
-        ADC_Init();
+        TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
+        //ADC_Init();
 
         /*fill background*/
         TFT_LCD_fillBackground(TFT_LCD_RED);
@@ -147,7 +149,7 @@ touchScreenService_State_t welcomeState(Event ThisEvent) {
     touchScreenService_State_t nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
-            ADC_SetPin(AN0);
+            //ADC_SetPin(AN0);
 
 
             TFT_LCD_writeString(message_helloWorld, TFT_LCD_CENTER, 100, TFT_LCD_RED, TFT_LCD_CYAN, 3);
@@ -159,8 +161,8 @@ touchScreenService_State_t welcomeState(Event ThisEvent) {
         case TIMEUP_EVENT:
             switch (ThisEvent.EventParam) {
                 case TOUCH_TIMER:
-                    sprintf(myst, "anval: %d\n", ADC_GetValue(AN0));
-                    Uart1Write(myst);
+                    //sprintf(myst, "anval: %d\n", ADC_GetValue(AN0));
+                    //Uart1Write(myst);
                     /*If screen is being touched*/
                     if (TFT_TOUCH_run()) {
                         /*Draw a pixel for fun and set transition timer*/
@@ -525,7 +527,7 @@ touchScreenService_State_t lastRideState(Event ThisEvent) {
             TFT_LCD_writeString(message_lastRide, TFT_LCD_CENTER, MENU_MESSAGE_Y_POS, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             buttonArray[0] = TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
             buttonArray[1] = TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
-            buttonArray[2] = TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_MAGENTA, 2);
+            buttonArray[2] = TFT_DISPLAY_place_button("IDLE", 3, 4, TFT_LCD_MAGENTA, 2);
             buttonArray[3] = TFT_DISPLAY_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
             /*Start a touch screen timer*/
             SW_Timer_Set(TOUCH_TIMER, TOUCH_TIME, touchScreenService_SERVICE, CONTINUOUS);
@@ -544,7 +546,7 @@ touchScreenService_State_t lastRideState(Event ThisEvent) {
                             nextState = statisticState_state;
                             break;
                         case 2:
-                            nextState = lastRideState_state;
+                            nextState = idleState_state;
                             break;
                         case 3:
                             nextState = batteryState_state;
@@ -562,6 +564,29 @@ touchScreenService_State_t lastRideState(Event ThisEvent) {
         case EXIT_EVENT:
             SW_Timer_Stop(TOUCH_TIMER);
             TFT_DISPLAY_destroy_buttons();
+            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            break;
+        default:
+            break;
+    }
+    return nextState;
+}
+
+touchScreenService_State_t idleState(Event ThisEvent) {
+
+    touchScreenService_State_t nextState = curState;
+    static uint8_t buttonArray[4];
+
+    switch (ThisEvent.EventType) {
+        case ENTRY_EVENT:
+            TFT_LCD_writeString(message_idle, TFT_LCD_CENTER, MENU_MESSAGE_Y_POS, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            break;
+            /*Put custom states below here*/
+        case TIMEUP_EVENT:
+
+            break;
+            /*Put custom states above here*/
+        case EXIT_EVENT:
             TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
             break;
         default:
