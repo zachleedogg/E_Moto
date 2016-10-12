@@ -147,97 +147,97 @@ void selectADCpin(adc_pin_number newPin, uint8_t state){
 #ifdef _ANSA0
         case AN0:
             _ANSA0 = state;
-            _RA0 = 1;
+            _TRISA0 = 1;
             break;
 #endif
 #ifdef _ANSA1
         case AN1:
             _ANSA1 = state;
-            _RA1 = 1;
+            _TRISA1 = 1;
             break;
 #endif
 #ifdef _ANSB0
         case AN2:
             _ANSB0 = state;
-            _RB0 = 1;
+            _TRISB0 = 1;
             break;
 #endif
 #ifdef _ANSB1
         case AN3:
             _ANSB1 = state;
-            _RB1 = 1;
+            _TRISB1 = 1;
             break;
 #endif
 #ifdef _ANSB2
         case AN4:
             _ANSB2 = state;
-            _RB2 = 1;
+            _TRISB2 = 1;
             break;
 #endif
 #ifdef _ANSB3
         case AN5:
             _ANSB3 = state;
-            _RB3 = 1;
+            _TRISB3 = 1;
             break;
 #endif
 #ifdef _ANSC0
         case AN6:
             _ANSC0 = state;
-            _RC0 = 1;
+            _TRISC0 = 1;
             break;
 #endif
 #ifdef _ANSC1
         case AN7:
             _ANSC1 = state;
-            _RC1 = 1;
+            _TRISC1 = 1;
             break;
 #endif
 #ifdef _ANSC2
         case AN8:
             _ANSC2 = state;
-            _RC2 = 1;
+            _TRISC2 = 1;
             break;
 #endif
 #ifdef _ANSA11
         case AN9:
             _ANSA11 = state;
-            _RA11 = 1;
+            _TRISA11 = 1;
             break;
 #endif
 #ifdef _ANSA12
         case AN10:
             _ANSA12 = state;
-            _RA12 = 1;
+            _TRISA12 = 1;
             break;
 #endif
 #ifdef _ANSC11
         case AN11:
             _ANSC11 = state;
-            _RC11 = 1;
+            _TRISC11 = 1;
             break;
 #endif
 #ifdef _ANSE12
         case AN12:
             _ANSE12 = state;
-            _RE12 = 1;
+            _TRISE12 = 1;
             break;
 #endif
 #ifdef _ANSE13
         case AN13:
             _ANSE13 = state;
-            _RE13 = 1;
+            _TRISE13 = 1;
             break;
 #endif
 #ifdef _ANSE14
         case AN14:
             _ANSE14 = state;
-            _RE14 = 1;
+            _TRISE14 = 1;
             break;
 #endif
 #ifdef _ANSE15
         case AN15:
             _ANSE15 = state;
-            _RE15 = 1;
+            _TRISE15 = 1;
             break;
 #endif
         default:

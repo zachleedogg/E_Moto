@@ -12,6 +12,8 @@
 #if DEBUG_AVAILABLE
 static uint8_t debugEnable = 0;
 #define touchScreenService_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
+#else
+#define touchScreenService_print(...)
 #endif
 /*******************************************************************************
  * STATE MACHINE SETUP
@@ -66,6 +68,8 @@ static const char message_statistics[] = "Performance Statistics";
 static const char message_lastRide[] = "Last Ride Data";
 static const char message_battery[] = "Battery Usage";
 
+static char myst[20];
+
 /*Screen Locations*/
 #define MENU_MESSAGE_Y_POS 50
 
@@ -89,10 +93,8 @@ static uint8_t speedo = 0;
  * STATE MACHINE BEGINS HERE
  * ****************************************************************************/
 Event touchScreenService(Event ThisEvent) {
-#if DEBUG_AVAILABLE
     /*Debugging print statement*/
     touchScreenService_print("Service: %s\tState: %s\tEvent: %s %d\n", ServiceStrings[touchScreenService_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
-#endif
     /*Call the state machine functions*/
     touchScreenService_State_t nextState = theState[curState](ThisEvent);
 
@@ -100,9 +102,7 @@ Event touchScreenService(Event ThisEvent) {
      * State transitions thus have priority over posting new events
      * State transitions always consist of an exit event to curState and entry event to nextState */
     if (nextState != curState) {
-#if DEBUG_AVAILABLE
         touchScreenService_print("\nTransistioning\n");
-#endif
         ThisEvent.EventType = NO_EVENT;
         touchScreenService(EXIT);
         prevState = curState;
@@ -123,10 +123,10 @@ touchScreenService_State_t init(Event ThisEvent) {
     if (ThisEvent.EventType == INIT_EVENT) {
         /*Initialization stuff here*/
 
-    /*LCD Init*/
-    TFT_LCD_INIT(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
-    TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
-
+        /*LCD Init*/
+        TFT_LCD_INIT(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
+        //TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
+        ADC_Init();
 
         /*fill background*/
         TFT_LCD_fillBackground(TFT_LCD_RED);
@@ -147,6 +147,9 @@ touchScreenService_State_t welcomeState(Event ThisEvent) {
     touchScreenService_State_t nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
+            ADC_SetPin(AN0);
+
+
             TFT_LCD_writeString(message_helloWorld, TFT_LCD_CENTER, 100, TFT_LCD_RED, TFT_LCD_CYAN, 3);
             TFT_LCD_writeString(message_instructions, TFT_LCD_CENTER, 150, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             /*Start a touch screen timer*/
@@ -156,6 +159,8 @@ touchScreenService_State_t welcomeState(Event ThisEvent) {
         case TIMEUP_EVENT:
             switch (ThisEvent.EventParam) {
                 case TOUCH_TIMER:
+                    sprintf(myst, "anval: %d\n", ADC_GetValue(AN0));
+                    Uart1Write(myst);
                     /*If screen is being touched*/
                     if (TFT_TOUCH_run()) {
                         /*Draw a pixel for fun and set transition timer*/
