@@ -646,9 +646,11 @@ static void intToString(char* str, uint16_t val){
         str[1] = ones+48;
         str[2] = 0;
     } else {
-        str[0] = 48;
-        str[1] = ones+48;
-        str[2] = 0;
+        str[0] = ' ';
+        str[1] = 48;
+        str[2] = ones+48;
+        str[3] = ' ';
+        str[4] = 0;
     }
 }
 

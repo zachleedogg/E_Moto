@@ -11,7 +11,7 @@
 /*******************************************************************************
  * Debugging
  * ****************************************************************************/
-#define DEBUG_AVAILABLE 1
+#define DEBUG_AVAILABLE 0
 #if DEBUG_AVAILABLE
 #include <stdio.h>
 #include "bolt_uart.h"
