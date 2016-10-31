@@ -11,8 +11,8 @@
       <logicalFolder name="f1" displayName="inc" projectFiles="true">
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_init.h</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/pins.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
       </logicalFolder>
       <logicalFolder name="inc" displayName="inc" projectFiles="true">
         <itemPath>../../Drivers/TFT_LCD/inc/ASCII_5X7.h</itemPath>
@@ -44,12 +44,12 @@
       <logicalFolder name="src" displayName="src" projectFiles="true">
         <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
-        <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_DISPLAY.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_LCD.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_LCD_Q.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_TOUCH.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/pins.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -136,7 +136,7 @@
         <property key="oXC16gcc-sfr-warn" value="false"/>
         <property key="oXC16gcc-smar-io-lvl" value="1"/>
         <property key="oXC16gcc-smart-io-fmt" value=""/>
-        <property key="optimization-level" value="0"/>
+        <property key="optimization-level" value="1"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
         <property key="preprocessor-macros" value=""/>
@@ -147,6 +147,25 @@
       <C30-AR>
         <property key="additional-options-chop-files" value="false"/>
       </C30-AR>
+      <C30-AS>
+        <property key="assembler-symbols" value=""/>
+        <property key="expand-macros" value="false"/>
+        <property key="extra-include-directories-for-assembler" value=""/>
+        <property key="extra-include-directories-for-preprocessor" value=""/>
+        <property key="false-conditionals" value="false"/>
+        <property key="keep-locals" value="false"/>
+        <property key="list-assembly" value="false"/>
+        <property key="list-section-info" value="false"/>
+        <property key="list-source" value="false"/>
+        <property key="list-symbols" value="false"/>
+        <property key="oXC16asm-extra-opts" value=""/>
+        <property key="oXC16asm-list-to-file" value="false"/>
+        <property key="omit-debug-dirs" value="false"/>
+        <property key="omit-forms" value="false"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="relax" value="false"/>
+        <property key="warning-level" value="emit-warnings"/>
+      </C30-AS>
       <C30-LD>
         <property key="additional-options-use-response-files" value="false"/>
         <property key="boot-eeprom" value="no_eeprom"/>
@@ -243,11 +262,6 @@
         <property key="memories.eeprom" value="true"/>
         <property key="memories.flashdata" value="true"/>
         <property key="memories.id" value="true"/>
-        <property key="memories.instruction.ram" value="true"/>
-        <property key="memories.instruction.ram.end"
-                  value="${memories.instruction.ram.end.value}"/>
-        <property key="memories.instruction.ram.start"
-                  value="${memories.instruction.ram.start.value}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.end" value="0x2afeb"/>
         <property key="memories.programmemory.partition2" value="true"/>

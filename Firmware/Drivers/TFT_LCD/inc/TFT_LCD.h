@@ -29,22 +29,22 @@
 #define TFT_LCD_CENTER 0xFFFF
 #define TFT_LCD_MIDLLE 0xFFFF
 
-typedef enum _dataCommand {
+typedef enum _TFT_LCD_dataFormat_E {
     DATA,
     COMMAND,
     CONST,
     STRING
-} dataCommand;
+} TFT_LCD_dataFormat_E;
 
-typedef enum _orientation{
+typedef enum _TFT_LCD_orientation_E{
     PORTIAT,
     LANDSCAPE
-} orientation;
+} TFT_LCD_orientation_E;
 
 /*This initializes the screen*/
-void TFT_LCD_INIT(PINS_pin_s reset, PINS_pin_s CE, PINS_pin_s DC);
+void TFT_LCD_init(PINS_pin_S reset, PINS_pin_S CE, PINS_pin_S DC);
 
-void TFT_LCD_ORIENTATION(orientation thisWay);
+void TFT_LCD_setOrientation(TFT_LCD_orientation_E thisWay);
 
 void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 

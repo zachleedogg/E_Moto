@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "touchScreenService.h"
 #include "Defines.h"
 #include "configure.h"
@@ -10,6 +8,7 @@
  * ****************************************************************************/
 #define DEBUG_AVAILABLE 0
 #if DEBUG_AVAILABLE
+#include <stdio.h>
 static uint8_t debugEnable = 0;
 #define touchScreenService_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
 #else
@@ -46,11 +45,11 @@ static const char __attribute__((unused)) * StateStrings[] = {
 #endif
 
 /* function-ifies the state list*/
-#define FUNCTION_FORM(WORD) touchScreenService_State_t WORD(Event ThisEvent);
+#define FUNCTION_FORM(WORD) static touchScreenService_State_t WORD(Event ThisEvent);
 #define FUNC_PTR_FORM(WORD) WORD,
 touchScreenService_State_list(FUNCTION_FORM)
 typedef touchScreenService_State_t(*statePtr)(Event);
-statePtr theState[] = {touchScreenService_State_list(FUNC_PTR_FORM)};
+static statePtr theState[] = {touchScreenService_State_list(FUNC_PTR_FORM)};
 
 
 static touchScreenService_State_t prevState = init_state; /* initialize previous state */
@@ -86,7 +85,8 @@ static uint8_t codeIndex = 0;
 #define FAILED 1
 #define PASSED 2
 
-uint8_t passwordHandler(uint16_t temp);
+static uint8_t passwordHandler(uint16_t temp);
+static void intToString(char* str, uint16_t val);
 
 /*Speedo stuff*/
 static uint8_t speedo = 0;
@@ -120,13 +120,13 @@ Event touchScreenService(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-touchScreenService_State_t init(Event ThisEvent) {
+static touchScreenService_State_t init(Event ThisEvent) {
     touchScreenService_State_t nextState = curState;
     if (ThisEvent.EventType == INIT_EVENT) {
         /*Initialization stuff here*/
 
         /*LCD Init*/
-        TFT_LCD_INIT(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
+        TFT_LCD_init(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
         TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
         //ADC_Init();
 
@@ -145,13 +145,10 @@ touchScreenService_State_t init(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-touchScreenService_State_t welcomeState(Event ThisEvent) {
+static touchScreenService_State_t welcomeState(Event ThisEvent) {
     touchScreenService_State_t nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
-            //ADC_SetPin(AN0);
-
-
             TFT_LCD_writeString(message_helloWorld, TFT_LCD_CENTER, 100, TFT_LCD_RED, TFT_LCD_CYAN, 3);
             TFT_LCD_writeString(message_instructions, TFT_LCD_CENTER, 150, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             /*Start a touch screen timer*/
@@ -161,8 +158,6 @@ touchScreenService_State_t welcomeState(Event ThisEvent) {
         case TIMEUP_EVENT:
             switch (ThisEvent.EventParam) {
                 case TOUCH_TIMER:
-                    //sprintf(myst, "anval: %d\n", ADC_GetValue(AN0));
-                    //Uart1Write(myst);
                     /*If screen is being touched*/
                     if (TFT_TOUCH_run()) {
                         /*Draw a pixel for fun and set transition timer*/
@@ -194,7 +189,7 @@ touchScreenService_State_t welcomeState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-touchScreenService_State_t lockedState(Event ThisEvent) {
+static touchScreenService_State_t lockedState(Event ThisEvent) {
 
     touchScreenService_State_t nextState = curState;
     static uint8_t buttonArray[10];
@@ -244,7 +239,6 @@ touchScreenService_State_t lockedState(Event ThisEvent) {
                         default:
                             break;
                     }
-
                     break;
                 default:
                     break;
@@ -267,7 +261,7 @@ touchScreenService_State_t lockedState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-touchScreenService_State_t homeState(Event ThisEvent) {
+static touchScreenService_State_t homeState(Event ThisEvent) {
 
     touchScreenService_State_t nextState = curState;
     static uint8_t buttonArray[4];
@@ -304,7 +298,6 @@ touchScreenService_State_t homeState(Event ThisEvent) {
                         default:
                             break;
                     }
-
                     break;
                 default:
                     break;
@@ -327,7 +320,7 @@ touchScreenService_State_t homeState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-touchScreenService_State_t runningState(Event ThisEvent) {
+static touchScreenService_State_t runningState(Event ThisEvent) {
 
     touchScreenService_State_t nextState = curState;
     static uint8_t buttonArray[2];
@@ -373,7 +366,8 @@ touchScreenService_State_t runningState(Event ThisEvent) {
                         speedo = 0;
                     }
                     char tempStr[5];
-                    sprintf(tempStr, "%02d", speedo);
+                    //sprintf(tempStr,"%2d",speedo);
+                    intToString(tempStr, speedo);
                     TFT_LCD_writeVariableString(tempStr, TFT_LCD_CENTER, 120, TFT_LCD_RED, TFT_LCD_BLACK, 12);
                     break;
                 default:
@@ -399,7 +393,7 @@ touchScreenService_State_t runningState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-touchScreenService_State_t batteryState(Event ThisEvent) {
+static touchScreenService_State_t batteryState(Event ThisEvent) {
 
     touchScreenService_State_t nextState = curState;
     static uint8_t buttonArray[4];
@@ -459,7 +453,7 @@ touchScreenService_State_t batteryState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-touchScreenService_State_t statisticState(Event ThisEvent) {
+static touchScreenService_State_t statisticState(Event ThisEvent) {
 
     touchScreenService_State_t nextState = curState;
     static uint8_t buttonArray[4];
@@ -517,7 +511,7 @@ touchScreenService_State_t statisticState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-touchScreenService_State_t lastRideState(Event ThisEvent) {
+static touchScreenService_State_t lastRideState(Event ThisEvent) {
 
     touchScreenService_State_t nextState = curState;
     static uint8_t buttonArray[4];
@@ -572,7 +566,7 @@ touchScreenService_State_t lastRideState(Event ThisEvent) {
     return nextState;
 }
 
-touchScreenService_State_t idleState(Event ThisEvent) {
+static touchScreenService_State_t idleState(Event ThisEvent) {
 
     touchScreenService_State_t nextState = curState;
 
@@ -594,7 +588,12 @@ touchScreenService_State_t idleState(Event ThisEvent) {
     return nextState;
 }
 
-uint8_t passwordHandler(uint16_t temp) {
+
+/*******************************************************************************
+ * HELPER FUNCTIONS
+ * ****************************************************************************/
+
+static uint8_t passwordHandler(uint16_t temp) {
     uint8_t returnVal = NO_CHAR_INPUT;
     /*Button 9 is the clear button*/
     if (temp == 9) {
@@ -619,8 +618,38 @@ uint8_t passwordHandler(uint16_t temp) {
     return returnVal;
 }
 
-void clearPassword() {
+static void clearPassword() {
 
+}
+
+static void intToString(char* str, uint16_t val){
+    uint8_t ones = 0;
+    uint8_t tens = 0;
+    uint8_t hunds = 0;
+    ones = val%10;
+    val = val/10;
+    if(val){
+        tens = val%10;
+        val = val/10;
+        if(val){
+            hunds = val%10;
+        }
+    }
+    if(hunds){
+        Uart1Write("hund\n");
+        str[0] = hunds+48;
+        str[1] = tens+48;
+        str[2] = ones+48;
+        str[3] = 0;
+    } else if(tens){
+        str[0] = tens+48;
+        str[1] = ones+48;
+        str[2] = 0;
+    } else {
+        str[0] = 48;
+        str[1] = ones+48;
+        str[2] = 0;
+    }
 }
 
 

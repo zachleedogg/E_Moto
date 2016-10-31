@@ -39,14 +39,14 @@
 
 /*Screen orientation*/
 static struct {
-    orientation status;
+    TFT_LCD_orientation_E status;
     uint16_t width;
     uint16_t height;
 } screenOrientation;
 
 /*Variables to hold Current Queue Item Data*/
-static lcdData thisItem;
-static uint32_t dataIndex = 0;
+static volatile LCD_Q_data_S thisItem;
+static volatile uint32_t dataIndex = 0;
 
 /*String Buffer*/
 static struct {
@@ -60,18 +60,18 @@ static uint16_t TxBufferA[MAX_XFER_SIZE] __attribute__((aligned(MAX_XFER_SIZE)))
 static uint16_t dummyRead __attribute__((aligned(1)));
 
 /*Character Conversion variables*/
-static uint8_t charPtr = 0;
-static uint8_t rowPtr = 0;
-static uint16_t colPtr = 0;
-static uint8_t fontRowCtr = 0;
-static uint8_t fontColCtr = 0;
+static volatile uint8_t charPtr = 0;
+static volatile uint8_t rowPtr = 0;
+static volatile uint16_t colPtr = 0;
+static volatile uint8_t fontRowCtr = 0;
+static volatile uint8_t fontColCtr = 0;
 
 /*pin variables*/
-static PINS_pin_s CEPIN;
-static PINS_pin_s DCPIN;
-static PINS_pin_s RSTPIN;
+static PINS_pin_S CEPIN;
+static PINS_pin_S DCPIN;
+static PINS_pin_S RSTPIN;
 
-static uint8_t SPIbusy = FALSE;
+static volatile uint8_t SPIbusy = FALSE;
 
 /*Initialization Data*/
 static const uint16_t swreset_cmd = HX8357_SWRESET;
@@ -174,7 +174,7 @@ static void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 static void tftBootUpSequence(void);
 
 /*This will initialize the Nokia 5110 LCD screen*/
-void TFT_LCD_INIT(PINS_pin_s reset, PINS_pin_s CE, PINS_pin_s DC) {
+void TFT_LCD_init(PINS_pin_S reset, PINS_pin_S CE, PINS_pin_S DC) {
     RSTPIN = reset;
     CEPIN = CE;
     DCPIN = DC;
@@ -249,17 +249,17 @@ void TFT_LCD_INIT(PINS_pin_s reset, PINS_pin_s CE, PINS_pin_s DC) {
 //    IO_setPinDir(RSTPIN, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
 //    IO_setPinDir(CEPIN, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
 //    IO_setPinDir(DCPIN, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
-    PIN_Direction(RSTPIN.port, RSTPIN.pin, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
-    PIN_Direction(CEPIN.port, CEPIN.pin, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
-    PIN_Direction(DCPIN.port,DCPIN.pin, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
+    PINS_direction(RSTPIN.port, RSTPIN.pin, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
+    PINS_direction(CEPIN.port, CEPIN.pin, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
+    PINS_direction(DCPIN.port,DCPIN.pin, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
 
-    TFT_LCD_ORIENTATION(LANDSCAPE);
+    TFT_LCD_setOrientation(LANDSCAPE);
 
     /*Write the initialization sequence*/
     tftBootUpSequence();
 }
 
-void TFT_LCD_ORIENTATION(orientation thisWay) {
+void TFT_LCD_setOrientation(TFT_LCD_orientation_E thisWay) {
     screenOrientation.status = thisWay;
     if (thisWay == LANDSCAPE) {
         madctl_data[0] = 0b11101000;//MADCTL_MY | MADCTL_MV | MADCTL_RGB;
@@ -310,7 +310,7 @@ void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint1
 
 void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size) {
     uint16_t length = strlen(anystring);
-    lcdData newItem;
+    LCD_Q_data_S newItem;
     if (length == 0) {
         return;
     }
@@ -327,14 +327,14 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
     newItem.color = fillColor;
     newItem.font = size;
 
-    addToQueue(newItem); /*Adds what came in into Queue DC high*/
+    LCD_Q_addToQueue(newItem); /*Adds what came in into Queue DC high*/
     /*Enter thread-Critical area*/
     IEC1bits.DMA2IE = 0; /* Disable the interrupt*/
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
-        thisItem = deleteFromQueue();
+        thisItem = LCD_Q_deleteFromQueue();
         /*CE Pin is low during transmission*/
-        PIN_Write(CEPIN.port, CEPIN.pin, LOW);
+        PINS_write(CEPIN.port, CEPIN.pin, LOW);
         Write(); /*Writes from the Queue*/
     }
     IEC1bits.DMA2IE = 1; /* Enable the interrupt*/
@@ -349,19 +349,19 @@ void TFT_LCD_goToSleep() {
 /*First param is the command data, and the second param is the length of that data*/
 void writecommand(const uint16_t* commandString) {
 
-    lcdData cmdItem = {};
+    LCD_Q_data_S cmdItem = {};
     cmdItem.Length = 1;
     cmdItem.Data = (uint16_t*) commandString;
     cmdItem.Command = COMMAND;
-    addToQueue(cmdItem); /*Adds what came in into Queue DC low*/
+    LCD_Q_addToQueue(cmdItem); /*Adds what came in into Queue DC low*/
 
     /*Enter Critical Thread*/
     IEC1bits.DMA2IE = 0; /* Disable the interrupt*/
     if (SPIbusy == FALSE) {/*if SPI is idle*/
         SPIbusy = TRUE;
-        thisItem = deleteFromQueue();
+        thisItem = LCD_Q_deleteFromQueue();
         /*CE Pin is low during transmission*/
-        PIN_Write(CEPIN.port, CEPIN.pin, LOW);
+        PINS_write(CEPIN.port, CEPIN.pin, LOW);
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -375,19 +375,19 @@ void writecommand(const uint16_t* commandString) {
 /*First param is the actual data, second is the length of that data*/
 void writedata(const uint16_t *dataString, uint32_t stringLength) {
 
-    lcdData newItem;
+    LCD_Q_data_S newItem;
     newItem.Length = stringLength;
     newItem.Data = (uint16_t *) dataString;
     newItem.Command = DATA;
 
-    addToQueue(newItem); /*Adds what came in into Queue DC high*/
+    LCD_Q_addToQueue(newItem); /*Adds what came in into Queue DC high*/
     /*Enter thread-Critical area*/
     IEC1bits.DMA2IE = 0; // Disable the interrupt
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
-        thisItem = deleteFromQueue();
+        thisItem = LCD_Q_deleteFromQueue();
         /*CE Pin is low during transmission*/
-        PIN_Write(CEPIN.port, CEPIN.pin, LOW);
+        PINS_write(CEPIN.port, CEPIN.pin, LOW);
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -396,25 +396,25 @@ void writedata(const uint16_t *dataString, uint32_t stringLength) {
 }
 
 void writeconst(const uint16_t dataString, uint32_t stringLength) {
-    lcdData newItem;
+    LCD_Q_data_S newItem;
     //stringLength *= 4;
     newItem.Data = (uint16_t*) dataString;
     newItem.Command = CONST;
     newItem.color = dataString;
     while (stringLength > 0x00003FFF) {
         newItem.Length = 0x3FFF;
-        addToQueue(newItem); /*Adds what came in into Queue DC high*/
+        LCD_Q_addToQueue(newItem); /*Adds what came in into Queue DC high*/
         stringLength -= 0x00003FFF;
     }
     newItem.Length = stringLength;
-    addToQueue(newItem);
+    LCD_Q_addToQueue(newItem);
     /*Enter thread-Critical area*/
     IEC1bits.DMA2IE = 0; // Disable the interrupt
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
         /*CE Pin is low during transmission*/
-        PIN_Write(CEPIN.port, CEPIN.pin, LOW);
-        thisItem = deleteFromQueue();
+        PINS_write(CEPIN.port, CEPIN.pin, LOW);
+        thisItem = LCD_Q_deleteFromQueue();
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -428,7 +428,7 @@ void Write() {
     switch (thisItem.Command) {
         case DATA:
             /*DC pin high or low*/
-            PIN_Write(DCPIN.port, DCPIN.pin, HIGH);
+            PINS_write(DCPIN.port, DCPIN.pin, HIGH);
             setXferWidth_8bit();
             /*Write byte to SPI module*/
             while (dataIndex < thisItem.Length) {
@@ -439,7 +439,7 @@ void Write() {
             startXfer();
             break;
         case COMMAND:
-            PIN_Write(DCPIN.port, DCPIN.pin, LOW);
+            PINS_write(DCPIN.port, DCPIN.pin, LOW);
             setXferWidth_8bit();
             /*Write byte to SPI module*/
             /*Write byte to SPI module*/
@@ -451,7 +451,7 @@ void Write() {
             startXfer();
             break;
         case CONST:
-            PIN_Write(DCPIN.port, DCPIN.pin, HIGH);
+            PINS_write(DCPIN.port, DCPIN.pin, HIGH);
             setXferWidth_16bit();
             /*Write byte to SPI module*/
             *ptr++ = thisItem.color;
@@ -461,7 +461,7 @@ void Write() {
             startXfer();
             break;
         case STRING:
-            PIN_Write(DCPIN.port, DCPIN.pin, HIGH);
+            PINS_write(DCPIN.port, DCPIN.pin, HIGH);
             setXferWidth_16bit();
             /*Write byte to SPI module*/
             
@@ -525,12 +525,12 @@ void __attribute__((__interrupt__, auto_psv)) _DMA2Interrupt(void) {
         Write();
     } else {
         dataIndex = 0;
-        if (!checkQueueEmpty()) {/*There are more items in the Queue*/
-            thisItem = deleteFromQueue();
+        if (!LCD_Q_checkQueueEmpty()) {/*There are more items in the Queue*/
+            thisItem = LCD_Q_deleteFromQueue();
             Write();
         } else { /*Transmission is over for now*/
             /*CE Pin is high after transmission*/
-            PIN_Write(CEPIN.port, CEPIN.pin, HIGH);
+            PINS_write(CEPIN.port, CEPIN.pin, HIGH);
             /*Status bit that the screen isnt writing anything anymore*/
             SPIbusy = FALSE;
             /*Do Nothing*/
@@ -552,12 +552,12 @@ uint32_t counter = 0;
 static void tftBootUpSequence(void) {
 
     /*Reset the display and gets the Nokia 5110 to work*/
-    PIN_Write(RSTPIN.port, RSTPIN.pin, 0); /*Sets reset high*/
+    PINS_write(RSTPIN.port, RSTPIN.pin, 0); /*Sets reset high*/
     while (counter++ != 1000) {
         ;
     }
     counter = 0;
-    PIN_Write(RSTPIN.port, RSTPIN.pin, 1); /*Sets reset low*/
+    PINS_write(RSTPIN.port, RSTPIN.pin, 1); /*Sets reset low*/
 
     writecommand(&swreset_cmd);
     while (counter++ != 1000) {

@@ -54,11 +54,11 @@ Event FSM_TEMPLATE(Event ThisEvent) {
         case init: /* SM starts here */
             if (ThisEvent.EventType == INIT_EVENT) {
                 /*Initialization stuff here*/
-                scheduler_add(&print1, 10);
-                scheduler_add(&print2, 20);
-                scheduler_add(&print3, 300);
-                scheduler_add(&print4, 150);
-                scheduler_add(&print5, 500);
+                //scheduler_add(&print1, 10);
+                //scheduler_add(&print2, 20);
+                //scheduler_add(&print3, 300);
+                //scheduler_add(&print4, 150);
+                //scheduler_add(&print5, 500);
 
                 nextState = someState;
             }
@@ -84,7 +84,7 @@ Event FSM_TEMPLATE(Event ThisEvent) {
                     break;
                     /*Put custom states below here*/
                 case TIMEUP_EVENT:
-                    scheduler_add(&print1, 310);
+                    //scheduler_add(&print1, 310);
                     break;
                     /*Put custom states above here*/
                 case EXIT_EVENT:

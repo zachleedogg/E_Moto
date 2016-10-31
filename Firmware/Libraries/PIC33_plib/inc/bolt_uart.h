@@ -28,6 +28,7 @@
 #define BAUD56000   56000
 #define BAUD57600   57600
 #define BAUD115200  115200 
+#define BAUD230400  230400 
 
 
 /*Select Pin for RX*/

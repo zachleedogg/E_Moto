@@ -6,12 +6,20 @@
  */
 
 #include <xc.h>
-#include <stdio.h>
-#include<string.h>
-#include "bolt_uart.h"
-
 #include "framework.h"
 
+/*******************************************************************************
+ * Debugging
+ * ****************************************************************************/
+#define DEBUG_AVAILABLE 1
+#if DEBUG_AVAILABLE
+#include <stdio.h>
+#include "bolt_uart.h"
+static uint8_t debugEnable = 1;
+#define framework_print(...) if(debugEnable){char tempArray[20]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
+#else
+#define framework_print(...)
+#endif
 
 /*******************************************************************************
  *******************************************************************************
@@ -20,7 +28,6 @@
  *******************************************************************************/
 #include EVENTCHECKER_HEADER
 #include SERVICE_1
-#include "bolt_uart.h"
 #ifdef SERVICE_2
 #include SERVICE_2
 #endif
@@ -55,7 +62,7 @@ typedef struct _queue {
 } queue;
 
 /*Queue Array*/
-static queue QueueList[PRIORITY_LEVELS] = {};
+static volatile queue QueueList[PRIORITY_LEVELS] = {};
 
 /*Active Priority Level*/
 static volatile int8_t activePriorityLevel = -1;
@@ -88,16 +95,16 @@ static average cpuUsageAverage = {
  ******************************************************************************/
 
 /*Event Queue functions*/
-uint8_t EnQueue(queue *thisQueue, Event thisEvent);
-Event DeQueue(queue *thisQueue);
-uint8_t CheckForEvents();
+static uint8_t EnQueue(volatile queue *thisQueue, Event thisEvent);
+static Event DeQueue(volatile queue *thisQueue);
+static uint8_t CheckForEvents();
 
 /*Timer functions*/
-uint8_t timerHasTicked();
-void checkTimers(void);
+static uint8_t timerHasTicked();
+static void checkTimers(void);
 
 /*Task Scheduler functions*/
-uint8_t scheduler_remove(uint32_t time);
+//static uint8_t scheduler_remove(uint32_t time);
 
 /*******************************************************************************
  * Public Functions
@@ -148,9 +155,7 @@ uint8_t Run() {
             dumbSecondCounter++;
             if (dumbSecondCounter == 1000) {
                 dumbSecondCounter = 0;
-                char arrr[30];
-                sprintf(arrr, "CPU usage val = %lu\n", cpuUsageAverage.sum / 10);
-                Uart1Write(arrr);
+                framework_print("CPU %% %lu\n", cpuUsageAverage.sum / 10);
             }
             cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
             cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
@@ -172,7 +177,7 @@ uint8_t Run() {
     }
 }
 
-uint8_t CheckForEvents() {
+static uint8_t CheckForEvents() {
     uint8_t EventFound = 0;
     uint8_t i = 0;
     /* Loop through executing checker functions */
@@ -185,20 +190,20 @@ uint8_t CheckForEvents() {
     return EventFound;
 }
 
-uint8_t EnQueue(queue *thisQueue, Event thisEvent) {
+static uint8_t EnQueue(volatile queue *thisQueue, Event thisEvent) {
     thisQueue->eventQueue[thisQueue->head++] = thisEvent; /*Put Data in the Q*/
     thisQueue->size++;
     if (thisQueue->head == QUEUE_SIZE) {/*wrap-around protection*/
         thisQueue->head = 0;
     }
     if (thisQueue->size >= QUEUE_SIZE) {
-        Uart1Write("Framework_Q_Error\n");
+        framework_print("Framework_Q_Error\n");
         return 1;
     }
     return 0;
 }
 
-Event DeQueue(queue *thisQueue) {
+static Event DeQueue(volatile queue *thisQueue) {
     Event thisEvent = EMPTY;
     if (thisQueue->tail != thisQueue->head) {/*If the Queue is not empty*/
         thisEvent = thisQueue->eventQueue[thisQueue->tail]; /*Dequeue the data*/
@@ -242,7 +247,7 @@ typedef struct _sw_timer {
     ServiceMode mode;
 } sw_timer;
 
-static sw_timer SW_timers[NUMBER_OF_SW_TIMERS];
+static volatile sw_timer SW_timers[NUMBER_OF_SW_TIMERS];
 
 typedef struct _statusQ {
     uint8_t queue[STATUS_Q_SIZE];
@@ -250,12 +255,12 @@ typedef struct _statusQ {
     uint16_t tail;
 } statusQ;
 
-static statusQ timerStatus = {};
+static volatile statusQ timerStatus = {};
 
 /*******************************************************************************
  * Private Functions
  *******************************************************************************/
-uint8_t timerHasTicked() {
+static uint8_t timerHasTicked() {
     uint8_t returnVal = 0;
     /*Check if timer has ticked and deQueue timer bit*/
     if (timerStatus.queue[timerStatus.tail] == 1) {
@@ -265,14 +270,14 @@ uint8_t timerHasTicked() {
             timerStatus.tail = 0;
         }
         if(timerStatus.tail != timerStatus.head){
-            Uart1Write("p\n");
+            framework_print("p\n");
         }
         returnVal = 1;
     }
     return returnVal;
 }
 
-void checkTimers(void) {
+static void checkTimers(void) {
 
     /*Check active timers*/
     int i;

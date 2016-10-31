@@ -25,12 +25,12 @@ typedef enum {
     LOW,
     HIGH,
     TOGGLE
-} PINS_state_e;
+} PINS_internalRegisters_State_E;
 
 typedef enum {
     OUTPUT,
     INPUT
-} PINS_direction_e;
+} PINS_direction_E;
 
 typedef enum {
 #ifdef PORTA
@@ -54,40 +54,40 @@ typedef enum {
 #ifdef PORTG
     PIN_PORTG,
 #endif
-    NUMBER_OF_PORTS
-} PINS_portNumber_e;
+    PINS_NUMBER_OF_PORTS
+} PINS_portNumber_E;
 
 typedef struct {
-    PINS_portNumber_e port;
+    PINS_portNumber_E port;
     uint8_t pin;
-} PINS_pin_s;
+} PINS_pin_S;
 
-void PIN_Direction(PINS_portNumber_e port, uint8_t pin, PINS_direction_e dir);
-void PIN_Write(PINS_portNumber_e port, uint8_t pin, PINS_state_e state);
-PINS_state_e PIN_Read(PINS_portNumber_e port, uint8_t pin);
-void PIN_Pulll_Up(PINS_portNumber_e port, uint8_t pin, PINS_state_e state);
-void PIN_Pulll_Down(PINS_portNumber_e port, uint8_t pin, PINS_state_e state);
-void PINS_set_Interrupt(PINS_portNumber_e port, uint8_t pin, PINS_state_e state);
+void PINS_direction(PINS_portNumber_E port, uint8_t pin, PINS_direction_E dir);
+void PINS_write(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+PINS_internalRegisters_State_E PINS_read(PINS_portNumber_E port, uint8_t pin);
+void PINS_pullUp(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+void PINS_pullDown(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+void PINS_internalRegisters_SetInterrupt(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
 
 /**
  * sets pin as input or output
  * @param pin: pin number to select
  * @param direction: input (1) or output (0)
  */
-#define PIN_direction(pin, direction) (PIN_CONCAT(_TRIS, pin) = direction)
+#define PINS_Direction(pin, direction) (PIN_CONCAT(_TRIS, pin) = direction)
 
 /**
  * Sets output pin to high or low
  * @param pin: pin number to select
  * @param value: high (1) or low (0)
  */
-#define PIN_write(pin,state) (PIN_CONCAT(_R,pin) = state)
+#define PINS_Write(pin,state) (PIN_CONCAT(_R,pin) = state)
 
 /**
  * Toggle output pin to high or low
  * @param pin: pin number to toggle output
  */
-#define PIN_toggle(pin) if (PIN_CONCAT(_LAT,pin)) PIN_CONCAT(_R,pin)=0;\
+#define PIN_Toggle(pin) if (PIN_CONCAT(_LAT,pin)) PIN_CONCAT(_R,pin)=0;\
 else PIN_CONCAT(_R,pin)=1;\
 
 /**
@@ -95,27 +95,27 @@ else PIN_CONCAT(_R,pin)=1;\
  * @param pin: pin to read from
  * @return success (1) or failure (0)
  */
-#define PIN_read(pin) (PIN_CONCAT(_LAT,pin)
+#define PINS_Read(pin) (PIN_CONCAT(_LAT,pin)
 
 /**
  * sets internal pull-up resistor
  * @param pin: output pin to pull up
  * @ note can only be called on pin set as input
  */
-#define PIN_pullUp(pin) (PIN_CONCAT(_CNPU,pin) = 1)
+#define PIN_PullUp(pin) (PIN_CONCAT(_CNPU,pin) = 1)
 
 /**
  * sets internal pull-down resistor
  * @param pin: output pin to pull up
  * @ note can only be called on pin set as input
  */
-#define PIN_pullDown(pin) (PIN_CONCAT(_CNPD,pin) = 1)
+#define PIN_PullDown(pin) (PIN_CONCAT(_CNPD,pin) = 1)
 
 /**
  * Sets Interrupt on pin change
  * @param pin: pin to interrupt
  */
-#define PIN_interrupt(pin) (PIN_CONCAT(_CNEN,pin) = 1)
+#define PIN_SetInterrupt(pin) (PIN_CONCAT(_CNEN,pin) = 1)
 
 #endif	/* PINS_H */
 
