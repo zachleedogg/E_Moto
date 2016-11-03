@@ -1,22 +1,19 @@
 /* 
- * File:   TFT_DISPLAY.h
+ * File:   framework_taskRunner.h
  * Author: Zachary S. Levenberg
- * Created on September 10, 2016, 8:48 PM
+ * Created on November 3, 2016, 9:22 AM
  */
-#ifndef TFT_DISPLAY_H
-#define	TFT_DISPLAY_H
+
+#ifndef FRAMEWORK_TASKRUNNER_H
+#define	FRAMEWORK_TASKRUNNER_H
 
 /*******************************************************************************
  * Include
  * ****************************************************************************/
-#include <string.h>
-#include <stdint.h>
-#include "TFT_LCD.h"
-#include "TFT_TOUCH.h"
-#include "ASCII_5X7.h"
+#include "framework_configure.h"
 
 /*******************************************************************************
- * Defines & Datatypes
+ * Defines and Datatypes
  * ****************************************************************************/
 
 /*******************************************************************************
@@ -24,28 +21,11 @@
  * ****************************************************************************/
 
 /**
- * 
- * @param string
- * @param x
- * @param y
- * @param color
- * @param size
+ * Function call handle for Task Service, Takes and Empty Event and returns the same empty event
+ * @param emptyEvent: Any Event, has no effect
  * @return 
  */
-uint8_t  TFT_DISPLAY_place_button(const char* string, uint8_t x, uint8_t y, uint16_t color, uint8_t size);
+Event FRAMEWORK_TASKRUNNER_run(Event emptyEvent);
 
-/**
- * 
- * @return 
- */
-uint8_t TFT_DISPLAY_button_handler(void);
-
-/**
- * 
- */
-void TFT_DISPLAY_destroy_buttons(void);
-
-
-
-#endif	/* TFT_DISPLAY_H */
+#endif	/* FRAMEWORK_TASKRUNNER_H */
 

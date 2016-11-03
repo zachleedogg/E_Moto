@@ -37,9 +37,9 @@ typedef enum _priority {
 /***********************************************************************************************
  List of Background Event Checkers
  ***********************************************************************************************/
-#define EVENTCHECKER_HEADER "EventCheckers.h"
-/*list the background function names in EventCheckers.h*/
-#define EVENT_CHECK_FUNCS 
+//#define EVENTCHECKER_HEADER "framework_eventCheckers.h"
+///*list the background function names in EventCheckers.h*/
+//#define EVENT_CHECK_FUNCS 
 
 /* enum-ifies the event list*/
 #define ENUM_FORM(WORD) WORD,

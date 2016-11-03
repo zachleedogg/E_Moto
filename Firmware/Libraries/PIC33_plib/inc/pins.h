@@ -1,25 +1,22 @@
 /* 
  * File:   pins.h
- * Author: Zachary Levenberg
- * Comments:
+ * Author: Zachary S. Levenberg
  * Revision history: initial build 10/2/16
  */
 
+#ifndef PINS_H
+#define	PINS_H
+/*******************************************************************************
+ * Include
+ * ****************************************************************************/
 #include <xc.h>
 #include <stdint.h>
 
-#ifndef PINS_H
-#define	PINS_H
+/*******************************************************************************
+ * Defines and Datatypes
+ * ****************************************************************************/
 
 #define PIN_CONCAT(A, B) A##B
-
-/************************************************
- * PINS
- * 
- * Any pin argument may be in the form A1, B5, F7, etc...
- * If the target micro does not have this pin, the build will
- * fail at compile time
- */
 
 typedef enum {
     LOW,
@@ -62,11 +59,52 @@ typedef struct {
     uint8_t pin;
 } PINS_pin_S;
 
+/**
+ * 
+ * @param port
+ * @param pin
+ * @param dir
+ */
 void PINS_direction(PINS_portNumber_E port, uint8_t pin, PINS_direction_E dir);
+
+/**
+ * 
+ * @param port
+ * @param pin
+ * @param state
+ */
 void PINS_write(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+
+/**
+ * 
+ * @param port
+ * @param pin
+ * @return 
+ */
 PINS_internalRegisters_State_E PINS_read(PINS_portNumber_E port, uint8_t pin);
+
+/**
+ * 
+ * @param port
+ * @param pin
+ * @param state
+ */
 void PINS_pullUp(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+
+/**
+ * 
+ * @param port
+ * @param pin
+ * @param state
+ */
 void PINS_pullDown(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+
+/**
+ * 
+ * @param port
+ * @param pin
+ * @param state
+ */
 void PINS_internalRegisters_SetInterrupt(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
 
 /**

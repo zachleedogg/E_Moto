@@ -8,10 +8,15 @@
 
 #ifndef BOLT_UART_H
 #define	BOLT_UART_H
-
+/*******************************************************************************
+ * Include
+ * ****************************************************************************/
 #include <xc.h>
 #include <stdint.h>
 
+/*******************************************************************************
+ * Defines & Datatypes
+ * ****************************************************************************/
 
 /*Select a Baud Rate*/
 #define BAUD110     110
@@ -67,7 +72,7 @@
 
 /*Not all of these are available on every device, check pin-out sheet*/
 
-typedef enum _UART_tx_pin_number {
+typedef enum _UART_txPinNumber_E {
     UART_TX_RP20,
     UART_TX_RP35,
     UART_TX_RP36,
@@ -83,10 +88,11 @@ typedef enum _UART_tx_pin_number {
     UART_TX_RP56,
     UART_TX_RP57,
     NUMBER_OF_TX_PINS,
-} UART_tx_pin_number;
+} UART_txPinNumber_E;
 
-
-#define DELAY_105uS asm volatile ("REPEAT, #4201"); Nop(); // 105uS delay
+/*******************************************************************************
+ * Function Prototypes
+ * ****************************************************************************/
 
 /**
  * Initialize the UART1 module with pins assignments
@@ -95,7 +101,7 @@ typedef enum _UART_tx_pin_number {
  * @param baudRate: use any define Baud rate
  * @return 
  */
-uint8_t Uart1Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate);
+uint8_t Uart1Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate);
 
 /**
  * 
@@ -131,7 +137,7 @@ uint8_t Uart1TXbusy(void);
  * @param baudRate: use any define Baud rate
  * @return 
  */
-uint8_t Uart2Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate);
+uint8_t Uart2Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate);
 
 /**
  * 

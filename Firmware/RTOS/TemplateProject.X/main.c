@@ -15,15 +15,15 @@
 int main(void) {
     Micro_Init();
     clockInit(FREQ_80MHZ, EXTERNAL);
-    Timer_Init(clockFreq());
-    //scheduler_init();
+    FRAMEWORK_timerInit(clockFreq());
+    //FRAMEWORK_schedulerInit();
     Uart1Init(UART_TX_RP36, UART_RX_RP20, BAUD115200);
     
     printf("\n\n\nhello this is the test program for the Template Project\n");
         
-    Init();
+    FRAMEWORK_init();
     
-    Run();
+    FRAMEWORK_run();
 
     return 0;
 }

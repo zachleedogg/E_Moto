@@ -1,7 +1,7 @@
 #include "bolt_uart.h"
 #include "bolt_init.h"
 
-#define BUFFER_SIZE 64
+#define BUFFER_SIZE 16
 #define QUEUE_SIZE 2
 
 #define STOP_CHAR '\n'
@@ -93,7 +93,7 @@ static uint8_t TX2status = 0;
 
 static uint16_t delayTime;
 
-uint8_t Uart1Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate) {
+uint8_t Uart1Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate) {
     // Configure oscillator as needed
     uint32_t FP = clockFreq() / 2;
     if (FP <= FREQ_250KHZ) {
@@ -308,7 +308,7 @@ void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void) {
 }
 
 #if UART2_ENABLE
-uint8_t Uart2Init(UART_tx_pin_number TX_pin, uint16_t RX_pin, uint32_t baudRate) {
+uint8_t Uart2Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate) {
     U2MODEbits.UARTEN = 0; // Enable UART
     // Configure oscillator as needed
     uint32_t FP = clockFreq() / 2;

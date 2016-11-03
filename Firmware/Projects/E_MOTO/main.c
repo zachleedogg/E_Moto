@@ -8,6 +8,9 @@
 
 #include "Defines.h"
 #include "framework.h"
+#ifdef USE_UART
+#include "bolt_uart.h"
+#endif
 
 /*
  * 
@@ -19,12 +22,12 @@ int main(void) {
     Uart1Init(DEFINES_UART_TX, DEFINES_UART_RX, DEFINES_UART_BAUD);
     Uart1Write("\nE_MOTO TEST\n");
 #endif
-    Init();
+    FRAMEWORK_init();
 
-    Timer_Init(clockFreq());
-    //scheduler_init();
+    FRAMEWORK_timerInit(clockFreq());
+    //FRAMEWORK_schedulerInit();
 
-    Run();
+    FRAMEWORK_run();
 
     return 0;
 }

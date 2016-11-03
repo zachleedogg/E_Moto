@@ -20,8 +20,8 @@ static ADC_pinNumber_E an_Y = 0;
 static uint8_t toggler = 1;
 
 
-//static touchData prevSample = {};
-static touchData thisScreenData = {};
+//static TFT_TOUCH_touchData_S prevSample = {};
+static TFT_TOUCH_touchData_S thisScreenData = {};
 //static uint16_t lastXval = 0;
 static uint8_t debounce = 0;
 
@@ -70,7 +70,7 @@ uint8_t TFT_TOUCH_run(void) {
         }
         if (debounce == AVERAGE_SIZE) {
             debounce = 0;
-            thisScreenData.status = TOUCHING;
+            thisScreenData.status = TOUCHED;
         }
         /*take moving average*/
         touchAve.sum_x -= touchAve.x[touchAve.index];
@@ -102,7 +102,7 @@ uint8_t TFT_TOUCH_run(void) {
 
 uint8_t TFT_TOUCH_draw(uint16_t color) {
     uint8_t returnVal = 0;
-    if (thisScreenData.status == TOUCHING) {
+    if (thisScreenData.status == TOUCHED) {
         TFT_LCD_drawRect(thisScreenData.yPos, thisScreenData.xPos,
                 thisScreenData.yPos + 3, thisScreenData.xPos + 3, color);
         returnVal = 1;
@@ -110,7 +110,7 @@ uint8_t TFT_TOUCH_draw(uint16_t color) {
     return returnVal;
 }
 
-touchData TFT_TOUCH_get_data(void) {
+TFT_TOUCH_touchData_S TFT_TOUCH_get_data(void) {
     return thisScreenData;
 }
 

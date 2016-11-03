@@ -1,6 +1,6 @@
 #include "TFT_DISPLAY.h"
 
-#define DEBOUNCE_LIMIT 32
+#define DEBOUNCE_LIMIT 1
 
 typedef enum _tftDisplayButtonStatus {
     INACTIVE,
@@ -46,8 +46,8 @@ uint8_t TFT_DISPLAY_place_button(const char* string, uint8_t x, uint8_t y, uint1
 uint8_t TFT_DISPLAY_button_handler() {
     static uint8_t i = 0;
     uint8_t returnVal = 0xFF;
-    touchData currentData = TFT_TOUCH_get_data();
-    if (currentData.status == TOUCHING) {
+    TFT_TOUCH_touchData_S currentData = TFT_TOUCH_get_data();
+    if (currentData.status == TOUCHED) {
         for (i = 0; i < numberActiveButtons; i++) {
             if (activeButtons[i].status == ACTIVE) {
                 if (checkRange(currentData.xPos, currentData.yPos,

@@ -8,7 +8,7 @@
 #ifndef DEFINES_H
 #define	DEFINES_H
 
-#define USE_UART
+//#define USE_UART
 #ifdef USE_UART
 #include "bolt_uart.h"
 #endif

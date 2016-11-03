@@ -1,19 +1,22 @@
 /*
- * File:   LCD_SPI.c
+ * File:   TFT_LCD.h
  * Author: Zachary Levenberg
- *
- * Created on February 20, 2016, 7:11 PM
+ * Created on September 6, 2016, 7:11 PM
  */
-#include <xc.h> // include processor files - each processor file is guarded.
-#include <stdint.h>
-#include "pins.h"
 
-// This is a guard condition so that contents of this file are not included
-// more than once.
 #ifndef LCD_SPI_H
 #define	LCD_SPI_H
 
+/*******************************************************************************
+ * Include
+ * ****************************************************************************/
+#include <xc.h> 
+#include <stdint.h>
+#include "pins.h"
 
+/*******************************************************************************
+ * Defines & Datatypes
+ * ****************************************************************************/
 
 // Color definitions
 #define	TFT_LCD_BLACK   0x0000
@@ -41,23 +44,77 @@ typedef enum _TFT_LCD_orientation_E{
     LANDSCAPE
 } TFT_LCD_orientation_E;
 
-/*This initializes the screen*/
+/*******************************************************************************
+ * Function Prototypes
+ * ****************************************************************************/
+
+/**
+ * 
+ * @param reset
+ * @param CE
+ * @param DC
+ */
 void TFT_LCD_init(PINS_pin_S reset, PINS_pin_S CE, PINS_pin_S DC);
 
+/**
+ * 
+ * @param thisWay
+ */
 void TFT_LCD_setOrientation(TFT_LCD_orientation_E thisWay);
 
+/**
+ * 
+ * @param x0
+ * @param y0
+ * @param x1
+ * @param y1
+ * @param color
+ */
 void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 
+/**
+ * 
+ * @param color
+ */
 void TFT_LCD_fillBackground(uint16_t color);
 
+/**
+ * 
+ * @param anystring
+ * @param x
+ * @param y
+ * @param fillColor
+ * @param textColor
+ * @param size
+ */
 void TFT_LCD_writeString(const char* anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size);
 
+/**
+ * 
+ * @param anystring
+ * @param x
+ * @param y
+ * @param fillColor
+ * @param textColor
+ * @param size
+ */
 void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size);
 
+/**
+ * 
+ */
 void TFT_LCD_goToSleep(void);
 
+/**
+ * 
+ * @return 
+ */
 uint16_t TFT_LCD_height(void);
 
+/**
+ * 
+ * @return 
+ */
 uint16_t TFT_LCD_width(void);
 
 #define HX8357D 0xD
