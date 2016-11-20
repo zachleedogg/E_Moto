@@ -19,13 +19,11 @@ static ADC_pinNumber_E an_Y = 0;
 
 static uint8_t toggler = 1;
 
-
-//static TFT_TOUCH_touchData_S prevSample = {};
 static TFT_TOUCH_touchData_S thisScreenData = {};
-//static uint16_t lastXval = 0;
+
 static uint8_t debounce = 0;
 
-#define AVERAGE_SIZE 16
+#define AVERAGE_SIZE 8
 
 typedef struct _average {
     uint16_t x[AVERAGE_SIZE];
@@ -37,12 +35,11 @@ typedef struct _average {
 
 static average touchAve;
 
-void setXpins();
-void setYpins();
-uint16_t TFT_TOUCH_get_x_pos(void);
-uint16_t TFT_TOUCH_get_y_pos(void);
-uint8_t inRange(uint16_t item1, uint16_t item2, uint8_t range);
-uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
+static void setXpins();
+static void setYpins();
+static uint16_t TFT_TOUCH_get_x_pos(void);
+static uint16_t TFT_TOUCH_get_y_pos(void);
+static uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
 
 void TFT_TOUCH_INIT(PINS_pin_S x0, PINS_pin_S x1, PINS_pin_S y0, PINS_pin_S y1, ADC_pinNumber_E an_x, ADC_pinNumber_E an_y) {
     _x0 = x0;
@@ -114,19 +111,19 @@ TFT_TOUCH_touchData_S TFT_TOUCH_get_data(void) {
     return thisScreenData;
 }
 
-uint16_t TFT_TOUCH_get_x_pos(void) {
+static uint16_t TFT_TOUCH_get_x_pos(void) {
     uint16_t returnVal = ADC_GetValue(an_X);
     setYpins();
     return returnVal;
 }
 
-uint16_t TFT_TOUCH_get_y_pos(void) {
+static uint16_t TFT_TOUCH_get_y_pos(void) {
     uint16_t returnVal = ADC_GetValue(an_Y);
     setXpins();
     return returnVal;
 }
 
-void setXpins(void) {
+static void setXpins(void) {
     /*Set Y pins Hi-Z*/
     PINS_direction(_y0.port, _y0.pin, INPUT);
     PINS_direction(_y1.port, _y0.pin, INPUT);
@@ -139,7 +136,7 @@ void setXpins(void) {
     PINS_write(_x1.port, _x1.pin, LOW);
 }
 
-void setYpins(void) {
+static void setYpins(void) {
     /*Set X pins Hi-Z*/
     PINS_direction(_x0.port, _x0.pin, INPUT);
     PINS_direction(_x1.port, _x1.pin, INPUT);
@@ -152,21 +149,7 @@ void setYpins(void) {
     PINS_write(_y1.port, _y1.pin, HIGH);
 }
 
-uint8_t inRange(uint16_t item1, uint16_t item2, uint8_t range) {
-    uint8_t returnVal = 0;
-    uint8_t temp = 0;
-    if (item1 > item2) {
-        temp = item1 - item2;
-    } else {
-        temp = item2 - item1;
-    }
-    if (temp < range) {
-        returnVal = 1;
-    }
-    return returnVal;
-}
-
-uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {
+static uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {
     return (uint16_t) ((uint32_t) (x - in_min) * (uint32_t) (out_max - out_min) / (uint32_t) ((in_max - in_min) + out_min));
 }
 

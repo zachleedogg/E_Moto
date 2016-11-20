@@ -8,7 +8,7 @@
 #ifdef DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
-static uint8_t debugEnable = 0;
+static uint8_t debugEnable = 1;
 #define touchScreenService_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
 #else
 #define touchScreenService_print(...)
@@ -17,7 +17,7 @@ static uint8_t debugEnable = 0;
  * STATE MACHINE SETUP
  * ****************************************************************************/
 
-#define touchScreenService_State_list(state)\
+#define TOUCH_SCREEN_SERVICE_STATES(state)\
 state(init) /* init state for startup code */ \
 state(welcomeState) /* have fun drawing on the screen */ \
 state(lockedState) /* unlock the bike with your passcode */ \
@@ -32,27 +32,25 @@ state(idleState) /* Monitor your battery health */ \
 #define STATE_FORM(WORD) WORD##_state,
 
 typedef enum {
-    touchScreenService_State_list(STATE_FORM)
+    TOUCH_SCREEN_SERVICE_STATES(STATE_FORM)
     NUMBER_OF_STATES
-} touchScreenService_State_t;
+} TOUCH_SCREEN_SERVICE_states_E;
 
-#if DEBUG
 /*creates a string-ified list of state string names*/
-static const char __attribute__((unused)) * StateStrings[] = {
-    touchScreenService_State_list(STRING_FORM)
+static const char __attribute__((__unused__)) * const StateStrings[] = {
+    TOUCH_SCREEN_SERVICE_STATES(STRING_FORM)
 };
-#endif
 
 /* function-ifies the state list*/
-#define FUNCTION_FORM(WORD) static touchScreenService_State_t WORD(Event ThisEvent);
+#define FUNCTION_FORM(WORD) static TOUCH_SCREEN_SERVICE_states_E WORD(Event ThisEvent);
 #define FUNC_PTR_FORM(WORD) WORD,
-touchScreenService_State_list(FUNCTION_FORM)
-typedef touchScreenService_State_t(*statePtr)(Event);
-static statePtr theState[] = {touchScreenService_State_list(FUNC_PTR_FORM)};
+TOUCH_SCREEN_SERVICE_STATES(FUNCTION_FORM)
+typedef TOUCH_SCREEN_SERVICE_states_E(*statePtr)(Event);
+static statePtr theState[] = {TOUCH_SCREEN_SERVICE_STATES(FUNC_PTR_FORM)};
+static TOUCH_SCREEN_SERVICE_states_E setStateTo(statePtr thisState);
 
-
-static touchScreenService_State_t prevState = init_state; /* initialize previous state */
-static touchScreenService_State_t curState = init_state; /* initialize current state */
+static TOUCH_SCREEN_SERVICE_states_E prevState = init_state; /* initialize previous state */
+static TOUCH_SCREEN_SERVICE_states_E curState = init_state; /* initialize current state */
 
 /*******************************************************************************
  * USER SPACE
@@ -113,13 +111,13 @@ Event touchScreenService(Event ThisEvent) {
     /*Debugging print statement*/
     touchScreenService_print("Service: %s\tState: %s\tEvent: %s %d\n", ServiceStrings[touchScreenService_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
     /*Call the state machine functions*/
-    touchScreenService_State_t nextState = theState[curState](ThisEvent);
+    TOUCH_SCREEN_SERVICE_states_E nextState = theState[curState](ThisEvent);
 
     /* This only happens during state transition
      * State transitions thus have priority over posting new events
      * State transitions always consist of an exit event to curState and entry event to nextState */
     if (nextState != curState) {
-        touchScreenService_print("\nTransistioning\n");
+        touchScreenService_print("Transistioning\n");
         ThisEvent.EventType = NO_EVENT;
         touchScreenService(EXIT);
         prevState = curState;
@@ -135,22 +133,19 @@ Event touchScreenService(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static touchScreenService_State_t init(Event ThisEvent) {
-    touchScreenService_State_t nextState = curState;
+static TOUCH_SCREEN_SERVICE_states_E init(Event ThisEvent) {
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     if (ThisEvent.EventType == INIT_EVENT) {
         /*Initialization stuff here*/
 
         /*LCD Init*/
         TFT_LCD_init(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
         TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
-        //ADC_Init();
 
         /*fill background*/
         TFT_LCD_fillBackground(TFT_LCD_RED);
-        TFT_LCD_drawRect(4, 4, TFT_LCD_width() - 4, TFT_LCD_height() - 4, TFT_LCD_RED);
-        TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
 
-        nextState = welcomeState_state;
+        nextState = setStateTo(welcomeState);
     }
     return nextState;
 }
@@ -160,29 +155,18 @@ static touchScreenService_State_t init(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static touchScreenService_State_t welcomeState(Event ThisEvent) {
-    touchScreenService_State_t nextState = curState;
+static TOUCH_SCREEN_SERVICE_states_E welcomeState(Event ThisEvent) {
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
             TFT_LCD_writeString(message_helloWorld, TFT_LCD_CENTER, 100, TFT_LCD_RED, TFT_LCD_CYAN, 3);
             TFT_LCD_writeString(message_instructions, TFT_LCD_CENTER, 150, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            /*Start a touch screen timer*/
-            //FRAMEWORK_timerSet(TOUCH_TIMER, TOUCH_TIME, touchScreenService_SERVICE, CONTINUOUS);
             break;
             /*Put custom states below here*/
         case TIMEUP_EVENT:
             switch (ThisEvent.EventParam) {
-                    //                case TOUCH_TIMER:
-                    //                    /*If screen is being touched*/
-                    //                    if (TFT_TOUCH_run()) {
-                    //                        /*Draw a pixel for fun and set transition timer*/
-                    //                        if (TFT_TOUCH_draw(TFT_LCD_GREEN)) {
-                    //                            FRAMEWORK_timerSet(TRANSITION_TIMER, WAKE_UP_TOUCH_TIME, touchScreenService_SERVICE, SINGLE_SHOT);
-                    //                        }
-                    //                    }
-                    //                    break;
                 case TRANSITION_TIMER:
-                    nextState = lockedState_state;
+                    nextState = setStateTo(lockedState);
                     break;
                 default:
                     break;
@@ -197,8 +181,7 @@ static touchScreenService_State_t welcomeState(Event ThisEvent) {
             break;
             /*Put custom states above here*/
         case EXIT_EVENT:
-            //FRAMEWORK_timerStop(TOUCH_TIMER);
-            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
             break;
@@ -211,9 +194,9 @@ static touchScreenService_State_t welcomeState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static touchScreenService_State_t lockedState(Event ThisEvent) {
+static TOUCH_SCREEN_SERVICE_states_E lockedState(Event ThisEvent) {
 
-    touchScreenService_State_t nextState = curState;
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     static uint8_t buttonArray[10];
 
     switch (ThisEvent.EventType) {
@@ -247,7 +230,7 @@ static touchScreenService_State_t lockedState(Event ThisEvent) {
                 case PASSED:
                     /*Write the final char to screen and transistion to next state*/
                     TFT_LCD_writeVariableString((char*) code, TFT_LCD_CENTER, 250, TFT_LCD_RED, TFT_LCD_CYAN, 3);
-                    nextState = homeState_state;
+                    nextState = setStateTo(homeState);
                     break;
                 case NO_CHAR_INPUT:
                 default:
@@ -257,7 +240,7 @@ static touchScreenService_State_t lockedState(Event ThisEvent) {
             /*Put custom states above here*/
         case EXIT_EVENT:
             TFT_DISPLAY_destroy_buttons();
-            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
             break;
@@ -270,9 +253,9 @@ static touchScreenService_State_t lockedState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static touchScreenService_State_t homeState(Event ThisEvent) {
+static TOUCH_SCREEN_SERVICE_states_E homeState(Event ThisEvent) {
 
-    touchScreenService_State_t nextState = curState;
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     //static uint8_t buttonArray[4];
 
     switch (ThisEvent.EventType) {
@@ -287,16 +270,16 @@ static touchScreenService_State_t homeState(Event ThisEvent) {
         case TFT_TOUCH_EVENT:
             switch (TFT_DISPLAY_button_handler()) {
                 case 0:
-                    nextState = runningState_state;
+                    nextState = setStateTo(runningState);
                     break;
                 case 1:
-                    nextState = statisticState_state;
+                    nextState = setStateTo(statisticState);
                     break;
                 case 2:
-                    nextState = lastRideState_state;
+                    nextState = setStateTo(lastRideState);
                     break;
                 case 3:
-                    nextState = batteryState_state;
+                    nextState = setStateTo(batteryState);
                     break;
                 default:
                     break;
@@ -305,7 +288,7 @@ static touchScreenService_State_t homeState(Event ThisEvent) {
             /*Put custom states above here*/
         case EXIT_EVENT:
             TFT_DISPLAY_destroy_buttons();
-            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
             break;
@@ -318,9 +301,9 @@ static touchScreenService_State_t homeState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static touchScreenService_State_t runningState(Event ThisEvent) {
+static TOUCH_SCREEN_SERVICE_states_E runningState(Event ThisEvent) {
 
-    touchScreenService_State_t nextState = curState;
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     //static uint8_t buttonArray[2];
 
     switch (ThisEvent.EventType) {
@@ -373,7 +356,7 @@ static touchScreenService_State_t runningState(Event ThisEvent) {
         case EXIT_EVENT:
             FRAMEWORK_timerStop(SPEEDO_TIMER);
             TFT_DISPLAY_destroy_buttons();
-            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
             break;
@@ -386,9 +369,9 @@ static touchScreenService_State_t runningState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static touchScreenService_State_t batteryState(Event ThisEvent) {
+static TOUCH_SCREEN_SERVICE_states_E batteryState(Event ThisEvent) {
 
-    touchScreenService_State_t nextState = curState;
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     //static uint8_t buttonArray[4];
 
     switch (ThisEvent.EventType) {
@@ -423,16 +406,16 @@ static touchScreenService_State_t batteryState(Event ThisEvent) {
         case TFT_TOUCH_EVENT:
             switch (TFT_DISPLAY_button_handler()) {
                 case 0:
-                    nextState = runningState_state;
+                    nextState = setStateTo(runningState);
                     break;
                 case 1:
-                    nextState = statisticState_state;
+                    nextState = setStateTo(statisticState);
                     break;
                 case 2:
-                    nextState = lastRideState_state;
+                    nextState = setStateTo(lastRideState);
                     break;
                 case 3:
-                    nextState = batteryState_state;
+                    nextState = setStateTo(batteryState);
                     break;
                 default:
                     break;
@@ -441,7 +424,7 @@ static touchScreenService_State_t batteryState(Event ThisEvent) {
             /*Put custom states above here*/
         case EXIT_EVENT:
             TFT_DISPLAY_destroy_buttons();
-            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
             break;
@@ -454,9 +437,9 @@ static touchScreenService_State_t batteryState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static touchScreenService_State_t statisticState(Event ThisEvent) {
+static TOUCH_SCREEN_SERVICE_states_E statisticState(Event ThisEvent) {
 
-    touchScreenService_State_t nextState = curState;
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     //static uint8_t buttonArray[4];
 
     switch (ThisEvent.EventType) {
@@ -475,16 +458,16 @@ static touchScreenService_State_t statisticState(Event ThisEvent) {
         case TFT_TOUCH_EVENT:
             switch (TFT_DISPLAY_button_handler()) {
                 case 0:
-                    nextState = runningState_state;
+                    nextState = setStateTo(runningState);
                     break;
                 case 1:
-                    nextState = statisticState_state;
+                    nextState = setStateTo(statisticState);
                     break;
                 case 2:
-                    nextState = lastRideState_state;
+                    nextState = setStateTo(lastRideState);
                     break;
                 case 3:
-                    nextState = batteryState_state;
+                    nextState = setStateTo(batteryState);
                     break;
                 default:
                     break;
@@ -493,7 +476,7 @@ static touchScreenService_State_t statisticState(Event ThisEvent) {
             /*Put custom states above here*/
         case EXIT_EVENT:
             TFT_DISPLAY_destroy_buttons();
-            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
             break;
@@ -506,9 +489,9 @@ static touchScreenService_State_t statisticState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static touchScreenService_State_t lastRideState(Event ThisEvent) {
+static TOUCH_SCREEN_SERVICE_states_E lastRideState(Event ThisEvent) {
 
-    touchScreenService_State_t nextState = curState;
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     //static uint8_t buttonArray[4];
 
     switch (ThisEvent.EventType) {
@@ -530,16 +513,16 @@ static touchScreenService_State_t lastRideState(Event ThisEvent) {
         case TFT_TOUCH_EVENT:
             switch (TFT_DISPLAY_button_handler()) {
                 case 0:
-                    nextState = runningState_state;
+                    nextState = setStateTo(runningState);
                     break;
                 case 1:
-                    nextState = statisticState_state;
+                    nextState = setStateTo(statisticState);
                     break;
                 case 2:
-                    nextState = lastRideState_state;
+                    nextState = setStateTo(lastRideState);
                     break;
                 case 3:
-                    nextState = batteryState_state;
+                    nextState = setStateTo(batteryState);
                     break;
                 default:
                     break;
@@ -548,7 +531,7 @@ static touchScreenService_State_t lastRideState(Event ThisEvent) {
             /*Put custom states above here*/
         case EXIT_EVENT:
             TFT_DISPLAY_destroy_buttons();
-            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
             break;
@@ -556,9 +539,9 @@ static touchScreenService_State_t lastRideState(Event ThisEvent) {
     return nextState;
 }
 
-static touchScreenService_State_t idleState(Event ThisEvent) {
+static TOUCH_SCREEN_SERVICE_states_E idleState(Event ThisEvent) {
 
-    touchScreenService_State_t nextState = curState;
+    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -568,16 +551,16 @@ static touchScreenService_State_t idleState(Event ThisEvent) {
         case TFT_TOUCH_EVENT:
             switch (TFT_DISPLAY_button_handler()) {
                 case 0:
-                    nextState = runningState_state;
+                    nextState = setStateTo(runningState);
                     break;
                 case 1:
-                    nextState = statisticState_state;
+                    nextState = setStateTo(statisticState);
                     break;
                 case 2:
-                    nextState = lastRideState_state;
+                    nextState = setStateTo(lastRideState);
                     break;
                 case 3:
-                    nextState = batteryState_state;
+                    nextState = setStateTo(batteryState);
                     break;
                 default:
                     break;
@@ -585,7 +568,7 @@ static touchScreenService_State_t idleState(Event ThisEvent) {
             break;
             /*Put custom states above here*/
         case EXIT_EVENT:
-            TFT_LCD_drawRect(8, 8, TFT_LCD_width() - 8, TFT_LCD_height() - 8, TFT_LCD_RED);
+            TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
             break;
@@ -596,6 +579,19 @@ static touchScreenService_State_t idleState(Event ThisEvent) {
 /*******************************************************************************
  * HELPER FUNCTIONS
  * ****************************************************************************/
+
+static TOUCH_SCREEN_SERVICE_states_E setStateTo(statePtr thisState) {
+    TOUCH_SCREEN_SERVICE_states_E nextState = 0;
+    for (nextState = 0; nextState < NUMBER_OF_STATES; nextState++) {
+        if ((uint16_t) theState[nextState] == (uint16_t) thisState) {
+            break;
+        }
+    }
+    if (nextState == NUMBER_OF_STATES) {
+        nextState = 0;
+    }
+    return nextState;
+}
 
 static uint8_t passwordHandler(uint16_t temp) {
     uint8_t returnVal = NO_CHAR_INPUT;
@@ -646,10 +642,8 @@ static void intToString(char* str, uint16_t val) {
         str[2] = 0;
     } else {
         str[0] = ' ';
-        str[1] = 48;
-        str[2] = ones + 48;
-        str[3] = ' ';
-        str[4] = 0;
+        str[1] = ones + 48;
+        str[2] = 0;
     }
 }
 

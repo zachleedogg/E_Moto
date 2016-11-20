@@ -1,15 +1,13 @@
 /****************************************************************************************
  Module:
-     boltCAN.h
+     bolt_CAN.h
  Purpose:
      Contains module defines and function prototypes for the CAN module's functions
- author: brdgordo
+ author: Zlevenberg
  
  History
  *************
- 3/30/16: first write; brdgordo
- 4/6/16: modularization; brdgordo
- 5/15/16: fixed math error in module and app codes
+ 3/30/16: first write; 
  ****************************************************************************************/
 
 #ifndef CAN_FUNC_H
@@ -23,128 +21,94 @@
  ****************************************************************************************/
 
 /* RX pin select */
-#define RP20_CAN_RX    0x14
-#define RPI24_CAN_RX   0x18
-#define RPI25_CAN_RX   0x19
-#define RPI27_CAN_RX   0x1B
-#define RPI28_CAN_RX   0x1C
-#define RPI32_CAN_RX   0x20
-#define RPI33_CAN_RX   0x21
-#define RPI34_CAN_RX   0x22
-#define RP35_CAN_RX    0x23
-#define RP36_CAN_RX    0x24
-#define RP37_CAN_RX    0x25
-#define RP38_CAN_RX    0x26
-#define RP39_CAN_RX    0x27
-#define RP40_CAN_RX    0x28
-#define RP41_CAN_RX    0x29
-#define RP42_CAN_RX    0x2A
-#define RP43_CAN_RX    0x2B
-#define RPI44_CAN_RX   0x2C
-#define RPI45_CAN_RX   0x2D
-#define RPI46_CAN_RX   0x2E
-#define RPI47_CAN_RX   0x2F
-#define RPI51_CAN_RX   0x33
-#define RPI52_CAN_RX   0x34
-#define RPI53_CAN_RX   0x35
-#define RP54_CAN_RX    0x36
-#define RP55_CAN_RX    0x37
-#define RP56_CAN_RX    0x38
-#define RP57_CAN_RX    0x39
-#define RPI58_CAN_RX   0x3A
+#define CAN_RX_RP20    0x14
+#define CAN_RX_RPI24   0x18
+#define CAN_RX_RPI25   0x19
+#define CAN_RX_RPI27   0x1B
+#define CAN_RX_RPI28   0x1C
+#define CAN_RX_RPI32   0x20
+#define CAN_RX_RPI33   0x21
+#define CAN_RX_RPI34   0x22
+#define CAN_RX_RP35    0x23
+#define CAN_RX_RP36    0x24
+#define CAN_RX_RP37    0x25
+#define CAN_RX_RP38    0x26
+#define CAN_RX_RP39    0x27
+#define CAN_RX_RP40    0x28
+#define CAN_RX_RP41    0x29
+#define CAN_RX_RP42    0x2A
+#define CAN_RX_RP43    0x2B
+#define CAN_RX_RPI44   0x2C
+#define CAN_RX_RPI45   0x2D
+#define CAN_RX_RPI46   0x2E
+#define CAN_RX_RPI47   0x2F
+#define CAN_RX_RPI51   0x33
+#define CAN_RX_RPI52   0x34
+#define CAN_RX_RPI53   0x35
+#define CAN_RX_RP54    0x36
+#define CAN_RX_RP55    0x37
+#define CAN_RX_RP56    0x38
+#define CAN_RX_RP57    0x39
+#define CAN_RX_RPI58   0x3A
 
 /* TX pin select */
-typedef enum _CAN_tx_pin_number {
-    RP20_CAN_TX,
-    RP35_CAN_TX,
-    RP36_CAN_TX,
-    RP37_CAN_TX,
-    RP38_CAN_TX,
-    RP39_CAN_TX,
-    RP40_CAN_TX,
-    RP41_CAN_TX,
-    RP42_CAN_TX,
-    RP43_CAN_TX,
-    RP54_CAN_TX,
-    RP55_CAN_TX,
-    RP56_CAN_TX,
-    RP57_CAN_TX,
-    NUMBER_OF_CAN_TX_PINS,
-} CAN_tx_pin_number;
+typedef enum _CAN_txPinNumberg {
+    CAN_TX_RP20,
+    CAN_TX_RP35,
+    CAN_TX_RP36,
+    CAN_TX_RP37,
+    CAN_TX_RP38,
+    CAN_TX_RP39,
+    CAN_TX_RP40,
+    CAN_TX_RP41,
+    CAN_TX_RP42,
+    CAN_TX_RP43,
+    CAN_TX_RP54,
+    CAN_TX_RP55,
+    CAN_TX_RP56,
+    CAN_TX_RP57,
+    CAN_NUMBER_OF_TX_PINS,
+} CAN_txPinNumberg;
+
+typedef struct _CAN_message_S{
+    uint8_t nodeID;
+    uint8_t messageID;
+    uint8_t frequency;
+    uint8_t byte0;
+    uint8_t byte1;
+    uint8_t byte2;
+    uint8_t byte3;
+    uint8_t byte4;
+    uint8_t byte5;
+    uint8_t byte6;
+    uint8_t byte7;
+}CAN_message_S;
 
 /* mode types */
 #define NORMAL 0
 #define LOOPBACK 2
 
 /* Baud Rates */
-#define CAN_BAUD_ONE_OVERF 0
-#define CAN_BAUD_TWO_OVERF 1
-#define CAN_BAUD_THREE_OVERF 2
-#define CAN_BAUD_FOUR_OVERF 3
-#define CAN_BAUD_EIGHT_OVERF 7
-#define CAN_BAUD_SIXTEEN_OVERF 15
-#define CAN_BAUD_THIRTYTWO_OVERF 31
-#define CAN_BAUD_SIXTYFOUR_OVERF 63
-
-/* module codes (maximum 0xF)*/
-typedef enum _canModules {
-    CAN_MODULE_MOTOR_CONTROLLER, /*MCU has hard-coded ID, so this must always be first*/
-    CAN_MODULE_MCU,
-    CAN_MODULE_BMS_1,
-    CAN_MODULE_BMS_2,
-    CAN_MODULE_DASH, /*Dash has highest priority, must always be last here...*/
-} canModules;
-
-/* application codes (maximum 0xF) */
-typedef enum _canFlags {
-    CAN_FLAG_GENERAL,
-    CAN_FLAG_WAKEUP,
-    CAN_FLAG_KILL,
-    CAN_FLAG_IGNITION,
-    CAN_FLAG_DRIVE_MODE,
-    CAN_FLAG_SPEED,
-    CAN_FLAG_TEL,
-    CAN_FLAG_BATTERY_MSG_LEFT,
-    CAN_FLAG_BATTERY_MSG_RIGHT,
-    CAN_FLAG_VOLTAGE_MSG,
-    CAN_FLAG_MOTOR_VOLTAGE_MSG,
-    CAN_FLAG_MOTOR_CURRENT_MSG,
-    CAN_FLAG_THREE_PHASE,
-    CAN_FLAG_MOTOR_POWER_MSG,
-    CAN_GBSALL_FLAG,
-    CAN_FLAG_BATTERY_REQUEST,
-    CAN_FLAG_CHARGER,
-} canFlags;
-
-#define CAN_CMD_KBL_SPEED 0x37
-#define CAN_CMD_KBL_CURRENT_VOLTAGE 0x1a
-#define CAN_CMD_KBL_OPERATION_VOLTAGE 0x1b
-#define CAN_CMD_KBL_AVERAGE_VOLTAGE 0x33
-
+#define CAN_BAUD_125k 125000
+#define CAN_BAUD_500k 500000
+#define CAN_BAUD_1M 1000000
 
 /* receive return value masks */
-#define MODULE_MSK 0x1e0
-#define APP_MSK 0x1e
-#define FAIL_MSK 0x1
-#define MODULE_SHIFT 5
-#define APP_SHIFT 1
+#define CAN_NODE_MASK 0x0080
+#define CAN_NODE_SHIFT 4
+#define CAN_MESSAGE_MASK 0x0008
 
-/* This returns the CAN module type*/
-#define getCANModule(x) ((x & MODULE_MSK)>>MODULE_SHIFT)
+#define CAN_getCanIDFromMessage(x) (x>>2)
 
-/*This returns the CAN app code type*/
-#define getCANAppCode(x) ((x & APP_MSK)>>APP_SHIFT)
+#define CAN_getFreqFromCanID(x) ((x & 0x0700))
+/* This returns the CAN node type*/
+#define CAN_getNodeFromCanID(x) ((x & CAN_NODE_MASK)>>CAN_NODE_SHIFT)
+
+/*This returns the CAN massage type*/
+#define CAN_getMessageFromCanID(x) (x & CAN_MESSAGE_MASK)
 /******************************************************************************************
  Function Prototypes
  ******************************************************************************************/
-
-/*
- function: CAN_PinSelect
- params: TXpin - the pin for CAN transmit
-         RXpin - the pin for CAN receive
- return: success / failure
- */
-uint8_t CAN_PinSelect(CAN_tx_pin_number TXpin, uint16_t RXpin);
 
 /*
  function: CAN_Configure
@@ -152,13 +116,7 @@ uint8_t CAN_PinSelect(CAN_tx_pin_number TXpin, uint16_t RXpin);
          baud rate
  return: success / failure
  */
-uint8_t CAN_Configure(uint8_t mode, uint8_t baud);
-
-/**
- * set the module ID as defined, ie, DASH, 
- * @param module
- */
-void CAN_setModuleID(canModules thisModule);
+uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint8_t baud, uint8_t mode);
 
 /*
  function: CAM_RxDataIsReady
@@ -173,54 +131,15 @@ uint8_t CAN_RxDataIsReady();
  * @param data (is an 8 byte string)
  * @return 
  */
-uint8_t CAN_write(unsigned char * data);
-
-/**
- * Send just a simple flag on the CANbus
- * @param thisFlag
- */
-void CAN_sendFlag(canFlags thisFlag);
-
-/**
- * Send a float value along with a flag
- * @param thisFlag
- * @param data
- */
-void CAN_sendFloat(canFlags thisFlag, float data);
-
-/**
- * Send a 16 bit unsigned int value with a floag
- * @param thisFlag
- * @param data
- */
-void CAN_sendInt(canFlags thisFlag, uint16_t data);
+uint8_t CAN_write(CAN_message_S * data);
 
 /**
  * Reads a message and places the 8 bytes into a string.
  * @param RxMessage (an empty string to place the message into.)
  * @return the Module from which the message originated
  */
-uint16_t CAN_Read(unsigned char * RxMessage);
+uint16_t CAN_Read(CAN_message_S * data);
 
-/**
- * Gets a flag from a message
- * @param message (The message string that was called with CAN_Read)
- * @return 
- */
-uint8_t CAN_getFlag(unsigned char *message);
 
-/**
- * Gets a Float value from a message
- * @param message (The message string that was called with CAN_Read)
- * @return 
- */
-float CAN_getFloat(unsigned char *message);
-
-/**
- * Gets an INt value from a message
- * @param message (The message string that was called with CAN_Read)
- * @return 
- */
-uint16_t CAN_getInt(unsigned char *message);
 
 #endif /* CAN_FUNC_H */

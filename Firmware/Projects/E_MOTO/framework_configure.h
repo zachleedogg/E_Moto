@@ -4,11 +4,10 @@
  *
  * Created on June 9, 2016, 8:07 PM
  */
-
-#include <stdint.h>
-
 #ifndef CONFIGURE_H
 #define	CONFIGURE_H
+
+#include <stdint.h>
 
 /***********************************************************************************************
  List of Event Types
@@ -27,11 +26,11 @@ EVENT(TFT_TOUCH_EVENT) /*The LCD was touched*/ \
  List of Priority Levels
  ***********************************************************************************************/
 typedef enum _priority {
-    PRIORITY_1,
-    PRIORITY_2,
-    PRIORITY_3,
-    PRIORITY_LEVELS
-} priority;
+    FRAMEWORK_PRIORITY_1,
+    FRAMEWORK_PRIORITY_2,
+    FRAMEWORK_PRIORITY_3,
+    FRAMEWORK_PRIORITY_LEVELS
+} FRAMEWORK_priority_E;
 
 
 /***********************************************************************************************
@@ -47,11 +46,11 @@ typedef enum _priority {
 typedef enum {
     EVENT_LIST(ENUM_FORM)
     EVENTCOUNT
-} EventType_t;
+} FRAMEWORK_eventType_E;
 
 /* string-ifies the event list */
 #define STRING_FORM(WORD) #WORD,
-static char __attribute__((unused)) * EventStrings[] = {
+static const char __attribute__((unused)) * const EventStrings[] = {
     EVENT_LIST(STRING_FORM)
 };
 
@@ -81,19 +80,19 @@ SERVICE(touchScreenService) /*Main state machine, This is always first (the defa
 typedef enum {
     SERVICE_LIST(SERVICE_FORM)
     SERVICECOUNT
-} ServiceType_t;
+} FRAMEWORK_serviceType_E;
 
 /* string-ifies the service list */
-static char __attribute__((unused)) * ServiceStrings[] = {
+static const char __attribute__((unused)) * const ServiceStrings[] = {
     SERVICE_LIST(STRING_FORM)
 };
 
 /* The Event type */
 typedef struct Event_t {
-    EventType_t EventType;
+    FRAMEWORK_eventType_E EventType;
     uint16_t EventParam;
-    priority EventPriority;
-    ServiceType_t Service;
+    FRAMEWORK_priority_E EventPriority;
+    FRAMEWORK_serviceType_E Service;
 } Event;
 
 #endif	/* CONFIGURE_H */

@@ -1,7 +1,7 @@
 #include "bolt_uart.h"
 #include "bolt_init.h"
 
-#define BUFFER_SIZE 16
+#define BUFFER_SIZE 256
 #define QUEUE_SIZE 2
 
 #define STOP_CHAR '\n'
@@ -48,47 +48,47 @@ typedef struct _uartDataQueue {
 #define UART1_PPS 1 /*From PPS map in data sheet*/
 #define UART2_PPS 3 /*From PPS map in data sheet*/
 
-void enQ(uartDataQueue * thisQ);
-uint8_t deQ(uartDataQueue * thisQ);
+void enQ(volatile uartDataQueue * thisQ);
+uint8_t deQ(volatile uartDataQueue * thisQ);
 
 #if UART1_ENABLE
-static uartBuffer RX1buffer = {
+static volatile uartBuffer RX1buffer = {
     .buff = {},
     .pointCurrent = 0,
     .pointEnd = 0,
 };
-static uartBuffer TX1buffer = {
+static volatile uartBuffer TX1buffer = {
     .buff = {},
     .pointCurrent = 0,
     .pointEnd = 0,
 };
-static uartDataQueue RX1Q = {
+static volatile uartDataQueue RX1Q = {
     .buff = {},
     .head = 0,
     .tail = 0,
 };
-static uint8_t RX1dataReady = 0;
-static uint8_t TX1status = 0;
+static volatile uint8_t RX1dataReady = 0;
+static volatile uint8_t TX1status = 0;
 #endif
 
 #if UART2_ENABLE
-static uartBuffer RX2buffer = {
+static volatile uartBuffer RX2buffer = {
     .buff = {},
     .pointCurrent = 0,
     .pointEnd = 0,
 };
-static uartBuffer TX2buffer = {
+static volatile uartBuffer TX2buffer = {
     .buff = {},
     .pointCurrent = 0,
-    .pointEnd,
+    .pointEnd = 0,
 };
-static uartDataQueue RX2Q = {
+static volatile uartDataQueue RX2Q = {
     .buff = {},
     .head = 0,
     .tail = 0,
 };
-static uint8_t RX2dataReady = 0;
-static uint8_t TX2status = 0;
+static volatile uint8_t RX2dataReady = 0;
+static volatile uint8_t TX2status = 0;
 #endif
 
 static uint16_t delayTime;
@@ -332,57 +332,59 @@ uint8_t Uart2Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate)
     _U2RXR = RX_pin;
 
     //TX
+    //TX
     switch (TX_pin) {
-        case RP20_TX:
+        case UART_TX_RP20:
             RP20_TX_PPS = UART2_PPS;
             break;
-        case RP35_TX:
+        case UART_TX_RP35:
             RP35_TX_PPS = UART2_PPS;
             break;
-        case RP36_TX:
+        case UART_TX_RP36:
             RP36_TX_PPS = UART2_PPS;
             break;
-        case RP37_TX:
+        case UART_TX_RP37:
             RP37_TX_PPS = UART2_PPS;
             break;
-        case RP38_TX:
+        case UART_TX_RP38:
             RP38_TX_PPS = UART2_PPS;
             break;
-        case RP39_TX:
+        case UART_TX_RP39:
             RP39_TX_PPS = UART2_PPS;
             break;
-        case RP40_TX:
+        case UART_TX_RP40:
             RP40_TX_PPS = UART2_PPS;
             break;
-        case RP41_TX:
+        case UART_TX_RP41:
             RP41_TX_PPS = UART2_PPS;
             break;
-        case RP42_TX:
+        case UART_TX_RP42:
             RP42_TX_PPS = UART2_PPS;
             break;
-        case RP43_TX:
+        case UART_TX_RP43:
             RP43_TX_PPS = UART2_PPS;
             break;
 #ifdef _RP54R
-        case RP54_TX:
+        case UART_TX_RP54:
             RP54_TX_PPS = UART2_PPS;
             break;
 #endif
 #ifdef _RP55R
-        case RP55_TX:
+        case UART_TX_RP55:
             RP55_TX_PPS = UART2_PPS;
             break;
 #endif
 #ifdef _RP56R
-        case RP56_TX:
+        case UART_TX_RP56:
             RP56_TX_PPS = UART2_PPS;
             break;
 #endif
 #ifdef _RP57R
-        case RP57_TX:
+        case UART_TX_RP57:
             RP57_TX_PPS = UART2_PPS;
             break;
 #endif
+            
         default:
             return 1;
             break;
@@ -520,14 +522,14 @@ void __attribute__((__interrupt__, auto_psv)) _U2RXInterrupt(void) {
 
 #endif
 
-void enQ(uartDataQueue * thisQ) {
+void enQ(volatile uartDataQueue * thisQ) {
     thisQ->buff[thisQ->head++] = 1; /*Put Data in the Q*/
     if (thisQ->head >= QUEUE_SIZE) {/*wrap-around protection*/
         thisQ->head = 0;
     }
 }
 
-uint8_t deQ(uartDataQueue * thisQ) {
+uint8_t deQ(volatile uartDataQueue * thisQ) {
     if (thisQ->tail != thisQ->head) {/*If the Queue is not empty*/
         thisQ->buff[thisQ->tail++] = 0; /*Dequeue the data*/
         if (thisQ->tail >= QUEUE_SIZE) {/*wrap-around protection*/

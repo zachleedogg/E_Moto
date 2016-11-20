@@ -17,7 +17,7 @@ int main(void) {
     clockInit(FREQ_80MHZ, EXTERNAL);
     FRAMEWORK_timerInit(clockFreq());
     //FRAMEWORK_schedulerInit();
-    Uart1Init(UART_TX_RP36, UART_RX_RP20, BAUD115200);
+    Uart1Init(UART_TX_RP36, UART_RX_RP20, UART_BAUD_115200);
     
     printf("\n\n\nhello this is the test program for the Template Project\n");
         

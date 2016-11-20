@@ -8,7 +8,6 @@
 #ifndef DEFINES_H
 #define	DEFINES_H
 
-//#define USE_UART
 #ifdef USE_UART
 #include "bolt_uart.h"
 #endif
@@ -18,6 +17,11 @@
 #include "TFT_TOUCH.h"
 #include "TFT_DISPLAY.h"
 #include "pins.h"
+
+#ifdef USE_CAN
+#include "bolt_CAN.h"
+#include "CAN_DBC.h"
+#endif
 
 /*******************************************************************************
  * PIN DEFINITIONS
@@ -35,18 +39,17 @@
 
 #define DEFINES_UART_TX UART_TX_RP36
 #define DEFINES_UART_RX UART_RX_RP20
-#define DEFINES_UART_BAUD BAUD230400
+#define DEFINES_UART_BAUD UART_BAUD_230400
 
 
 /*******************************************************************************
  * TIMER DEFINES
  */
 
-#define TOUCH_TIMER 0
-#define TRANSITION_TIMER 1
+
+#define TRANSITION_TIMER 0
 #define SPEEDO_TIMER 2
 
-#define TOUCH_TIME 1
 #define WAKE_UP_TOUCH_TIME 1500
 #define SPEEDO_TIME 250
 

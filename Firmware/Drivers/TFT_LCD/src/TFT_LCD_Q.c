@@ -20,7 +20,7 @@
 
 
 /*Change QUEUESIZE varible to work or test*/
-#define QUEUESIZE 200
+#define QUEUESIZE 240
 #define TRUE 1
 #define FALSE 0
 
@@ -39,33 +39,20 @@ static volatile lcdQueue thisQueue = {
 /*This function will add to the current Queue whatever is incoming and put it
  into the Queue array.*/
 void LCD_Q_addToQueue(LCD_Q_data_S newItem) {
-    qprint("ins\n");
-
     if (LCD_Q_checkQueueFull()) {/*The Queue is full so it does nothing*/
         qprint("queue full\n");
-        return;
-
     } else {/*The Queue is not full so go along normal process*/
-        /*Puts the dataPointer into the dataArray*/
         thisQueue.thisData[thisQueue.Head].Data = newItem.Data;
-        /*Puts the length into the lengthArray*/
         thisQueue.thisData[thisQueue.Head].Length = newItem.Length;
-        /*Puts the DC value into the DCArray :: DC == 1 means data and
-         DC == 0 means commands*/
         thisQueue.thisData[thisQueue.Head].Command = newItem.Command;
         thisQueue.thisData[thisQueue.Head].color = newItem.color;
         thisQueue.thisData[thisQueue.Head].font = newItem.font;
-        /*Increment the emptyIndex because it is not longer empty anymore*/
-        //qprint("head: %d tail: %d length: %d DC %d\n", thisQueue.Head, thisQueue.Tail, thisQueue.thisData[thisQueue.Head].Length, thisQueue.thisData[thisQueue.Head].Command);
         qprint("head: %d tail: %d\n", thisQueue.Head, thisQueue.Tail);
         thisQueue.Head++;
         if (thisQueue.Head >= QUEUESIZE) {
             thisQueue.Head = 0;
         }
     }
-
-    /*This checks if the emptyIndex is at the last spot*/
-
 }
 
 /*This function will delete the item from the Queue and clear what is in it*/
@@ -78,10 +65,6 @@ LCD_Q_data_S LCD_Q_deleteFromQueue(void) {
     } else {/*The Queue is not empty*/
         thisItem = thisQueue.thisData[thisQueue.Tail];
         /*Gets rid of the items at the currentIndex*/
-//        thisQueue.thisData[thisQueue.Tail].Data = 0;
-//        thisQueue.thisData[thisQueue.Tail].Length = 0;
-//        thisQueue.thisData[thisQueue.Tail].Command = 0;
-        /*Increments the current index because it has no information*/
         thisQueue.Tail++;
         /*This checks if the currentIndex is at the last spot*/
         if (thisQueue.Tail >= QUEUESIZE) {

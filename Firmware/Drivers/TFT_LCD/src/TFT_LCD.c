@@ -12,7 +12,6 @@
 #include "TFT_LCD_Q.h"
 
 #include "ASCII_5X7.h"
-#include "bolt_uart.h"
 
 #define MAX_XFER_SIZE 64
 
@@ -33,9 +32,13 @@
 #define setXferCount(x) (DMA2CNT = x-1)
 #define setXferConstant() (DMA2CONbits.AMODE = 1)
 #define setXferBlock() (DMA2CONbits.AMODE = 0)
+#ifdef E_MOTO_SIMULATION
+#define startXfer()
+#else
 #define startXfer() DMA2CONbits.CHEN = 1;\
                     DMA2REQbits.FORCE = 1\
 
+#endif
 
 /*Screen orientation*/
 static struct {
@@ -48,12 +51,18 @@ static struct {
 static volatile LCD_Q_data_S thisItem;
 static volatile uint32_t dataIndex = 0;
 
+/*Max size is 255 (not 256), if you need longer, change the head ptr from 8 to 16 bits*/
+#define STRING_BUFFER_SIZE 32
 /*String Buffer*/
-static struct {
-    uint8_t buffer[255];
+typedef struct {
+    char buffer[STRING_BUFFER_SIZE];
     uint8_t head;
-} stringBuffer;
+} stringBuffer_S;
 
+stringBuffer_S stringBuffer = {
+    .buffer = {},
+    .head = 0,
+};
 //Set up DMA Channel 0 to Transmit in Continuous Ping-Pong Mode:
 static uint16_t TxBufferA[MAX_XFER_SIZE] __attribute__((aligned(MAX_XFER_SIZE)));
 
@@ -153,7 +162,7 @@ static const uint16_t setgamma_data[] = {
 static const uint16_t colmod_cmd = HX8357_COLMOD;
 static const uint16_t colmod_data[] = {0x55}; // 16 bit 
 static const uint16_t madctl_cmd = HX8357_MADCTL;
-static uint16_t madctl_data[] = {MADCTL_MV | MADCTL_MX |MADCTL_RGB}; //{MADCTL_MX | MADCTL_MV | MADCTL_RGB}//{0xC0};
+static uint16_t madctl_data[] = {MADCTL_MV | MADCTL_MX | MADCTL_RGB}; //{MADCTL_MX | MADCTL_MV | MADCTL_RGB}//{0xC0};
 static const uint16_t teon_cmd = HX8357_TEON; // TE off
 static const uint16_t teon_data[] = {0x00};
 static const uint16_t tearline_cmd = HX8357_TEARLINE; // tear line
@@ -212,7 +221,7 @@ void TFT_LCD_init(PINS_pin_S reset, PINS_pin_S CE, PINS_pin_S DC) {
 
     DMA3CONbits.CHEN = 1;
 
-    
+
     // SPI1CON1 Register Settings
     SPI1CON1bits.DISSCK = 0; // Internal serial clock is enabled
     SPI1CON1bits.DISSDO = 0; // SDOx pin is controlled by the module
@@ -244,14 +253,10 @@ void TFT_LCD_init(PINS_pin_S reset, PINS_pin_S CE, PINS_pin_S DC) {
 
     SPI1STATbits.SPIEN = 1; // Enable SPI module
     IFS0bits.SPI1IF = 0;
-    //IEC0bits.SPI1IE = 1; // Enable the interrupt
 
-//    IO_setPinDir(RSTPIN, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
-//    IO_setPinDir(CEPIN, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
-//    IO_setPinDir(DCPIN, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
     PINS_direction(RSTPIN.port, RSTPIN.pin, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
     PINS_direction(CEPIN.port, CEPIN.pin, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
-    PINS_direction(DCPIN.port,DCPIN.pin, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
+    PINS_direction(DCPIN.port, DCPIN.pin, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
 
     TFT_LCD_setOrientation(LANDSCAPE);
 
@@ -262,16 +267,16 @@ void TFT_LCD_init(PINS_pin_S reset, PINS_pin_S CE, PINS_pin_S DC) {
 void TFT_LCD_setOrientation(TFT_LCD_orientation_E thisWay) {
     screenOrientation.status = thisWay;
     if (thisWay == LANDSCAPE) {
-        madctl_data[0] = 0b11101000;//MADCTL_MY | MADCTL_MV | MADCTL_RGB;
+        madctl_data[0] = 0b11101000; //MADCTL_MY | MADCTL_MV | MADCTL_RGB;
         screenOrientation.height = HEIGHT;
         screenOrientation.width = WIDTH;
     } else {
         madctl_data[0] = MADCTL_MX | MADCTL_MY | MADCTL_RGB;
-        screenOrientation.height =WIDTH;
+        screenOrientation.height = WIDTH;
         screenOrientation.width = HEIGHT;
     }
     writecommand(&madctl_cmd);
-    writedata((const uint16_t*)madctl_data, 1);
+    writedata((const uint16_t*) madctl_data, 1);
 }
 
 void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1) {
@@ -286,7 +291,7 @@ void setCanvas(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1) {
 
 void TFT_LCD_drawRect(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
     setCanvas(x0, y0, x1, y1);
-    uint32_t size = ((uint32_t) (x1 - x0+1)*(uint32_t) (y1 - y0+1));
+    uint32_t size = ((uint32_t) (x1 - x0 + 1)*(uint32_t) (y1 - y0 + 1));
     writeconst(color, size);
 }
 
@@ -298,14 +303,16 @@ void TFT_LCD_writeVariableString(char * anystring, uint16_t x, uint16_t y, uint1
     uint16_t length = (uint16_t) strlen(anystring);
     if (length == 0) {
         return;
-    } else {
-        length = 0;
     }
-    uint8_t* ptr = &stringBuffer.buffer[stringBuffer.head];
-    do {
-        stringBuffer.buffer[stringBuffer.head++] = anystring[length++];
-    } while (anystring[length - 1] != 0);
-    TFT_LCD_writeString((const char*) ptr, x, y, fillColor, textColor, size);
+    if(((uint16_t)stringBuffer.head + length) >= STRING_BUFFER_SIZE){
+        stringBuffer.head = 0;
+    }
+    const char* ptr = &stringBuffer.buffer[stringBuffer.head];
+    uint16_t i = 0;
+    for(i = 0; i<=length; i++){
+        stringBuffer.buffer[stringBuffer.head++] = anystring[i];
+    }
+    TFT_LCD_writeString(ptr, x, y, fillColor, textColor, size);
 }
 
 void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_t fillColor, uint16_t textColor, uint8_t size) {
@@ -315,13 +322,13 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
         return;
     }
     if (x == TFT_LCD_CENTER) {
-        x = (TFT_LCD_width() / 2)-(length * ASCII_FONT_WIDTH * (uint16_t)size / 2);
+        x = (TFT_LCD_width() / 2)-(length * ASCII_FONT_WIDTH * (uint16_t) size / 2);
     }
 
-    setCanvas(x, y, (x + size * (length * ASCII_FONT_WIDTH))-1, (y + size * ASCII_FONT_HEIGHT)-1);
+    setCanvas(x, y, (x + size * (length * ASCII_FONT_WIDTH)) - 1, (y + size * ASCII_FONT_HEIGHT) - 1);
 
-    
-    newItem.Length = (uint32_t)length;
+
+    newItem.Length = (uint32_t) length;
     newItem.Data = (uint16_t*) (anystring);
     newItem.Command = STRING;
     newItem.color = fillColor;
@@ -464,9 +471,9 @@ void Write() {
             PINS_write(DCPIN.port, DCPIN.pin, HIGH);
             setXferWidth_16bit();
             /*Write byte to SPI module*/
-            
-            
-            while ((counter<MAX_XFER_SIZE) && (dataIndex < thisItem.Length)) {
+
+
+            while ((counter < MAX_XFER_SIZE) && (dataIndex < thisItem.Length)) {
                 counter++;
                 uint8_t* thisString = (uint8_t*) thisItem.Data;
                 /*when we reach the last row, increament to data index so
@@ -475,7 +482,7 @@ void Write() {
                     dataIndex++;
                 }
                 /*Write A pixel from a row of pixels within a specific character*/
-                
+
                 if (font[thisString[charPtr] * ASCII_FONT_WIDTH + colPtr]&(1 << rowPtr)) {
                     *ptr++ = TFT_LCD_BLACK;
                 } else {
@@ -538,7 +545,6 @@ void __attribute__((__interrupt__, auto_psv)) _DMA2Interrupt(void) {
     }
 }
 
-
 uint16_t TFT_LCD_height(void) {
     return screenOrientation.height;
 }
@@ -567,7 +573,7 @@ static void tftBootUpSequence(void) {
     // setextc
     writecommand(&setc_cmd);
     writedata(setc_data, 3);
-    
+
     // setRGB which also enables SDO
     writecommand(&setrgb_cmd);
     writedata(setrgb_data, 4); //enable SDO pin!

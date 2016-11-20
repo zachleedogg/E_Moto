@@ -20,9 +20,8 @@ int main(void) {
     clockInit(FREQ_120MHZ, EXTERNAL);
 #ifdef USE_UART
     Uart1Init(DEFINES_UART_TX, DEFINES_UART_RX, DEFINES_UART_BAUD);
-    Uart1Write("\nE_MOTO TEST\n");
+    Uart1Write("\nE_MOTO TEST\n\n");
 #endif
-    FRAMEWORK_init();
 
     FRAMEWORK_timerInit(clockFreq());
     //FRAMEWORK_schedulerInit();

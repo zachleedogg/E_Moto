@@ -62,7 +62,7 @@ typedef struct _framework_queue_S {
     uint16_t head;
     uint16_t tail;
 } framework_queue_S;
-static volatile framework_queue_S QueueList[PRIORITY_LEVELS] = {};
+static volatile framework_queue_S QueueList[FRAMEWORK_PRIORITY_LEVELS] = {};
 
 /*Active Priority Level*/
 static volatile int8_t framework_ActivePriorityLevel = -1;
@@ -89,6 +89,11 @@ static average cpuUsageAverage = {};
 /*******************************************************************************
  * Module Function Prototypes
  ******************************************************************************/
+/**
+ * FRAMEWORK_run the framwork initialization
+ * @return 
+ */
+static uint8_t FRAMEWORK_init();
 
 /*Event Queue functions*/
 static uint8_t EnQueue(volatile framework_queue_S *thisQueue, Event thisEvent);
@@ -113,19 +118,10 @@ uint8_t FRAMEWORK_postEvent(Event thisEvent) {
     return 0;
 }
 
-uint8_t FRAMEWORK_init(void) {
-    Event ThisEvent = INIT;
-    uint8_t S = 0;
-
-    for (S = 0; S < numberofServices; S++) {/*Check through each service*/
-        /*post init event to each service*/
-        ServiceList[S](ThisEvent);
-    }
-    return 1;
-}
-
 uint8_t FRAMEWORK_run(void) {
     Event ThisEvent;
+    
+    FRAMEWORK_init();
 
     while (1) {
 
@@ -188,6 +184,17 @@ uint8_t FRAMEWORK_run(void) {
 //    return EventFound;
 //}
 
+static uint8_t FRAMEWORK_init(void) {
+    Event ThisEvent = INIT;
+    uint8_t S = 0;
+
+    for (S = 0; S < numberofServices; S++) {/*Check through each service*/
+        /*post init event to each service*/
+        ServiceList[S](ThisEvent);
+    }
+    return 1;
+}
+
 static uint8_t EnQueue(volatile framework_queue_S *thisQueue, Event thisEvent) {
     thisQueue->eventQueue[thisQueue->head++] = thisEvent; /*Put Data in the Q*/
     thisQueue->size++;
@@ -224,36 +231,36 @@ static Event DeQueue(volatile framework_queue_S *thisQueue) {
  *******************************************************************************
  *******************************************************************************/
 
-#define STATUS_Q_SIZE 256
+#define STATUS_Q_SIZE 8
 
 /*******************************************************************************
  * Data Structures and variables
  *******************************************************************************/
 static volatile uint32_t runningTime = 0;
 
-typedef enum _sw_timer_status {
+typedef enum _FRAMEWORK_swTimerStatus_E {
     OFF,
     RUNNING,
     DONE,
-} sw_timer_status;
+} FRAMEWORK_swTimerStatus_E;
 
-typedef struct _sw_timer {
+typedef struct _FRAMEWORK_swTimer_S {
     uint16_t time;
     uint16_t threshold;
-    sw_timer_status status;
-    ServiceType_t service;
+    FRAMEWORK_swTimerStatus_E status;
+    FRAMEWORK_serviceType_E service;
     FRAMEWORK_timerMode_E mode;
-} sw_timer;
+} FRAMEWORK_swTimer_S;
 
-static volatile sw_timer SW_timers[NUMBER_OF_SW_TIMERS];
+static volatile FRAMEWORK_swTimer_S SW_timers[NUMBER_OF_SW_TIMERS];
 
-typedef struct _statusQ {
+typedef struct _FRAMEWORK_swTimerStatusQueue_S {
     uint8_t queue[STATUS_Q_SIZE];
-    uint16_t head;
-    uint16_t tail;
-} statusQ;
+    uint8_t head;
+    uint8_t tail;
+} FRAMEWORK_swTimerStatusQueue_S;
 
-static volatile statusQ timerStatus = {};
+static volatile FRAMEWORK_swTimerStatusQueue_S timerStatus = {};
 
 /*******************************************************************************
  * Private Functions
@@ -292,7 +299,7 @@ static void checkTimers(void) {
                 Event ThisEvent;
                 ThisEvent.EventType = TIMEUP_EVENT;
                 ThisEvent.EventParam = i;
-                ThisEvent.EventPriority = PRIORITY_2;
+                ThisEvent.EventPriority = FRAMEWORK_PRIORITY_2;
                 ThisEvent.Service = SW_timers[i].service;
                 FRAMEWORK_postEvent(ThisEvent);
             }
@@ -339,7 +346,7 @@ uint32_t FRAMEWORK_getTimeNow(void) {
     return runningTime;
 }
 
-void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, ServiceType_t service, FRAMEWORK_timerMode_E Mode) {
+void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, FRAMEWORK_serviceType_E service, FRAMEWORK_timerMode_E Mode) {
     SW_timers[thisTimer].time = time;
     SW_timers[thisTimer].threshold = time;
     SW_timers[thisTimer].status = RUNNING;
@@ -371,7 +378,7 @@ void __attribute__((__interrupt__, __auto_psv__, __shadow__)) _T5Interrupt(void)
     
     /*Every millisecond, run the task scheduler*/
     Event taskEvent;
-    taskEvent.EventPriority = PRIORITY_3;
+    taskEvent.EventPriority = FRAMEWORK_PRIORITY_3;
     taskEvent.EventType = NO_EVENT;
     taskEvent.Service = numberofServices-1;
     FRAMEWORK_postEvent(taskEvent);

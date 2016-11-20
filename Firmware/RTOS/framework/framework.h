@@ -56,13 +56,6 @@ typedef void(*FRAMEWORK_scheduleTask)();
 /******************************************************************************/
 
 /**
- * FRAMEWORK_run the framwork initialization
- * @return 
- */
-uint8_t FRAMEWORK_init();
-
-
-/**
  * Main framework run function
  * @return 
  */
@@ -100,7 +93,7 @@ uint32_t FRAMEWORK_getTimeNow(void);
  * @param time: the time in milliseconds
  * @param service: the service in which the TIMEUP Event is posted to.
  */
-void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, ServiceType_t service, FRAMEWORK_timerMode_E Mode);
+void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, FRAMEWORK_serviceType_E service, FRAMEWORK_timerMode_E Mode);
 
 /**
  * Halts a timer before it expires

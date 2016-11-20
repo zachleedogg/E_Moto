@@ -19,21 +19,21 @@
  * ****************************************************************************/
 
 /*Select a Baud Rate*/
-#define BAUD110     110
-#define BAUD300     300
-#define BAUD600     600
-#define BAUD1200    1200
-#define BAUD2400    2400
-#define BAUD4800    4800
-#define BAUD9600    9600
-#define BAUD14400   14400
-#define BAUD19200   19200
-#define BAUD28800   28800
-#define BAUD38400   38400
-#define BAUD56000   56000
-#define BAUD57600   57600
-#define BAUD115200  115200 
-#define BAUD230400  230400 
+#define UART_BAUD_110     110
+#define UART_BAUD_300     300
+#define UART_BAUD_600     600
+#define UART_BAUD_1200    1200
+#define UART_BAUD_2400    2400
+#define UART_BAUD_4800    4800
+#define UART_BAUD_9600    9600
+#define UART_BAUD_14400   14400
+#define UART_BAUD_19200   19200
+#define UART_BAUD_28800   28800
+#define UART_BAUD_38400   38400
+#define UART_BAUD_56000   56000
+#define UART_BAUD_57600   57600
+#define UART_BAUD_115200  115200 
+#define UART_BAUD_230400  230400 
 
 
 /*Select Pin for RX*/

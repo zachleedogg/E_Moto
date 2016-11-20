@@ -75,10 +75,10 @@ Event FSM_TEMPLATE(Event ThisEvent) {
                     FRAMEWORK_postEvent(ThisEvent);
                     FRAMEWORK_postEvent(ThisEvent);
                     ThisEvent.EventType = EXIT_EVENT;
-                    ThisEvent.EventPriority = PRIORITY_2;
+                    ThisEvent.EventPriority = FRAMEWORK_PRIORITY_2;
                     FRAMEWORK_postEvent(ThisEvent);
                     ThisEvent.EventType = EXIT_EVENT;
-                    ThisEvent.EventPriority = PRIORITY_3;
+                    ThisEvent.EventPriority = FRAMEWORK_PRIORITY_3;
                     ThisEvent.EventParam = 42;
                     FRAMEWORK_postEvent(ThisEvent);
                     break;

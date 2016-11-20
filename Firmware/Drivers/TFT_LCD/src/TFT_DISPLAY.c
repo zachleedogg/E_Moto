@@ -1,7 +1,5 @@
 #include "TFT_DISPLAY.h"
 
-#define DEBOUNCE_LIMIT 1
-
 typedef enum _tftDisplayButtonStatus {
     INACTIVE,
     ACTIVE,
@@ -62,13 +60,9 @@ uint8_t TFT_DISPLAY_button_handler() {
     } else {
         for (i = 0; i < numberActiveButtons; i++) {
             if (activeButtons[i].status == PRESSED) {
-                activeButtons[i].debouncer++;
-                if (activeButtons[i].debouncer == DEBOUNCE_LIMIT) {
-                    activeButtons[i].debouncer = 0;
-                    returnVal = i;
-                    activeButtons[i].status = ACTIVE;
-                    animatePress(activeButtons[i]);
-                }
+                returnVal = i;
+                activeButtons[i].status = ACTIVE;
+                animatePress(activeButtons[i]);
             }
         }
     }
@@ -76,7 +70,7 @@ uint8_t TFT_DISPLAY_button_handler() {
     return returnVal;
 }
 
-void TFT_DISPLAY_destroy_buttons(){
+void TFT_DISPLAY_destroy_buttons() {
     numberActiveButtons = 0;
 }
 
