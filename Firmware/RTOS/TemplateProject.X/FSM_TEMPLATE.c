@@ -2,7 +2,7 @@
 
 #include "FSM_TEMPLATE.h"
 #include "Defines.h"
-#include "configure.h"
+#include "framework_configure.h"
 #include "framework.h"
 
 /* Uncomment to for custom Debugging */
@@ -54,11 +54,11 @@ Event FSM_TEMPLATE(Event ThisEvent) {
         case init: /* SM starts here */
             if (ThisEvent.EventType == INIT_EVENT) {
                 /*Initialization stuff here*/
-                scheduler_add(&print1, 10);
-                scheduler_add(&print2, 20);
-                scheduler_add(&print3, 300);
-                scheduler_add(&print4, 150);
-                scheduler_add(&print5, 500);
+                //FRAMEWORK_schedulerAdd(&print1, 10);
+                //FRAMEWORK_schedulerAdd(&print2, 20);
+                //FRAMEWORK_schedulerAdd(&print3, 300);
+                //FRAMEWORK_schedulerAdd(&print4, 150);
+                //FRAMEWORK_schedulerAdd(&print5, 500);
 
                 nextState = someState;
             }
@@ -69,22 +69,22 @@ Event FSM_TEMPLATE(Event ThisEvent) {
                 case ENTRY_EVENT:
                     ThisEvent.EventParam = 100;
                     ThisEvent.EventType = TIMEUP_EVENT;
-                    Post(ThisEvent);
-                    Post(ThisEvent);
-                    Post(ThisEvent);
-                    Post(ThisEvent);
-                    Post(ThisEvent);
+                    FRAMEWORK_postEvent(ThisEvent);
+                    FRAMEWORK_postEvent(ThisEvent);
+                    FRAMEWORK_postEvent(ThisEvent);
+                    FRAMEWORK_postEvent(ThisEvent);
+                    FRAMEWORK_postEvent(ThisEvent);
                     ThisEvent.EventType = EXIT_EVENT;
-                    ThisEvent.EventPriority = PRIORITY_2;
-                    Post(ThisEvent);
+                    ThisEvent.EventPriority = FRAMEWORK_PRIORITY_2;
+                    FRAMEWORK_postEvent(ThisEvent);
                     ThisEvent.EventType = EXIT_EVENT;
-                    ThisEvent.EventPriority = PRIORITY_3;
+                    ThisEvent.EventPriority = FRAMEWORK_PRIORITY_3;
                     ThisEvent.EventParam = 42;
-                    Post(ThisEvent);
+                    FRAMEWORK_postEvent(ThisEvent);
                     break;
                     /*Put custom states below here*/
                 case TIMEUP_EVENT:
-                    scheduler_add(&print1, 310);
+                    //FRAMEWORK_schedulerAdd(&print1, 310);
                     break;
                     /*Put custom states above here*/
                 case EXIT_EVENT:

@@ -1,0 +1,105 @@
+{
+    "NODE": [
+        {
+            "name": "DASH",
+    		"freq": "10ms",
+    		"messages": [
+    			{
+    			"name": "status",
+    			"signals":
+    				[
+        				{
+                            "name": "state",
+                            "length": "3",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["sleep","safe","running","charging"]
+                        }
+    				]
+    			},
+    			{
+    			"name": "command",
+    			"signals":
+                    [
+        				{
+                            "name": "dothis",
+                            "length": "3",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["sleep","safe","running","charging"]
+                        },
+         				{
+                            "name": "dothat",
+                            "length": "3",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["sleep","safe","running","charging"]
+                        } 
+                    ]
+    			}
+            ]
+        },
+        {
+            "name": "BODYCONTROLLER",
+    		"freq": "100ms",
+    		"messages": [
+    			{
+    			"name": "status",
+    			"signals":
+    				[
+        				{"name": "state",
+                        "length": "3"}
+    				]
+    			},
+    			{
+    			"name": "command",
+    			"signals":
+    				[
+        				{"name": "doSomthingElse",
+                        "length": "1"}
+    				]   
+    			}
+            ]
+        },
+        {
+            "name": "BMS",
+    		"freq": "10ms",
+    		"messages": [
+    			{
+    			"name": "status",
+    			"signals":
+    				[
+        				{"name": "state",
+                        "length": "3"},
+                        {"name": "SOC",
+                        "length": "7"},
+                        {"name": "packVoltage",
+                        "length": "12"},
+                        {"name": "packCurrent",
+                        "length": "10"},
+                        {"name": "minTemp",
+                        "length": "12"},
+                        {"name": "maxTemp",
+                        "length": "12"}
+    				]
+    			},
+    			{
+    			"name": "cellVoltages",
+    			"signals":
+    				[
+        				{"name": "cell1",
+                        "length": "12"},
+                        {"name": "cell2",
+                        "length": "12"},
+                        {"name": "cell3",
+                        "length": "12"},
+                        {"name": "cell4",
+                        "length": "12"},
+                        {"name": "cell5",
+                        "length": "12"}
+    				]   
+    			}
+            ]
+        }
+    ]
+}

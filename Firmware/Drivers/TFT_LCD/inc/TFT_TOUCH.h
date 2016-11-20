@@ -1,37 +1,68 @@
 /* 
  * File:   TFT_TOUCH.h
- * Author: kid group
- *
+ * Author: Zachary S. Levenberg
  * Created on September 6, 2016, 10:20 PM
  */
-
-#include <stdint.h>
-
-#include "bolt_ADC.h"
-#include "pins.h"
-
 #ifndef TFT_TOUCH_H
 #define	TFT_TOUCH_H
 
+/*******************************************************************************
+ * Include
+ * ****************************************************************************/
+#include <stdint.h>
+#include "bolt_ADC.h"
+#include "pins.h"
+
+/*******************************************************************************
+ * Defines & Datatypes
+ * ****************************************************************************/
+
 #define TFT_TOUCH_SENSITIVITY 30 /*Lower is more sensitive*/
 
-typedef enum _touchDataStatus {
+typedef enum _TFT_TOUCH_touchDataStatus_E {
     IDLE,
-    TOUCHING,
-} touchDataStatus;
+    TOUCHED,
+    RELEASED
+} TFT_TOUCH_touchDataStatus_E;
 
-typedef struct _touchData {
+typedef struct _TFT_TOUCH_touchData_S {
     uint8_t status;
     uint16_t xPos;
     uint16_t yPos;
-} touchData;
+} TFT_TOUCH_touchData_S;
 
-void TFT_TOUCH_INIT(PINS_pin_s x0, PINS_pin_s x1, PINS_pin_s y0, PINS_pin_s y1, adc_pin_number an_x, adc_pin_number an_y) ;
+/*******************************************************************************
+ * Function Definitions
+ * ****************************************************************************/
 
+/**
+ * 
+ * @param x0
+ * @param x1
+ * @param y0
+ * @param y1
+ * @param an_x
+ * @param an_y
+ */
+void TFT_TOUCH_INIT(PINS_pin_S x0, PINS_pin_S x1, PINS_pin_S y0, PINS_pin_S y1, ADC_pinNumber_E an_x, ADC_pinNumber_E an_y);
+
+/**
+ * 
+ * @return 
+ */
 uint8_t TFT_TOUCH_run(void);
 
-touchData TFT_TOUCH_get_data(void);
+/**
+ * 
+ * @return 
+ */
+TFT_TOUCH_touchData_S TFT_TOUCH_get_data(void);
 
+/**
+ * Draw Pixel at selected (touched) area of screen.
+ * @param color to draw pixel in
+ * @return Success 0 or Failure 1.
+ */
 uint8_t TFT_TOUCH_draw(uint16_t color);
 
 #endif	/* TFT_TOUCH_H */

@@ -6,19 +6,19 @@
 #define toggle(reg, val) (*(reg) ^= (val))
 #define get(reg,val) (*(reg) & (val))
 
-typedef struct _PINS_s {
+typedef struct _PINS_internalRegisters_S {
     volatile uint16_t* const tris;
     volatile uint16_t* const port;
     volatile uint16_t* const lat;
     volatile uint16_t* const pu;
     volatile uint16_t* const pd;
     volatile uint16_t* const inter;
-} PINS_s;
+} PINS_internalRegisters_S;
 
 /*******************************************************************************
  * PORTA
  */
-static const PINS_s ports[NUMBER_OF_PORTS] = {
+static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
 #ifdef PORTA
     [PIN_PORTA].tris = &TRISA,
     [PIN_PORTA].port = &PORTA,
@@ -78,59 +78,59 @@ static const PINS_s ports[NUMBER_OF_PORTS] = {
 };
 
 
-void PIN_Direction(PINS_portNumber_e port, uint8_t pin, PINS_direction_e dir) {
+void PINS_direction(PINS_portNumber_E port, uint8_t pin, PINS_direction_E dir) {
     uint16_t thisPin = 1 << pin;
     if (dir == 0) {
-        clear(ports[port].tris, thisPin);
+        clear(PINS_portsArray[port].tris, thisPin);
     } else {
-        set(ports[port].tris, thisPin);
+        set(PINS_portsArray[port].tris, thisPin);
     }
 }
 
-void PIN_Write(PINS_portNumber_e port, uint8_t pin, PINS_state_e state) {
+void PINS_write(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state) {
     uint16_t thisPin = (1 << pin);
     switch (state) {
         case LOW:
-            clear(ports[port].lat, thisPin);
+            clear(PINS_portsArray[port].lat, thisPin);
             break;
         case HIGH:
-            set(ports[port].lat, thisPin);
+            set(PINS_portsArray[port].lat, thisPin);
             break;
         case TOGGLE:
-            toggle(ports[port].lat, thisPin);
+            toggle(PINS_portsArray[port].lat, thisPin);
             break;
         default:
             break;
     }
 }
 
-PINS_state_e PIN_Read(PINS_portNumber_e port, uint8_t pin) {
-    return get(ports[port].port, 1<<pin) >> pin;
+PINS_internalRegisters_State_E PINS_read(PINS_portNumber_E port, uint8_t pin) {
+    return get(PINS_portsArray[port].port, 1<<pin) >> pin;
 }
 
-void PIN_Pulll_Up(PINS_portNumber_e port, uint8_t pin, PINS_state_e state) {
+void PINS_pullUp(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state) {
     uint16_t thisPin = 1 << pin;
     if (state == 0) {
-        clear(ports[port].pu, thisPin);
+        clear(PINS_portsArray[port].pu, thisPin);
     } else {
-        set(ports[port].pu, thisPin);
+        set(PINS_portsArray[port].pu, thisPin);
     }
 }
 
-void PIN_Pulll_Down(PINS_portNumber_e port, uint8_t pin, PINS_state_e state) {
+void PINS_pullDown(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state) {
     uint16_t thisPin = 1 << pin;
     if (state == 0) {
-        clear(ports[port].pd, thisPin);
+        clear(PINS_portsArray[port].pd, thisPin);
     } else {
-        set(ports[port].pd, thisPin);
+        set(PINS_portsArray[port].pd, thisPin);
     }
 }
 
-void PINS_set_Interrupt(PINS_portNumber_e port, uint8_t pin, PINS_state_e state) {
+void PINS_internalRegisters_SetInterrupt(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state) {
     uint16_t thisPin = 1 << pin;
     if (state == 0) {
-        clear(ports[port].inter, thisPin);
+        clear(PINS_portsArray[port].inter, thisPin);
     } else {
-        set(ports[port].inter, thisPin);
+        set(PINS_portsArray[port].inter, thisPin);
     }
 }

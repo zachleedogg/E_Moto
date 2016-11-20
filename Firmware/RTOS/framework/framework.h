@@ -4,22 +4,20 @@
  *
  * Created on June 9, 2016, 7:52 PM
  */
-#include <stdint.h>
-#include "configure.h"
-
 #ifndef FRAMEWORK_H
 #define	FRAMEWORK_H
+#include <stdint.h>
+#include "framework_configure.h"
 
-/******************************************************************************/
-/*Framework Global Defines*/
-
-/******************************************************************************/
+/*******************************************************************************
+ * Defines & Datatypes
+ * ****************************************************************************/
 
 #define TRUE 1
 #define FALSE 0
 
 /* Timer defines */
-typedef enum _sw_timer_number {
+typedef enum _FRAMEWORK_timerNumber_E {
     TIMER0,
     TIMER1,
     TIMER2,
@@ -36,17 +34,15 @@ typedef enum _sw_timer_number {
     TIMER13,
     TIMER15,
     NUMBER_OF_SW_TIMERS,
-} sw_timer_number;
+} FRAMEWORK_timerNumber_E;
 
-typedef enum _ServiceMode {
+typedef enum _FRAMEWORK_timerMode_E {
     SINGLE_SHOT,
     CONTINUOUS
-} ServiceMode;
-
-
+} FRAMEWORK_timerMode_E;
 
 /*Function pointer protoype for runtime scheduler*/
-typedef void(*pfunc)();
+typedef void(*FRAMEWORK_scheduleTask)();
 
 /* Event defines */
 #define EMPTY (Event){NO_EVENT, 0x0000, 0x0000, 0x0000}
@@ -60,43 +56,36 @@ typedef void(*pfunc)();
 /******************************************************************************/
 
 /**
- * Run the framwork initialization
- * @return 
- */
-uint8_t Init();
-
-
-/**
  * Main framework run function
  * @return 
  */
-uint8_t Run();
+uint8_t FRAMEWORK_run();
 
 /**
  * Post an event into the priority queue
  * @param thisEvent: contains type, param, service, and priority
  * @return 
  */
-uint8_t Post(Event thisEvent);
+uint8_t FRAMEWORK_postEvent(Event thisEvent);
 
 /**
  * Initializes the framework millisecond timer
  * @param clockFreq: from clockfreq() return value
  * @return 
  */
-uint8_t Timer_Init(uint32_t clockFreq);
+uint8_t FRAMEWORK_timerInit(uint32_t clockFreq);
 
 /**
  * Resets the 45-day freerunning timer, should be performed periodically or on 
  * system wake from sleep
  */
-void FreeRunningTimerReset(void);
+void FRAMEWORK_resetRunningTimer(void);
 
 /**
  * Returns the value of the freerunning timer in milliseconds
  * @return 
  */
-uint32_t FreeRunningTimer(void);
+uint32_t FRAMEWORK_getTimeNow(void);
 
 /**
  * Sets a one-shot timer and throws a TIMEUP Event upon completion
@@ -104,25 +93,25 @@ uint32_t FreeRunningTimer(void);
  * @param time: the time in milliseconds
  * @param service: the service in which the TIMEUP Event is posted to.
  */
-void SW_Timer_Set(sw_timer_number thisTimer, uint16_t time, ServiceType_t service, ServiceMode Mode);
+void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, FRAMEWORK_serviceType_E service, FRAMEWORK_timerMode_E Mode);
 
 /**
  * Halts a timer before it expires
  * @param thisTimer: timer to be halted (0-15)
  */
-void SW_Timer_Stop(sw_timer_number thisTimer);
+void FRAMEWORK_timerStop(FRAMEWORK_timerNumber_E thisTimer);
 
 /**
  * Resumes a timer that has been halted
  * @param thisTimer: timer to be resumed (0-15)
  */
-void SW_Timer_Resume(sw_timer_number thisTimer);
+void FRAMEWORK_timerResume(FRAMEWORK_timerNumber_E thisTimer);
 
 
 /**
  * Initialize the run-time task scheduler
  */
-void scheduler_init(void);
+void FRAMEWORK_schedulerInit(void);
 
 /**
  * Adds a task to the scheduler
@@ -131,7 +120,7 @@ void scheduler_init(void);
  * @param time: time in milliseconds from current time to execute the task
  * @return 
  */
-uint8_t scheduler_add(pfunc someFunction, uint32_t time);
+uint8_t FRAMEWORK_schedulerAdd(FRAMEWORK_scheduleTask someFunction, uint32_t time);
 
 #endif	/* FRAMEWORK_H */
 

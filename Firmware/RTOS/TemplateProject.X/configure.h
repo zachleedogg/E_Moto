@@ -26,10 +26,10 @@ EVENT(TIMEUP_EVENT) /* The timer-up event for timers */ \
  List of Priority Levels
  ***********************************************************************************************/
 typedef enum _priority {
-    PRIORITY_1,
-    PRIORITY_2,
-    PRIORITY_3,
-    PRIORITY_LEVELS
+    FRAMEWORK_PRIORITY_1,
+    FRAMEWORK_PRIORITY_2,
+    FRAMEWORK_PRIORITY_3,
+    FRAMEWORK_PRIORITY_LEVELS
 } priority;
 
 /***********************************************************************************************
@@ -45,7 +45,7 @@ typedef enum _priority {
 typedef enum {
     EVENT_LIST(ENUM_FORM)
     EVENTCOUNT
-} EventType_t;
+} FRAMEWORK_eventType_E;
 
 /* string-ifies the event list */
 #define STRING_FORM(WORD) #WORD,
@@ -79,7 +79,7 @@ SERVICE(FSM_TEMPLATE) /*Main state machine, This is always first (the default Se
 typedef enum {
     SERVICE_LIST(SERVICE_FORM)
     SERVICECOUNT
-} ServiceType_t;
+} FRAMEWORK_serviceType_E;
 
 /* string-ifies the service list */
 static char __attribute__((unused)) * ServiceStrings[] = {
@@ -88,10 +88,10 @@ static char __attribute__((unused)) * ServiceStrings[] = {
 
 /* The Event type */
 typedef struct Event_t {
-    EventType_t EventType;
+    FRAMEWORK_eventType_E EventType;
     uint16_t EventParam;
     priority EventPriority;
-    ServiceType_t Service;
+    FRAMEWORK_serviceType_E Service;
 } Event;
 
 #endif	/* CONFIGURE_H */

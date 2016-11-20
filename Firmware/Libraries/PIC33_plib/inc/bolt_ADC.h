@@ -11,7 +11,7 @@
 #include <xc.h>
 #include <stdint.h>
 
-typedef enum _adc_pin_number {
+typedef enum _ADC_pinNumber_E {
     AN0,
     AN1,
     AN2,
@@ -29,7 +29,7 @@ typedef enum _adc_pin_number {
     AN14,
     AN15,
     NUMBER_OF_ADC_PINS,
-} adc_pin_number;
+} ADC_pinNumber_E;
 
 /**
  * Initialize the module
@@ -41,16 +41,16 @@ void ADC_Init(void);
  * @param newPin from the enum list above
  * @return success or failure
  */
-uint8_t ADC_SetPin(adc_pin_number newPin);
+uint8_t ADC_SetPin(ADC_pinNumber_E newPin);
 
-uint8_t ADC_RemovePin(adc_pin_number newPin);
+uint8_t ADC_RemovePin(ADC_pinNumber_E newPin);
 
 /**
  * Get the Converted Analog value
  * @param thisPin from the assigned pins
  * @return The 10 bit value
  */
-uint16_t ADC_GetValue(adc_pin_number thisPin);
+uint16_t ADC_GetValue(ADC_pinNumber_E thisPin);
 
 #endif	/* BOLT_ADC_H */
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.22)  11 AUG 2016 22:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.22)  23 OCT 2016 11:18
 entering extended mode
 **RequirementSpecification.tex
 (RequirementSpecification.tex
@@ -433,12 +433,12 @@ s/triumph-speed-triple.jpg>]
 (RequirementSpecification.toc)
 \tf@toc=\write4
  [2] [3]
-<./images/E-MotoSystemArch.png, id=181, 1537.745pt x 1028.84375pt>
+<./images/E-MotoSystemArch.png, id=181, 1066.98625pt x 785.93625pt>
 File: ./images/E-MotoSystemArch.png Graphic file (type png)
 
 <use ./images/E-MotoSystemArch.png>
 Package pdftex.def Info: ./images/E-MotoSystemArch.png used on input line 199.
-(pdftex.def)             Requested size: 542.025pt x 362.65962pt.
+(pdftex.def)             Requested size: 542.025pt x 399.26317pt.
 
 Overfull \hbox (69.99376pt too wide) in paragraph at lines 199--200
  [][] 
@@ -446,7 +446,7 @@ Overfull \hbox (69.99376pt too wide) in paragraph at lines 199--200
 
 [4]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 232.
- [5 <./images/E-MotoSystemArch.png>]
+ [5 <./images/E-MotoSystemArch.png>] [6]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 232.
  (RequirementSpecification.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 232.
@@ -457,8 +457,8 @@ d.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 232.
  ) 
 Here is how much of TeX's memory you used:
- 8538 strings out of 493673
- 128526 string characters out of 3141515
+ 8539 strings out of 493673
+ 128532 string characters out of 3141515
  225344 words of memory out of 3000000
  11724 multiletter control sequences out of 15000+200000
  10241 words of font info for 37 fonts, out of 3000000 for 9000
@@ -471,9 +471,9 @@ rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Prog
 ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program
  Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Fi
 les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-Output written on RequirementSpecification.pdf (5 pages, 831920 bytes).
+Output written on RequirementSpecification.pdf (6 pages, 802598 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
- 82 named destinations out of 1000 (max. 500000)
+ 257 PDF objects out of 1000 (max. 8388607)
+ 83 named destinations out of 1000 (max. 500000)
  211 words of extra memory for PDF output out of 10000 (max. 10000000)
 
