@@ -62,10 +62,6 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
-  <sourceRootList>
-    <Elem>../../Libraries/PIC33_plib/inc</Elem>
-    <Elem>../../Libraries/PIC33_plib/src</Elem>
-  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="EVAL_2" type="2">
@@ -1399,7 +1395,6 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
