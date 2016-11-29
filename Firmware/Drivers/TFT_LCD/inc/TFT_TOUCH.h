@@ -58,12 +58,5 @@ uint8_t TFT_TOUCH_run(void);
  */
 TFT_TOUCH_touchData_S TFT_TOUCH_get_data(void);
 
-/**
- * Draw Pixel at selected (touched) area of screen.
- * @param color to draw pixel in
- * @return Success 0 or Failure 1.
- */
-uint8_t TFT_TOUCH_draw(uint16_t color);
-
 #endif	/* TFT_TOUCH_H */
 

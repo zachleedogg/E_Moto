@@ -1,8 +1,8 @@
 #include "bolt_uart.h"
 #include "bolt_init.h"
 
-#define BUFFER_SIZE 256
-#define QUEUE_SIZE 2
+#define BUFFER_SIZE 1024
+#define QUEUE_SIZE 32
 
 #define STOP_CHAR '\n'
 #define NULL 0
@@ -12,14 +12,14 @@
 
 typedef struct _uartBuffer {
     char buff[BUFFER_SIZE];
-    uint16_t pointCurrent;
-    uint16_t pointEnd;
+    volatile uint16_t pointCurrent;
+    volatile uint16_t pointEnd;
 } uartBuffer;
 
 typedef struct _uartDataQueue {
     uint8_t buff[QUEUE_SIZE];
-    uint16_t tail;
-    uint16_t head;
+    volatile uint16_t tail;
+    volatile uint16_t head;
 } uartDataQueue;
 
 #define RP20_TX_PPS    _RP20R
@@ -220,7 +220,7 @@ uint8_t Uart1Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate)
 uint8_t Uart1Write(char* inputString) {
     TX1status = 1; /*Module is now busy writing*/
     uint16_t i = 0;
-    while (inputString[i] != NULL) { /*check for newline termination*/
+    while (inputString[i] != NULL) { /*check for NULL termination*/
         TX1buffer.buff[TX1buffer.pointEnd] = inputString[i]; /*capture character in buffer*/
         TX1buffer.pointEnd++; /*increment buffer endpoint*/
         i++; /*increment input string*/
@@ -228,7 +228,7 @@ uint8_t Uart1Write(char* inputString) {
             TX1buffer.pointEnd = 0;
         }
     }
-
+    
     _U1TXIE = 1; // Enable UART TX interrupt
     //U1TXREG = 0xAA; // Transmit one character
     return 0;

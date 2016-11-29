@@ -26,7 +26,8 @@
  * @param baudRate can be 1M, 400k, or 100k
  * @return success or failure
  */
-uint8_t i2c_Init(float baudRate);
+uint8_t i2c1_Init(float baudRate); 
+uint8_t i2c2_Init(float baudRate);
 
 /**
  * Set the device ID number for the next device to interface with
@@ -49,7 +50,8 @@ uint8_t i2c_SetAddress(uint16_t address, uint8_t addressSpace);
  * @param numberOfBytes: length of data string
  * @return success or failure
  */
-uint8_t i2c_Write(char *message, uint8_t numberOfBytes);
+uint8_t i2c1_Write(char *message, uint8_t numberOfBytes);
+uint8_t i2c2_Write(char *message, uint8_t numberOfBytes);
 
 /**
  * Reads from device
@@ -57,12 +59,14 @@ uint8_t i2c_Write(char *message, uint8_t numberOfBytes);
  * @param numberOfBytes: length of data to read
  * @return success or failure
  */
-uint8_t i2c_Read(char *message, uint8_t numberOfBytes);
+uint8_t i2c1_Read(char *message, uint8_t numberOfBytes);
+uint8_t i2c2_Read(char *message, uint8_t numberOfBytes);
 
 /**
  * When true, the data last read using i2cRead() is ready for use.
  * @return True or False
  */
+uint8_t i2c1_ReadReady(void);
 uint8_t i2c_ReadReady(void);
 
 

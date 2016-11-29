@@ -13,7 +13,7 @@
 #include <xc.h> // include processor files - each processor file is guarded. 
 #include <stdint.h>
 
-#include "bolt_pins.h"
+#include "pins.h"
 
 /*These are the names of each 10 segment LED arrays*/
 typedef enum _ledArray {
@@ -40,6 +40,9 @@ typedef enum _led_pin_number {
     RP55_LED,
     RP56_LED,
     RP57_LED,
+    RP97_LED,
+    RP118_LED,
+    RP120_LED,
     NUMBER_OF_LED_PINS,
 } led_pin_number;
 
@@ -91,7 +94,7 @@ static const uint16_t sweepPattern[] = {
  * @param Lat Lat pin is a general IO pin
  * @return success or failure
  */
-uint8_t ledDriverInit(led_pin_number clk, led_pin_number Din, pin_number Lat);
+uint8_t ledDriverInit(led_pin_number clk, led_pin_number Din, PINS_pin_S Lat);
 
 /**
  * ledDriverWrite writes a 16 bit pattern to the specified display.

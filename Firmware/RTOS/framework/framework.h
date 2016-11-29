@@ -59,7 +59,7 @@ typedef void(*FRAMEWORK_scheduleTask)();
  * Main framework run function
  * @return 
  */
-uint8_t FRAMEWORK_run();
+uint8_t FRAMEWORK_run(uint32_t clockFreq);
 
 /**
  * Post an event into the priority queue

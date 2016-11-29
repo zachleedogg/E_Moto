@@ -1,7 +1,7 @@
 #include "TFT_TOUCH.h"
-#include "TFT_LCD.h"
 #include "pins.h"
 
+#define HIEGTH_
 #define HIEGHT_LOWER 120
 #define HIEGHT_UPPER 875
 
@@ -52,10 +52,12 @@ void TFT_TOUCH_INIT(PINS_pin_S x0, PINS_pin_S x1, PINS_pin_S y0, PINS_pin_S y1, 
     setXpins();
 }
 
+//TODO ZACH:
+//fix debounce to go both ways. Make cleaner
 uint8_t TFT_TOUCH_run(void) {
     if (toggler) {
         toggler = 0;
-        /*get position*/
+        /*get x position*/
         uint16_t temp = TFT_TOUCH_get_x_pos();
         /*Filter out boundaries*/
         if (temp < HIEGHT_LOWER || temp > HIEGHT_UPPER) {
@@ -75,7 +77,7 @@ uint8_t TFT_TOUCH_run(void) {
         touchAve.sum_x += temp;
     } else {
         toggler = 1;
-        /*get position*/
+        /*get y position*/
         uint16_t temp = TFT_TOUCH_get_y_pos();
         /*filter out boundaries*/
         if (temp < WIDTH_LOWER || temp > WIDTH_UPPER) {
@@ -86,26 +88,18 @@ uint8_t TFT_TOUCH_run(void) {
         touchAve.sum_y -= touchAve.y[touchAve.index];
         touchAve.y[touchAve.index] = temp;
         touchAve.sum_y += temp;
+        
         /*wrap around protection*/
         if (++touchAve.index == AVERAGE_SIZE) {
             touchAve.index = 0;
         }
     }
 
-    thisScreenData.xPos = map(touchAve.sum_x / AVERAGE_SIZE, HIEGHT_LOWER, HIEGHT_UPPER, 0, TFT_LCD_height());
-    thisScreenData.yPos = map(touchAve.sum_y / AVERAGE_SIZE, WIDTH_LOWER, WIDTH_UPPER, 0, TFT_LCD_width());
+    thisScreenData.xPos = map(touchAve.sum_x / AVERAGE_SIZE, HIEGHT_LOWER, HIEGHT_UPPER, 0, 320);
+    thisScreenData.yPos = map(touchAve.sum_y / AVERAGE_SIZE, WIDTH_LOWER, WIDTH_UPPER, 0, 480);
     return thisScreenData.status;
 }
 
-uint8_t TFT_TOUCH_draw(uint16_t color) {
-    uint8_t returnVal = 0;
-    if (thisScreenData.status == TOUCHED) {
-        TFT_LCD_drawRect(thisScreenData.yPos, thisScreenData.xPos,
-                thisScreenData.yPos + 3, thisScreenData.xPos + 3, color);
-        returnVal = 1;
-    }
-    return returnVal;
-}
 
 TFT_TOUCH_touchData_S TFT_TOUCH_get_data(void) {
     return thisScreenData;

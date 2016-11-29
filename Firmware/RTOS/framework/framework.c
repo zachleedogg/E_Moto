@@ -111,17 +111,19 @@ static void checkTimers(void);
  * Public Functions
  ******************************************************************************/
 uint8_t FRAMEWORK_postEvent(Event thisEvent) {
-    if((int8_t)thisEvent.EventPriority > framework_ActivePriorityLevel){
+    if ((int8_t) thisEvent.EventPriority > framework_ActivePriorityLevel) {
         framework_ActivePriorityLevel = thisEvent.EventPriority;
     }
     EnQueue(&QueueList[thisEvent.EventPriority], thisEvent);
     return 0;
 }
 
-uint8_t FRAMEWORK_run(void) {
+uint8_t FRAMEWORK_run(uint32_t clockFreq) {
     Event ThisEvent;
-    
+
     FRAMEWORK_init();
+
+    FRAMEWORK_timerInit(clockFreq);
 
     while (1) {
 
@@ -187,6 +189,8 @@ uint8_t FRAMEWORK_run(void) {
 static uint8_t FRAMEWORK_init(void) {
     Event ThisEvent = INIT;
     uint8_t S = 0;
+
+    FRAMEWORK_TASKRUNNER_init();
 
     for (S = 0; S < numberofServices; S++) {/*Check through each service*/
         /*post init event to each service*/
@@ -262,6 +266,8 @@ typedef struct _FRAMEWORK_swTimerStatusQueue_S {
 
 static volatile FRAMEWORK_swTimerStatusQueue_S timerStatus = {};
 
+uint8_t halfMillis = 0;
+
 /*******************************************************************************
  * Private Functions
  *******************************************************************************/
@@ -314,13 +320,14 @@ static void checkTimers(void) {
 uint8_t FRAMEWORK_timerInit(uint32_t clockFreq) {
     uint32_t currentSpeed = clockFreq / 2;
 
-    uint16_t TicksPerMS = (uint16_t) (currentSpeed / 1000);
+    uint32_t TicksPerMS = (currentSpeed / 2000);
+
     /* Initialize timer */
     T5CONbits.TON = 0;
     T5CON = 0; /* Clear timer config register */
     T5CONbits.TCKPS = 0; /* prescaler set to 0 */
     TMR5 = 0x00; /*Clear Timers*/
-    PR5 = TicksPerMS; /*set timer period */
+    PR5 = (uint16_t) TicksPerMS; /*set timer period */
 
     /* Enable level 1-7 interrupts */
     /* No restoring of previous CPU IPL state performed here */
@@ -366,23 +373,29 @@ void __attribute__((__interrupt__, __auto_psv__, __shadow__)) _T5Interrupt(void)
     /* clear timer interrupt Flag*/
     _T5IF = 0;
 
-    /*Put your code here*/
-    runningTime++;
-    timerStatus.queue[timerStatus.head++] = 1;
-    if (timerStatus.head >= STATUS_Q_SIZE) {
-        timerStatus.head = 0;
-    }
-    
-    /*Check through SW timers*/
-    checkTimers();
-    
-    /*Every millisecond, run the task scheduler*/
-    Event taskEvent;
-    taskEvent.EventPriority = FRAMEWORK_PRIORITY_3;
-    taskEvent.EventType = NO_EVENT;
-    taskEvent.Service = numberofServices-1;
-    FRAMEWORK_postEvent(taskEvent);
+    /*this interrupt occurs every half millisecond*/
+    static uint8_t toggle = 0;
+    if (toggle == 0) {
+        toggle = 1;
+    } else {
+        toggle = 0;
+        /*Put your code here*/
+        runningTime++;
+        timerStatus.queue[timerStatus.head++] = 1;
+        if (timerStatus.head >= STATUS_Q_SIZE) {
+            timerStatus.head = 0;
+        }
 
+        /*Check through SW timers*/
+        checkTimers();
+
+        /*Every millisecond, run the task scheduler*/
+        Event taskEvent;
+        taskEvent.EventPriority = FRAMEWORK_PRIORITY_3;
+        taskEvent.EventType = NO_EVENT;
+        taskEvent.Service = numberofServices - 1;
+        FRAMEWORK_postEvent(taskEvent);
+    }
 }
 
 

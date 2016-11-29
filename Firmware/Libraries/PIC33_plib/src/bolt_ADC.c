@@ -59,6 +59,7 @@ volatile uint16_t * const ADC_buffer[16] = {
     &ADC1BUFF
 };
 
+static uint8_t isInitialized = 0;
 // *****************************************************************************
 // *****************************************************************************
 // Section: Function Definitions
@@ -68,34 +69,36 @@ volatile uint16_t * const ADC_buffer[16] = {
 static void ADC_selectPin(ADC_pinNumber_E thisPin, uint8_t state);
 
 void ADC_Init(void) {
-    /* Initialize ADC module */
+    /* Initialize ADC module only once*/
+    if (isInitialized == 0) {
+        isInitialized = 1;
+        /*Config reg 1*/
+        // Enable 10-bit mode, auto-sample and auto-conversion
+        _AD12B = 0; /*10 bit operation*/
+        _SSRCG = 0; /*auto-convert*/
+        _SSRC = 0b111; /*convert on internal timer*/
+        _ASAM = 1; /*auto sample*/
 
-    /*Config reg 1*/
-    // Enable 10-bit mode, auto-sample and auto-conversion
-    _AD12B = 0; /*10 bit operation*/
-    _SSRCG = 0; /*auto-convert*/
-    _SSRC = 0b111; /*convert on internal timer*/
-    _ASAM = 1; /*auto sample*/
+        /*Config Reg 2*/
+        // Sample inputs alternately using channel scanning on CH0
+        _CSCNA = 1; /*input scanning on channel 0*/
+        _SMPI = 0; /*number of pins + 1 to read per interrupt*/
 
-    /*Config Reg 2*/
-    // Sample inputs alternately using channel scanning on CH0
-    _CSCNA = 1; /*input scanning on channel 0*/
-    _SMPI = 0; /*number of pins + 1 to read per interrupt*/
+        /*Config Reg 3*/
+        _ADCS = 0x0F; /*ADC Clock Period (TAD = (ADCS + 1)/(SYSCLOCK/2))*/
+        _SAMC = 0xF; /*Sample for t = SAMC*TAD before converting*/
 
-    /*Config Reg 3*/
-    _ADCS = 0x0F; /*ADC Clock Period (TAD = (ADCS + 1)/(SYSCLOCK/2))*/
-    _SAMC = 0xF; /*Sample for t = SAMC*TAD before converting*/
+        /*Config Reg 4*/
+        AD1CON4 = 0x0000;
 
-    /*Config Reg 4*/
-    AD1CON4 = 0x0000;
+        /*Select ANx inputs to scan*/
+        AD1CSSH = 0x0000;
+        AD1CSSL = 0x0000;
 
-    /*Select ANx inputs to scan*/
-    AD1CSSH = 0x0000;
-    AD1CSSL = 0x0000;
-
-    /* Assign MUXA inputs */
-    AD1CHS0bits.CH0SA = 0; // CH0SA bits ignored for CH0 +ve input selection
-    AD1CHS0bits.CH0NA = 0; // Select VREF- for CH0 -ve input
+        /* Assign MUXA inputs */
+        AD1CHS0bits.CH0SA = 0; // CH0SA bits ignored for CH0 +ve input selection
+        AD1CHS0bits.CH0NA = 0; // Select VREF- for CH0 -ve input
+    }
 
     /* Do not Enable ADC module or interrupt, wait to add the pins. */
 }
@@ -146,6 +149,9 @@ uint16_t ADC_GetValue(ADC_pinNumber_E thisPin) {
             ADC_activePinBitsBeforeThisPin++;
         }
     }
+    //    char strgg[256] = {};
+    //    sprintf(strgg, "adc %d val %d\n", ADC_activePinBitsBeforeThisPin, *ADC_buffer[ADC_activePinBitsBeforeThisPin]);
+    //    Uart1Write(strgg);
     return *ADC_buffer[ADC_activePinBitsBeforeThisPin];
 }
 

@@ -109,7 +109,9 @@ static uint8_t speedo = 0;
  * ****************************************************************************/
 Event touchScreenService(Event ThisEvent) {
     /*Debugging print statement*/
-    touchScreenService_print("Service: %s\tState: %s\tEvent: %s %d\n", ServiceStrings[touchScreenService_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
+    touchScreenService_print("Service: %s,   State: %s,   Event: %s %d\n\n", ServiceStrings[touchScreenService_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
+    //    static int counter = 0;
+    //    touchScreenService_print("%d\n", counter++);
     /*Call the state machine functions*/
     TOUCH_SCREEN_SERVICE_states_E nextState = theState[curState](ThisEvent);
 
@@ -140,7 +142,9 @@ static TOUCH_SCREEN_SERVICE_states_E init(Event ThisEvent) {
 
         /*LCD Init*/
         TFT_LCD_init(DEFINES_TFT_LCD_RESET, DEFINES_TFT_LCD_CS, DEFINES_TFT_LCD_DC);
-        TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
+
+
+
 
         /*fill background*/
         TFT_LCD_fillBackground(TFT_LCD_RED);
@@ -175,7 +179,9 @@ static TOUCH_SCREEN_SERVICE_states_E welcomeState(Event ThisEvent) {
 
         case TFT_TOUCH_EVENT:
             /*Draw a pixel for fun and set transition timer*/
-            if (TFT_TOUCH_draw(TFT_LCD_GREEN)) {
+            if (ThisEvent.EventParam == TOUCHED) {
+                TFT_DISPLAY_draw(TFT_LCD_GREEN);
+            } else if (ThisEvent.EventParam == RELEASED) {
                 FRAMEWORK_timerSet(TRANSITION_TIMER, WAKE_UP_TOUCH_TIME, touchScreenService_SERVICE, SINGLE_SHOT);
             }
             break;
@@ -321,7 +327,7 @@ static TOUCH_SCREEN_SERVICE_states_E runningState(Event ThisEvent) {
             switch (ThisEvent.EventParam) {
                 case SPEEDO_TIMER:
                     speedo++;
-                    if (speedo == 25) {
+                    if (speedo == 100) {
                         speedo = 0;
                     }
                     char tempStr[5];
@@ -331,6 +337,16 @@ static TOUCH_SCREEN_SERVICE_states_E runningState(Event ThisEvent) {
                 default:
                     break;
             }
+            break;
+
+        case PING_SENSOR_EVENT:
+        {
+            char tempStr[5];
+            intToString(tempStr, ThisEvent.EventParam & 0xFF);
+            TFT_LCD_writeVariableString(tempStr, 60, 120, TFT_LCD_RED, TFT_LCD_BLACK, 4);
+            intToString(tempStr, ThisEvent.EventParam >> 8);
+            TFT_LCD_writeVariableString(tempStr, 420, 120, TFT_LCD_RED, TFT_LCD_BLACK, 4);
+        }
             break;
 
         case TFT_TOUCH_EVENT:
@@ -393,10 +409,10 @@ static TOUCH_SCREEN_SERVICE_states_E batteryState(Event ThisEvent) {
             TFT_LCD_writeString("Cell 13:", DATA_COLUMN_2, DATA_ROW_6, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Cell 14:", DATA_COLUMN_2, DATA_ROW_7, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Cell 15:", DATA_COLUMN_2, DATA_ROW_8, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            //            TFT_LCD_writeString("Cell 16:", DATA_COLUMN_3, DATA_ROW_1, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            //            TFT_LCD_writeString("Cell 17:", DATA_COLUMN_3, DATA_ROW_2, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            //            TFT_LCD_writeString("Cell 18:", DATA_COLUMN_3, DATA_ROW_3, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            //            TFT_LCD_writeString("Cell 19:", DATA_COLUMN_3, DATA_ROW_4, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            TFT_LCD_writeString("Cell 16:", DATA_COLUMN_3, DATA_ROW_1, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            TFT_LCD_writeString("Cell 17:", DATA_COLUMN_3, DATA_ROW_2, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            TFT_LCD_writeString("Cell 18:", DATA_COLUMN_3, DATA_ROW_3, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            TFT_LCD_writeString("Cell 19:", DATA_COLUMN_3, DATA_ROW_4, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             /*buttonArray[0] = */TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
             /*buttonArray[1] = */TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
             /*buttonArray[2] = */TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
@@ -442,19 +458,32 @@ static TOUCH_SCREEN_SERVICE_states_E statisticState(Event ThisEvent) {
     TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     //static uint8_t buttonArray[4];
 
+    static char myotherstring[17] = {};
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
+        {
+
+            i2c1_Read(myotherstring, 16);
+            myotherstring[16] = 0;
             TFT_LCD_writeString(message_statistics, TFT_LCD_CENTER, MENU_MESSAGE_Y_POS, TFT_LCD_RED, TFT_LCD_CYAN, 3);
             TFT_LCD_writeString("Odo: 5180mi", DATA_COLUMN_1, DATA_ROW_1, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Economy: 450Wh/mi", DATA_COLUMN_1, DATA_ROW_2, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Ride Time: 197hrs", DATA_COLUMN_1, DATA_ROW_3, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Efficiency: 78%:", DATA_COLUMN_1, DATA_ROW_4, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            TFT_LCD_writeString("12V Battery Voltage:", DATA_COLUMN_1, DATA_ROW_5, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            FRAMEWORK_timerSet(5, 1, touchScreenService_SERVICE, SINGLE_SHOT);
             /*buttonArray[0] = */TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
             /*buttonArray[1] = */TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_MAGENTA, 2);
             /*buttonArray[2] = */TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
             /*buttonArray[3] = */TFT_DISPLAY_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
+        }
             break;
             /*Put custom states below here*/
+        case TIMEUP_EVENT:
+            if (ThisEvent.EventParam == 5) {
+                TFT_LCD_writeVariableString(myotherstring, DATA_COLUMN_1, DATA_ROW_6, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+            }
+            break;
         case TFT_TOUCH_EVENT:
             switch (TFT_DISPLAY_button_handler()) {
                 case 0:
@@ -472,6 +501,13 @@ static TOUCH_SCREEN_SERVICE_states_E statisticState(Event ThisEvent) {
                 default:
                     break;
             }
+            break;
+        case BATTERY_12V_LEVEL_EVENT:
+        {
+            char mystring[10] = {};
+            sprintf(mystring, "%d Volts", ThisEvent.EventParam);
+            TFT_LCD_writeVariableString(mystring, DATA_COLUMN_1 + (26 * 9), DATA_ROW_5, TFT_LCD_RED, TFT_LCD_CYAN, 2);
+        }
             break;
             /*Put custom states above here*/
         case EXIT_EVENT:

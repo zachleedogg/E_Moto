@@ -13,6 +13,9 @@
         <itemPath>../../Libraries/PIC33_plib/inc/pins.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_CAN.h</itemPath>
+        <itemPath>../../Drivers/PingSensor/ping.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/bolt_i2c.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/buttons.h</itemPath>
       </logicalFolder>
       <logicalFolder name="inc" displayName="inc" projectFiles="true">
         <itemPath>../../Drivers/TFT_LCD/inc/ASCII_5X7.h</itemPath>
@@ -20,6 +23,7 @@
         <itemPath>../../Drivers/TFT_LCD/inc/TFT_LCD.h</itemPath>
         <itemPath>../../Drivers/TFT_LCD/inc/TFT_LCD_Q.h</itemPath>
         <itemPath>../../Drivers/TFT_LCD/inc/TFT_TOUCH.h</itemPath>
+        <itemPath>../../Drivers/LED_16bit_shift/led_driver.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="ProjectSpecific" projectFiles="true">
         <itemPath>Defines.h</itemPath>
@@ -53,6 +57,10 @@
         <itemPath>../../Libraries/PIC33_plib/src/pins.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
+        <itemPath>../../Drivers/PingSensor/ping.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/src/bolt_i2c.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/buttons.c</itemPath>
+        <itemPath>../../Drivers/LED_16bit_shift/led_driver.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -62,6 +70,13 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../../Libraries/PIC33_plib/inc</Elem>
+    <Elem>../../Libraries/PIC33_plib/src</Elem>
+    <Elem>../../Drivers/PingSensor.X</Elem>
+    <Elem>../../Drivers/PingSensor</Elem>
+    <Elem>../../Drivers/LED_16bit_shift</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="EVAL_2" type="2">
@@ -72,7 +87,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.26</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -141,7 +156,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\RTOS\framework;..\..\Drivers\TFT_LCD\inc;..\..\Drivers\TFT_LCD\src"/>
+                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\RTOS\framework;..\..\Drivers\TFT_LCD\inc;..\..\Drivers\TFT_LCD\src;..\..\Drivers\PingSensor"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -161,7 +176,7 @@
         <property key="optimization-level" value="1"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
-        <property key="preprocessor-macros" value=""/>
+        <property key="preprocessor-macros" value="EVAL_2"/>
         <property key="scalar-model" value="default"/>
         <property key="use-cci" value="false"/>
         <property key="use-iar" value="false"/>
@@ -285,6 +300,11 @@
         <property key="memories.eeprom" value="true"/>
         <property key="memories.flashdata" value="true"/>
         <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram" value="true"/>
+        <property key="memories.instruction.ram.end"
+                  value="${memories.instruction.ram.end.value}"/>
+        <property key="memories.instruction.ram.start"
+                  value="${memories.instruction.ram.start.value}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.end" value="0x2afeb"/>
         <property key="memories.programmemory.partition2" value="true"/>
@@ -626,7 +646,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.26</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -667,7 +687,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\RTOS\framework;..\..\Drivers\TFT_LCD\inc;..\..\Drivers\TFT_LCD\src"/>
+                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\RTOS\framework;..\..\Drivers\TFT_LCD\inc;..\..\Drivers\TFT_LCD\src;..\..\Drivers\PingSensor;..\..\Drivers\LED_16bit_shift"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -687,7 +707,7 @@
         <property key="optimization-level" value="1"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
-        <property key="preprocessor-macros" value="USE_UART;DEBUG"/>
+        <property key="preprocessor-macros" value="USE_UART;DEBUG;EVAL_2"/>
         <property key="scalar-model" value="default"/>
         <property key="use-cci" value="false"/>
         <property key="use-iar" value="false"/>
@@ -811,6 +831,11 @@
         <property key="memories.eeprom" value="true"/>
         <property key="memories.flashdata" value="true"/>
         <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram" value="true"/>
+        <property key="memories.instruction.ram.end"
+                  value="${memories.instruction.ram.end.value}"/>
+        <property key="memories.instruction.ram.start"
+                  value="${memories.instruction.ram.start.value}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.end" value="0x2afeb"/>
         <property key="memories.programmemory.partition2" value="true"/>
@@ -1152,7 +1177,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.26</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -1269,7 +1294,7 @@
         <property key="optimization-level" value="1"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
-        <property key="preprocessor-macros" value=""/>
+        <property key="preprocessor-macros" value="EVAL_1"/>
         <property key="scalar-model" value="default"/>
         <property key="use-cci" value="false"/>
         <property key="use-iar" value="false"/>
@@ -1404,6 +1429,11 @@
         <property key="memories.eeprom" value="true"/>
         <property key="memories.flashdata" value="true"/>
         <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram" value="true"/>
+        <property key="memories.instruction.ram.end"
+                  value="${memories.instruction.ram.end.value}"/>
+        <property key="memories.instruction.ram.start"
+                  value="${memories.instruction.ram.start.value}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.end" value="0x2afeb"/>
         <property key="memories.programmemory.partition2" value="true"/>
@@ -1676,7 +1706,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.26</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -1900,6 +1930,11 @@
         <property key="memories.eeprom" value="true"/>
         <property key="memories.flashdata" value="true"/>
         <property key="memories.id" value="true"/>
+        <property key="memories.instruction.ram" value="true"/>
+        <property key="memories.instruction.ram.end"
+                  value="${memories.instruction.ram.end.value}"/>
+        <property key="memories.instruction.ram.start"
+                  value="${memories.instruction.ram.start.value}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.end" value="0x2afeb"/>
         <property key="memories.programmemory.partition2" value="true"/>
@@ -2241,7 +2276,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>Simulator</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.25</languageToolchainVersion>
+        <languageToolchainVersion>1.26</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
@@ -2462,7 +2497,6 @@
         <property key="oscillator.frequencyunit" value="Mega"/>
         <property key="oscillator.rcfrequency" value="120"/>
         <property key="oscillator.rcfrequencyunit" value="Mega"/>
-        <property key="performancedata.show" value="false"/>
         <property key="periphADC1.altscl" value="false"/>
         <property key="periphADC1.minTacq" value=""/>
         <property key="periphADC1.tacqunits" value="microseconds"/>
@@ -2542,6 +2576,37 @@
                   value="report"/>
         <property key="warningmessagebreakoptions.W0015_CORE_INVALID_ALT_WREG_SET"
                   value="report"/>
+        <property key="warningmessagebreakoptions.W0016_CORE_STACK_ERROR"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0017_CORE_ODD_RAMWORDACCESS"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0018_CORE_UNIMPLEMENTED_RAMACCESS"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0019_CORE_UNIMPLEMENTED_PROMACCESS"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0020_CORE_ACCESS_NOTIN_X_SPACE"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0021_CORE_ACCESS_NOTIN_Y_SPACE"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0022_CORE_XMODEND_LESS_XMODSRT"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0023_CORE_YMODEND_LESS_YMODSRT"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0024_CORE_BITREV_MOD_IS_ZERO"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0025_CORE_HARD_TRAP" value="report"/>
+        <property key="warningmessagebreakoptions.W0026_CORE_UNIMPLEMENTED_MEMORYACCESS"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0027_CORE_UNIMPLEMENTED_EDSACCESS"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0031_BSLIM_INSUFFICIENT_BOOT_SEGMENT"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0032_BSLIM_LIMITS_EXCEEDS_PROG_MEMORY"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0051_INSTRUCTION_DIV_NOT_ENOUGH_REPEAT"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0052_INSTRUCTION_DIV_TOO_MANY_REPEAT"
+                  value="report"/>
         <property key="warningmessagebreakoptions.W0101_SIM_UPDATE_FAILED"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0102_SIM_PERIPH_MISSING"
@@ -2553,6 +2618,10 @@
         <property key="warningmessagebreakoptions.W0105_SIM_INVALID_FIELD"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0106_SIM_PERIPH_PARTIAL_SUPPORT"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0107_SIM_NOT_SUPPORTED"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0108_SIM_RESERVED_SETTING"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0201_ADC_NO_STIMULUS_FILE"
                   value="report"/>
@@ -2611,6 +2680,29 @@
                   value="report"/>
         <property key="warningmessagebreakoptions.W0230_ADC_TRIGSEL_NOT_SUPPORTED"
                   value="report"/>
+        <property key="warningmessagebreakoptions.W0231_ADC_NOT_WARMED" value="report"/>
+        <property key="warningmessagebreakoptions.W0232_ADC_CALIBRATION_ABORTED"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0233_ADC_CORE_POWERED_EARLY"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0234_ADC_ALREADY_CALIBRATING"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0235_ADC_CAL_TYPE_CHANGED"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0236_ADC_CAL_INVALIDATED"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0237_ADC_UNKNOWN_DATASHEET"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0238_ADC_INVALID_SFR_FIELD_VALUE"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0239_ADC_UNSUPPORTED_INPUT"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0240_ADC_NOT_CALIBRATED"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0241_ADC_FRACTIONAL_NOT_ALLOWED"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W0242_ADC_BG_INT_BEFORE_PWR"
+                  value="report"/>
         <property key="warningmessagebreakoptions.W0400_PWM_PWM_FASTER_THAN_FOSC"
                   value="report"/>
         <property key="warningmessagebreakoptions.W0700_CLC_GENERAL_WARNING"
@@ -2634,6 +2726,8 @@
         <property key="warningmessagebreakoptions.W1405_DMA_IRQ_DIR_MISMATCH"
                   value="report"/>
         <property key="warningmessagebreakoptions.W1600_PPS_INVALID_MAP" value="report"/>
+        <property key="warningmessagebreakoptions.W1601_PPS_INVALID_PIN_DESCRIPTION"
+                  value="report"/>
         <property key="warningmessagebreakoptions.W2001_INPUTCAPTURE_TMR3_UNAVAILABLE"
                   value="report"/>
         <property key="warningmessagebreakoptions.W2002_INPUTCAPTURE_CAPTURE_EMPTY"
@@ -2647,6 +2741,12 @@
         <property key="warningmessagebreakoptions.W2502_OUTPUTCOMPARE_BAD_SYNC_SOURCE"
                   value="report"/>
         <property key="warningmessagebreakoptions.W2503_OUTPUTCOMPARE_BAD_TRIGGER_SOURCE"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W7001_SMT_CLK_SELECTION_NOT_SUPPORT"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W7002_SMT_SIG_SELECTION_NOT_SUPPORT"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W7003_SMT_WIN_SELECTION_NOT_SUPPORT"
                   value="report"/>
         <property key="warningmessagebreakoptions.W9001_TMR_GATE_AND_EXTCLOCK_ENABLED"
                   value="report"/>
@@ -2672,6 +2772,10 @@
         <property key="warningmessagebreakoptions.W9602_COMP_DAC_SOURCE_UNAVAILABLE"
                   value="report"/>
         <property key="warningmessagebreakoptions.W9603_COMP_CVREF_SOURCE_UNAVAILABLE"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W9604_COMP_SLOPE_SOURCE_UNAVAILABLE"
+                  value="report"/>
+        <property key="warningmessagebreakoptions.W9605_COMP_PRG_SOURCE_UNAVAILABLE"
                   value="report"/>
         <property key="warningmessagebreakoptions.W9801_FVR_INVALID_MODE_SELECTION"
                   value="report"/>

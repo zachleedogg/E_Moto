@@ -10,7 +10,7 @@
 #ifndef PING_H
 #define	PING_H
 
-#include "bolt_pins.h"
+#include "pins.h"
 
 typedef enum _ic_status {
     CHARGING,
@@ -60,7 +60,7 @@ typedef enum {
  * @param leftTriggerPin The TIGGER pin on the SENSOR
  * @return 
  */
-uint8_t ping_Init(ic_pin_number rightEchoPin, pin_number R_TRIGGER, ic_pin_number leftEchoPin, pin_number leftTriggerPin);
+uint8_t ping_Init(ic_pin_number rightEchoPin, PINS_pin_S R_TRIGGER, ic_pin_number leftEchoPin, PINS_pin_S leftTriggerPin);
 
 /**
  * ping_Run must be called continuously to provide distance feedback data.
@@ -68,6 +68,8 @@ uint8_t ping_Init(ic_pin_number rightEchoPin, pin_number R_TRIGGER, ic_pin_numbe
  * @return Distance from ojbect in inches up to 150in, else will return SNA (0xFF)
  */
 uint8_t ping_Run(void);
+
+uint8_t PING_getDistanceRight(uint8_t leftOrRight);
 
 #endif	/* PING_H */
 

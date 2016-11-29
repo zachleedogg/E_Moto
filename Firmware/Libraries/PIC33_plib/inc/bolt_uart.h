@@ -34,6 +34,8 @@
 #define UART_BAUD_57600   57600
 #define UART_BAUD_115200  115200 
 #define UART_BAUD_230400  230400 
+#define UART_BAUD_460800  460800
+#define UART_BAUD_921600  921600
 
 
 /*Select Pin for RX*/

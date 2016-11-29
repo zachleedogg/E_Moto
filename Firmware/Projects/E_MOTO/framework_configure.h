@@ -21,6 +21,10 @@ EVENT(ENTRY_EVENT) /* Put any entry code for a state when this state is thrown *
 EVENT(EXIT_EVENT) /* Exit code for states triggered by this event */ \
 EVENT(TIMEUP_EVENT) /* The timer-up event for timers */ \
 EVENT(TFT_TOUCH_EVENT) /*The LCD was touched*/ \
+EVENT(BATTERY_12V_LEVEL_EVENT) /*12V Battery voltage reading*/ \
+EVENT(PING_SENSOR_EVENT) /*Ping sensor distance value*/ \
+EVENT(BUTTON_SW2_PRESS_EVENT) /*button has been pressed*/ \
+EVENT(BUTTON_SW3_PRESS_EVENT) /*button has been pressed*/ \
 
 /***********************************************************************************************
  List of Priority Levels

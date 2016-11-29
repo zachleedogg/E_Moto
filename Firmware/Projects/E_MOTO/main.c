@@ -17,16 +17,14 @@
  */
 int main(void) {
     Micro_Init();
-    clockInit(FREQ_120MHZ, EXTERNAL);
+    clockInit(DEFINES_SYSTEM_CLOCK_FREQ, EXTERNAL);
 #ifdef USE_UART
     Uart1Init(DEFINES_UART_TX, DEFINES_UART_RX, DEFINES_UART_BAUD);
     Uart1Write("\nE_MOTO TEST\n\n");
 #endif
 
-    FRAMEWORK_timerInit(clockFreq());
-    //FRAMEWORK_schedulerInit();
 
-    FRAMEWORK_run();
+    FRAMEWORK_run(clockFreq());
 
     return 0;
 }

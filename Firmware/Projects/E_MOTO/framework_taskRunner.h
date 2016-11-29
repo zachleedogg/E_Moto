@@ -20,6 +20,8 @@
  * Function Prototypes
  * ****************************************************************************/
 
+void FRAMEWORK_TASKRUNNER_init(void);
+
 /**
  * Function call handle for Task Service, Takes and Empty Event and returns the same empty event
  * @param emptyEvent: Any Event, has no effect

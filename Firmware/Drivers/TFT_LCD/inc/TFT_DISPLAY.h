@@ -45,7 +45,7 @@ uint8_t TFT_DISPLAY_button_handler(void);
  */
 void TFT_DISPLAY_destroy_buttons(void);
 
-
+void TFT_DISPLAY_draw(uint16_t color);
 
 #endif	/* TFT_DISPLAY_H */
 

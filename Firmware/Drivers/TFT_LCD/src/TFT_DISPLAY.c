@@ -83,10 +83,15 @@ uint8_t checkRange(uint16_t x, uint16_t y, uint16_t target_x1, uint16_t target_x
     return 0;
 }
 
+void TFT_DISPLAY_draw(uint16_t color) {
+    TFT_TOUCH_touchData_S thisScreenData = TFT_TOUCH_get_data();
+    TFT_LCD_drawRect(thisScreenData.yPos, thisScreenData.xPos, thisScreenData.yPos + 3, thisScreenData.xPos + 3, color);
+}
+
 void animatePress(tftButtons thisButton) {
     uint16_t color = thisButton.color;
     if (thisButton.status == PRESSED) {
-        color |= 0b00001001110011001;
+        color = TFT_LCD_MAGENTA;
     }
     uint16_t len = strlen(thisButton.stringVal);
     TFT_LCD_drawRect(thisButton._w1, thisButton._h1, thisButton._w2,

@@ -205,7 +205,7 @@ void TFT_LCD_init(PINS_pin_S reset, PINS_pin_S CE, PINS_pin_S DC) {
     IEC1bits.DMA2IE = 1;
 
     DMA2CONbits.CHEN = 1;
-
+    
 
     DMA3CONbits.SIZE = 0; //word
     DMA3CONbits.DIR = 0; //transfer from peripheral to RAM

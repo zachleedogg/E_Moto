@@ -1,5 +1,6 @@
 #include "led_driver.h"
 #include "pins.h"
+#include "bolt_uart.h"
 
 /*Output PPS registers*/
 #define RP20_LED_PPS    _RP20R
@@ -16,21 +17,14 @@
 #define RP55_LED_PPS    _RP55R
 #define RP56_LED_PPS    _RP56R
 #define RP57_LED_PPS    _RP57R
-
-//RP20_RX    0x14
-//RP35_RX    0x23
-//RP36_RX    0x24
-//RP37_RX    0x25
-//RP38_RX    0x26
-//RP39_RX    0x27
-//RP40_RX    0x28
-//RP41_RX    0x29
-//RP42_RX    0x2A
-//RP43_RX    0x2B
-//RP54_RX    0x36
-//RP55_RX    0x37
-//RP56_RX    0x38
-//RP57_RX    0x39
+#define RP43_LED_PPS    _RP43R
+#define RP54_LED_PPS    _RP54R
+#define RP55_LED_PPS    _RP55R
+#define RP56_LED_PPS    _RP56R
+#define RP57_LED_PPS    _RP57R
+#define RP97_LED_PPS    _RP97R
+#define RP118_LED_PPS    _RP118R
+#define RP120_LED_PPS    _RP120R
 
 
 /*Output PPS functions*/
@@ -66,52 +60,23 @@ typedef struct _ledPatternBuffer {
 
 ledPatternBuffer LedBuffer = {};
 
-static pin_number latch;
+static PINS_pin_S latch;
 
 static uint8_t ledStatus = 0;
 
 void spi2Write(uint16_t input);
 uint8_t spi2Init(led_pin_number CLK, led_pin_number D_OUT);
 
-uint8_t ledDriverInit(led_pin_number CLK, led_pin_number DIN, pin_number LE) {
+uint8_t ledDriverInit(led_pin_number CLK, led_pin_number DIN, PINS_pin_S LE) {
     spi2Init(CLK, DIN); /*initalize SPI*/
     latch = LE;
-    IO_setPinDir(latch, OUTPUT); /*set pin directions*/
-    IO_pinWrite(latch, LOW);
+    PINS_direction(latch.port, latch.pin, OUTPUT); /*set pin directions*/
+    PINS_write(latch.port, latch.pin, LOW);
     return 0;
 }
 
 uint8_t ledDriverWrite(ledArray thisArray, uint16_t pattern) {
-
-    /*OR in the new pattern*/
-    if (thisArray == POWER_GAUGE) {
-        currentPattern &= 0xFFFF0000;
-        currentPattern |= pattern;
-    } else { /*if thisArray == BATT_GAUGE*/
-        uint32_t temp = pattern;
-        currentPattern &= 0x0000FFFF;
-        currentPattern |= (temp << 16);
-    }
-
-    /*Enqueue the new pattern*/
-    uint16_t tempBatt = ((uint16_t) (currentPattern >> 16));
-    uint16_t tempPow = ((uint16_t) (currentPattern));
-    LedBuffer.patternArray[BATT_GAUGE][LedBuffer.Head] = tempBatt;
-    LedBuffer.patternArray[POWER_GAUGE][LedBuffer.Head] = tempPow;
-    if (++LedBuffer.Head == LED_PATTERN_SIZE) {
-        LedBuffer.Head = 0;
-    }
-
-    /*If the module is not running, write to SPI*/
-    /*Critical Section*/
-    _SPI2IE = 0; /*disable the interrupt*/
-    if (ledStatus == 0) {
-        ledStatus = 1;
-        spi2Write(LedBuffer.patternArray[BATT_GAUGE][LedBuffer.Tail]);
-        spi2Write(LedBuffer.patternArray[POWER_GAUGE][LedBuffer.Tail]);
-    }
-    _SPI2IE = 1; /*Enable the interrupt*/
-    return 0;
+        spi2Write(pattern);
 }
 
 uint8_t ledDriverIsBusy(void) {
@@ -122,27 +87,15 @@ void __attribute__((__interrupt__, auto_psv)) _SPI2Interrupt(void) {
     _SPI2IF = 0; /* Clear the Interrupt flag*/
 
     /*Latch the Data*/
-    IO_pinWrite(latch, HIGH);
-    IO_pinWrite(latch, LOW);
+    PINS_write(latch.port, latch.pin, HIGH);
+    PINS_write(latch.port, latch.pin, LOW);
 
     /*Clear Rx FIFO buffer*/
-    while (SPI2STATbits.SPITBF == 1) {
-        uint16_t temp = SPI2BUF;
-        temp = 0;
-    }
+//    while (SPI2STATbits.SPITBF == 1) {
+//        uint16_t temp = SPI2BUF;
+//        temp = 0;
+//    }
 
-    /*dequeue the tail*/
-    if (++LedBuffer.Tail == LED_PATTERN_SIZE) {
-        LedBuffer.Tail = 0;
-    }
-
-    /*If there is more data*/
-    if (LedBuffer.Head != LedBuffer.Tail) {
-        SPI2BUF = LedBuffer.patternArray[BATT_GAUGE][LedBuffer.Tail];
-        SPI2BUF = LedBuffer.patternArray[POWER_GAUGE][LedBuffer.Tail];
-    } else {
-        ledStatus = 0;
-    }
 }
 
 void spi2Write(uint16_t input) {
@@ -150,12 +103,12 @@ void spi2Write(uint16_t input) {
 }
 
 uint8_t spi2Init(led_pin_number CLK, led_pin_number D_OUT) {
-
+    
     //check duplicate pins
     if (CLK == D_OUT) {
         return 1;
     }
-
+    
     //CLOCK and D_OUT
     led_pin_number curPin[] = {CLK, D_OUT};
 
@@ -192,6 +145,41 @@ uint8_t spi2Init(led_pin_number CLK, led_pin_number D_OUT) {
             case RP43_LED:
                 RP43_LED_PPS = ppsOut[i];
                 break;
+#ifdef _RP54R
+            case RP54_LED:
+                RP54_LED_PPS = ppsOut[i];
+                break;
+#endif
+#ifdef _RP55R
+            case RP55_LED:
+                RP55_LED_PPS = ppsOut[i];
+                break;
+#endif
+#ifdef _RP56R
+            case RP56_LED:
+                RP56_LED_PPS = ppsOut[i];
+                break;
+#endif
+#ifdef _RP57R
+            case RP57_LED:
+                RP57_LED_PPS = ppsOut[i];
+                break;
+#endif
+                #ifdef _RP97R
+            case RP97_LED:
+                RP97_LED_PPS = ppsOut[i];
+                break;
+#endif
+#ifdef _RP118R
+            case RP118_LED:
+                RP118_LED_PPS = ppsOut[i];
+                break;
+#endif
+#ifdef _RP120R
+            case RP120_LED:
+                RP120_LED_PPS = ppsOut[i];
+                break;
+#endif
             default:
                 return 1;
                 break;
@@ -208,15 +196,15 @@ uint8_t spi2Init(led_pin_number CLK, led_pin_number D_OUT) {
     SPI2CON1bits.CKP = 0; /*active high clock*/
     SPI2CON1bits.MSTEN = 1; /*master mode enable*/
 
-    SPI1CON1bits.PPRE = 0b00;
-    SPI1CON1bits.SPRE = 0b000;
+    SPI2CON1bits.PPRE = 0b11;
+    SPI2CON1bits.SPRE = 0b111;
 
     SPI2CON2bits.SPIBEN = 1; /*Enhanced Buffer Mode*/
     SPI2STATbits.SPIEN = 1; /*Enable SPI module*/
     SPI2STATbits.SISEL = 0b101; /*interupt on last bit out*/
 
     _SPI2IF = 0; // Clear the Interrupt flag
-    //_SPI2IE = 1; // Ensable the interrupt
+    _SPI2IE = 1; // Ensable the interrupt
     _SI2C1IP = 3; //priority 5
 
     return 0;
