@@ -105,7 +105,7 @@ uint8_t ledDriverInit(led_pin_number clk, led_pin_number Din, PINS_pin_S Lat);
  * @param pattern specified 10-bit pattern
  * @return success or failure
  */
-uint8_t ledDriverWrite(ledArray thisArray, uint16_t pattern);
+void ledDriverWrite(ledArray thisArray, uint16_t pattern);
 
 /**
  * checks if the driver is busy

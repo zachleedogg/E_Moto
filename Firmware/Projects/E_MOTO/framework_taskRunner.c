@@ -130,7 +130,6 @@ static inline void FRAMEWORK_TASKRUNNER_1ms(void) {
         FRAMEWORK_postEvent(newEvent);
     }
 
-
 }
 
 static inline void FRAMEWORK_TASKRUNNER_10ms(void) {
@@ -150,10 +149,6 @@ static inline void FRAMEWORK_TASKRUNNER_10ms(void) {
         direction = 0;
     }
 
-
-
-
-
 }
 
 static inline void FRAMEWORK_TASKRUNNER_100ms(void) {
@@ -162,7 +157,7 @@ static inline void FRAMEWORK_TASKRUNNER_100ms(void) {
     /* Run the Ping sensors*/
     ping_Run();
     
-    newEvent.EventParam = PING_getDistanceRight(1) | (PING_getDistanceRight(0)<<8);
+    newEvent.EventParam = PING_getDistance(1) | (PING_getDistance(0)<<8);
     newEvent.EventPriority = FRAMEWORK_PRIORITY_1;
     newEvent.EventType = PING_SENSOR_EVENT;
     newEvent.Service = touchScreenService_SERVICE;
@@ -184,26 +179,23 @@ static inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
 
 Event FRAMEWORK_TASKRUNNER_run(Event emptyEvent) {
 
-
-
-
-    /*1ms tasks here*/
+    /*1ms*/
     timer.ones++;
     FRAMEWORK_TASKRUNNER_1ms();
 
-    /*10ms tasks here*/
+    /*10ms*/
     if (timer.ones == 10) {
         timer.ones = 0;
         timer.tens++;
         FRAMEWORK_TASKRUNNER_10ms();
 
-        /*100ms tasks here*/
+        /*100ms*/
         if (timer.tens == 10) {
             timer.tens = 0;
             timer.hunds++;
             FRAMEWORK_TASKRUNNER_100ms();
 
-            /*1000ms tasks here*/
+            /*1000ms*/
             if (timer.hunds == 10) {
                 framework_taskRunner_print("Service: %s\n\n", "TaskRunner 1000ms");
                 timer.hunds = 0;

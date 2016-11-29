@@ -50,8 +50,6 @@
 
 static const uint8_t ppsOut[2] = {SCK2, SDO2};
 
-static uint32_t currentPattern;
-
 typedef struct _ledPatternBuffer {
     uint16_t patternArray[2][LED_PATTERN_SIZE];
     uint16_t Head;
@@ -75,7 +73,7 @@ uint8_t ledDriverInit(led_pin_number CLK, led_pin_number DIN, PINS_pin_S LE) {
     return 0;
 }
 
-uint8_t ledDriverWrite(ledArray thisArray, uint16_t pattern) {
+void ledDriverWrite(ledArray thisArray, uint16_t pattern) {
         spi2Write(pattern);
 }
 

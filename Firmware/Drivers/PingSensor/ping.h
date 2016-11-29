@@ -69,7 +69,7 @@ uint8_t ping_Init(ic_pin_number rightEchoPin, PINS_pin_S R_TRIGGER, ic_pin_numbe
  */
 uint8_t ping_Run(void);
 
-uint8_t PING_getDistanceRight(uint8_t leftOrRight);
+uint8_t PING_getDistance(uint8_t leftOrRight);
 
 #endif	/* PING_H */
 

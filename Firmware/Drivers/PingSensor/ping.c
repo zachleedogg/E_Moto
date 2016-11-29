@@ -145,7 +145,7 @@ uint8_t ping_Run(void) {
     return distance;
 }
 
-uint8_t PING_getDistanceRight(uint8_t leftOrRight) {
+uint8_t PING_getDistance(uint8_t leftOrRight) {
     if (leftOrRight == 1) {
         return distance;
     }
@@ -153,6 +153,8 @@ uint8_t PING_getDistanceRight(uint8_t leftOrRight) {
     if(leftOrRight == 0){
         return distanceL;
     }
+    
+    return 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _IC1Interrupt(void) {
