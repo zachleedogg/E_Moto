@@ -94,6 +94,8 @@ static average cpuUsageAverage = {};
  * @return 
  */
 static uint8_t FRAMEWORK_init();
+uint8_t FRAMEWORK_timerInit(uint32_t clockFreq);
+
 
 /*Event Queue functions*/
 static uint8_t EnQueue(volatile framework_queue_S *thisQueue, Event thisEvent);
@@ -151,7 +153,7 @@ uint8_t FRAMEWORK_run(uint32_t clockFreq) {
             dumbSecondCounter++;
             if (dumbSecondCounter == 1000) {
                 dumbSecondCounter = 0;
-                framework_print("CPU %% %lu\n", cpuUsageAverage.sum / 10);
+                framework_print("FRAMEWORK CPU_USAGE %lu\n", cpuUsageAverage.sum / 10);
             }
             cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
             cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
@@ -197,6 +199,10 @@ static uint8_t FRAMEWORK_init(void) {
         ServiceList[S](ThisEvent);
     }
     return 1;
+}
+
+void FRAMEWORK_Debug(uint8_t state){
+    debugEnable = state;
 }
 
 static uint8_t EnQueue(volatile framework_queue_S *thisQueue, Event thisEvent) {

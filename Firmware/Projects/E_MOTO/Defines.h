@@ -24,6 +24,8 @@
 #include "TFT_DISPLAY.h"
 #include "led_driver.h"
 
+#include "..\..\CAN\generated\dbc.h"
+
 #ifdef USE_CAN
 #include "bolt_CAN.h"
 #include "CAN_DBC.h"
@@ -73,6 +75,7 @@
 #define DEFINES_SW3 (PINS_pin_S){PIN_PORTC,6}
 
 #define DEFINES_5V_SW_RAIL (PINS_pin_S){PIN_PORTA,10}
+#define DEFINES_12V_SW_RAIL (PINS_pin_S){PIN_PORTA,7}
 
 #define DEFINES_EEPROM_1_ADDRESS 0b1010000
 

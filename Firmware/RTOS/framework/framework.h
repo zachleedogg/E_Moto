@@ -69,11 +69,10 @@ uint8_t FRAMEWORK_run(uint32_t clockFreq);
 uint8_t FRAMEWORK_postEvent(Event thisEvent);
 
 /**
- * Initializes the framework millisecond timer
- * @param clockFreq: from clockfreq() return value
- * @return 
+ * Enable or disable debug messages
+ * @param state Enabled (1) or Disabled (0)
  */
-uint8_t FRAMEWORK_timerInit(uint32_t clockFreq);
+void FRAMEWORK_Debug(uint8_t state);
 
 /**
  * Resets the 45-day freerunning timer, should be performed periodically or on 

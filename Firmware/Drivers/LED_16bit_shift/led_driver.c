@@ -195,7 +195,7 @@ uint8_t spi2Init(led_pin_number CLK, led_pin_number D_OUT) {
     SPI2CON1bits.MSTEN = 1; /*master mode enable*/
 
     SPI2CON1bits.PPRE = 0b11;
-    SPI2CON1bits.SPRE = 0b111;
+    SPI2CON1bits.SPRE = 0b110;
 
     SPI2CON2bits.SPIBEN = 1; /*Enhanced Buffer Mode*/
     SPI2STATbits.SPIEN = 1; /*Enable SPI module*/

@@ -629,6 +629,10 @@ static TOUCH_SCREEN_SERVICE_states_E setStateTo(statePtr thisState) {
     return nextState;
 }
 
+void touchScreenDebug(uint8_t state){
+    debugEnable = state;
+}
+
 static uint8_t passwordHandler(uint16_t temp) {
     uint8_t returnVal = NO_CHAR_INPUT;
     /*Button 9 is the clear button*/

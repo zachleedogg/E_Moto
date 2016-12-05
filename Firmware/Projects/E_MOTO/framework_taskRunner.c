@@ -29,7 +29,7 @@ void FRAMEWORK_TASKRUNNER_init(void) {
     i2c1_Init(BAUD_400K);
     i2c_SetDeviceID(DEFINES_EEPROM_1_ADDRESS);
     i2c_SetAddress(0x00, ADDRESS_SPACE_8_BIT);
-    i2c1_Write("doggbrohampussyt", 16);
+    //i2c1_Write("doggbrohampussyt", 16);
 
     /*Init Ping sensor*/
     ping_Init(DEFINES_PING_RIGHT_ECHO, DEFINES_PING_RIGHT_TRIGGER, DEFINES_PING_LEFT_ECHO, DEFINES_PING_LEFT_TRIGGER);
@@ -58,9 +58,7 @@ void FRAMEWORK_TASKRUNNER_init(void) {
     ledDriverInit(DEFINES_LED_DRIVER_CLOCK, DEFINES_LED_DRIVER_DATA, DEFINES_LED_DRIVER_LATCH);
     ledDriverWrite(0, 0xFFFF);
 
-
     ADC_SetPin(VBATT_PROT_MONITOR);
-
 }
 
 static inline void FRAMEWORK_TASKRUNNER_1ms(void);
@@ -129,25 +127,33 @@ static inline void FRAMEWORK_TASKRUNNER_1ms(void) {
         newEvent.Service = touchScreenService_SERVICE;
         FRAMEWORK_postEvent(newEvent);
     }
+    
+    if(Uart1RXdataReady()){
+        Event newEvent;
+        newEvent.EventPriority = FRAMEWORK_PRIORITY_1;
+        newEvent.EventType = DEBUG_MESSAGE_EVENT;
+        newEvent.Service = debuggerService_SERVICE;
+        FRAMEWORK_postEvent(newEvent);
+    }
 
 }
 
 static inline void FRAMEWORK_TASKRUNNER_10ms(void) {
 
     /*Run the LED sweep*/
-    static uint16_t tog = 1;
-    static uint8_t direction = 0;
-    ledDriverWrite(0, tog);
-    if (direction == 0) {
-        tog = tog << 1;
-    } else {
-        tog = tog >> 1;
-    }
-    if (tog == 0x8000) {
-        direction = 1;
-    } else if (tog == 0x0001) {
-        direction = 0;
-    }
+//    static uint16_t tog = 1;
+//    static uint8_t direction = 0;
+//    ledDriverWrite(0, tog);
+//    if (direction == 0) {
+//        tog = tog << 1;
+//    } else {
+//        tog = tog >> 1;
+//    }
+//    if (tog == 0x8000) {
+//        direction = 1;
+//    } else if (tog == 0x0001) {
+//        direction = 0;
+//    }
 
 }
 

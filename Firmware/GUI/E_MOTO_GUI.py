@@ -10,10 +10,9 @@ Author: Zach Levenberg
 Last modified: December 2016
 """
 try:
-    from tkinter import Tk, Text, BOTH, W, N, E, S, Frame, Button, Label, OptionMenu, StringVar, Menu
+    from tkinter import Tk, Text, BOTH, W, N, E, S, Frame, Button, Label, OptionMenu, StringVar, Menu, IntVar, Checkbutton
 except ImportError:
-    from Tkinter import Tk, Text, BOTH, W, N, E, S, Frame, Button, Label, OptionMenu, StringVar, Menu
-
+    from Tkinter import Tk, Text, BOTH, W, N, E, S, Frame, Button, Label, OptionMenu, StringVar, Menu, IntVar, CheckButton
 
 try:
     import queue
@@ -69,18 +68,16 @@ class myScreen(Frame):
         self.parent.config(menu=menubar)
         
         #Create a grid of size rowsxcols
-        rows=12
+        rows=14
         cols=6
         self.rowconfigure(1, weight=0)
         self.rowconfigure(2, weight=0, minsize=50)
         self.rowconfigure(3, weight=0, minsize=50)
         self.rowconfigure(4, weight=0, minsize=50)
         self.rowconfigure(5, weight=0, minsize=50)
-        for i in range(6,rows):
-            if i < 7:
+        self.rowconfigure(6, weight=1, minsize=50)
+        for i in range(7,rows):
                 self.rowconfigure(i, weight=0)
-            else:
-                self.rowconfigure(i, weight=1)
         for i in range(1,cols-2):
             self.columnconfigure(i, weight=1)
         self.columnconfigure(cols-1, weight=0, minsize=150, pad=5)
@@ -118,7 +115,8 @@ class myScreen(Frame):
         self.refreshButton.grid(row=5, column=cols-1, columnspan=2)
         
         #Create Serial Console Text Area
-        self.consoleTextArea = Text(self)
+        self.consoleCount = 0
+        self.consoleTextArea = Text(self, bg="black", fg="#00ff00")
         self.consoleTextArea.grid(row=2, column=0, columnspan=cols-2, rowspan=rows-1, sticky="NESW")
         #Clear button
         self.clearButton = Button(self, text="Clear Console", width=20)
@@ -132,14 +130,36 @@ class myScreen(Frame):
         self.sendTextArea = Text(self, height=1, width=20)
         self.sendTextArea.grid(row=rows, column=cols-1, columnspan=2)
         
+        self.B1var = IntVar()
+        self.B1 = Checkbutton(self, text = "FRAMEWORK_debug_EN ", variable = self.B1var, command = self.B1_func, onvalue = 1, offvalue = 0)        
+        self.B1.grid(row=rows-6, column=cols-1, sticky="W");
+        self.B1.select()
+        
+        self.B2var = IntVar()
+        self.B2 = Checkbutton(self, text = "TOUCHSCREEN_debug_EN", variable = self.B2var, command = self.B2_func, onvalue = 1, offvalue = 0)
+        self.B2.grid(row=rows-5, column=cols-1, sticky="W");
+        self.B2.select()
+        
+        self.B3 = Button(self, text="Send SPI (16bits)")
+        self.B3["command"] = self.B3_func
+        self.B3.grid(row=rows-4, column=cols-1, sticky="W");
+        self.SPI_hex = Text(self, height=1, width=4)
+        self.SPI_hex.grid(row=rows-4, column=cols, sticky="W")
 
+        self.B4var = IntVar()
+        self.B4 = Checkbutton(self, text = "5V_SW_EN", variable = self.B4var, command = self.B4_func, onvalue = 1, offvalue = 0)
+        self.B4.grid(row=rows-3, column=cols-1, sticky="W");
+        
+        self.B5var = IntVar()
+        self.B5 = Checkbutton(self, text = "12V_SW_EN", variable = self.B5var, command = self.B5_func, onvalue = 1, offvalue = 0)
+        self.B5.grid(row=rows-2, column=cols-1, sticky="W");
         
         #Create Serail Thread without opening a port
         self.myqueue = queue.Queue()
         self.serialCommunication = SerialCom_Thread(self.myqueue)
         self.serialCommunication.start()
 
-        self.serial_read()
+
 
     def comMenu(self,value):
         self.dropVar1.set(value)
@@ -172,24 +192,65 @@ class myScreen(Frame):
             try:
                 self.consoleTextArea.insert('end', self.myqueue.get())
                 self.consoleTextArea.see('end')
+                self.consoleCount = self.consoleCount+1
+                if self.consoleCount >= 1024:
+                    self.consoleTextArea.delete(1.0,1.1)
+                    self.consoleCount = self.consoleCount-1
             except self.myqueue.Empty:
                 pass
         self.after(1, self.serial_read)
     
     def say_hi(self):
-        self.serialCommunication.writeToCom(self.sendTextArea.get(0.0, 'end').encode())
+        stringToSend = self.sendTextArea.get(0.0, 'end')
+        self.serialCommunication.writeToCom(stringToSend.encode())
+        
+    def B1_func(self):
+        if self.B1var.get() == 1:
+            hex_string = bytearray.fromhex("00 01 0A")
+        else:
+            hex_string = bytearray.fromhex("00 00 0A")
+        self.serialCommunication.writeToCom(hex_string)
+        
+    def B2_func(self):
+        if self.B2var.get() == 1:
+            hex_string = bytearray.fromhex("01 01 0A")
+        else:
+            hex_string = bytearray.fromhex("01 00 0A")
+        self.serialCommunication.writeToCom(hex_string)
+        
+    def B3_func(self):
+        mystring = "02"+self.SPI_hex.get(1.0,1.4)+"0A"
+        #mystring = mystring
+        print(mystring)
+        hex_string = bytearray.fromhex(mystring)
+        print(hex_string)
+        self.serialCommunication.writeToCom(hex_string)
+        
+    def B4_func(self):
+        if self.B4var.get() == 1:
+            hex_string = bytearray.fromhex("04 01 0A")
+        else:
+            hex_string = bytearray.fromhex("04 00 0A")
+        self.serialCommunication.writeToCom(hex_string)
+        
+    def B5_func(self):
+        if self.B5var.get() == 1:
+            hex_string = bytearray.fromhex("05 01 0A")
+        else:
+            hex_string = bytearray.fromhex("05 00 0A")
+        self.serialCommunication.writeToCom(hex_string)
         
     
     def openIt(self):
         if self.connectionState == "disconnected":
             self.connect()
-
+            self.serial_read()
         elif self.connectionState == "connected":
-
             self.disconnect()
     
     def clearConsole(self):
         self.consoleTextArea.delete(0.0, 'end')
+        self.consoleCount = 0
 
     
     def connect(self):
@@ -214,7 +275,6 @@ class myScreen(Frame):
               
 
 def main():
-  
     root = Tk()
     myScreen(root)
     root.mainloop()  

@@ -20,6 +20,7 @@ EVENT(INIT_EVENT) /* The transition out of init state */ \
 EVENT(ENTRY_EVENT) /* Put any entry code for a state when this state is thrown */ \
 EVENT(EXIT_EVENT) /* Exit code for states triggered by this event */ \
 EVENT(TIMEUP_EVENT) /* The timer-up event for timers */ \
+EVENT(DEBUG_MESSAGE_EVENT) /*Incoming debug message*/ \
 EVENT(TFT_TOUCH_EVENT) /*The LCD was touched*/ \
 EVENT(BATTERY_12V_LEVEL_EVENT) /*12V Battery voltage reading*/ \
 EVENT(PING_SENSOR_EVENT) /*Ping sensor distance value*/ \
@@ -65,10 +66,11 @@ static const char __attribute__((unused)) * const EventStrings[] = {
 /*Put the name of each service*/
 #define SERVICE_LIST(SERVICE) \
 SERVICE(touchScreenService) /*Main state machine, This is always first (the default Service)*/ \
+SERVICE(debuggerService) /*This debugger service handles the Uart interface to PC*/ \
 
 /* file name of each service IN THE SAME ORDER AS ABOVE*/
 #define SERVICE_1 "touchScreenService.h"
-//#define SERVICE_2
+#define SERVICE_2 "debuggerService.h"
 //#define SERVICE_3
 //#define SERVICE_4 
 //#define SERVICE_5 
