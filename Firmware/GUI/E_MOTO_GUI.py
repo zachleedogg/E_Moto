@@ -10,7 +10,8 @@ Author: Zach Levenberg
 Last modified: December 2016
 """
 try:
-    from tkinter import Tk, Text, BOTH, W, N, E, S, Frame, Button, Label, OptionMenu, StringVar, Menu, IntVar, Checkbutton
+    from tkinter import *
+    from tkinter import ttk
 except ImportError:
     from Tkinter import Tk, Text, BOTH, W, N, E, S, Frame, Button, Label, OptionMenu, StringVar, Menu, IntVar, CheckButton
 
@@ -21,20 +22,25 @@ except ImportError:
 
 from SerialComPorts import SerialCom_Thread
 
+import binascii
+
+
 connectionState = "disconnected"
 
                 
                 
-class myScreen(Frame):
+class myScreen(ttk.Frame):
   
     def __init__(self, parent):
-        Frame.__init__(self, parent)   
+        ttk.Frame.__init__(self, parent)   
+        self.pack(expand=Y, fill=BOTH)
          
         self.parent = parent
         self.initUI()
         
         
     def initUI(self):
+
       
         self.parent.title("Welcome to the E-Moto Debugger Tool!")
         self.pack(fill=BOTH, expand=True)
@@ -88,7 +94,7 @@ class myScreen(Frame):
         self.connectionStatusLabel.grid(row=1, column=1, sticky = "W")
 
         #Activate Button
-        self.connectButton = Button(self, text="Connect", state="disabled", relief="raised", padx=10, pady=20)
+        self.connectButton = ttk.Button(self, text="Connect", state="disabled", width=20)
         self.connectButton["command"] = self.openIt
         self.connectButton.grid(row=2, column=cols-1, columnspan=2, rowspan=2)
         
@@ -97,7 +103,7 @@ class myScreen(Frame):
         choices.append("NONE")        
         self.dropVar1=StringVar()
         self.dropVar1.set("Port") # default choice
-        self.dropMenu1 = OptionMenu(self, self.dropVar1, *choices, command=self.comMenu)
+        self.dropMenu1 = ttk.OptionMenu(self, self.dropVar1, *choices, command=self.comMenu)
         self.dropMenu1.config(width=6)
         self.dropMenu1.grid(column=cols-1,row=4)
         
@@ -105,12 +111,12 @@ class myScreen(Frame):
         choices2 = ['9600', '14400', '19200', '38400', '57600', '115200', '230400', '460800']
         self.dropVar2=StringVar()
         self.dropVar2.set("Baud") # default choice
-        self.dropMenu2 = OptionMenu(self, self.dropVar2, *choices2, command=self.baudMenu)
+        self.dropMenu2 = ttk.OptionMenu(self, self.dropVar2, *choices2, command=self.baudMenu)
         self.dropMenu2.config(width=6)
         self.dropMenu2.grid(column=cols,row=4)
         
         #Refresh button
-        self.refreshButton = Button(self, text="Scan for Devices", width=30)
+        self.refreshButton = ttk.Button(self, text="Scan for Devices", width=30)
         self.refreshButton["command"] = self.updateComs
         self.refreshButton.grid(row=5, column=cols-1, columnspan=2)
         
@@ -119,15 +125,15 @@ class myScreen(Frame):
         self.consoleTextArea = Text(self, bg="black", fg="#00ff00")
         self.consoleTextArea.grid(row=2, column=0, columnspan=cols-2, rowspan=rows-1, sticky="NESW")
         #Clear button
-        self.clearButton = Button(self, text="Clear Console", width=20)
+        self.clearButton = ttk.Button(self, text="Clear Console", width=20)
         self.clearButton["command"] = self.clearConsole
         self.clearButton.grid(row=rows, column=cols-3, columnspan=1, sticky="E")
         
         #Send button
-        self.sendButton = Button(self, text="Send")
+        self.sendButton = ttk.Button(self, text="Send")
         self.sendButton["command"] = self.say_hi
         self.sendButton.grid(row=rows, column=cols, sticky="E")
-        self.sendTextArea = Text(self, height=1, width=20)
+        self.sendTextArea = Text(self, height=1, width=15)
         self.sendTextArea.grid(row=rows, column=cols-1, columnspan=2)
         
         self.B1var = IntVar()
@@ -140,7 +146,7 @@ class myScreen(Frame):
         self.B2.grid(row=rows-5, column=cols-1, sticky="W");
         self.B2.select()
         
-        self.B3 = Button(self, text="Send SPI (16bits)")
+        self.B3 = ttk.Button(self, text="Send SPI (16bits)")
         self.B3["command"] = self.B3_func
         self.B3.grid(row=rows-4, column=cols-1, sticky="W");
         self.SPI_hex = Text(self, height=1, width=4)
@@ -220,10 +226,7 @@ class myScreen(Frame):
         
     def B3_func(self):
         mystring = "02"+self.SPI_hex.get(1.0,1.4)+"0A"
-        #mystring = mystring
-        print(mystring)
-        hex_string = bytearray.fromhex(mystring)
-        print(hex_string)
+        hex_string = bytes.fromhex(mystring)
         self.serialCommunication.writeToCom(hex_string)
         
     def B4_func(self):
@@ -254,7 +257,8 @@ class myScreen(Frame):
 
     
     def connect(self):
-        self.serialCommunication.openPort(self.dropVar1.get(), self.dropVar2.get())
+        settings = self.serialCommunication.openPort(self.dropVar1.get(), self.dropVar2.get())
+        self.consoleTextArea.insert('end', settings)
         self.connectButton["relief"] = 'sunken'
         self.connectButton["text"] = "Disconnect"
         self.serialCommunication.resume()
@@ -268,7 +272,7 @@ class myScreen(Frame):
         self.serialCommunication.closePort()
         self.serialCommunication.pause()
         self.connectionStatusLabel.config(text="Status = Disconnected")
-        
+
     def quit(self):
         self.disconnect();
         self.parent.destroy()
@@ -278,7 +282,6 @@ def main():
     root = Tk()
     myScreen(root)
     root.mainloop()  
-
 
 
 if __name__ == '__main__':

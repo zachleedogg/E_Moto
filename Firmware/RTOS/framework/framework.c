@@ -25,8 +25,6 @@ static uint8_t debugEnable = 1;
  * Event Framework Queue
  *******************************************************************************
  *******************************************************************************/
-#include "framework_taskRunner.h"
-//#include EVENTCHECKER_HEADER
 #ifdef SERVICE_1
 #include SERVICE_1
 #endif
@@ -49,11 +47,23 @@ static uint8_t debugEnable = 1;
 #include SERVICE_7
 #endif
 
-#define FRAMEWORK_QUEUE_SIZE 4
+
 
 /*******************************************************************************
  * Datatypes and Variables
  ******************************************************************************/
+/*******************************************************************************
+ * Function Prototypes
+ * ****************************************************************************/
+
+void FRAMEWORK_TASKRUNNER_init(void);
+
+/**
+ * Function call handle for Task Service, Takes and Empty Event and returns the same empty event
+ * @param emptyEvent: Any Event, has no effect
+ * @return 
+ */
+Event FRAMEWORK_TASKRUNNER_run(Event emptyEvent);
 
 /*Event queue*/
 typedef struct _framework_queue_S {
@@ -287,7 +297,7 @@ static uint8_t timerHasTicked() {
             timerStatus.tail = 0;
         }
         if (timerStatus.tail != timerStatus.head) {
-            framework_print("p\n");
+            framework_print("Framework Delayed\n");
         }
         returnVal = 1;
     }
@@ -311,7 +321,7 @@ static void checkTimers(void) {
                 Event ThisEvent;
                 ThisEvent.EventType = TIMEUP_EVENT;
                 ThisEvent.EventParam = i;
-                ThisEvent.EventPriority = FRAMEWORK_PRIORITY_2;
+                ThisEvent.EventPriority = FRAMEWORK_PRIORITY_LEVELS-1;
                 ThisEvent.Service = SW_timers[i].service;
                 FRAMEWORK_postEvent(ThisEvent);
             }
@@ -397,13 +407,54 @@ void __attribute__((__interrupt__, __auto_psv__, __shadow__)) _T5Interrupt(void)
 
         /*Every millisecond, run the task scheduler*/
         Event taskEvent;
-        taskEvent.EventPriority = FRAMEWORK_PRIORITY_3;
+        taskEvent.EventPriority = FRAMEWORK_PRIORITY_LEVELS-1;
         taskEvent.EventType = NO_EVENT;
         taskEvent.Service = numberofServices - 1;
         FRAMEWORK_postEvent(taskEvent);
     }
 }
 
+typedef struct _TASKRUNNER_timer {
+    uint8_t ones;
+    uint8_t tens;
+    uint8_t hunds;
+} TASKRUNNER_timer;
+static TASKRUNNER_timer timer = {};
+
+
+extern inline void FRAMEWORK_TASKRUNNER_1ms(void);
+extern inline void FRAMEWORK_TASKRUNNER_10ms(void);
+extern inline void FRAMEWORK_TASKRUNNER_100ms(void);
+extern inline void FRAMEWORK_TASKRUNNER_1000ms(void);
+
+Event FRAMEWORK_TASKRUNNER_run(Event emptyEvent) {
+
+    /*1ms*/
+    timer.ones++;
+    FRAMEWORK_TASKRUNNER_1ms();
+
+    /*10ms*/
+    if (timer.ones == 10) {
+        timer.ones = 0;
+        timer.tens++;
+        FRAMEWORK_TASKRUNNER_10ms();
+
+        /*100ms*/
+        if (timer.tens == 10) {
+            timer.tens = 0;
+            timer.hunds++;
+            FRAMEWORK_TASKRUNNER_100ms();
+
+            /*1000ms*/
+            if (timer.hunds == 10) {
+                timer.hunds = 0;
+                FRAMEWORK_TASKRUNNER_1000ms();
+
+            }
+        }
+    }
+    return emptyEvent;
+}
 
 /******************************************************************************
  *******************************************************************************

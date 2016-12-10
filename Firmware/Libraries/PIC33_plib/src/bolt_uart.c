@@ -234,7 +234,7 @@ uint8_t Uart1Write(char* inputString) {
     return 0;
 }
 
-uint8_t Uart1Read(char* returnString) {
+uint8_t Uart1Read(unsigned char* returnString) {
     int i = 0;
     while (RX1buffer.pointCurrent != RX1buffer.pointEnd) {/*check for termination*/
         returnString[i] = RX1buffer.buff[RX1buffer.pointCurrent]; /*capture character in buffer*/

@@ -10,5 +10,6 @@ memoryfile.xml
 *.mk
 *.bash
 *.properties
+__pycache__
 private
 thumbs.db

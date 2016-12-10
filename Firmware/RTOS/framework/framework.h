@@ -41,9 +41,6 @@ typedef enum _FRAMEWORK_timerMode_E {
     CONTINUOUS
 } FRAMEWORK_timerMode_E;
 
-/*Function pointer protoype for runtime scheduler*/
-typedef void(*FRAMEWORK_scheduleTask)();
-
 /* Event defines */
 #define EMPTY (Event){NO_EVENT, 0x0000, 0x0000, 0x0000}
 #define INIT (Event){INIT_EVENT, 0x0000, 0x0000, 0x0000}
@@ -57,6 +54,7 @@ typedef void(*FRAMEWORK_scheduleTask)();
 
 /**
  * Main framework run function
+ * @param clockFreq: System Frequency in Hz
  * @return 
  */
 uint8_t FRAMEWORK_run(uint32_t clockFreq);
@@ -91,6 +89,7 @@ uint32_t FRAMEWORK_getTimeNow(void);
  * @param thisTimer: Timer number to set (0-15)
  * @param time: the time in milliseconds
  * @param service: the service in which the TIMEUP Event is posted to.
+ * @param Mode: the type of timer to run (continuous or one-shot)
  */
 void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, FRAMEWORK_serviceType_E service, FRAMEWORK_timerMode_E Mode);
 
@@ -105,21 +104,6 @@ void FRAMEWORK_timerStop(FRAMEWORK_timerNumber_E thisTimer);
  * @param thisTimer: timer to be resumed (0-15)
  */
 void FRAMEWORK_timerResume(FRAMEWORK_timerNumber_E thisTimer);
-
-
-/**
- * Initialize the run-time task scheduler
- */
-void FRAMEWORK_schedulerInit(void);
-
-/**
- * Adds a task to the scheduler
- * @param someFunction: pointer to the function to be scheduled, must be a
- * void function and take no arguments
- * @param time: time in milliseconds from current time to execute the task
- * @return 
- */
-uint8_t FRAMEWORK_schedulerAdd(FRAMEWORK_scheduleTask someFunction, uint32_t time);
 
 #endif	/* FRAMEWORK_H */
 

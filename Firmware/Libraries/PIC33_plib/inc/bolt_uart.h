@@ -118,7 +118,7 @@ uint8_t Uart1Write(char* inputString);
  * @param returnString: string to place the read-in data
  * @return 
  */
-uint8_t Uart1Read(char* returnString);
+uint8_t Uart1Read(unsigned char* returnString);
 
 /**
  * checks if RX data is ready to be read out. based on newline char found.

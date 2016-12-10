@@ -26,7 +26,8 @@ class SerialCom_Thread(threading.Thread):
         # boosts performance.
         self.pause_cond = threading.Condition(threading.Lock())
         self.queue = queue
-        self.s = serial.Serial()
+        self.s = serial.Serial(bytesize=serial.EIGHTBITS)
+        #self.s.bytesize = serial.EIGHTBITS
         self.pause()
 
     def run(self):
@@ -73,6 +74,7 @@ class SerialCom_Thread(threading.Thread):
             self.s.port = com
             self.s.baudrate = baud
             self.s.open()
+            return self.s.getSettingsDict();
             
     def getPort(self):
         if sys.platform.startswith('win'):

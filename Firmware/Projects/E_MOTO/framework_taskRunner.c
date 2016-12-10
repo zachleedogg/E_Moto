@@ -16,12 +16,6 @@ static uint8_t debugEnable = 1;
 #define framework_taskRunner_print(...)
 #endif
 
-typedef struct _TASKRUNNER_timer {
-    uint8_t ones;
-    uint8_t tens;
-    uint8_t hunds;
-} TASKRUNNER_timer;
-static TASKRUNNER_timer timer = {};
 
 void FRAMEWORK_TASKRUNNER_init(void) {
 
@@ -61,12 +55,7 @@ void FRAMEWORK_TASKRUNNER_init(void) {
     ADC_SetPin(VBATT_PROT_MONITOR);
 }
 
-static inline void FRAMEWORK_TASKRUNNER_1ms(void);
-static inline void FRAMEWORK_TASKRUNNER_10ms(void);
-static inline void FRAMEWORK_TASKRUNNER_100ms(void);
-static inline void FRAMEWORK_TASKRUNNER_1000ms(void);
-
-static inline void FRAMEWORK_TASKRUNNER_1ms(void) {
+inline void FRAMEWORK_TASKRUNNER_1ms(void) {
 
     /*Run touch screen Stuff
      Throw an event during every touch and throw a single event for the
@@ -138,7 +127,7 @@ static inline void FRAMEWORK_TASKRUNNER_1ms(void) {
 
 }
 
-static inline void FRAMEWORK_TASKRUNNER_10ms(void) {
+inline void FRAMEWORK_TASKRUNNER_10ms(void) {
 
     /*Run the LED sweep*/
 //    static uint16_t tog = 1;
@@ -157,7 +146,7 @@ static inline void FRAMEWORK_TASKRUNNER_10ms(void) {
 
 }
 
-static inline void FRAMEWORK_TASKRUNNER_100ms(void) {
+inline void FRAMEWORK_TASKRUNNER_100ms(void) {
 
     Event newEvent;
     /* Run the Ping sensors*/
@@ -171,7 +160,7 @@ static inline void FRAMEWORK_TASKRUNNER_100ms(void) {
 
 }
 
-static inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
+inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
 
     Event newEvent;
 
@@ -181,34 +170,4 @@ static inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
     newEvent.EventType = BATTERY_12V_LEVEL_EVENT;
     newEvent.Service = touchScreenService_SERVICE;
     FRAMEWORK_postEvent(newEvent);
-}
-
-Event FRAMEWORK_TASKRUNNER_run(Event emptyEvent) {
-
-    /*1ms*/
-    timer.ones++;
-    FRAMEWORK_TASKRUNNER_1ms();
-
-    /*10ms*/
-    if (timer.ones == 10) {
-        timer.ones = 0;
-        timer.tens++;
-        FRAMEWORK_TASKRUNNER_10ms();
-
-        /*100ms*/
-        if (timer.tens == 10) {
-            timer.tens = 0;
-            timer.hunds++;
-            FRAMEWORK_TASKRUNNER_100ms();
-
-            /*1000ms*/
-            if (timer.hunds == 10) {
-                framework_taskRunner_print("Service: %s\n\n", "TaskRunner 1000ms");
-                timer.hunds = 0;
-                FRAMEWORK_TASKRUNNER_1000ms();
-
-            }
-        }
-    }
-    return emptyEvent;
 }

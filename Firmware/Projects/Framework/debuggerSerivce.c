@@ -1,7 +1,7 @@
 #include "debuggerService.h"
 #include "Defines.h"
 #include "framework.h"
-#include "touchScreenService.h"
+#include "templateService.h"
 
 /*******************************************************************************
  * Debugging
@@ -20,7 +20,7 @@ static uint8_t debugEnable = 1;
 
 #define TOUCH_SCREEN_SERVICE_STATES(state)\
 state(init) /* init state for startup code */ \
-state(welcomeState) /* have fun drawing on the screen */ \
+state(debugState) /* have fun drawing on the screen */ \
 
 /*Creates an enum of states suffixed with _state*/
 #define STATE_FORM(WORD) WORD##_state,
@@ -50,7 +50,7 @@ static TOUCH_SCREEN_SERVICE_states_E curState = init_state; /* initialize curren
  * USER SPACE
  * ****************************************************************************/
 
-static unsigned char msg[20] = {};
+static char msg[20] = {};
 
 /*******************************************************************************
  * STATE MACHINE BEGINS HERE
@@ -58,9 +58,7 @@ static unsigned char msg[20] = {};
 Event debuggerService(Event ThisEvent) {
     /*Debugging print statement*/
     Uart1Read(msg);
-    debuggerService_print("Service: %s...\n\n%s\n...end\n", ServiceStrings[debuggerService_SERVICE], msg);
-    //    static int counter = 0;
-    //    debuggerService_print("%d\n", counter++);
+
     /*Call the state machine functions*/
     TOUCH_SCREEN_SERVICE_states_E nextState = theState[curState](ThisEvent);
 
@@ -88,9 +86,8 @@ static TOUCH_SCREEN_SERVICE_states_E init(Event ThisEvent) {
     TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     if (ThisEvent.EventType == INIT_EVENT) {
         /*Initialization stuff here*/
-
-
-        nextState = setStateTo(welcomeState);
+        debuggerService_print("Debugger Initializing\n");
+        nextState = setStateTo(debugState);
     }
     return nextState;
 }
@@ -100,7 +97,8 @@ static TOUCH_SCREEN_SERVICE_states_E init(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TOUCH_SCREEN_SERVICE_states_E welcomeState(Event ThisEvent) {
+static TOUCH_SCREEN_SERVICE_states_E debugState(Event ThisEvent) {
+    debuggerService_print("Service: %s...\n\n%s\n...end\n", ServiceStrings[debuggerService_SERVICE], msg);
     TOUCH_SCREEN_SERVICE_states_E nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -112,28 +110,16 @@ static TOUCH_SCREEN_SERVICE_states_E welcomeState(Event ThisEvent) {
                     FRAMEWORK_Debug(msg[1]);
                     break;
                 case 1:
-                    touchScreenDebug(msg[1]);
                     break;
                 case 2:
-                    ledDriverWrite(0, ((uint16_t) msg[2] | ((uint16_t) msg[1] << 8)));
-                    debuggerService_print("DEBUGGER RECV: %x\n", ((uint16_t) msg[2] | ((uint16_t) msg[1] << 8)));
                     break;
                 case 3:
-                {
-                    PINS_pin_S thispin = DEFINES_5V_SW_RAIL;
-                    PINS_write(thispin.port, thispin.pin, HIGH);
-                }
                     break;
                 case 4:
-                {
-                    PINS_pin_S thispin = DEFINES_12V_SW_RAIL;
-                    PINS_write(thispin.port, thispin.pin, HIGH);
-                }
                     break;
                 default:
                     break;
             }
-
             break;
 
             /*Put custom states above here*/
