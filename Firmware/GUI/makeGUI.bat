@@ -1,0 +1,1 @@
+pyinstaller --distpath . --onefile --windowed E_MOTO_GUI.py
