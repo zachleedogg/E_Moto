@@ -18,5 +18,11 @@
  */
 Event debuggerService(Event thisEvent);
 
+/**
+ * This function enables or disables Debug Printing to UART1
+ * @param state: >=1 enabled, 0 disabled
+ */
+void DEBUGGER_Debug(uint8_t state);
+
 #endif	/* debuggerService_H */
 

@@ -73,10 +73,22 @@ uint8_t FRAMEWORK_postEvent(Event thisEvent);
 void FRAMEWORK_Debug(uint8_t state);
 
 /**
+ * Enable or disable debug messages
+ * @param state Enabled (1) or Disabled (0)
+ */
+void FRAMEWORK_TASKRUNNER_debug(uint8_t state);
+
+/**
+ * Get the current CPU utilization as a percentage
+ * @return an integer between 1 and 100
+ */
+uint8_t FRAMEWORK_getCPUPercentage(void);
+
+/**
  * Resets the 45-day freerunning timer, should be performed periodically or on 
  * system wake from sleep
  */
-void FRAMEWORK_resetRunningTimer(void);
+void FRAMEWORK_resetTimeNow(void);
 
 /**
  * Returns the value of the freerunning timer in milliseconds

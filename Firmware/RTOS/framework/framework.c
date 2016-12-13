@@ -11,7 +11,8 @@
 /*******************************************************************************
  * Debugging
  * ****************************************************************************/
-#ifdef DEBUG
+#define DEBUG 1
+#if DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
 static uint8_t debugEnable = 1;
@@ -21,9 +22,7 @@ static uint8_t debugEnable = 1;
 #endif
 
 /*******************************************************************************
- *******************************************************************************
- * Event Framework Queue
- *******************************************************************************
+ * Includes from Framework_Configure.h
  *******************************************************************************/
 #ifdef SERVICE_1
 #include SERVICE_1
@@ -48,22 +47,15 @@ static uint8_t debugEnable = 1;
 #endif
 
 
+#define STATUS_Q_SIZE 8
+
+
+
+
 
 /*******************************************************************************
- * Datatypes and Variables
+ * Datatypes
  ******************************************************************************/
-/*******************************************************************************
- * Function Prototypes
- * ****************************************************************************/
-
-void FRAMEWORK_TASKRUNNER_init(void);
-
-/**
- * Function call handle for Task Service, Takes and Empty Event and returns the same empty event
- * @param emptyEvent: Any Event, has no effect
- * @return 
- */
-Event FRAMEWORK_TASKRUNNER_run(Event emptyEvent);
 
 /*Event queue*/
 typedef struct _framework_queue_S {
@@ -72,52 +64,84 @@ typedef struct _framework_queue_S {
     uint16_t head;
     uint16_t tail;
 } framework_queue_S;
-static volatile framework_queue_S QueueList[FRAMEWORK_PRIORITY_LEVELS] = {};
-
-/*Active Priority Level*/
-static volatile int8_t framework_ActivePriorityLevel = -1;
-
-/* Event check function pointer*/
-//typedef uint8_t(*framework_EventFunctionList_F)();
-//framework_EventFunctionList_F const EventCheckList[] = {EVENT_CHECK_FUNCS};
-//static uint8_t numberofCheckers = (uint8_t)sizeof (EventCheckList) / sizeof (framework_EventFunctionList_F);
 
 /* Service function pointer*/
 typedef Event(*framwork_serviceFunctionList_F)(Event);
-framwork_serviceFunctionList_F const ServiceList[] = {SERVICES FRAMEWORK_TASKRUNNER_run};
-static uint8_t numberofServices = (uint8_t)sizeof (ServiceList) / sizeof (framwork_serviceFunctionList_F);
 
-static uint32_t cpuUsage = 0;
+typedef enum _FRAMEWORK_swTimerStatus_E {
+    OFF,
+    RUNNING,
+    DONE,
+} FRAMEWORK_swTimerStatus_E;
 
-typedef struct _average {
-    uint16_t cpu_ticks[10];
-    uint32_t sum;
-    uint8_t index;
-} average;
-static average cpuUsageAverage = {};
+typedef struct _FRAMEWORK_swTimer_S {
+    uint16_t time;
+    uint16_t threshold;
+    FRAMEWORK_swTimerStatus_E status;
+    FRAMEWORK_serviceType_E service;
+    FRAMEWORK_timerMode_E mode;
+} FRAMEWORK_swTimer_S;
+
+typedef struct _FRAMEWORK_swTimerStatusQueue_S {
+    uint8_t queue[STATUS_Q_SIZE];
+    uint8_t head;
+    uint8_t tail;
+} FRAMEWORK_swTimerStatusQueue_S;
+
+typedef struct _TASKRUNNER_timer {
+    uint8_t ones;
+    uint8_t tens;
+    uint8_t hunds;
+} TASKRUNNER_timer;
 
 /*******************************************************************************
- * Module Function Prototypes
+ * Private Function Prototypes
  ******************************************************************************/
-/**
- * FRAMEWORK_run the framwork initialization
- * @return 
- */
-static uint8_t FRAMEWORK_init();
-uint8_t FRAMEWORK_timerInit(uint32_t clockFreq);
 
+/*Main Framework Functions*/
+static uint8_t FRAMEWORK_init();
+static uint8_t FRAMEWORK_timerInit(uint32_t clockFreq);
+
+/*Task Runner Functions*/
+static Event FRAMEWORK_TASKRUNNER_run(Event emptyEvent);
+extern void FRAMEWORK_TASKRUNNER_init(void);
+extern inline void FRAMEWORK_TASKRUNNER_1ms(void);
+extern inline void FRAMEWORK_TASKRUNNER_10ms(void);
+extern inline void FRAMEWORK_TASKRUNNER_100ms(void);
+extern inline void FRAMEWORK_TASKRUNNER_1000ms(void);
+
+/*Function pointer array to Services*/
+static framwork_serviceFunctionList_F const ServiceList[] = {SERVICES FRAMEWORK_TASKRUNNER_run};
 
 /*Event Queue functions*/
 static uint8_t EnQueue(volatile framework_queue_S *thisQueue, Event thisEvent);
 static Event DeQueue(volatile framework_queue_S *thisQueue);
-//static uint8_t CheckForEvents(void);
 
 /*Timer functions*/
 static uint8_t timerHasTicked(void);
 static void checkTimers(void);
 
-/*Task Scheduler functions*/
-//static uint8_t scheduler_remove(uint32_t time);
+/*******************************************************************************
+ * Private System Variables
+ ******************************************************************************/
+/*Main Framework Variables*/
+static uint8_t numberofServices = (uint8_t)sizeof (ServiceList) / sizeof (framwork_serviceFunctionList_F);
+
+static volatile framework_queue_S QueueList[FRAMEWORK_PRIORITY_LEVELS] = {};
+static volatile int8_t framework_ActivePriorityLevel = -1;
+
+static uint16_t idleCycles = 0;
+static uint16_t percentUsed = 0;
+static uint16_t ticksThisCycle = 0;
+static uint16_t ticksLastCycle = 0;
+static uint16_t lastTime = 0;
+
+/*Timer Variables*/
+static volatile uint32_t runningTime = 0;
+static volatile uint32_t TicksPerMS = 0;
+static volatile FRAMEWORK_swTimer_S SW_timers[NUMBER_OF_SW_TIMERS];
+static volatile FRAMEWORK_swTimerStatusQueue_S timerStatus = {};
+static TASKRUNNER_timer timer = {};
 
 /*******************************************************************************
  * Public Functions
@@ -135,10 +159,11 @@ uint8_t FRAMEWORK_run(uint32_t clockFreq) {
 
     FRAMEWORK_init();
 
+    FRAMEWORK_TASKRUNNER_init();
+
     FRAMEWORK_timerInit(clockFreq);
 
     while (1) {
-
         /*If priority Level is active, run services.*/
         while (framework_ActivePriorityLevel >= 0) {
             while (QueueList[framework_ActivePriorityLevel].size > 0) {
@@ -152,67 +177,71 @@ uint8_t FRAMEWORK_run(uint32_t clockFreq) {
             /*when the priority level is clear, reduce the priority*/
             framework_ActivePriorityLevel--;
         }
-        /*Background check for events*/
-        //CheckForEvents();
-
-        cpuUsage++;
+        
+        uint16_t temp = TMR5;
+        if(temp>lastTime){
+            ticksThisCycle = temp-lastTime;
+        } else {
+            ticksThisCycle = temp + (TicksPerMS - lastTime);
+        }
+        lastTime = temp;
 
         /*Background check timers*/
         if (timerHasTicked()) {
-            static uint16_t dumbSecondCounter = 0;
-            dumbSecondCounter++;
-            if (dumbSecondCounter == 1000) {
-                dumbSecondCounter = 0;
-                framework_print("FRAMEWORK CPU_USAGE %lu\n", cpuUsageAverage.sum / 10);
-            }
-            cpuUsageAverage.sum -= cpuUsageAverage.cpu_ticks[cpuUsageAverage.index];
-            cpuUsageAverage.cpu_ticks[cpuUsageAverage.index] = cpuUsage;
-            cpuUsageAverage.sum += cpuUsage;
-            cpuUsage = 0;
-            cpuUsageAverage.index++;
-            if (cpuUsageAverage.index >= 10) {
-                cpuUsageAverage.index = 0;
-            }
-            /*run timer service*/
-            /* I want to put this here, but the framework runs better with it
-             in the Timer ISR. I can't figure out why, of a for-loop of 16 items.*/
-            //checkTimers();
-
-            /*run task scheduler*/
-            //scheduler_remove(FRAMEWORK_getTimeNow());
+            framework_print("Ticks = %d\n", ticksThisCycle);
+            percentUsed = ((1200-idleCycles)*100)/1200;
+            idleCycles = 0;
         }
-
+        idleCycles++;
     }
 }
 
-//static uint8_t CheckForEvents() {
-//    uint8_t EventFound = 0;
-//    uint8_t i = 0;
-//    /* Loop through executing checker functions */
-//    for (i = 0; i < numberofCheckers; i++) {
-//        EventFound = EventCheckList[i]();
-//        if (EventFound == 1) { /* Event Found */
-//            break;
-//        }
-//    }
-//    return EventFound;
-//}
+uint8_t FRAMEWORK_getCPUPercentage(void){
+    return percentUsed;
+}
+
+void FRAMEWORK_resetTimeNow(void) {
+    runningTime = 0;
+}
+
+uint32_t FRAMEWORK_getTimeNow(void) {
+    return runningTime;
+}
+
+void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, FRAMEWORK_serviceType_E service, FRAMEWORK_timerMode_E Mode) {
+    SW_timers[thisTimer].time = time;
+    SW_timers[thisTimer].threshold = time;
+    SW_timers[thisTimer].status = RUNNING;
+    SW_timers[thisTimer].service = service;
+    SW_timers[thisTimer].mode = Mode;
+}
+
+void FRAMEWORK_timerStop(FRAMEWORK_timerNumber_E thisTimer) {
+    SW_timers[thisTimer].status = OFF;
+}
+
+void FRAMEWORK_timerResume(FRAMEWORK_timerNumber_E thisTimer) {
+    SW_timers[thisTimer].status = RUNNING;
+}
+
+void FRAMEWORK_Debug(uint8_t state) {
+#if DEBUG
+    debugEnable = state;
+#endif
+}
+
+/*******************************************************************************
+ * Private Functions
+ *******************************************************************************/
 
 static uint8_t FRAMEWORK_init(void) {
     Event ThisEvent = INIT;
     uint8_t S = 0;
-
-    FRAMEWORK_TASKRUNNER_init();
-
     for (S = 0; S < numberofServices; S++) {/*Check through each service*/
         /*post init event to each service*/
         ServiceList[S](ThisEvent);
     }
     return 1;
-}
-
-void FRAMEWORK_Debug(uint8_t state){
-    debugEnable = state;
 }
 
 static uint8_t EnQueue(volatile framework_queue_S *thisQueue, Event thisEvent) {
@@ -237,56 +266,10 @@ static Event DeQueue(volatile framework_queue_S *thisQueue) {
         if (thisQueue->tail == FRAMEWORK_QUEUE_SIZE) {/*wrap-around protection*/
             thisQueue->tail = 0;
         }
-
     }
     return thisEvent; /*Return the event*/
 }
 
-
-/******************************************************************************
- *******************************************************************************
- *******************************************************************************
- * Software Timers
- *******************************************************************************
- *******************************************************************************
- *******************************************************************************/
-
-#define STATUS_Q_SIZE 8
-
-/*******************************************************************************
- * Data Structures and variables
- *******************************************************************************/
-static volatile uint32_t runningTime = 0;
-
-typedef enum _FRAMEWORK_swTimerStatus_E {
-    OFF,
-    RUNNING,
-    DONE,
-} FRAMEWORK_swTimerStatus_E;
-
-typedef struct _FRAMEWORK_swTimer_S {
-    uint16_t time;
-    uint16_t threshold;
-    FRAMEWORK_swTimerStatus_E status;
-    FRAMEWORK_serviceType_E service;
-    FRAMEWORK_timerMode_E mode;
-} FRAMEWORK_swTimer_S;
-
-static volatile FRAMEWORK_swTimer_S SW_timers[NUMBER_OF_SW_TIMERS];
-
-typedef struct _FRAMEWORK_swTimerStatusQueue_S {
-    uint8_t queue[STATUS_Q_SIZE];
-    uint8_t head;
-    uint8_t tail;
-} FRAMEWORK_swTimerStatusQueue_S;
-
-static volatile FRAMEWORK_swTimerStatusQueue_S timerStatus = {};
-
-uint8_t halfMillis = 0;
-
-/*******************************************************************************
- * Private Functions
- *******************************************************************************/
 static uint8_t timerHasTicked() {
     uint8_t returnVal = 0;
     /*Check if timer has ticked and deQueue timer bit*/
@@ -305,7 +288,6 @@ static uint8_t timerHasTicked() {
 }
 
 static void checkTimers(void) {
-
     /*Check active timers*/
     int i;
     for (i = 0; i < NUMBER_OF_SW_TIMERS; i++) {
@@ -321,7 +303,7 @@ static void checkTimers(void) {
                 Event ThisEvent;
                 ThisEvent.EventType = TIMEUP_EVENT;
                 ThisEvent.EventParam = i;
-                ThisEvent.EventPriority = FRAMEWORK_PRIORITY_LEVELS-1;
+                ThisEvent.EventPriority = FRAMEWORK_PRIORITY_LEVELS - 1;
                 ThisEvent.Service = SW_timers[i].service;
                 FRAMEWORK_postEvent(ThisEvent);
             }
@@ -329,19 +311,20 @@ static void checkTimers(void) {
     }
 }
 
-/*******************************************************************************
- * Public Functions
- *******************************************************************************/
+static uint8_t FRAMEWORK_timerInit(uint32_t clockFreq) {
 
-uint8_t FRAMEWORK_timerInit(uint32_t clockFreq) {
-    uint32_t currentSpeed = clockFreq / 2;
+    TicksPerMS = ((clockFreq / 2) / 1000);
+    uint8_t preScaler = 0;
 
-    uint32_t TicksPerMS = (currentSpeed / 2000);
+    if (TicksPerMS > 0x0000FFFF) {
+        preScaler = 1;
+        TicksPerMS = (TicksPerMS / 8);
+    }
 
     /* Initialize timer */
     T5CONbits.TON = 0;
     T5CON = 0; /* Clear timer config register */
-    T5CONbits.TCKPS = 0; /* prescaler set to 0 */
+    T5CONbits.TCKPS = preScaler; /* prescaler set to 0 */
     TMR5 = 0x00; /*Clear Timers*/
     PR5 = (uint16_t) TicksPerMS; /*set timer period */
 
@@ -361,71 +344,27 @@ uint8_t FRAMEWORK_timerInit(uint32_t clockFreq) {
     return 0;
 }
 
-void FRAMEWORK_resetRunningTimer(void) {
-    runningTime = 0;
-}
-
-uint32_t FRAMEWORK_getTimeNow(void) {
-    return runningTime;
-}
-
-void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, FRAMEWORK_serviceType_E service, FRAMEWORK_timerMode_E Mode) {
-    SW_timers[thisTimer].time = time;
-    SW_timers[thisTimer].threshold = time;
-    SW_timers[thisTimer].status = RUNNING;
-    SW_timers[thisTimer].service = service;
-    SW_timers[thisTimer].mode = Mode;
-}
-
-void FRAMEWORK_timerStop(FRAMEWORK_timerNumber_E thisTimer) {
-    SW_timers[thisTimer].status = OFF;
-}
-
-void FRAMEWORK_timerResume(FRAMEWORK_timerNumber_E thisTimer) {
-    SW_timers[thisTimer].status = RUNNING;
-}
-
 void __attribute__((__interrupt__, __auto_psv__, __shadow__)) _T5Interrupt(void) {
     /* clear timer interrupt Flag*/
     _T5IF = 0;
 
-    /*this interrupt occurs every half millisecond*/
-    static uint8_t toggle = 0;
-    if (toggle == 0) {
-        toggle = 1;
-    } else {
-        toggle = 0;
-        /*Put your code here*/
-        runningTime++;
-        timerStatus.queue[timerStatus.head++] = 1;
-        if (timerStatus.head >= STATUS_Q_SIZE) {
-            timerStatus.head = 0;
-        }
-
-        /*Check through SW timers*/
-        checkTimers();
-
-        /*Every millisecond, run the task scheduler*/
-        Event taskEvent;
-        taskEvent.EventPriority = FRAMEWORK_PRIORITY_LEVELS-1;
-        taskEvent.EventType = NO_EVENT;
-        taskEvent.Service = numberofServices - 1;
-        FRAMEWORK_postEvent(taskEvent);
+    /*Put your code here*/
+    runningTime++;
+    timerStatus.queue[timerStatus.head++] = 1;
+    if (timerStatus.head >= STATUS_Q_SIZE) {
+        timerStatus.head = 0;
     }
+
+    /*Check through SW timers*/
+    checkTimers();
+
+    /*Every millisecond, run the task scheduler*/
+    Event taskEvent;
+    taskEvent.EventPriority = FRAMEWORK_PRIORITY_LEVELS - 1;
+    taskEvent.EventType = NO_EVENT;
+    taskEvent.Service = numberofServices - 1;
+    FRAMEWORK_postEvent(taskEvent);
 }
-
-typedef struct _TASKRUNNER_timer {
-    uint8_t ones;
-    uint8_t tens;
-    uint8_t hunds;
-} TASKRUNNER_timer;
-static TASKRUNNER_timer timer = {};
-
-
-extern inline void FRAMEWORK_TASKRUNNER_1ms(void);
-extern inline void FRAMEWORK_TASKRUNNER_10ms(void);
-extern inline void FRAMEWORK_TASKRUNNER_100ms(void);
-extern inline void FRAMEWORK_TASKRUNNER_1000ms(void);
 
 Event FRAMEWORK_TASKRUNNER_run(Event emptyEvent) {
 

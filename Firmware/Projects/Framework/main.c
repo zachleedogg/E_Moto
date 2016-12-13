@@ -18,7 +18,6 @@ int main(void) {
     clockInit(DEFINES_SYSTEM_CLOCK_FREQ, EXTERNAL);
     Uart1Init(DEFINES_UART_TX, DEFINES_UART_RX, DEFINES_UART_BAUD);
     Uart1Write("\nWelcome To Monday Motorbikes\n\n");
-
     FRAMEWORK_run(clockFreq());
 
     return 0;

@@ -13,7 +13,8 @@ try:
     from tkinter import *
     from tkinter import ttk
 except ImportError:
-    from Tkinter import Tk, Text, BOTH, W, N, E, S, Frame, Button, Label, OptionMenu, StringVar, Menu, IntVar, CheckButton
+    from Tkinter import *
+    from Tkinter import ttk
 
 try:
     import queue
@@ -22,14 +23,14 @@ except ImportError:
 
 from SerialComPorts import SerialCom_Thread
 
-import binascii
 
 
-connectionState = "disconnected"
 
                 
                 
 class myScreen(ttk.Frame):
+    
+    connectionState = "disconnected"
   
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)   
@@ -74,7 +75,7 @@ class myScreen(ttk.Frame):
         self.parent.config(menu=menubar)
         
         #Create a grid of size rowsxcols
-        rows=14
+        rows=15
         cols=6
         self.rowconfigure(1, weight=0)
         self.rowconfigure(2, weight=0, minsize=50)
@@ -136,15 +137,25 @@ class myScreen(ttk.Frame):
         self.sendTextArea = Text(self, height=1, width=15)
         self.sendTextArea.grid(row=rows, column=cols-1, columnspan=2)
         
-        self.B1var = IntVar()
-        self.B1 = Checkbutton(self, text = "FRAMEWORK_debug_EN ", variable = self.B1var, command = self.B1_func, onvalue = 1, offvalue = 0)        
-        self.B1.grid(row=rows-6, column=cols-1, sticky="W");
-        self.B1.select()
+        self.FW_Debug_Envar = IntVar()
+        self.FW_Debug_En = Checkbutton(self, text = "FRAMEWORK_debug_EN ", variable = self.FW_Debug_Envar, command = self.FW_Debug_En_func, onvalue = 1, offvalue = 0)        
+        self.FW_Debug_En.grid(row=rows-8, column=cols-1, sticky="W");
+        self.FW_Debug_En.select()
         
-        self.B2var = IntVar()
-        self.B2 = Checkbutton(self, text = "TOUCHSCREEN_debug_EN", variable = self.B2var, command = self.B2_func, onvalue = 1, offvalue = 0)
-        self.B2.grid(row=rows-5, column=cols-1, sticky="W");
-        self.B2.select()
+        self.TS_Debug_Envar = IntVar()
+        self.TS_Debug_En = Checkbutton(self, text = "TOUCHSCREEN_debug_EN", variable = self.TS_Debug_Envar, command = self.TS_Debug_En_func, onvalue = 1, offvalue = 0)
+        self.TS_Debug_En.grid(row=rows-7, column=cols-1, sticky="W");
+        self.TS_Debug_En.select()
+        
+        self.TR_Debug_Envar = IntVar()
+        self.TR_Debug_En = Checkbutton(self, text = "TASKRUNNER_debug_EN", variable = self.TR_Debug_Envar, command = self.TR_Debug_En_func, onvalue = 1, offvalue = 0)
+        self.TR_Debug_En.grid(row=rows-6, column=cols-1, sticky="W");
+        self.TR_Debug_En.select()
+        
+        self.DB_Debug_Envar = IntVar()
+        self.DB_Debug_En = Checkbutton(self, text = "DEBUGGER_debug_EN", variable = self.DB_Debug_Envar, command = self.DB_Debug_En_func, onvalue = 1, offvalue = 0)
+        self.DB_Debug_En.grid(row=rows-5, column=cols-1, sticky="W");
+        self.DB_Debug_En.select()
         
         self.B3 = ttk.Button(self, text="Send SPI (16bits)")
         self.B3["command"] = self.B3_func
@@ -182,16 +193,19 @@ class myScreen(ttk.Frame):
             self.connectButton["state"] = 'disabled'
         
     def updateComs(self):
+        print("disconnecting...")
         self.disconnect()
         self.dropMenu1['menu'].delete(0,'end')
         self.dropVar1.set("Port")
         self.dropVar2.set("Baud")
         self.connectButton["state"] = 'disabled'
+        print("getting ports...")
         choices = self.serialCommunication.getPort()
         if len(choices) is 0:   
             choices.append("NONE")
         for val in choices:
             self.dropMenu1['menu'].add_command(label=val,command=lambda v=self,l=val:v.comMenu(l))
+        print("...done!")
         
     def serial_read(self):
         while self.myqueue.qsize():
@@ -208,20 +222,49 @@ class myScreen(ttk.Frame):
     
     def say_hi(self):
         stringToSend = self.sendTextArea.get(0.0, 'end')
+        print("Sending: " + stringToSend)
         self.serialCommunication.writeToCom(stringToSend.encode())
         
-    def B1_func(self):
-        if self.B1var.get() == 1:
+    def FW_Debug_En_func(self):
+        if self.FW_Debug_Envar.get() == 1:
             hex_string = bytearray.fromhex("00 01 0A")
+            print("FW Debug On")
         else:
             hex_string = bytearray.fromhex("00 00 0A")
+            print("FW Debug Off")
+            self.serialCommunication.clearBuffer()
         self.serialCommunication.writeToCom(hex_string)
         
-    def B2_func(self):
-        if self.B2var.get() == 1:
+    def TS_Debug_En_func(self):
+        if self.TS_Debug_Envar.get() == 1:
+            print("TouchScreen Debug on")
+            self.serialCommunication.clearBuffer()
             hex_string = bytearray.fromhex("01 01 0A")
         else:
+            print("TouchScreen Debug off")
             hex_string = bytearray.fromhex("01 00 0A")
+        self.serialCommunication.writeToCom(hex_string)
+        
+    def TR_Debug_En_func(self):
+        hex_string = bytes()
+        if self.TR_Debug_Envar.get() == 1:
+            print("Task Debug on")
+            hex_string = bytes.fromhex("03 01 0A")
+        else:
+            print("Task Debug off")
+            self.serialCommunication.clearBuffer()
+            hex_string = bytes.fromhex("03 00 0A")
+        self.serialCommunication.writeToCom(hex_string)
+        
+    def DB_Debug_En_func(self):
+        hex_string = bytes()
+        if self.DB_Debug_Envar.get() == 1:
+            print("Debugger Debug on")
+            hex_string = bytes.fromhex("04 01 0A")
+        else:
+            print("Debugger Debug off")
+            self.serialCommunication.clearBuffer()
+            hex_string = bytes.fromhex("04 00 0A")
         self.serialCommunication.writeToCom(hex_string)
         
     def B3_func(self):
@@ -230,17 +273,19 @@ class myScreen(ttk.Frame):
         self.serialCommunication.writeToCom(hex_string)
         
     def B4_func(self):
+        hex_string = ""
         if self.B4var.get() == 1:
-            hex_string = bytearray.fromhex("04 01 0A")
+            hex_string = bytes.fromhex("05 01 0A")
         else:
-            hex_string = bytearray.fromhex("04 00 0A")
+            hex_string = bytes.fromhex("05 00 0A")
         self.serialCommunication.writeToCom(hex_string)
         
     def B5_func(self):
+        hex_string = ""
         if self.B5var.get() == 1:
-            hex_string = bytearray.fromhex("05 01 0A")
+            hex_string = bytes.fromhex("06 01 0A")
         else:
-            hex_string = bytearray.fromhex("05 00 0A")
+            hex_string = bytes.fromhex("06 00 0A")
         self.serialCommunication.writeToCom(hex_string)
         
     
@@ -252,26 +297,31 @@ class myScreen(ttk.Frame):
             self.disconnect()
     
     def clearConsole(self):
+        if self.connectionState == "connected":
+            self.serialCommunication.clearBuffer()
         self.consoleTextArea.delete(0.0, 'end')
         self.consoleCount = 0
 
     
     def connect(self):
+        print("Connecting...")
         settings = self.serialCommunication.openPort(self.dropVar1.get(), self.dropVar2.get())
-        self.consoleTextArea.insert('end', settings)
-        self.connectButton["relief"] = 'sunken'
         self.connectButton["text"] = "Disconnect"
         self.serialCommunication.resume()
+        self.clearConsole()
+        self.consoleTextArea.insert('end', settings)
         self.connectionState = "connected"
         self.connectionStatusLabel.config(text="Status = Connected")
+        print("...Connected!")
         
     def disconnect(self):
+        print("disconnecting...")
         self.connectionState = "disconnected"
-        self.connectButton["relief"] = 'raised'
         self.connectButton["text"] = "Connect"
         self.serialCommunication.closePort()
         self.serialCommunication.pause()
         self.connectionStatusLabel.config(text="Status = Disconnected")
+        print("...disconnected!")
 
     def quit(self):
         self.disconnect();

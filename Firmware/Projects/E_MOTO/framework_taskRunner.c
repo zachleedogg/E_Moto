@@ -130,19 +130,19 @@ inline void FRAMEWORK_TASKRUNNER_1ms(void) {
 inline void FRAMEWORK_TASKRUNNER_10ms(void) {
 
     /*Run the LED sweep*/
-//    static uint16_t tog = 1;
-//    static uint8_t direction = 0;
-//    ledDriverWrite(0, tog);
-//    if (direction == 0) {
-//        tog = tog << 1;
-//    } else {
-//        tog = tog >> 1;
-//    }
-//    if (tog == 0x8000) {
-//        direction = 1;
-//    } else if (tog == 0x0001) {
-//        direction = 0;
-//    }
+    static uint16_t tog = 1;
+    static uint8_t direction = 0;
+    ledDriverWrite(0, tog);
+    if (direction == 0) {
+        tog = tog << 1;
+    } else {
+        tog = tog >> 1;
+    }
+    if (tog == 0x8000) {
+        direction = 1;
+    } else if (tog == 0x0001) {
+        direction = 0;
+    }
 
 }
 
@@ -162,6 +162,9 @@ inline void FRAMEWORK_TASKRUNNER_100ms(void) {
 
 inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
 
+    
+    framework_taskRunner_print("CPU usage: %d\n", FRAMEWORK_getCPUPercentage());
+            
     Event newEvent;
 
     /*Get VBATT RAW  ADC voltage*/
@@ -170,4 +173,8 @@ inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
     newEvent.EventType = BATTERY_12V_LEVEL_EVENT;
     newEvent.Service = touchScreenService_SERVICE;
     FRAMEWORK_postEvent(newEvent);
+}
+
+void FRAMEWORK_TASKRUNNER_debug(uint8_t state){
+    debugEnable = state;
 }

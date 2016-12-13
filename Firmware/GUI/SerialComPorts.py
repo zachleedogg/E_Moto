@@ -41,7 +41,6 @@ class SerialCom_Thread(threading.Thread):
                         text = self.s.readline(self.s.inWaiting())
                         self.queue.put(text)
                 except SerialException:
-#                    self.queue.put("\n\n\n\nSerial Error\n\n\n\n")
                     pass
 
     def pause(self):
@@ -99,4 +98,8 @@ class SerialCom_Thread(threading.Thread):
         return result
         
     def writeToCom(self, anystring):
-        self.s.write(anystring)
+        sent = self.s.write(anystring)
+        print("just sent " + str(sent) + "bytes")
+        
+    def clearBuffer(self):
+        self.s.flushInput()

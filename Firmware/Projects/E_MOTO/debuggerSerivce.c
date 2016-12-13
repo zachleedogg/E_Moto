@@ -2,11 +2,13 @@
 #include "Defines.h"
 #include "framework.h"
 #include "touchScreenService.h"
+#include "framework_taskRunner.h"
 
 /*******************************************************************************
  * Debugging
  * ****************************************************************************/
-#ifdef DEBUG
+#define DEBUG 1
+#if DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
 static uint8_t debugEnable = 1;
@@ -18,7 +20,7 @@ static uint8_t debugEnable = 1;
  * STATE MACHINE SETUP
  * ****************************************************************************/
 
-#define TOUCH_SCREEN_SERVICE_STATES(state)\
+#define DEBUGGER_SERVICE_STATES(state)\
 state(init) /* init state for startup code */ \
 state(welcomeState) /* have fun drawing on the screen */ \
 
@@ -26,25 +28,25 @@ state(welcomeState) /* have fun drawing on the screen */ \
 #define STATE_FORM(WORD) WORD##_state,
 
 typedef enum {
-    TOUCH_SCREEN_SERVICE_STATES(STATE_FORM)
+    DEBUGGER_SERVICE_STATES(STATE_FORM)
     NUMBER_OF_STATES
-} TOUCH_SCREEN_SERVICE_states_E;
+} DEBUGGER_SERVICE_states_E;
 
 /*creates a string-ified list of state string names*/
 static const char __attribute__((__unused__)) * const StateStrings[] = {
-    TOUCH_SCREEN_SERVICE_STATES(STRING_FORM)
+    DEBUGGER_SERVICE_STATES(STRING_FORM)
 };
 
 /* function-ifies the state list*/
-#define FUNCTION_FORM(WORD) static TOUCH_SCREEN_SERVICE_states_E WORD(Event ThisEvent);
+#define FUNCTION_FORM(WORD) static DEBUGGER_SERVICE_states_E WORD(Event ThisEvent);
 #define FUNC_PTR_FORM(WORD) WORD,
-TOUCH_SCREEN_SERVICE_STATES(FUNCTION_FORM)
-typedef TOUCH_SCREEN_SERVICE_states_E(*statePtr)(Event);
-static statePtr theState[] = {TOUCH_SCREEN_SERVICE_STATES(FUNC_PTR_FORM)};
-static TOUCH_SCREEN_SERVICE_states_E setStateTo(statePtr thisState);
+DEBUGGER_SERVICE_STATES(FUNCTION_FORM)
+typedef DEBUGGER_SERVICE_states_E(*statePtr)(Event);
+static statePtr theState[] = {DEBUGGER_SERVICE_STATES(FUNC_PTR_FORM)};
+static DEBUGGER_SERVICE_states_E setStateTo(statePtr thisState);
 
-static TOUCH_SCREEN_SERVICE_states_E prevState = init_state; /* initialize previous state */
-static TOUCH_SCREEN_SERVICE_states_E curState = init_state; /* initialize current state */
+static DEBUGGER_SERVICE_states_E prevState = init_state; /* initialize previous state */
+static DEBUGGER_SERVICE_states_E curState = init_state; /* initialize current state */
 
 /*******************************************************************************
  * USER SPACE
@@ -58,11 +60,15 @@ static unsigned char msg[20] = {};
 Event debuggerService(Event ThisEvent) {
     /*Debugging print statement*/
     Uart1Read(msg);
-    debuggerService_print("Service: %s...\n\n%s\n...end\n", ServiceStrings[debuggerService_SERVICE], msg);
-    //    static int counter = 0;
-    //    debuggerService_print("%d\n", counter++);
+    debuggerService_print("Service: %s...\nASCII: %s\nHEX:", ServiceStrings[debuggerService_SERVICE], msg);
+    uint8_t i = 0;
+    while(msg[i]){
+        debuggerService_print(" %2x",msg[i]);
+        i++;
+    }
+    debuggerService_print("\n...end\n");
     /*Call the state machine functions*/
-    TOUCH_SCREEN_SERVICE_states_E nextState = theState[curState](ThisEvent);
+    DEBUGGER_SERVICE_states_E nextState = theState[curState](ThisEvent);
 
     /* This only happens during state transition
      * State transitions thus have priority over posting new events
@@ -84,8 +90,8 @@ Event debuggerService(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TOUCH_SCREEN_SERVICE_states_E init(Event ThisEvent) {
-    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
+static DEBUGGER_SERVICE_states_E init(Event ThisEvent) {
+    DEBUGGER_SERVICE_states_E nextState = curState;
     if (ThisEvent.EventType == INIT_EVENT) {
         /*Initialization stuff here*/
 
@@ -100,8 +106,8 @@ static TOUCH_SCREEN_SERVICE_states_E init(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TOUCH_SCREEN_SERVICE_states_E welcomeState(Event ThisEvent) {
-    TOUCH_SCREEN_SERVICE_states_E nextState = curState;
+static DEBUGGER_SERVICE_states_E welcomeState(Event ThisEvent) {
+    DEBUGGER_SERVICE_states_E nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
             break;
@@ -119,15 +125,21 @@ static TOUCH_SCREEN_SERVICE_states_E welcomeState(Event ThisEvent) {
                     debuggerService_print("DEBUGGER RECV: %x\n", ((uint16_t) msg[2] | ((uint16_t) msg[1] << 8)));
                     break;
                 case 3:
-                {
-                    PINS_pin_S thispin = DEFINES_5V_SW_RAIL;
-                    PINS_write(thispin.port, thispin.pin, HIGH);
-                }
+                    FRAMEWORK_TASKRUNNER_debug(msg[1]);
                     break;
                 case 4:
+                    debug_Debug(msg[1]);
+                    break;
+                case 5:
+                {
+                    PINS_pin_S thispin = DEFINES_5V_SW_RAIL;
+                    PINS_write(thispin.port, thispin.pin, msg[1]);
+                }
+                    break;
+                case 6:
                 {
                     PINS_pin_S thispin = DEFINES_12V_SW_RAIL;
-                    PINS_write(thispin.port, thispin.pin, HIGH);
+                    PINS_write(thispin.port, thispin.pin, msg[1]);
                 }
                     break;
                 default:
@@ -149,8 +161,8 @@ static TOUCH_SCREEN_SERVICE_states_E welcomeState(Event ThisEvent) {
  * HELPER FUNCTIONS
  * ****************************************************************************/
 
-static TOUCH_SCREEN_SERVICE_states_E setStateTo(statePtr thisState) {
-    TOUCH_SCREEN_SERVICE_states_E nextState = 0;
+static DEBUGGER_SERVICE_states_E setStateTo(statePtr thisState) {
+    DEBUGGER_SERVICE_states_E nextState = 0;
     for (nextState = 0; nextState < NUMBER_OF_STATES; nextState++) {
         if ((uint16_t) theState[nextState] == (uint16_t) thisState) {
             break;
@@ -160,4 +172,10 @@ static TOUCH_SCREEN_SERVICE_states_E setStateTo(statePtr thisState) {
         nextState = 0;
     }
     return nextState;
+}
+
+void debug_Debug(uint8_t state) {
+#if DEBUG
+    debugEnable = state;
+#endif
 }

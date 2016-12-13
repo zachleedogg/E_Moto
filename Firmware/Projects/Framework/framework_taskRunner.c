@@ -1,10 +1,12 @@
 /*Framework Includes*/
+#include "framework.h"
 #include "framework_configure.h"
 
 
 /*******************************************************************************
  * Debugging
  * ****************************************************************************/
+#define DEBUG 1
 #ifdef DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
@@ -18,7 +20,7 @@ static uint8_t debugEnable = 1;
 
 
 void FRAMEWORK_TASKRUNNER_init(void) {
-
+    framework_taskRunner_print("Service: %s\n\n", "TaskRunner, Event: init");
 }
 
 inline void FRAMEWORK_TASKRUNNER_1ms(void) {
@@ -34,7 +36,9 @@ inline void FRAMEWORK_TASKRUNNER_100ms(void) {
 }
 
 inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
-    framework_taskRunner_print("Service: %s\n\n", "TaskRunner 1000ms");
+    framework_taskRunner_print("Service: %s\n\n", "TaskRunner, Event: 1000ms");
 }
 
-
+void FRAMEWORK_TASKRUNNER_debug(uint8_t state){
+    debugEnable = state;
+}

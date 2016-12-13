@@ -18,5 +18,7 @@
  */
 Event debuggerService(Event thisEvent);
 
+void debug_Debug(uint8_t state);
+
 #endif	/* debuggerService_H */
 

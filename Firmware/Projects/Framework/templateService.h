@@ -12,7 +12,7 @@
 #ifndef templateService_H
 #define	templateService_H
 
-void templateDebug(uint8_t state);
+void template_Debug(uint8_t state);
 
 /**
  * This is the state machine function call

@@ -5,7 +5,8 @@
 /*******************************************************************************
  * Debugging
  * ****************************************************************************/
-#ifdef DEBUG
+#define DEBUG 1
+#if DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
 static uint8_t debugEnable = 1;
@@ -17,7 +18,7 @@ static uint8_t debugEnable = 1;
  * STATE MACHINE SETUP
  * ****************************************************************************/
 
-#define SERVICE_STATES(state)\
+#define TEMPLATE_SERVICE_STATES(state)\
 state(init) /* init state for startup code */ \
 state(welcomeState) /* have fun drawing on the screen */ \
 state(lockedState) /* unlock the bike with your passcode */ \
@@ -30,35 +31,32 @@ state(statisticState) /*See you ride stats */ \
 #define STATE_FORM(WORD) WORD##_state,
 
 typedef enum {
-    SERVICE_STATES(STATE_FORM)
+    TEMPLATE_SERVICE_STATES(STATE_FORM)
     NUMBER_OF_STATES
-} SERVICE_states_E;
+} TEMPLATE_SERVICE_states_E;
 
 /*creates a string-ified list of state string names*/
 static const char __attribute__((__unused__)) * const StateStrings[] = {
-    SERVICE_STATES(STRING_FORM)
+    TEMPLATE_SERVICE_STATES(STRING_FORM)
 };
 
 /* function-ifies the state list*/
-#define FUNCTION_FORM(WORD) static SERVICE_states_E WORD(Event ThisEvent);
+#define FUNCTION_FORM(WORD) static TEMPLATE_SERVICE_states_E WORD(Event ThisEvent);
 #define FUNC_PTR_FORM(WORD) WORD,
-SERVICE_STATES(FUNCTION_FORM)
-typedef SERVICE_states_E(*statePtr)(Event);
-static statePtr theState[] = {SERVICE_STATES(FUNC_PTR_FORM)};
+TEMPLATE_SERVICE_STATES(FUNCTION_FORM)
+typedef TEMPLATE_SERVICE_states_E(*statePtr)(Event);
+static statePtr theState[] = {TEMPLATE_SERVICE_STATES(FUNC_PTR_FORM)};
 
 /*Set new state function*/
-static SERVICE_states_E setStateTo(statePtr thisState);
+static TEMPLATE_SERVICE_states_E setStateTo(statePtr thisState);
 
 /*State variables*/
-static SERVICE_states_E prevState = init_state; /* initialize previous state */
-static SERVICE_states_E curState = init_state; /* initialize current state */
+static TEMPLATE_SERVICE_states_E prevState = init_state; /* initialize previous state */
+static TEMPLATE_SERVICE_states_E curState = init_state; /* initialize current state */
 
 /*******************************************************************************
  * USER SPACE
  * ****************************************************************************/
-
-
-
 
 /*******************************************************************************
  * STATE MACHINE BEGINS HERE
@@ -68,7 +66,7 @@ Event templateService(Event ThisEvent) {
     templateService_print("Service: %s,   State: %s,   Event: %s %d\n\n", ServiceStrings[templateService_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
 
     /*Call the state machine functions*/
-    SERVICE_states_E nextState = theState[curState](ThisEvent);
+    TEMPLATE_SERVICE_states_E nextState = theState[curState](ThisEvent);
 
     /* This only happens during state transition
      * State transitions thus have priority over posting new events
@@ -90,8 +88,8 @@ Event templateService(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static SERVICE_states_E init(Event ThisEvent) {
-    SERVICE_states_E nextState = curState;
+static TEMPLATE_SERVICE_states_E init(Event ThisEvent) {
+    TEMPLATE_SERVICE_states_E nextState = curState;
     if (ThisEvent.EventType == INIT_EVENT) {
         /*Initialization stuff here*/
 
@@ -105,8 +103,8 @@ static SERVICE_states_E init(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static SERVICE_states_E welcomeState(Event ThisEvent) {
-    SERVICE_states_E nextState = curState;
+static TEMPLATE_SERVICE_states_E welcomeState(Event ThisEvent) {
+    TEMPLATE_SERVICE_states_E nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
 
@@ -127,8 +125,8 @@ static SERVICE_states_E welcomeState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static SERVICE_states_E lockedState(Event ThisEvent) {
-    SERVICE_states_E nextState = curState;
+static TEMPLATE_SERVICE_states_E lockedState(Event ThisEvent) {
+    TEMPLATE_SERVICE_states_E nextState = curState;
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
             break;
@@ -148,9 +146,9 @@ static SERVICE_states_E lockedState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static SERVICE_states_E homeState(Event ThisEvent) {
+static TEMPLATE_SERVICE_states_E homeState(Event ThisEvent) {
 
-    SERVICE_states_E nextState = curState;
+    TEMPLATE_SERVICE_states_E nextState = curState;
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -171,9 +169,9 @@ static SERVICE_states_E homeState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static SERVICE_states_E runningState(Event ThisEvent) {
+static TEMPLATE_SERVICE_states_E runningState(Event ThisEvent) {
 
-    SERVICE_states_E nextState = curState;
+    TEMPLATE_SERVICE_states_E nextState = curState;
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -194,9 +192,9 @@ static SERVICE_states_E runningState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static SERVICE_states_E batteryState(Event ThisEvent) {
+static TEMPLATE_SERVICE_states_E batteryState(Event ThisEvent) {
 
-    SERVICE_states_E nextState = curState;
+    TEMPLATE_SERVICE_states_E nextState = curState;
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -217,8 +215,8 @@ static SERVICE_states_E batteryState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static SERVICE_states_E statisticState(Event ThisEvent) {
-    SERVICE_states_E nextState = curState;
+static TEMPLATE_SERVICE_states_E statisticState(Event ThisEvent) {
+    TEMPLATE_SERVICE_states_E nextState = curState;
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -234,13 +232,12 @@ static SERVICE_states_E statisticState(Event ThisEvent) {
     return nextState;
 }
 
-
 /*******************************************************************************
  * PRIVATE HELPER FUNCTIONS
  * ****************************************************************************/
 
-static SERVICE_states_E setStateTo(statePtr thisState) {
-    SERVICE_states_E nextState = 0;
+static TEMPLATE_SERVICE_states_E setStateTo(statePtr thisState) {
+    TEMPLATE_SERVICE_states_E nextState = 0;
     for (nextState = 0; nextState < NUMBER_OF_STATES; nextState++) {
         if ((uint16_t) theState[nextState] == (uint16_t) thisState) {
             break;
@@ -252,6 +249,8 @@ static SERVICE_states_E setStateTo(statePtr thisState) {
     return nextState;
 }
 
-void templateDebug(uint8_t state) {
+void template_Debug(uint8_t state) {
+#if DEBUG
     debugEnable = state;
+#endif
 }

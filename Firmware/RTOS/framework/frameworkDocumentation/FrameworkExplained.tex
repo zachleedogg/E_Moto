@@ -69,7 +69,7 @@
 
 \begin{document}
 
-\title{Bolt Motorbikes RTOS Framework}
+\title{The Framework}
 
 \author{Zach Levenberg}
 
@@ -93,7 +93,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\abstract{This paper explains how the Framework is implemented, and how to use it in an embedded system}
+\abstract{This paper explains how The Framework is implemented, and how to use it in an embedded system}
 \newpage
 
 \tableofcontents
@@ -103,7 +103,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{What is an RTOS/Framework?}
+\section{What is an RTOS?}
 
 \subsection{Operating systems}
 Most operating systems appear to allow multiple programs to execute at the same time. This is called multi-tasking. In reality, each processor core can only be running a single thread of execution at any given point in time. A part of the operating system called the scheduler is responsible for deciding which program to run when, and provides the illusion of simultaneous execution by rapidly switching between each program.
@@ -128,19 +128,17 @@ Source: http://www.freertos.org/about-RTOS.html
 The bolt framework is the system that all micro controllers in run as the base application. The Framework handles all initialization at startup, the scheduling and execution of services and tasks, and all timer related functions. The framework features a user configurable multi level priority queue for event handling. Events with a higher priority level will be processed before events with a lower priority. Events can be posted to any service and the service will be called automatically by the framework. The framework timer is guaranteed down to 1ms.
 
 \subsection{Common Terms}
-Framework: The native operating system that runs on the embedded system.
+Framework: The lowest level firmware that abstracts away system operating details and runs the user application.
 \\\\
 Service: An routine that responds to Events. A service can be simple, or complex with many states. Services are designed to be used as State Machines, but may only contain a single state if desired.
 \\\\
-Event: An event is a user defined definition of an action that occurs in the real world. An Event may be a button press, or a timer expiring. It can also signify a message that has been received.
+Event: An event is a definition of an action that occurs in the real world. An Event may be a button press, or a timer expiring. It can also signify a message that has been received.
 \\\\
-State Machine: A state machine is essentially a road map of behaviors that change due to internal events, or external events. There is no limit to the complexity or size of a state machine.
-
-
+State Machine: A state machine is essentially a road map of behaviors that change due to internal or external events. There is no limit to the complexity or size of a state machine.
 
 \subsection{Quickstart}
 
- To start the  framework, the system clock must already be initialized. A single call to Framework Run must be made with the system clock frequency as the only argument. Once running, the framework will post an INIT\_EVENT to each of the services. Each service has a section for initialization code that is related to that service. At this time, the TaskRunner is started and begins running at a frequency of 1ms. If any events are found, the event will be posted to the specified event, and the service will be called with the Event as the argument. See Figure \ref{fig_frameworkDiagram} for the flow of the framework.
+ To start the  framework, the system clock must already be initialized. A single call to Framework Run must be made with the system clock frequency as the only argument. Once running, the framework will post an INIT\_EVENT to each of the services. Each service *should* have a section for initialization code that is related to that service. At this time, the TaskRunner is started and begins running at a frequency of 1000Hz (1ms). If any events are found, the event will be posted to the specified event, and the service will be called with the Event as the argument. See Figure \ref{fig_frameworkDiagram} for the flow of the framework.
  
 \begin{figure}[H]
 \centering
@@ -258,6 +256,8 @@ typedef struct Event_t {
 An Event must contain an EventType from the list of Event you defined above. It may optionally contain a 16bit parameter of the user's choosing. It may optionally contain a Priority, the default priority is 0 (lowest). It may optionally contain a service, the default service is the first one listed in the service list The service name to use in this field will always be the myCoolNewSevice\_SERVICE, due to variable name and function name collisions. It is always recommended to explicitly state all of the parameters of the Event.
 
 \section{Framework Functions}
+
+\subsection{FRAMEWORK\_run}
 \begin{verbatim}
 
 /**
@@ -266,32 +266,48 @@ An Event must contain an EventType from the list of Event you defined above. It 
  * @return 
 
 uint8_t FRAMEWORK_run(uint32_t clockFreq);
+\end{verbatim}•
 
+
+\subsection{FRAMEWORK\_postEvent}
+\begin{verbatim}
 /**
  * Post an event into the priority queue
  * @param thisEvent: contains type, param, service, and priority
  * @return 
  */
 uint8_t FRAMEWORK_postEvent(Event thisEvent);
+\end{verbatim}
 
+\subsection{FRAMEWORK\_Debug}
+\begin{verbatim}
 /**
  * Enable or disable debug messages
  * @param state Enabled (1) or Disabled (0)
  */
 void FRAMEWORK_Debug(uint8_t state);
+\end{verbatim}
 
+\subsection{FRAMEWORK\_resetTimeNow}
+\begin{verbatim}
 /**
  * Resets the 45-day freerunning timer, should be performed periodically or on 
  * system wake from sleep
  */
-void FRAMEWORK_resetRunningTimer(void);
+void FRAMEWORK_resetTimeNow(void);
+\end{verbatim}
 
+\subsection{FRAMEWORK\_getTimeNow}
+\begin{verbatim}
 /**
  * Returns the value of the freerunning timer in milliseconds
  * @return 
  */
 uint32_t FRAMEWORK_getTimeNow(void);
+\end{verbatim}
 
+\subsection{FRAMEWORK\_timerSet}
+\begin{verbatim}
 /**
  * Sets a one-shot timer and throws a TIMEUP Event upon completion
  * @param thisTimer: Timer number to set (0-15)
@@ -300,13 +316,19 @@ uint32_t FRAMEWORK_getTimeNow(void);
  * @param Mode: the type of timer to run (continuous or one-shot)
  */
 void FRAMEWORK_timerSet(FRAMEWORK_timerNumber_E thisTimer, uint16_t time, FRAMEWORK_serviceType_E service, FRAMEWORK_timerMode_E Mode);
+\end{verbatim}
 
+\subsection{FRAMEWORK\_timerStop}
+\begin{verbatim}
 /**
  * Halts a timer before it expires
  * @param thisTimer: timer to be halted (0-15)
  */
 void FRAMEWORK_timerStop(FRAMEWORK_timerNumber_E thisTimer);
+\end{verbatim}
 
+\subsection{FRAMEWORK\_timerResume}
+\begin{verbatim}
 /**
  * Resumes a timer that has been halted
  * @param thisTimer: timer to be resumed (0-15)

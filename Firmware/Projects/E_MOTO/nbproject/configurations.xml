@@ -29,7 +29,6 @@
         <itemPath>Defines.h</itemPath>
         <itemPath>touchScreenService.h</itemPath>
         <itemPath>framework_configure.h</itemPath>
-        <itemPath>framework_taskRunner.h</itemPath>
         <itemPath>CAN_DBC.h</itemPath>
         <itemPath>debuggerService.h</itemPath>
       </logicalFolder>
