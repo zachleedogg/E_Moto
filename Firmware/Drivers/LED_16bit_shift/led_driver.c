@@ -68,8 +68,8 @@ uint8_t spi2Init(led_pin_number CLK, led_pin_number D_OUT);
 uint8_t ledDriverInit(led_pin_number CLK, led_pin_number DIN, PINS_pin_S LE) {
     spi2Init(CLK, DIN); /*initalize SPI*/
     latch = LE;
-    PINS_direction(latch.port, latch.pin, OUTPUT); /*set pin directions*/
-    PINS_write(latch.port, latch.pin, LOW);
+    PINS_direction(latch, OUTPUT); /*set pin directions*/
+    PINS_write(latch, LOW);
     return 0;
 }
 
@@ -85,8 +85,8 @@ void __attribute__((__interrupt__, auto_psv)) _SPI2Interrupt(void) {
     _SPI2IF = 0; /* Clear the Interrupt flag*/
 
     /*Latch the Data*/
-    PINS_write(latch.port, latch.pin, HIGH);
-    PINS_write(latch.port, latch.pin, LOW);
+    PINS_write(latch, HIGH);
+    PINS_write(latch, LOW);
 
     /*Clear Rx FIFO buffer*/
 //    while (SPI2STATbits.SPITBF == 1) {

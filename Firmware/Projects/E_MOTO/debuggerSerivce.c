@@ -62,8 +62,8 @@ Event debuggerService(Event ThisEvent) {
     Uart1Read(msg);
     debuggerService_print("Service: %s...\nASCII: %s\nHEX:", ServiceStrings[debuggerService_SERVICE], msg);
     uint8_t i = 0;
-    while(msg[i]){
-        debuggerService_print(" %2x",msg[i]);
+    while (msg[i]) {
+        debuggerService_print(" %2x", msg[i]);
         i++;
     }
     debuggerService_print("\n...end\n");
@@ -131,16 +131,10 @@ static DEBUGGER_SERVICE_states_E welcomeState(Event ThisEvent) {
                     debug_Debug(msg[1]);
                     break;
                 case 5:
-                {
-                    PINS_pin_S thispin = DEFINES_5V_SW_RAIL;
-                    PINS_write(thispin.port, thispin.pin, msg[1]);
-                }
+                    PINS_write(DEFINES_5V_SW_RAIL, msg[1]);
                     break;
                 case 6:
-                {
-                    PINS_pin_S thispin = DEFINES_12V_SW_RAIL;
-                    PINS_write(thispin.port, thispin.pin, msg[1]);
-                }
+                    PINS_write(DEFINES_12V_SW_RAIL, msg[1]);
                     break;
                 default:
                     break;

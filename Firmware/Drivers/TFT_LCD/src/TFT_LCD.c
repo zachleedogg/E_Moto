@@ -254,9 +254,9 @@ void TFT_LCD_init(PINS_pin_S reset, PINS_pin_S CE, PINS_pin_S DC) {
     SPI1STATbits.SPIEN = 1; // Enable SPI module
     IFS0bits.SPI1IF = 0;
 
-    PINS_direction(RSTPIN.port, RSTPIN.pin, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
-    PINS_direction(CEPIN.port, CEPIN.pin, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
-    PINS_direction(DCPIN.port, DCPIN.pin, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
+    PINS_direction(RSTPIN, OUTPUT); /*Set direction to output for RB15 This is RST (Reset)*/
+    PINS_direction(CEPIN, OUTPUT); /*Set direction to output for RB14 This is CE (Count Enable)*/
+    PINS_direction(DCPIN, OUTPUT); /*Set direction to output for RB15 This is DC (Data = Mode Select)*/
 
     TFT_LCD_setOrientation(LANDSCAPE);
 
@@ -341,7 +341,7 @@ void TFT_LCD_writeString(const char * anystring, uint16_t x, uint16_t y, uint16_
         SPIbusy = TRUE;
         thisItem = LCD_Q_deleteFromQueue();
         /*CE Pin is low during transmission*/
-        PINS_write(CEPIN.port, CEPIN.pin, LOW);
+        PINS_write(CEPIN, LOW);
         Write(); /*Writes from the Queue*/
     }
     IEC1bits.DMA2IE = 1; /* Enable the interrupt*/
@@ -368,7 +368,7 @@ void writecommand(const uint16_t* commandString) {
         SPIbusy = TRUE;
         thisItem = LCD_Q_deleteFromQueue();
         /*CE Pin is low during transmission*/
-        PINS_write(CEPIN.port, CEPIN.pin, LOW);
+        PINS_write(CEPIN, LOW);
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -394,7 +394,7 @@ void writedata(const uint16_t *dataString, uint32_t stringLength) {
         SPIbusy = TRUE;
         thisItem = LCD_Q_deleteFromQueue();
         /*CE Pin is low during transmission*/
-        PINS_write(CEPIN.port, CEPIN.pin, LOW);
+        PINS_write(CEPIN, LOW);
         Write(); /*Writes from the Queue*/
     } else {
         ; /*Do nothing*/
@@ -420,7 +420,7 @@ void writeconst(const uint16_t dataString, uint32_t stringLength) {
     if (SPIbusy == FALSE) {/*There is only only 1 item right now*/
         SPIbusy = TRUE;
         /*CE Pin is low during transmission*/
-        PINS_write(CEPIN.port, CEPIN.pin, LOW);
+        PINS_write(CEPIN, LOW);
         thisItem = LCD_Q_deleteFromQueue();
         Write(); /*Writes from the Queue*/
     } else {
@@ -435,7 +435,7 @@ void Write() {
     switch (thisItem.Command) {
         case DATA:
             /*DC pin high or low*/
-            PINS_write(DCPIN.port, DCPIN.pin, HIGH);
+            PINS_write(DCPIN, HIGH);
             setXferWidth_8bit();
             /*Write byte to SPI module*/
             while (dataIndex < thisItem.Length) {
@@ -446,7 +446,7 @@ void Write() {
             startXfer();
             break;
         case COMMAND:
-            PINS_write(DCPIN.port, DCPIN.pin, LOW);
+            PINS_write(DCPIN, LOW);
             setXferWidth_8bit();
             /*Write byte to SPI module*/
             /*Write byte to SPI module*/
@@ -458,7 +458,7 @@ void Write() {
             startXfer();
             break;
         case CONST:
-            PINS_write(DCPIN.port, DCPIN.pin, HIGH);
+            PINS_write(DCPIN, HIGH);
             setXferWidth_16bit();
             /*Write byte to SPI module*/
             *ptr++ = thisItem.color;
@@ -468,7 +468,7 @@ void Write() {
             startXfer();
             break;
         case STRING:
-            PINS_write(DCPIN.port, DCPIN.pin, HIGH);
+            PINS_write(DCPIN, HIGH);
             setXferWidth_16bit();
             /*Write byte to SPI module*/
 
@@ -537,7 +537,7 @@ void __attribute__((__interrupt__, auto_psv)) _DMA2Interrupt(void) {
             Write();
         } else { /*Transmission is over for now*/
             /*CE Pin is high after transmission*/
-            PINS_write(CEPIN.port, CEPIN.pin, HIGH);
+            PINS_write(CEPIN, HIGH);
             /*Status bit that the screen isnt writing anything anymore*/
             SPIbusy = FALSE;
             /*Do Nothing*/
@@ -558,12 +558,12 @@ uint32_t counter = 0;
 static void tftBootUpSequence(void) {
 
     /*Reset the display and gets the Nokia 5110 to work*/
-    PINS_write(RSTPIN.port, RSTPIN.pin, 0); /*Sets reset high*/
+    PINS_write(RSTPIN, 0); /*Sets reset high*/
     while (counter++ != 1000) {
         ;
     }
     counter = 0;
-    PINS_write(RSTPIN.port, RSTPIN.pin, 1); /*Sets reset low*/
+    PINS_write(RSTPIN, 1); /*Sets reset low*/
 
     writecommand(&swreset_cmd);
     while (counter++ != 1000) {

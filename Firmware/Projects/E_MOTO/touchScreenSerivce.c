@@ -8,7 +8,7 @@
 #ifdef DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
-static uint8_t debugEnable = 1;
+static uint8_t debugEnable = 0;
 #define touchScreenService_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
 #else
 #define touchScreenService_print(...)
@@ -109,9 +109,9 @@ static uint8_t speedo = 0;
  * ****************************************************************************/
 Event touchScreenService(Event ThisEvent) {
     /*Debugging print statement*/
-    touchScreenService_print("Service: %s,   State: %s,   Event: %s %d\n\n", ServiceStrings[touchScreenService_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
-    //    static int counter = 0;
-    //    touchScreenService_print("%d\n", counter++);
+    touchScreenService_print("Service: %s,   State: %s,   Event: %s %d\n\n",
+            ServiceStrings[touchScreenService_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
+    
     /*Call the state machine functions*/
     TOUCH_SCREEN_SERVICE_states_E nextState = theState[curState](ThisEvent);
 
@@ -629,7 +629,7 @@ static TOUCH_SCREEN_SERVICE_states_E setStateTo(statePtr thisState) {
     return nextState;
 }
 
-void touchScreenDebug(uint8_t state){
+void touchScreenDebug(uint8_t state) {
     debugEnable = state;
 }
 

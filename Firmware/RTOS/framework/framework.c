@@ -15,7 +15,7 @@
 #if DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
-static uint8_t debugEnable = 1;
+static uint8_t debugEnable = 0;
 #define framework_print(...) if(debugEnable){char tempArray[20]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
 #else
 #define framework_print(...)
@@ -147,8 +147,8 @@ static TASKRUNNER_timer timer = {};
  * Public Functions
  ******************************************************************************/
 uint8_t FRAMEWORK_postEvent(Event thisEvent) {
-    if ((int8_t) thisEvent.EventPriority > framework_ActivePriorityLevel) {
-        framework_ActivePriorityLevel = thisEvent.EventPriority;
+    if (((int8_t) thisEvent.EventPriority) > framework_ActivePriorityLevel) {
+        framework_ActivePriorityLevel = (int8_t)thisEvent.EventPriority;
     }
     EnQueue(&QueueList[thisEvent.EventPriority], thisEvent);
     return 0;

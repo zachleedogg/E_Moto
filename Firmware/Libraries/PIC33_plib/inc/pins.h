@@ -65,7 +65,7 @@ typedef struct {
  * @param pin
  * @param dir
  */
-void PINS_direction(PINS_portNumber_E port, uint8_t pin, PINS_direction_E dir);
+void PINS_direction(PINS_pin_S pin, PINS_direction_E dir);
 
 /**
  * 
@@ -73,7 +73,7 @@ void PINS_direction(PINS_portNumber_E port, uint8_t pin, PINS_direction_E dir);
  * @param pin
  * @param state
  */
-void PINS_write(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+void PINS_write(PINS_pin_S pin, PINS_internalRegisters_State_E state);
 
 /**
  * 
@@ -81,7 +81,7 @@ void PINS_write(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_Stat
  * @param pin
  * @return 
  */
-PINS_internalRegisters_State_E PINS_read(PINS_portNumber_E port, uint8_t pin);
+PINS_internalRegisters_State_E PINS_read(PINS_pin_S pin);
 
 /**
  * 
@@ -89,7 +89,7 @@ PINS_internalRegisters_State_E PINS_read(PINS_portNumber_E port, uint8_t pin);
  * @param pin
  * @param state
  */
-void PINS_pullUp(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+void PINS_pullUp(PINS_pin_S pin, PINS_internalRegisters_State_E state);
 
 /**
  * 
@@ -97,7 +97,7 @@ void PINS_pullUp(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_Sta
  * @param pin
  * @param state
  */
-void PINS_pullDown(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+void PINS_pullDown(PINS_pin_S pin, PINS_internalRegisters_State_E state);
 
 /**
  * 
@@ -105,7 +105,7 @@ void PINS_pullDown(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_S
  * @param pin
  * @param state
  */
-void PINS_internalRegisters_SetInterrupt(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state);
+void PINS_internalRegisters_SetInterrupt(PINS_pin_S pin, PINS_internalRegisters_State_E state);
 
 /**
  * sets pin as input or output

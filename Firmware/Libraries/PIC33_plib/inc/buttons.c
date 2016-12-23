@@ -3,7 +3,7 @@
 
 BUTTONS_status_E BUTTONS_run(BUTTONS_object_S *thisButton) {
     
-    uint8_t value = (uint8_t)PINS_read(thisButton->pin.port, thisButton->pin.pin);
+    uint8_t value = (uint8_t)PINS_read(thisButton->pin);
 
     switch (thisButton->status) {
         case BUTTONS_STATUS_OFF:

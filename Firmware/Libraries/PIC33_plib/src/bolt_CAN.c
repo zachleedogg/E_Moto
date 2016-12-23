@@ -13,16 +13,14 @@
  ****************************************************************************************/
 #include "bolt_CAN.h"
 #include "bolt_init.h"
-#include <string.h>
 
 /*DEBUGGING*/
-
-//#define CAN_DEBUG
-
-#ifdef CAN_DEBUG
+#define CAN_DEBUG 0
+#if CAN_DEBUG
 #include "bolt_UART.h"
-#define DEBUG
-#define can_print(...) ({unsigned char tempArray[100]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);})
+#include <stdio.h>
+static uint8_t debugEnable = 1;
+#define can_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
 #else
 #define can_print(...) 
 #endif
@@ -56,8 +54,6 @@
 #define CAN_RP57_PPS    _RP57R
 #endif
 
-/* set operating freq as 40MHz */
-#define FP = 40000000
 
 #define CAN_TX_FIFO_BUFFER_SIZE 8
 
@@ -72,11 +68,11 @@ unsigned int ecan1MsgBuf[NUM_OF_ECAN_BUFFERS][8]
 __attribute__((aligned(NUM_OF_ECAN_BUFFERS * 16)));
 
 /* Rx data ready flag */
-static uint8_t CAN_RXdataReady = 0;
+static volatile uint8_t CAN_RXdataReady = 0;
 
 static uint8_t ThisTXBuffer = 0;
 
-uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint8_t baud, uint8_t mode) {
+uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint32_t baud, uint8_t mode) {
 
     /*select Rx Pin*/
     RPINR26bits.C1RXR = RXpin;
@@ -147,31 +143,20 @@ uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint8_t baud, uint
 
     C1CTRL1bits.WIN = 0; /*set control window to configure baud & registers*/
 
-    uint32_t fPerif = clockFreq() / 2; /*peripheral clock Freq*/
-    uint32_t timeQuanta = 20; /*define number TQ per CAN bit.*/
+    uint32_t fPerif = clockFreq(); /*peripheral clock Freq*/
+    uint32_t timeQuanta = 10; /*define number TQ per CAN bit.*/
     uint32_t fTQ = timeQuanta*baud; /*define TQ frequency*/
     uint32_t canBaud = (fPerif / (2 * fTQ)) - 1; /*calculate baud prescalar*/
-    C1CTRL1bits.CANCKS = 0x0; /* clear clock source select bit so that Fcan = Fp*/
-    C1CFG1bits.BRP = canBaud; /* Configure Baud Rate */
+    C1CTRL1bits.CANCKS = 0x1; /* set clock source select bit so that Fcan = 2*Fp = ClockFreq*/
+    C1CFG1bits.BRP = canBaud; //canBaud; /* Configure Baud Rate */
     C1CFG1bits.SJW = 1; /* SJW = 2 TQ */
-    C1CFG2bits.SEG1PH = 7; /* legth of phase 1 segment = 8TQ */
+    C1CFG2bits.SEG1PH = 3; /* legth of phase 1 segment = 4TQ */
     C1CFG2bits.SEG2PHTS = 1; /*phase 2 segment is freely programmable */
-    C1CFG2bits.SEG2PH = 7; /* phase 2 segment = 8TQ */
-    C1CFG2bits.PRSEG = 2; /* propogation segmeny = 3TQ */
+    C1CFG2bits.SEG2PH = 3; /* phase 2 segment = 4TQ */
+    C1CFG2bits.PRSEG = 0; /* propogation segmeny = 1TQ */
     C1CFG2bits.SAM = 0; /* bus line sampled one time at sampple point */
     C1CFG2bits.WAKFIL = 1; /* use CAN bus line filter for wakeup */
 
-    /* Set up CAN module for 250kbps speed w/ 10 TQ per bit */
-    //    C1CTRL1bits.CANCKS = 0x0; /* clear clock source select bit so that Fcan = Fp = 40MHz */
-    //    C1CFG1bits.SJW = 1; /* SJW = 2 TQ */
-    //    C1CFG1bits.BRP = baud; /* Configure Baud Rate */
-    //    C1CFG2bits.SEG1PH = 7; /* legth of phase 1 segment = 8TQ */
-    //    C1CFG2bits.SEG2PHTS = 1; /*phase 2 segment is freely programmable */
-    //    C1CFG2bits.SEG2PH = 7; /* phase 2 segment = 8TQ */
-    //    C1CFG2bits.PRSEG = 2; /* propogation segmeny = 3TQ */
-    //    C1CFG2bits.SAM = 0; /* bus line sampled one time at sampple point */
-    //    C1CFG2bits.WAKFIL = 1; /* use CAN bus line filter for wakeup */
-    //C1FCTRL = 0xC01F; /* No FIFO, 32 Buffers */
 
     /* Assign 32*8 word message buffers for ECAN1 in device RAM (uses DMA0 for TX) */
     DMA0CONbits.SIZE = 0x0; /* word */
@@ -230,22 +215,27 @@ uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint8_t baud, uint
      * of CanID. Mask bits (11-bits): 0b 000 1111 1111 */
     C1RXM0SIDbits.SID = 0x0FF;
     C1RXM0SIDbits.MIDE = 0x1; /*Standard IDs only*/
+    /*Mask 1*/
+    /* Configure FilterMask1 register to mask SID<10:0> to accept all 
+     * of CanID. Mask bits (11-bits): 0b 000 0000 0000 */
+    C1RXM1SIDbits.SID = 0x000;
+    C1RXM1SIDbits.MIDE = 0x1; /*Standard IDs only*/
 
     /*FILTERS*/
     /*Filter 0*/
     C1FMSKSEL1bits.F0MSK = 0x0; /* select Mask 0*/
-    C1RXF0SIDbits.SID = (0x0FF); /* Filter Value*/
+    C1RXF0SIDbits.SID = (0x045); /* Filter Value*/
     C1RXF0SIDbits.EXIDE = 0x0; /*Standard IDs only*/
     C1BUFPNT1bits.F0BP = 0xF; /*Store Hits in FIFO*/
     C1FEN1bits.FLTEN0 = 0x1; /* filter 0 enabled*/
     /*Filter 1*/
-    C1FMSKSEL1bits.F0MSK = 0x0; /* select Mask 0*/
-    C1RXF1SIDbits.SID = 0x0FF; /* Filter Value*/
+    C1FMSKSEL1bits.F1MSK = 0x1; /* select Mask 1*/
+    C1RXF1SIDbits.SID = 0x000; /* Filter Value*/
     C1RXF1SIDbits.EXIDE = 0x0; /*Standard IDs only*/
     C1BUFPNT1bits.F1BP = 0xF; /*Store Hits in FIFO*/
     C1FEN1bits.FLTEN1 = 0x1; /* filter 0 enabled*/
     /*Filter 2*/
-    C1FMSKSEL1bits.F0MSK = 0x0; /* select Mask 0*/
+    C1FMSKSEL1bits.F2MSK = 0x0; /* select Mask 0*/
     C1RXF2SIDbits.SID = 0x0FF; /* Filter Value*/
     C1RXF2SIDbits.EXIDE = 0x0; /*Standard IDs only*/
     C1BUFPNT1bits.F2BP = 0xF; /*Store Hits in FIFO*/
@@ -295,11 +285,6 @@ uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint8_t baud, uint
     _WAKIE = 1;
     _WAKIF = 0;
 
-
-
-
-
-
     /* CAN is ready for transmit / receive, place in normal or loopback mode */
     C1CTRL1bits.REQOP = mode;
     while (C1CTRL1bits.OPMODE != mode) {
@@ -310,7 +295,7 @@ uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint8_t baud, uint
 
 uint8_t CAN_write(CAN_message_S * data) {
     /* write to message buffer 0-7 */
-
+    can_print("sendingCAN\n");
     uint8_t thisBuffer = ThisTXBuffer++;
     if (ThisTXBuffer == CAN_TX_FIFO_BUFFER_SIZE) {
         ThisTXBuffer = 0;
@@ -319,7 +304,7 @@ uint8_t CAN_write(CAN_message_S * data) {
     /* Here we right the standard ID to the buffer, plus bits for remot request
      * (off) and extended ID (off). We write frequency to <10:8>, then a Node ID 
      * to <7:4>, then a message ID code to <3:0> */
-    ecan1MsgBuf[thisBuffer][0] = ((data->frequency << 7) | (data->nodeID << 4) | (data->messageID)) << 2;
+    ecan1MsgBuf[thisBuffer][0] = ((data->frequency << 8) | (data->nodeID << 4) | (data->messageID)) << 2;
 
     /* This is left blank because no extended ID */
     /* C1TRBnEID = 0bxxxx 0000 0000 0000
@@ -414,56 +399,42 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
     /*Clear Interrupt flag*/
     _C1IF = 0;
 
-    /*If FIFO Almost Full Interrupt, do something*/
-    if (_ICODE == 0b1000100) {
-        _FIFOIF = 0;
-        /*do something here...*/
-        return;
-    }
-
-    /*If Receive Buffer Overflow Interrupt, do something*/
-    if (_ICODE == 0b1000011) {
-        _RBOVIF = 0;
-        /*do something here...*/
-        return;
-    }
+    can_print("CAN EVENT ");
 
     /*If WAKE-UP Interrupt, do something*/
-    if (_ICODE == 0b1000010) {
+    if (_WAKIF) {
+        uint16_t temp __attribute__((unused)) = _ICODE;
         _WAKIF = 0;
+        can_print("CAN_WAKE %d\n", temp);
         /*do something here...*/
-        return;
     }
 
     /*If Error Interrupt, do something*/
-    if (_ICODE == 0b1000001) {
+    if (_ERRIF) {
+        uint16_t temp __attribute__((unused)) = _ICODE;
         _ERRIF = 0;
+        can_print("ERROR %d\n", temp);
         /*do something here...*/
-        return;
     }
 
     /*If Receive Buffer Interrupt, do something*/
-    if (_ICODE > 0b0000111) {
+    if (_RBIF) {
+        uint16_t temp __attribute__((unused)) = _ICODE;
         _RBIF = 0;
+
+        can_print("RX_INT %d\n", temp);
         /*do something here...*/
         return;
     }
 
     /*If Transmit Buffer Interrupt, do something*/
-    if (_ICODE) {
+    if (_TBIF) {
+        uint16_t temp __attribute__((unused)) = _ICODE;
         _TBIF = 0;
+        can_print("TX_INT %d\n", temp);
         /*do something here...*/
         return;
     }
-
-
-
-
-
-
-
-
-
 
     /* ICODE INTERUPT SOURCES
         1000101-1111111 = Reserved; do not use
@@ -499,10 +470,12 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
  * word in an ECAN message through the ECAN Transmit Data register */
 void __attribute__((__interrupt__, auto_psv)) _C1TxReqInterrupt(void) {
     _C1TXIF = 0; /* clear hardware flag */
+    can_print("CAN SENT\n");
 }
 
 /*The receive data request interrupt represents the reception of a single word
  * of an ECAN message through the ECAN Receive Data register*/
 void __attribute__((__interrupt__, auto_psv)) _C1RxRdyInterrupt(void) {
     _C1RXIF = 0;
+    can_print("CAN RCVD\n");
 }

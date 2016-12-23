@@ -30,8 +30,8 @@ uint8_t ping_Init(ic_pin_number rightEchoPin, PINS_pin_S R_TRIGGER, ic_pin_numbe
     _IC1R = rightEchoPin;
     r_trig = R_TRIGGER;
 
-    PINS_write(r_trig.port, r_trig.pin, LOW);
-    PINS_direction(r_trig.port, r_trig.pin, OUTPUT);
+    PINS_write(r_trig, LOW);
+    PINS_direction(r_trig, OUTPUT);
     uint16_t temp;
 
     while (IC1CON1bits.ICBNE) { //clear buffer
@@ -44,8 +44,8 @@ uint8_t ping_Init(ic_pin_number rightEchoPin, PINS_pin_S R_TRIGGER, ic_pin_numbe
     _IC3R = leftEchoPin;
     l_trig = leftTriggerPin;
 
-    PINS_write(l_trig.port, l_trig.pin, LOW);
-    PINS_direction(l_trig.port, l_trig.pin, OUTPUT);
+    PINS_write(l_trig, LOW);
+    PINS_direction(l_trig, OUTPUT);
 
     while (IC3CON1bits.ICBNE) { //clear buffer
         temp = IC3BUF;
@@ -114,14 +114,14 @@ uint8_t ping_Run(void) {
         //count2 = 0;
         //Uart1Write("Set Pin HIGH\n");
         /*Make pin go Hi*/
-        PINS_write(r_trig.port, r_trig.pin, HIGH);
+        PINS_write(r_trig, HIGH);
         IC1_status = CHARGING;
 
     } else if (IC1_status == CHARGING) {
         //Uart1Write("Pull Pin LOW\n");
         /*Pull Pin Low*/
         if (IC1_status == CHARGING) {
-            PINS_write(r_trig.port, r_trig.pin, LOW);
+            PINS_write(r_trig, LOW);
             IC1_status = RESLEASED;
         }
     }
@@ -130,14 +130,14 @@ uint8_t ping_Run(void) {
         //count2 = 0;
         //Uart1Write("Set Pin HIGH\n");
         /*Make pin go Hi*/
-        PINS_write(l_trig.port, l_trig.pin, HIGH);
+        PINS_write(l_trig, HIGH);
         IC3_status = CHARGING;
 
     } else if (IC3_status == CHARGING) {
         //Uart1Write("Pull Pin LOW\n");
         /*Pull Pin Low*/
         if (IC3_status == CHARGING) {
-            PINS_write(l_trig.port, l_trig.pin, LOW);
+            PINS_write(l_trig, LOW);
             IC3_status = RESLEASED;
         }
     }

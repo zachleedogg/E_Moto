@@ -23,6 +23,8 @@ except ImportError:
 
 from SerialComPorts import SerialCom_Thread
 
+import sys
+
 
 
 
@@ -43,7 +45,7 @@ class myScreen(ttk.Frame):
     def initUI(self):
 
       
-        self.parent.title("Welcome to the E-Moto Debugger Tool!")
+        self.parent.title("Welcome to the E-Moto Debugger Tool!!!!")
         self.pack(fill=BOTH, expand=True)
         
         menubar = Menu(self)
@@ -171,9 +173,16 @@ class myScreen(ttk.Frame):
         self.B5 = Checkbutton(self, text = "12V_SW_EN", variable = self.B5var, command = self.B5_func, onvalue = 1, offvalue = 0)
         self.B5.grid(row=rows-2, column=cols-1, sticky="W");
         
+        """
+        tabFrame = ttk.Frame(self.parent)
+        tabFrame.pack(side=BOTTOM)
+        nb = ttk.Notebook(tabFrame, name='notebook')
+        #nb.grid(row=rows,column=cols)
+        nb.add(tabFrame,text='Description', underline=0, padding=2)
+        """
+        
         #Create Serail Thread without opening a port
-        self.myqueue = queue.Queue()
-        self.serialCommunication = SerialCom_Thread(self.myqueue)
+        self.serialCommunication = SerialCom_Thread()
         self.serialCommunication.start()
 
 
@@ -208,17 +217,18 @@ class myScreen(ttk.Frame):
         print("...done!")
         
     def serial_read(self):
-        while self.myqueue.qsize():
-            try:
-                self.consoleTextArea.insert('end', self.myqueue.get())
-                self.consoleTextArea.see('end')
-                self.consoleCount = self.consoleCount+1
-                if self.consoleCount >= 1024:
+        text = self.serialCommunication.readFromCom()
+        while text != None:
+            self.consoleTextArea.insert('end', text)
+            self.consoleCount = self.consoleCount+len(text)
+            if self.consoleCount >= 2048:
+                for i in range(0, len(text)):
                     self.consoleTextArea.delete(1.0,1.1)
-                    self.consoleCount = self.consoleCount-1
-            except self.myqueue.Empty:
-                pass
-        self.after(1, self.serial_read)
+                self.consoleCount = self.consoleCount-len(text)
+            text = self.serialCommunication.readFromCom()
+        self.consoleTextArea.see('end')
+        if self.connectionState == "connected":
+            self.after(30, self.serial_read)
     
     def say_hi(self):
         stringToSend = self.sendTextArea.get(0.0, 'end')
@@ -300,14 +310,12 @@ class myScreen(ttk.Frame):
         if self.connectionState == "connected":
             self.serialCommunication.clearBuffer()
         self.consoleTextArea.delete(0.0, 'end')
-        self.consoleCount = 0
+        self.consoleCount=0
 
-    
     def connect(self):
         print("Connecting...")
         settings = self.serialCommunication.openPort(self.dropVar1.get(), self.dropVar2.get())
         self.connectButton["text"] = "Disconnect"
-        self.serialCommunication.resume()
         self.clearConsole()
         self.consoleTextArea.insert('end', settings)
         self.connectionState = "connected"
@@ -319,20 +327,19 @@ class myScreen(ttk.Frame):
         self.connectionState = "disconnected"
         self.connectButton["text"] = "Connect"
         self.serialCommunication.closePort()
-        self.serialCommunication.pause()
         self.connectionStatusLabel.config(text="Status = Disconnected")
         print("...disconnected!")
 
     def quit(self):
-        self.disconnect();
+        self.disconnect()
+        print("Exiting")
         self.parent.destroy()
               
-
 def main():
     root = Tk()
     myScreen(root)
     root.mainloop()  
-
+    print("goodbye!")
 
 if __name__ == '__main__':
     main()  

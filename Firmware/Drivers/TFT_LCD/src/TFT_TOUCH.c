@@ -119,28 +119,28 @@ static uint16_t TFT_TOUCH_get_y_pos(void) {
 
 static void setXpins(void) {
     /*Set Y pins Hi-Z*/
-    PINS_direction(_y0.port, _y0.pin, INPUT);
-    PINS_direction(_y1.port, _y0.pin, INPUT);
+    PINS_direction(_y0, INPUT);
+    PINS_direction(_y1, INPUT);
     ADC_RemovePin(an_Y);
     /*Turn on AN pin X and enable x pins*/
     ADC_SetPin(an_X);
-    PINS_direction(_x0.port, _x0.pin, OUTPUT);
-    PINS_write(_x0.port, _x0.pin, HIGH);
-    PINS_direction(_x1.port, _x1.pin, OUTPUT);
-    PINS_write(_x1.port, _x1.pin, LOW);
+    PINS_direction(_x0, OUTPUT);
+    PINS_write(_x0, HIGH);
+    PINS_direction(_x1, OUTPUT);
+    PINS_write(_x1, LOW);
 }
 
 static void setYpins(void) {
     /*Set X pins Hi-Z*/
-    PINS_direction(_x0.port, _x0.pin, INPUT);
-    PINS_direction(_x1.port, _x1.pin, INPUT);
+    PINS_direction(_x0, INPUT);
+    PINS_direction(_x1, INPUT);
     ADC_RemovePin(an_X);
     /*Turn on AN pin Y and enable y pins*/
     ADC_SetPin(an_Y);
-    PINS_direction(_y0.port, _y0.pin, OUTPUT);
-    PINS_write(_y0.port, _y0.pin, LOW);
-    PINS_direction(_y1.port, _y1.pin, OUTPUT);
-    PINS_write(_y1.port, _y1.pin, HIGH);
+    PINS_direction(_y0, OUTPUT);
+    PINS_write(_y0, LOW);
+    PINS_direction(_y1, OUTPUT);
+    PINS_write(_y1, HIGH);
 }
 
 static uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {

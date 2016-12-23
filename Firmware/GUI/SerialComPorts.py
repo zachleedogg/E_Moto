@@ -6,7 +6,10 @@ Created on Thu Dec  1 22:27:37 2016
 """
 import serial
 from serial import SerialException
+import serial.tools.list_ports
 import sys
+
+from time import sleep
 import threading
 try:
     import queue
@@ -15,7 +18,7 @@ except ImportError:
 
 
 class SerialCom_Thread(threading.Thread):
-    def __init__(self, queue):
+    def __init__(self):
         threading.Thread.__init__(self)
         self.paused = False
         # Explicitly using Lock over RLock since the use of self.paused
@@ -24,22 +27,21 @@ class SerialCom_Thread(threading.Thread):
         # checked if Condition imposes additional limitations that would 
         # prevent that. In Python 2, use of Lock instead of RLock also
         # boosts performance.
-        self.pause_cond = threading.Condition(threading.Lock())
-        self.queue = queue
-        self.s = serial.Serial(bytesize=serial.EIGHTBITS)
-        #self.s.bytesize = serial.EIGHTBITS
+        #self.pause_cond = threading.Condition(threading.Lock())
+        self.serQueue = queue.Queue()
+        self.lock = threading.Lock()
+        self.s = serial.Serial(bytesize=serial.EIGHTBITS, timeout=0.5)
         self.pause()
 
     def run(self):
         while True:
-            with self.pause_cond:
-                while self.paused:
-                    self.pause_cond.wait()
-                #thread should do this if not paused
+            if self.paused is False:
                 try:
                     if self.s.inWaiting():
-                        text = self.s.readline(self.s.inWaiting())
-                        self.queue.put(text)
+                        self.lock.acquire()
+                        text = self.s.read(self.s.inWaiting())
+                        self.serQueue.put_nowait(text)
+                        self.lock.release()
                 except SerialException:
                     pass
 
@@ -49,20 +51,21 @@ class SerialCom_Thread(threading.Thread):
             # If in sleep, we acquire immediately, otherwise we wait for thread
             # to release condition. In race, worker will still see self.paused
             # and begin waiting until it's set back to False
-            self.pause_cond.acquire()
+            #self.pause_cond.acquire()
 
     #should just resume the thread
     def resume(self):
         if self.paused is True:
             self.paused = False
             # Notify so thread will wake after lock released
-            self.pause_cond.notify()
+            #self.pause_cond.notify()
             # Now release the lock
-            self.pause_cond.release()
+            #self.pause_cond.release()
         
     def closePort(self):
         if self.s.isOpen():
-            self.s.close()
+            self.s.__del__()
+            self.pause()
         else:
             pass
             
@@ -73,9 +76,18 @@ class SerialCom_Thread(threading.Thread):
             self.s.port = com
             self.s.baudrate = baud
             self.s.open()
-            return self.s.getSettingsDict();
+        self.s.reset_input_buffer()
+        self.resume()
+        return self.s.getSettingsDict();
             
     def getPort(self):
+        result = list(serial.tools.list_ports.comports())
+        comList = []
+        for p in range(0,len(result)):
+            comList.append(result[p][0])
+        print(comList)
+        return comList
+    """
         if sys.platform.startswith('win'):
             ports = []
             for i in range(256):
@@ -91,15 +103,31 @@ class SerialCom_Thread(threading.Thread):
         for port in ports:
             try:
                 s = serial.Serial(port)
-                s.close()
+                s.__del__()
                 result.append(port)
             except (OSError, serial.SerialException):
                 pass
-        return result
+    """
+        
         
     def writeToCom(self, anystring):
         sent = self.s.write(anystring)
         print("just sent " + str(sent) + "bytes")
         
+    def readFromCom(self):
+        try:
+            char = self.serQueue.get_nowait()
+        except queue.Empty:
+            char = None
+        return char
+
+   
+    def serialDataReady(self):
+        return self.serQueue.qsize()
+
+        
     def clearBuffer(self):
-        self.s.flushInput()
+        self.s.reset_input_buffer()
+        while not self.serQueue.empty():
+            self.serQueue.get()
+        self.s.reset_output_buffer()

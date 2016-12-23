@@ -78,59 +78,59 @@ static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
 };
 
 
-void PINS_direction(PINS_portNumber_E port, uint8_t pin, PINS_direction_E dir) {
-    uint16_t thisPin = 1 << pin;
+void PINS_direction(PINS_pin_S pin, PINS_direction_E dir) {
+    uint16_t thisPin = 1 << pin.pin;
     if (dir == 0) {
-        clear(PINS_portsArray[port].tris, thisPin);
+        clear(PINS_portsArray[pin.port].tris, thisPin);
     } else {
-        set(PINS_portsArray[port].tris, thisPin);
+        set(PINS_portsArray[pin.port].tris, thisPin);
     }
 }
 
-void PINS_write(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state) {
-    uint16_t thisPin = (1 << pin);
+void PINS_write(PINS_pin_S pin, PINS_internalRegisters_State_E state) {
+    uint16_t thisPin = (1 << pin.pin);
     switch (state) {
         case LOW:
-            clear(PINS_portsArray[port].lat, thisPin);
+            clear(PINS_portsArray[pin.port].lat, thisPin);
             break;
         case HIGH:
-            set(PINS_portsArray[port].lat, thisPin);
+            set(PINS_portsArray[pin.port].lat, thisPin);
             break;
         case TOGGLE:
-            toggle(PINS_portsArray[port].lat, thisPin);
+            toggle(PINS_portsArray[pin.port].lat, thisPin);
             break;
         default:
             break;
     }
 }
 
-PINS_internalRegisters_State_E PINS_read(PINS_portNumber_E port, uint8_t pin) {
-    return get(PINS_portsArray[port].port, 1<<pin) >> pin;
+PINS_internalRegisters_State_E PINS_read(PINS_pin_S pin) {
+    return get(PINS_portsArray[pin.port].port, 1<<pin.pin) >> pin.pin;
 }
 
-void PINS_pullUp(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state) {
-    uint16_t thisPin = 1 << pin;
+void PINS_pullUp(PINS_pin_S pin, PINS_internalRegisters_State_E state) {
+    uint16_t thisPin = 1 << pin.pin;
     if (state == 0) {
-        clear(PINS_portsArray[port].pu, thisPin);
+        clear(PINS_portsArray[pin.port].pu, thisPin);
     } else {
-        set(PINS_portsArray[port].pu, thisPin);
+        set(PINS_portsArray[pin.port].pu, thisPin);
     }
 }
 
-void PINS_pullDown(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state) {
-    uint16_t thisPin = 1 << pin;
+void PINS_pullDown(PINS_pin_S pin, PINS_internalRegisters_State_E state) {
+    uint16_t thisPin = 1 << pin.pin;
     if (state == 0) {
-        clear(PINS_portsArray[port].pd, thisPin);
+        clear(PINS_portsArray[pin.port].pd, thisPin);
     } else {
-        set(PINS_portsArray[port].pd, thisPin);
+        set(PINS_portsArray[pin.port].pd, thisPin);
     }
 }
 
-void PINS_internalRegisters_SetInterrupt(PINS_portNumber_E port, uint8_t pin, PINS_internalRegisters_State_E state) {
-    uint16_t thisPin = 1 << pin;
+void PINS_internalRegisters_SetInterrupt(PINS_pin_S pin, PINS_internalRegisters_State_E state) {
+    uint16_t thisPin = 1 << pin.pin;
     if (state == 0) {
-        clear(PINS_portsArray[port].inter, thisPin);
+        clear(PINS_portsArray[pin.port].inter, thisPin);
     } else {
-        set(PINS_portsArray[port].inter, thisPin);
+        set(PINS_portsArray[pin.port].inter, thisPin);
     }
 }

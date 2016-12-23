@@ -26,6 +26,7 @@ EVENT(BATTERY_12V_LEVEL_EVENT) /*12V Battery voltage reading*/ \
 EVENT(PING_SENSOR_EVENT) /*Ping sensor distance value*/ \
 EVENT(BUTTON_SW2_PRESS_EVENT) /*button has been pressed*/ \
 EVENT(BUTTON_SW3_PRESS_EVENT) /*button has been pressed*/ \
+EVENT(CAN_MESSAGE_RCVD_EVENT) /*New CAN message in Buffer*/\
 
 /* enum-ifies the event list*/
 #define ENUM_FORM(WORD) WORD,
@@ -62,11 +63,12 @@ typedef enum _priority {
 #define SERVICE_LIST(SERVICE) \
 SERVICE(touchScreenService) /*Main state machine, This is always first (the default Service)*/ \
 SERVICE(debuggerService) /*This debugger service handles the Uart interface to PC*/ \
+SERVICE(canService) /*This CAN service handles the CAN interface to Controllers and PC*/ \
 
 /* file name of each service IN THE SAME ORDER AS ABOVE*/
 #define SERVICE_1 "touchScreenService.h"
 #define SERVICE_2 "debuggerService.h"
-//#define SERVICE_3
+#define SERVICE_3 "canService.h"
 //#define SERVICE_4 
 //#define SERVICE_5 
 //#define SERVICE_6 

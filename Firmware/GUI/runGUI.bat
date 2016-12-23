@@ -1,0 +1,1 @@
+cmd /k python E_MOTO_GUI.py

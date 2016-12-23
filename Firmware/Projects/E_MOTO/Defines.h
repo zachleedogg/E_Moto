@@ -16,7 +16,7 @@
 #include "pins.h"
 #include "bolt_i2c.h"
 #include "buttons.h"
-
+#include "bolt_uart.h"
 
 #include "ping.h"
 #include "TFT_LCD.h"
@@ -25,11 +25,7 @@
 #include "led_driver.h"
 
 #include "..\..\CAN\generated\dbc.h"
-
-#ifdef USE_CAN
 #include "bolt_CAN.h"
-#include "CAN_DBC.h"
-#endif
 
 #define DEFINES_SYSTEM_CLOCK_FREQ FREQ_140MHZ
 
@@ -87,6 +83,11 @@
 #define DEFINES_UART_TX UART_TX_RP36
 #define DEFINES_UART_RX UART_RX_RPI24
 #define DEFINES_UART_BAUD UART_BAUD_230400
+
+#define DEFINES_CAN_TX CAN_TX_RP43
+#define DEFINES_CAN_RX CAN_RX_RPI44
+#define DEFINES_CAN_STBY (PINS_pin_S){PIN_PORTB,13}
+#define DEFINES_CAN_BAUD CAN_BAUD_1M
 #endif
 
 

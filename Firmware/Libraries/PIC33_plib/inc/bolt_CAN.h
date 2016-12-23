@@ -10,8 +10,8 @@
  3/30/16: first write; 
  ****************************************************************************************/
 
-#ifndef CAN_FUNC_H
-#define CAN_FUNC_H
+#ifndef CAN_H
+#define CAN_H
 
 #include <xc.h>
 #include <stdint.h>
@@ -70,7 +70,7 @@ typedef enum _CAN_txPinNumberg {
     CAN_NUMBER_OF_TX_PINS,
 } CAN_txPinNumberg;
 
-typedef struct _CAN_message_S{
+typedef struct CAN_message_S{
     uint8_t nodeID;
     uint8_t messageID;
     uint8_t frequency;
@@ -85,8 +85,8 @@ typedef struct _CAN_message_S{
 }CAN_message_S;
 
 /* mode types */
-#define NORMAL 0
-#define LOOPBACK 2
+#define CAN_NORMAL 0
+#define CAN_LOOPBACK 2
 
 /* Baud Rates */
 #define CAN_BAUD_125k 125000
@@ -116,7 +116,7 @@ typedef struct _CAN_message_S{
          baud rate
  return: success / failure
  */
-uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint8_t baud, uint8_t mode);
+uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint32_t baud, uint8_t mode);
 
 /*
  function: CAM_RxDataIsReady
