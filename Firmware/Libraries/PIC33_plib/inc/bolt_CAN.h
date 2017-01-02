@@ -70,19 +70,34 @@ typedef enum _CAN_txPinNumberg {
     CAN_NUMBER_OF_TX_PINS,
 } CAN_txPinNumberg;
 
-typedef struct CAN_message_S{
+typedef enum {
+    CAN_RX_MAILBOX1 = 8,
+    CAN_RX_MAILBOX2,
+    CAN_RX_MAILBOX3,
+    CAN_RX_MAILBOX4,
+    CAN_RX_MAILBOX5,
+    CAN_RX_MAILBOX6,
+    CAN_RX_MAILBOX7,
+    CAN_RX_MAILBOX8,
+    CAN_RX_MAILBOX9,
+    CAN_RX_MAILBOX10,
+    CAN_RX_MAILBOX11,
+    CAN_RX_MAILBOX12,
+    CAN_RX_MAILBOX13,
+    CAN_RX_MAILBOX14,
+    CAN_RX_MAILBOX15,
+    CAN_RX_MAILBOX16,
+} CAN_RX_MAILBOXES_E;
+
+typedef struct CAN_message_S {
     uint8_t nodeID;
     uint8_t messageID;
     uint8_t frequency;
-    uint8_t byte0;
-    uint8_t byte1;
-    uint8_t byte2;
-    uint8_t byte3;
-    uint8_t byte4;
-    uint8_t byte5;
-    uint8_t byte6;
-    uint8_t byte7;
-}CAN_message_S;
+    uint16_t word0;
+    uint16_t word1;
+    uint16_t word2;
+    uint16_t word3;
+} CAN_message_S;
 
 /* mode types */
 #define CAN_NORMAL 0
@@ -111,12 +126,20 @@ typedef struct CAN_message_S{
  ******************************************************************************************/
 
 /*
- function: CAN_Configure
+ function: CAN_init
  params: CAN mode (normal or loopback)
          baud rate
  return: success / failure
  */
-uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint32_t baud, uint8_t mode);
+uint8_t CAN_init(CAN_txPinNumberg TXpin, uint16_t RXpin, uint32_t baud, uint8_t mode);
+
+/**
+ * CAN_configureMailbox configures mailboxes 8-15 to accept an exact ID match
+ * @param mBoxNumber
+ * @param CAN_ID
+ * @return 
+ */
+uint8_t CAN_configureMailbox(uint8_t mBoxNumber, uint16_t CAN_ID);
 
 /*
  function: CAM_RxDataIsReady
@@ -138,7 +161,7 @@ uint8_t CAN_write(CAN_message_S * data);
  * @param RxMessage (an empty string to place the message into.)
  * @return the Module from which the message originated
  */
-uint16_t CAN_Read(CAN_message_S * data);
+uint16_t CAN_Read(CAN_message_S * data, uint8_t RXBufferNumber);
 
 
 

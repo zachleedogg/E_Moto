@@ -228,7 +228,7 @@ class myScreen(ttk.Frame):
             text = self.serialCommunication.readFromCom()
         self.consoleTextArea.see('end')
         if self.connectionState == "connected":
-            self.after(30, self.serial_read)
+            self.after(15, self.serial_read)
     
     def say_hi(self):
         stringToSend = self.sendTextArea.get(0.0, 'end')

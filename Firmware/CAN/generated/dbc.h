@@ -3,6 +3,13 @@
 
 #include <stdint.h>
 
+typedef struct {
+   uint16_t word0;
+   uint16_t word1;
+   uint16_t word2;
+   uint16_t word3;
+} words;
+
 typedef enum{
     DASH,
     BODYCONTROLLER,
@@ -15,12 +22,7 @@ typedef enum{
  */
 #define CAN_DASH_status 0x700
 typedef union{
-    struct {
-        uint16_t word0;
-        uint16_t word1;
-        uint16_t word2;
-        uint16_t word3;
-    } bytes;
+    words packedMessage;
     uint16_t state: 3;
 } CAN_DASH_status_U;
 
@@ -28,12 +30,7 @@ void CAN_DASH_status_state(uint16_t* mailbox, uint16_t state);
 
 #define CAN_DASH_command 0x701
 typedef union{
-    struct {
-        uint16_t word0;
-        uint16_t word1;
-        uint16_t word2;
-        uint16_t word3;
-    } bytes;
+    words packedMessage;
     uint16_t dothis: 3;
     uint16_t dothat: 3;
 } CAN_DASH_command_U;
@@ -50,12 +47,7 @@ void CAN_DASH_command_dothat(uint16_t* mailbox, uint16_t dothat);
  */
 #define CAN_BODYCONTROLLER_status 0x710
 typedef union{
-    struct {
-        uint16_t word0;
-        uint16_t word1;
-        uint16_t word2;
-        uint16_t word3;
-    } bytes;
+    words packedMessage;
     uint16_t state: 3;
 } CAN_BODYCONTROLLER_status_U;
 
@@ -63,12 +55,7 @@ void CAN_BODYCONTROLLER_status_state(uint16_t* mailbox, uint16_t state);
 
 #define CAN_BODYCONTROLLER_command 0x711
 typedef union{
-    struct {
-        uint16_t word0;
-        uint16_t word1;
-        uint16_t word2;
-        uint16_t word3;
-    } bytes;
+    words packedMessage;
     uint16_t doSomthingElse: 1;
 } CAN_BODYCONTROLLER_command_U;
 
@@ -82,12 +69,7 @@ void CAN_BODYCONTROLLER_command_doSomthingElse(uint16_t* mailbox, uint16_t doSom
  */
 #define CAN_BMS_status 0x720
 typedef union{
-    struct {
-        uint16_t word0;
-        uint16_t word1;
-        uint16_t word2;
-        uint16_t word3;
-    } bytes;
+    words packedMessage;
     uint16_t state: 3;
     uint16_t SOC: 7;
     uint16_t packVoltage: 12;
@@ -110,18 +92,16 @@ void CAN_BMS_status_maxTemp(uint16_t* mailbox, uint16_t maxTemp);
 
 #define CAN_BMS_cellVoltages 0x721
 typedef union{
-    struct {
-        uint16_t word0;
-        uint16_t word1;
-        uint16_t word2;
-        uint16_t word3;
-    } bytes;
+    words packedMessage;
+    uint16_t MultiPlex: 4;
     uint16_t cell1: 12;
     uint16_t cell2: 12;
     uint16_t cell3: 12;
     uint16_t cell4: 12;
     uint16_t cell5: 12;
 } CAN_BMS_cellVoltages_U;
+
+void CAN_BMS_cellVoltages_MultiPlex(uint16_t* mailbox, uint16_t MultiPlex);
 
 void CAN_BMS_cellVoltages_cell1(uint16_t* mailbox, uint16_t cell1);
 

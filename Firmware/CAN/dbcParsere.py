@@ -25,6 +25,12 @@ f.write("#ifndef DBC_H\n")
 f.write("#define DBC_H\n\n")
 f.write("#include <stdint.h>\n\n")
 
+f.write("typedef struct {\n")
+f.write("   uint16_t word0;\n")
+f.write("   uint16_t word1;\n")
+f.write("   uint16_t word2;\n")
+f.write("   uint16_t word3;\n} words;\n\n")
+
 #find number of CAN nodes and create enum
 numberOfNodes = len(data["NODE"])
 f.write("typedef enum{\n")
@@ -49,11 +55,7 @@ for i in range(0,numberOfNodes):
         f.write(" " + hex(canID) + "\n")
         #create a union with 4 16-bit words        
         f.write("typedef union{\n")
-        f.write("    struct {\n")
-        f.write("        uint16_t word0;\n")
-        f.write("        uint16_t word1;\n")
-        f.write("        uint16_t word2;\n")
-        f.write("        uint16_t word3;\n    } bytes;\n")
+        f.write("    words packedMessage;\n")
         print("    " + data["NODE"][i]["messages"][j]["name"])
         
         #loop through each signal and parse the data

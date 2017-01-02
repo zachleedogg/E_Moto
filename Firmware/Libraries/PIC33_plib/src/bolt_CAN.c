@@ -15,11 +15,11 @@
 #include "bolt_init.h"
 
 /*DEBUGGING*/
-#define CAN_DEBUG 0
+#define CAN_DEBUG 1
 #if CAN_DEBUG
 #include "bolt_UART.h"
 #include <stdio.h>
-static uint8_t debugEnable = 1;
+static uint8_t debugEnable = 0;
 #define can_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
 #else
 #define can_print(...) 
@@ -62,18 +62,24 @@ static uint8_t debugEnable = 1;
 #define CAN_PPS 14
 
 #define NUM_OF_ECAN_BUFFERS 32
+#define NUM_OF_SW_CAN_BUFFERS 9
 
 /* ECAN message buffer declaration, with buffer alignment */
-unsigned int ecan1MsgBuf[NUM_OF_ECAN_BUFFERS][8]
+volatile unsigned int ecan1MsgBuf[NUM_OF_ECAN_BUFFERS][8]
 __attribute__((aligned(NUM_OF_ECAN_BUFFERS * 16)));
+
+/* ECAN SW message buffer declaration*/
+volatile unsigned int ecanSWMsgBuf[NUM_OF_SW_CAN_BUFFERS][8];
 
 /* Rx data ready flag */
 static volatile uint8_t CAN_RXdataReady = 0;
 
 static uint8_t ThisTXBuffer = 0;
 
-uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint32_t baud, uint8_t mode) {
+static uint8_t opMode = 0;
 
+uint8_t CAN_init(CAN_txPinNumberg TXpin, uint16_t RXpin, uint32_t baud, uint8_t mode) {
+    opMode = mode;
     /*select Rx Pin*/
     RPINR26bits.C1RXR = RXpin;
 
@@ -220,43 +226,19 @@ uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint32_t baud, uin
      * of CanID. Mask bits (11-bits): 0b 000 0000 0000 */
     C1RXM1SIDbits.SID = 0x000;
     C1RXM1SIDbits.MIDE = 0x1; /*Standard IDs only*/
+    /*Mask 2*/
+    /* Configure FilterMask1 register to mask SID<10:0> for an EXACT MACH
+     * . Mask bits (11-bits): 0b 111 111 1111 */
+    C1RXM2SIDbits.SID = 0x7FF;
+    C1RXM2SIDbits.MIDE = 0x1; /*Standard IDs only*/
 
-    /*FILTERS*/
-    /*Filter 0*/
-    C1FMSKSEL1bits.F0MSK = 0x0; /* select Mask 0*/
-    C1RXF0SIDbits.SID = (0x045); /* Filter Value*/
-    C1RXF0SIDbits.EXIDE = 0x0; /*Standard IDs only*/
-    C1BUFPNT1bits.F0BP = 0xF; /*Store Hits in FIFO*/
-    C1FEN1bits.FLTEN0 = 0x1; /* filter 0 enabled*/
-    /*Filter 1*/
-    C1FMSKSEL1bits.F1MSK = 0x1; /* select Mask 1*/
-    C1RXF1SIDbits.SID = 0x000; /* Filter Value*/
-    C1RXF1SIDbits.EXIDE = 0x0; /*Standard IDs only*/
-    C1BUFPNT1bits.F1BP = 0xF; /*Store Hits in FIFO*/
-    C1FEN1bits.FLTEN1 = 0x1; /* filter 0 enabled*/
-    /*Filter 2*/
-    C1FMSKSEL1bits.F2MSK = 0x0; /* select Mask 0*/
-    C1RXF2SIDbits.SID = 0x0FF; /* Filter Value*/
-    C1RXF2SIDbits.EXIDE = 0x0; /*Standard IDs only*/
-    C1BUFPNT1bits.F2BP = 0xF; /*Store Hits in FIFO*/
-    C1FEN1bits.FLTEN2 = 0x1; /* filter 0 enabled*/
-    /*
-     .
-     .
-     .
-     */
-    /*Filter 15*/
-    C1FMSKSEL2bits.F15MSK = 0x0; /* select Mask 0*/
-    C1RXF15SIDbits.SID = 0x0FF; /* Filter Value*/
-    C1RXF15SIDbits.EXIDE = 0x0; /*Standard IDs only*/
-    C1BUFPNT4bits.F15BP = 0xF; /*Store Hits in FIFO*/
-    C1FEN1bits.FLTEN15 = 0x1; /* filter 0 enabled*/
+
 
     /* clear window bit to access ECAN control registers */
     C1CTRL1bits.WIN = 0x0;
 
     /*FIFO start and end at 16-31*/
-    _FSA = 16;
+    _FSA = 15;
     _DMABS = 0b110;
 
 
@@ -286,11 +268,160 @@ uint8_t CAN_Configure(CAN_txPinNumberg TXpin, uint16_t RXpin, uint32_t baud, uin
     _WAKIF = 0;
 
     /* CAN is ready for transmit / receive, place in normal or loopback mode */
-    C1CTRL1bits.REQOP = mode;
-    while (C1CTRL1bits.OPMODE != mode) {
+    C1CTRL1bits.REQOP = opMode;
+    while (C1CTRL1bits.OPMODE != opMode) {
         ;
     }
     return 0;
+}
+
+uint8_t CAN_configureMailbox(uint8_t mBoxNumber, uint16_t CAN_ID) {
+    if (mBoxNumber > 15 || mBoxNumber < 8) {
+        return 1;
+    }
+    C1CTRL1bits.REQOP = 4;
+    C1CTRL1bits.WIN = 1; /* set window bit to access ECAN filter registers */
+    switch (mBoxNumber) {
+        case 8:
+            /*FILTERS*/
+            /*Filter 0*/
+            C1FMSKSEL1bits.F0MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF0SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF0SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT1bits.F0BP = 0x8; /*Store Hits in RX Buffer 8*/
+            C1FEN1bits.FLTEN0 = 0x1; /* filter 0 enabled*/
+            break;
+        case 9:
+            /*Filter 1*/
+            C1FMSKSEL1bits.F1MSK = 0x2; /* select Mask 2* for EXACT MATCH*/
+            C1RXF1SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF1SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT1bits.F1BP = 0x9; /*Store Hits in RX Buffer 9*/
+            C1FEN1bits.FLTEN1 = 0x1; /* filter 1 enabled*/
+            break;
+        case 10:
+            /*Filter 2*/
+            C1FMSKSEL1bits.F2MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF2SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF2SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT1bits.F2BP = 0xA; /*Store Hits in BR Buffer 10*/
+            C1FEN1bits.FLTEN2 = 0x1; /* filter 2 enabled*/
+            break;
+        case 11:
+            /*Filter 3*/
+            C1FMSKSEL1bits.F3MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF3SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF3SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT1bits.F3BP = 0xB; /*Store Hits in BR Buffer 11*/
+            C1FEN1bits.FLTEN3 = 0x1; /* filter 3 enabled*/
+            break;
+        case 12:
+            /*Filter 4*/
+            C1FMSKSEL1bits.F4MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF4SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF4SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT2bits.F4BP = 0xC; /*Store Hits in BR Buffer 12*/
+            C1FEN1bits.FLTEN4 = 0x1; /* filter 2 enabled*/
+            break;
+        case 13:
+            /*Filter 5*/
+            C1FMSKSEL1bits.F5MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF5SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF5SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT2bits.F5BP = 0xD; /*Store Hits in BR Buffer 13*/
+            C1FEN1bits.FLTEN5 = 0x1; /* filter 5 enabled*/
+            break;
+        case 14:
+            /*Filter 6*/
+            C1FMSKSEL1bits.F6MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF6SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF6SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT2bits.F6BP = 0xE; /*Store Hits in BR Buffer 14*/
+            C1FEN1bits.FLTEN6 = 0x1; /* filter 6 enabled*/
+            break;
+        case 15:
+            /*Filter 7*/
+            C1FMSKSEL1bits.F7MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF7SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF7SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT2bits.F7BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN7 = 0x1; /* filter 7 enabled*/
+            break;
+        case 16:
+            /*Filter 8*/
+            C1FMSKSEL2bits.F8MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF8SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF8SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT3bits.F8BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN8 = 0x1; /* filter 8 enabled*/
+            break;
+        case 17:
+            /*Filter 9*/
+            C1FMSKSEL2bits.F9MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF9SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF9SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT3bits.F9BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN9 = 0x1; /* filter 9 enabled*/
+            break;
+        case 18:
+            /*Filter 10*/
+            C1FMSKSEL2bits.F10MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF10SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF10SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT3bits.F10BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN10 = 0x1; /* filter 10 enabled*/
+            break;
+        case 19:
+            /*Filter 11*/
+            C1FMSKSEL2bits.F11MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF11SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF11SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT3bits.F11BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN11 = 0x1; /* filter 11 enabled*/
+            break;
+        case 20:
+            /*Filter 12*/
+            C1FMSKSEL2bits.F12MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF12SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF12SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT4bits.F12BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN12 = 0x1; /* filter 12 enabled*/
+            break;
+        case 21:
+            /*Filter 13*/
+            C1FMSKSEL2bits.F13MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF13SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF13SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT4bits.F13BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN13 = 0x1; /* filter 13 enabled*/
+            break;
+        case 22:
+            /*Filter 14*/
+            C1FMSKSEL2bits.F14MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF14SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF14SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT4bits.F14BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN14 = 0x1; /* filter 14 enabled*/
+            break;
+        case 23:
+            /*Filter 15*/
+            C1FMSKSEL2bits.F15MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
+            C1RXF15SIDbits.SID = CAN_ID; /* Filter Value*/
+            C1RXF15SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+            C1BUFPNT4bits.F15BP = 0xF; /*Store Hits in FIFO*/
+            C1FEN1bits.FLTEN15 = 0x1; /* filter 15 enabled*/
+            break;
+        default:
+            break;
+
+    }
+
+
+    C1CTRL1bits.WIN = 0; /* clear window bit*/
+    C1CTRL1bits.REQOP = opMode;
+    while (C1CTRL1bits.OPMODE != opMode) {
+        ;
+    }
 }
 
 uint8_t CAN_write(CAN_message_S * data) {
@@ -320,10 +451,10 @@ uint8_t CAN_write(CAN_message_S * data) {
 
     /* write message to the data bytes */
 
-    ecan1MsgBuf[thisBuffer][3] = data->byte0 | (data->byte1 << 8);
-    ecan1MsgBuf[thisBuffer][4] = data->byte2 | (data->byte3 << 8);
-    ecan1MsgBuf[thisBuffer][5] = data->byte4 | (data->byte5 << 8);
-    ecan1MsgBuf[thisBuffer][6] = data->byte6 | (data->byte7 << 8);
+    ecan1MsgBuf[thisBuffer][3] = data->word0;
+    ecan1MsgBuf[thisBuffer][4] = data->word1;
+    ecan1MsgBuf[thisBuffer][5] = data->word2;
+    ecan1MsgBuf[thisBuffer][6] = data->word3;
 
     /* Request message buffer 0 transmission */
     switch (thisBuffer) {
@@ -357,33 +488,30 @@ uint8_t CAN_write(CAN_message_S * data) {
     return 0; /*message placed successfully on the bus */
 }
 
-uint16_t CAN_Read(CAN_message_S * RxMessage) {
-
-    uint8_t returnVal = 0;
-    uint16_t thisBuff = _FNRB;
-
-    uint16_t messageID = CAN_getCanIDFromMessage(ecan1MsgBuf[thisBuff][0]);
-
+uint16_t CAN_Read(CAN_message_S * RxMessage, uint8_t RXBufferNumber) {
+    uint16_t thisBuff = RXBufferNumber;
+    volatile uint16_t * bufferptr;
+    if (thisBuff < 15) {
+        bufferptr = &ecan1MsgBuf[0][0];
+    } else {
+        bufferptr = &ecanSWMsgBuf[0][0];
+        thisBuff = thisBuff - 15;
+    }
+    uint16_t messageID = CAN_getCanIDFromMessage(bufferptr[thisBuff * 8 + 0]);
     RxMessage->nodeID = CAN_getNodeFromCanID(messageID);
     RxMessage->frequency = CAN_getFreqFromCanID(messageID);
     RxMessage->messageID = CAN_getMessageFromCanID(messageID);
-    RxMessage->byte0 = (unsigned char) (ecan1MsgBuf[thisBuff][3]);
-    RxMessage->byte1 = (unsigned char) (ecan1MsgBuf[thisBuff][3] >> 8);
-    RxMessage->byte2 = (unsigned char) (ecan1MsgBuf[thisBuff][4]);
-    RxMessage->byte3 = (unsigned char) (ecan1MsgBuf[thisBuff][4] >> 8);
-    RxMessage->byte4 = (unsigned char) (ecan1MsgBuf[thisBuff][5]);
-    RxMessage->byte5 = (unsigned char) (ecan1MsgBuf[thisBuff][5] >> 8);
-    RxMessage->byte6 = (unsigned char) (ecan1MsgBuf[thisBuff][6]);
-    RxMessage->byte7 = (unsigned char) (ecan1MsgBuf[thisBuff][6] >> 8);
+    RxMessage->word0 = bufferptr[thisBuff * 8 + 3];
+    RxMessage->word1 = bufferptr[thisBuff * 8 + 4];
+    RxMessage->word2 = bufferptr[thisBuff * 8 + 5];
+    RxMessage->word3 = bufferptr[thisBuff * 8 + 6];
 
-    uint16_t clearMask = (~(0x001 << (thisBuff - 0x10)));
-    C1RXFUL2 = clearMask;
-    CAN_RXdataReady = 0; /* reset message receive flag */
-    return returnVal; /* success */
+    return 0; /* success */
 }
 
 uint8_t CAN_RxDataIsReady() {
-    if (C1RXFUL2 | C1RXFUL1) {
+    return 0;
+    if (C1RXFUL2 || (C1RXFUL1 & 0x8000)) {
         return 1;
     }
     return 0;
@@ -407,6 +535,7 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
         _WAKIF = 0;
         can_print("CAN_WAKE %d\n", temp);
         /*do something here...*/
+        return;
     }
 
     /*If Error Interrupt, do something*/
@@ -415,13 +544,28 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
         _ERRIF = 0;
         can_print("ERROR %d\n", temp);
         /*do something here...*/
+        return;
     }
 
     /*If Receive Buffer Interrupt, do something*/
     if (_RBIF) {
         uint16_t temp __attribute__((unused)) = _ICODE;
         _RBIF = 0;
-
+        if (temp < 15) {/*if RX event was to a static buffer*/
+            C1RXFUL1 &= ~(1 << temp);
+        } else {/*if RX event was in the FIFO*/
+            uint16_t thisBuff = _FNRB;
+            if (thisBuff == 15) {
+                C1RXFUL1 = 0x7FF;
+            } else {
+                C1RXFUL2 = ~(1 << (temp - 0x10));
+            }
+            uint8_t filterHit = (ecan1MsgBuf[thisBuff][7] >> 8);
+            int i = 0;
+            for (i = 0; i < 8; i++) {
+                ecanSWMsgBuf[filterHit - 7][i] = ecan1MsgBuf[thisBuff][i];
+            }
+        }
         can_print("RX_INT %d\n", temp);
         /*do something here...*/
         return;
@@ -432,6 +576,7 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
         uint16_t temp __attribute__((unused)) = _ICODE;
         _TBIF = 0;
         can_print("TX_INT %d\n", temp);
+
         /*do something here...*/
         return;
     }
@@ -469,6 +614,7 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
 /*The transmit data request interrupt represents the transmission of a single 
  * word in an ECAN message through the ECAN Transmit Data register */
 void __attribute__((__interrupt__, auto_psv)) _C1TxReqInterrupt(void) {
+
     _C1TXIF = 0; /* clear hardware flag */
     can_print("CAN SENT\n");
 }

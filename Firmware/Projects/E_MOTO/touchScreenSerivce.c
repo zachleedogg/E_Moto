@@ -119,7 +119,7 @@ Event touchScreenService(Event ThisEvent) {
      * State transitions thus have priority over posting new events
      * State transitions always consist of an exit event to curState and entry event to nextState */
     if (nextState != curState) {
-        touchScreenService_print("Transistioning\n");
+        touchScreenService_print("Transitioning\n");
         ThisEvent.EventType = NO_EVENT;
         touchScreenService(EXIT);
         prevState = curState;
@@ -177,10 +177,10 @@ static TOUCH_SCREEN_SERVICE_states_E welcomeState(Event ThisEvent) {
             }
             break;
 
-        case TFT_TOUCH_EVENT:
+        case TOUCH_SCREEN_EVENT:
             /*Draw a pixel for fun and set transition timer*/
             if (ThisEvent.EventParam == TOUCHED) {
-                TFT_DISPLAY_draw(TFT_LCD_GREEN);
+                DISPLAY_INTERFACE_draw(TFT_LCD_GREEN);
             } else if (ThisEvent.EventParam == RELEASED) {
                 FRAMEWORK_timerSet(TRANSITION_TIMER, WAKE_UP_TOUCH_TIME, touchScreenService_SERVICE, SINGLE_SHOT);
             }
@@ -208,22 +208,22 @@ static TOUCH_SCREEN_SERVICE_states_E lockedState(Event ThisEvent) {
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
             /*Create a keypad*/
-            buttonArray[0] = TFT_DISPLAY_place_button("1", 2, 1, TFT_LCD_GREEN, 4);
-            buttonArray[1] = TFT_DISPLAY_place_button("2", 3, 1, TFT_LCD_GREEN, 4);
-            buttonArray[2] = TFT_DISPLAY_place_button("3", 4, 1, TFT_LCD_GREEN, 4);
-            buttonArray[3] = TFT_DISPLAY_place_button("4", 2, 2, TFT_LCD_GREEN, 4);
-            buttonArray[4] = TFT_DISPLAY_place_button("5", 3, 2, TFT_LCD_GREEN, 4);
-            buttonArray[5] = TFT_DISPLAY_place_button("6", 4, 2, TFT_LCD_GREEN, 4);
-            buttonArray[6] = TFT_DISPLAY_place_button("7", 2, 3, TFT_LCD_GREEN, 4);
-            buttonArray[7] = TFT_DISPLAY_place_button("8", 3, 3, TFT_LCD_GREEN, 4);
-            buttonArray[8] = TFT_DISPLAY_place_button("9", 4, 3, TFT_LCD_GREEN, 4);
-            buttonArray[9] = TFT_DISPLAY_place_button("CLEAR", 1, 3, TFT_LCD_GREEN, 2);
+            buttonArray[0] = DISPLAY_INTERFACE_place_button("1", 2, 1, TFT_LCD_GREEN, 4);
+            buttonArray[1] = DISPLAY_INTERFACE_place_button("2", 3, 1, TFT_LCD_GREEN, 4);
+            buttonArray[2] = DISPLAY_INTERFACE_place_button("3", 4, 1, TFT_LCD_GREEN, 4);
+            buttonArray[3] = DISPLAY_INTERFACE_place_button("4", 2, 2, TFT_LCD_GREEN, 4);
+            buttonArray[4] = DISPLAY_INTERFACE_place_button("5", 3, 2, TFT_LCD_GREEN, 4);
+            buttonArray[5] = DISPLAY_INTERFACE_place_button("6", 4, 2, TFT_LCD_GREEN, 4);
+            buttonArray[6] = DISPLAY_INTERFACE_place_button("7", 2, 3, TFT_LCD_GREEN, 4);
+            buttonArray[7] = DISPLAY_INTERFACE_place_button("8", 3, 3, TFT_LCD_GREEN, 4);
+            buttonArray[8] = DISPLAY_INTERFACE_place_button("9", 4, 3, TFT_LCD_GREEN, 4);
+            buttonArray[9] = DISPLAY_INTERFACE_place_button("CLEAR", 1, 3, TFT_LCD_GREEN, 2);
             TFT_LCD_writeString(message_enterPasscode, TFT_LCD_CENTER, 275, TFT_LCD_RED, TFT_LCD_CYAN, 3);
             break;
 
-        case TFT_TOUCH_EVENT:
+        case TOUCH_SCREEN_EVENT:
             /*button handler returns the number of which button was pressed, or 0xFF for SNA*/
-            switch (passwordHandler(TFT_DISPLAY_button_handler())) {
+            switch (passwordHandler(DISPLAY_INTERFACE_button_handler())) {
                 case CHAR_INPUT:
                     /*Write the character to the screen*/
                     TFT_LCD_writeVariableString((char*) code, TFT_LCD_CENTER, 250, TFT_LCD_RED, TFT_LCD_CYAN, 3);
@@ -245,7 +245,7 @@ static TOUCH_SCREEN_SERVICE_states_E lockedState(Event ThisEvent) {
             break;
             /*Put custom states above here*/
         case EXIT_EVENT:
-            TFT_DISPLAY_destroy_buttons();
+            DISPLAY_INTERFACE_destroy_buttons();
             TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
@@ -267,14 +267,14 @@ static TOUCH_SCREEN_SERVICE_states_E homeState(Event ThisEvent) {
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
             TFT_LCD_writeString(message_bikeUnlocked, TFT_LCD_CENTER, MENU_MESSAGE_Y_POS, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            /*buttonArray[0] = */TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[1] = */TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[2] = */TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[3] = */TFT_DISPLAY_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[0] = */DISPLAY_INTERFACE_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[1] = */DISPLAY_INTERFACE_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[2] = */DISPLAY_INTERFACE_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[3] = */DISPLAY_INTERFACE_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
             break;
             /*Put custom states below here*/
-        case TFT_TOUCH_EVENT:
-            switch (TFT_DISPLAY_button_handler()) {
+        case TOUCH_SCREEN_EVENT:
+            switch (DISPLAY_INTERFACE_button_handler()) {
                 case 0:
                     nextState = setStateTo(runningState);
                     break;
@@ -293,7 +293,7 @@ static TOUCH_SCREEN_SERVICE_states_E homeState(Event ThisEvent) {
             break;
             /*Put custom states above here*/
         case EXIT_EVENT:
-            TFT_DISPLAY_destroy_buttons();
+            DISPLAY_INTERFACE_destroy_buttons();
             TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
@@ -315,10 +315,10 @@ static TOUCH_SCREEN_SERVICE_states_E runningState(Event ThisEvent) {
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
             TFT_LCD_writeString(message_runningMode, TFT_LCD_CENTER, MENU_MESSAGE_Y_POS, TFT_LCD_RED, TFT_LCD_CYAN, 3);
-            /*buttonArray[0] = */TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_MAGENTA, 2);
-            /*buttonArray[1] = */TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[2] = */TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[3] = */TFT_DISPLAY_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[0] = */DISPLAY_INTERFACE_place_button("RIDE", 1, 4, TFT_LCD_MAGENTA, 2);
+            /*buttonArray[1] = */DISPLAY_INTERFACE_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[2] = */DISPLAY_INTERFACE_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[3] = */DISPLAY_INTERFACE_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
             /*Start a Speedo Timer*/
             FRAMEWORK_timerSet(SPEEDO_TIMER, SPEEDO_TIME, touchScreenService_SERVICE, CONTINUOUS);
             break;
@@ -349,8 +349,8 @@ static TOUCH_SCREEN_SERVICE_states_E runningState(Event ThisEvent) {
         }
             break;
 
-        case TFT_TOUCH_EVENT:
-            switch (TFT_DISPLAY_button_handler()) {
+        case TOUCH_SCREEN_EVENT:
+            switch (DISPLAY_INTERFACE_button_handler()) {
                 case 0:
                     nextState = runningState_state;
                     break;
@@ -371,7 +371,7 @@ static TOUCH_SCREEN_SERVICE_states_E runningState(Event ThisEvent) {
             /*Put custom states above here*/
         case EXIT_EVENT:
             FRAMEWORK_timerStop(SPEEDO_TIMER);
-            TFT_DISPLAY_destroy_buttons();
+            DISPLAY_INTERFACE_destroy_buttons();
             TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
@@ -413,14 +413,14 @@ static TOUCH_SCREEN_SERVICE_states_E batteryState(Event ThisEvent) {
             TFT_LCD_writeString("Cell 17:", DATA_COLUMN_3, DATA_ROW_2, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Cell 18:", DATA_COLUMN_3, DATA_ROW_3, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Cell 19:", DATA_COLUMN_3, DATA_ROW_4, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            /*buttonArray[0] = */TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[1] = */TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[2] = */TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[3] = */TFT_DISPLAY_place_button("BATTERY", 4, 4, TFT_LCD_MAGENTA, 2);
+            /*buttonArray[0] = */DISPLAY_INTERFACE_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[1] = */DISPLAY_INTERFACE_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[2] = */DISPLAY_INTERFACE_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[3] = */DISPLAY_INTERFACE_place_button("BATTERY", 4, 4, TFT_LCD_MAGENTA, 2);
             break;
             /*Put custom states below here*/
-        case TFT_TOUCH_EVENT:
-            switch (TFT_DISPLAY_button_handler()) {
+        case TOUCH_SCREEN_EVENT:
+            switch (DISPLAY_INTERFACE_button_handler()) {
                 case 0:
                     nextState = setStateTo(runningState);
                     break;
@@ -439,7 +439,7 @@ static TOUCH_SCREEN_SERVICE_states_E batteryState(Event ThisEvent) {
             break;
             /*Put custom states above here*/
         case EXIT_EVENT:
-            TFT_DISPLAY_destroy_buttons();
+            DISPLAY_INTERFACE_destroy_buttons();
             TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
@@ -472,10 +472,10 @@ static TOUCH_SCREEN_SERVICE_states_E statisticState(Event ThisEvent) {
             TFT_LCD_writeString("Efficiency: 78%:", DATA_COLUMN_1, DATA_ROW_4, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("12V Battery Voltage:", DATA_COLUMN_1, DATA_ROW_5, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             FRAMEWORK_timerSet(5, 1, touchScreenService_SERVICE, SINGLE_SHOT);
-            /*buttonArray[0] = */TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[1] = */TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_MAGENTA, 2);
-            /*buttonArray[2] = */TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[3] = */TFT_DISPLAY_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[0] = */DISPLAY_INTERFACE_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[1] = */DISPLAY_INTERFACE_place_button("STATS", 2, 4, TFT_LCD_MAGENTA, 2);
+            /*buttonArray[2] = */DISPLAY_INTERFACE_place_button("LAST", 3, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[3] = */DISPLAY_INTERFACE_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
         }
             break;
             /*Put custom states below here*/
@@ -484,8 +484,8 @@ static TOUCH_SCREEN_SERVICE_states_E statisticState(Event ThisEvent) {
                 TFT_LCD_writeVariableString(myotherstring, DATA_COLUMN_1, DATA_ROW_6, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             }
             break;
-        case TFT_TOUCH_EVENT:
-            switch (TFT_DISPLAY_button_handler()) {
+        case TOUCH_SCREEN_EVENT:
+            switch (DISPLAY_INTERFACE_button_handler()) {
                 case 0:
                     nextState = setStateTo(runningState);
                     break;
@@ -511,7 +511,7 @@ static TOUCH_SCREEN_SERVICE_states_E statisticState(Event ThisEvent) {
             break;
             /*Put custom states above here*/
         case EXIT_EVENT:
-            TFT_DISPLAY_destroy_buttons();
+            DISPLAY_INTERFACE_destroy_buttons();
             TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
@@ -540,14 +540,14 @@ static TOUCH_SCREEN_SERVICE_states_E lastRideState(Event ThisEvent) {
             TFT_LCD_writeString("Average Speed: 54mph", DATA_COLUMN_1, DATA_ROW_5, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Max Speed: 72mph", DATA_COLUMN_1, DATA_ROW_6, TFT_LCD_RED, TFT_LCD_CYAN, 2);
             TFT_LCD_writeString("Average Power: 1200W", DATA_COLUMN_1, DATA_ROW_6, TFT_LCD_RED, TFT_LCD_CYAN, 2);
-            /*buttonArray[0] = */TFT_DISPLAY_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[1] = */TFT_DISPLAY_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
-            /*buttonArray[2] = */TFT_DISPLAY_place_button("LAST", 3, 4, TFT_LCD_MAGENTA, 2);
-            /*buttonArray[3] = */TFT_DISPLAY_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[0] = */DISPLAY_INTERFACE_place_button("RIDE", 1, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[1] = */DISPLAY_INTERFACE_place_button("STATS", 2, 4, TFT_LCD_GREEN, 2);
+            /*buttonArray[2] = */DISPLAY_INTERFACE_place_button("LAST", 3, 4, TFT_LCD_MAGENTA, 2);
+            /*buttonArray[3] = */DISPLAY_INTERFACE_place_button("BATTERY", 4, 4, TFT_LCD_GREEN, 2);
             break;
             /*Put custom states below here*/
-        case TFT_TOUCH_EVENT:
-            switch (TFT_DISPLAY_button_handler()) {
+        case TOUCH_SCREEN_EVENT:
+            switch (DISPLAY_INTERFACE_button_handler()) {
                 case 0:
                     nextState = setStateTo(runningState);
                     break;
@@ -566,7 +566,7 @@ static TOUCH_SCREEN_SERVICE_states_E lastRideState(Event ThisEvent) {
             break;
             /*Put custom states above here*/
         case EXIT_EVENT:
-            TFT_DISPLAY_destroy_buttons();
+            DISPLAY_INTERFACE_destroy_buttons();
             TFT_LCD_fillBackground(TFT_LCD_RED);
             break;
         default:
@@ -584,8 +584,8 @@ static TOUCH_SCREEN_SERVICE_states_E idleState(Event ThisEvent) {
             TFT_LCD_writeString(message_idle, TFT_LCD_CENTER, MENU_MESSAGE_Y_POS, TFT_LCD_RED, TFT_LCD_CYAN, 3);
             break;
             /*Put custom states below here*/
-        case TFT_TOUCH_EVENT:
-            switch (TFT_DISPLAY_button_handler()) {
+        case TOUCH_SCREEN_EVENT:
+            switch (DISPLAY_INTERFACE_button_handler()) {
                 case 0:
                     nextState = setStateTo(runningState);
                     break;

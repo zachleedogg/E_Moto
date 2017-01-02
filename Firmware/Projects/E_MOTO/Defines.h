@@ -20,8 +20,8 @@
 
 #include "ping.h"
 #include "TFT_LCD.h"
-#include "TFT_TOUCH.h"
-#include "TFT_DISPLAY.h"
+#include "TOUCH_SCREEN.h"
+#include "DISPLAY_INTERFACE.h"
 #include "led_driver.h"
 
 #include "..\..\CAN\generated\dbc.h"
@@ -88,6 +88,16 @@
 #define DEFINES_CAN_RX CAN_RX_RPI44
 #define DEFINES_CAN_STBY (PINS_pin_S){PIN_PORTB,13}
 #define DEFINES_CAN_BAUD CAN_BAUD_1M
+
+#define DEFINES_CAN_MSG_1 CAN_RX_MAILBOX1
+#define DEFINES_CAN_MSG_1_ID 0x645
+#define DEFINES_CAN_MSG_2 CAN_RX_MAILBOX2
+#define DEFINES_CAN_MSG_2_ID 0x102
+#define DEFINES_CAN_MSG_3 CAN_RX_MAILBOX3
+#define DEFINES_CAN_MSG_3_ID 0x712
+#define DEFINES_CAN_MSG_4 CAN_RX_MAILBOX8
+#define DEFINES_CAN_MSG_4_ID 0x717
+
 #endif
 
 

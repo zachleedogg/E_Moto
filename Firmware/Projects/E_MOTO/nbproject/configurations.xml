@@ -19,19 +19,19 @@
       </logicalFolder>
       <logicalFolder name="inc" displayName="inc" projectFiles="true">
         <itemPath>../../Drivers/TFT_LCD/inc/ASCII_5X7.h</itemPath>
-        <itemPath>../../Drivers/TFT_LCD/inc/TFT_DISPLAY.h</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/inc/DISPLAY_INTERFACE.h</itemPath>
         <itemPath>../../Drivers/TFT_LCD/inc/TFT_LCD.h</itemPath>
         <itemPath>../../Drivers/TFT_LCD/inc/TFT_LCD_Q.h</itemPath>
-        <itemPath>../../Drivers/TFT_LCD/inc/TFT_TOUCH.h</itemPath>
         <itemPath>../../Drivers/LED_16bit_shift/led_driver.h</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/inc/TOUCH_SCREEN.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="ProjectSpecific" projectFiles="true">
         <itemPath>Defines.h</itemPath>
         <itemPath>touchScreenService.h</itemPath>
         <itemPath>framework_configure.h</itemPath>
-        <itemPath>CAN_DBC.h</itemPath>
         <itemPath>debuggerService.h</itemPath>
         <itemPath>canService.h</itemPath>
+        <itemPath>../../CAN/generated/dbc.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -53,10 +53,10 @@
       <logicalFolder name="src" displayName="src" projectFiles="true">
         <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_init.c</itemPath>
-        <itemPath>../../Drivers/TFT_LCD/src/TFT_DISPLAY.c</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/src/DISPLAY_INTERFACE.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_LCD.c</itemPath>
         <itemPath>../../Drivers/TFT_LCD/src/TFT_LCD_Q.c</itemPath>
-        <itemPath>../../Drivers/TFT_LCD/src/TFT_TOUCH.c</itemPath>
+        <itemPath>../../Drivers/TFT_LCD/src/TOUCH_SCREEN.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/pins.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_uart.c</itemPath>
         <itemPath>../../Drivers/PingSensor/ping.c</itemPath>
@@ -77,6 +77,8 @@
     <Elem>.</Elem>
     <Elem>../../Libraries/PIC33_plib/inc</Elem>
     <Elem>../../Libraries/PIC33_plib/src</Elem>
+    <Elem>../../Drivers/TFT_LCD/inc</Elem>
+    <Elem>../../CAN/generated</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -818,6 +820,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
@@ -1340,18 +1343,6 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <item path="CAN_DBC.h" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
       <PICkit3PlatformTool>
         <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
@@ -1808,18 +1799,6 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <item path="CAN_DBC.h" ex="true" overriding="false">
-        <C30>
-        </C30>
-        <C30-AR>
-        </C30-AR>
-        <C30-AS>
-        </C30-AS>
-        <C30-LD>
-        </C30-LD>
-        <C30Global>
-        </C30Global>
-      </item>
       <PICkit3PlatformTool>
         <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>

@@ -50,7 +50,7 @@ void FRAMEWORK_TASKRUNNER_init(void) {
     ping_Init(DEFINES_PING_RIGHT_ECHO, DEFINES_PING_RIGHT_TRIGGER, DEFINES_PING_LEFT_ECHO, DEFINES_PING_LEFT_TRIGGER);
 
     /*Init Touch Screen Sensors*/
-    TFT_TOUCH_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
+    TOUCH_SCREEN_INIT(DEFINES_TOUCH_X0, DEFINES_TOUCH_X1, DEFINES_TOUCH_Y0, DEFINES_TOUCH_Y1, DEFINES_TOUCH_AN_X, DEFINES_TOUCH_AN_Y);
 
     /*Init Digital input pins*/
 
@@ -76,7 +76,7 @@ void FRAMEWORK_TASKRUNNER_init(void) {
 
     ADC_SetPin(VBATT_PROT_MONITOR);
 
-    CAN_Configure(DEFINES_CAN_TX, DEFINES_CAN_RX, DEFINES_CAN_BAUD, CAN_NORMAL);
+    CAN_init(DEFINES_CAN_TX, DEFINES_CAN_RX, DEFINES_CAN_BAUD, CAN_NORMAL);
 }
 
 inline void FRAMEWORK_TASKRUNNER_1ms(void) {
@@ -84,13 +84,13 @@ inline void FRAMEWORK_TASKRUNNER_1ms(void) {
     /*Run touch screen Stuff
      Throw an event during every touch and throw a single event for the
      release of touch from the screen.*/
-    static TFT_TOUCH_touchDataStatus_E touchStatus = IDLE;
-    if (TFT_TOUCH_run() == TOUCHED) {
+    static TOUCH_SCREEN_touchDataStatus_E touchStatus = IDLE;
+    if (TOUCH_SCREEN_run() == TOUCHED) {
         touchStatus = TOUCHED;
         Event newEvent;
         newEvent.EventParam = TOUCHED;
         newEvent.EventPriority = FRAMEWORK_PRIORITY_1;
-        newEvent.EventType = TFT_TOUCH_EVENT;
+        newEvent.EventType = TOUCH_SCREEN_EVENT;
         newEvent.Service = touchScreenService_SERVICE;
         FRAMEWORK_postEvent(newEvent);
     } else if (touchStatus == TOUCHED) {
@@ -98,14 +98,17 @@ inline void FRAMEWORK_TASKRUNNER_1ms(void) {
         Event newEvent;
         newEvent.EventParam = RELEASED;
         newEvent.EventPriority = FRAMEWORK_PRIORITY_1;
-        newEvent.EventType = TFT_TOUCH_EVENT;
+        newEvent.EventType = TOUCH_SCREEN_EVENT;
         newEvent.Service = touchScreenService_SERVICE;
         FRAMEWORK_postEvent(newEvent);
     }
 
+    BUTTONS_status_E tempStatus;
+    BUTTONS_status_E newStatus;
+
     /*Switch 2 and debounce using BUTTONS_run()*/
-    BUTTONS_status_E tempStatus = sw2.status;
-    BUTTONS_status_E newStatus = BUTTONS_run(&sw2);
+    tempStatus = sw2.status;
+    newStatus = BUTTONS_run(&sw2);
     if (newStatus != tempStatus) {
         Event newEvent;
         newEvent.EventParam = newStatus;
@@ -138,46 +141,33 @@ inline void FRAMEWORK_TASKRUNNER_1ms(void) {
         FRAMEWORK_postEvent(newEvent);
     }
 
-    if (CAN_RxDataIsReady()) {
-        Event newEvent;
-        newEvent.EventPriority = FRAMEWORK_PRIORITY_2;
-        newEvent.EventType = CAN_MESSAGE_RCVD_EVENT;
-        newEvent.Service = canService_SERVICE;
-        FRAMEWORK_postEvent(newEvent);
-    }
-
     /*Run the LED sweep*/
     static float sinner = 0;
-    static int timerpi = 1;
-    static counter = 0;
+    static double val = 0.0;
+    static uint8_t lastVal = 0;
+    static uint8_t counter = 0;
+    static uint16_t ticker = 0;
     counter++;
+    ticker++;
     /*LED Breathing Thing*/
-    uint8_t temp = (uint8_t) (fabs(sin(sinner))*16.4);
-    sinner += .0033;
-    if (timerpi == temp) {
-        
-        int i = 0;
+    val = (fabs(sin(sinner))*16.25);
+    uint8_t temp = (uint8_t)val;
+    sinner += .00314159;
+    if (lastVal != temp) {
+        lastVal = temp;
+
+        framework_taskRunner_print("LED: %02d, VAL: %f", temp, val);
+        uint8_t i = 0;
         for (i = 0; i < counter; i++) {
-            framework_taskRunner_print("-");
+            framework_taskRunner_print(".");
         }
-        framework_taskRunner_print("\n");
         counter = 0;
-        static uint16_t tog = 0x8000;
-        static uint8_t direction = 0;
-        ledDriverWrite(0, tog);
-        if (direction == 0) {
-            timerpi++;
-            tog = tog >> 1;
-        } else {
-            timerpi--;
-            tog = tog << 1;
-        }
-        if (tog == 0x8000) {
-            direction = 0;
-            sinner = 0;
-        } else if (tog == 0x0001) {
-            direction = 1;
-        }
+        framework_taskRunner_print("\n");
+        ledDriverWrite(0, 0xFFFF << 16-temp);
+    }
+    if(ticker==1000){
+        ticker=0;
+        sinner=0;
     }
 }
 
@@ -208,30 +198,14 @@ inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
     Event newEvent;
 
     /*Get VBATT RAW  ADC voltage*/
+    float batV = 4.84 * 3.3 * ((float) ADC_GetValue(VBATT_PROT_MONITOR)) / 1024.0;
+    framework_taskRunner_print("Battery VOltage: %f, Raw ADC: %d\n", batV, ADC_GetValue(VBATT_PROT_MONITOR));
     newEvent.EventParam = ADC_GetValue(VBATT_PROT_MONITOR);
     newEvent.EventPriority = FRAMEWORK_PRIORITY_1;
     newEvent.EventType = BATTERY_12V_LEVEL_EVENT;
     newEvent.Service = touchScreenService_SERVICE;
     FRAMEWORK_postEvent(newEvent);
 
-    static uint8_t mynum = 0;
-    mynum++;
-    const char str[] = "Hello  ";
-    CAN_message_S newMessage = {
-        .nodeID = 0x4,
-        .messageID = 0x2,
-        .frequency = 0x7,
-        .byte0 = str[mynum % 7],
-        .byte1 = str[(mynum + 1) % 7],
-        .byte2 = str[(mynum + 2) % 7],
-        .byte3 = str[(mynum + 3) % 7],
-        .byte4 = str[(mynum + 4) % 7],
-        .byte5 = str[(mynum + 5) % 7],
-        .byte6 = str[(mynum + 6) % 7],
-        .byte7 = mynum,
-    };
-
-    CAN_write(&newMessage);
 
 }
 

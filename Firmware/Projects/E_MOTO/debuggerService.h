@@ -5,7 +5,7 @@
  * Created on June 10, 2016, 10:52 AM
  */
 
-#include "framework_configure.h"
+#include "framework.h"
 #include <stdint.h>
 
 #ifndef debuggerService_H

@@ -5,7 +5,7 @@
  * Created on December 22, 2016, 10:52 AM
  */
 
-#include "framework_configure.h"
+#include "framework.h"
 #include <stdint.h>
 
 #ifndef canService_H

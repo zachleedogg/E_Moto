@@ -87,6 +87,8 @@
     			"name": "cellVoltages",
     			"signals":
     				[
+                        {"name": "MultiPlex",
+                        "length": "4"},
         				{"name": "cell1",
                         "length": "12"},
                         {"name": "cell2",
