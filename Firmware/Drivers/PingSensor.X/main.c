@@ -9,12 +9,16 @@
 #include <stdint.h>
 #include "bolt_init.h"
 #include "bolt_uart.h"
-#include "bolt_pins.h"
+#include "pins.h"
 #include "ping.h"
 
 #define TEST_LED IO_PIN_RB15
-#define PING_TRIGGER IO_PIN_RB14
-#define PING_ECHO RPI45_IC
+#define DEFINES_PING_LEFT_TRIGGER (PINS_pin_S){PIN_PORTD,8}
+#define DEFINES_PING_LEFT_ECHO RPI46_IC
+#define DEFINES_PING_RIGHT_TRIGGER (PINS_pin_S){PIN_PORTG,6}
+#define DEFINES_PING_RIGHT_ECHO RPI47_IC
+
+#define TIMER1_TIME 10
 
 static uint16_t count = 0;
 static uint8_t flag = 0;
@@ -30,14 +34,13 @@ static const char helloString[] = "EAT MY SHORTS";
 int main(void) {
 
     Micro_Init();
-    clockInit(FREQ_32MHZ, EXTERNAL);
-    IO_setPinDir(TEST_LED, OUTPUT);
-    Uart1Init(RP36_TX, RP20_UART_RX, BAUD115200);
+    clockInit(FREQ_120MHZ, EXTERNAL);
+    Uart1Init(UART_TX_RP36, UART_RX_RP20, UART_BAUD_230400);
 
     Uart1Write("Hello, welcome to the PING sensor program\n\n");
 
-    T1_Interrupt_Init(1, 3);
-    ping_Init(PING_ECHO, PING_TRIGGER, 0, 0);
+    T1_Interrupt_Init(TIMER1_TIME, 3);
+    ping_Init(DEFINES_PING_RIGHT_ECHO, DEFINES_PING_RIGHT_TRIGGER, DEFINES_PING_LEFT_ECHO, DEFINES_PING_LEFT_TRIGGER);
 
     while (1) {
 
@@ -47,15 +50,14 @@ int main(void) {
 
         if (flag2) {
             flag2 = 0;
-            uint8_t dis = ping_Run();
+            ping_Run();
+            uint8_t disR = PING_getDistance(0);
+            uint8_t disL = PING_getDistance(1);
 
-            if (dis == 0xFF) {
-                Uart1Write("150+\n");
-            } else {
-                char string[50];
-                sprintf(string, "%u\n", dis);
-                Uart1Write(string);
-            }
+            char string[50];
+            sprintf(string, "LEFT: %d    RIGHT: %d\n", disL, disR);
+            Uart1Write(string);
+
         }
 
 
@@ -70,14 +72,13 @@ void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void) {
     count++;
     count2++;
 
-    if (count2 == 100) {
+    if (count2 == 1000/TIMER1_TIME) {
 
         count2 = 0;
         flag2 = 1;
     }
 
     if (count == 100) {
-        IO_pinToggle(TEST_LED);
         flag = 1;
         count = 0;
     }

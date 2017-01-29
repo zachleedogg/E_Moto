@@ -11,6 +11,7 @@
 #ifdef DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
+#include "movingAverage.h"
 static uint8_t debugEnable = 1;
 #define framework_taskRunner_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
 #else
@@ -34,6 +35,10 @@ static BUTTONS_object_S sw3 = {
     .status = BUTTONS_STATUS_OFF,
     .threshold = 32,
 };
+
+NEW_AVERAGE(pingLeft,10);
+
+NEW_AVERAGE(pingRight,10);
 
 /*******************************************************************************
  * TASK SCHEDULES
@@ -142,33 +147,33 @@ inline void FRAMEWORK_TASKRUNNER_1ms(void) {
     }
 
     /*Run the LED sweep*/
-    static float sinner = 0;
-    static double val = 0.0;
-    static uint8_t lastVal = 0;
-    static uint8_t counter = 0;
-    static uint16_t ticker = 0;
-    counter++;
-    ticker++;
-    /*LED Breathing Thing*/
-    val = (fabs(sin(sinner))*16.25);
-    uint8_t temp = (uint8_t)val;
-    sinner += .00314159;
-    if (lastVal != temp) {
-        lastVal = temp;
-
-        framework_taskRunner_print("LED: %02d, VAL: %f", temp, val);
-        uint8_t i = 0;
-        for (i = 0; i < counter; i++) {
-            framework_taskRunner_print(".");
-        }
-        counter = 0;
-        framework_taskRunner_print("\n");
-        ledDriverWrite(0, 0xFFFF << 16-temp);
-    }
-    if(ticker==1000){
-        ticker=0;
-        sinner=0;
-    }
+//    static float sinner = 0;
+//    static double val = 0.0;
+//    static uint8_t lastVal = 0;
+//    static uint8_t counter = 0;
+//    static uint16_t ticker = 0;
+//    counter++;
+//    ticker++;
+//    /*LED Breathing Thing*/
+//    val = (fabs(sin(sinner))*16.25);
+//    uint8_t temp = (uint8_t)val;
+//    sinner += .00314159;
+//    if (lastVal != temp) {
+//        lastVal = temp;
+//
+//        framework_taskRunner_print("LED: %02d, VAL: %f", temp, val);
+//        uint8_t i = 0;
+//        for (i = 0; i < counter; i++) {
+//            framework_taskRunner_print(".");
+//        }
+//        counter = 0;
+//        framework_taskRunner_print("\n");
+//        ledDriverWrite(0, 0xFFFF << (16-temp));
+//    }
+//    if(ticker==1000){
+//        ticker=0;
+//        sinner=0;
+//    }
 }
 
 inline void FRAMEWORK_TASKRUNNER_10ms(void) {
@@ -182,8 +187,11 @@ inline void FRAMEWORK_TASKRUNNER_100ms(void) {
     Event newEvent;
     /* Run the Ping sensors*/
     ping_Run();
+    
+    
+    framework_taskRunner_print("LEFT: %d        RIGHT: %d\n",TAKE_AVERAGE(&pingLeft,PING_getDistance(1)),TAKE_AVERAGE(&pingRight,PING_getDistance(0)));
 
-    newEvent.EventParam = PING_getDistance(1) | (PING_getDistance(0) << 8);
+    newEvent.EventParam = (uint16_t)PING_getDistance(1) | ((uint16_t)(PING_getDistance(0)) << 8);
     newEvent.EventPriority = FRAMEWORK_PRIORITY_1;
     newEvent.EventType = PING_SENSOR_EVENT;
     newEvent.Service = touchScreenService_SERVICE;

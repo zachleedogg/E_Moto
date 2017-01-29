@@ -59,7 +59,7 @@ uint8_t ping_Init(ic_pin_number rightEchoPin, PINS_pin_S R_TRIGGER, ic_pin_numbe
     IC2CON1bits.ICSIDL = 0; // Input capture will continue to operate in CPU idle mode
     IC2CON1bits.ICTSEL = 0b111; // Peripheral (FP) is the clock source for the IC1 module
     IC2CON1bits.ICI = 0; // Interrupt on every capture event
-    IC2CON2bits.IC32 = 1; // Cascade module operation is disabled
+    IC2CON2bits.IC32 = 1; // Cascade module operation is enabled
     IC2CON2bits.ICTRIG = 1; // Input source used to synchronize the input capture timer of  
     IC2CON2bits.SYNCSEL = 0; // No Sync or Trigger source for the IC1 module
 
@@ -68,7 +68,7 @@ uint8_t ping_Init(ic_pin_number rightEchoPin, PINS_pin_S R_TRIGGER, ic_pin_numbe
     IC1CON1bits.ICSIDL = 0; // Input capture will continue to operate in CPU idle mode
     IC1CON1bits.ICTSEL = 0b111; // Peripheral (FP) is the clock source for the IC1 module
     IC1CON1bits.ICI = 0; // Interrupt on every capture event
-    IC1CON2bits.IC32 = 1; // Cascade module operation is disabled
+    IC1CON2bits.IC32 = 1; // Cascade module operation is enabled
     IC1CON2bits.ICTRIG = 1; // Input source used to synchronize the input capture timer of  
     IC1CON2bits.SYNCSEL = 0; // No Sync or Trigger source for the IC1 module
 
@@ -86,7 +86,7 @@ uint8_t ping_Init(ic_pin_number rightEchoPin, PINS_pin_S R_TRIGGER, ic_pin_numbe
     IC4CON1bits.ICSIDL = 0; // Input capture will continue to operate in CPU idle mode
     IC4CON1bits.ICTSEL = 0b111; // Peripheral (FP) is the clock source for the IC1 module
     IC4CON1bits.ICI = 0; // Interrupt on every capture event
-    IC4CON2bits.IC32 = 1; // Cascade module operation is disabled
+    IC4CON2bits.IC32 = 1; // Cascade module operation is enabled
     IC4CON2bits.ICTRIG = 1; // Input source used to synchronize the input capture timer of  
     IC4CON2bits.SYNCSEL = 0; // No Sync or Trigger source for the IC1 module
 
@@ -95,7 +95,7 @@ uint8_t ping_Init(ic_pin_number rightEchoPin, PINS_pin_S R_TRIGGER, ic_pin_numbe
     IC3CON1bits.ICSIDL = 0; // Input capture will continue to operate in CPU idle mode
     IC3CON1bits.ICTSEL = 0b111; // Peripheral (FP) is the clock source for the IC1 module
     IC3CON1bits.ICI = 0; // Interrupt on every capture event
-    IC3CON2bits.IC32 = 1; // Cascade module operation is disabled
+    IC3CON2bits.IC32 = 1; // Cascade module operation is enabled
     IC3CON2bits.ICTRIG = 1; // Input source used to synchronize the input capture timer of  
     IC3CON2bits.SYNCSEL = 0; // No Sync or Trigger source for the IC1 module
 
@@ -182,6 +182,9 @@ void __attribute__((__interrupt__, auto_psv)) _IC1Interrupt(void) {
 
             temp1 = IC1BUF;
             temp2 = IC2BUF;
+            //char string[50];
+            //sprintf(string, "IC1BUF: %u, IC2BUF: %u\n", temp1,temp2);
+            //Uart1Write(string);
 
             uint32_t time = ((uint32_t) temp1 | ((uint32_t) temp2 << 16));
             uint32_t dist = time;
