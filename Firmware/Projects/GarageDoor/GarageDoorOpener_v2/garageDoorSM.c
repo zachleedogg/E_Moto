@@ -5,10 +5,8 @@
 
 #define ANALOG_TO_DIG(x) (14+x)
 
-#define DOOR_SW 2
 #define DOOR_SW_V2 3
 #define REED_1 4
-#define REED_2 5
 
 
 
@@ -21,7 +19,7 @@ static uint32_t doorAutoCloseTimer = 0;
 static uint16_t doorSwitchHoldTimer = DOOW_SW_HOLD_DELAY;
 
 /*Password Stuff*/
-static const uint8_t passcode[] = {'4','1','5','3'};
+static const uint8_t passcode[] = {'4', '1', '5', '3'};
 #define PASSCODE_SIZE sizeof(passcode)
 static uint8_t code[PASSCODE_SIZE + 1] = {};
 static uint8_t codeIndex = 0;
@@ -32,9 +30,7 @@ typedef enum {
 } passwordOutcomes_E;
 
 typedef enum {
-  NOT_POSSIBLE,
   DOOR_DOWN,
-  NOT_POSSIBLE_2,
   TRANSITIONING,
 } doorPosition_E;
 static doorPosition_E currentReedSwitchPosition = 0;
@@ -45,26 +41,25 @@ static uint16_t currentReedSwitchDebounce = 0;
 typedef enum {
   INIT,
   CLOSED,
-  OPENING,
+  NOT_CLOSED,
+  HOLD_OPEN,
   NUMBER_OF_STATES,
 } garageDoorStatus_E;
 static garageDoorStatus_E garageDoorStatus;
 
 //Helper Functions
+static void activateGarageDoor(void);
+static void deactivateGarageDoor(void);
 static doorPosition_E checkReeds(void);
 static doorPosition_E getDoorStatus(void);
 static passwordOutcomes_E passwordHandler(uint8_t value);
 
 void garageDoorInit(void) {
 
-  pinMode(DOOR_SW, OUTPUT);
-  digitalWrite(DOOR_SW, HIGH);
-
   pinMode(DOOR_SW_V2, INPUT);
   digitalWrite(DOOR_SW_V2, LOW);
 
   pinMode(REED_1, INPUT_PULLUP);
-  pinMode(REED_2, INPUT_PULLUP);
   currentReedSwitchPosition = checkReeds();
 }
 
@@ -76,66 +71,84 @@ uint8_t garageDoorSM(uint8_t buttonPressed) {
   //Check key input for correct Password
   passwordOutcomes_E thisPW = passwordHandler(buttonPressed);
 
-  //Check Door SW timer
-  if(doorSwitchHoldTimer++ == DOOW_SW_HOLD_DELAY){
-    doorSwitchHoldTimer = 0;
-    digitalWrite(DOOR_SW, HIGH);
-    pinMode(DOOR_SW_V2, INPUT);
+  //Un-click garage door button any after any click event occurs and DOOW_SW_HOLD_DELAY milliseconds
+  if (doorSwitchHoldTimer++ == DOOW_SW_HOLD_DELAY) {
+    deactivateGarageDoor();
   }
+
 
   //Run the state machine
   garageDoorStatus_E garageDoorStatusLast = garageDoorStatus;
   switch (garageDoorStatus) {
     case INIT:
       switch (doorPosition) {
-        case TRANSITIONING:
-          garageDoorStatus = OPENING;
-          break;
         case DOOR_DOWN:
           garageDoorStatus = CLOSED;
           break;
+        case TRANSITIONING:
         default:
-          garageDoorStatus = OPENING;
+          garageDoorStatus = NOT_CLOSED;
           break;
       }
       break;
 
     case CLOSED:
       if (thisPW == PASSED) {
-        digitalWrite(DOOR_SW, LOW);
-        pinMode(DOOR_SW_V2, OUTPUT);
-        digitalWrite(DOOR_SW_V2, LOW);
-        doorSwitchHoldTimer = 0;
+        activateGarageDoor();
       }
       switch (doorPosition) {
-        case TRANSITIONING:
-          garageDoorStatus = OPENING;
-          break;
         case DOOR_DOWN:
-          garageDoorStatus = CLOSED;
+          //do nothing
           break;
+        case TRANSITIONING:
         default:
-          garageDoorStatus = OPENING;
+          garageDoorStatus = NOT_CLOSED;
           break;
       }
       break;
 
-    case OPENING:
-      if (buttonPressed == '#') {
-        digitalWrite(DOOR_SW, LOW);
-        pinMode(DOOR_SW_V2, OUTPUT);
-        digitalWrite(DOOR_SW_V2, LOW);
-        doorSwitchHoldTimer = 0;
+    case NOT_CLOSED:
+      //password entered while not closed so door shall be held open indefinitely
+      if (thisPW == PASSED) {
+        garageDoorStatus = HOLD_OPEN;
+      }
+      //If '#' is pressed, activate the garage door
+      else if (buttonPressed == '#') {
+        activateGarageDoor();
+      }
+      //Run auto-close timer
+      if (doorAutoCloseTimer++ == DOOR_AUTOCLOSE_DELAY) {
+        doorAutoCloseTimer = 0;
+        activateGarageDoor();
       }
       switch (doorPosition) {
-        case TRANSITIONING:
-          garageDoorStatus = OPENING;
-          break;
         case DOOR_DOWN:
           garageDoorStatus = CLOSED;
           break;
+        case TRANSITIONING:
         default:
-          garageDoorStatus = OPENING;
+          //do nothing
+          break;
+      }
+      break;
+
+    case HOLD_OPEN:
+      //password re-entered in hold open state door continues to hold open
+      if (thisPW == PASSED) {
+        //do nothing
+      }
+      //If '#' is pressed, activate the garage door
+      else if (buttonPressed == '#') {
+        activateGarageDoor();
+      }
+      //any door position change will be observed
+      switch (doorPosition) {
+        case DOOR_DOWN:
+          garageDoorStatus = CLOSED;
+          break;
+        case TRANSITIONING:
+        default:
+          //do nothing
           break;
       }
       break;
@@ -151,9 +164,20 @@ uint8_t garageDoorSM(uint8_t buttonPressed) {
   }
 }
 
+static void activateGarageDoor(void) {
+  doorSwitchHoldTimer = 0;
+  pinMode(DOOR_SW_V2, OUTPUT);
+  digitalWrite(DOOR_SW_V2, LOW);
+}
+
+static void deactivateGarageDoor(void) {
+  doorSwitchHoldTimer = 0;
+  pinMode(DOOR_SW_V2, INPUT);
+}
+
 
 static doorPosition_E checkReeds(void) {
-  return (digitalRead(REED_1) | digitalRead(REED_2) << 1);
+  return (digitalRead(REED_1));
 }
 
 static doorPosition_E getDoorStatus(void) {
