@@ -1,0 +1,341 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:HSD
+LIBS:micros
+LIBS:ICs
+LIBS:BodyController_03-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 4 10
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L R R2
+U 1 1 5989DAEA
+P 2900 4700
+F 0 "R2" V 2980 4700 50  0000 C CNN
+F 1 "10k" V 2900 4700 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2830 4700 50  0001 C CNN
+F 3 "" H 2900 4700 50  0001 C CNN
+	1    2900 4700
+	1    0    0    -1  
+$EndComp
+$Comp
+L D_Zener D1
+U 1 1 5989DA51
+P 2900 4250
+F 0 "D1" H 2900 4350 50  0000 C CNN
+F 1 "D_Zener" H 2900 4150 50  0000 C CNN
+F 2 "" H 2900 4250 50  0001 C CNN
+F 3 "" H 2900 4250 50  0001 C CNN
+	1    2900 4250
+	0    1    1    0   
+$EndComp
+$Comp
+L IRF7606PBF Q1
+U 1 1 5989DB45
+P 2400 3400
+F 0 "Q1" H 2200 3700 50  0000 L CNN
+F 1 "IRF7606PBF" H 2200 3150 50  0000 L CNN
+F 2 "Housings_SSOP:MSOP-8_3x3mm_Pitch0.65mm" H 2400 3600 50  0001 C CIN
+F 3 "" V 2400 3400 50  0001 L CNN
+	1    2400 3400
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND #PWR07
+U 1 1 5989DD42
+P 2900 4850
+F 0 "#PWR07" H 2900 4600 50  0001 C CNN
+F 1 "GND" H 2900 4700 50  0000 C CNN
+F 2 "" H 2900 4850 50  0001 C CNN
+F 3 "" H 2900 4850 50  0001 C CNN
+	1    2900 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L +BATT #PWR08
+U 1 1 5989DDB2
+P 1350 3150
+F 0 "#PWR08" H 1350 3000 50  0001 C CNN
+F 1 "+BATT" H 1350 3290 50  0000 C CNN
+F 2 "" H 1350 3150 50  0001 C CNN
+F 3 "" H 1350 3150 50  0001 C CNN
+	1    1350 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12V #PWR09
+U 1 1 5989DDF9
+P 6100 3100
+F 0 "#PWR09" H 6100 2950 50  0001 C CNN
+F 1 "+12V" H 6100 3240 50  0000 C CNN
+F 2 "" H 6100 3100 50  0001 C CNN
+F 3 "" H 6100 3100 50  0001 C CNN
+	1    6100 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R3
+U 1 1 598C0357
+P 5350 3450
+F 0 "R3" V 5430 3450 50  0000 C CNN
+F 1 "10k" V 5350 3450 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 5280 3450 50  0001 C CNN
+F 3 "" H 5350 3450 50  0001 C CNN
+	1    5350 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R4
+U 1 1 598C0358
+P 5350 3950
+F 0 "R4" V 5430 3950 50  0000 C CNN
+F 1 "10k" V 5350 3950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 5280 3950 50  0001 C CNN
+F 3 "" H 5350 3950 50  0001 C CNN
+	1    5350 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR010
+U 1 1 598C0359
+P 5350 4200
+F 0 "#PWR010" H 5350 3950 50  0001 C CNN
+F 1 "GND" H 5350 4050 50  0000 C CNN
+F 2 "" H 5350 4200 50  0001 C CNN
+F 3 "" H 5350 4200 50  0001 C CNN
+	1    5350 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C10
+U 1 1 598C035B
+P 5000 4000
+F 0 "C10" H 5025 4100 50  0000 L CNN
+F 1 "10nF" H 5025 3900 50  0000 L CNN
+F 2 "" H 5038 3850 50  0001 C CNN
+F 3 "" H 5000 4000 50  0001 C CNN
+	1    5000 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR011
+U 1 1 598C035C
+P 5000 4200
+F 0 "#PWR011" H 5000 3950 50  0001 C CNN
+F 1 "GND" H 5000 4050 50  0000 C CNN
+F 2 "" H 5000 4200 50  0001 C CNN
+F 3 "" H 5000 4200 50  0001 C CNN
+	1    5000 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R5
+U 1 1 598C035D
+P 5800 3750
+F 0 "R5" V 5880 3750 50  0000 C CNN
+F 1 "10k" V 5800 3750 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 5730 3750 50  0001 C CNN
+F 3 "" H 5800 3750 50  0001 C CNN
+	1    5800 3750
+	0    1    1    0   
+$EndComp
+$Comp
+L C C11
+U 1 1 598C035E
+P 6100 4000
+F 0 "C11" H 6125 4100 50  0000 L CNN
+F 1 "10nF" H 6125 3900 50  0000 L CNN
+F 2 "" H 6138 3850 50  0001 C CNN
+F 3 "" H 6100 4000 50  0001 C CNN
+	1    6100 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR012
+U 1 1 598C035F
+P 6100 4200
+F 0 "#PWR012" H 6100 3950 50  0001 C CNN
+F 1 "GND" H 6100 4050 50  0000 C CNN
+F 2 "" H 6100 4200 50  0001 C CNN
+F 3 "" H 6100 4200 50  0001 C CNN
+	1    6100 4200
+	1    0    0    -1  
+$EndComp
+Text Notes 2900 1100 0    197  ~ 0
+Reverse Polarity Protection
+Text GLabel 6650 3750 2    59   Output ~ 0
+12V_MONITOR
+Wire Wire Line
+	2900 4400 2900 4550
+Wire Wire Line
+	2900 3550 2900 4100
+Wire Wire Line
+	2900 3550 2700 3550
+Wire Wire Line
+	2100 3200 2100 3500
+Wire Wire Line
+	2100 3200 1350 3200
+Wire Wire Line
+	1350 3200 1350 3150
+Wire Wire Line
+	2700 3200 8700 3200
+Wire Wire Line
+	6100 3200 6100 3100
+Wire Wire Line
+	2900 4450 3250 4450
+Wire Wire Line
+	3250 4450 3250 3200
+Wire Wire Line
+	5350 3200 5350 3300
+Wire Wire Line
+	5350 3600 5350 3800
+Wire Wire Line
+	5350 4200 5350 4100
+Wire Wire Line
+	5000 3850 5000 3700
+Wire Wire Line
+	5000 3700 5350 3700
+Wire Wire Line
+	5000 4200 5000 4150
+Wire Wire Line
+	5650 3750 5350 3750
+Wire Wire Line
+	5950 3750 6650 3750
+Wire Wire Line
+	6100 3750 6100 3850
+Wire Wire Line
+	6100 4200 6100 4150
+Wire Wire Line
+	2700 3200 2700 3400
+Wire Wire Line
+	2100 3300 2100 3400
+Connection ~ 3250 3200
+Connection ~ 2900 4450
+Connection ~ 5350 3200
+Connection ~ 5350 3700
+Connection ~ 5350 3750
+Connection ~ 6100 3750
+Connection ~ 2100 3400
+Connection ~ 2100 3300
+Connection ~ 2700 3300
+$Comp
+L IRF7606PBF Q?
+U 1 1 5995D972
+P 9000 3400
+F 0 "Q?" H 8800 3700 50  0000 L CNN
+F 1 "IRF7606PBF" H 8800 3150 50  0000 L CNN
+F 2 "Housings_SSOP:MSOP-8_3x3mm_Pitch0.65mm" H 9000 3600 50  0001 C CIN
+F 3 "" V 9000 3400 50  0001 L CNN
+	1    9000 3400
+	1    0    0    -1  
+$EndComp
+Text GLabel 9800 3200 2    60   Input ~ 0
+DCDC
+Wire Wire Line
+	9800 3200 9300 3200
+Wire Wire Line
+	9300 3200 9300 3500
+Connection ~ 9300 3300
+Connection ~ 9300 3400
+Wire Wire Line
+	8700 3200 8700 3400
+Connection ~ 8700 3300
+Connection ~ 6100 3200
+$Comp
+L R R?
+U 1 1 5995DF89
+P 8300 3600
+F 0 "R?" V 8380 3600 50  0000 C CNN
+F 1 "R" V 8300 3600 50  0000 C CNN
+F 2 "" V 8230 3600 50  0001 C CNN
+F 3 "" H 8300 3600 50  0001 C CNN
+	1    8300 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5995E150
+P 8300 4100
+F 0 "R?" V 8380 4100 50  0000 C CNN
+F 1 "R" V 8300 4100 50  0000 C CNN
+F 2 "" V 8230 4100 50  0001 C CNN
+F 3 "" H 8300 4100 50  0001 C CNN
+	1    8300 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8300 4400 8300 4250
+Wire Wire Line
+	8300 3950 8300 3750
+Wire Wire Line
+	8300 3450 8300 3200
+Connection ~ 8300 3200
+Wire Wire Line
+	8700 3550 8550 3550
+Wire Wire Line
+	8550 3550 8550 3850
+Wire Wire Line
+	8550 3850 8300 3850
+Connection ~ 8300 3850
+$Comp
+L Q_NMOS_DGS Q?
+U 1 1 5995E2B9
+P 8200 4600
+F 0 "Q?" H 8400 4650 50  0000 L CNN
+F 1 "Q_NMOS_DGS" H 8400 4550 50  0000 L CNN
+F 2 "" H 8400 4700 50  0001 C CNN
+F 3 "" H 8200 4600 50  0001 C CNN
+	1    8200 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5995E306
+P 8300 4800
+F 0 "#PWR?" H 8300 4550 50  0001 C CNN
+F 1 "GND" H 8300 4650 50  0000 C CNN
+F 2 "" H 8300 4800 50  0001 C CNN
+F 3 "" H 8300 4800 50  0001 C CNN
+	1    8300 4800
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

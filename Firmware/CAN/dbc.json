@@ -1,0 +1,377 @@
+{
+    "NODE": [
+        {
+            "name": "DASH",
+    		"messages": [
+    			{
+    			"name": "status",
+                "id": "NA",
+                "freq": "10ms",
+    			"signals":
+    				[
+        				{
+                            "name": "state",
+                            "length": "3",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["sleep","welcome","locked","safe","running","charging"]
+                        },
+                        {
+                            "name": "killButton",
+                            "length": "2",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["On,Off,Pressed"]
+                        },
+                        {
+                            "name": "ignButton",
+                            "length": "2",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["On,Off,Pressed"]
+                        },
+                        {
+                            "name": "modeButton",
+                            "length": "2",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["On,Off,Pressed"]
+                        },
+                        {
+                            "name": "selectButton",
+                            "length": "2",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["On,Off,Pressed"]
+                        },
+         				{
+                            "name": "driveMode",
+                            "length": "3",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["Econ,Sport,Demo1,Demo2,Custom"]
+                        } 
+    				]
+    			},
+    			{
+    			"name": "command",
+                "id": "NA",
+                "freq": "10ms",
+    			"signals":
+                    [
+        				{
+                            "name": "ignitionRequest",
+                            "length": "1",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        },
+         				{
+                            "name": "killRequest",
+                            "length": "1",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        },
+         				{
+                            "name": "batteryEjectRequest",
+                            "length": "1",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        },
+         				{
+                            "name": "lightsRequest",
+                            "length": "1",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        },
+                        {
+                            "name": "hornRequest",
+                            "length": "1",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        } 
+                    ]
+    			},
+    			{
+    			"name": "data1",
+                "id": "NA",
+                "freq": "10ms",
+    			"signals":
+                    [
+        				{
+                            "name": "speed",
+                            "length": "16",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":[]
+                        },
+         				{
+                            "name": "odometer",
+                            "length": "16",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        },
+         				{
+                            "name": "tripA",
+                            "length": "16",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        },
+         				{
+                            "name": "tripB",
+                            "length": "16",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        }
+                    ]
+    			},
+    			{
+    			"name": "data2",
+                "id": "NA",
+                "freq": "10ms",
+    			"signals":
+                    [
+        				{
+                            "name": "runningTime",
+                            "length": "16",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":[]
+                        },
+         				{
+                            "name": "odometer",
+                            "length": "16",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        },
+         				{
+                            "name": "tripA",
+                            "length": "16",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        },
+         				{
+                            "name": "tripB",
+                            "length": "16",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":["low","high"]
+                        }
+                    ]
+    			}
+            ]
+        },
+        {
+            "name": "MCU",
+    		"messages": [
+    			{
+                "name": "status",
+                "id": "NA",
+                "freq": "10ms",
+                "signals":
+                    [
+                        {
+                            "name": "state",
+                            "length": "3"
+                        },
+                        {
+                            "name": "throttleMode",
+                            "length": "3"
+                        },
+                        {
+                            "name": "highBeam",
+                            "length": "1"
+                        },
+                        {
+                            "name": "brake",
+                            "length": "1"
+                        },
+                        {
+                            "name": "horn",
+                            "length": "1"
+                        },
+                        {
+                            "name": "GBSALL",
+                            "length": "1"
+                        },
+                        {
+                            "name": "contactor",
+                            "length": "1"
+                        },
+                        {
+                            "name": "chargePort",
+                            "length": "1"
+                        },
+                        {
+                            "name": "throttleVal",
+                            "length": "8"
+                        }
+                    ]
+                },
+                {
+                "name": "command",
+                "id": "NA",
+                "freq": "10ms",
+                "signals":
+                    [
+                        {
+                            "name": "doSomthingElse",
+                            "length": "1"
+                        }
+                    ]   
+                },
+                {
+                "name": "motorStatus",
+                "id": "NA",
+                "freq": "10ms",
+                "signals": 
+                    [
+                        {
+                            "name": "motorSpeed",
+                            "length": "8"
+                        },
+                        {
+                            "name": "motorCurrent",
+                            "length": "8"
+                        },
+                        {
+                            "name": "IphaseA",
+                            "length": "8"
+                        },
+                        {
+                            "name": "IphaseB",
+                            "length": "8"
+                        },
+                        {
+                            "name": "IphaseC",
+                            "length": "8"
+                        },
+                        {
+                            "name": "VphaseA",
+                            "length": "8"
+                        },
+                        {
+                            "name": "VphaseB",
+                            "length": "8"
+                        },
+                        {
+                            "name": "VphaseC",
+                            "length": "8"
+                        }
+                    ]
+                },
+                {
+                "name": "motorControllerRequest",
+                "id": "1792",
+                "freq": "1ms",
+                "signals": 
+                    [
+                        {
+                            "name": "requestType",
+                            "length": "8"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BMS",
+    		"messages": [
+    			{
+    			"name": "status",
+                "id": "NA",
+                "freq": "10ms",
+    			"signals":
+    				[
+        				{"name": "state",
+                        "length": "3"},
+                        {"name": "SOC",
+                        "length": "7"},
+                        {"name": "packVoltage",
+                        "length": "12"},
+                        {"name": "packCurrent",
+                        "length": "10"},
+                        {"name": "minTemp",
+                        "length": "12"},
+                        {"name": "maxTemp",
+                        "length": "12"}
+    				]
+    			},
+    			{
+    			"name": "cellVoltages",
+                "id": "NA",
+                "freq": "10ms",
+    			"signals":
+    				[
+                        {"name": "MultiPlex",
+                        "length": "4"},
+        				{"name": "cell1",
+                        "length": "12"},
+                        {"name": "cell2",
+                        "length": "12"},
+                        {"name": "cell3",
+                        "length": "12"},
+                        {"name": "cell4",
+                        "length": "12"},
+                        {"name": "cell5",
+                        "length": "12"}
+    				]   
+    			}
+            ]
+        },
+        {
+            "name": "MotorController",
+    		"messages": [
+    			{
+    			"name": "response",
+                "id": "1792",
+                "freq": "0ms",
+    			"signals":
+    				[
+        				{
+                        "name": "byte1",
+                        "length": "8"
+                        },
+                        {
+                        "name": "byte2",
+                        "length": "8"
+                        },
+                        {
+                        "name": "byte3",
+                        "length": "8"
+                        },
+                        {
+                        "name": "byte4",
+                        "length": "8"
+                        },
+                        {
+                        "name": "byte5",
+                        "length": "8"
+                        },
+                        {
+                        "name": "byte6",
+                        "length": "8"
+                        },
+                        {
+                        "name": "byte7",
+                        "length": "8"
+                        },
+                        {
+                        "name": "byte8",
+                        "length": "8"
+                        }
+    				]
+    			}
+            ]
+        }
+    ]
+}

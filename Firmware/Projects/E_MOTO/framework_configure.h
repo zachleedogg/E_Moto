@@ -52,7 +52,7 @@ typedef enum _priority {
     FRAMEWORK_PRIORITY_LEVELS
 } FRAMEWORK_priority_E;
 
-#define FRAMEWORK_QUEUE_SIZE 4
+#define FRAMEWORK_QUEUE_SIZE 16
 
 
 /***********************************************************************************************

@@ -1,0 +1,816 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:HSD
+LIBS:micros
+LIBS:ICs
+LIBS:Connectors
+LIBS:BodyController_03-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 11
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L +3V3 #PWR01
+U 1 1 59953D12
+P 700 4450
+F 0 "#PWR01" H 700 4300 50  0001 C CNN
+F 1 "+3V3" H 700 4590 50  0000 C CNN
+F 2 "" H 700 4450 50  0001 C CNN
+F 3 "" H 700 4450 50  0001 C CNN
+	1    700  4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 59953D98
+P 700 5350
+F 0 "#PWR02" H 700 5100 50  0001 C CNN
+F 1 "GND" H 700 5200 50  0000 C CNN
+F 2 "" H 700 5350 50  0001 C CNN
+F 3 "" H 700 5350 50  0001 C CNN
+	1    700  5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C2
+U 1 1 59954183
+P 800 4900
+F 0 "C2" H 825 5000 50  0000 L CNN
+F 1 "100nF" H 825 4800 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 838 4750 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 800 4900 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA" H 0   -100 50  0001 C CNN "PartNumber"
+	1    800  4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C5
+U 1 1 599541B1
+P 1000 4900
+F 0 "C5" H 1025 5000 50  0000 L CNN
+F 1 "100nF" H 1025 4800 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1038 4750 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1000 4900 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA" H 0   -100 50  0001 C CNN "PartNumber"
+	1    1000 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C6
+U 1 1 599541DB
+P 1200 4900
+F 0 "C6" H 1225 5000 50  0000 L CNN
+F 1 "100nF" H 1225 4800 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1238 4750 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1200 4900 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA" H 0   -100 50  0001 C CNN "PartNumber"
+	1    1200 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C7
+U 1 1 599541FC
+P 1400 4900
+F 0 "C7" H 1425 5000 50  0000 L CNN
+F 1 "100nF" H 1425 4800 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1438 4750 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1400 4900 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA" H 0   -100 50  0001 C CNN "PartNumber"
+	1    1400 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C9
+U 1 1 59954470
+P 1500 6600
+F 0 "C9" H 1525 6700 50  0000 L CNN
+F 1 "10uF" H 1525 6500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206" H 1538 6450 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 1500 6600 50  0001 C CNN
+F 4 "CGA5L1X7R1E106M160AC" H 0   0   50  0001 C CNN "PartNumber"
+	1    1500 6600
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR03
+U 1 1 5995450B
+P 1250 6600
+F 0 "#PWR03" H 1250 6350 50  0001 C CNN
+F 1 "GND" H 1250 6450 50  0000 C CNN
+F 2 "" H 1250 6600 50  0001 C CNN
+F 3 "" H 1250 6600 50  0001 C CNN
+	1    1250 6600
+	0    1    1    0   
+$EndComp
+$Comp
+L C C8
+U 1 1 59954578
+P 1500 6150
+F 0 "C8" H 1525 6250 50  0000 L CNN
+F 1 "100nF" H 1525 6050 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1538 6000 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1500 6150 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA" H 0   0   50  0001 C CNN "PartNumber"
+	1    1500 6150
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C1
+U 1 1 59955AC7
+P 700 6150
+F 0 "C1" H 725 6250 50  0000 L CNN
+F 1 "100nF" H 725 6050 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 738 6000 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 700 6150 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA" H 0   0   50  0001 C CNN "PartNumber"
+	1    700  6150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Ferrite_Bead L1
+U 1 1 59955DBF
+P 1100 5950
+F 0 "L1" V 950 5975 50  0000 C CNN
+F 1 "Ferrite_Bead" V 1250 5950 50  0000 C CNN
+F 2 "Inductors_SMD:L_0603" V 1030 5950 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/beads_automotive_power_mpz1608_en.pdf" H 1100 5950 50  0001 C CNN
+F 4 "MPZ1608S300ATDH5" H 0   0   50  0001 C CNN "PartNumber"
+	1    1100 5950
+	0    1    1    0   
+$EndComp
+$Comp
+L +3V3 #PWR04
+U 1 1 59955FA7
+P 600 5950
+F 0 "#PWR04" H 600 5800 50  0001 C CNN
+F 1 "+3V3" H 600 6090 50  0000 C CNN
+F 2 "" H 600 5950 50  0001 C CNN
+F 3 "" H 600 5950 50  0001 C CNN
+	1    600  5950
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR05
+U 1 1 59955FD3
+P 600 6350
+F 0 "#PWR05" H 600 6100 50  0001 C CNN
+F 1 "GND" H 600 6200 50  0000 C CNN
+F 2 "" H 600 6350 50  0001 C CNN
+F 3 "" H 600 6350 50  0001 C CNN
+	1    600  6350
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C3
+U 1 1 599562CF
+P 5150 6700
+F 0 "C3" H 5175 6800 50  0000 L CNN
+F 1 "18pF" H 5175 6600 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 5188 6550 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 5150 6700 50  0001 C CNN
+F 4 "CGA3E2C0G1H180J080AA" H 500 0   50  0001 C CNN "PartNumber"
+	1    5150 6700
+	0    -1   1    0   
+$EndComp
+$Comp
+L C C4
+U 1 1 59956321
+P 5150 7200
+F 0 "C4" H 5175 7300 50  0000 L CNN
+F 1 "18pF" H 5175 7100 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 5188 7050 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 5150 7200 50  0001 C CNN
+F 4 "CGA3E2C0G1H180J080AA" H 500 0   50  0001 C CNN "PartNumber"
+	1    5150 7200
+	0    -1   1    0   
+$EndComp
+$Comp
+L R R1
+U 1 1 5995635F
+P 4000 6950
+F 0 "R1" V 4080 6950 50  0000 C CNN
+F 1 "1M" V 4000 6950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 3930 6950 50  0001 C CNN
+F 3 "" H 4000 6950 50  0001 C CNN
+	1    4000 6950
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND #PWR06
+U 1 1 5995664C
+P 5450 6950
+F 0 "#PWR06" H 5450 6700 50  0001 C CNN
+F 1 "GND" H 5450 6800 50  0000 C CNN
+F 2 "" H 5450 6950 50  0001 C CNN
+F 3 "" H 5450 6950 50  0001 C CNN
+	1    5450 6950
+	0    -1   1    0   
+$EndComp
+$Comp
+L +3V3 #PWR07
+U 1 1 59967AA0
+P 1300 7100
+F 0 "#PWR07" H 1300 6950 50  0001 C CNN
+F 1 "+3V3" H 1300 7240 50  0000 C CNN
+F 2 "" H 1300 7100 50  0001 C CNN
+F 3 "" H 1300 7100 50  0001 C CNN
+	1    1300 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R95
+U 1 1 59967AE3
+P 1300 7350
+F 0 "R95" V 1380 7350 50  0000 C CNN
+F 1 "10k" V 1300 7350 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 1230 7350 50  0001 C CNN
+F 3 "" H 1300 7350 50  0001 C CNN
+	1    1300 7350
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R96
+U 1 1 59967E27
+P 1550 7650
+F 0 "R96" V 1630 7650 50  0000 C CNN
+F 1 "470R" V 1550 7650 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 1480 7650 50  0001 C CNN
+F 3 "" H 1550 7650 50  0001 C CNN
+	1    1550 7650
+	0    1    1    0   
+$EndComp
+$Comp
+L +3.3VA #PWR08
+U 1 1 59977C27
+P 1650 5900
+F 0 "#PWR08" H 1650 5750 50  0001 C CNN
+F 1 "+3.3VA" H 1650 6040 50  0000 C CNN
+F 2 "" H 1650 5900 50  0001 C CNN
+F 3 "" H 1650 5900 50  0001 C CNN
+	1    1650 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG09
+U 1 1 59980D1B
+P 1350 5800
+F 0 "#FLG09" H 1350 5875 50  0001 C CNN
+F 1 "PWR_FLAG" H 1350 5950 50  0000 C CNN
+F 2 "" H 1350 5800 50  0001 C CNN
+F 3 "" H 1350 5800 50  0001 C CNN
+	1    1350 5800
+	1    0    0    -1  
+$EndComp
+$Comp
+L PIC33EPxxxMU810 U1
+U 1 1 599FC02F
+P 8000 2250
+F 0 "U1" H 8750 -1600 60  0000 C CNN
+F 1 "PIC33EPxxxMU810" H 8000 -1600 60  0000 C CNN
+F 2 "Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm" H 7250 1850 60  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70616g.pdf" H 7250 1850 60  0001 C CNN
+F 4 "DSPIC33EP512MU810-I/PF" H 0   0   50  0001 C CNN "PartNumber"
+	1    8000 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L PIC33EPxxxMU810 U1
+U 2 1 599FC07A
+P 2550 3700
+F 0 "U1" H 3300 -150 60  0000 C CNN
+F 1 "PIC33EPxxxMU810" H 2550 -150 60  0000 C CNN
+F 2 "Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm" H 1800 3300 60  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70616g.pdf" H 1800 3300 60  0001 C CNN
+F 4 "DSPIC33EP512MU810-I/PF" H 0   0   50  0001 C CNN "PartNumber"
+	2    2550 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C37
+U 1 1 599FDE83
+P 600 4900
+F 0 "C37" H 625 5000 50  0000 L CNN
+F 1 "100nF" H 625 4800 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 638 4750 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 600 4900 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA" H 0   -100 50  0001 C CNN "PartNumber"
+	1    600  4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C61
+U 1 1 599FDED2
+P 1600 4900
+F 0 "C61" H 1625 5000 50  0000 L CNN
+F 1 "100nF" H 1625 4800 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1638 4750 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1600 4900 50  0001 C CNN
+F 4 "CGA3E2X7R1H104K080AA" H 0   -100 50  0001 C CNN "PartNumber"
+	1    1600 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L +3V3 #PWR010
+U 1 1 59B2845D
+P 3950 5800
+F 0 "#PWR010" H 3950 5650 50  0001 C CNN
+F 1 "+3V3" H 3950 5940 50  0000 C CNN
+F 2 "" H 3950 5800 50  0001 C CNN
+F 3 "" H 3950 5800 50  0001 C CNN
+	1    3950 5800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Crystal_GND24 Y1
+U 1 1 59BBA021
+P 4550 6950
+F 0 "Y1" V 4675 7150 50  0000 L TNN
+F 1 "8MHz" V 4675 7075 50  0000 L BNN
+F 2 "Crystals:Crystal_SMD_7050-4pin_7.0x5.0mm" H 4550 6950 50  0001 C CNN
+F 3 "http://www.ecsxtal.com/store/pdf/CSM-8Q.pdf" H 4550 6950 50  0001 C CNN
+F 4 "ECS-80-18-20BQ-DS" H 4550 6950 60  0001 C CNN "PartNumber"
+	1    4550 6950
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR011
+U 1 1 59BBA3D3
+P 4800 6950
+F 0 "#PWR011" H 4800 6700 50  0001 C CNN
+F 1 "GND" H 4800 6800 50  0000 C CNN
+F 2 "" H 4800 6950 50  0001 C CNN
+F 3 "" H 4800 6950 50  0001 C CNN
+	1    4800 6950
+	0    -1   1    0   
+$EndComp
+$Comp
+L GND #PWR012
+U 1 1 59BBA417
+P 4300 6950
+F 0 "#PWR012" H 4300 6700 50  0001 C CNN
+F 1 "GND" H 4300 6800 50  0000 C CNN
+F 2 "" H 4300 6950 50  0001 C CNN
+F 3 "" H 4300 6950 50  0001 C CNN
+	1    4300 6950
+	0    1    -1   0   
+$EndComp
+Text GLabel 9850 750  2    59   Output ~ 0
+SW_EN
+Text GLabel 9850 1250 2    59   Output ~ 0
+CAN_SLEEP
+Text GLabel 5450 3750 0    59   Input ~ 0
+12P_MONITOR
+Text GLabel 5450 3050 0    59   Input ~ 0
+12V_MONITOR
+Text GLabel 5450 5250 0    59   Output ~ 0
+AUX_PORT_EN
+Text GLabel 5450 4650 0    59   Output ~ 0
+HEADLIGHT_HI_EN
+Text GLabel 5450 4750 0    59   Output ~ 0
+HEADLIGHT_LO_EN
+Text GLabel 9850 850  2    59   Output ~ 0
+DIAG_EN
+Text GLabel 5450 2350 0    59   Input ~ 0
+HEADLIGHT_ISENSE
+Text GLabel 5450 5450 0    59   Output ~ 0
+TURN_SIGNAL_FR_EN
+Text GLabel 5450 5550 0    59   Output ~ 0
+TURN_SIGNAL_RR_EN
+Text GLabel 5450 5650 0    59   Output ~ 0
+TURN_SGINAL_FL_EN
+Text GLabel 5450 5750 0    59   Output ~ 0
+TURN_SIGNAL_RL_EN
+Text GLabel 5450 1550 0    59   Input ~ 0
+TURN_SIGNAL_R_STATUS
+Text GLabel 5450 1650 0    59   Input ~ 0
+TURN_SIGNAL_L_STATUS
+Text GLabel 5450 5850 0    59   Output ~ 0
+HEATED_GRIPS_EN
+Text GLabel 5450 5950 0    59   Output ~ 0
+HEATED_SEAT_EN
+Text GLabel 9850 950  2    59   Output ~ 0
+DIAG_SELECT
+Text GLabel 5450 2750 0    59   Input ~ 0
+HEATER_ISENSE
+Text GLabel 5450 4550 0    59   Output ~ 0
+TAILLIGHT_EN
+Text GLabel 5450 4450 0    59   Output ~ 0
+BRAKE_LIGHT_EN
+Text GLabel 5450 2250 0    59   Input ~ 0
+TAILLIGHT_ISENSE
+Text GLabel 5450 5350 0    59   Output ~ 0
+HORN_EN
+Text GLabel 5450 2450 0    59   Input ~ 0
+HORN_ISENSE
+Text GLabel 5450 2550 0    59   Input ~ 0
+AUX_PORT_ISENSE
+Text GLabel 9900 3100 2    59   Output ~ 0
+FAN_1_EN
+Text GLabel 5450 2050 0    59   Input ~ 0
+FAN_ISENSE
+Text GLabel 9900 2900 2    59   Output ~ 0
+PUMP_1_EN
+Text GLabel 9900 3000 2    59   Output ~ 0
+PUMP_2_EN
+Text GLabel 5450 2150 0    59   Input ~ 0
+PUMP_ISENSE
+Text GLabel 5450 3550 0    60   Input ~ 0
+RADIATOR_OUTPUT_TEMP_AI
+Text GLabel 5450 3450 0    60   Input ~ 0
+RADIATOR_INPUT_TEMP_AI
+Text GLabel 5300 750  0    59   Output ~ 0
+CHARGE_PORT_RELEASE_EN
+Text GLabel 5300 850  0    59   Output ~ 0
+STEERING_COLUMN_LOCK_EN
+Text GLabel 5450 2650 0    59   Input ~ 0
+LOCK_ISENSE
+Text GLabel 5450 4950 0    59   Output ~ 0
+DCDC_CONTACTOR_EN
+Text GLabel 5450 5050 0    59   Output ~ 0
+BATTERY_CONTACTOR_EN
+Text GLabel 5450 5150 0    59   Output ~ 0
+PRECHARGE_RELAY_EN
+Text GLabel 5450 4850 0    59   Output ~ 0
+CHARGER_CONTACTOR_EN
+Text GLabel 5450 1750 0    59   Input ~ 0
+CONTACT_1_2_STATUS
+Text GLabel 5450 1850 0    59   Input ~ 0
+CONTACT_3_4_STATUS
+Text GLabel 5300 1150 0    59   Output ~ 0
+MOTOR_CONTROLLER_EN
+Text GLabel 5300 1250 0    59   Output ~ 0
+CHARGE_CONTROLLER_EN
+Text GLabel 5450 2850 0    59   Input ~ 0
+ECU_2_ISENSE
+Text GLabel 5300 950  0    59   Output ~ 0
+BMS_CONTROLLER_EN
+Text GLabel 5300 1050 0    59   Output ~ 0
+IC_CONTROLLER_SLEEP
+Text GLabel 5450 2950 0    59   Input ~ 0
+ECU_1_ISENSE
+Text GLabel 9850 1850 2    60   Output ~ 0
+CAN_TX
+Text GLabel 9850 1950 2    60   Input ~ 0
+CAN_RX
+Text Notes 1550 1000 2    60   ~ 0
+TO ADD
+Text GLabel 1150 7650 0    60   Input ~ 0
+~RESET
+Text GLabel 5450 4150 0    60   Input ~ 0
+PGED
+Text GLabel 5450 4250 0    60   Input ~ 0
+PGEC
+Text GLabel 9850 2050 2    60   Output ~ 0
+UART_TX
+Text GLabel 9850 2150 2    60   Input ~ 0
+UART_RX
+Text GLabel 5450 3150 0    60   Input ~ 0
+BATT_ISENSE
+Text GLabel 9850 1150 2    60   Output ~ 0
+BATT_EN
+Text GLabel 9850 1450 2    60   Input ~ 0
+BATT_~FAULT
+Text GLabel 9900 3200 2    59   Output ~ 0
+FAN_2_EN
+Text GLabel 5450 3350 0    59   Input ~ 0
+IC_CONTROLLER_ISENSE
+Text GLabel 9850 1650 2    59   Input ~ 0
+IC_CONTROLLER_~FLT
+Text GLabel 9850 1350 2    59   Output ~ 0
+IC_CONTROLLER_SLEEP
+Text GLabel 5300 1350 0    59   Output ~ 0
+J1772_CONTROLLER_EN
+Text GLabel 9900 2500 2    60   Output ~ 0
+FAN_SPEED_1_PWM
+Text GLabel 9900 2600 2    60   Output ~ 0
+FAN_SPEED_2_PWM
+Text GLabel 9900 2700 2    60   Output ~ 0
+PUMP_SPEED_1_PWM
+Text GLabel 9900 2800 2    60   Output ~ 0
+PUMP_SPEED_2_PWM
+Text GLabel 5450 3250 0    60   Input ~ 0
+DCDC_ISENSE
+Text GLabel 9850 1050 2    60   Output ~ 0
+DCDC_EN
+Text GLabel 9850 1550 2    60   Input ~ 0
+DCDC_~FAULT
+Wire Wire Line
+	600  5350 1850 5350
+Wire Wire Line
+	600  4450 1850 4450
+Wire Wire Line
+	800  4750 800  4450
+Wire Wire Line
+	1000 4750 1000 4450
+Wire Wire Line
+	1200 4750 1200 4450
+Wire Wire Line
+	1400 4750 1400 4450
+Wire Wire Line
+	800  5050 800  5350
+Wire Wire Line
+	1000 5050 1000 5350
+Wire Wire Line
+	1200 5050 1200 5350
+Wire Wire Line
+	1400 5050 1400 5350
+Wire Wire Line
+	1650 6600 1850 6600
+Wire Wire Line
+	1350 6600 1250 6600
+Wire Wire Line
+	1250 5950 1800 5950
+Wire Wire Line
+	1500 6000 1500 5950
+Wire Wire Line
+	600  6350 1800 6350
+Wire Wire Line
+	600  5950 950  5950
+Wire Wire Line
+	700  6350 700  6300
+Wire Wire Line
+	700  6000 700  5950
+Wire Wire Line
+	1500 6300 1500 6350
+Wire Wire Line
+	3800 6700 5000 6700
+Wire Wire Line
+	3800 7200 5000 7200
+Wire Wire Line
+	4550 7100 4550 7200
+Wire Wire Line
+	4000 7100 4000 7200
+Wire Wire Line
+	4000 6800 4000 6700
+Wire Wire Line
+	4550 6800 4550 6700
+Wire Wire Line
+	5350 7200 5300 7200
+Wire Wire Line
+	5350 6700 5350 7200
+Wire Wire Line
+	5350 6700 5300 6700
+Wire Wire Line
+	1300 7100 1300 7200
+Wire Wire Line
+	1300 7500 1300 7650
+Wire Wire Line
+	1150 7650 1400 7650
+Wire Wire Line
+	1650 5900 1650 5950
+Wire Wire Line
+	1350 5800 1350 5950
+Wire Wire Line
+	600  4450 600  4750
+Wire Wire Line
+	600  5050 600  5350
+Wire Wire Line
+	1850 4450 1850 4950
+Wire Wire Line
+	1850 5350 1850 5750
+Wire Wire Line
+	1800 5950 1800 6000
+Wire Wire Line
+	1800 6000 1850 6000
+Wire Wire Line
+	1800 6350 1800 6300
+Wire Wire Line
+	1800 6300 1850 6300
+Wire Wire Line
+	1850 7150 1750 7150
+Wire Wire Line
+	1750 7150 1750 7650
+Wire Wire Line
+	1750 7650 1700 7650
+Wire Wire Line
+	3800 6700 3800 6800
+Wire Wire Line
+	3800 6800 3750 6800
+Wire Wire Line
+	3800 7200 3800 7100
+Wire Wire Line
+	3800 7100 3750 7100
+Wire Wire Line
+	1600 4450 1600 4750
+Wire Wire Line
+	1600 5050 1600 5350
+Wire Wire Line
+	9850 750  9650 750 
+Wire Wire Line
+	9850 850  9650 850 
+Wire Wire Line
+	9850 950  9650 950 
+Wire Wire Line
+	9850 1050 9650 1050
+Wire Wire Line
+	9850 1150 9650 1150
+Wire Wire Line
+	9850 1250 9650 1250
+Wire Wire Line
+	9850 1350 9650 1350
+Wire Wire Line
+	9850 1450 9650 1450
+Wire Wire Line
+	9650 1550 9850 1550
+Wire Wire Line
+	9850 1650 9650 1650
+Wire Wire Line
+	9850 1850 9650 1850
+Wire Wire Line
+	9850 1950 9650 1950
+Wire Wire Line
+	9850 2050 9650 2050
+Wire Wire Line
+	9850 2150 9650 2150
+Wire Wire Line
+	9650 2500 9900 2500
+Wire Wire Line
+	9900 2600 9650 2600
+Wire Wire Line
+	9900 2700 9650 2700
+Wire Wire Line
+	9900 2800 9650 2800
+Wire Wire Line
+	9900 2900 9650 2900
+Wire Wire Line
+	9900 3000 9650 3000
+Wire Wire Line
+	9900 3100 9650 3100
+Wire Wire Line
+	9900 3200 9650 3200
+Wire Wire Line
+	5600 5950 5450 5950
+Wire Wire Line
+	5600 5850 5450 5850
+Wire Wire Line
+	5600 5750 5450 5750
+Wire Wire Line
+	5600 5650 5450 5650
+Wire Wire Line
+	5600 5550 5450 5550
+Wire Wire Line
+	5600 5450 5450 5450
+Wire Wire Line
+	5600 5350 5450 5350
+Wire Wire Line
+	5600 5250 5450 5250
+Wire Wire Line
+	5600 5150 5450 5150
+Wire Wire Line
+	5600 5050 5450 5050
+Wire Wire Line
+	5600 4950 5450 4950
+Wire Wire Line
+	5600 4850 5450 4850
+Wire Wire Line
+	5600 4750 5450 4750
+Wire Wire Line
+	5600 4650 5450 4650
+Wire Wire Line
+	5600 4550 5450 4550
+Wire Wire Line
+	5600 4450 5450 4450
+Wire Wire Line
+	5600 4250 5450 4250
+Wire Wire Line
+	5600 4150 5450 4150
+Wire Wire Line
+	5600 3750 5450 3750
+Wire Wire Line
+	5600 3550 5450 3550
+Wire Wire Line
+	5600 3450 5450 3450
+Wire Wire Line
+	5600 3350 5450 3350
+Wire Wire Line
+	5600 3250 5450 3250
+Wire Wire Line
+	5600 3150 5450 3150
+Wire Wire Line
+	5450 3050 5600 3050
+Wire Wire Line
+	5600 2950 5450 2950
+Wire Wire Line
+	5450 2850 5600 2850
+Wire Wire Line
+	5600 2750 5450 2750
+Wire Wire Line
+	5450 2650 5600 2650
+Wire Wire Line
+	5600 2550 5450 2550
+Wire Wire Line
+	5450 2450 5600 2450
+Wire Wire Line
+	5600 2350 5450 2350
+Wire Wire Line
+	5450 2250 5600 2250
+Wire Wire Line
+	5600 2150 5450 2150
+Wire Wire Line
+	5450 2050 5600 2050
+Wire Wire Line
+	5600 1850 5450 1850
+Wire Wire Line
+	5450 1750 5600 1750
+Wire Wire Line
+	5600 1650 5450 1650
+Wire Wire Line
+	5450 1550 5600 1550
+Wire Wire Line
+	5600 1350 5300 1350
+Wire Wire Line
+	5300 1250 5600 1250
+Wire Wire Line
+	5600 1150 5300 1150
+Wire Wire Line
+	5300 1050 5600 1050
+Wire Wire Line
+	5600 950  5300 950 
+Wire Wire Line
+	5300 850  5600 850 
+Wire Wire Line
+	5600 750  5300 750 
+Wire Wire Line
+	3950 5800 3950 5850
+Wire Wire Line
+	3950 5850 3750 5850
+Wire Wire Line
+	4350 6950 4300 6950
+Wire Wire Line
+	4800 6950 4750 6950
+Wire Wire Line
+	5450 6950 5350 6950
+Connection ~ 800  4450
+Connection ~ 1000 4450
+Connection ~ 1200 4450
+Connection ~ 1400 4450
+Connection ~ 800  5350
+Connection ~ 1000 5350
+Connection ~ 1200 5350
+Connection ~ 1400 5350
+Connection ~ 700  4450
+Connection ~ 1500 5950
+Connection ~ 700  6350
+Connection ~ 700  5950
+Connection ~ 1500 6350
+Connection ~ 4550 7200
+Connection ~ 4000 7200
+Connection ~ 4000 6700
+Connection ~ 4550 6700
+Connection ~ 1300 7650
+Connection ~ 1650 5950
+Connection ~ -800 1100
+Connection ~ 1350 5950
+Connection ~ 700  5350
+Connection ~ 1850 5450
+Connection ~ 1850 5550
+Connection ~ 1850 5650
+Connection ~ 1850 4850
+Connection ~ 1850 4750
+Connection ~ 1850 4650
+Connection ~ 1850 4550
+Connection ~ 1850 5350
+Connection ~ 1600 4450
+Connection ~ 1600 5350
+Connection ~ 5350 6950
+NoConn ~ 3750 6200
+Connection ~ 1850 4450
+$EndSCHEMATC

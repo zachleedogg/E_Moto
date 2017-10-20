@@ -125,7 +125,6 @@ inline void FRAMEWORK_TASKRUNNER_1ms(void) {
     }
 
     /*Initialize Switch 3 and debounce using BUTTONS_run()*/
-
     tempStatus = sw3.status;
     newStatus = BUTTONS_run(&sw3);
     if (newStatus != tempStatus) {
@@ -138,6 +137,7 @@ inline void FRAMEWORK_TASKRUNNER_1ms(void) {
         framework_taskRunner_print("SW3: %d\n", newStatus);
     }
 
+    /*Poll UART_1 for incoming debug messages*/
     if (Uart1RXdataReady()) {
         Event newEvent;
         newEvent.EventPriority = FRAMEWORK_PRIORITY_1;

@@ -1,0 +1,135 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L CSD16570Q5B Q1
+U 1 1 593A61C0
+P 3350 2600
+F 0 "Q1" H 3150 2900 50  0000 L CNN
+F 1 "CSD16570Q5B" H 3150 2350 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:TDSON-8-1" H 3350 2800 50  0001 C CIN
+F 3 "" V 3350 2600 50  0001 L CNN
+	1    3350 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L CSD16570Q5B Q2
+U 1 1 593A61EF
+P 3350 3350
+F 0 "Q2" H 3150 3650 50  0000 L CNN
+F 1 "CSD16570Q5B" H 3150 3100 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:TDSON-8-1" H 3350 3550 50  0001 C CIN
+F 3 "" V 3350 3350 50  0001 L CNN
+	1    3350 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 593B6EF1
+P 2350 4250
+F 0 "R1" V 2430 4250 50  0000 C CNN
+F 1 "100R" V 2350 4250 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 2280 4250 50  0001 C CNN
+F 3 "" H 2350 4250 50  0001 C CNN
+	1    2350 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2350 2700 2350 4100
+Wire Wire Line
+	2350 3450 3050 3450
+Wire Wire Line
+	2350 2700 3050 2700
+Connection ~ 2350 3450
+Wire Wire Line
+	3050 3350 3050 3150
+Wire Wire Line
+	3050 3350 2600 3350
+Wire Wire Line
+	2600 3350 2600 1850
+Wire Wire Line
+	3050 2600 3050 2400
+Wire Wire Line
+	3050 2600 2600 2600
+Connection ~ 2600 2600
+Wire Wire Line
+	3650 3450 3650 2400
+Wire Wire Line
+	3650 3450 4800 3450
+$Comp
+L +12P #PWR?
+U 1 1 593DA62D
+P 2600 1850
+F 0 "#PWR?" H 2600 1700 50  0001 C CNN
+F 1 "+12P" H 2600 1990 50  0000 C CNN
+F 2 "" H 2600 1850 50  0001 C CNN
+F 3 "" H 2600 1850 50  0001 C CNN
+	1    2600 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L D_Zener D?
+U 1 1 593E1C67
+P 2350 4550
+F 0 "D?" H 2350 4650 50  0000 C CNN
+F 1 "D_Zener" V 2350 4450 50  0000 C CNN
+F 2 "" H 2350 4550 50  0001 C CNN
+F 3 "" H 2350 4550 50  0001 C CNN
+	1    2350 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 593E20CF
+P 2350 4700
+F 0 "#PWR?" H 2350 4450 50  0001 C CNN
+F 1 "GND" H 2350 4550 50  0000 C CNN
+F 2 "" H 2350 4700 50  0001 C CNN
+F 3 "" H 2350 4700 50  0001 C CNN
+	1    2350 4700
+	1    0    0    -1  
+$EndComp
+Text Notes 2550 1350 0    60   ~ 0
+Reverse Polarity Protection
+$EndSCHEMATC

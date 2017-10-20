@@ -49,6 +49,7 @@
         <itemPath>touchScreenSerivce.c</itemPath>
         <itemPath>framework_taskRunner.c</itemPath>
         <itemPath>debuggerSerivce.c</itemPath>
+        <itemPath>movingAverage.c</itemPath>
         <itemPath>canSerivce.c</itemPath>
       </logicalFolder>
       <logicalFolder name="src" displayName="src" projectFiles="true">
@@ -67,7 +68,6 @@
         <itemPath>../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
-      <itemPath>movingAverage.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

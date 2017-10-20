@@ -11,6 +11,7 @@
 /*******************************************************************************
  * Library Includes
  */
+#include "bolt_init.h"
 #include "bolt_uart.h"
 
 
@@ -18,11 +19,12 @@
  * System Defines
  */
 #define DEFINES_SYSTEM_CLOCK_FREQ FREQ_120MHZ
+#define DEFINES_SYSTEM_CLOCK_SOURCE EXTERNAL
+
 
 /*******************************************************************************
  * PIN DEFINITIONS
  */
-
 
 #define DEFINES_UART_TX UART_TX_RP36
 #define DEFINES_UART_RX UART_RX_RPI24

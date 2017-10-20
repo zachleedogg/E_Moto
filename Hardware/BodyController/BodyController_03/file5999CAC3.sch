@@ -1,0 +1,215 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:HSD
+LIBS:micros
+LIBS:ICs
+LIBS:BodyController_03-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 11 11
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L +12V #PWR?
+U 1 1 5999DC75
+P 3850 1600
+F 0 "#PWR?" H 3850 1450 50  0001 C CNN
+F 1 "+12V" H 3850 1740 50  0000 C CNN
+F 2 "" H 3850 1600 50  0001 C CNN
+F 3 "" H 3850 1600 50  0001 C CNN
+	1    3850 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP C?
+U 1 1 5999DC82
+P 4550 1900
+F 0 "C?" H 4575 2000 50  0000 L CNN
+F 1 "47uF" H 4575 1800 50  0000 L CNN
+F 2 "" H 4588 1750 50  0001 C CNN
+F 3 "" H 4550 1900 50  0001 C CNN
+	1    4550 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5999DC83
+P 4550 2050
+F 0 "#PWR?" H 4550 1800 50  0001 C CNN
+F 1 "GND" H 4550 1900 50  0000 C CNN
+F 2 "" H 4550 2050 50  0001 C CNN
+F 3 "" H 4550 2050 50  0001 C CNN
+	1    4550 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L D_Schottky D?
+U 1 1 5999DC85
+P 4200 1600
+F 0 "D?" H 4200 1700 50  0000 C CNN
+F 1 "D_Schottky" H 4200 1500 50  0000 C CNN
+F 2 "" H 4200 1600 50  0001 C CNN
+F 3 "" H 4200 1600 50  0001 C CNN
+	1    4200 1600
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C?
+U 1 1 5999DC86
+P 4850 1850
+F 0 "C?" H 4875 1950 50  0000 L CNN
+F 1 "10uF" H 4875 1750 50  0000 L CNN
+F 2 "" H 4888 1700 50  0001 C CNN
+F 3 "" H 4850 1850 50  0001 C CNN
+	1    4850 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5999DC8A
+P 4850 2050
+F 0 "#PWR?" H 4850 1800 50  0001 C CNN
+F 1 "GND" H 4850 1900 50  0000 C CNN
+F 2 "" H 4850 2050 50  0001 C CNN
+F 3 "" H 4850 2050 50  0001 C CNN
+	1    4850 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Q_PMOS_DGS Q?
+U 1 1 5999DCA9
+P 6000 1700
+F 0 "Q?" H 6200 1750 50  0000 L CNN
+F 1 "Q_PMOS_DGS" H 6200 1650 50  0000 L CNN
+F 2 "" H 6200 1800 50  0001 C CNN
+F 3 "" H 6000 1700 50  0001 C CNN
+	1    6000 1700
+	0    1    -1   0   
+$EndComp
+$Comp
+L R R?
+U 1 1 5999DCAA
+P 5750 1850
+F 0 "R?" V 5830 1850 50  0000 C CNN
+F 1 "100k" V 5750 1850 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 5680 1850 50  0001 C CNN
+F 3 "" H 5750 1850 50  0001 C CNN
+	1    5750 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5999DCAB
+P 5750 2250
+F 0 "R?" V 5830 2250 50  0000 C CNN
+F 1 "10k" V 5750 2250 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 5680 2250 50  0001 C CNN
+F 3 "" H 5750 2250 50  0001 C CNN
+	1    5750 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5999DCAD
+P 5750 2900
+F 0 "#PWR?" H 5750 2650 50  0001 C CNN
+F 1 "GND" H 5750 2750 50  0000 C CNN
+F 2 "" H 5750 2900 50  0001 C CNN
+F 3 "" H 5750 2900 50  0001 C CNN
+	1    5750 2900
+	1    0    0    -1  
+$EndComp
+Text GLabel 5250 2650 0    59   Input ~ 0
+SW_EN
+Text Notes 7150 1200 2    197  ~ 0
+12V_SW
+Wire Wire Line
+	4350 1600 5800 1600
+Wire Wire Line
+	4550 1600 4550 1750
+Connection ~ 4550 1600
+Connection ~ 4850 1600
+Wire Wire Line
+	4850 2050 4850 2000
+Wire Wire Line
+	4850 1700 4850 1600
+Wire Wire Line
+	6000 1900 6000 2050
+Wire Wire Line
+	6000 2050 5750 2050
+Wire Wire Line
+	5750 2000 5750 2100
+Connection ~ 5750 2050
+Wire Wire Line
+	5750 1600 5750 1700
+Connection ~ 5750 1600
+Wire Wire Line
+	5750 2900 5750 2850
+Wire Wire Line
+	6450 1600 6200 1600
+Wire Wire Line
+	5250 2650 5450 2650
+Wire Wire Line
+	3850 1600 4050 1600
+Wire Wire Line
+	5750 2400 5750 2450
+$Comp
+L Q_NMOS_DGS Q?
+U 1 1 5999E000
+P 5650 2650
+F 0 "Q?" H 5850 2700 50  0000 L CNN
+F 1 "Q_NMOS_DGS" H 5850 2600 50  0000 L CNN
+F 2 "" H 5850 2750 50  0001 C CNN
+F 3 "" H 5650 2650 50  0001 C CNN
+	1    5650 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12P #PWR?
+U 1 1 5999E2A7
+P 6450 1600
+F 0 "#PWR?" H 6450 1450 50  0001 C CNN
+F 1 "+12P" H 6450 1740 50  0000 C CNN
+F 2 "" H 6450 1600 50  0001 C CNN
+F 3 "" H 6450 1600 50  0001 C CNN
+	1    6450 1600
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
