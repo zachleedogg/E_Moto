@@ -1,0 +1,64 @@
+* C:\Users\kid group\Documents\Repos\E_Moto\Hardware\Simulations\Efuse_Latch.asc
+V1 5V 0 5V
+V2 lat 0 PWL(0 0 .024 3.3 .027 0)
+XU1 N008 N007 5V 0 nFault LM2901
+V4 N008 0 2.5
+R4 5V nFault 10k
+R1 lat N007 10k
+M1 N007 N004 5V 5V BSS84
+R2 5V N004 10k
+M2 N004 EN nFault nFault BSP89
+V3 EN 0 PULSE(0 3.3 5m 0.001m 0.001m 5m 10m)
+M3 N006 5V nFault nFault BSP89
+R3 N001 N003 10k
+R5 CP N001 100k
+V5 VBAT 0 12
+M4 VBAT N001 gate gate BSS84
+V6 CP VBAT 13
+R6 gate CP 4k
+M5 N005 3V3 EN EN BSP89
+R7 N001 N002 10k
+V7 3V3 0 3.3
+D1 N002 N005 1N4148
+D2 N003 N006 1N4148
+.model D D
+.lib C:\Users\kid group\Documents\LTspiceXVII\lib\cmp\standard.dio
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\kid group\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran .03
+* LM2901 VOLTAGE COMPARATOR "MACROMODEL" SUBCIRCUIT
+* CREATED USING PARTS VERSION 4.03 ON 03/14/90 AT 13:05
+* REV (N/A)
+* CONNECTIONS:   NON-INVERTING INPUT
+*                | INVERTING INPUT
+*                | | POSITIVE POWER SUPPLY
+*                | | | NEGATIVE POWER SUPPLY
+*                | | | | OPEN COLLECTOR OUTPUT
+*                | | | | |
+.SUBCKT LM2901   1 2 3 4 5
+*
+  F1    9  3 V1 1
+  IEE   3  7 DC 100.0E-6
+  VI1  21  1 DC .75
+  VI2  22  2 DC .75
+  Q1    9 21  7 QIN
+  Q2    8 22  7 QIN
+  Q3    9  8  4 QMO
+  Q4    8  8  4 QMI
+.MODEL QIN PNP(IS=800.0E-18 BF=2.000E3)
+.MODEL QMI NPN(IS=800.0E-18 BF=1002)
+.MODEL QMO NPN(IS=800.0E-18 BF=1000 CJC=1E-15 TR=807.4E-9)
+  E1   10  4  9  4  1
+  V1   10 11 DC 0
+  Q5    5 11  4 QOC
+.MODEL QOC NPN(IS=800.0E-18 BF=3.378E3 CJC=1E-15 TF=930.2E-12 TR=543.8E-9)
+  DP    4  3 DX
+  RP    3  4 50.00E3
+.MODEL DX  D(IS=800.0E-18)
+*
+.ENDS
+
+.lib UniversalOpamps2.sub
+.backanno
+.end

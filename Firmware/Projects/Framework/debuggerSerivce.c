@@ -101,7 +101,7 @@ static DEBUGGER_SERVICE_states_E init(Event ThisEvent) {
 }
 
 /*******************************************************************************
- *                             W E L C O M E
+ *                             D E B U G   S T A T E
  * @param ThisEvent
  * @return 
  */
@@ -110,7 +110,8 @@ static DEBUGGER_SERVICE_states_E debugState(Event ThisEvent) {
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
             break;
-            /*Put custom states below here*/
+            /*If a UART command is sent, the first character selects a service,
+             * and the second char enables or disables debug printing*/
         case DEBUG_MESSAGE_EVENT:
             switch (msg[0]) {
                 case 0:

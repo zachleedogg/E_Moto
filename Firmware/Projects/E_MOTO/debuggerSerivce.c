@@ -60,7 +60,7 @@ static unsigned char msg[20] = {};
 Event debuggerService(Event ThisEvent) {
     /*Debugging print statement*/
     Uart1Read(msg);
-    debuggerService_print("Service: %s...\nASCII: %s\nHEX:", ServiceStrings[debuggerService_SERVICE], msg);
+    debuggerService_print("%s...\nASCII: %s\nHEX:", ServiceStrings[debuggerService_SERVICE], msg);
     uint8_t i = 0;
     while (msg[i]) {
         debuggerService_print(" %2x", msg[i]);

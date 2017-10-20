@@ -41,18 +41,19 @@ static const char __attribute__((__unused__)) * const StateStrings[] = {
 };
 
 /* function-ifies the state list*/
-#define FUNCTION_FORM(WORD) static TEMPLATE_SERVICE_states_E WORD(Event ThisEvent);
+#define FUNCTION_FORM(WORD) static void WORD(Event ThisEvent);
 #define FUNC_PTR_FORM(WORD) WORD,
 TEMPLATE_SERVICE_STATES(FUNCTION_FORM)
-typedef TEMPLATE_SERVICE_states_E(*statePtr)(Event);
+typedef void(*statePtr)(Event);
 static statePtr theState[] = {TEMPLATE_SERVICE_STATES(FUNC_PTR_FORM)};
 
 /*Set new state function*/
-static TEMPLATE_SERVICE_states_E setStateTo(statePtr thisState);
+static void setStateTo(statePtr thisState);
 
 /*State variables*/
 static TEMPLATE_SERVICE_states_E prevState = init_state; /* initialize previous state */
 static TEMPLATE_SERVICE_states_E curState = init_state; /* initialize current state */
+static TEMPLATE_SERVICE_states_E nextState = init_state; /* initialize current state */
 
 /*******************************************************************************
  * USER SPACE
@@ -66,18 +67,18 @@ Event templateService(Event ThisEvent) {
     templateService_print("Service: %s,   State: %s,   Event: %s %d\n\n", ServiceStrings[templateService_SERVICE], StateStrings[curState], EventStrings[ThisEvent.EventType], ThisEvent.EventParam);
 
     /*Call the state machine functions*/
-    TEMPLATE_SERVICE_states_E nextState = theState[curState](ThisEvent);
+    theState[curState](ThisEvent);
 
     /* This only happens during state transition
      * State transitions thus have priority over posting new events
      * State transitions always consist of an exit event to curState and entry event to nextState */
     if (nextState != curState) {
-        templateService_print("Transistioning\n");
+        templateService_print("Transitioning\n");
         ThisEvent.EventType = NO_EVENT;
-        templateService(EXIT);
+        theState[curState](EXIT);
         prevState = curState;
         curState = nextState;
-        templateService(ENTRY);
+        theState[curState](ENTRY);
     }
 
     return ThisEvent;
@@ -88,14 +89,13 @@ Event templateService(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TEMPLATE_SERVICE_states_E init(Event ThisEvent) {
-    TEMPLATE_SERVICE_states_E nextState = curState;
+static void init(Event ThisEvent) {
+
     if (ThisEvent.EventType == INIT_EVENT) {
         /*Initialization stuff here*/
 
-        nextState = setStateTo(welcomeState);
+        setStateTo(welcomeState);
     }
-    return nextState;
 }
 
 /*******************************************************************************
@@ -103,11 +103,11 @@ static TEMPLATE_SERVICE_states_E init(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TEMPLATE_SERVICE_states_E welcomeState(Event ThisEvent) {
-    TEMPLATE_SERVICE_states_E nextState = curState;
+static void welcomeState(Event ThisEvent) {
+
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
-
+            setStateTo(lockedState);
             break;
             /*Put custom states below here*/
 
@@ -117,7 +117,6 @@ static TEMPLATE_SERVICE_states_E welcomeState(Event ThisEvent) {
         default:
             break;
     }
-    return nextState;
 }
 
 /*******************************************************************************
@@ -125,8 +124,8 @@ static TEMPLATE_SERVICE_states_E welcomeState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TEMPLATE_SERVICE_states_E lockedState(Event ThisEvent) {
-    TEMPLATE_SERVICE_states_E nextState = curState;
+static void lockedState(Event ThisEvent) {
+
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
             break;
@@ -138,7 +137,6 @@ static TEMPLATE_SERVICE_states_E lockedState(Event ThisEvent) {
         default:
             break;
     }
-    return nextState;
 }
 
 /*******************************************************************************
@@ -146,9 +144,7 @@ static TEMPLATE_SERVICE_states_E lockedState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TEMPLATE_SERVICE_states_E homeState(Event ThisEvent) {
-
-    TEMPLATE_SERVICE_states_E nextState = curState;
+static void homeState(Event ThisEvent) {
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -161,7 +157,7 @@ static TEMPLATE_SERVICE_states_E homeState(Event ThisEvent) {
         default:
             break;
     }
-    return nextState;
+
 }
 
 /*******************************************************************************
@@ -169,9 +165,7 @@ static TEMPLATE_SERVICE_states_E homeState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TEMPLATE_SERVICE_states_E runningState(Event ThisEvent) {
-
-    TEMPLATE_SERVICE_states_E nextState = curState;
+static void runningState(Event ThisEvent) {
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -184,7 +178,7 @@ static TEMPLATE_SERVICE_states_E runningState(Event ThisEvent) {
         default:
             break;
     }
-    return nextState;
+
 }
 
 /*******************************************************************************
@@ -192,9 +186,7 @@ static TEMPLATE_SERVICE_states_E runningState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TEMPLATE_SERVICE_states_E batteryState(Event ThisEvent) {
-
-    TEMPLATE_SERVICE_states_E nextState = curState;
+static void batteryState(Event ThisEvent) {
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -207,7 +199,7 @@ static TEMPLATE_SERVICE_states_E batteryState(Event ThisEvent) {
         default:
             break;
     }
-    return nextState;
+
 }
 
 /*******************************************************************************
@@ -215,8 +207,7 @@ static TEMPLATE_SERVICE_states_E batteryState(Event ThisEvent) {
  * @param ThisEvent
  * @return 
  */
-static TEMPLATE_SERVICE_states_E statisticState(Event ThisEvent) {
-    TEMPLATE_SERVICE_states_E nextState = curState;
+static void statisticState(Event ThisEvent) {
 
     switch (ThisEvent.EventType) {
         case ENTRY_EVENT:
@@ -229,24 +220,23 @@ static TEMPLATE_SERVICE_states_E statisticState(Event ThisEvent) {
         default:
             break;
     }
-    return nextState;
 }
 
 /*******************************************************************************
  * PRIVATE HELPER FUNCTIONS
  * ****************************************************************************/
 
-static TEMPLATE_SERVICE_states_E setStateTo(statePtr thisState) {
-    TEMPLATE_SERVICE_states_E nextState = 0;
-    for (nextState = 0; nextState < NUMBER_OF_STATES; nextState++) {
-        if ((uint16_t) theState[nextState] == (uint16_t) thisState) {
+static void setStateTo(statePtr thisState) {
+    uint8_t stateIndex = 0;
+    for (stateIndex = 0; stateIndex < NUMBER_OF_STATES; stateIndex++) {
+        if ((uint16_t) theState[stateIndex] == (uint16_t) thisState) {
             break;
         }
     }
-    if (nextState == NUMBER_OF_STATES) {
-        nextState = 0;
+    if (stateIndex == NUMBER_OF_STATES) {
+        stateIndex = 0;
     }
-    return nextState;
+    nextState = stateIndex;
 }
 
 void template_Debug(uint8_t state) {

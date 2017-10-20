@@ -6,7 +6,7 @@
 #define ANALOG_TO_DIG(x) (14+x)
 
 #define DOOR_SW_V2 3
-#define REED_1 4
+#define REED_1 5
 
 
 
@@ -19,7 +19,7 @@ static uint32_t doorAutoCloseTimer = 0;
 static uint16_t doorSwitchHoldTimer = DOOW_SW_HOLD_DELAY;
 
 /*Password Stuff*/
-static const uint8_t passcode[] = {'4', '1', '5', '3'};
+static const uint8_t passcode[] = {'2', '8', '1', '8'};
 #define PASSCODE_SIZE sizeof(passcode)
 static uint8_t code[PASSCODE_SIZE + 1] = {};
 static uint8_t codeIndex = 0;
