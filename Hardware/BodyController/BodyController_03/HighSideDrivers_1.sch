@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:BodyController_03-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -28,10 +29,6 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:HSD
-LIBS:micros
-LIBS:ICs
-LIBS:Connectors
 LIBS:BodyController_03-cache
 EELAYER 25 0
 EELAYER END
@@ -70,9 +67,11 @@ F 3 "" H 3300 950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 2N7002 Q8
+L 2N7002-RESCUE-BodyController_03 Q8
 U 1 1 598C3B55
 P 1850 1700
+AR Path="/598C3B55" Ref="Q8"  Part="1" 
+AR Path="/5986882A/59868A89/598C3B55" Ref="Q8"  Part="1" 
 F 0 "Q8" H 2050 1775 50  0000 L CNN
 F 1 "2N7002" H 2050 1700 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23" H 2050 1625 50  0001 L CIN
@@ -698,9 +697,11 @@ F 3 "" H 3300 2750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 2N7002 Q9
+L 2N7002-RESCUE-BodyController_03 Q9
 U 1 1 59907841
 P 1850 3500
+AR Path="/59907841" Ref="Q9"  Part="1" 
+AR Path="/5986882A/59868A89/59907841" Ref="Q9"  Part="1" 
 F 0 "Q9" H 2050 3575 50  0000 L CNN
 F 1 "2N7002" H 2050 3500 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23" H 2050 3425 50  0001 L CIN

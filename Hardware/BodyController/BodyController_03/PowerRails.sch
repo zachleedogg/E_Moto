@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:BodyController_03-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -28,10 +29,6 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:HSD
-LIBS:micros
-LIBS:ICs
-LIBS:Connectors
 LIBS:BodyController_03-cache
 EELAYER 25 0
 EELAYER END
@@ -931,17 +928,6 @@ F 3 "http://www.ti.com/lit/ds/slvsa00e/slvsa00e.pdf" H 5550 6950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR0214
-U 1 1 59A6B09C
-P 4100 6900
-F 0 "#PWR0214" H 4100 6750 50  0001 C CNN
-F 1 "+5V" H 4100 7040 50  0000 C CNN
-F 2 "" H 4100 6900 50  0001 C CNN
-F 3 "" H 4100 6900 50  0001 C CNN
-	1    4100 6900
-	1    0    0    -1  
-$EndComp
-$Comp
 L PWR_FLAG #FLG0215
 U 1 1 59A80AE3
 P 3500 3900
@@ -1294,4 +1280,15 @@ Connection ~ 9150 4200
 Connection ~ 1700 6900
 Connection ~ 3500 4000
 Connection ~ 4850 4900
+$Comp
+L +12P #PWR?
+U 1 1 59ED23A1
+P 4100 6900
+F 0 "#PWR?" H 4100 6750 50  0001 C CNN
+F 1 "+12P" H 4100 7040 50  0000 C CNN
+F 2 "" H 4100 6900 50  0001 C CNN
+F 3 "" H 4100 6900 50  0001 C CNN
+	1    4100 6900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

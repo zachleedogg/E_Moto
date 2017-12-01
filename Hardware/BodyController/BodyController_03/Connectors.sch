@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:BodyController_03-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -28,10 +29,6 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:HSD
-LIBS:micros
-LIBS:ICs
-LIBS:Connectors
 LIBS:BodyController_03-cache
 EELAYER 25 0
 EELAYER END
@@ -237,21 +234,21 @@ F 3 "http://keyelco.com/userAssets/file/M65p69.pdf" H 1160 2080 60  0001 C CNN
 $EndComp
 Text GLabel 7500 4950 0    59   Input ~ 0
 AUX_PORT_OUT
-Text GLabel 7500 5150 0    59   Input ~ 0
-HEADLIGHT_HI_OUT
-Text GLabel 7500 5250 0    59   Input ~ 0
-HEADLIGHT_LO_OUT
 Text GLabel 7500 5750 0    59   Input ~ 0
-TURN_SIGNAL_FR_OUT
-Text GLabel 7500 5850 0    59   Input ~ 0
-TURN_SIGNAL_RR_OUT
-Text GLabel 7500 5950 0    59   Input ~ 0
-TURN_SIGNAL_FL_OUT
+HEADLIGHT_HI_OUT
+Text GLabel 7500 5150 0    59   Input ~ 0
+HEADLIGHT_LO_OUT
 Text GLabel 7500 6050 0    59   Input ~ 0
-TURN_SIGNAL_RL_OUT
-Text GLabel 7500 5350 0    59   Input ~ 0
-HEATED_GRIPS_OUT
+TURN_SIGNAL_FR_OUT
+Text GLabel 7500 5950 0    59   Input ~ 0
+TURN_SIGNAL_RR_OUT
 Text GLabel 7500 5450 0    59   Input ~ 0
+TURN_SIGNAL_FL_OUT
+Text GLabel 7500 5350 0    59   Input ~ 0
+TURN_SIGNAL_RL_OUT
+Text GLabel 7500 5850 0    59   Input ~ 0
+HEATED_GRIPS_OUT
+Text GLabel 7500 5250 0    59   Input ~ 0
 HEATED_SEAT_OUT
 Text GLabel 7500 5650 0    59   Input ~ 0
 TAILLIGHT_OUT
@@ -392,17 +389,11 @@ Wire Wire Line
 Wire Wire Line
 	1800 1950 1800 2050
 Wire Wire Line
-	1300 1950 1450 1950
-Wire Wire Line
-	1450 1950 1800 1950
-Wire Wire Line
-	1800 1950 1950 1950
+	1300 1950 1950 1950
 Wire Wire Line
 	1800 1050 1800 1000
 Wire Wire Line
-	1300 1050 1450 1050
-Wire Wire Line
-	1450 1050 1800 1050
+	1300 1050 1800 1050
 Wire Wire Line
 	1800 1500 1300 1500
 Wire Wire Line
@@ -424,9 +415,7 @@ Wire Wire Line
 Wire Wire Line
 	4900 4600 4750 4600
 Wire Wire Line
-	4350 4900 4400 4900
-Wire Wire Line
-	4400 4900 4450 4900
+	4350 4900 4450 4900
 Wire Wire Line
 	4400 4950 4400 4900
 Wire Wire Line
