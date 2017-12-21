@@ -1,3 +1,9 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP SQJ423EP-T1_GE3
+D P-Channel Power MOSFET, Vds 40V, Rdson 12.3mOhm, Id 55A, SON8 5x6mm
+K MOSFET P-MOS
+F http://www.vishay.com/docs/75357/sqj423ep.pdf
+$ENDCMP
+#
 #End Doc Library

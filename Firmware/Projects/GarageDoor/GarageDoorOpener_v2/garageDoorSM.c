@@ -12,14 +12,14 @@
 
 //Timers
 #define MINS_TO_MILLIS(x) (x*60000)
-#define DOOR_AUTOCLOSE_DELAY MINS_TO_MILLIS(15) //15 minutes
+#define DOOR_AUTOCLOSE_DELAY MINS_TO_MILLIS(3) //3 minutes
 static uint32_t doorAutoCloseTimer = 0;
 
 #define DOOW_SW_HOLD_DELAY 500
 static uint16_t doorSwitchHoldTimer = DOOW_SW_HOLD_DELAY;
 
 /*Password Stuff*/
-static const uint8_t passcode[] = {'2', '8', '1', '8'};
+static const uint8_t passcode[] = {'7', '6', '8', '2'};
 #define PASSCODE_SIZE sizeof(passcode)
 static uint8_t code[PASSCODE_SIZE + 1] = {};
 static uint8_t codeIndex = 0;
@@ -73,6 +73,7 @@ uint8_t garageDoorSM(uint8_t buttonPressed) {
 
   //Un-click garage door button any after any click event occurs and DOOW_SW_HOLD_DELAY milliseconds
   if (doorSwitchHoldTimer++ == DOOW_SW_HOLD_DELAY) {
+    doorSwitchHoldTimer = 0;
     deactivateGarageDoor();
   }
 
@@ -103,6 +104,7 @@ uint8_t garageDoorSM(uint8_t buttonPressed) {
         case TRANSITIONING:
         default:
           garageDoorStatus = NOT_CLOSED;
+          doorAutoCloseTimer = 0;
           break;
       }
       break;
@@ -117,7 +119,7 @@ uint8_t garageDoorSM(uint8_t buttonPressed) {
         activateGarageDoor();
       }
       //Run auto-close timer
-      if (doorAutoCloseTimer++ == DOOR_AUTOCLOSE_DELAY) {
+      else if (doorAutoCloseTimer++ == DOOR_AUTOCLOSE_DELAY) {
         doorAutoCloseTimer = 0;
         activateGarageDoor();
       }
@@ -140,6 +142,8 @@ uint8_t garageDoorSM(uint8_t buttonPressed) {
       //If '#' is pressed, activate the garage door
       else if (buttonPressed == '#') {
         activateGarageDoor();
+        garageDoorStatus = NOT_CLOSED;
+        doorAutoCloseTimer = 0;
       }
       //any door position change will be observed
       switch (doorPosition) {
@@ -148,7 +152,7 @@ uint8_t garageDoorSM(uint8_t buttonPressed) {
           break;
         case TRANSITIONING:
         default:
-          //do nothing
+        //do nothing
           break;
       }
       break;
@@ -171,7 +175,6 @@ static void activateGarageDoor(void) {
 }
 
 static void deactivateGarageDoor(void) {
-  doorSwitchHoldTimer = 0;
   pinMode(DOOR_SW_V2, INPUT);
 }
 

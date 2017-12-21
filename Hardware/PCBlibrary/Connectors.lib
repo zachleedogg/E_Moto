@@ -1,6 +1,20 @@
 EESchema-LIBRARY Version 2.3
 #encoding utf-8
 #
+# 7796
+#
+DEF 7796 J 0 40 Y Y 1 F N
+F0 "J" -160 250 60 H V C CNN
+F1 "7796" -140 -50 60 H V C CNN
+F2 "" -40 30 60 H I C CNN
+F3 "" -40 30 60 H I C CNN
+DRAW
+T 0 -170 100 60 0 0 0 M4x0.7 Normal 0 C C
+S -340 200 0 0 1 1 0 N
+X ~ 1 100 100 98 L 50 50 1 1 w
+ENDDRAW
+ENDDEF
+#
 # 7807
 #
 DEF 7807 J 0 40 Y Y 1 F N

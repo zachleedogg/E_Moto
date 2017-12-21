@@ -1,5 +1,4 @@
 EESchema Schematic File Version 2
-LIBS:BodyController_03-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -29,12 +28,16 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:HSD
+LIBS:micros
+LIBS:ICs
+LIBS:Connectors
 LIBS:BodyController_03-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 11
+Sheet 1 12
 Title ""
 Date ""
 Rev ""

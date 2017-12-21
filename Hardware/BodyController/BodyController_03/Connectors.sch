@@ -1,5 +1,4 @@
 EESchema Schematic File Version 2
-LIBS:BodyController_03-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -29,12 +28,16 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:HSD
+LIBS:micros
+LIBS:ICs
+LIBS:Connectors
 LIBS:BodyController_03-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 8 11
+Sheet 8 12
 Title ""
 Date ""
 Rev ""
@@ -45,400 +48,320 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L CONN_01X14 J5
-U 1 1 599478B1
-P 7850 5600
-F 0 "J5" H 7850 6350 50  0000 C CNN
-F 1 "CONN_01X14" V 7950 5600 50  0000 C CNN
-F 2 "Connectors_Molex:Molex_MegaFit_2x06x5.70mm_Straight" H 7850 5600 50  0001 C CNN
-F 3 "" H 7850 5600 50  0001 C CNN
-	1    7850 5600
-	1    0    0    -1  
-$EndComp
-$Comp
-L CONN_01X06 J3
-U 1 1 5994798B
-P 10350 3050
-F 0 "J3" H 10350 3400 50  0000 C CNN
-F 1 "CONN_01X06" V 10450 3050 50  0000 C CNN
-F 2 "Connectors_Molex:Molex_MegaFit_2x03x5.70mm_Straight" H 10350 3050 50  0001 C CNN
-F 3 "" H 10350 3050 50  0001 C CNN
-	1    10350 3050
-	1    0    0    -1  
-$EndComp
-$Comp
-L CONN_01X08 J2
-U 1 1 599479D7
-P 10350 1850
-F 0 "J2" H 10350 2300 50  0000 C CNN
-F 1 "CONN_01X08" V 10450 1850 50  0000 C CNN
-F 2 "Connectors_Molex:Molex_MegaFit_2x04x5.70mm_Straight" H 10350 1850 50  0001 C CNN
-F 3 "" H 10350 1850 50  0001 C CNN
-	1    10350 1850
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR0128
+L GND #PWR0110
 U 1 1 5995D681
-P 1800 2050
-F 0 "#PWR0128" H 1800 1800 50  0001 C CNN
-F 1 "GND" H 1800 1900 50  0000 C CNN
-F 2 "" H 1800 2050 50  0001 C CNN
-F 3 "" H 1800 2050 50  0001 C CNN
-	1    1800 2050
+P 2000 2150
+F 0 "#PWR0110" H 2000 1900 50  0001 C CNN
+F 1 "GND" H 2000 2000 50  0000 C CNN
+F 2 "" H 2000 2150 50  0001 C CNN
+F 3 "" H 2000 2150 50  0001 C CNN
+	1    2000 2150
 	1    0    0    -1  
 $EndComp
 $Comp
-L +BATT #PWR0129
+L +BATT #PWR0111
 U 1 1 5995D6C1
-P 1800 1000
-F 0 "#PWR0129" H 1800 850 50  0001 C CNN
-F 1 "+BATT" H 1800 1140 50  0000 C CNN
-F 2 "" H 1800 1000 50  0001 C CNN
-F 3 "" H 1800 1000 50  0001 C CNN
-	1    1800 1000
-	1    0    0    -1  
-$EndComp
-$Comp
-L CONN_01X02 J6
-U 1 1 59964E8E
-P 5050 1600
-F 0 "J6" H 5050 1750 50  0000 C CNN
-F 1 "CONN_01X02" V 5150 1600 50  0000 C CNN
-F 2 "Connectors_Molex:Molex_MegaFit_2x01x5.70mm_Straight" H 5050 1600 50  0001 C CNN
-F 3 "" H 5050 1600 50  0001 C CNN
-	1    5050 1600
+P 2000 1100
+F 0 "#PWR0111" H 2000 950 50  0001 C CNN
+F 1 "+BATT" H 2000 1240 50  0000 C CNN
+F 2 "" H 2000 1100 50  0001 C CNN
+F 3 "" H 2000 1100 50  0001 C CNN
+	1    2000 1100
 	1    0    0    -1  
 $EndComp
 $Comp
 L CONN_01X06 J7
 U 1 1 599715F6
-P 4950 2550
-F 0 "J7" H 4950 2900 50  0000 C CNN
-F 1 "CONN_01X06" V 5050 2550 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 4950 2550 50  0001 C CNN
-F 3 "" H 4950 2550 50  0001 C CNN
-	1    4950 2550
+P 2100 4150
+F 0 "J7" H 2100 4500 50  0000 C CNN
+F 1 "CONN_01X06" V 2200 4150 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm" H 2100 4150 50  0001 C CNN
+F 3 "" H 2100 4150 50  0001 C CNN
+	1    2100 4150
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3V3 #PWR0130
+L +3V3 #PWR0112
 U 1 1 5997230B
-P 4200 2350
-F 0 "#PWR0130" H 4200 2200 50  0001 C CNN
-F 1 "+3V3" H 4200 2490 50  0000 C CNN
-F 2 "" H 4200 2350 50  0001 C CNN
-F 3 "" H 4200 2350 50  0001 C CNN
-	1    4200 2350
+P 1350 3950
+F 0 "#PWR0112" H 1350 3800 50  0001 C CNN
+F 1 "+3V3" H 1350 4090 50  0000 C CNN
+F 2 "" H 1350 3950 50  0001 C CNN
+F 3 "" H 1350 3950 50  0001 C CNN
+	1    1350 3950
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0131
+L GND #PWR0113
 U 1 1 5997232D
-P 4200 2550
-F 0 "#PWR0131" H 4200 2300 50  0001 C CNN
-F 1 "GND" H 4200 2400 50  0000 C CNN
-F 2 "" H 4200 2550 50  0001 C CNN
-F 3 "" H 4200 2550 50  0001 C CNN
-	1    4200 2550
+P 1350 4150
+F 0 "#PWR0113" H 1350 3900 50  0001 C CNN
+F 1 "GND" H 1350 4000 50  0000 C CNN
+F 2 "" H 1350 4150 50  0001 C CNN
+F 3 "" H 1350 4150 50  0001 C CNN
+	1    1350 4150
 	1    0    0    -1  
 $EndComp
 $Comp
-L PWR_FLAG #FLG0132
+L PWR_FLAG #FLG0114
 U 1 1 59980CA4
-P 1450 1050
-F 0 "#FLG0132" H 1450 1125 50  0001 C CNN
-F 1 "PWR_FLAG" H 1450 1200 50  0000 C CNN
-F 2 "" H 1450 1050 50  0001 C CNN
-F 3 "" H 1450 1050 50  0001 C CNN
-	1    1450 1050
+P 1650 1150
+F 0 "#FLG0114" H 1650 1225 50  0001 C CNN
+F 1 "PWR_FLAG" H 1650 1300 50  0000 C CNN
+F 2 "" H 1650 1150 50  0001 C CNN
+F 3 "" H 1650 1150 50  0001 C CNN
+	1    1650 1150
 	1    0    0    -1  
 $EndComp
 $Comp
-L PWR_FLAG #FLG0133
+L PWR_FLAG #FLG0115
 U 1 1 59980CC6
-P 1450 1950
-F 0 "#FLG0133" H 1450 2025 50  0001 C CNN
-F 1 "PWR_FLAG" H 1450 2100 50  0000 C CNN
-F 2 "" H 1450 1950 50  0001 C CNN
-F 3 "" H 1450 1950 50  0001 C CNN
-	1    1450 1950
+P 1650 2050
+F 0 "#FLG0115" H 1650 2125 50  0001 C CNN
+F 1 "PWR_FLAG" H 1650 2200 50  0000 C CNN
+F 2 "" H 1650 2050 50  0001 C CNN
+F 3 "" H 1650 2050 50  0001 C CNN
+	1    1650 2050
 	-1   0    0    1   
 $EndComp
 $Comp
 L USB_OTG J8
 U 1 1 59A8218E
-P 4450 4500
-F 0 "J8" H 4250 4950 50  0000 L CNN
-F 1 "USB_OTG" H 4250 4850 50  0000 L CNN
-F 2 "Connectors:USB_Micro-B_10103594-0001LF" H 4600 4450 50  0001 C CNN
-F 3 "http://portal.fciconnect.com/Comergent//fci/drawing/10103594.pdf" H 4600 4450 50  0001 C CNN
-F 4 "0103594-0001LF" H 0   0   50  0001 C CNN "PartNumber"
-	1    4450 4500
+P 1600 5200
+F 0 "J8" H 1400 5650 50  0000 L CNN
+F 1 "USB_OTG" H 1400 5550 50  0000 L CNN
+F 2 "Connectors:USB_Micro-B_10103594-0001LF" H 1750 5150 50  0001 C CNN
+F 3 "http://portal.fciconnect.com/Comergent//fci/drawing/10103594.pdf" H 1750 5150 50  0001 C CNN
+F 4 "0103594-0001LF" H -2850 700 50  0001 C CNN "PartNumber"
+	1    1600 5200
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0134
+L GND #PWR0116
 U 1 1 59A82EC9
-P 4400 4950
-F 0 "#PWR0134" H 4400 4700 50  0001 C CNN
-F 1 "GND" H 4400 4800 50  0000 C CNN
-F 2 "" H 4400 4950 50  0001 C CNN
-F 3 "" H 4400 4950 50  0001 C CNN
-	1    4400 4950
+P 1550 5650
+F 0 "#PWR0116" H 1550 5400 50  0001 C CNN
+F 1 "GND" H 1550 5500 50  0000 C CNN
+F 2 "" H 1550 5650 50  0001 C CNN
+F 3 "" H 1550 5650 50  0001 C CNN
+	1    1550 5650
 	1    0    0    -1  
 $EndComp
-$Comp
-L CONN_01X14 J9
-U 1 1 59B3260F
-P 10300 4750
-F 0 "J9" H 10300 5500 50  0000 C CNN
-F 1 "CONN_01X14" V 10400 4750 50  0000 C CNN
-F 2 "Connectors_Molex:Molex_MegaFit_2x06x5.70mm_Straight" H 10300 4750 50  0001 C CNN
-F 3 "" H 10300 4750 50  0001 C CNN
-	1    10300 4750
-	1    0    0    -1  
-$EndComp
-$Comp
-L 7807 J1
-U 1 1 59D3AE76
-P 1200 1150
-F 0 "J1" H 1040 1430 60  0000 C CNN
-F 1 "7807" H 1060 1100 60  0000 C CNN
-F 2 "Footprints:7807" H 1160 1180 60  0001 C CNN
-F 3 "http://keyelco.com/userAssets/file/M65p69.pdf" H 1160 1180 60  0001 C CNN
-	1    1200 1150
-	1    0    0    -1  
-$EndComp
-$Comp
-L 7807 J10
-U 1 1 59D3B894
-P 1200 1600
-F 0 "J10" H 1040 1880 60  0000 C CNN
-F 1 "7807" H 1060 1550 60  0000 C CNN
-F 2 "Footprints:7807" H 1160 1630 60  0001 C CNN
-F 3 "http://keyelco.com/userAssets/file/M65p69.pdf" H 1160 1630 60  0001 C CNN
-	1    1200 1600
-	1    0    0    -1  
-$EndComp
-$Comp
-L 7807 J11
-U 1 1 59D3B8C4
-P 1200 2050
-F 0 "J11" H 1040 2330 60  0000 C CNN
-F 1 "7807" H 1060 2000 60  0000 C CNN
-F 2 "Footprints:7807" H 1160 2080 60  0001 C CNN
-F 3 "http://keyelco.com/userAssets/file/M65p69.pdf" H 1160 2080 60  0001 C CNN
-	1    1200 2050
-	1    0    0    -1  
-$EndComp
-Text GLabel 7500 4950 0    59   Input ~ 0
+Text GLabel 4300 4600 1    59   Input ~ 0
 AUX_PORT_OUT
-Text GLabel 7500 5750 0    59   Input ~ 0
+Text GLabel 3500 4600 1    59   Input ~ 0
 HEADLIGHT_HI_OUT
-Text GLabel 7500 5150 0    59   Input ~ 0
+Text GLabel 3400 4600 1    59   Input ~ 0
 HEADLIGHT_LO_OUT
-Text GLabel 7500 6050 0    59   Input ~ 0
+Text GLabel 4100 4600 1    59   Input ~ 0
 TURN_SIGNAL_FR_OUT
-Text GLabel 7500 5950 0    59   Input ~ 0
+Text GLabel 4000 4600 1    59   Input ~ 0
 TURN_SIGNAL_RR_OUT
-Text GLabel 7500 5450 0    59   Input ~ 0
+Text GLabel 3900 4600 1    59   Input ~ 0
 TURN_SIGNAL_FL_OUT
-Text GLabel 7500 5350 0    59   Input ~ 0
+Text GLabel 3800 4600 1    59   Input ~ 0
 TURN_SIGNAL_RL_OUT
-Text GLabel 7500 5850 0    59   Input ~ 0
+Text GLabel 3700 4600 1    59   Input ~ 0
 HEATED_GRIPS_OUT
-Text GLabel 7500 5250 0    59   Input ~ 0
+Text GLabel 3600 4600 1    59   Input ~ 0
 HEATED_SEAT_OUT
-Text GLabel 7500 5650 0    59   Input ~ 0
+Text GLabel 3300 4600 1    59   Input ~ 0
 TAILLIGHT_OUT
-Text GLabel 7500 5050 0    59   Input ~ 0
+Text GLabel 3200 4600 1    59   Input ~ 0
 BRAKE_LIGHT_OUT
-Text GLabel 7500 5550 0    59   Input ~ 0
+Text GLabel 4200 4600 1    59   Input ~ 0
 HORN_OUT
-Text GLabel 9950 4100 0    59   Input ~ 0
+Text GLabel 5250 4600 1    59   Input ~ 0
 FAN_1_OUT
-Text GLabel 9950 4500 0    59   Input ~ 0
+Text GLabel 5150 4600 1    59   Input ~ 0
 PUMP_1_OUT
-Text GLabel 9950 4700 0    59   Input ~ 0
-PUMP_2_OUT
-Text GLabel 9950 4900 0    60   Input ~ 0
+Text GLabel 5700 3000 1    60   Input ~ 0
 RADIATOR_OUTPUT_TEMP_OUT
-Text GLabel 9950 5100 0    60   Input ~ 0
+Text GLabel 5900 3000 1    60   Input ~ 0
 RADIATOR_INPUT_TEMP_OUT
-Text GLabel 10050 1500 0    59   Input ~ 0
+Text GLabel 5850 4600 1    59   Input ~ 0
 CHARGE_PORT_RELEASE_OUT
-Text GLabel 10050 1600 0    59   Input ~ 0
+Text GLabel 5750 4600 1    59   Input ~ 0
 STEERING_COLUMN_LOCK_OUT
-Text GLabel 10050 1800 0    59   Input ~ 0
+Text GLabel 5250 5100 3    59   Input ~ 0
 DCDC_CONTACTOR_OUT
-Text GLabel 10050 1900 0    59   Input ~ 0
+Text GLabel 5150 5100 3    59   Input ~ 0
 BATTERY_CONTACTOR_OUT
-Text GLabel 10050 2000 0    59   Input ~ 0
+Text GLabel 6050 4600 1    59   Input ~ 0
 PRECHARGE_RELAY_OUT
-Text GLabel 10050 2100 0    59   Input ~ 0
+Text GLabel 5950 4600 1    59   Input ~ 0
 CHARGER_CONTACTOR_OUT
-Text GLabel 10050 3000 0    59   Input ~ 0
+Text GLabel 5450 4600 1    59   Input ~ 0
 MOTOR_CONTROLLER_OUT
-Text GLabel 10050 3100 0    59   Input ~ 0
+Text GLabel 5350 4600 1    59   Input ~ 0
 CHARGE_CONTROLLER_OUT
-Text GLabel 10050 2800 0    59   Input ~ 0
+Text GLabel 5650 4600 1    59   Input ~ 0
 BMS_CONTROLLER_OUT
-Text GLabel 10050 2900 0    59   Input ~ 0
+Text GLabel 6600 4600 1    59   Input ~ 0
 IC_CONTROLLER_OUT
-Text GLabel 1800 1500 2    60   Output ~ 0
+Text GLabel 2000 1600 2    60   Output ~ 0
 DCDC
-Text Notes 9400 1250 0    60   ~ 0
-Contactors
-Text Notes 9550 2650 0    60   ~ 0
-ECUs
-Text Notes 9450 4000 0    60   ~ 0
-Thermal
-Text Notes 7000 4850 0    60   ~ 0
-Lights
-Text GLabel 4850 1550 0    60   BiDi ~ 0
+Text GLabel 7400 5100 3    60   BiDi ~ 0
 CAN_P
-Text GLabel 4850 1650 0    60   BiDi ~ 0
+Text GLabel 7500 5100 3    60   BiDi ~ 0
 CAN_N
-Text Notes 4800 1250 0    60   ~ 0
-CAN
-Text GLabel 4750 2300 0    60   Input ~ 0
+Text GLabel 1900 3900 0    60   Input ~ 0
 ~RESET
-Text GLabel 4750 2600 0    60   Input ~ 0
+Text GLabel 1900 4200 0    60   Input ~ 0
 PGEC
-Text GLabel 4750 2700 0    60   Input ~ 0
+Text GLabel 1900 4300 0    60   Input ~ 0
 PGED
-Text GLabel 10050 3200 0    59   Input ~ 0
+Text GLabel 5550 4600 1    59   Input ~ 0
 J1772_CONTROLLER_OUT
-Text GLabel 9950 4800 0    60   Input ~ 0
-PUMP_SPEED_2_OUT
-Text GLabel 9950 4600 0    60   Input ~ 0
+Text GLabel 5400 2900 1    60   Input ~ 0
 PUMP_SPEED_1_OUT
-Text GLabel 9950 4400 0    60   Input ~ 0
-FAN_SPEED_2_OUT
-Text GLabel 9950 4200 0    60   Input ~ 0
+Text GLabel 5300 2900 1    60   Input ~ 0
 FAN_SPEED_1_OUT
-Text GLabel 9950 4300 0    59   Input ~ 0
-FAN_2_OUT
-Text GLabel 4900 4300 2    60   Output ~ 0
+Text GLabel 2050 5000 2    60   Output ~ 0
 USB_5V
-Text GLabel 4900 4500 2    60   BiDi ~ 0
+Text GLabel 2050 5200 2    60   BiDi ~ 0
 USB_D+
-Text GLabel 4900 4600 2    60   BiDi ~ 0
+Text GLabel 2050 5300 2    60   BiDi ~ 0
 USB_D-
-Text GLabel 9950 5000 0    60   Input ~ 0
+Text GLabel 5800 3000 1    60   Input ~ 0
 RADIATOR_OUTPUT_TEMP_RTN
-Text GLabel 9950 5200 0    60   Input ~ 0
+Text GLabel 6000 3000 1    60   Input ~ 0
 RADIATOR_INPUT_TEMP_RTN
-Text GLabel 1950 1950 2    60   Input ~ 0
+Text GLabel 7400 4600 1    60   Output ~ 0
+INGITION_SWITCH
+Text GLabel 7500 4600 1    60   Output ~ 0
+KILL_SWITCH
+Text GLabel 6700 4600 1    60   Output ~ 0
+TURN_LEFT_SWITCH
+Text GLabel 6800 4600 1    60   Output ~ 0
+TURN_RIGHT_SWITCH
+Text GLabel 6900 4600 1    60   Output ~ 0
+BRIGHTS_SWITCH
+Text GLabel 7000 4600 1    60   Output ~ 0
+HORN_SWITCH
+Text GLabel 7100 4600 1    60   Output ~ 0
+KICKSTAND_SWITCH
+Text GLabel 7200 4600 1    60   Output ~ 0
+SPARE_SWITCH_1
+Text GLabel 7300 4600 1    60   Output ~ 0
+SPARE_SWITCH_2
+Wire Wire Line
+	2000 2050 2000 2150
+Wire Wire Line
+	1500 2050 2300 2050
+Wire Wire Line
+	2000 1150 2000 1100
+Wire Wire Line
+	1500 1150 2000 1150
+Wire Wire Line
+	2000 1600 1500 1600
+Wire Wire Line
+	1900 4100 1350 4100
+Wire Wire Line
+	1350 4100 1350 4150
+Wire Wire Line
+	1900 4000 1350 4000
+Wire Wire Line
+	1350 4000 1350 3950
+Wire Wire Line
+	2050 5000 1900 5000
+Wire Wire Line
+	2050 5200 1900 5200
+Wire Wire Line
+	2050 5300 1900 5300
+Wire Wire Line
+	1500 5600 1600 5600
+Wire Wire Line
+	1550 5650 1550 5600
+Connection ~ 1650 1150
+Connection ~ 1650 2050
+Connection ~ 1550 5600
+NoConn ~ 1900 4400
+NoConn ~ 1900 5400
+Text GLabel 6700 5100 3    60   Output ~ 0
+THROTTLE_SIGNAL
+Text GLabel 6800 5100 3    60   Output ~ 0
+BRAKE_SWITCH_1
+Text GLabel 6900 5100 3    60   Output ~ 0
+BRAKE_SWITCH_2
+Text GLabel 2300 2050 2    60   Output ~ 0
 GND
-Wire Wire Line
-	10050 1500 10150 1500
-Wire Wire Line
-	10050 1600 10150 1600
-Wire Wire Line
-	10050 1800 10150 1800
-Wire Wire Line
-	10050 1900 10150 1900
-Wire Wire Line
-	10050 2000 10150 2000
-Wire Wire Line
-	10050 2100 10150 2100
-Wire Wire Line
-	10050 2800 10150 2800
-Wire Wire Line
-	10050 2900 10150 2900
-Wire Wire Line
-	10050 3000 10150 3000
-Wire Wire Line
-	10050 3100 10150 3100
-Wire Wire Line
-	9950 4100 10100 4100
-Wire Wire Line
-	9950 4500 10100 4500
-Wire Wire Line
-	9950 4700 10100 4700
-Wire Wire Line
-	9950 4900 10100 4900
-Wire Wire Line
-	9950 5100 10100 5100
-Wire Wire Line
-	7500 4950 7650 4950
-Wire Wire Line
-	7500 5050 7650 5050
-Wire Wire Line
-	7500 5150 7650 5150
-Wire Wire Line
-	7500 5250 7650 5250
-Wire Wire Line
-	7500 5350 7650 5350
-Wire Wire Line
-	7500 5450 7650 5450
-Wire Wire Line
-	7500 5550 7650 5550
-Wire Wire Line
-	7500 5650 7650 5650
-Wire Wire Line
-	7500 5750 7650 5750
-Wire Wire Line
-	7500 5850 7650 5850
-Wire Wire Line
-	7500 5950 7650 5950
-Wire Wire Line
-	7500 6050 7650 6050
-Wire Wire Line
-	1800 1950 1800 2050
-Wire Wire Line
-	1300 1950 1950 1950
-Wire Wire Line
-	1800 1050 1800 1000
-Wire Wire Line
-	1300 1050 1800 1050
-Wire Wire Line
-	1800 1500 1300 1500
-Wire Wire Line
-	4750 2500 4200 2500
-Wire Wire Line
-	4200 2500 4200 2550
-Wire Wire Line
-	4750 2400 4200 2400
-Wire Wire Line
-	4200 2400 4200 2350
-Wire Wire Line
-	10150 3200 10050 3200
-Wire Wire Line
-	10100 4300 9950 4300
-Wire Wire Line
-	4900 4300 4750 4300
-Wire Wire Line
-	4900 4500 4750 4500
-Wire Wire Line
-	4900 4600 4750 4600
-Wire Wire Line
-	4350 4900 4450 4900
-Wire Wire Line
-	4400 4950 4400 4900
-Wire Wire Line
-	10100 5200 9950 5200
-Wire Wire Line
-	10100 5000 9950 5000
-Wire Wire Line
-	10100 4200 9950 4200
-Wire Wire Line
-	10100 4400 9950 4400
-Wire Wire Line
-	10100 4600 9950 4600
-Wire Wire Line
-	10100 4800 9950 4800
-Connection ~ 1450 1050
-Connection ~ 1450 1950
-Connection ~ 4400 4900
-Connection ~ 1800 1950
-NoConn ~ 10150 1700
-NoConn ~ 10150 2200
-NoConn ~ 10150 3300
-NoConn ~ 7650 6150
-NoConn ~ 7650 6250
-NoConn ~ 4750 2800
-NoConn ~ 4750 4700
+Connection ~ 2000 2050
+$Comp
+L Conn_01x14 J2
+U 1 1 5A30D0E9
+P 3800 4800
+F 0 "J2" H 3800 5500 50  0000 C CNN
+F 1 "Conn_01x14" H 3800 4000 50  0000 C CNN
+F 2 "Footprints:34772-0140" H 3800 4800 50  0001 C CNN
+F 3 "" H 3800 4800 50  0001 C CNN
+	1    3800 4800
+	0    -1   1    0   
+$EndComp
+$Comp
+L Conn_02x10_Top_Bottom J3
+U 1 1 5A314BE2
+P 5550 4800
+F 0 "J3" H 5600 5300 50  0000 C CNN
+F 1 "Conn_02x10_Top_Bottom" H 5600 4200 50  0000 C CNN
+F 2 "Footprints:34690-0200" H 5550 4800 50  0001 C CNN
+F 3 "" H 5550 4800 50  0001 C CNN
+	1    5550 4800
+	0    -1   1    0   
+$EndComp
+$Comp
+L Conn_02x10_Top_Bottom J4
+U 1 1 5A314C2C
+P 7000 4800
+F 0 "J4" H 7050 5300 50  0000 C CNN
+F 1 "Conn_02x10_Top_Bottom" H 7050 4200 50  0000 C CNN
+F 2 "Footprints:34690-0200" H 7000 4800 50  0001 C CNN
+F 3 "" H 7000 4800 50  0001 C CNN
+	1    7000 4800
+	0    -1   1    0   
+$EndComp
+$Comp
+L 7796 J1
+U 1 1 5A393F4B
+P 1400 1250
+F 0 "J1" H 1240 1500 60  0000 C CNN
+F 1 "7796" H 1260 1200 60  0000 C CNN
+F 2 "Footprints:7796" H 1360 1280 60  0001 C CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1114" H 1360 1280 60  0001 C CNN
+	1    1400 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L 7796 J5
+U 1 1 5A394530
+P 1400 1700
+F 0 "J5" H 1240 1950 60  0000 C CNN
+F 1 "7796" H 1260 1650 60  0000 C CNN
+F 2 "Footprints:7796" H 1360 1730 60  0001 C CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1114" H 1360 1730 60  0001 C CNN
+	1    1400 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L 7796 J6
+U 1 1 5A39455B
+P 1400 2150
+F 0 "J6" H 1240 2400 60  0000 C CNN
+F 1 "7796" H 1260 2100 60  0000 C CNN
+F 2 "Footprints:7796" H 1360 2180 60  0001 C CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1114" H 1360 2180 60  0001 C CNN
+	1    1400 2150
+	1    0    0    -1  
+$EndComp
+Text GLabel 7000 5100 3    60   Input ~ 0
+DAC_OUT_1
+Text GLabel 7100 5100 3    60   Input ~ 0
+DAC_OUT_2
+NoConn ~ 5650 5100
+NoConn ~ 5750 5100
+NoConn ~ 5850 5100
+NoConn ~ 5950 5100
+NoConn ~ 6050 5100
+NoConn ~ 5000 5400
+NoConn ~ 6600 5100
 $EndSCHEMATC
