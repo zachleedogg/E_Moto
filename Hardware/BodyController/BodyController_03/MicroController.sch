@@ -32,12 +32,14 @@ LIBS:HSD
 LIBS:micros
 LIBS:ICs
 LIBS:Connectors
+LIBS:microchip_dspic33dsc
+LIBS:switches
 LIBS:BodyController_03-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 12
+Sheet 3 13
 Title ""
 Date ""
 Rev ""
@@ -392,6 +394,29 @@ F 3 "" H 4450 6900 50  0001 C CNN
 	1    4450 6900
 	0    1    -1   0   
 $EndComp
+$Comp
+L GND #PWR013
+U 1 1 5A45E91E
+P 700 7200
+F 0 "#PWR013" H 700 6950 50  0001 C CNN
+F 1 "GND" H 700 7050 50  0000 C CNN
+F 2 "" H 700 7200 50  0001 C CNN
+F 3 "" H 700 7200 50  0001 C CNN
+	1    700  7200
+	0    1    1    0   
+$EndComp
+$Comp
+L SW_Push SW1
+U 1 1 5A45E5E7
+P 950 7200
+F 0 "SW1" H 1000 7300 50  0000 L CNN
+F 1 "PTS645SM43SMTR92 LFS" H 950 7140 50  0001 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_EVQP0" H 950 7400 50  0001 C CNN
+F 3 "https://www.ckswitches.com/media/1471/pts645.pdf" H 950 7400 50  0001 C CNN
+F 4 "PTS645SM43SMTR92 LFS" H 0   0   50  0001 C CNN "PartNumber"
+	1    950  7200
+	1    0    0    -1  
+$EndComp
 Text GLabel 10000 700  2    59   Output ~ 0
 SW_EN
 Text GLabel 10000 1200 2    59   Output ~ 0
@@ -452,9 +477,9 @@ Text GLabel 5600 3500 0    60   Input ~ 0
 RADIATOR_OUTPUT_TEMP_AI
 Text GLabel 5600 3400 0    60   Input ~ 0
 RADIATOR_INPUT_TEMP_AI
-Text GLabel 5450 700  0    59   Output ~ 0
+Text GLabel 10050 3050 2    59   Output ~ 0
 CHARGE_PORT_RELEASE_EN
-Text GLabel 5450 800  0    59   Output ~ 0
+Text GLabel 10000 2200 2    59   Output ~ 0
 STEERING_COLUMN_LOCK_EN
 Text GLabel 5600 2600 0    59   Input ~ 0
 LOCK_ISENSE_AI
@@ -470,13 +495,13 @@ Text GLabel 5600 1700 0    59   Input ~ 0
 CONTACT_1_2_STATUS
 Text GLabel 5600 1800 0    59   Input ~ 0
 CONTACT_3_4_STATUS
-Text GLabel 5450 1100 0    59   Output ~ 0
+Text GLabel 5600 1100 0    59   Output ~ 0
 MOTOR_CONTROLLER_EN
-Text GLabel 5450 1200 0    59   Output ~ 0
+Text GLabel 5600 1200 0    59   Output ~ 0
 CHARGE_CONTROLLER_EN
 Text GLabel 5600 2800 0    59   Input ~ 0
 ECU_2_ISENSE_AI
-Text GLabel 5450 900  0    59   Output ~ 0
+Text GLabel 5600 900  0    59   Output ~ 0
 BMS_CONTROLLER_EN
 Text GLabel 5600 2900 0    59   Input ~ 0
 ECU_1_ISENSE_AI
@@ -486,7 +511,7 @@ Text GLabel 10000 1900 2    60   Input ~ 0
 CAN_RX
 Text Notes 1700 950  2    60   ~ 0
 TO ADD
-Text GLabel 1300 7600 0    60   Input ~ 0
+Text GLabel 850  7600 0    60   Input ~ 0
 ~RESET
 Text GLabel 5600 4100 0    60   Input ~ 0
 PGED
@@ -508,7 +533,7 @@ Text GLabel 10000 1400 2    59   Input ~ 0
 IC_CONTROLLER_~FLT
 Text GLabel 10000 1300 2    59   Output ~ 0
 IC_CONTROLLER_SLEEP
-Text GLabel 5450 1300 0    59   Output ~ 0
+Text GLabel 5600 1300 0    59   Output ~ 0
 J1772_CONTROLLER_EN
 Text GLabel 10050 2450 2    60   Output ~ 0
 FAN_SPEED_1_PWM
@@ -538,6 +563,24 @@ Text GLabel 5600 3800 0    60   Input ~ 0
 SPARE_SWITCH_1_IN
 Text GLabel 5600 3900 0    60   Input ~ 0
 SPARE_SWITCH_2_IN
+Text GLabel 5600 2100 0    60   Input ~ 0
+THROTTLE_SIGNAL_MONITOR_AI
+Text GLabel 10050 3150 2    60   Input ~ 0
+BRAKE_SWITCH_1_IN
+Text GLabel 10050 3250 2    60   Input ~ 0
+BRAKE_SWITCH_2_IN
+Text GLabel 10050 2950 2    60   Output ~ 0
+DAC_PWM_1
+Text GLabel 10050 2850 2    60   Output ~ 0
+DAC_PWM_2
+Text GLabel 5600 700  0    60   Output ~ 0
+DEBUG_LED
+Text GLabel 5600 4000 0    60   Input ~ 0
+PILOT_MONITOR_AI
+Text GLabel 5600 1400 0    60   Input ~ 0
+PROXIMITY_MONITOR_AI
+Text GLabel 5600 1000 0    60   Output ~ 0
+PILOT_EN
 Wire Wire Line
 	750  5300 2000 5300
 Wire Wire Line
@@ -597,9 +640,9 @@ Wire Wire Line
 Wire Wire Line
 	1450 7050 1450 7150
 Wire Wire Line
-	1450 7450 1450 7600
+	1450 7600 1450 7450
 Wire Wire Line
-	1300 7600 1550 7600
+	850  7600 1550 7600
 Wire Wire Line
 	1800 5850 1800 5900
 Wire Wire Line
@@ -753,17 +796,15 @@ Wire Wire Line
 Wire Wire Line
 	5600 1500 5750 1500
 Wire Wire Line
-	5750 1300 5450 1300
+	5750 1300 5600 1300
 Wire Wire Line
-	5450 1200 5750 1200
+	5600 1200 5750 1200
 Wire Wire Line
-	5750 1100 5450 1100
+	5750 1100 5600 1100
 Wire Wire Line
-	5750 900  5450 900 
+	5750 900  5600 900 
 Wire Wire Line
-	5450 800  5750 800 
-Wire Wire Line
-	5750 700  5450 700 
+	5750 700  5600 700 
 Wire Wire Line
 	4100 5750 4100 5800
 Wire Wire Line
@@ -792,6 +833,30 @@ Wire Wire Line
 	5750 3800 5600 3800
 Wire Wire Line
 	5750 3900 5600 3900
+Wire Wire Line
+	5600 4000 5750 4000
+Wire Wire Line
+	10050 3250 9800 3250
+Wire Wire Line
+	10050 2950 9800 2950
+Wire Wire Line
+	9800 2850 10050 2850
+Wire Wire Line
+	5750 2100 5600 2100
+Wire Wire Line
+	9800 2200 10000 2200
+Wire Wire Line
+	1250 7600 1250 7200
+Wire Wire Line
+	750  7200 700  7200
+Wire Wire Line
+	1250 7200 1150 7200
+Wire Wire Line
+	10050 3050 9800 3050
+Wire Wire Line
+	5750 1400 5600 1400
+Wire Wire Line
+	5750 1000 5600 1000
 Connection ~ 950  4400
 Connection ~ 1150 4400
 Connection ~ 1350 4400
@@ -825,30 +890,7 @@ Connection ~ 1750 4400
 Connection ~ 1750 5300
 Connection ~ 5500 6900
 Connection ~ 2000 4400
+Connection ~ 1250 7600
 NoConn ~ 3900 6150
-Text GLabel 5600 2100 0    60   Input ~ 0
-THROTTLE_SIGNAL_MONITOR_AI
-Text GLabel 10050 3150 2    60   Input ~ 0
-BRAKE_SWITCH_1_IN
-Text GLabel 10050 3250 2    60   Input ~ 0
-BRAKE_SWITCH_2_IN
-Wire Wire Line
-	5600 4000 5750 4000
-Wire Wire Line
-	10050 3250 9800 3250
-NoConn ~ 9800 3050
-NoConn ~ 9800 2200
-NoConn ~ 5750 1000
-NoConn ~ 5750 1400
-Text GLabel 10050 2850 2    60   Output ~ 0
-DAC_PWM_1
-Text GLabel 10050 2950 2    60   Output ~ 0
-DAC_PWM_2
-Wire Wire Line
-	10050 2950 9800 2950
-Wire Wire Line
-	9800 2850 10050 2850
-Wire Wire Line
-	5750 2100 5600 2100
-NoConn ~ 5600 4000
+NoConn ~ 5750 800 
 $EndSCHEMATC

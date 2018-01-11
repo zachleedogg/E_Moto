@@ -1,6 +1,6 @@
-update=10/20/2017 8:46:40 PM
+update=12/28/2017 7:12:06 PM
 version=1
-last_client=eeschema
+last_client=kicad
 [pcbnew]
 version=1
 LastNetListRead=
@@ -73,3 +73,5 @@ LibName31=C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/HSD
 LibName32=C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/micros
 LibName33=C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/ICs
 LibName34=C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/Connectors
+LibName35=microchip_dspic33dsc
+LibName36=switches

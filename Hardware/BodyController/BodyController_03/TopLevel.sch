@@ -32,12 +32,14 @@ LIBS:HSD
 LIBS:micros
 LIBS:ICs
 LIBS:Connectors
+LIBS:microchip_dspic33dsc
+LIBS:switches
 LIBS:BodyController_03-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 12
+Sheet 2 13
 Title ""
 Date ""
 Rev ""
@@ -86,8 +88,8 @@ $EndSheet
 $Sheet
 S 4050 4800 2250 1350
 U 59954716
-F0 "COMMUNICATION" 98
-F1 "COMMUNICATION.sch" 98
+F0 "Communication" 98
+F1 "Communication.sch" 98
 $EndSheet
 $Sheet
 S 7250 950  2400 1450
@@ -106,5 +108,11 @@ S 1150 6700 1900 800
 U 5A231AD0
 F0 "Inputs" 98
 F1 "Inputs.sch" 98
+$EndSheet
+$Sheet
+S 4050 6700 2250 800 
+U 5A54F298
+F0 "J1772" 98
+F1 "J1772.sch" 98
 $EndSheet
 $EndSCHEMATC

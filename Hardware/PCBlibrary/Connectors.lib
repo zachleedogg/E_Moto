@@ -29,4 +29,32 @@ X ~ 1 100 100 98 L 50 50 1 1 w
 ENDDRAW
 ENDDEF
 #
+# Net_Tie
+#
+DEF Net_Tie NT 0 40 Y Y 1 F N
+F0 "NT" 10 100 60 H V C CNN
+F1 "Net_Tie" 10 -50 60 H V C CNN
+F2 "" 0 0 60 H I C CNN
+F3 "" 0 0 60 H I C CNN
+DRAW
+C 0 0 10 0 1 0 N
+X ~ 1 -50 0 39 R 50 50 1 1 I N
+X ~ 2 50 0 39 L 50 50 1 1 I N
+ENDDRAW
+ENDDEF
+#
+# Net_Tie-0.5mm
+#
+DEF ~Net_Tie-0.5mm NT 0 40 Y Y 1 F N
+F0 "NT" 10 60 60 H V C CNN
+F1 "Net_Tie-0.5mm" 10 -70 60 H I C CNN
+F2 "" 0 0 60 H I C CNN
+F3 "" 0 0 60 H I C CNN
+DRAW
+C 0 0 10 0 1 0 N
+X ~ 1 -50 0 39 R 20 50 1 1 I
+X ~ 2 50 0 39 L 20 50 1 1 I
+ENDDRAW
+ENDDEF
+#
 #End Library
