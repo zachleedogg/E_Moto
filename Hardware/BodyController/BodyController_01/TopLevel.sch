@@ -1,5 +1,5 @@
 EESchema Schematic File Version 2
-LIBS:BodyController_03-rescue
+LIBS:switches
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -34,8 +34,7 @@ LIBS:micros
 LIBS:ICs
 LIBS:Connectors
 LIBS:microchip_dspic33dsc
-LIBS:switches
-LIBS:BodyController_03-cache
+LIBS:BodyController_01-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -51,19 +50,19 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 850 900 2100 1500
+S 850  900  2100 1500
 U 59868A7F
 F0 "MicroController" 98
 F1 "MicroController.sch" 98
 $EndSheet
 $Sheet
-S 4050 900 2250 1500
+S 4050 900  2250 1500
 U 59868A83
 F0 "PowerInput" 98
 F1 "PowerInput.sch" 98
 $EndSheet
 $Sheet
-S 900 2800 2100 1600
+S 900  2800 2100 1600
 U 59868A89
 F0 "Lights, Horn, Aux" 98
 F1 "HighSideDrivers_1.sch" 98
@@ -93,7 +92,7 @@ F0 "Communication" 98
 F1 "Communication.sch" 98
 $EndSheet
 $Sheet
-S 7250 950 2400 1450
+S 7250 950  2400 1450
 U 59994650
 F0 "DCDC" 98
 F1 "DCDC.sch" 98
@@ -105,13 +104,13 @@ F0 "PowerRails" 98
 F1 "PowerRails.sch" 98
 $EndSheet
 $Sheet
-S 1150 6700 1900 800
+S 1150 6700 1900 800 
 U 5A231AD0
 F0 "Inputs" 98
 F1 "Inputs.sch" 98
 $EndSheet
 $Sheet
-S 4050 6700 2250 800
+S 4050 6700 2250 800 
 U 5A54F298
 F0 "J1772" 98
 F1 "J1772.sch" 98

@@ -1,7 +1,7 @@
 import xlrd
 import xlwt
 
-wb = xlrd.open_workbook('E_Moto_BOM.xlsx')
+wb = xlrd.open_workbook('exportedCom.xlsx')
 
 
 # grab the active worksheet
@@ -98,5 +98,5 @@ for items in new_data:
     sheet.write(i, 4, label = new_data[items]["datasheet"])
     i = i+1
     
-book.save("BOM.xlsx")
+book.save("BOM.xls")
     

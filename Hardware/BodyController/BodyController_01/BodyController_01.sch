@@ -1,5 +1,5 @@
 EESchema Schematic File Version 2
-LIBS:BodyController_03-rescue
+LIBS:switches
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -34,8 +34,7 @@ LIBS:micros
 LIBS:ICs
 LIBS:Connectors
 LIBS:microchip_dspic33dsc
-LIBS:switches
-LIBS:BodyController_03-cache
+LIBS:BodyController_01-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
