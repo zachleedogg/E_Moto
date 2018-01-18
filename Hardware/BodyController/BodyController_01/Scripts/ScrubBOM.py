@@ -92,7 +92,7 @@ for items in new_data:
     print(items)
     sheet.write(i,0, label = items)
     sheet.write(i, 1, label = new_data[items]["qty"])
-    myString = ",".join(new_data[items]["refs"])
+    myString = ", ".join(new_data[items]["refs"])
     sheet.write(i, 2, label = myString)
     sheet.write(i, 3, label = new_data[items]["footprint"])
     sheet.write(i, 4, label = new_data[items]["datasheet"])

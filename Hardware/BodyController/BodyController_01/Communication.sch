@@ -150,27 +150,27 @@ $EndComp
 $Comp
 L R R93
 U 1 1 59956D57
-P 8750 2400
-F 0 "R93" V 8830 2400 50  0000 C CNN
-F 1 "60R" V 8750 2400 50  0000 C CNN
-F 2 "Resistors_SMD:R_2512" V 8680 2400 50  0001 C CNN
-F 3 "https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf" H 8750 2400 50  0001 C CNN
-F 4 "RMCF2512JT62R0" H 8830 2500 50  0001 C CNN "MPN"
-F 5 "y" H 8830 2500 50  0001 C CNN "populate"
-	1    8750 2400
+P 9450 2400
+F 0 "R93" V 9530 2400 50  0000 C CNN
+F 1 "60R" V 9450 2400 50  0000 C CNN
+F 2 "Resistors_SMD:R_2512" V 9380 2400 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf" H 9450 2400 50  0001 C CNN
+F 4 "RMCF2512JT62R0" H 9530 2500 50  0001 C CNN "MPN"
+F 5 "y" H 9530 2500 50  0001 C CNN "populate"
+	1    9450 2400
 	-1   0    0    1   
 $EndComp
 $Comp
 L R R94
 U 1 1 59956DAD
-P 8750 2800
-F 0 "R94" V 8830 2800 50  0000 C CNN
-F 1 "60R" V 8750 2800 50  0000 C CNN
-F 2 "Resistors_SMD:R_2512" V 8680 2800 50  0001 C CNN
-F 3 "https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf" H 8750 2800 50  0001 C CNN
-F 4 "RMCF2512JT62R0" H 8830 2900 50  0001 C CNN "MPN"
-F 5 "y" H 8830 2900 50  0001 C CNN "populate"
-	1    8750 2800
+P 9450 2800
+F 0 "R94" V 9530 2800 50  0000 C CNN
+F 1 "60R" V 9450 2800 50  0000 C CNN
+F 2 "Resistors_SMD:R_2512" V 9380 2800 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf" H 9450 2800 50  0001 C CNN
+F 4 "RMCF2512JT62R0" H 9530 2900 50  0001 C CNN "MPN"
+F 5 "y" H 9530 2900 50  0001 C CNN "populate"
+	1    9450 2800
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -427,25 +427,25 @@ $EndComp
 $Comp
 L C C112
 U 1 1 5A45DDEF
-P 9050 2600
-F 0 "C112" H 9075 2700 50  0000 L CNN
-F 1 "10nF" H 9075 2500 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 9088 2450 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 9050 2600 50  0001 C CNN
-F 4 "CGA3E2X7R1H103K080AA" H 9075 2800 50  0001 C CNN "MPN"
-F 5 "y" H 9075 2800 50  0001 C CNN "populate"
-	1    9050 2600
+P 9750 2600
+F 0 "C112" H 9775 2700 50  0000 L CNN
+F 1 "10nF" H 9775 2500 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 9788 2450 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 9750 2600 50  0001 C CNN
+F 4 "CGA3E2X7R1H103K080AA" H 9775 2800 50  0001 C CNN "MPN"
+F 5 "y" H 9775 2800 50  0001 C CNN "populate"
+	1    9750 2600
 	0    -1   -1   0   
 $EndComp
 $Comp
 L GND #PWR0160
 U 1 1 5A45DDF5
-P 9250 2600
-F 0 "#PWR0160" H 9250 2350 50  0001 C CNN
-F 1 "GND" H 9250 2450 50  0000 C CNN
-F 2 "" H 9250 2600 50  0001 C CNN
-F 3 "" H 9250 2600 50  0001 C CNN
-	1    9250 2600
+P 9950 2600
+F 0 "#PWR0160" H 9950 2350 50  0001 C CNN
+F 1 "GND" H 9950 2450 50  0000 C CNN
+F 2 "" H 9950 2600 50  0001 C CNN
+F 3 "" H 9950 2600 50  0001 C CNN
+	1    9950 2600
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -474,9 +474,9 @@ F 5 "y" H 2630 5850 50  0001 C CNN "populate"
 	1    2550 5750
 	0    -1   -1   0   
 $EndComp
-Text GLabel 9050 2250 2    60   BiDi ~ 0
+Text GLabel 9750 2250 2    60   BiDi ~ 0
 CAN_P
-Text GLabel 9050 2950 2    60   BiDi ~ 0
+Text GLabel 9750 2950 2    60   BiDi ~ 0
 CAN_N
 Text GLabel 5950 2800 0    60   Input ~ 0
 CAN_SLEEP
@@ -484,8 +484,6 @@ Text GLabel 5950 2500 0    60   Output ~ 0
 CAN_RX
 Text GLabel 5950 2400 0    60   Input ~ 0
 CAN_TX
-Text Notes 8400 2000 0    60   ~ 0
-TODO:\nAdd choke, Split Termination.
 Text GLabel 2350 4050 0    60   Output ~ 0
 USB_5V
 Text GLabel 2100 5750 0    60   BiDi ~ 0
@@ -507,19 +505,15 @@ Wire Wire Line
 Wire Wire Line
 	6800 1550 7450 1550
 Wire Wire Line
-	8750 2550 8750 2650
+	9450 2550 9450 2650
 Wire Wire Line
-	8350 2250 9050 2250
+	9200 2250 9750 2250
 Wire Wire Line
-	8350 2250 8350 2500
+	7950 2500 8500 2500
 Wire Wire Line
-	8350 2500 7950 2500
+	7950 2700 8500 2700
 Wire Wire Line
-	7950 2700 8350 2700
-Wire Wire Line
-	8350 2700 8350 2950
-Wire Wire Line
-	8350 2950 9050 2950
+	9200 2950 9750 2950
 Wire Wire Line
 	6950 2400 6650 2400
 Wire Wire Line
@@ -577,9 +571,9 @@ Wire Wire Line
 Wire Wire Line
 	9700 4700 9700 4850
 Wire Wire Line
-	9250 2600 9200 2600
+	9950 2600 9900 2600
 Wire Wire Line
-	8900 2600 8750 2600
+	9600 2600 9450 2600
 Wire Wire Line
 	3100 5650 3000 5650
 Wire Wire Line
@@ -589,8 +583,8 @@ Wire Wire Line
 Wire Wire Line
 	2700 5750 3100 5750
 Connection ~ 7450 1550
-Connection ~ 8750 2250
-Connection ~ 8750 2950
+Connection ~ 9450 2250
+Connection ~ 9450 2950
 Connection ~ 2550 4050
 Connection ~ 3550 4050
 Connection ~ 3250 4050
@@ -601,11 +595,140 @@ Connection ~ 3150 4050
 Connection ~ 7150 1550
 Connection ~ 6750 2700
 Connection ~ 1600 6100
-Connection ~ 8750 2600
+Connection ~ 9450 2600
 NoConn ~ 4750 5450
 NoConn ~ 4750 5550
 NoConn ~ 4750 5850
 NoConn ~ 4750 5950
 NoConn ~ 4750 6050
 NoConn ~ 4750 6150
+$Comp
+L EMI_Filter_CommonMode L4
+U 1 1 5A5FE9AD
+P 8700 2600
+F 0 "L4" H 8700 2775 50  0000 C CNN
+F 1 "EMI_Filter_CommonMode" H 8700 2425 50  0000 C CNN
+F 2 "Footprints:ACT45B" V 8700 2640 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/cmf_automotive_signal_act45b_en.pdf" V 8700 2640 50  0001 C CNN
+F 4 "ACT45B-510-2P-TL003" H 8700 2600 60  0001 C CNN "MPN"
+F 5 "y" H 8700 2600 60  0001 C CNN "populate"
+	1    8700 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9200 2500 8900 2500
+Wire Wire Line
+	9200 2150 9200 2500
+Wire Wire Line
+	8900 2700 9200 2700
+Wire Wire Line
+	9200 2700 9200 3050
+$Comp
+L C C135
+U 1 1 5A5FF6F2
+P 9200 2000
+F 0 "C135" H 9225 2100 50  0000 L CNN
+F 1 "18pF" H 9225 1900 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 9238 1850 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 9200 2000 50  0001 C CNN
+F 4 "CGA3E2C0G1H180J080AA" H 9225 2200 50  0001 C CNN "MPN"
+F 5 "y" H 9225 2200 50  0001 C CNN "populate"
+	1    9200 2000
+	-1   0    0    -1  
+$EndComp
+$Comp
+L C C136
+U 1 1 5A5FF939
+P 9200 3200
+F 0 "C136" H 9225 3300 50  0000 L CNN
+F 1 "18pF" H 9225 3100 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 9238 3050 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 9200 3200 50  0001 C CNN
+F 4 "CGA3E2C0G1H180J080AA" H 9225 3400 50  0001 C CNN "MPN"
+F 5 "y" H 9225 3400 50  0001 C CNN "populate"
+	1    9200 3200
+	1    0    0    1   
+$EndComp
+Connection ~ 9200 2250
+Connection ~ 9200 2950
+$Comp
+L GND #PWR0161
+U 1 1 5A5FFB7F
+P 9200 1850
+F 0 "#PWR0161" H 9200 1600 50  0001 C CNN
+F 1 "GND" H 9200 1700 50  0000 C CNN
+F 2 "" H 9200 1850 50  0001 C CNN
+F 3 "" H 9200 1850 50  0001 C CNN
+	1    9200 1850
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR0162
+U 1 1 5A5FFC84
+P 9200 3350
+F 0 "#PWR0162" H 9200 3100 50  0001 C CNN
+F 1 "GND" H 9200 3200 50  0000 C CNN
+F 2 "" H 9200 3350 50  0001 C CNN
+F 3 "" H 9200 3350 50  0001 C CNN
+	1    9200 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C134
+U 1 1 5A600AF0
+P 8200 3200
+F 0 "C134" H 8225 3300 50  0000 L CNN
+F 1 "18pF" H 8225 3100 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 8238 3050 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 8200 3200 50  0001 C CNN
+F 4 "CGA3E2C0G1H180J080AA" H 8225 3400 50  0001 C CNN "MPN"
+F 5 "y" H 8225 3400 50  0001 C CNN "populate"
+	1    8200 3200
+	1    0    0    1   
+$EndComp
+$Comp
+L GND #PWR0163
+U 1 1 5A600AF6
+P 8200 3350
+F 0 "#PWR0163" H 8200 3100 50  0001 C CNN
+F 1 "GND" H 8200 3200 50  0000 C CNN
+F 2 "" H 8200 3350 50  0001 C CNN
+F 3 "" H 8200 3350 50  0001 C CNN
+	1    8200 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C133
+U 1 1 5A600B61
+P 8200 2000
+F 0 "C133" H 8225 2100 50  0000 L CNN
+F 1 "18pF" H 8225 1900 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 8238 1850 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 8200 2000 50  0001 C CNN
+F 4 "CGA3E2C0G1H180J080AA" H 8225 2200 50  0001 C CNN "MPN"
+F 5 "y" H 8225 2200 50  0001 C CNN "populate"
+	1    8200 2000
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND #PWR0164
+U 1 1 5A600B67
+P 8200 1850
+F 0 "#PWR0164" H 8200 1600 50  0001 C CNN
+F 1 "GND" H 8200 1700 50  0000 C CNN
+F 2 "" H 8200 1850 50  0001 C CNN
+F 3 "" H 8200 1850 50  0001 C CNN
+	1    8200 1850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8200 2500 8200 2150
+Connection ~ 8200 2500
+Wire Wire Line
+	8200 2700 8200 3050
+Connection ~ 8200 2700
+Text Label 8200 2350 0    60   ~ 0
+CAN_FILT_P
+Text Label 8200 2950 0    60   ~ 0
+CAN_FILT_N
 $EndSCHEMATC
