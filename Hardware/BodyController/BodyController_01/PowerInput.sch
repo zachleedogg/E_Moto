@@ -72,67 +72,6 @@ F 3 "" H 9500 900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R3
-U 1 1 598C0357
-P 9150 1750
-F 0 "R3" V 9230 1750 50  0000 C CNN
-F 1 "34k" V 9150 1750 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 9080 1750 50  0001 C CNN
-F 3 "http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0002+ERJ3EKF3402V+7+WW" H 9150 1750 50  0001 C CNN
-F 4 "ERJ-3EKF3402V" H 9230 1850 50  0001 C CNN "MPN"
-F 5 "y" H 9230 1850 50  0001 C CNN "populate"
-	1    9150 1750
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R4
-U 1 1 598C0358
-P 9150 2250
-F 0 "R4" V 9230 2250 50  0000 C CNN
-F 1 "10k" V 9150 2250 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 9080 2250 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 9150 2250 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 9230 2350 50  0001 C CNN "MPN"
-F 5 "y" H 9230 2350 50  0001 C CNN "populate"
-	1    9150 2250
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR016
-U 1 1 598C0359
-P 9150 2500
-F 0 "#PWR016" H 9150 2250 50  0001 C CNN
-F 1 "GND" H 9150 2350 50  0000 C CNN
-F 2 "" H 9150 2500 50  0001 C CNN
-F 3 "" H 9150 2500 50  0001 C CNN
-	1    9150 2500
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C10
-U 1 1 598C035B
-P 9650 2300
-F 0 "C10" H 9675 2400 50  0000 L CNN
-F 1 "10nF" H 9675 2200 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 9688 2150 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 9650 2300 50  0001 C CNN
-F 4 "CGA3E2X7R1H103K080AA" H 9675 2500 50  0001 C CNN "MPN"
-F 5 "y" H 9675 2500 50  0001 C CNN "populate"
-	1    9650 2300
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR017
-U 1 1 598C035C
-P 9650 2500
-F 0 "#PWR017" H 9650 2250 50  0001 C CNN
-F 1 "GND" H 9650 2350 50  0000 C CNN
-F 2 "" H 9650 2500 50  0001 C CNN
-F 3 "" H 9650 2500 50  0001 C CNN
-	1    9650 2500
-	1    0    0    -1  
-$EndComp
-$Comp
 L CP C12
 U 1 1 5996038D
 P 7900 1150
@@ -893,19 +832,6 @@ F 4 "n" H 7260 1410 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L Q_PMOS_GSD Q17
-U 1 1 5A492338
-P 9050 1300
-F 0 "Q17" H 9250 1350 50  0000 L CNN
-F 1 "Q_PMOS_GSD" H 9250 1250 50  0000 L CNN
-F 2 "TO_SOT_Packages_SMD:SOT-23" H 9250 1400 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/BSS84AK.pdf" H 9050 1300 50  0001 C CNN
-F 4 "BSS84AK,215" H 9250 1450 50  0001 C CNN "MPN"
-F 5 "y" H 9250 1450 50  0001 C CNN "populate"
-	1    9050 1300
-	1    0    0    1   
-$EndComp
-$Comp
 L C C20
 U 1 1 5A4A749B
 P 9400 5900
@@ -1014,8 +940,6 @@ F 5 "y" H 4230 5750 50  0001 C CNN "populate"
 	1    4150 5650
 	1    0    0    -1  
 $EndComp
-Text GLabel 9850 2000 2    59   Output ~ 0
-12V_MONITOR_AI
 Text Notes 6500 6400 2    98   ~ 0
 71A efuse\n25A/V\nOffset at 1.65V
 Text GLabel 4650 3450 0    98   Output ~ 0
@@ -1028,8 +952,6 @@ Text GLabel 1200 4550 0    98   Input ~ 0
 BATT_EN
 Text GLabel 1350 4850 0    98   Output ~ 0
 BATT_~FAULT
-Text GLabel 8850 1300 0    39   Input ~ 0
-DIVIDER_EN
 Text Label 5700 900  0    60   ~ 0
 BATT_SHUNT
 Text GLabel 7400 5200 2    60   Output ~ 0
@@ -1039,21 +961,9 @@ Wire Wire Line
 Wire Wire Line
 	7300 900  9850 900 
 Wire Wire Line
-	9150 1900 9150 2100
-Wire Wire Line
-	9150 2500 9150 2400
-Wire Wire Line
-	9150 2000 9850 2000
-Wire Wire Line
-	9650 2500 9650 2450
-Wire Wire Line
 	7900 900  7900 1000
 Wire Wire Line
 	8200 900  8200 1000
-Wire Wire Line
-	9150 1500 9150 1600
-Wire Wire Line
-	9650 2150 9650 2000
 Wire Wire Line
 	7000 4550 7250 4550
 Wire Wire Line
@@ -1189,8 +1099,6 @@ Wire Wire Line
 Wire Wire Line
 	1450 4850 1350 4850
 Wire Wire Line
-	9150 1100 9150 900 
-Wire Wire Line
 	2750 4850 2750 5000
 Wire Wire Line
 	3250 900  7000 900 
@@ -1274,8 +1182,6 @@ Wire Wire Line
 	8100 4650 8000 4650
 Wire Wire Line
 	7250 5200 7400 5200
-Connection ~ 9150 2000
-Connection ~ 9650 2000
 Connection ~ 9500 900 
 Connection ~ 8200 900 
 Connection ~ 7900 900 
@@ -1301,7 +1207,6 @@ Connection ~ 9100 5600
 Connection ~ 9100 6250
 Connection ~ 2600 4850
 Connection ~ 2250 4850
-Connection ~ 9150 900 
 Connection ~ 2750 4850
 Connection ~ 1300 900 
 Connection ~ 4250 900 

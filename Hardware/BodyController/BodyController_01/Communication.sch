@@ -474,9 +474,9 @@ F 5 "y" H 2630 5850 50  0001 C CNN "populate"
 	1    2550 5750
 	0    -1   -1   0   
 $EndComp
-Text GLabel 9750 2250 2    60   BiDi ~ 0
+Text GLabel 10500 2050 2    60   BiDi ~ 0
 CAN_P
-Text GLabel 9750 2950 2    60   BiDi ~ 0
+Text GLabel 10500 3150 2    60   BiDi ~ 0
 CAN_N
 Text GLabel 5950 2800 0    60   Input ~ 0
 CAN_SLEEP
@@ -507,13 +507,13 @@ Wire Wire Line
 Wire Wire Line
 	9450 2550 9450 2650
 Wire Wire Line
-	9200 2250 9750 2250
+	9200 2250 10400 2250
 Wire Wire Line
 	7950 2500 8500 2500
 Wire Wire Line
 	7950 2700 8500 2700
 Wire Wire Line
-	9200 2950 9750 2950
+	9200 2950 10400 2950
 Wire Wire Line
 	6950 2400 6650 2400
 Wire Wire Line
@@ -731,4 +731,41 @@ Text Label 8200 2350 0    60   ~ 0
 CAN_FILT_P
 Text Label 8200 2950 0    60   ~ 0
 CAN_FILT_N
+$Comp
+L D_Schottky_x2_ACom_AKK D10
+U 1 1 5A623006
+P 10400 2600
+F 0 "D10" H 10450 2500 50  0000 C CNN
+F 1 "D_Schottky_x2_ACom_AKK" H 10400 2700 50  0000 C CNN
+F 2 "Footprints:D_SOT-23_ANK" H 10400 2600 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/PESDXS1UB_SERIES.pdf" H 10400 2600 50  0001 C CNN
+F 4 "PESD24VS1UB,115" H 10400 2600 60  0001 C CNN "MPN"
+	1    10400 2600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	10400 2250 10400 2300
+Wire Wire Line
+	10400 2950 10400 2900
+Wire Wire Line
+	10500 3150 10000 3150
+Wire Wire Line
+	10000 3150 10000 2950
+Connection ~ 10000 2950
+Wire Wire Line
+	10500 2050 10000 2050
+Wire Wire Line
+	10000 2050 10000 2250
+Connection ~ 10000 2250
+$Comp
+L GND #PWR0165
+U 1 1 5A623375
+P 10600 2600
+F 0 "#PWR0165" H 10600 2350 50  0001 C CNN
+F 1 "GND" H 10600 2450 50  0000 C CNN
+F 2 "" H 10600 2600 50  0001 C CNN
+F 3 "" H 10600 2600 50  0001 C CNN
+	1    10600 2600
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC
