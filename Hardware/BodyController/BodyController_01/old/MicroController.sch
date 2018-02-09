@@ -447,7 +447,7 @@ Text GLabel 5600 3700 0    59   Input ~ 0
 12P_MONITOR_AI
 Text GLabel 5600 3000 0    59   Input ~ 0
 12V_MONITOR_AI
-Text GLabel 5600 5300 0    59   Output ~ 0
+Text GLabel 5600 5200 0    59   Output ~ 0
 AUX_PORT_EN
 Text GLabel 5600 4600 0    59   Output ~ 0
 HEADLIGHT_HI_EN
@@ -483,7 +483,7 @@ Text GLabel 5600 4400 0    59   Output ~ 0
 BRAKE_LIGHT_EN
 Text GLabel 5600 2200 0    59   Input ~ 0
 TAILLIGHT_ISENSE_AI
-Text GLabel 5600 5200 0    59   Output ~ 0
+Text GLabel 5600 5300 0    59   Output ~ 0
 HORN_EN
 Text GLabel 5600 2400 0    59   Input ~ 0
 HORN_ISENSE_AI
@@ -555,7 +555,7 @@ Text GLabel 10000 1400 2    59   Input ~ 0
 IC_CONTROLLER_~FLT
 Text GLabel 10000 1300 2    59   Output ~ 0
 IC_CONTROLLER_SLEEP
-Text GLabel 5600 1000 0    59   Output ~ 0
+Text GLabel 5600 1300 0    59   Output ~ 0
 J1772_CONTROLLER_EN
 Text GLabel 10050 2450 2    60   Output ~ 0
 FAN_SPEED_1_PWM
@@ -601,7 +601,7 @@ Text GLabel 5600 4000 0    60   Input ~ 0
 PILOT_MONITOR_AI
 Text GLabel 5600 1400 0    60   Input ~ 0
 PROXIMITY_MONITOR_AI
-Text GLabel 5600 1300 0    60   Output ~ 0
+Text GLabel 5600 1000 0    60   Output ~ 0
 PILOT_EN
 Wire Wire Line
 	750  5300 2000 5300
