@@ -177,32 +177,6 @@ F 3 "" H 9950 6300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R14
-U 1 1 599A2E3C
-P 6850 4550
-F 0 "R14" V 6930 4550 50  0000 C CNN
-F 1 "10R" V 6850 4550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 6780 4550 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6850 4550 50  0001 C CNN
-F 4 "AC0603FR-0710RL" H 6930 4650 50  0001 C CNN "MPN"
-F 5 "y" H 6930 4650 50  0001 C CNN "populate"
-	1    6850 4550
-	0    1    1    0   
-$EndComp
-$Comp
-L R R15
-U 1 1 599A2EC8
-P 6850 4950
-F 0 "R15" V 6930 4950 50  0000 C CNN
-F 1 "10R" V 6850 4950 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 6780 4950 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6850 4950 50  0001 C CNN
-F 4 "AC0603FR-0710RL" H 6930 5050 50  0001 C CNN "MPN"
-F 5 "y" H 6930 5050 50  0001 C CNN "populate"
-	1    6850 4950
-	0    1    1    0   
-$EndComp
-$Comp
 L GND #PWR022
 U 1 1 599A3CB6
 P 6650 4150
@@ -220,8 +194,8 @@ P 6650 4350
 F 0 "C17" H 6675 4450 50  0000 L CNN
 F 1 "1uF" H 6675 4250 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805" H 6688 4200 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105K125AE.pdf" H 6650 4350 50  0001 C CNN
-F 4 "CGA4J3X7R1H105K125AE" H 6675 4550 50  0001 C CNN "MPN"
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105M125AE.pdf" H 6650 4350 50  0001 C CNN
+F 4 "CGA4J3X7R1H105M125AE" H 6675 4550 50  0001 C CNN "MPN"
 F 5 "y" H 6675 4550 50  0001 C CNN "populate"
 	1    6650 4350
 	-1   0    0    1   
@@ -229,25 +203,25 @@ $EndComp
 $Comp
 L GND #PWR023
 U 1 1 599A3E31
-P 6650 5350
-F 0 "#PWR023" H 6650 5100 50  0001 C CNN
-F 1 "GND" H 6650 5200 50  0000 C CNN
-F 2 "" H 6650 5350 50  0001 C CNN
-F 3 "" H 6650 5350 50  0001 C CNN
-	1    6650 5350
+P 6650 5450
+F 0 "#PWR023" H 6650 5200 50  0001 C CNN
+F 1 "GND" H 6650 5300 50  0000 C CNN
+F 2 "" H 6650 5450 50  0001 C CNN
+F 3 "" H 6650 5450 50  0001 C CNN
+	1    6650 5450
 	1    0    0    -1  
 $EndComp
 $Comp
 L C C18
 U 1 1 599A3E37
-P 6650 5150
-F 0 "C18" H 6675 5250 50  0000 L CNN
-F 1 "1uF" H 6675 5050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805" H 6688 5000 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105K125AE.pdf" H 6650 5150 50  0001 C CNN
-F 4 "CGA4J3X7R1H105K125AE" H 6675 5350 50  0001 C CNN "MPN"
-F 5 "y" H 6675 5350 50  0001 C CNN "populate"
-	1    6650 5150
+P 6650 5250
+F 0 "C18" H 6675 5350 50  0000 L CNN
+F 1 "1uF" H 6675 5150 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 6688 5100 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105M125AE.pdf" H 6650 5250 50  0001 C CNN
+F 4 "CGA4J3X7R1H105M125AE" H 6675 5450 50  0001 C CNN "MPN"
+F 5 "y" H 6675 5450 50  0001 C CNN "populate"
+	1    6650 5250
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -257,8 +231,8 @@ P 6550 4750
 F 0 "C16" H 6575 4850 50  0000 L CNN
 F 1 "1uF" H 6575 4650 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805" H 6588 4600 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105K125AE.pdf" H 6550 4750 50  0001 C CNN
-F 4 "CGA4J3X7R1H105K125AE" H 6575 4950 50  0001 C CNN "MPN"
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105M125AE.pdf" H 6550 4750 50  0001 C CNN
+F 4 "CGA4J3X7R1H105M125AE" H 6575 4950 50  0001 C CNN "MPN"
 F 5 "y" H 6575 4950 50  0001 C CNN "populate"
 	1    6550 4750
 	-1   0    0    1   
@@ -270,8 +244,8 @@ P 10250 5900
 F 0 "C21" H 10275 6000 50  0000 L CNN
 F 1 "1uF" H 10275 5800 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805" H 10288 5750 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105K125AE.pdf" H 10250 5900 50  0001 C CNN
-F 4 "CGA4J3X7R1H105K125AE" H 10275 6100 50  0001 C CNN "MPN"
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105M125AE.pdf" H 10250 5900 50  0001 C CNN
+F 4 "CGA4J3X7R1H105M125AE" H 10275 6100 50  0001 C CNN "MPN"
 F 5 "y" H 10275 6100 50  0001 C CNN "populate"
 	1    10250 5900
 	-1   0    0    1   
@@ -591,7 +565,7 @@ F 0 "U2" H 3400 5050 39  0000 C CNN
 F 1 "LM2903QDRQ1" H 3350 4700 39  0000 C CNN
 F 2 "Footprints:TSSOP-8_3x4.4mm_Pitch0.65mm" H 4400 4600 39  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2903-q1.pdf" H 4400 4600 39  0001 C CNN
-F 4 "LM2903QDRQ1" H 3400 5150 50  0001 C CNN "MPN"
+F 4 "LM2903AVQPWRG4Q1 " H 3400 5150 50  0001 C CNN "MPN"
 F 5 "y" H 3400 5150 50  0001 C CNN "populate"
 	1    3700 4850
 	1    0    0    1   
@@ -604,7 +578,7 @@ F 0 "U2" H 2850 6750 39  0000 C CNN
 F 1 "LM2903QDRQ1" H 2800 6400 39  0000 C CNN
 F 2 "Footprints:TSSOP-8_3x4.4mm_Pitch0.65mm" H 3850 6300 39  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2903-q1.pdf" H 3850 6300 39  0001 C CNN
-F 4 "LM2903QDRQ1" H 2850 6850 50  0001 C CNN "MPN"
+F 4 "LM2903AVQPWRG4Q1 " H 2850 6850 50  0001 C CNN "MPN"
 F 5 "y" H 2850 6850 50  0001 C CNN "populate"
 	2    3150 6550
 	-1   0    0    -1  
@@ -629,8 +603,8 @@ P 5150 1550
 F 0 "D8" H 5150 1650 50  0000 C CNN
 F 1 "D_Zener_15V" H 5150 1450 50  0000 C CNN
 F 2 "Diodes_SMD:D_SOD-123" H 5150 1550 50  0001 C CNN
-F 3 "http://www.onsemi.com/pub/Collateral/MMSZ4678T1-D.PDF" H 5150 1550 50  0001 C CNN
-F 4 "MMSZ4702T1G" H 5150 1750 50  0001 C CNN "MPN"
+F 3 "http://www.onsemi.com/pub/Collateral/MMSZ5221BT1-D.PDF" H 5150 1550 50  0001 C CNN
+F 4 "MMSZ5245BT1G" H 5150 1750 50  0001 C CNN "MPN"
 F 5 "y" H 5150 1750 50  0001 C CNN "populate"
 	1    5150 1550
 	0    1    1    0   
@@ -838,8 +812,8 @@ P 9400 5900
 F 0 "C20" H 9425 6000 50  0000 L CNN
 F 1 "1uF" H 9425 5800 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805" H 9438 5750 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105K125AE.pdf" H 9400 5900 50  0001 C CNN
-F 4 "CGA4J3X7R1H105K125AE" H 9425 6100 50  0001 C CNN "MPN"
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105M125AE.pdf" H 9400 5900 50  0001 C CNN
+F 4 "CGA4J3X7R1H105M125AE" H 9425 6100 50  0001 C CNN "MPN"
 F 5 "y" H 9425 6100 50  0001 C CNN "populate"
 	1    9400 5900
 	-1   0    0    1   
@@ -921,8 +895,8 @@ P 8350 5900
 F 0 "C79" H 8375 6000 50  0000 L CNN
 F 1 "1uF" H 8375 5800 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0805" H 8388 5750 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105K125AE.pdf" H 8350 5900 50  0001 C CNN
-F 4 "CGA4J3X7R1H105K125AE" H 8375 6100 50  0001 C CNN "MPN"
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA4J3X7R1H105M125AE.pdf" H 8350 5900 50  0001 C CNN
+F 4 "CGA4J3X7R1H105M125AE" H 8375 6100 50  0001 C CNN "MPN"
 F 5 "y" H 8375 6100 50  0001 C CNN "populate"
 	1    8350 5900
 	-1   0    0    1   
@@ -940,8 +914,34 @@ F 5 "y" H 4230 5750 50  0001 C CNN "populate"
 	1    4150 5650
 	1    0    0    -1  
 $EndComp
+$Comp
+L R R14
+U 1 1 5A8741DE
+P 6850 4550
+F 0 "R14" V 6930 4550 50  0000 C CNN
+F 1 "3R0" V 6850 4550 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 6780 4550 50  0001 C CNN
+F 3 "http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ3R0V+7+WW" H 6850 4550 50  0001 C CNN
+F 4 "ERJ-3GEYJ3R0V" H 6930 4650 50  0001 C CNN "MPN"
+F 5 "y" H 6930 4650 50  0001 C CNN "populate"
+	1    6850 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L R R15
+U 1 1 5A874231
+P 6850 4950
+F 0 "R15" V 6930 4950 50  0000 C CNN
+F 1 "3R0" V 6850 4950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 6780 4950 50  0001 C CNN
+F 3 "http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ3R0V+7+WW" H 6850 4950 50  0001 C CNN
+F 4 "ERJ-3GEYJ3R0V" H 6930 5050 50  0001 C CNN "MPN"
+F 5 "y" H 6930 5050 50  0001 C CNN "populate"
+	1    6850 4950
+	0    1    1    0   
+$EndComp
 Text Notes 6500 6400 2    98   ~ 0
-71A efuse\n25A/V\nOffset at 1.65V
+27A efuse\n20A/V\nOffset at 1.65V
 Text GLabel 4650 3450 0    98   Output ~ 0
 BATT_ISENSE_AI
 Text Notes 4550 5400 2    98   ~ 0
@@ -956,6 +956,8 @@ Text Label 5700 900  0    60   ~ 0
 BATT_SHUNT
 Text GLabel 7400 5200 2    60   Output ~ 0
 1V65_REF
+Text Notes 5600 4400 0    60   ~ 0
+Gain: 100V/V
 Wire Wire Line
 	1300 850  1300 1000
 Wire Wire Line
@@ -977,9 +979,9 @@ Wire Wire Line
 Wire Wire Line
 	6650 4200 6650 4150
 Wire Wire Line
-	6650 5350 6650 5300
+	6650 5450 6650 5400
 Wire Wire Line
-	6650 5000 6650 4950
+	6650 5100 6650 4950
 Wire Wire Line
 	6550 4600 6550 4550
 Wire Wire Line
@@ -1157,7 +1159,7 @@ Wire Wire Line
 Wire Wire Line
 	8050 5500 8050 5600
 Wire Wire Line
-	8050 6350 8050 6250
+	8050 6250 8050 6350
 Wire Wire Line
 	8350 6050 8350 6300
 Wire Wire Line
@@ -1167,7 +1169,7 @@ Wire Wire Line
 Wire Wire Line
 	8350 5550 8050 5550
 Wire Wire Line
-	7400 4750 6200 4750
+	6200 4750 7400 4750
 Wire Wire Line
 	7250 4750 7250 5200
 Wire Wire Line
@@ -1226,6 +1228,6 @@ Connection ~ 8050 6300
 Connection ~ 8050 5550
 Connection ~ 7250 4750
 Connection ~ 7250 5050
-NoConn ~ 3650 6550
 Connection ~ 2800 4450
+NoConn ~ 3650 6550
 $EndSCHEMATC

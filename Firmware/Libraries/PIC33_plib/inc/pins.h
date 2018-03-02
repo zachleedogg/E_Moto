@@ -17,6 +17,7 @@
  * ****************************************************************************/
 
 #define PIN_CONCAT(A, B) A##B
+#define PIN_DEF(A,B) (PINS_pin_S){PIN_PORT##A,B}
 
 typedef enum {
     LOW,

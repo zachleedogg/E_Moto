@@ -67,8 +67,8 @@ P 4200 1600
 F 0 "D2" H 4200 1700 50  0000 C CNN
 F 1 "D_Schottky" H 4200 1500 50  0000 C CNN
 F 2 "Diodes_SMD:D_SOD-123" H 4200 1600 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG10010ELR.pdf" H 4200 1600 50  0001 C CNN
-F 4 "PMEG10010ELRX" H 4200 1800 50  0001 C CNN "MPN"
+F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG6020AELR.pdf" H 4200 1600 50  0001 C CNN
+F 4 "PMEG6020AELRX" H 4200 1800 50  0001 C CNN "MPN"
 F 5 "y" H 4200 1800 50  0001 C CNN "populate"
 	1    4200 1600
 	-1   0    0    1   
@@ -126,10 +126,10 @@ L R R105
 U 1 1 5999EA21
 P 9050 2900
 F 0 "R105" V 9130 2900 50  0000 C CNN
-F 1 "10k" V 9050 2900 50  0000 C CNN
+F 1 "4k7" V 9050 2900 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 8980 2900 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 9050 2900 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 9130 3000 50  0001 C CNN "MPN"
+F 4 "AC0603FR-074K7L" H 9130 3000 50  0001 C CNN "MPN"
 F 5 "y" H 9130 3000 50  0001 C CNN "populate"
 	1    9050 2900
 	1    0    0    -1  
@@ -213,8 +213,8 @@ P 1550 4000
 F 0 "D1" H 1550 4100 50  0000 C CNN
 F 1 "D_Schottky" H 1550 3900 50  0000 C CNN
 F 2 "Diodes_SMD:D_SOD-123" H 1550 4000 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG10010ELR.pdf" H 1550 4000 50  0001 C CNN
-F 4 "PMEG10010ELRX" H 1550 4200 50  0001 C CNN "MPN"
+F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG6020AELR.pdf" H 1550 4000 50  0001 C CNN
+F 4 "PMEG6020AELRX" H 1550 4200 50  0001 C CNN "MPN"
 F 5 "y" H 1550 4200 50  0001 C CNN "populate"
 	1    1550 4000
 	-1   0    0    1   
@@ -309,10 +309,10 @@ L R R23
 U 1 1 5999EA37
 P 3800 4250
 F 0 "R23" V 3880 4250 50  0000 C CNN
-F 1 "10k" V 3800 4250 50  0000 C CNN
+F 1 "560k" V 3800 4250 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 3730 4250 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 3800 4250 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 3880 4350 50  0001 C CNN "MPN"
+F 4 "AC0603FR-07560KL" H 3880 4350 50  0001 C CNN "MPN"
 F 5 "y" H 3880 4350 50  0001 C CNN "populate"
 	1    3800 4250
 	1    0    0    -1  
@@ -322,10 +322,10 @@ L R R24
 U 1 1 5999EA38
 P 3800 4600
 F 0 "R24" V 3880 4600 50  0000 C CNN
-F 1 "10k" V 3800 4600 50  0000 C CNN
+F 1 "150k" V 3800 4600 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 3730 4600 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 3800 4600 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 3880 4700 50  0001 C CNN "MPN"
+F 4 "AC0603FR-07150KL" H 3880 4700 50  0001 C CNN "MPN"
 F 5 "y" H 3880 4700 50  0001 C CNN "populate"
 	1    3800 4600
 	1    0    0    -1  
@@ -346,10 +346,10 @@ L R R99
 U 1 1 5999EA3A
 P 4200 4600
 F 0 "R99" V 4280 4600 50  0000 C CNN
-F 1 "10k" V 4200 4600 50  0000 C CNN
+F 1 "49k9" V 4200 4600 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 4130 4600 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4200 4600 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 4280 4700 50  0001 C CNN "MPN"
+F 4 "AC0603FR-0749K9L" H 4280 4700 50  0001 C CNN "MPN"
 F 5 "y" H 4280 4700 50  0001 C CNN "populate"
 	1    4200 4600
 	1    0    0    -1  
@@ -414,40 +414,14 @@ F 5 "y" H 7050 4300 50  0001 C CNN "populate"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L C C50
-U 1 1 5999EA40
-P 6350 4000
-F 0 "C50" H 6375 4100 50  0000 L CNN
-F 1 "10nF" H 6375 3900 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 6388 3850 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 6350 4000 50  0001 C CNN
-F 4 "CGA3E2X7R1H103K080AA" H 6375 4200 50  0001 C CNN "MPN"
-F 5 "y" H 6375 4200 50  0001 C CNN "populate"
-	1    6350 4000
-	0    1    1    0   
-$EndComp
-$Comp
-L R R103
-U 1 1 5999EA41
-P 6650 4000
-F 0 "R103" V 6730 4000 50  0000 C CNN
-F 1 "10R" V 6650 4000 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 6580 4000 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6650 4000 50  0001 C CNN
-F 4 "AC0603FR-0710RL" H 6730 4100 50  0001 C CNN "MPN"
-F 5 "y" H 6730 4100 50  0001 C CNN "populate"
-	1    6650 4000
-	0    1    1    0   
-$EndComp
-$Comp
 L R R106
 U 1 1 5999EA42
 P 7400 4350
 F 0 "R106" V 7480 4350 50  0000 C CNN
-F 1 "20R" V 7400 4350 50  0000 C CNN
+F 1 "22R" V 7400 4350 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 7330 4350 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 7400 4350 50  0001 C CNN
-F 4 "AC0603FR-0720RL" H 7480 4450 50  0001 C CNN "MPN"
+F 4 "AC0603FR-0722RL" H 7480 4450 50  0001 C CNN "MPN"
 F 5 "y" H 7480 4450 50  0001 C CNN "populate"
 	1    7400 4350
 	1    0    0    -1  
@@ -457,25 +431,12 @@ L R R107
 U 1 1 5999EA43
 P 7400 4750
 F 0 "R107" V 7480 4750 50  0000 C CNN
-F 1 "10k" V 7400 4750 50  0000 C CNN
+F 1 "845k" V 7400 4750 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 7330 4750 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 7400 4750 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 7480 4850 50  0001 C CNN "MPN"
+F 3 "https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf" H 7400 4750 50  0001 C CNN
+F 4 "RMCF0603FT845K" H 7480 4850 50  0001 C CNN "MPN"
 F 5 "y" H 7480 4850 50  0001 C CNN "populate"
 	1    7400 4750
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R108
-U 1 1 5999EA44
-P 7400 5200
-F 0 "R108" V 7480 5200 50  0000 C CNN
-F 1 "10k" V 7400 5200 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 7330 5200 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 7400 5200 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 7480 5300 50  0001 C CNN "MPN"
-F 5 "y" H 7480 5300 50  0001 C CNN "populate"
-	1    7400 5200
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -490,27 +451,14 @@ F 3 "" H 7400 5400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C53
-U 1 1 5999EA46
-P 7700 4750
-F 0 "C53" H 7725 4850 50  0000 L CNN
-F 1 "12pF" H 7725 4650 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 7738 4600 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H120J080AA.pdf" H 7700 4750 50  0001 C CNN
-F 4 "CGA3E2C0G1H120J080AA" H 7725 4950 50  0001 C CNN "MPN"
-F 5 "y" H 7725 4950 50  0001 C CNN "populate"
-	1    7700 4750
-	1    0    0    -1  
-$EndComp
-$Comp
 L D_Schottky D3
 U 1 1 5999EA47
 P 6050 4450
 F 0 "D3" H 6050 4550 50  0000 C CNN
 F 1 "D_Schottky" H 6050 4350 50  0000 C CNN
 F 2 "Diodes_SMD:D_SOD-123" H 6050 4450 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG10010ELR.pdf" H 6050 4450 50  0001 C CNN
-F 4 "PMEG10010ELRX" H 6050 4650 50  0001 C CNN "MPN"
+F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG6020AELR.pdf" H 6050 4450 50  0001 C CNN
+F 4 "PMEG6020AELRX" H 6050 4650 50  0001 C CNN "MPN"
 F 5 "y" H 6050 4650 50  0001 C CNN "populate"
 	1    6050 4450
 	0    1    1    0   
@@ -525,19 +473,6 @@ F 2 "" H 6050 4700 50  0001 C CNN
 F 3 "" H 6050 4700 50  0001 C CNN
 	1    6050 4700
 	1    0    0    -1  
-$EndComp
-$Comp
-L R R102
-U 1 1 5999EA49
-P 6400 4400
-F 0 "R102" V 6480 4400 50  0000 C CNN
-F 1 "10R" V 6400 4400 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 6330 4400 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6400 4400 50  0001 C CNN
-F 4 "AC0603FR-0710RL" H 6480 4500 50  0001 C CNN "MPN"
-F 5 "y" H 6480 4500 50  0001 C CNN "populate"
-	1    6400 4400
-	-1   0    0    1   
 $EndComp
 $Comp
 L C C51
@@ -570,8 +505,8 @@ P 8450 4450
 F 0 "C55" H 8475 4550 50  0000 L CNN
 F 1 "10uF" H 8475 4350 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 8488 4300 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 8450 4450 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 8475 4650 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 8450 4450 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 8475 4650 50  0001 C CNN "MPN"
 F 5 "y" H 8475 4650 50  0001 C CNN "populate"
 	1    8450 4450
 	1    0    0    -1  
@@ -583,8 +518,8 @@ P 8700 4450
 F 0 "C56" H 8725 4550 50  0000 L CNN
 F 1 "10uF" H 8725 4350 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 8738 4300 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 8700 4450 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 8725 4650 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 8700 4450 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 8725 4650 50  0001 C CNN "MPN"
 F 5 "y" H 8725 4650 50  0001 C CNN "populate"
 	1    8700 4450
 	1    0    0    -1  
@@ -647,27 +582,14 @@ F 3 "" H 9050 4200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C23
-U 1 1 5999EA5A
-P 1400 7100
-F 0 "C23" H 1425 7200 50  0000 L CNN
-F 1 "10uF" H 1425 7000 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206" H 1438 6950 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 1400 7100 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 1425 7300 50  0001 C CNN "MPN"
-F 5 "y" H 1425 7300 50  0001 C CNN "populate"
-	1    1400 7100
-	1    0    0    -1  
-$EndComp
-$Comp
 L C C26
 U 1 1 5999EA5B
 P 3000 7100
 F 0 "C26" H 3025 7200 50  0000 L CNN
 F 1 "10uF" H 3025 7000 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 3038 6950 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 3000 7100 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 3025 7300 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 3000 7100 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 3025 7300 50  0001 C CNN "MPN"
 F 5 "y" H 3025 7300 50  0001 C CNN "populate"
 	1    3000 7100
 	1    0    0    -1  
@@ -798,27 +720,14 @@ F 3 "" H 1200 4000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C47
-U 1 1 599A8552
-P 4450 7100
-F 0 "C47" H 4475 7200 50  0000 L CNN
-F 1 "10uF" H 4475 7000 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206" H 4488 6950 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 4450 7100 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 4475 7300 50  0001 C CNN "MPN"
-F 5 "y" H 4475 7300 50  0001 C CNN "populate"
-	1    4450 7100
-	1    0    0    -1  
-$EndComp
-$Comp
 L C C49
 U 1 1 599A8558
 P 6200 7100
 F 0 "C49" H 6225 7200 50  0000 L CNN
 F 1 "10uF" H 6225 7000 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 6238 6950 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 6200 7100 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 6225 7300 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 6200 7100 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 6225 7300 50  0001 C CNN "MPN"
 F 5 "y" H 6225 7300 50  0001 C CNN "populate"
 	1    6200 7100
 	1    0    0    -1  
@@ -874,8 +783,8 @@ P 5400 1850
 F 0 "C83" H 5425 1950 50  0000 L CNN
 F 1 "100nF" H 5425 1750 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 5438 1700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 5400 1850 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 5425 2050 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 5400 1850 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 5425 2050 50  0001 C CNN "MPN"
 F 5 "y" H 5425 2050 50  0001 C CNN "populate"
 	1    5400 1850
 	1    0    0    -1  
@@ -968,19 +877,6 @@ F 5 "y" H 9700 5800 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C84
-U 1 1 5A49D468
-P 8850 5650
-F 0 "C84" H 8875 5750 50  0000 L CNN
-F 1 "10uF" H 8875 5550 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206" H 8888 5500 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 8850 5650 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 8875 5850 50  0001 C CNN "MPN"
-F 5 "y" H 8875 5850 50  0001 C CNN "populate"
-	1    8850 5650
-	1    0    0    -1  
-$EndComp
-$Comp
 L GND #PWR0228
 U 1 1 5A49D46E
 P 8850 5850
@@ -1020,8 +916,8 @@ P 10600 5650
 F 0 "C113" H 10625 5750 50  0000 L CNN
 F 1 "10uF" H 10625 5550 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 10638 5500 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 10600 5650 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 10625 5850 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 10600 5650 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 10625 5850 50  0001 C CNN "MPN"
 F 5 "y" H 10625 5850 50  0001 C CNN "populate"
 	1    10600 5650
 	1    0    0    -1  
@@ -1079,8 +975,8 @@ P 8500 5450
 F 0 "D7" H 8500 5550 50  0000 C CNN
 F 1 "D_Schottky" H 8500 5350 50  0000 C CNN
 F 2 "Diodes_SMD:D_SOD-123" H 8500 5450 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG10010ELR.pdf" H 8500 5450 50  0001 C CNN
-F 4 "PMEG10010ELRX" H 8500 5650 50  0001 C CNN "MPN"
+F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG6020AELR.pdf" H 8500 5450 50  0001 C CNN
+F 4 "PMEG6020AELRX" H 8500 5650 50  0001 C CNN "MPN"
 F 5 "y" H 8500 5650 50  0001 C CNN "populate"
 	1    8500 5450
 	-1   0    0    1   
@@ -1092,52 +988,12 @@ P 4150 6900
 F 0 "D6" H 4150 7000 50  0000 C CNN
 F 1 "D_Schottky" H 4150 6800 50  0000 C CNN
 F 2 "Diodes_SMD:D_SOD-123" H 4150 6900 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG10010ELR.pdf" H 4150 6900 50  0001 C CNN
-F 4 "PMEG10010ELRX" H 4150 7100 50  0001 C CNN "MPN"
+F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG6020AELR.pdf" H 4150 6900 50  0001 C CNN
+F 4 "PMEG6020AELRX" H 4150 7100 50  0001 C CNN "MPN"
 F 5 "y" H 4150 7100 50  0001 C CNN "populate"
 	1    4150 6900
 	-1   0    0    1   
 $EndComp
-Text GLabel 5250 2650 0    59   Input ~ 0
-SW_EN
-Text Notes 6450 900  2    197  ~ 0
-12V_SW
-Text GLabel 10400 2650 2    59   Output ~ 0
-12P_MONITOR_AI
-Text Label 5900 4000 0    60   ~ 0
-buck_bt
-Text Label 6500 4200 0    60   ~ 0
-buck_sw
-Text Label 6700 5150 0    60   ~ 0
-buck_fb
-Text Label 4250 4000 0    60   ~ 0
-buck_input
-Text Label 4250 4200 0    60   ~ 0
-buck_uvlo
-Text Label 4300 4450 0    60   ~ 0
-buck_freq
-Text Label 4550 4600 0    60   ~ 0
-buck_ss
-Text Notes 2200 5200 0    60   ~ 0
-Buck Converter:\n5V 2A Output\n3.3V UVLO\n500kHz switching frequency\n20mS soft start
-Text GLabel 9400 5600 0    59   Input ~ 0
-SW_EN
-Text Notes 6450 5400 2    60   ~ 0
-TODO: set UVLO, Freq, SS, Feedback
-Text Notes 6150 3650 2    197  ~ 0
-5V Buck Regulator
-Text Notes 2750 6450 2    197  ~ 0
-3V3 LDO
-Text Notes 10800 4950 2    197  ~ 0
-5V_SW_EXT
-Text Notes 5850 6450 2    197  ~ 0
-3V3_SW LDO
-Text GLabel 6100 2050 2    39   Output ~ 0
-DIVIDER_EN
-Text GLabel 5050 7050 0    59   Input ~ 0
-SW_EN
-Text Label 1850 4000 0    60   ~ 0
-buck_holdup
 $Comp
 L R R3
 U 1 1 5A6251F9
@@ -1156,10 +1012,10 @@ L R R4
 U 1 1 5A625202
 P 2450 2950
 F 0 "R4" V 2530 2950 50  0000 C CNN
-F 1 "10k" V 2450 2950 50  0000 C CNN
+F 1 "4k7" V 2450 2950 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 2380 2950 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 2450 2950 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 2530 3050 50  0001 C CNN "MPN"
+F 4 "AC0603FR-074K7L" H 2530 3050 50  0001 C CNN "MPN"
 F 5 "y" H 2530 3050 50  0001 C CNN "populate"
 	1    2450 2950
 	1    0    0    -1  
@@ -1212,10 +1068,6 @@ F 5 "y" H 2550 2150 50  0001 C CNN "populate"
 	1    2350 2000
 	1    0    0    1   
 $EndComp
-Text GLabel 3150 2700 2    59   Output ~ 0
-12V_MONITOR_AI
-Text GLabel 2150 2000 0    39   Input ~ 0
-DIVIDER_EN
 $Comp
 L Q_PMOS_GSD Q5
 U 1 1 5A631AF6
@@ -1229,8 +1081,6 @@ F 5 "y" H 9150 1900 50  0001 C CNN "populate"
 	1    8950 1750
 	1    0    0    1   
 $EndComp
-Text GLabel 8750 1750 0    39   Input ~ 0
-DIVIDER_EN
 $Comp
 L +BATT #PWR0236
 U 1 1 5A631F93
@@ -1255,6 +1105,167 @@ F 5 "y" H 9950 3100 50  0001 C CNN "populate"
 	1    9950 2900
 	0    1    1    0   
 $EndComp
+$Comp
+L GND #PWR0237
+U 1 1 5A633824
+P 9950 3150
+F 0 "#PWR0237" H 9950 2900 50  0001 C CNN
+F 1 "GND" H 9950 3000 50  0000 C CNN
+F 2 "" H 9950 3150 50  0001 C CNN
+F 3 "" H 9950 3150 50  0001 C CNN
+	1    9950 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R108
+U 1 1 5A82B001
+P 7400 5200
+F 0 "R108" V 7480 5200 50  0000 C CNN
+F 1 "150k" V 7400 5200 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 7330 5200 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 7400 5200 50  0001 C CNN
+F 4 "AC0603FR-07150KL" H 7480 5300 50  0001 C CNN "MPN"
+F 5 "y" H 7480 5300 50  0001 C CNN "populate"
+	1    7400 5200
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C23
+U 1 1 5A8783F1
+P 1400 7100
+F 0 "C23" H 1425 7200 50  0000 L CNN
+F 1 "4u7" H 1425 7000 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206" H 1438 6950 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/mlcc_automotive_soft_en.pdf" H 1400 7100 50  0001 C CNN
+F 4 "CGA5L3X7R1H475K160AE" H 1425 7300 50  0001 C CNN "MPN"
+F 5 "y" H 1425 7300 50  0001 C CNN "populate"
+	1    1400 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C47
+U 1 1 5A8784FE
+P 4450 7100
+F 0 "C47" H 4475 7200 50  0000 L CNN
+F 1 "4u7" H 4475 7000 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206" H 4488 6950 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/mlcc_automotive_soft_en.pdf" H 4450 7100 50  0001 C CNN
+F 4 "CGA5L3X7R1H475K160AE" H 4475 7300 50  0001 C CNN "MPN"
+F 5 "y" H 4475 7300 50  0001 C CNN "populate"
+	1    4450 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C84
+U 1 1 5A878712
+P 8850 5650
+F 0 "C84" H 8875 5750 50  0000 L CNN
+F 1 "4u7" H 8875 5550 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206" H 8888 5500 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/mlcc_automotive_soft_en.pdf" H 8850 5650 50  0001 C CNN
+F 4 "CGA5L3X7R1H475K160AE" H 8875 5850 50  0001 C CNN "MPN"
+F 5 "y" H 8875 5850 50  0001 C CNN "populate"
+	1    8850 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R103
+U 1 1 5A879A11
+P 6650 4000
+F 0 "R103" V 6730 4000 50  0000 C CNN
+F 1 "3R0" V 6650 4000 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 6580 4000 50  0001 C CNN
+F 3 "http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ3R0V+7+WW" H 6650 4000 50  0001 C CNN
+F 4 "ERJ-3GEYJ3R0V" H 6730 4100 50  0001 C CNN "MPN"
+F 5 "y" H 6730 4100 50  0001 C CNN "populate"
+	1    6650 4000
+	0    1    1    0   
+$EndComp
+$Comp
+L R R102
+U 1 1 5A879A86
+P 6400 4400
+F 0 "R102" V 6480 4400 50  0000 C CNN
+F 1 "3R0" V 6400 4400 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 6330 4400 50  0001 C CNN
+F 3 "http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ3R0V+7+WW" H 6400 4400 50  0001 C CNN
+F 4 "ERJ-3GEYJ3R0V" H 6480 4500 50  0001 C CNN "MPN"
+F 5 "y" H 6480 4500 50  0001 C CNN "populate"
+	1    6400 4400
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C53
+U 1 1 5A87A706
+P 7700 4750
+F 0 "C53" H 7725 4850 50  0000 L CNN
+F 1 "18pF" H 7725 4650 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 7738 4600 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 7700 4750 50  0001 C CNN
+F 4 "CGA3E2C0G1H180J080AA" H 7725 4950 50  0001 C CNN "MPN"
+F 5 "y" H 7725 4950 50  0001 C CNN "populate"
+	1    7700 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C50
+U 1 1 5A87B7B6
+P 6350 4000
+F 0 "C50" H 6375 4100 50  0000 L CNN
+F 1 "100nF" H 6375 3900 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 6388 3850 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 6350 4000 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 6375 4200 50  0001 C CNN "MPN"
+F 5 "y" H 6375 4200 50  0001 C CNN "populate"
+	1    6350 4000
+	0    1    1    0   
+$EndComp
+Text GLabel 5250 2650 0    59   Input ~ 0
+SW_EN
+Text Notes 6450 900  2    197  ~ 0
+12V_SW
+Text GLabel 10400 2650 2    59   Output ~ 0
+12P_MONITOR_AI
+Text Label 5900 4000 0    60   ~ 0
+buck_bt
+Text Label 6500 4200 0    60   ~ 0
+buck_sw
+Text Label 6700 5150 0    60   ~ 0
+buck_fb
+Text Label 4250 4000 0    60   ~ 0
+buck_input
+Text Label 4250 4200 0    60   ~ 0
+buck_uvlo
+Text Label 4300 4450 0    60   ~ 0
+buck_freq
+Text Label 4550 4600 0    60   ~ 0
+buck_ss
+Text Notes 2200 5200 0    60   ~ 0
+Buck Converter:\n5V 2A Output\n3V UVLO\n500kHz switching frequency\n20mS soft start
+Text GLabel 9400 5600 0    59   Input ~ 0
+SW_EN
+Text Notes 6450 5400 2    60   ~ 0
+TODO: set UVLO, Freq, SS, Feedback
+Text Notes 6150 3650 2    197  ~ 0
+5V Buck Regulator
+Text Notes 2750 6450 2    197  ~ 0
+3V3 LDO
+Text Notes 10800 4950 2    197  ~ 0
+5V_SW_EXT
+Text Notes 5850 6450 2    197  ~ 0
+3V3_SW LDO
+Text GLabel 6100 2050 2    39   Output ~ 0
+DIVIDER_EN
+Text GLabel 5050 7050 0    59   Input ~ 0
+SW_EN
+Text Label 1850 4000 0    60   ~ 0
+buck_holdup
+Text GLabel 3150 2700 2    59   Output ~ 0
+12V_MONITOR_AI
+Text GLabel 2150 2000 0    39   Input ~ 0
+DIVIDER_EN
+Text GLabel 8750 1750 0    39   Input ~ 0
+DIVIDER_EN
 Wire Wire Line
 	4350 1600 5800 1600
 Wire Wire Line
@@ -1461,6 +1472,28 @@ Wire Wire Line
 	3850 6900 4000 6900
 Wire Wire Line
 	4300 6900 5100 6900
+Wire Wire Line
+	2450 2600 2450 2800
+Wire Wire Line
+	2450 3200 2450 3100
+Wire Wire Line
+	2450 2700 3150 2700
+Wire Wire Line
+	2950 3200 2950 3150
+Wire Wire Line
+	2450 2200 2450 2300
+Wire Wire Line
+	2950 2850 2950 2700
+Wire Wire Line
+	2450 1800 2450 1600
+Wire Wire Line
+	2350 1600 2350 1050
+Wire Wire Line
+	9050 1500 9050 1550
+Wire Wire Line
+	9950 2750 9950 2650
+Wire Wire Line
+	9950 3150 9950 3050
 Connection ~ 5750 2050
 Connection ~ 5750 1600
 Connection ~ 9050 2650
@@ -1495,41 +1528,8 @@ Connection ~ 3500 4000
 Connection ~ 4850 4900
 Connection ~ 8850 5450
 Connection ~ 10600 5450
-Wire Wire Line
-	2450 2600 2450 2800
-Wire Wire Line
-	2450 3200 2450 3100
-Wire Wire Line
-	2450 2700 3150 2700
-Wire Wire Line
-	2950 3200 2950 3150
-Wire Wire Line
-	2450 2200 2450 2300
-Wire Wire Line
-	2950 2850 2950 2700
-Wire Wire Line
-	2450 1800 2450 1600
 Connection ~ 2450 2700
 Connection ~ 2950 2700
-Wire Wire Line
-	2350 1600 2350 1050
 Connection ~ 2450 1600
-Wire Wire Line
-	9050 1500 9050 1550
-Wire Wire Line
-	9950 2750 9950 2650
 Connection ~ 9950 2650
-$Comp
-L GND #PWR0237
-U 1 1 5A633824
-P 9950 3150
-F 0 "#PWR0237" H 9950 2900 50  0001 C CNN
-F 1 "GND" H 9950 3000 50  0000 C CNN
-F 2 "" H 9950 3150 50  0001 C CNN
-F 3 "" H 9950 3150 50  0001 C CNN
-	1    9950 3150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	9950 3150 9950 3050
 $EndSCHEMATC

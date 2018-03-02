@@ -56,8 +56,8 @@ P 2650 1600
 F 0 "D9" H 2650 1700 50  0000 C CNN
 F 1 "D_Schottky" H 2650 1500 50  0000 C CNN
 F 2 "Diodes_SMD:D_SOD-123" H 2650 1600 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG10010ELR.pdf" H 2650 1600 50  0001 C CNN
-F 4 "PMEG10010ELRX" H 2650 1800 50  0001 C CNN "MPN"
+F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG6020AELR.pdf" H 2650 1600 50  0001 C CNN
+F 4 "PMEG6020AELRX" H 2650 1800 50  0001 C CNN "MPN"
 F 5 "y" H 2650 1800 50  0001 C CNN "populate"
 	1    2650 1600
 	-1   0    0    1   
@@ -93,10 +93,10 @@ L R R177
 U 1 1 5A54F390
 P 4500 1850
 F 0 "R177" V 4580 1850 50  0000 C CNN
-F 1 "340k" V 4500 1850 50  0000 C CNN
+F 1 "560k" V 4500 1850 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 4430 1850 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDA0000/AOA0000C304.pdf" H 4500 1850 50  0001 C CNN
-F 4 "ERJ-3EKF3403V" H 4580 1950 50  0001 C CNN "MPN"
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4500 1850 50  0001 C CNN
+F 4 "AC0603FR-07560KL" H 4580 1950 50  0001 C CNN "MPN"
 F 5 "y" H 4580 1950 50  0001 C CNN "populate"
 	1    4500 1850
 	1    0    0    -1  
@@ -260,6 +260,54 @@ F 5 "y" H 5230 4450 50  0001 C CNN "populate"
 	1    5150 4350
 	0    1    1    0   
 $EndComp
+$Comp
+L C C138
+U 1 1 5A63943B
+P 2050 1850
+F 0 "C138" H 2075 1950 50  0000 L CNN
+F 1 "10nF" H 2075 1750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 2088 1700 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 2050 1850 50  0001 C CNN
+F 4 "CGA3E2X7R1H103K080AA" H 2075 2050 50  0001 C CNN "MPN"
+F 5 "y" H 2075 2050 50  0001 C CNN "populate"
+	1    2050 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR0284
+U 1 1 5A639442
+P 2050 2050
+F 0 "#PWR0284" H 2050 1800 50  0001 C CNN
+F 1 "GND" H 2050 1900 50  0000 C CNN
+F 2 "" H 2050 2050 50  0001 C CNN
+F 3 "" H 2050 2050 50  0001 C CNN
+	1    2050 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C139
+U 1 1 5A6394A0
+P 3650 4650
+F 0 "C139" H 3675 4750 50  0000 L CNN
+F 1 "10nF" H 3675 4550 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 3688 4500 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 3650 4650 50  0001 C CNN
+F 4 "CGA3E2X7R1H103K080AA" H 3675 4850 50  0001 C CNN "MPN"
+F 5 "y" H 3675 4850 50  0001 C CNN "populate"
+	1    3650 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR0285
+U 1 1 5A6394A7
+P 3650 4850
+F 0 "#PWR0285" H 3650 4600 50  0001 C CNN
+F 1 "GND" H 3650 4700 50  0000 C CNN
+F 2 "" H 3650 4850 50  0001 C CNN
+F 3 "" H 3650 4850 50  0001 C CNN
+	1    3650 4850
+	1    0    0    -1  
+$EndComp
 Text GLabel 1750 1600 0    60   Input ~ 0
 PILOT
 Text GLabel 5150 2050 2    60   Output ~ 0
@@ -320,6 +368,14 @@ Wire Wire Line
 	5000 4350 4500 4350
 Wire Wire Line
 	3300 4300 4500 4300
+Wire Wire Line
+	2050 2050 2050 2000
+Wire Wire Line
+	3650 4850 3650 4800
+Wire Wire Line
+	2050 1700 2050 1600
+Wire Wire Line
+	3650 4500 3650 4300
 Connection ~ 3200 1600
 Connection ~ 3800 1600
 Connection ~ 4500 2050
@@ -329,62 +385,6 @@ Connection ~ 4500 4350
 Connection ~ 4500 4750
 Connection ~ 5550 4350
 Connection ~ 4500 4300
-$Comp
-L C C138
-U 1 1 5A63943B
-P 2050 1850
-F 0 "C138" H 2075 1950 50  0000 L CNN
-F 1 "10nF" H 2075 1750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 2088 1700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 2050 1850 50  0001 C CNN
-F 4 "CGA3E2X7R1H103K080AA" H 2075 2050 50  0001 C CNN "MPN"
-F 5 "y" H 2075 2050 50  0001 C CNN "populate"
-	1    2050 1850
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR0284
-U 1 1 5A639442
-P 2050 2050
-F 0 "#PWR0284" H 2050 1800 50  0001 C CNN
-F 1 "GND" H 2050 1900 50  0000 C CNN
-F 2 "" H 2050 2050 50  0001 C CNN
-F 3 "" H 2050 2050 50  0001 C CNN
-	1    2050 2050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2050 2050 2050 2000
-$Comp
-L C C139
-U 1 1 5A6394A0
-P 3650 4650
-F 0 "C139" H 3675 4750 50  0000 L CNN
-F 1 "10nF" H 3675 4550 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 3688 4500 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 3650 4650 50  0001 C CNN
-F 4 "CGA3E2X7R1H103K080AA" H 3675 4850 50  0001 C CNN "MPN"
-F 5 "y" H 3675 4850 50  0001 C CNN "populate"
-	1    3650 4650
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR0285
-U 1 1 5A6394A7
-P 3650 4850
-F 0 "#PWR0285" H 3650 4600 50  0001 C CNN
-F 1 "GND" H 3650 4700 50  0000 C CNN
-F 2 "" H 3650 4850 50  0001 C CNN
-F 3 "" H 3650 4850 50  0001 C CNN
-	1    3650 4850
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3650 4850 3650 4800
-Wire Wire Line
-	2050 1700 2050 1600
 Connection ~ 2050 1600
-Wire Wire Line
-	3650 4500 3650 4300
 Connection ~ 3650 4300
 $EndSCHEMATC

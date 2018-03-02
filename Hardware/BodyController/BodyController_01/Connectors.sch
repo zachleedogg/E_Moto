@@ -159,7 +159,8 @@ F 0 "J2" H 3800 5500 50  0000 C CNN
 F 1 "Conn_01x14" H 3800 4000 50  0000 C CNN
 F 2 "Footprints:34772-0140" H 3800 4800 50  0001 C CNN
 F 3 "" H 3800 4800 50  0001 C CNN
-F 4 "n" H 3800 5600 50  0001 C CNN "populate"
+F 4 "y" H 3800 5600 50  0001 C CNN "populate"
+F 5 "34772-0140" H 3800 4800 60  0001 C CNN "MPN"
 	1    3800 4800
 	0    -1   1    0   
 $EndComp
@@ -171,7 +172,8 @@ F 0 "J3" H 5600 5300 50  0000 C CNN
 F 1 "Conn_02x10_Top_Bottom" H 5600 4200 50  0000 C CNN
 F 2 "Footprints:34690-0200" H 5550 4800 50  0001 C CNN
 F 3 "" H 5550 4800 50  0001 C CNN
-F 4 "n" H 5600 5400 50  0001 C CNN "populate"
+F 4 "y" H 5600 5400 50  0001 C CNN "populate"
+F 5 "34690-0201" H 5550 4800 60  0001 C CNN "MPN"
 	1    5550 4800
 	0    -1   1    0   
 $EndComp
@@ -183,7 +185,8 @@ F 0 "J4" H 7050 5300 50  0000 C CNN
 F 1 "Conn_02x10_Top_Bottom" H 7050 4200 50  0000 C CNN
 F 2 "Footprints:34690-0200" H 7000 4800 50  0001 C CNN
 F 3 "" H 7000 4800 50  0001 C CNN
-F 4 "n" H 7050 5400 50  0001 C CNN "populate"
+F 4 "y" H 7050 5400 50  0001 C CNN "populate"
+F 5 "34690-0203" H 7000 4800 60  0001 C CNN "MPN"
 	1    7000 4800
 	0    -1   1    0   
 $EndComp
@@ -572,6 +575,54 @@ F 3 "" H 9800 1100 50  0001 C CNN
 	1    9800 1100
 	-1   0    0    1   
 $EndComp
+$Comp
+L GND #PWR0145
+U 1 1 5A6303D8
+P 10300 2450
+F 0 "#PWR0145" H 10300 2200 50  0001 C CNN
+F 1 "GND" H 10300 2300 50  0000 C CNN
+F 2 "" H 10300 2450 50  0001 C CNN
+F 3 "" H 10300 2450 50  0001 C CNN
+	1    10300 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR0146
+U 1 1 5A6309A6
+P 1300 6050
+F 0 "#PWR0146" H 1300 5800 50  0001 C CNN
+F 1 "GND" H 1300 5900 50  0000 C CNN
+F 2 "" H 1300 6050 50  0001 C CNN
+F 3 "" H 1300 6050 50  0001 C CNN
+	1    1300 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C137
+U 1 1 5A630A73
+P 1300 5850
+F 0 "C137" H 1325 5950 50  0000 L CNN
+F 1 "10nF" H 1325 5750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1338 5700 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 1300 5850 50  0001 C CNN
+F 4 "CGA3E2X7R1H103K080AA" H 1325 6050 50  0001 C CNN "MPN"
+F 5 "y" H 1325 6050 50  0001 C CNN "populate"
+	1    1300 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L TEST_1P TP8
+U 1 1 5A7E886F
+P 6700 1100
+F 0 "TP8" H 6700 1370 50  0000 C CNN
+F 1 "TEST_1P" H 6700 1300 50  0000 C CNN
+F 2 "Measurement_Points:Test_Point_Keystone_5019_Minature" H 6900 1100 50  0001 C CNN
+F 3 "http://www.keyelco.com/product-pdf.cfm?p=1353" H 6900 1100 50  0001 C CNN
+F 4 "5015" H 6700 1470 50  0001 C CNN "MPN"
+F 5 "y" H 6700 1470 50  0001 C CNN "populate"
+	1    6700 1100
+	-1   0    0    1   
+$EndComp
 Text GLabel 4200 4600 1    59   Input ~ 0
 AUX_PORT_OUT
 Text GLabel 3500 4600 1    59   Input ~ 0
@@ -686,6 +737,8 @@ Text GLabel 6800 5100 3    60   Output ~ 0
 PILOT
 Text GLabel 6900 5100 3    60   Output ~ 0
 PROXIMITY
+Text GLabel 6500 1050 0    60   BiDi ~ 0
+DEBUG_PIN
 Wire Wire Line
 	2000 2050 2000 2150
 Wire Wire Line
@@ -750,67 +803,20 @@ Wire Wire Line
 	6600 4450 6400 4450
 Wire Wire Line
 	6400 4450 6400 4600
-Connection ~ 1650 1150
-Connection ~ 1650 2050
-Connection ~ 2000 2050
-Connection ~ 5850 5250
-Connection ~ 1550 3300
-Connection ~ 1800 3200
-NoConn ~ 1900 3400
-NoConn ~ 1900 5400
-$Comp
-L GND #PWR0145
-U 1 1 5A6303D8
-P 10300 2450
-F 0 "#PWR0145" H 10300 2200 50  0001 C CNN
-F 1 "GND" H 10300 2300 50  0000 C CNN
-F 2 "" H 10300 2450 50  0001 C CNN
-F 3 "" H 10300 2450 50  0001 C CNN
-	1    10300 2450
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	10300 850  10300 2450
 Wire Wire Line
 	10300 850  10350 850 
 Wire Wire Line
 	10350 1150 10300 1150
-Connection ~ 10300 1150
 Wire Wire Line
 	10350 1450 10300 1450
-Connection ~ 10300 1450
 Wire Wire Line
 	10350 1750 10300 1750
-Connection ~ 10300 1750
 Wire Wire Line
 	10350 2050 10300 2050
-Connection ~ 10300 2050
 Wire Wire Line
 	1600 5600 1600 5650
-$Comp
-L GND #PWR0146
-U 1 1 5A6309A6
-P 1300 6050
-F 0 "#PWR0146" H 1300 5800 50  0001 C CNN
-F 1 "GND" H 1300 5900 50  0000 C CNN
-F 2 "" H 1300 6050 50  0001 C CNN
-F 3 "" H 1300 6050 50  0001 C CNN
-	1    1300 6050
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C137
-U 1 1 5A630A73
-P 1300 5850
-F 0 "C137" H 1325 5950 50  0000 L CNN
-F 1 "10nF" H 1325 5750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1338 5700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 1300 5850 50  0001 C CNN
-F 4 "CGA3E2X7R1H103K080AA" H 1325 6050 50  0001 C CNN "MPN"
-F 5 "y" H 1325 6050 50  0001 C CNN "populate"
-	1    1300 5850
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1500 5600 1500 5650
 Wire Wire Line
@@ -819,4 +825,20 @@ Wire Wire Line
 	1300 6000 1300 6050
 Wire Wire Line
 	1300 5650 1300 5700
+Wire Wire Line
+	6500 1050 6700 1050
+Wire Wire Line
+	6700 1050 6700 1100
+Connection ~ 1650 1150
+Connection ~ 1650 2050
+Connection ~ 2000 2050
+Connection ~ 5850 5250
+Connection ~ 1550 3300
+Connection ~ 1800 3200
+Connection ~ 10300 1150
+Connection ~ 10300 1450
+Connection ~ 10300 1750
+Connection ~ 10300 2050
+NoConn ~ 1900 3400
+NoConn ~ 1900 5400
 $EndSCHEMATC

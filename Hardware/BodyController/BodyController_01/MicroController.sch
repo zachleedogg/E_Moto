@@ -78,8 +78,8 @@ P 950 4850
 F 0 "C2" H 975 4950 50  0000 L CNN
 F 1 "100nF" H 975 4750 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 988 4700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 950 4850 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 975 5050 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 950 4850 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 975 5050 50  0001 C CNN "MPN"
 F 5 "y" H 975 5050 50  0001 C CNN "populate"
 	1    950  4850
 	1    0    0    -1  
@@ -91,8 +91,8 @@ P 1150 4850
 F 0 "C5" H 1175 4950 50  0000 L CNN
 F 1 "100nF" H 1175 4750 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 1188 4700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1150 4850 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 1175 5050 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1150 4850 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 1175 5050 50  0001 C CNN "MPN"
 F 5 "y" H 1175 5050 50  0001 C CNN "populate"
 	1    1150 4850
 	1    0    0    -1  
@@ -104,8 +104,8 @@ P 1350 4850
 F 0 "C6" H 1375 4950 50  0000 L CNN
 F 1 "100nF" H 1375 4750 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 1388 4700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1350 4850 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 1375 5050 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1350 4850 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 1375 5050 50  0001 C CNN "MPN"
 F 5 "y" H 1375 5050 50  0001 C CNN "populate"
 	1    1350 4850
 	1    0    0    -1  
@@ -117,8 +117,8 @@ P 1550 4850
 F 0 "C7" H 1575 4950 50  0000 L CNN
 F 1 "100nF" H 1575 4750 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 1588 4700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1550 4850 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 1575 5050 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1550 4850 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 1575 5050 50  0001 C CNN "MPN"
 F 5 "y" H 1575 5050 50  0001 C CNN "populate"
 	1    1550 4850
 	1    0    0    -1  
@@ -130,8 +130,8 @@ P 1650 6550
 F 0 "C9" H 1675 6650 50  0000 L CNN
 F 1 "10uF" H 1675 6450 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 1688 6400 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 1650 6550 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 1675 6750 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 1650 6550 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 1675 6750 50  0001 C CNN "MPN"
 F 5 "y" H 1675 6750 50  0001 C CNN "populate"
 	1    1650 6550
 	0    1    1    0   
@@ -154,8 +154,8 @@ P 1650 6100
 F 0 "C8" H 1675 6200 50  0000 L CNN
 F 1 "100nF" H 1675 6000 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 1688 5950 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1650 6100 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 1675 6300 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1650 6100 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 1675 6300 50  0001 C CNN "MPN"
 F 5 "y" H 1675 6300 50  0001 C CNN "populate"
 	1    1650 6100
 	1    0    0    -1  
@@ -167,8 +167,8 @@ P 850 6100
 F 0 "C1" H 875 6200 50  0000 L CNN
 F 1 "100nF" H 875 6000 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 888 5950 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 850 6100 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 875 6300 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 850 6100 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 875 6300 50  0001 C CNN "MPN"
 F 5 "y" H 875 6300 50  0001 C CNN "populate"
 	1    850  6100
 	1    0    0    -1  
@@ -283,19 +283,6 @@ F 5 "y" H 1530 7400 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R96
-U 1 1 59967E27
-P 1700 7600
-F 0 "R96" V 1780 7600 50  0000 C CNN
-F 1 "470R" V 1700 7600 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 1630 7600 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 1700 7600 50  0001 C CNN
-F 4 "AC0603FR-07470RL" H 1780 7700 50  0001 C CNN "MPN"
-F 5 "y" H 1780 7700 50  0001 C CNN "populate"
-	1    1700 7600
-	0    1    1    0   
-$EndComp
-$Comp
 L +3.3VA #PWR08
 U 1 1 59977C27
 P 1800 5850
@@ -325,7 +312,7 @@ F 0 "U1" H 8900 -1650 60  0000 C CNN
 F 1 "PIC33EPxxxMU810" H 8150 -1650 60  0000 C CNN
 F 2 "Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm" H 7400 1800 60  0001 C CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70616g.pdf" H 7400 1800 60  0001 C CNN
-F 4 "DSPIC33EP512MU810-I/PF" H 8900 -1550 50  0001 C CNN "MPN"
+F 4 "DSPIC33EP512MU810-E/PF" H 8900 -1550 50  0001 C CNN "MPN"
 F 5 "y" H 8900 -1550 50  0001 C CNN "populate"
 	1    8150 2200
 	1    0    0    -1  
@@ -338,7 +325,7 @@ F 0 "U1" H 3450 -200 60  0000 C CNN
 F 1 "PIC33EPxxxMU810" H 2700 -200 60  0000 C CNN
 F 2 "Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm" H 1950 3250 60  0001 C CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70616g.pdf" H 1950 3250 60  0001 C CNN
-F 4 "DSPIC33EP512MU810-I/PF" H 3450 -100 50  0001 C CNN "MPN"
+F 4 "DSPIC33EP512MU810-E/PF" H 3450 -100 50  0001 C CNN "MPN"
 F 5 "y" H 3450 -100 50  0001 C CNN "populate"
 	2    2700 3650
 	1    0    0    -1  
@@ -350,8 +337,8 @@ P 750 4850
 F 0 "C37" H 775 4950 50  0000 L CNN
 F 1 "100nF" H 775 4750 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 788 4700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 750 4850 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 775 5050 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 750 4850 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 775 5050 50  0001 C CNN "MPN"
 F 5 "y" H 775 5050 50  0001 C CNN "populate"
 	1    750  4850
 	1    0    0    -1  
@@ -363,8 +350,8 @@ P 1750 4850
 F 0 "C61" H 1775 4950 50  0000 L CNN
 F 1 "100nF" H 1775 4750 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 1788 4700 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H104K080AA.pdf" H 1750 4850 50  0001 C CNN
-F 4 "CGA3E2X7R1H104K080AA" H 1775 5050 50  0001 C CNN "MPN"
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1750 4850 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 1775 5050 50  0001 C CNN "MPN"
 F 5 "y" H 1775 5050 50  0001 C CNN "populate"
 	1    1750 4850
 	1    0    0    -1  
@@ -438,6 +425,19 @@ F 4 "PTS645SM43SMTR92 LFS" H 1000 7400 50  0001 C CNN "MPN"
 F 5 "y" H 1000 7400 50  0001 C CNN "populate"
 	1    950  7200
 	1    0    0    -1  
+$EndComp
+$Comp
+L R R96
+U 1 1 5A870904
+P 1700 7600
+F 0 "R96" V 1780 7600 50  0000 C CNN
+F 1 "10k" V 1700 7600 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 1630 7600 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 1700 7600 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 1780 7700 50  0001 C CNN "MPN"
+F 5 "y" H 1780 7700 50  0001 C CNN "populate"
+	1    1700 7600
+	0    1    1    0   
 $EndComp
 Text GLabel 10000 700  2    59   Output ~ 0
 SW_EN
@@ -603,6 +603,8 @@ Text GLabel 5600 1400 0    60   Input ~ 0
 PROXIMITY_MONITOR_AI
 Text GLabel 5600 1300 0    60   Output ~ 0
 PILOT_EN
+Text GLabel 5600 800  0    60   BiDi ~ 0
+DEBUG_PIN
 Wire Wire Line
 	750  5300 2000 5300
 Wire Wire Line
@@ -879,6 +881,8 @@ Wire Wire Line
 	5750 1400 5600 1400
 Wire Wire Line
 	5750 1000 5600 1000
+Wire Wire Line
+	5750 800  5600 800 
 Connection ~ 950  4400
 Connection ~ 1150 4400
 Connection ~ 1350 4400
@@ -914,5 +918,4 @@ Connection ~ 5500 6900
 Connection ~ 2000 4400
 Connection ~ 1250 7600
 NoConn ~ 3900 6150
-NoConn ~ 5750 800 
 $EndSCHEMATC

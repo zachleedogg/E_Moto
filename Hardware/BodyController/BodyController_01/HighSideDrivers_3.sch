@@ -672,10 +672,10 @@ L R R125
 U 1 1 59A08A9C
 P 6200 3600
 F 0 "R125" V 6280 3600 50  0000 C CNN
-F 1 "487k" V 6200 3600 50  0000 C CNN
+F 1 "560k" V 6200 3600 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 6130 3600 50  0001 C CNN
-F 3 "http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0002+ERJ3EKF4873V+7+WW" H 6200 3600 50  0001 C CNN
-F 4 "ERJ-3EKF4873V" H 6280 3700 50  0001 C CNN "MPN"
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6200 3600 50  0001 C CNN
+F 4 "AC0603FR-07560KL" H 6280 3700 50  0001 C CNN "MPN"
 F 5 "y" H 6280 3700 50  0001 C CNN "populate"
 	1    6200 3600
 	-1   0    0    1   
@@ -685,10 +685,10 @@ L R R126
 U 1 1 59A08B73
 P 6200 4100
 F 0 "R126" V 6280 4100 50  0000 C CNN
-F 1 "64k9" V 6200 4100 50  0000 C CNN
+F 1 "100k" V 6200 4100 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 6130 4100 50  0001 C CNN
-F 3 "http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0002+ERJ3EKF6492V+7+WW" H 6200 4100 50  0001 C CNN
-F 4 "ERJ-3EKF6492V" H 6280 4200 50  0001 C CNN "MPN"
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6200 4100 50  0001 C CNN
+F 4 "AC0603FR-07100KL" H 6280 4200 50  0001 C CNN "MPN"
 F 5 "y" H 6280 4200 50  0001 C CNN "populate"
 	1    6200 4100
 	-1   0    0    1   
@@ -698,10 +698,10 @@ L R R127
 U 1 1 59A08C0B
 P 6200 4650
 F 0 "R127" V 6280 4650 50  0000 C CNN
-F 1 "30k9" V 6200 4650 50  0000 C CNN
+F 1 "34k" V 6200 4650 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 6130 4650 50  0001 C CNN
-F 3 "https://industrial.panasonic.com/ww/products/resistors/chip-resistors/general-purpose-chip-resistors/precision-thick-film-chip-resistors/ERJ3EKF3092V" H 6200 4650 50  0001 C CNN
-F 4 "ERJ-3EKF3092V" H 6280 4750 50  0001 C CNN "MPN"
+F 3 "http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0002+ERJ3EKF3402V+7+WW" H 6200 4650 50  0001 C CNN
+F 4 "ERJ-3EKF3402V" H 6280 4750 50  0001 C CNN "MPN"
 F 5 "y" H 6280 4750 50  0001 C CNN "populate"
 	1    6200 4650
 	-1   0    0    1   
@@ -711,10 +711,10 @@ L R R129
 U 1 1 59A0A0EC
 P 8900 5000
 F 0 "R129" V 8980 5000 50  0000 C CNN
-F 1 "12k7" V 8900 5000 50  0000 C CNN
+F 1 "10k" V 8900 5000 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 8830 5000 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 8900 5000 50  0001 C CNN
-F 4 "AC0603FR-0712K7L" H 8980 5100 50  0001 C CNN "MPN"
+F 4 "AC0603FR-0710KL" H 8980 5100 50  0001 C CNN "MPN"
 F 5 "y" H 8980 5100 50  0001 C CNN "populate"
 	1    8900 5000
 	-1   0    0    1   
@@ -750,10 +750,10 @@ L R R128
 U 1 1 59A0D3A6
 P 6400 4650
 F 0 "R128" V 6480 4650 50  0000 C CNN
-F 1 "17k8" V 6400 4650 50  0000 C CNN
+F 1 "22k" V 6400 4650 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 6330 4650 50  0001 C CNN
-F 3 "http://www.vishay.com/docs/28758/tnpw_e3.pdf" H 6400 4650 50  0001 C CNN
-F 4 "RG1608P-3092-B-T5" H 6480 4750 50  0001 C CNN "MPN"
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6400 4650 50  0001 C CNN
+F 4 "AC0603FR-0722KL" H 6480 4750 50  0001 C CNN "MPN"
 F 5 "y" H 6480 4750 50  0001 C CNN "populate"
 	1    6400 4650
 	-1   0    0    1   
@@ -916,8 +916,8 @@ P 9000 750
 F 0 "C128" H 9025 850 50  0000 L CNN
 F 1 "10uF" H 9025 650 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 9038 600 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 9000 750 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 9025 950 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 9000 750 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 9025 950 50  0001 C CNN "MPN"
 F 5 "y" H 9025 950 50  0001 C CNN "populate"
 	1    9000 750 
 	1    0    0    -1  
@@ -940,8 +940,8 @@ P 4950 3600
 F 0 "C125" H 4975 3700 50  0000 L CNN
 F 1 "10uF" H 4975 3500 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 4988 3450 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 4950 3600 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 4975 3800 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 4950 3600 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 4975 3800 50  0001 C CNN "MPN"
 F 5 "y" H 4975 3800 50  0001 C CNN "populate"
 	1    4950 3600
 	1    0    0    -1  
@@ -964,8 +964,8 @@ P 4150 5550
 F 0 "C126" H 4175 5650 50  0000 L CNN
 F 1 "10uF" H 4175 5450 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 4188 5400 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 4150 5550 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 4175 5750 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 4150 5550 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 4175 5750 50  0001 C CNN "MPN"
 F 5 "y" H 4175 5750 50  0001 C CNN "populate"
 	1    4150 5550
 	1    0    0    -1  
@@ -988,8 +988,8 @@ P 4950 1600
 F 0 "C124" H 4975 1700 50  0000 L CNN
 F 1 "10uF" H 4975 1500 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 4988 1450 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 4950 1600 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 4975 1800 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 4950 1600 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 4975 1800 50  0001 C CNN "MPN"
 F 5 "y" H 4975 1800 50  0001 C CNN "populate"
 	1    4950 1600
 	1    0    0    -1  
@@ -1012,8 +1012,8 @@ P 5700 3450
 F 0 "C127" H 5725 3550 50  0000 L CNN
 F 1 "10uF" H 5725 3350 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 5738 3300 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L1X7R1E106M160AC.pdf" H 5700 3450 50  0001 C CNN
-F 4 "CGA5L1X7R1E106M160AC" H 5725 3650 50  0001 C CNN "MPN"
+F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 5700 3450 50  0001 C CNN
+F 4 "C1206C106M3RACAUTO" H 5725 3650 50  0001 C CNN "MPN"
 F 5 "y" H 5725 3650 50  0001 C CNN "populate"
 	1    5700 3450
 	1    0    0    -1  
@@ -1124,7 +1124,7 @@ Text Notes 6050 4250 1    60   ~ 0
 Text Notes 6050 4800 1    60   ~ 0
 31200
 Text Notes 7250 3150 0    60   ~ 0
-UnderVoltage = 6V\nOverVoltage = 18.5V\nCurrent Limit = 5A\ndV/dT = 12V/mS
+UnderVoltage = 5V\nOverVoltage = 20V\n2A/V\nCurrent Limit = 4A\ndV/dT = 12V/mS
 Text GLabel 9650 4700 2    59   Output ~ 0
 IC_CONTROLLER_~FLT
 Text GLabel 9650 4800 2    59   Output ~ 0

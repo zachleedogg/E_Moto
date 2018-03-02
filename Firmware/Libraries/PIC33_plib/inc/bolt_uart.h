@@ -69,28 +69,13 @@
 #define UART_RX_RP56    0x38
 #define UART_RX_RP57    0x39
 #define UART_RX_RPI58   0x3A
+#define UART_RX_RPI119  0x77
+#define UART_RX_RPI121  0x79
 
 /*Select pins for TX*/
 
 /*Not all of these are available on every device, check pin-out sheet*/
 
-typedef enum _UART_txPinNumber_E {
-    UART_TX_RP20,
-    UART_TX_RP35,
-    UART_TX_RP36,
-    UART_TX_RP37,
-    UART_TX_RP38,
-    UART_TX_RP39,
-    UART_TX_RP40,
-    UART_TX_RP41,
-    UART_TX_RP42,
-    UART_TX_RP43,
-    UART_TX_RP54,
-    UART_TX_RP55,
-    UART_TX_RP56,
-    UART_TX_RP57,
-    NUMBER_OF_TX_PINS,
-} UART_txPinNumber_E;
 
 /*******************************************************************************
  * Function Prototypes
@@ -103,7 +88,12 @@ typedef enum _UART_txPinNumber_E {
  * @param baudRate: use any define Baud rate
  * @return 
  */
-uint8_t Uart1Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate);
+#define Uart1INIT(TX_PIN,RX_PIN,BAUD) \
+_U1RXR=RX_PIN; \
+TX_PIN=1; \
+Uart1Init(BAUD) \
+
+uint8_t Uart1Init(uint32_t baudRate);
 
 /**
  * 
@@ -139,7 +129,7 @@ uint8_t Uart1TXbusy(void);
  * @param baudRate: use any define Baud rate
  * @return 
  */
-uint8_t Uart2Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate);
+uint8_t Uart2Init(uint32_t baudRate);
 
 /**
  * 

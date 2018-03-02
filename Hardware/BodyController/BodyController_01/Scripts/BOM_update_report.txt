@@ -1,0 +1,934 @@
+Info: Reading netlist file "C:\Users\kid group\Documents\Repos\E_Moto\Hardware\BodyController\BodyController_01\BodyController_01.net".
+
+Info: Using references to match components and footprints.
+
+Info: Checking netlist component footprint "C1:/5986882A/59868A7F/59955AC7:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C2:/5986882A/59868A7F/59954183:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C3:/5986882A/59868A7F/599562CF:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C4:/5986882A/59868A7F/59956321:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C5:/5986882A/59868A7F/599541B1:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C6:/5986882A/59868A7F/599541DB:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C7:/5986882A/59868A7F/599541FC:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C8:/5986882A/59868A7F/59954578:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C9:/5986882A/59868A7F/59954470:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C10:/5986882A/5999CAC4/5A625211:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C11:/5986882A/59868A83/599ADBEA:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C12:/5986882A/59868A83/5996038D:Capacitors_SMD:CP_Elec_10x10".
+
+Info: Checking netlist component footprint "C13:/5986882A/59868A83/59960406:Capacitors_SMD:CP_Elec_10x10".
+
+Info: Checking netlist component footprint "C14:/5986882A/59868A83/599A7AB0:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C15:/5986882A/59868A83/59B8812F:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C16:/5986882A/59868A83/599A580F:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C17:/5986882A/59868A83/599A3CF4:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C18:/5986882A/59868A83/599A3E37:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C19:/5986882A/59868A83/599AB11A:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C20:/5986882A/59868A83/5A4A749B:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C21:/5986882A/59868A83/599A6074:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C22:/5986882A/59868A83/5A23791B:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C23:/5986882A/5999CAC4/5A8783F1:Capacitors_SMD:C_1206".
+
+Changing component "C23:/5986882A/5999CAC4/5999EA5A" value from "10uF" to "4u7".
+
+Info: Changing component path "C23:/5986882A/5999CAC4/5999EA5A" to "/5986882A/5999CAC4/5A8783F1".
+
+Info: Checking netlist component footprint "C24:/5986882A/5999CAC4/5999EA2C:Capacitors_SMD:CP_Elec_6.3x7.7".
+
+Info: Checking netlist component footprint "C25:/5986882A/5999CAC4/5999EA30:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C26:/5986882A/5999CAC4/5999EA5B:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C27:/5986882A/5999CAC4/5999EA32:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C28:/5986882A/5999CAC4/5999EA31:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C29:/5986882A/5999CAC4/5999EA3C:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C30:/5986882A/5999CAC4/599A11B0:Capacitors_SMD:CP_Elec_6.3x7.7".
+
+Info: Checking netlist component footprint "C31:/5986882A/59868A89/598C3D3F:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C32:/5986882A/59868A89/5990785F:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C33:/5986882A/59868A89/59903F8B:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C34:/5986882A/59868A89/598F4EDE:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C35:/5986882A/59868A89/59902BAE:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C36:/5986882A/5A231AD0/5A2ADF03:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C37:/5986882A/59868A7F/599FDE83:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C38:/5986882A/59909A84/59913BA9:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C39:/5986882A/59909A84/5991547E:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C40:/5986882A/59909A84/59913A6A:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C41:/5986882A/59909A84/59915478:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C42:/5986882A/5991C23B/5991C579:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C43:/5986882A/5991C23B/5991C56D:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C44:/5986882A/5991C23B/5991C558:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C45:/5986882A/59954716/59956F4F:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C46:/5986882A/59954716/59956B93:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C47:/5986882A/5999CAC4/5A8784FE:Capacitors_SMD:C_1206".
+
+Changing component "C47:/5986882A/5999CAC4/599A8552" value from "10uF" to "4u7".
+
+Info: Changing component path "C47:/5986882A/5999CAC4/599A8552" to "/5986882A/5999CAC4/5A8784FE".
+
+Info: Checking netlist component footprint "C48:/5986882A/5999CAC4/59B8F3D3:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C49:/5986882A/5999CAC4/599A8558:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C50:/5986882A/5999CAC4/5A87B7B6:Capacitors_SMD:C_0603".
+
+Changing component "C50:/5986882A/5999CAC4/5999EA40" value from "10nF" to "100nF".
+
+Info: Changing component path "C50:/5986882A/5999CAC4/5999EA40" to "/5986882A/5999CAC4/5A87B7B6".
+
+Info: Checking netlist component footprint "C51:/5986882A/5999CAC4/5999EA4A:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C52:/5986882A/5999CAC4/5999EA23:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C53:/5986882A/5999CAC4/5A87A706:Capacitors_SMD:C_0603".
+
+Changing component "C53:/5986882A/5999CAC4/5999EA46" value from "12pF" to "18pF".
+
+Info: Changing component path "C53:/5986882A/5999CAC4/5999EA46" to "/5986882A/5999CAC4/5A87A706".
+
+Info: Checking netlist component footprint "C54:/5986882A/5999CAC4/5999EA4E:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C55:/5986882A/5999CAC4/5999EA4C:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C56:/5986882A/5999CAC4/5999EA4D:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C57:/5986882A/59994650/5A2370F0:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C58:/5986882A/5A231AD0/5A2335D1:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C59:/5986882A/5A231AD0/5A2337CD:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C60:/5986882A/5A231AD0/5A2339EA:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C61:/5986882A/59868A7F/599FDED2:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C62:/5986882A/59909A84/59A005DA:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C63:/5986882A/59909A84/599FFA4C:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C64:/5986882A/5A231AD0/5A2AE103:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C65:/5986882A/59909A84/599FFCCB:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C66:/5986882A/5A231AD0/5A2AF7A1:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C67:/5986882A/5991C23B/59A0A4DC:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C68:/5986882A/5991C23B/59A0DB23:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C69:/5986882A/59994650/59A60655:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C70:/5986882A/59994650/5A4A924A:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C71:/5986882A/59994650/59A60648:Capacitors_SMD:C_1206".
+
+Changing component "C71:/5986882A/59994650/59A60648" value from "2u2" to "4u7".
+
+Info: Checking netlist component footprint "C72:/5986882A/59994650/59A60649:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C73:/5986882A/59994650/59A6062A:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C74:/5986882A/59994650/59A6061D:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C75:/5986882A/59994650/59B89D2C:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C76:/5986882A/59994650/59A60617:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C77:/5986882A/59994650/59A60614:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C78:/5986882A/59994650/59A60616:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C79:/5986882A/59868A83/5A58FF20:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C80:/5986882A/59994650/5A4A87EC:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C81:/5986882A/59994650/59A60618:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C82:/5986882A/5A231AD0/5A233AEF:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C83:/5986882A/5999CAC4/59A285B9:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C84:/5986882A/5999CAC4/5A878712:Capacitors_SMD:C_1206".
+
+Changing component "C84:/5986882A/5999CAC4/5A49D468" value from "10uF" to "4u7".
+
+Info: Changing component path "C84:/5986882A/5999CAC4/5A49D468" to "/5986882A/5999CAC4/5A878712".
+
+Info: Checking netlist component footprint "C85:/5986882A/59954716/59A83975:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C86:/5986882A/59954716/59A84BC7:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C87:/5986882A/59954716/59A839B7:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C88:/5986882A/59954716/59A895EF:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C89:/5986882A/5A231AD0/5A233D1C:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C90:/5986882A/5A231AD0/5A2335CB:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C91:/5986882A/5A231AD0/5A2337C7:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C92:/5986882A/5A231AD0/5A2339E4:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C93:/5986882A/5A231AD0/5A233AE9:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C94:/5986882A/5A231AD0/5A233D16:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C95:/5986882A/5A231AD0/5A23401D:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C96:/5986882A/5A231AD0/5A234262:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C97:/5986882A/5A231AD0/5A234017:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C98:/5986882A/5A231AD0/5A23425C:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C99:/5986882A/5A231AD0/5A231CDE:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C100:/5986882A/5A231AD0/5A233341:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C101:/5986882A/5A231AD0/5A231CB8:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C102:/5986882A/5A231AD0/5A23333B:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C103:/5986882A/5A231AD0/5A2ADEFC:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C104:/5986882A/5A231AD0/5A2AE0FC:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C105:/5986882A/5A231AD0/5A2AF79A:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C106:/5986882A/5A231AD0/5A397B46:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C107:/5986882A/5A231AD0/5A399B0B:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C108:/5986882A/5A231AD0/5A397A80:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C109:/5986882A/5A231AD0/5A399B04:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C110:/5986882A/5A231AD0/5A396DA3:Capacitors_SMD:C_0805".
+
+Info: Checking netlist component footprint "C111:/5986882A/59954716/5A45C0D4:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C112:/5986882A/59954716/5A45DDEF:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C113:/5986882A/5999CAC4/5A49DE9B:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C114:/5986882A/599463F0/5A4AD849:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C115:/5986882A/599463F0/5A4AD7E0:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C116:/5986882A/5A231AD0/5A4A6A92:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C117:/5986882A/5A231AD0/5A4A677E:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C118:/5986882A/59868A89/5A4AF015:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C119:/5986882A/59868A89/5A4AF66D:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C120:/5986882A/59868A89/5A4B02DE:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C121:/5986882A/59868A89/5A4B0462:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C122:/5986882A/59868A89/5A4B05B2:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C123:/5986882A/59909A84/5A4B154C:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C124:/5986882A/5991C23B/5A4B3A9F:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C125:/5986882A/5991C23B/5A4B2D58:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C126:/5986882A/5991C23B/5A4B3061:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C127:/5986882A/5991C23B/5A4B3CC5:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C128:/5986882A/5991C23B/5A4B2592:Capacitors_SMD:C_1206".
+
+Info: Checking netlist component footprint "C129:/5986882A/59909A84/5A52CED7:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C130:/5986882A/59909A84/5A52CF54:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C131:/5986882A/5A54F298/5A54F538:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C132:/5986882A/5A54F298/5A550002:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C133:/5986882A/59954716/5A600B61:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C134:/5986882A/59954716/5A600AF0:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C135:/5986882A/59954716/5A5FF6F2:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C136:/5986882A/59954716/5A5FF939:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C137:/5986882A/599463F0/5A630A73:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C138:/5986882A/5A54F298/5A63943B:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C139:/5986882A/5A54F298/5A6394A0:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "C140:/5986882A/59868A89/5A63A45E:Capacitors_SMD:C_0603".
+
+Info: Checking netlist component footprint "D1:/5986882A/5999CAC4/5999EA2F:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D2:/5986882A/5999CAC4/5999DC85:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D3:/5986882A/5999CAC4/5999EA47:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D4:/5986882A/59954716/5A45CB14:Diodes_SMD:D_0603".
+
+Info: Checking netlist component footprint "D5:/5986882A/59868A89/599085BC:Footprints:SOT1289".
+
+Info: Checking netlist component footprint "D6:/5986882A/5999CAC4/5A52BAE7:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D7:/5986882A/5999CAC4/5A52B0B0:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D8:/5986882A/59868A83/59BCC675:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D9:/5986882A/5A54F298/5A54F2A1:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D10:/5986882A/59954716/5A623006:Footprints:D_SOT-23_ANK".
+
+Info: Checking netlist component footprint "D11:/5986882A/5991C23B/599218FA:Diodes_SMD:D_PowerDI-123".
+
+Info: Checking netlist component footprint "D12:/5986882A/5991C23B/59921877:Diodes_SMD:D_PowerDI-123".
+
+Info: Checking netlist component footprint "D13:/5986882A/5991C23B/599217EC:Diodes_SMD:D_PowerDI-123".
+
+Info: Checking netlist component footprint "D14:/5986882A/5991C23B/5992197C:Diodes_SMD:D_PowerDI-123".
+
+Info: Checking netlist component footprint "D15:/5986882A/59868A83/59963B89:Diodes_SMD:D_SMC".
+
+Info: Checking netlist component footprint "D16:/5986882A/59994650/59B9E37C:TO_SOT_Packages_SMD:SOT-23".
+
+Info: Checking netlist component footprint "D17:/5986882A/5999CAC4/5A633154:Diodes_SMD:D_SOD-323".
+
+Info: Checking netlist component footprint "D18:/5986882A/59909A84/59A005EC:Diodes_SMD:D_PowerDI-123".
+
+Info: Checking netlist component footprint "D19:/5986882A/59909A84/59A005F2:Diodes_SMD:D_PowerDI-123".
+
+Info: Checking netlist component footprint "D21:/5986882A/59994650/59BCD287:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D23:/5986882A/59994650/59A6065D:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D24:/5986882A/59954716/59A85899:Diodes_SMD:D_SOD-123".
+
+Info: Checking netlist component footprint "D25:/5986882A/59994650/59B7A81B:Footprints:SOT1289".
+
+Info: Checking netlist component footprint "D26:/5986882A/59994650/59E6F56B:Diodes_SMD:D_SOD-323".
+
+Info: Checking netlist component footprint "D27:/5986882A/59994650/59E6F612:Diodes_SMD:D_SOD-323".
+
+Info: Checking netlist component footprint "J1:/5986882A/599463F0/5A393F4B:Footprints:7796".
+
+Info: Checking netlist component footprint "J2:/5986882A/599463F0/5A30D0E9:Footprints:34772-0140".
+
+Info: Checking netlist component footprint "J3:/5986882A/599463F0/5A314BE2:Footprints:34690-0200".
+
+Info: Checking netlist component footprint "J4:/5986882A/599463F0/5A314C2C:Footprints:34690-0200".
+
+Info: Checking netlist component footprint "J5:/5986882A/599463F0/5A394530:Footprints:7796".
+
+Info: Checking netlist component footprint "J6:/5986882A/599463F0/5A39455B:Footprints:7796".
+
+Info: Checking netlist component footprint "J7:/5986882A/599463F0/599715F6:Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm".
+
+Info: Checking netlist component footprint "J8:/5986882A/599463F0/59A8218E:Connectors_USB:USB_Micro-B_Vertical_Molex-105133-0001".
+
+Info: Checking netlist component footprint "J9:/5986882A/599463F0/5A465A33:Footprints:MountingHole_3.2mm_M3_Pad_Via".
+
+Info: Checking netlist component footprint "J10:/5986882A/599463F0/5A465C82:Footprints:MountingHole_3.2mm_M3_Pad_Via".
+
+Info: Checking netlist component footprint "J11:/5986882A/599463F0/5A465CB6:Footprints:MountingHole_3.2mm_M3_Pad_Via".
+
+Info: Checking netlist component footprint "J12:/5986882A/599463F0/5A465CE9:Footprints:MountingHole_3.2mm_M3_Pad_Via".
+
+Info: Checking netlist component footprint "J13:/5986882A/599463F0/5A4665B9:Footprints:MountingHole_3.2mm_M3_Pad_Via".
+
+Info: Checking netlist component footprint "L1:/5986882A/59868A7F/59955DBF:Inductors_SMD:L_0603".
+
+Info: Checking netlist component footprint "L2:/5986882A/5999CAC4/5999EA33:Inductors_SMD:L_0603".
+
+Info: Checking netlist component footprint "L3:/5986882A/5999CAC4/5999EA3F:Inductors:Inductor_Taiyo-Yuden_NR-60xx".
+
+Info: Checking netlist component footprint "L4:/5986882A/59954716/5A5FE9AD:Footprints:ACT45B".
+
+Info: Checking netlist component footprint "NT1:/5986882A/59868A83/5A3C43A2:Footprints:Net_Tie-0.5mm".
+
+Info: Checking netlist component footprint "NT2:/5986882A/59868A83/5A3C4458:Footprints:Net_Tie-0.5mm".
+
+Info: Checking netlist component footprint "NT3:/5986882A/59994650/5A3C4ED4:Footprints:Net_Tie-0.5mm".
+
+Info: Checking netlist component footprint "NT4:/5986882A/59994650/5A3C4E25:Footprints:Net_Tie-0.5mm".
+
+Info: Checking netlist component footprint "Q1:/5986882A/59868A83/59CE6BF9:TO_SOT_Packages_SMD:SOT-666".
+
+Info: Checking netlist component footprint "Q2:/5986882A/59868A83/59CE6417:TO_SOT_Packages_SMD:SOT-666".
+
+Info: Checking netlist component footprint "Q3:/5986882A/5A54F298/5A54FBF6:TO_SOT_Packages_SMD:SOT-23".
+
+Info: Checking netlist component footprint "Q4:/5986882A/59868A83/5A24A3DA:TO_SOT_Packages_SMD:TDSON-8-1".
+
+Info: Checking netlist component footprint "Q5:/5986882A/5999CAC4/5A631AF6:TO_SOT_Packages_SMD:SOT-23".
+
+Info: Checking netlist component footprint "Q6:/5986882A/59994650/59CE0E8E:TO_SOT_Packages_SMD:SOT-666".
+
+Info: Checking netlist component footprint "Q7:/5986882A/59994650/59CD424C:TO_SOT_Packages_SMD:SOT-666".
+
+Info: Checking netlist component footprint "Q8:/5986882A/59868A89/598C3B55:TO_SOT_Packages_SMD:SOT-23".
+
+Info: Checking netlist component footprint "Q9:/5986882A/59868A89/59907841:TO_SOT_Packages_SMD:SOT-23".
+
+Info: Checking netlist component footprint "Q10:/5986882A/5999CAC4/59CEABAC:TO_SOT_Packages_SMD:SOT-666".
+
+Info: Checking netlist component footprint "Q12:/5986882A/59994650/59CF5E5D:TO_SOT_Packages_SMD:TDSON-8-1".
+
+Info: Checking netlist component footprint "Q13:/5986882A/59994650/59CF5F24:TO_SOT_Packages_SMD:TDSON-8-1".
+
+Info: Checking netlist component footprint "Q16:/5986882A/59994650/59E685F6:TO_SOT_Packages_SMD:SOT-23".
+
+Info: Checking netlist component footprint "Q17:/5986882A/5999CAC4/5A625220:TO_SOT_Packages_SMD:SOT-23".
+
+Info: Checking netlist component footprint "R1:/5986882A/59868A7F/5995635F:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R2:/5986882A/59868A83/599C6BF3:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R3:/5986882A/5999CAC4/5A6251F9:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R4:/5986882A/5999CAC4/5A625202:Resistors_SMD:R_0603".
+
+Changing component "R4:/5986882A/5999CAC4/5A625202" value from "10k" to "4k7".
+
+Info: Checking netlist component footprint "R5:/5986882A/59868A83/599C3097:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R6:/5986882A/59868A83/599B2F77:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R7:/5986882A/59868A83/599ABDF0:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R8:/5986882A/59868A83/5A5916C9:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R9:/5986882A/59868A83/5A240002:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R10:/5986882A/59868A83/5A240FA8:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R11:/5986882A/5A231AD0/5A2335C2:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R12:/5986882A/59868A83/599A6EEE:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R13:/5986882A/59868A83/599A7944:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R14:/5986882A/59868A83/5A8741DE:Resistors_SMD:R_0603".
+
+Changing component "R14:/5986882A/59868A83/599A2E3C" value from "10R" to "3R0".
+
+Info: Changing component path "R14:/5986882A/59868A83/599A2E3C" to "/5986882A/59868A83/5A8741DE".
+
+Info: Checking netlist component footprint "R15:/5986882A/59868A83/5A874231:Resistors_SMD:R_0603".
+
+Changing component "R15:/5986882A/59868A83/599A2EC8" value from "10R" to "3R0".
+
+Info: Changing component path "R15:/5986882A/59868A83/599A2EC8" to "/5986882A/59868A83/5A874231".
+
+Info: Checking netlist component footprint "R16:/5986882A/59868A83/5A24B685:SMD_Packages:SMD-2512_Pol".
+
+Info: Checking netlist component footprint "R17:/5986882A/59868A83/599AA424:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R18:/5986882A/59868A83/599AA4E0:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R19:/5986882A/5A231AD0/5A2337BE:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R20:/5986882A/59909A84/59A005C8:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R21:/5986882A/59909A84/59A005BC:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R22:/5986882A/59909A84/59A005B6:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R23:/5986882A/5999CAC4/5999EA37:Resistors_SMD:R_0603".
+
+Changing component "R23:/5986882A/5999CAC4/5999EA37" value from "10k" to "560k".
+
+Info: Checking netlist component footprint "R24:/5986882A/5999CAC4/5999EA38:Resistors_SMD:R_0603".
+
+Changing component "R24:/5986882A/5999CAC4/5999EA38" value from "10k" to "150k".
+
+Info: Checking netlist component footprint "R25:/5986882A/59868A89/598C3E28:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R26:/5986882A/59868A89/5990786B:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R27:/5986882A/59868A89/59901586:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R28:/5986882A/59868A89/59901666:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R29:/5986882A/59868A89/599022A0:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R30:/5986882A/59868A89/59901500:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R31:/5986882A/59868A89/599015F8:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R32:/5986882A/59868A89/59902238:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R33:/5986882A/59868A89/598C3C95:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R34:/5986882A/59868A89/59907853:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R35:/5986882A/59868A89/598C3C36:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R36:/5986882A/59868A89/5990784D:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R37:/5986882A/59868A89/59903F79:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R38:/5986882A/59868A89/59903F6D:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R39:/5986882A/59868A89/59903F67:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R40:/5986882A/59868A89/598F4AF4:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R41:/5986882A/59868A89/598F4A7F:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R42:/5986882A/59868A89/598F4A14:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R43:/5986882A/59868A89/59902B9C:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R44:/5986882A/59868A89/59902B90:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R45:/5986882A/59868A89/59902B8A:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R46:/5986882A/59868A89/59903F7F:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R47:/5986882A/59868A89/59903F73:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R48:/5986882A/59868A89/59903F61:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R49:/5986882A/59868A89/598F4B38:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R50:/5986882A/59868A89/598F4A99:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R51:/5986882A/59868A89/598F49BF:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R52:/5986882A/59868A89/59902BA2:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R53:/5986882A/59868A89/59902B96:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R54:/5986882A/59868A89/59902B84:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R55:/5986882A/59909A84/59A005CE:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R56:/5986882A/5A231AD0/5A2ADEF5:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R57:/5986882A/5A231AD0/5A2AE0F5:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R58:/5986882A/5A231AD0/5A2AF793:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R59:/5986882A/5A231AD0/5A2AF787:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R60:/5986882A/5A231AD0/5A2C0991:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R61:/5986882A/5A231AD0/5A397D10:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R62:/5986882A/59909A84/59A005C2:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R63:/5986882A/59909A84/59A005B0:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R64:/5986882A/59909A84/59913C10:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R65:/5986882A/59909A84/59915484:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R66:/5986882A/5991C23B/5991C576:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R67:/5986882A/5991C23B/5991C574:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R68:/5986882A/5991C23B/5991C573:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R69:/5986882A/5991C23B/5991C56A:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R70:/5986882A/5991C23B/5991C568:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R71:/5986882A/5991C23B/5991C567:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R72:/5986882A/5991C23B/5991C555:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R73:/5986882A/5A54F298/5A54F30A:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R74:/5986882A/5991C23B/5991C552:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R75:/5986882A/5991C23B/5991C577:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R76:/5986882A/5991C23B/5991C575:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R77:/5986882A/5991C23B/5991C572:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R78:/5986882A/5991C23B/5991C56B:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R79:/5986882A/5991C23B/5991C569:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R80:/5986882A/5991C23B/5991C566:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R81:/5986882A/5991C23B/5991C556:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R82:/5986882A/5A54F298/5A54FC87:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R83:/5986882A/5991C23B/5991C551:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R84:/5986882A/5991C23B/5991C55F:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R85:/5986882A/5991C23B/5991C561:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R86:/5986882A/5991C23B/5991C563:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R87:/5986882A/5991C23B/5991C55E:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R88:/5986882A/5991C23B/5991C560:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R89:/5986882A/5991C23B/5991C562:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R90:/5986882A/59954716/59956CE0:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R91:/5986882A/59954716/59956D1A:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R92:/5986882A/59954716/59956C83:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R93:/5986882A/59954716/59956D57:Resistors_SMD:R_2512".
+
+Info: Checking netlist component footprint "R94:/5986882A/59954716/59956DAD:Resistors_SMD:R_2512".
+
+Info: Checking netlist component footprint "R95:/5986882A/59868A7F/59967AE3:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R96:/5986882A/59868A7F/5A870904:Resistors_SMD:R_0603".
+
+Changing component "R96:/5986882A/59868A7F/59967E27" value from "470R" to "10k".
+
+Info: Changing component path "R96:/5986882A/59868A7F/59967E27" to "/5986882A/59868A7F/5A870904".
+
+Info: Checking netlist component footprint "R97:/5986882A/59909A84/59979113:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R98:/5986882A/59909A84/59979189:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R99:/5986882A/5999CAC4/5999EA3A:Resistors_SMD:R_0603".
+
+Changing component "R99:/5986882A/5999CAC4/5999EA3A" value from "10k" to "49k9".
+
+Info: Checking netlist component footprint "R100:/5986882A/5999CAC4/5999DCAA:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R101:/5986882A/5999CAC4/5999DCAB:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R102:/5986882A/5999CAC4/5A879A86:Resistors_SMD:R_0603".
+
+Changing component "R102:/5986882A/5999CAC4/5999EA49" value from "10R" to "3R0".
+
+Info: Changing component path "R102:/5986882A/5999CAC4/5999EA49" to "/5986882A/5999CAC4/5A879A86".
+
+Info: Checking netlist component footprint "R103:/5986882A/5999CAC4/5A879A11:Resistors_SMD:R_0603".
+
+Changing component "R103:/5986882A/5999CAC4/5999EA41" value from "10R" to "3R0".
+
+Info: Changing component path "R103:/5986882A/5999CAC4/5999EA41" to "/5986882A/5999CAC4/5A879A11".
+
+Info: Checking netlist component footprint "R104:/5986882A/5999CAC4/5999F80F:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R105:/5986882A/5999CAC4/5999EA21:Resistors_SMD:R_0603".
+
+Changing component "R105:/5986882A/5999CAC4/5999EA21" value from "10k" to "4k7".
+
+Info: Checking netlist component footprint "R106:/5986882A/5999CAC4/5999EA42:Resistors_SMD:R_0603".
+
+Changing component "R106:/5986882A/5999CAC4/5999EA42" value from "20R" to "22R".
+
+Info: Checking netlist component footprint "R107:/5986882A/5999CAC4/5999EA43:Resistors_SMD:R_0603".
+
+Changing component "R107:/5986882A/5999CAC4/5999EA43" value from "10k" to "845k".
+
+Info: Checking netlist component footprint "R108:/5986882A/5999CAC4/5A82B001:Resistors_SMD:R_0603".
+
+Changing component "R108:/5986882A/5999CAC4/5999EA44" value from "10k" to "150k".
+
+Info: Changing component path "R108:/5986882A/5999CAC4/5999EA44" to "/5986882A/5999CAC4/5A82B001".
+
+Info: Checking netlist component footprint "R109:/5986882A/599463F0/5A4AD59D:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R110:/5986882A/599463F0/5A4AD53E:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R111:/5986882A/59868A83/599D019A:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R112:/5986882A/5A231AD0/5A399B17:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R113:/5986882A/59868A83/599CA32C:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R114:/5986882A/5A231AD0/5A2339DB:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R115:/5986882A/5A231AD0/5A233AE0:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R116:/5986882A/5A231AD0/5A233D0D:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R117:/5986882A/5A231AD0/5A2335BC:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R118:/5986882A/5A231AD0/5A2337B8:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R119:/5986882A/5A231AD0/5A2339D5:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R120:/5986882A/5A231AD0/5A233ADA:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R121:/5986882A/59909A84/599FFA52:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R122:/5986882A/5A231AD0/5A397C20:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R123:/5986882A/59909A84/599FFCD1:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R124:/5986882A/5A231AD0/5A399B11:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R125:/5986882A/5991C23B/59A08A9C:Resistors_SMD:R_0603".
+
+Changing component "R125:/5986882A/5991C23B/59A08A9C" value from "487k" to "560k".
+
+Info: Checking netlist component footprint "R126:/5986882A/5991C23B/59A08B73:Resistors_SMD:R_0603".
+
+Changing component "R126:/5986882A/5991C23B/59A08B73" value from "64k9" to "100k".
+
+Info: Checking netlist component footprint "R127:/5986882A/5991C23B/59A08C0B:Resistors_SMD:R_0603".
+
+Changing component "R127:/5986882A/5991C23B/59A08C0B" value from "30k9" to "34k".
+
+Info: Checking netlist component footprint "R128:/5986882A/5991C23B/59A0D3A6:Resistors_SMD:R_0603".
+
+Changing component "R128:/5986882A/5991C23B/59A0D3A6" value from "17k8" to "22k".
+
+Info: Checking netlist component footprint "R129:/5986882A/5991C23B/59A0A0EC:Resistors_SMD:R_0603".
+
+Changing component "R129:/5986882A/5991C23B/59A0A0EC" value from "12k7" to "10k".
+
+Info: Checking netlist component footprint "R130:/5986882A/5991C23B/59A10DA1:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R131:/5986882A/5991C23B/59A0DBE0:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R132:/5986882A/5991C23B/59A10CD2:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R133:/5986882A/59994650/59A60657:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R134:/5986882A/59994650/59A60652:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R135:/5986882A/59994650/59A60653:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R136:/5986882A/59994650/59A60659:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R137:/5986882A/59994650/59A60650:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R138:/5986882A/59994650/59A6063C:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R139:/5986882A/59994650/59A60642:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R140:/5986882A/59994650/59A60639:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R141:/5986882A/59994650/59A60631:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R142:/5986882A/59994650/5A8730F6:Resistors_SMD:R_0603".
+
+Changing component "R142:/5986882A/59994650/59A6065A" value from "1R0" to "3R0".
+
+Info: Changing component path "R142:/5986882A/59994650/59A6065A" to "/5986882A/59994650/5A8730F6".
+
+Info: Checking netlist component footprint "R143:/5986882A/59994650/59A6065B:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R144:/5986882A/59994650/59A60640:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R145:/5986882A/59994650/59A6063F:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R146:/5986882A/59994650/59A60627:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R147:/5986882A/59994650/5A58CDAD:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R148:/5986882A/59994650/5A8759BC:Resistors_SMD:R_0603".
+
+Changing component "R148:/5986882A/59994650/59A6065E" value from "10R" to "3R0".
+
+Info: Changing component path "R148:/5986882A/59994650/59A6065E" to "/5986882A/59994650/5A8759BC".
+
+Info: Checking netlist component footprint "R149:/5986882A/59994650/5A8758B5:Resistors_SMD:R_0603".
+
+Changing component "R149:/5986882A/59994650/59A6060B" value from "10R" to "3R0".
+
+Info: Changing component path "R149:/5986882A/59994650/59A6060B" to "/5986882A/59994650/5A8758B5".
+
+Info: Checking netlist component footprint "R150:/5986882A/59994650/5A875946:Resistors_SMD:R_0603".
+
+Changing component "R150:/5986882A/59994650/59A6060C" value from "10R" to "3R0".
+
+Info: Changing component path "R150:/5986882A/59994650/59A6060C" to "/5986882A/59994650/5A875946".
+
+Info: Checking netlist component footprint "R151:/5986882A/5A231AD0/5A3977B2:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R152:/5986882A/59994650/59A60619:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R153:/5986882A/59994650/59A6061C:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R154:/5986882A/59994650/5A8735C4:Resistors_SMD:R_0603".
+
+Changing component "R154:/5986882A/59994650/59A60611" value from "10R" to "3R0".
+
+Info: Changing component path "R154:/5986882A/59994650/59A60611" to "/5986882A/59994650/5A8735C4".
+
+Info: Checking netlist component footprint "R155:/5986882A/59994650/5A873619:Resistors_SMD:R_0603".
+
+Changing component "R155:/5986882A/59994650/59A60612" value from "10R" to "3R0".
+
+Info: Changing component path "R155:/5986882A/59994650/59A60612" to "/5986882A/59994650/5A873619".
+
+Info: Checking netlist component footprint "R156:/5986882A/59994650/5A3923F6:SMD_Packages:SMD-2512_Pol".
+
+Info: Checking netlist component footprint "R159:/5986882A/5A231AD0/5A233D07:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R160:/5986882A/59994650/59A72162:Resistors_SMD:R_0603".
+
+Changing component "R160:/5986882A/59994650/59A72162" value from "1k" to "4k7".
+
+Info: Checking netlist component footprint "R161:/5986882A/5A231AD0/5A23400E:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R162:/5986882A/59994650/59E688C8:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R163:/5986882A/5A231AD0/5A234253:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R164:/5986882A/5A231AD0/5A234008:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R165:/5986882A/5A231AD0/5A23424D:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R166:/5986882A/5A231AD0/5A231C57:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R167:/5986882A/5A231AD0/5A233332:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R168:/5986882A/5A231AD0/5A231BC0:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R169:/5986882A/5A231AD0/5A23332C:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R170:/5986882A/5A231AD0/5A3979BA:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R171:/5986882A/5A231AD0/5A399AF7:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R172:/5986882A/5A231AD0/5A399AFD:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R173:/5986882A/59954716/5A45CC59:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R174:/5986882A/59954716/5A45EF18:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R175:/5986882A/59954716/5A45ECCD:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R176:/5986882A/5A54F298/5A54F35D:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R177:/5986882A/5A54F298/5A54F390:Resistors_SMD:R_0603".
+
+Changing component "R177:/5986882A/5A54F298/5A54F390" value from "340k" to "560k".
+
+Info: Checking netlist component footprint "R178:/5986882A/5A54F298/5A54F3DC:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R179:/5986882A/5A54F298/5A54FFEC:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R180:/5986882A/5A54F298/5A54FFF2:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "R181:/5986882A/5A54F298/5A5506C3:Resistors_SMD:R_0603".
+
+Info: Checking netlist component footprint "SW1:/5986882A/59868A7F/5A45E5E7:Buttons_Switches_SMD:SW_SPST_EVQP0".
+
+Info: Checking netlist component footprint "TP1:/5986882A/599463F0/5A57BD55:Measurement_Points:Test_Point_Keystone_5019_Minature".
+
+Info: Checking netlist component footprint "TP2:/5986882A/599463F0/5A528244:Measurement_Points:Test_Point_Keystone_5019_Minature".
+
+Info: Checking netlist component footprint "TP3:/5986882A/599463F0/5A5281E7:Measurement_Points:Test_Point_Keystone_5019_Minature".
+
+Info: Checking netlist component footprint "TP4:/5986882A/599463F0/5A528147:Measurement_Points:Test_Point_Keystone_5019_Minature".
+
+Info: Checking netlist component footprint "TP5:/5986882A/599463F0/5A5280F8:Measurement_Points:Test_Point_Keystone_5019_Minature".
+
+Info: Checking netlist component footprint "TP6:/5986882A/599463F0/5A527FBB:Measurement_Points:Test_Point_Keystone_5019_Minature".
+
+Info: Checking netlist component footprint "TP7:/5986882A/599463F0/5A57C95A:Measurement_Points:Test_Point_Keystone_5019_Minature".
+
+Info: Checking netlist component footprint "TP8:/5986882A/599463F0/5A7E886F:Measurement_Points:Test_Point_Keystone_5019_Minature".
+
+Info: Checking netlist component footprint "U1:/5986882A/59868A7F/599FC02F:Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm".
+
+Info: Checking netlist component footprint "U2:/5986882A/59868A83/59BA3F96:Footprints:TSSOP-8_3x4.4mm_Pitch0.65mm".
+
+Info: Checking netlist component footprint "U3:/5986882A/59868A83/599B81EE:TO_SOT_Packages_SMD:SOT-363_SC-70-6".
+
+Info: Checking netlist component footprint "U4:/5986882A/59868A89/598FEDBD:Housings_SOIC:SOIC-20W_7.5x12.8mm_Pitch1.27mm".
+
+Info: Checking netlist component footprint "U5:/5986882A/59868A89/598C3926:TO_SOT_Packages_SMD:TO-220-7Lead_TabPin8".
+
+Info: Checking netlist component footprint "U6:/5986882A/59868A89/59907835:TO_SOT_Packages_SMD:TO-220-7Lead_TabPin8".
+
+Info: Checking netlist component footprint "U7:/5986882A/59868A89/59903F50:Footprints:PG_DSO_14_40_EP".
+
+Info: Checking netlist component footprint "U8:/5986882A/59868A89/598F4423:Footprints:PG_DSO_14_40_EP".
+
+Info: Checking netlist component footprint "U9:/5986882A/59868A89/59902B73:Footprints:PG_DSO_14_40_EP".
+
+Info: Checking netlist component footprint "U10:/5986882A/5A231AD0/5A395F0E:Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm".
+
+Info: Checking netlist component footprint "U11:/5986882A/59909A84/59A005A4:Footprints:PG_DSO_14_40_EP".
+
+Info: Checking netlist component footprint "U12:/5986882A/5991C23B/5991C570:Footprints:PG_DSO_14_40_EP".
+
+Info: Checking netlist component footprint "U13:/5986882A/5991C23B/5991C564:Footprints:PG_DSO_14_40_EP".
+
+Info: Checking netlist component footprint "U14:/5986882A/59868A83/5A58F85B:TO_SOT_Packages_SMD:SOT-23-5".
+
+Info: Checking netlist component footprint "U15:/5986882A/5991C23B/5991C55B:Housings_SOIC:SOIC-20W_7.5x12.8mm_Pitch1.27mm".
+
+Info: Checking netlist component footprint "U16:/5986882A/59954716/5995476A:Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm".
+
+Changing component "U16:/5986882A/59954716/5995476A" value from "MCP2562-H/SN" to "TCAN1051GVDRQ1".
+
+Info: Checking netlist component footprint "U17:/5986882A/5999CAC4/5A49C58E:TO_SOT_Packages_SMD:SOT-23-5".
+
+Info: Checking netlist component footprint "U18:/5986882A/5999CAC4/59A6966E:TO_SOT_Packages_SMD:SOT-23-5".
+
+Info: Checking netlist component footprint "U19:/5986882A/5999CAC4/5A4AAC85:TO_SOT_Packages_SMD:SOT-23-5".
+
+Info: Checking netlist component footprint "U20:/5986882A/5999CAC4/5999EA2E:Housings_SOIC:HTSOP-8-1EP_3.9x4.9mm_Pitch1.27mm_ThermalVias".
+
+Info: Checking netlist component footprint "U21:/5986882A/59994650/59BA831D:Footprints:TSSOP-8_3x4.4mm_Pitch0.65mm".
+
+Info: Checking netlist component footprint "U22:/5986882A/5991C23B/5A4E5CFC:Housings_SOIC:HTSOP-8-1EP_3.9x4.9mm_Pitch1.27mm_ThermalVias".
+
+Info: Checking netlist component footprint "U23:/5986882A/5991C23B/59A0BDF9:Housings_DFN_QFN:QFN-20-1EP_3x4mm_Pitch0.5mm".
+
+Info: Checking netlist component footprint "U25:/5986882A/59994650/59A60644:TO_SOT_Packages_SMD:SOT-23-6".
+
+Info: Checking netlist component footprint "U27:/5986882A/59994650/59A60632:TO_SOT_Packages_SMD:SOT-363_SC-70-6".
+
+Info: Checking netlist component footprint "U29:/5986882A/59954716/59A81FAF:Housings_SSOP:SSOP-16_3.9x4.9mm_Pitch0.635mm".
+
+Info: Checking netlist component footprint "Y1:/5986882A/59868A7F/59BBA021:Crystals:Crystal_SMD_7050-4pin_7.0x5.0mm".
+

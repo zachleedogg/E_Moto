@@ -1,5 +1,5 @@
 #include "bolt_uart.h"
-#include "bolt_init.h"
+#include "bolt_clock.h"
 
 #define BUFFER_SIZE 1024
 #define QUEUE_SIZE 32
@@ -50,6 +50,7 @@ typedef struct _uartDataQueue {
 
 void enQ(volatile uartDataQueue * thisQ);
 uint8_t deQ(volatile uartDataQueue * thisQ);
+uint8_t Uart1Init(uint32_t baudRate);
 
 #if UART1_ENABLE
 static volatile uartBuffer RX1buffer = {
@@ -93,7 +94,7 @@ static volatile uint8_t TX2status = 0;
 
 static uint16_t delayTime;
 
-uint8_t Uart1Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate) {
+uint8_t Uart1Init(uint32_t baudRate) {
     // Configure oscillator as needed
     uint32_t FP = clockFreq() / 2;
     if (FP <= FREQ_250KHZ) {
@@ -115,66 +116,8 @@ uint8_t Uart1Init(UART_txPinNumber_E TX_pin, uint16_t RX_pin, uint32_t baudRate)
     BRGVAL = rounded;
     //set up Pins for UART I/O
 
-    //RX
-    _U1RXR = RX_pin;
 
-    //TX
-    switch (TX_pin) {
-        case UART_TX_RP20:
-            RP20_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP35:
-            RP35_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP36:
-            RP36_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP37:
-            RP37_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP38:
-            RP38_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP39:
-            RP39_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP40:
-            RP40_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP41:
-            RP41_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP42:
-            RP42_TX_PPS = UART1_PPS;
-            break;
-        case UART_TX_RP43:
-            RP43_TX_PPS = UART1_PPS;
-            break;
-#ifdef _RP54R
-        case UART_TX_RP54:
-            RP54_TX_PPS = UART1_PPS;
-            break;
-#endif
-#ifdef _RP55R
-        case UART_TX_RP55:
-            RP55_TX_PPS = UART1_PPS;
-            break;
-#endif
-#ifdef _RP56R
-        case UART_TX_RP56:
-            RP56_TX_PPS = UART1_PPS;
-            break;
-#endif
-#ifdef _RP57R
-        case UART_TX_RP57:
-            RP57_TX_PPS = UART1_PPS;
-            break;
-#endif
-            
-        default:
-            return 1;
-            break;
-    }
+
 
 
     /*UART MODE SLECTION*/
