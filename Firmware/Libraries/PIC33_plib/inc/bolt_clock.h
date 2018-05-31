@@ -38,10 +38,6 @@
 #define FREQ_120MHZ 120000000
 #define FREQ_140MHZ 140000000
 
-/**
- * Initializes Micro and Pins
- */
-void Micro_Init(void);
 
 /**
  * Sets the clock speed

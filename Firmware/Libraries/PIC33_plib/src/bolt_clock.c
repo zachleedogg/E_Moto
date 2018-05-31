@@ -31,45 +31,6 @@ static uint32_t freq;
  author: brdgordo - 1/22/16
  */
 
-void Micro_Init(void) {
-    /* Configure all AD pins as digital */
-#ifdef ANSELA
-    ANSELA = 0x0000;
-#endif
-#ifdef ANSELB
-    ANSELB = 0x0000;
-#endif
-#ifdef ANSELC
-    ANSELC = 0x0000;
-#endif
-#ifdef ANSELD
-    ANSELD = 0x0000;
-#endif
-#ifdef ANSELE
-    ANSELE = 0x0000;
-#endif
-#ifdef ANSELF
-    ANSELF = 0x0000;
-#endif
-#ifdef ANSELG
-    ANSELG = 0x0000;
-#endif
-
-
-    /* Set the PWM's off */
-#ifdef IOCON1
-    IOCON1bits.PENH = 0;
-    IOCON1bits.PENL = 0;
-#endif
-#ifdef IOCON2
-    IOCON2bits.PENH = 0;
-    IOCON2bits.PENL = 0;
-#endif
-#ifdef IOCON3
-    IOCON3bits.PENH = 0;
-    IOCON3bits.PENL = 0;
-#endif
-}
 
 uint16_t clockInit(uint32_t clockSpeed, uint8_t source) {
 

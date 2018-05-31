@@ -60,6 +60,7 @@ static DEBUGGER_SERVICE_states_E curState = init_state; /* initialize current st
 #define I2C_GET 9274659
 #define SPI 193506033
 #define ADC 193486029
+#define RESET_BOOT 177574
 
 const unsigned long hash(const char *str);
 
@@ -171,6 +172,8 @@ static DEBUGGER_SERVICE_states_E debugState(Event ThisEvent) {
                     case LS:
                         debuggerService_print("Available commands:\ngpioget ax x\ngpioset ax\n")
                         break;
+                    case RESET_BOOT:
+                        __asm__ volatile ("reset");
                     default:
                         debuggerService_print("invalid command: %s\n", cmd);
                         break;

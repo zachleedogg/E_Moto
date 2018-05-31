@@ -1,7 +1,7 @@
 {
     "NODE": [
         {
-            "name": "DASH",
+            "name": "dash",
     		"messages": [
     			{
     			"name": "status",
@@ -9,6 +9,13 @@
                 "freq": "10ms",
     			"signals":
     				[
+                        {
+                            "name": "heartBeat",
+                            "length": "4",
+                            "scale": "1",
+                            "offset": "0",
+                            "values":[]
+                        },
         				{
                             "name": "state",
                             "length": "3",
@@ -171,7 +178,7 @@
             ]
         },
         {
-            "name": "MCU",
+            "name": "mcu",
     		"messages": [
     			{
                 "name": "status",
@@ -284,7 +291,7 @@
             ]
         },
         {
-            "name": "BMS",
+            "name": "bms",
     		"messages": [
     			{
     			"name": "status",
@@ -329,7 +336,7 @@
             ]
         },
         {
-            "name": "MotorController",
+            "name": "motorcontroller",
     		"messages": [
     			{
     			"name": "response",

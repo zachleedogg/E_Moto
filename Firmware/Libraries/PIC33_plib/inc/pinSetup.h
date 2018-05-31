@@ -8,67 +8,94 @@
 #ifndef PINSETUP_H
 #define	PINSETUP_H
 
-#include "bolt_ADC.h"
-#include "bolt_uart.h"
+#include <stdint.h>
 #include "pins.h"
-
 /*DIGITAL INPUTS AND OUTPUTS*/
 
-#define DEBUG_LED_EN PIN_DEF(A,0)
-#define DEBUG_PIN_EN PIN_DEF(A,1)
-#define BMS_CONTROLLER_EN PIN_DEF(A,2)
-#define J1772_CONTROLLER_EN PIN_DEF(A,3)
-#define MOTOR_CONTROLLER_EN PIN_DEF(A,4)
-#define CHARGE_CONTROLLER_EN PIN_DEF(A,5)
-#define PILOT_EN PIN_DEF(A,6)
-#define TURN_SIGNAL_L_STATUS PIN_DEF(A,9)
-#define TURN_SIGNAL_R_STATUS PIN_DEF(A,10)
-#define CONTACT_1_2_STATUS PIN_DEF(A,14)
-#define CONTACT_3_4_STATUS PIN_DEF(A,15)
+void SET_DEBUG_LED_EN(uint8_t state);
+void SET_DEBUG_PIN_EN(uint8_t state);
+void SET_BMS_CONTROLLER_EN(uint8_t state);
+void SET_J1772_CONTROLLER_EN(uint8_t state);
+void SET_MOTOR_CONTROLLER_EN(uint8_t state);
+void SET_CHARGE_CONTROLLER_EN(uint8_t state);
+void SET_PILOT_EN(uint8_t state);
+void SET_BRAKE_LIGHT_EN(uint8_t state);
+void SET_TAILLIGHT_EN(uint8_t state);
+void SET_HEADLIGHT_HI_EN(uint8_t state);
+void SET_HEADLIGHT_LO_EN(uint8_t state);
+void SET_CHARGER_CONTACTOR_EN(uint8_t state);
+void SET_DCDC_CONTACTOR_EN(uint8_t state);
+void SET_BATTERY_CONTACTOR_EN(uint8_t state);
+void SET_PRECHARGE_RELAY_EN(uint8_t state);
+void SET_HORN_EN(uint8_t state);
+void SET_AUX_PORT_EN(uint8_t state);
+void SET_TURN_SIGNAL_FR_EN(uint8_t state);
+void SET_TURN_SIGNAL_RR_EN(uint8_t state);
+void SET_TURN_SIGNAL_FL_EN(uint8_t state);
+void SET_TURN_SIGNAL_RL_EN(uint8_t state);
+void SET_HEATED_GRIPS_EN(uint8_t state);
+void SET_HEATED_SEAT_EN(uint8_t state);
+void SET_SW_EN(uint8_t state);
+void SET_DIAG_EN(uint8_t state);
+void SET_DIAG_SELECT_EN(uint8_t state);
+void SET_DCDC_EN(uint8_t state);
+void SET_BATT_EN(uint8_t state);
+void SET_CAN_SLEEP_EN(uint8_t state);
+void SET_IC_CONTROLLER_SLEEP_EN(uint8_t state);
+void SET_PUMP_1_EN(uint8_t state);
+void SET_FAN_1_EN(uint8_t state);
 
-#define SPARE_SWITCH_1_IN PIN_DEF(C,2)
-#define SPARE_SWITCH_2_IN PIN_DEF(C,3)
 
-#define BRAKE_LIGHT_EN PIN_DEF(D,0)
-#define TAILLIGHT_EN PIN_DEF(D,1)
-#define HEADLIGHT_HI_EN PIN_DEF(D,2)
-#define HEADLIGHT_LO_EN PIN_DEF(D,3)
-#define CHARGER_CONTACTOR_EN PIN_DEF(D,4)
-#define DCDC_CONTACTOR_EN PIN_DEF(D,5)
-#define BATTERY_CONTACTOR_EN PIN_DEF(D,6)
-#define PRECHARGE_RELAY_EN PIN_DEF(D,7)
-#define HORN_EN PIN_DEF(D,8)
-#define AUX_PORT_EN PIN_DEF(D,9)
-#define TURN_SIGNAL_FR_EN PIN_DEF(D,10)
-#define TURN_SIGNAL_RR_EN PIN_DEF(D,11)
-#define TURN_SIGNAL_FL_EN PIN_DEF(D,12)
-#define TURN_SIGNAL_RL_EN PIN_DEF(D,13)
-#define HEATED_GRIPS_EN PIN_DEF(D,14)
-#define HEATED_SEAT_EN PIN_DEF(D,15)
-
-#define SW_EN PIN_DEF(E,0)
-#define DIAG_EN PIN_DEF(E,1)
-#define DIAG_SELECT_EN PIN_DEF(E,2)
-#define DCDC_EN PIN_DEF(E,3)
-#define BATT_EN PIN_DEF(E,4)
-#define CAN_SLEEP_EN PIN_DEF(E,5)
-#define IC_CONTROLLER_SLEEP_EN PIN_DEF(E,6)
-#define IC_CONTROLLER_nFAULT PIN_DEF(E,7)
-#define DCDC_nFAULT PIN_DEF(E,8)
-#define BATT_nFAULT PIN_DEF(E,9)
-
-#define PUMP_1_EN PIN_DEF(F,2)
-#define FAN_1_EN PIN_DEF(F,3)
-#define BRAKE_SWITCH_1_IN PIN_DEF(F,13)
-#define BRAKE_SWITCH_2_IN PIN_DEF(F,12)
-
-#define IGNITION_SWITCH_IN PIN_DEF(G,0)
-#define KILL_SWITCH_IN PIN_DEF(G,1)
-#define TURN_LEFT_SWITCH_IN PIN_DEF(G,2)
-#define TURN_RIGHT_SWITCH_IN PIN_DEF(G,3)
-#define BRIGHTS_SWITCH_IN PIN_DEF(G,12)
-#define HORN_SWITCH_IN PIN_DEF(G,13)
-#define KICKSTAND_SWITCH_IN PIN_DEF(G,14)
+uint8_t GET_DEBUG_LED_EN(void);
+uint8_t GET_DEBUG_PIN_EN(void);
+uint8_t GET_BMS_CONTROLLER_EN(void);
+uint8_t GET_J1772_CONTROLLER_EN(void);
+uint8_t GET_MOTOR_CONTROLLER_EN(void);
+uint8_t GET_CHARGE_CONTROLLER_EN(void);
+uint8_t GET_PILOT_EN(void);
+uint8_t GET_BRAKE_LIGHT_EN(void);
+uint8_t GET_TAILLIGHT_EN(void);
+uint8_t GET_HEADLIGHT_HI_EN(void);
+uint8_t GET_HEADLIGHT_LO_EN(void);
+uint8_t GET_CHARGER_CONTACTOR_EN(void);
+uint8_t GET_DCDC_CONTACTOR_EN(void);
+uint8_t GET_BATTERY_CONTACTOR_EN(void);
+uint8_t GET_PRECHARGE_RELAY_EN(void);
+uint8_t GET_HORN_EN(void);
+uint8_t GET_AUX_PORT_EN(void);
+uint8_t GET_TURN_SIGNAL_FR_EN(void);
+uint8_t GET_TURN_SIGNAL_RR_EN(void);
+uint8_t GET_TURN_SIGNAL_FL_EN(void);
+uint8_t GET_TURN_SIGNAL_RL_EN(void);
+uint8_t GET_HEATED_GRIPS_EN(void);
+uint8_t GET_HEATED_SEAT_EN(void);
+uint8_t GET_SW_EN(void);
+uint8_t GET_DIAG_EN(void);
+uint8_t GET_DIAG_SELECT_EN(void);
+uint8_t GET_DCDC_EN(void);
+uint8_t GET_BATT_EN(void);
+uint8_t GET_CAN_SLEEP_EN(void);
+uint8_t GET_IC_CONTROLLER_SLEEP_EN(void);
+uint8_t GET_PUMP_1_EN(void);
+uint8_t GET_FAN_1_EN(void);
+uint8_t GET_IC_CONTROLLER_nFAULT(void);
+uint8_t GET_DCDC_FAULT(void);
+uint8_t GET_BATT_FAULT(void);
+uint8_t GET_TURN_SIGNAL_L_STATUS(void);
+uint8_t GET_TURN_SIGNAL_R_STATUS(void);
+uint8_t GET_CONTACT_1_2_STATUS(void);
+uint8_t GET_CONTACT_3_4_STATUS(void);
+uint8_t GET_SPARE_SWITCH_1_IN(void);
+uint8_t GET_SPARE_SWITCH_2_IN(void);
+uint8_t GET_BRAKE_SWITCH_1_IN(void);
+uint8_t GET_BRAKE_SWITCH_2_IN(void);
+uint8_t GET_IGNITION_SWITCH_IN(void);
+uint8_t GET_KILL_SWITCH_IN(void);
+uint8_t GET_TURN_LEFT_SWITCH_IN(void);
+uint8_t GET_TURN_RIGHT_SWITCH_IN(void);
+uint8_t GET_BRIGHTS_SWITCH_IN(void);
+uint8_t GET_HORN_SWITCH_IN(void);
+uint8_t GET_KICKSTAND_SWITCH_IN(void);
 
 /*ANALOG*/
 #define FAN_ISENSE_AI AN0
@@ -88,10 +115,10 @@
 #define RADIATOR_INPUT_TEMP_AI AN14
 #define RADIATOR_OUTPUT_TEMP_AI AN15
 #define P12_MONITOR_AI AN16
-#define PILOT_MONITOR_AI AN19
+#define PILOT_MONITOR_AI AN19 //R177 is wrong, should be 560k, not 10k
 #define PROXIMITY_MONITOR_AI AN23
 
-void pinInit(void);
+void PinSetup_Init(void);
 
 
 #endif	/* PINSETUP_H */

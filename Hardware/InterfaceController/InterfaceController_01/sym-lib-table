@@ -1,0 +1,10 @@
+(sym_lib_table
+  (lib (name IntrefaceController_01-rescue)(type Legacy)(uri ${KIPRJMOD}/IntrefaceController_01-rescue.lib)(options "")(descr ""))
+  (lib (name Connectors)(type Legacy)(uri "C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/Connectors.lib")(options "")(descr ""))
+  (lib (name HSD)(type Legacy)(uri "C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/HSD.lib")(options "")(descr ""))
+  (lib (name ICs)(type Legacy)(uri "C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/ICs.lib")(options "")(descr ""))
+  (lib (name micros)(type Legacy)(uri "C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/micros.lib")(options "")(descr ""))
+  (lib (name LEM)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/LEM.lib)(options "")(descr ""))
+  (lib (name modules)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/modules.lib)(options "")(descr ""))
+  (lib (name RFSolutions)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/RFSolutions.lib)(options "")(descr ""))
+)

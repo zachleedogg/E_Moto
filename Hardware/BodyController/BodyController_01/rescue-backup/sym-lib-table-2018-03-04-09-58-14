@@ -1,0 +1,7 @@
+(sym_lib_table
+  (lib (name BodyController_01-rescue)(type Legacy)(uri ${KIPRJMOD}/BodyController_01-rescue.lib)(options "")(descr ""))
+  (lib (name HSD)(type Legacy)(uri "C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/HSD.lib")(options "")(descr ""))
+  (lib (name micros)(type Legacy)(uri "C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/micros.lib")(options "")(descr ""))
+  (lib (name ICs)(type Legacy)(uri "C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/ICs.lib")(options "")(descr ""))
+  (lib (name Connectors)(type Legacy)(uri "C:/Users/kid group/Documents/Repos/E_Moto/Hardware/PCBlibrary/Connectors.lib")(options "")(descr ""))
+)

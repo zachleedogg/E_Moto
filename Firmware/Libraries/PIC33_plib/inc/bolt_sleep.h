@@ -13,7 +13,7 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 
-#include "bolt_pins.h"
+#include "pins.h"
 
 /*WAKE UP LIST*/
 #define WAKE_UP(INT) \
@@ -37,7 +37,7 @@ typedef enum {
  * @param type of wake signal from list above
  * @return success or failure
  */
-uint8_t setWakeUp(wake_up_type thisType, pin_number pin);
+uint8_t setWakeUp(wake_up_type thisType, PINS_pin_S pin);
 
 void SleepNow();
 

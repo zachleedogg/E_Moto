@@ -160,6 +160,12 @@ uint8_t Uart1Init(uint32_t baudRate) {
     return 0;
 }
 
+void Uart1Stop(void){
+        /*Enable the module*/
+    U1MODEbits.UARTEN = 0; // Enable UART
+    U1STAbits.UTXEN = 0; // Enable UART TX
+}
+
 uint8_t Uart1Write(char* inputString) {
     TX1status = 1; /*Module is now busy writing*/
     uint16_t i = 0;

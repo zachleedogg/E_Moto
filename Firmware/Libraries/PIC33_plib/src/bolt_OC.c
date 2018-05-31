@@ -58,36 +58,56 @@ uint8_t pwmOCinit(oc_pin_number pin) {
 
     /*set the pinmap to the correct pin*/
     switch (pin) {
+#ifdef _RP20R
         case PWM_PIN_RP20:
             _RP20R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP35R
         case PWM_PIN_RP35:
             _RP35R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP36R
         case PWM_PIN_RP36:
             _RP36R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP37R
         case PWM_PIN_RP37:
             _RP37R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP38R
         case PWM_PIN_RP38:
             _RP38R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP39R
         case PWM_PIN_RP39:
             _RP39R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP40R
         case PWM_PIN_RP40:
             _RP40R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP41R
         case PWM_PIN_RP41:
             _RP41R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP42R
         case PWM_PIN_RP42:
             _RP42R = currentModule.ppsMap;
             break;
+#endif
+#ifdef _RP43R
         case PWM_PIN_RP43:
             _RP43R = currentModule.ppsMap;
             break;
+#endif
 #ifdef _RP54R
         case PWM_PIN_RP54:
             _RP54R = currentModule.ppsMap;
@@ -106,6 +126,16 @@ uint8_t pwmOCinit(oc_pin_number pin) {
 #ifdef _RP57R
         case PWM_PIN_RP57:
             _RP57R = currentModule.ppsMap;
+            break;
+#endif
+            #ifdef _RP100R
+        case PWM_PIN_RP100:
+            _RP100R = currentModule.ppsMap;
+            break;
+#endif
+#ifdef _RP101R
+        case PWM_PIN_RP101:
+            _RP101R = currentModule.ppsMap;
             break;
 #endif
 

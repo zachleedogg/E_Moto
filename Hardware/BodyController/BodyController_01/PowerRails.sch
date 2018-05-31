@@ -1,41 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:switches
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:HSD
-LIBS:micros
-LIBS:ICs
-LIBS:Connectors
-LIBS:microchip_dspic33dsc
+EESchema Schematic File Version 4
 LIBS:BodyController_01-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -50,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L +12V #PWR0193
+L BodyController_01-rescue:+12V-RESCUE-BodyController_01 #PWR0193
 U 1 1 5999DC75
 P 2350 1050
 F 0 "#PWR0193" H 2350 900 50  0001 C CNN
@@ -61,7 +26,7 @@ F 3 "" H 2350 1050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L D_Schottky D2
+L BodyController_01-rescue:D_Schottky-RESCUE-BodyController_01 D2
 U 1 1 5999DC85
 P 4200 1600
 F 0 "D2" H 4200 1700 50  0000 C CNN
@@ -74,7 +39,7 @@ F 5 "y" H 4200 1800 50  0001 C CNN "populate"
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R100
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R100
 U 1 1 5999DCAA
 P 5750 1850
 F 0 "R100" V 5830 1850 50  0000 C CNN
@@ -87,7 +52,7 @@ F 5 "y" H 5830 1950 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R101
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R101
 U 1 1 5999DCAB
 P 5750 2250
 F 0 "R101" V 5830 2250 50  0000 C CNN
@@ -100,7 +65,7 @@ F 5 "y" H 5830 2350 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0194
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0194
 U 1 1 5999DCAD
 P 5750 2900
 F 0 "#PWR0194" H 5750 2650 50  0001 C CNN
@@ -111,7 +76,7 @@ F 3 "" H 5750 2900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +12P #PWR0195
+L BodyController_01-rescue:+12P-RESCUE-BodyController_01 #PWR0195
 U 1 1 5999E2A7
 P 7750 1600
 F 0 "#PWR0195" H 7750 1450 50  0001 C CNN
@@ -122,7 +87,7 @@ F 3 "" H 7750 1600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R105
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R105
 U 1 1 5999EA21
 P 9050 2900
 F 0 "R105" V 9130 2900 50  0000 C CNN
@@ -135,7 +100,7 @@ F 5 "y" H 9130 3000 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0196
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0196
 U 1 1 5999EA22
 P 9050 3150
 F 0 "#PWR0196" H 9050 2900 50  0001 C CNN
@@ -146,7 +111,7 @@ F 3 "" H 9050 3150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C52
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C52
 U 1 1 5999EA23
 P 9550 2950
 F 0 "C52" H 9575 3050 50  0000 L CNN
@@ -159,7 +124,7 @@ F 5 "y" H 9575 3150 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0197
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0197
 U 1 1 5999EA24
 P 9550 3150
 F 0 "#PWR0197" H 9550 2900 50  0001 C CNN
@@ -170,7 +135,7 @@ F 3 "" H 9550 3150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CP C24
+L BodyController_01-rescue:CP-RESCUE-BodyController_01 C24
 U 1 1 5999EA2C
 P 1900 4300
 F 0 "C24" H 1925 4400 50  0000 L CNN
@@ -183,7 +148,7 @@ F 5 "y" H 1925 4500 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0198
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0198
 U 1 1 5999EA2D
 P 1900 4450
 F 0 "#PWR0198" H 1900 4200 50  0001 C CNN
@@ -194,7 +159,7 @@ F 3 "" H 1900 4450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L LMR140x0 U20
+L BodyController_01-rescue:LMR140x0-RESCUE-BodyController_01 U20
 U 1 1 5999EA2E
 P 5400 4400
 F 0 "U20" H 5500 5000 60  0000 C CNN
@@ -207,7 +172,7 @@ F 5 "y" H 5500 5100 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L D_Schottky D1
+L BodyController_01-rescue:D_Schottky-RESCUE-BodyController_01 D1
 U 1 1 5999EA2F
 P 1550 4000
 F 0 "D1" H 1550 4100 50  0000 C CNN
@@ -220,7 +185,7 @@ F 5 "y" H 1550 4200 50  0001 C CNN "populate"
 	-1   0    0    1   
 $EndComp
 $Comp
-L C C25
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C25
 U 1 1 5999EA30
 P 2200 4250
 F 0 "C25" H 2225 4350 50  0000 L CNN
@@ -233,7 +198,7 @@ F 5 "y" H 2225 4450 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C28
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C28
 U 1 1 5999EA31
 P 3250 4250
 F 0 "C28" H 3275 4350 50  0000 L CNN
@@ -246,7 +211,7 @@ F 5 "y" H 3275 4450 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C27
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C27
 U 1 1 5999EA32
 P 2950 4250
 F 0 "C27" H 2975 4350 50  0000 L CNN
@@ -259,7 +224,7 @@ F 5 "y" H 2975 4450 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Ferrite_Bead L2
+L BodyController_01-rescue:Ferrite_Bead-RESCUE-BodyController_01 L2
 U 1 1 5999EA33
 P 2600 4000
 F 0 "L2" V 2450 4025 50  0000 C CNN
@@ -272,7 +237,7 @@ F 5 "y" H 2450 4125 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR0199
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0199
 U 1 1 5999EA34
 P 2200 4450
 F 0 "#PWR0199" H 2200 4200 50  0001 C CNN
@@ -283,7 +248,7 @@ F 3 "" H 2200 4450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0200
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0200
 U 1 1 5999EA35
 P 2950 4450
 F 0 "#PWR0200" H 2950 4200 50  0001 C CNN
@@ -294,7 +259,7 @@ F 3 "" H 2950 4450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0201
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0201
 U 1 1 5999EA36
 P 3250 4450
 F 0 "#PWR0201" H 3250 4200 50  0001 C CNN
@@ -305,7 +270,7 @@ F 3 "" H 3250 4450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R23
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R23
 U 1 1 5999EA37
 P 3800 4250
 F 0 "R23" V 3880 4250 50  0000 C CNN
@@ -318,7 +283,7 @@ F 5 "y" H 3880 4350 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R24
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R24
 U 1 1 5999EA38
 P 3800 4600
 F 0 "R24" V 3880 4600 50  0000 C CNN
@@ -331,7 +296,7 @@ F 5 "y" H 3880 4700 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0202
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0202
 U 1 1 5999EA39
 P 3800 5000
 F 0 "#PWR0202" H 3800 4750 50  0001 C CNN
@@ -342,7 +307,7 @@ F 3 "" H 3800 5000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R99
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R99
 U 1 1 5999EA3A
 P 4200 4600
 F 0 "R99" V 4280 4600 50  0000 C CNN
@@ -355,7 +320,7 @@ F 5 "y" H 4280 4700 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0203
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0203
 U 1 1 5999EA3B
 P 4200 5000
 F 0 "#PWR0203" H 4200 4750 50  0001 C CNN
@@ -366,7 +331,7 @@ F 3 "" H 4200 5000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C29
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C29
 U 1 1 5999EA3C
 P 4500 4800
 F 0 "C29" H 4525 4900 50  0000 L CNN
@@ -379,7 +344,7 @@ F 5 "y" H 4525 5000 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0204
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0204
 U 1 1 5999EA3D
 P 4500 5000
 F 0 "#PWR0204" H 4500 4750 50  0001 C CNN
@@ -390,7 +355,7 @@ F 3 "" H 4500 5000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0205
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0205
 U 1 1 5999EA3E
 P 4850 5000
 F 0 "#PWR0205" H 4850 4750 50  0001 C CNN
@@ -401,7 +366,7 @@ F 3 "" H 4850 5000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L L L3
+L BodyController_01-rescue:L-RESCUE-BodyController_01 L3
 U 1 1 5999EA3F
 P 7100 4200
 F 0 "L3" V 7050 4200 50  0000 C CNN
@@ -414,7 +379,7 @@ F 5 "y" H 7050 4300 50  0001 C CNN "populate"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L R R106
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R106
 U 1 1 5999EA42
 P 7400 4350
 F 0 "R106" V 7480 4350 50  0000 C CNN
@@ -427,7 +392,7 @@ F 5 "y" H 7480 4450 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R107
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R107
 U 1 1 5999EA43
 P 7400 4750
 F 0 "R107" V 7480 4750 50  0000 C CNN
@@ -440,7 +405,7 @@ F 5 "y" H 7480 4850 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0206
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0206
 U 1 1 5999EA45
 P 7400 5400
 F 0 "#PWR0206" H 7400 5150 50  0001 C CNN
@@ -451,7 +416,7 @@ F 3 "" H 7400 5400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L D_Schottky D3
+L BodyController_01-rescue:D_Schottky-RESCUE-BodyController_01 D3
 U 1 1 5999EA47
 P 6050 4450
 F 0 "D3" H 6050 4550 50  0000 C CNN
@@ -464,7 +429,7 @@ F 5 "y" H 6050 4650 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR0207
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0207
 U 1 1 5999EA48
 P 6050 4700
 F 0 "#PWR0207" H 6050 4450 50  0001 C CNN
@@ -475,7 +440,7 @@ F 3 "" H 6050 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C51
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C51
 U 1 1 5999EA4A
 P 6400 4700
 F 0 "C51" H 6425 4800 50  0000 L CNN
@@ -488,7 +453,7 @@ F 5 "y" H 6425 4900 50  0001 C CNN "populate"
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR0208
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0208
 U 1 1 5999EA4B
 P 6400 4850
 F 0 "#PWR0208" H 6400 4600 50  0001 C CNN
@@ -499,7 +464,7 @@ F 3 "" H 6400 4850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C55
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C55
 U 1 1 5999EA4C
 P 8450 4450
 F 0 "C55" H 8475 4550 50  0000 L CNN
@@ -512,7 +477,7 @@ F 5 "y" H 8475 4650 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C56
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C56
 U 1 1 5999EA4D
 P 8700 4450
 F 0 "C56" H 8725 4550 50  0000 L CNN
@@ -525,7 +490,7 @@ F 5 "y" H 8725 4650 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C54
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C54
 U 1 1 5999EA4E
 P 8200 4450
 F 0 "C54" H 8225 4550 50  0000 L CNN
@@ -538,7 +503,7 @@ F 5 "y" H 8225 4650 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0209
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0209
 U 1 1 5999EA4F
 P 8200 4700
 F 0 "#PWR0209" H 8200 4450 50  0001 C CNN
@@ -549,7 +514,7 @@ F 3 "" H 8200 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0210
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0210
 U 1 1 5999EA50
 P 8450 4700
 F 0 "#PWR0210" H 8450 4450 50  0001 C CNN
@@ -560,7 +525,7 @@ F 3 "" H 8450 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0211
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0211
 U 1 1 5999EA51
 P 8700 4700
 F 0 "#PWR0211" H 8700 4450 50  0001 C CNN
@@ -571,7 +536,7 @@ F 3 "" H 8700 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR0212
+L BodyController_01-rescue:+5V-RESCUE-BodyController_01 #PWR0212
 U 1 1 5999EA52
 P 9050 4200
 F 0 "#PWR0212" H 9050 4050 50  0001 C CNN
@@ -582,7 +547,7 @@ F 3 "" H 9050 4200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C26
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C26
 U 1 1 5999EA5B
 P 3000 7100
 F 0 "C26" H 3025 7200 50  0000 L CNN
@@ -595,7 +560,7 @@ F 5 "y" H 3025 7300 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0213
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0213
 U 1 1 5999EA5C
 P 1400 7300
 F 0 "#PWR0213" H 1400 7050 50  0001 C CNN
@@ -606,7 +571,7 @@ F 3 "" H 1400 7300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0214
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0214
 U 1 1 5999EA5D
 P 3000 7300
 F 0 "#PWR0214" H 3000 7050 50  0001 C CNN
@@ -617,7 +582,7 @@ F 3 "" H 3000 7300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0215
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0215
 U 1 1 5999EA5E
 P 2350 7350
 F 0 "#PWR0215" H 2350 7100 50  0001 C CNN
@@ -628,7 +593,7 @@ F 3 "" H 2350 7350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR0216
+L BodyController_01-rescue:+5V-RESCUE-BodyController_01 #PWR0216
 U 1 1 5999EA5F
 P 1050 6900
 F 0 "#PWR0216" H 1050 6750 50  0001 C CNN
@@ -639,7 +604,7 @@ F 3 "" H 1050 6900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3V3 #PWR0217
+L BodyController_01-rescue:+3V3-RESCUE-BodyController_01 #PWR0217
 U 1 1 5999EA60
 P 3350 6900
 F 0 "#PWR0217" H 3350 6750 50  0001 C CNN
@@ -650,7 +615,7 @@ F 3 "" H 3350 6900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L PWR_FLAG #FLG0218
+L BodyController_01-rescue:PWR_FLAG-RESCUE-BodyController_01 #FLG0218
 U 1 1 5999EA61
 P 8850 4100
 F 0 "#FLG0218" H 8850 4175 50  0001 C CNN
@@ -661,7 +626,7 @@ F 3 "" H 8850 4100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R104
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R104
 U 1 1 5999F80F
 P 9050 2400
 F 0 "R104" V 9130 2400 50  0000 C CNN
@@ -674,7 +639,7 @@ F 5 "y" H 9130 2500 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L CP C30
+L BodyController_01-rescue:CP-RESCUE-BodyController_01 C30
 U 1 1 599A11B0
 P 4650 1900
 F 0 "C30" H 4675 2000 50  0000 L CNN
@@ -687,7 +652,7 @@ F 5 "y" H 4675 2100 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0219
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0219
 U 1 1 599A11B6
 P 4650 2050
 F 0 "#PWR0219" H 4650 1800 50  0001 C CNN
@@ -698,7 +663,7 @@ F 3 "" H 4650 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0220
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0220
 U 1 1 599A11C2
 P 4950 2050
 F 0 "#PWR0220" H 4950 1800 50  0001 C CNN
@@ -709,7 +674,7 @@ F 3 "" H 4950 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +12V #PWR0221
+L BodyController_01-rescue:+12V-RESCUE-BodyController_01 #PWR0221
 U 1 1 599A2654
 P 1200 4000
 F 0 "#PWR0221" H 1200 3850 50  0001 C CNN
@@ -720,7 +685,7 @@ F 3 "" H 1200 4000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C49
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C49
 U 1 1 599A8558
 P 6200 7100
 F 0 "C49" H 6225 7200 50  0000 L CNN
@@ -733,7 +698,7 @@ F 5 "y" H 6225 7300 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0222
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0222
 U 1 1 599A855E
 P 4450 7300
 F 0 "#PWR0222" H 4450 7050 50  0001 C CNN
@@ -744,7 +709,7 @@ F 3 "" H 4450 7300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0223
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0223
 U 1 1 599A8564
 P 6200 7300
 F 0 "#PWR0223" H 6200 7050 50  0001 C CNN
@@ -755,7 +720,7 @@ F 3 "" H 6200 7300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0224
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0224
 U 1 1 599A856A
 P 5550 7350
 F 0 "#PWR0224" H 5550 7100 50  0001 C CNN
@@ -766,7 +731,7 @@ F 3 "" H 5550 7350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L PWR_FLAG #FLG0225
+L BodyController_01-rescue:PWR_FLAG-RESCUE-BodyController_01 #FLG0225
 U 1 1 599E61AD
 P 7400 1500
 F 0 "#FLG0225" H 7400 1575 50  0001 C CNN
@@ -777,7 +742,7 @@ F 3 "" H 7400 1500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C83
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C83
 U 1 1 59A285B9
 P 5400 1850
 F 0 "C83" H 5425 1950 50  0000 L CNN
@@ -790,7 +755,7 @@ F 5 "y" H 5425 2050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L TLV70033DDC U18
+L BodyController_01-rescue:TLV70033DDC-RESCUE-BodyController_01 U18
 U 1 1 59A6966E
 P 2350 6950
 F 0 "U18" H 2100 7150 50  0000 C CNN
@@ -803,7 +768,7 @@ F 5 "y" H 2100 7250 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L PWR_FLAG #FLG0226
+L BodyController_01-rescue:PWR_FLAG-RESCUE-BodyController_01 #FLG0226
 U 1 1 59A80AE3
 P 3500 3900
 F 0 "#FLG0226" H 3500 3975 50  0001 C CNN
@@ -814,7 +779,7 @@ F 3 "" H 3500 3900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C48
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C48
 U 1 1 59B8F3D3
 P 4950 1850
 F 0 "C48" H 4975 1950 50  0000 L CNN
@@ -827,7 +792,7 @@ F 5 "y" H 4975 2050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L NX1029X,115 Q10
+L BodyController_01-rescue:NX1029X,115-RESCUE-BodyController_01 Q10
 U 1 1 59CEABAC
 P 5750 2650
 F 0 "Q10" H 5960 2780 60  0000 C CNN
@@ -840,7 +805,7 @@ F 5 "y" H 5960 2880 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L NX1029X,115 Q10
+L BodyController_01-rescue:NX1029X,115-RESCUE-BodyController_01 Q10
 U 2 1 59CEAC2B
 P 6000 1600
 F 0 "Q10" H 6210 1730 60  0000 C CNN
@@ -853,7 +818,7 @@ F 5 "y" H 6210 1830 50  0001 C CNN "populate"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L +12V #PWR0227
+L BodyController_01-rescue:+12V-RESCUE-BodyController_01 #PWR0227
 U 1 1 5A232D04
 P 3850 6800
 F 0 "#PWR0227" H 3850 6650 50  0001 C CNN
@@ -864,7 +829,7 @@ F 3 "" H 3850 6800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L TLV70033DDC U17
+L BodyController_01-rescue:TLV70033DDC-RESCUE-BodyController_01 U17
 U 1 1 5A49C58E
 P 9950 5500
 F 0 "U17" H 9700 5700 50  0000 C CNN
@@ -877,7 +842,7 @@ F 5 "y" H 9700 5800 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0228
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0228
 U 1 1 5A49D46E
 P 8850 5850
 F 0 "#PWR0228" H 8850 5600 50  0001 C CNN
@@ -888,7 +853,7 @@ F 3 "" H 8850 5850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +12V #PWR0229
+L BodyController_01-rescue:+12V-RESCUE-BodyController_01 #PWR0229
 U 1 1 5A49D474
 P 8100 5400
 F 0 "#PWR0229" H 8100 5250 50  0001 C CNN
@@ -899,7 +864,7 @@ F 3 "" H 8100 5400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0230
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0230
 U 1 1 5A49DBCE
 P 9950 5900
 F 0 "#PWR0230" H 9950 5650 50  0001 C CNN
@@ -910,7 +875,7 @@ F 3 "" H 9950 5900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C113
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C113
 U 1 1 5A49DE9B
 P 10600 5650
 F 0 "C113" H 10625 5750 50  0000 L CNN
@@ -923,7 +888,7 @@ F 5 "y" H 10625 5850 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0231
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0231
 U 1 1 5A49DEA1
 P 10600 5850
 F 0 "#PWR0231" H 10600 5600 50  0001 C CNN
@@ -934,7 +899,7 @@ F 3 "" H 10600 5850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5VP #PWR0232
+L BodyController_01-rescue:+5VP-RESCUE-BodyController_01 #PWR0232
 U 1 1 5A49DEAC
 P 10950 5450
 F 0 "#PWR0232" H 10950 5300 50  0001 C CNN
@@ -945,7 +910,7 @@ F 3 "" H 10950 5450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3.3VP #PWR0233
+L BodyController_01-rescue:+3.3VP-RESCUE-BodyController_01 #PWR0233
 U 1 1 5A49E3BF
 P 6550 6900
 F 0 "#PWR0233" H 6700 6850 50  0001 C CNN
@@ -956,7 +921,7 @@ F 3 "" H 6550 6900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L TLV70033DDC U19
+L BodyController_01-rescue:TLV70033DDC-RESCUE-BodyController_01 U19
 U 1 1 5A4AAC85
 P 5550 6950
 F 0 "U19" H 5300 7150 50  0000 C CNN
@@ -969,7 +934,7 @@ F 5 "y" H 5300 7250 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L D_Schottky D7
+L BodyController_01-rescue:D_Schottky-RESCUE-BodyController_01 D7
 U 1 1 5A52B0B0
 P 8500 5450
 F 0 "D7" H 8500 5550 50  0000 C CNN
@@ -982,7 +947,7 @@ F 5 "y" H 8500 5650 50  0001 C CNN "populate"
 	-1   0    0    1   
 $EndComp
 $Comp
-L D_Schottky D6
+L BodyController_01-rescue:D_Schottky-RESCUE-BodyController_01 D6
 U 1 1 5A52BAE7
 P 4150 6900
 F 0 "D6" H 4150 7000 50  0000 C CNN
@@ -995,7 +960,7 @@ F 5 "y" H 4150 7100 50  0001 C CNN "populate"
 	-1   0    0    1   
 $EndComp
 $Comp
-L R R3
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R3
 U 1 1 5A6251F9
 P 2450 2450
 F 0 "R3" V 2530 2450 50  0000 C CNN
@@ -1008,7 +973,7 @@ F 5 "y" H 2530 2550 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R4
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R4
 U 1 1 5A625202
 P 2450 2950
 F 0 "R4" V 2530 2950 50  0000 C CNN
@@ -1021,7 +986,7 @@ F 5 "y" H 2530 3050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0234
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0234
 U 1 1 5A625209
 P 2450 3200
 F 0 "#PWR0234" H 2450 2950 50  0001 C CNN
@@ -1032,7 +997,7 @@ F 3 "" H 2450 3200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C10
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C10
 U 1 1 5A625211
 P 2950 3000
 F 0 "C10" H 2975 3100 50  0000 L CNN
@@ -1045,7 +1010,7 @@ F 5 "y" H 2975 3200 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR0235
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0235
 U 1 1 5A625218
 P 2950 3200
 F 0 "#PWR0235" H 2950 2950 50  0001 C CNN
@@ -1056,7 +1021,7 @@ F 3 "" H 2950 3200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Q_PMOS_GSD Q17
+L BodyController_01-rescue:Q_PMOS_GSD-RESCUE-BodyController_01 Q17
 U 1 1 5A625220
 P 2350 2000
 F 0 "Q17" H 2550 2050 50  0000 L CNN
@@ -1069,7 +1034,7 @@ F 5 "y" H 2550 2150 50  0001 C CNN "populate"
 	1    0    0    1   
 $EndComp
 $Comp
-L Q_PMOS_GSD Q5
+L BodyController_01-rescue:Q_PMOS_GSD-RESCUE-BodyController_01 Q5
 U 1 1 5A631AF6
 P 8950 1750
 F 0 "Q5" H 9150 1800 50  0000 L CNN
@@ -1082,7 +1047,7 @@ F 5 "y" H 9150 1900 50  0001 C CNN "populate"
 	1    0    0    1   
 $EndComp
 $Comp
-L +BATT #PWR0236
+L BodyController_01-rescue:+BATT-RESCUE-BodyController_01 #PWR0236
 U 1 1 5A631F93
 P 9050 1500
 F 0 "#PWR0236" H 9050 1350 50  0001 C CNN
@@ -1093,7 +1058,7 @@ F 3 "" H 9050 1500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L D_Schottky D17
+L BodyController_01-rescue:D_Schottky-RESCUE-BodyController_01 D17
 U 1 1 5A633154
 P 9950 2900
 F 0 "D17" H 9950 3000 50  0000 C CNN
@@ -1106,7 +1071,7 @@ F 5 "y" H 9950 3100 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR0237
+L BodyController_01-rescue:GND-RESCUE-BodyController_01 #PWR0237
 U 1 1 5A633824
 P 9950 3150
 F 0 "#PWR0237" H 9950 2900 50  0001 C CNN
@@ -1117,7 +1082,7 @@ F 3 "" H 9950 3150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R108
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R108
 U 1 1 5A82B001
 P 7400 5200
 F 0 "R108" V 7480 5200 50  0000 C CNN
@@ -1130,7 +1095,7 @@ F 5 "y" H 7480 5300 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C23
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C23
 U 1 1 5A8783F1
 P 1400 7100
 F 0 "C23" H 1425 7200 50  0000 L CNN
@@ -1143,7 +1108,7 @@ F 5 "y" H 1425 7300 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C47
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C47
 U 1 1 5A8784FE
 P 4450 7100
 F 0 "C47" H 4475 7200 50  0000 L CNN
@@ -1156,7 +1121,7 @@ F 5 "y" H 4475 7300 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C84
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C84
 U 1 1 5A878712
 P 8850 5650
 F 0 "C84" H 8875 5750 50  0000 L CNN
@@ -1169,7 +1134,7 @@ F 5 "y" H 8875 5850 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R103
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R103
 U 1 1 5A879A11
 P 6650 4000
 F 0 "R103" V 6730 4000 50  0000 C CNN
@@ -1182,7 +1147,7 @@ F 5 "y" H 6730 4100 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L R R102
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R102
 U 1 1 5A879A86
 P 6400 4400
 F 0 "R102" V 6480 4400 50  0000 C CNN
@@ -1195,7 +1160,7 @@ F 5 "y" H 6480 4500 50  0001 C CNN "populate"
 	-1   0    0    1   
 $EndComp
 $Comp
-L C C53
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C53
 U 1 1 5A87A706
 P 7700 4750
 F 0 "C53" H 7725 4850 50  0000 L CNN
@@ -1208,7 +1173,7 @@ F 5 "y" H 7725 4950 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C50
+L BodyController_01-rescue:C-RESCUE-BodyController_01 C50
 U 1 1 5A87B7B6
 P 6350 4000
 F 0 "C50" H 6375 4100 50  0000 L CNN

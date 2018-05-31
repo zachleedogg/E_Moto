@@ -1,51 +1,5 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:switches
-LIBS:relays
-LIBS:motors
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:Connectors
-LIBS:HSD
-LIBS:ICs
-LIBS:micros
-LIBS:battery_management
-LIBS:ftdi
-LIBS:leds
-LIBS:LEM
-LIBS:microchip_dspic33dsc
-LIBS:modules
-LIBS:rfcom
-LIBS:RFSolutions
-LIBS:sensors
-LIBS:IntrefaceController_01-cache
-EELAYER 25 0
+EESchema Schematic File Version 4
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -60,7 +14,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L +3V3 #PWR?
+L power:+3V3 #PWR?
 U 1 1 59953D12
 P 850 4400
 F 0 "#PWR?" H 850 4250 50  0001 C CNN
@@ -71,7 +25,7 @@ F 3 "" H 850 4400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L power:GND #PWR?
 U 1 1 59953D98
 P 850 5300
 F 0 "#PWR?" H 850 5050 50  0001 C CNN
@@ -82,7 +36,7 @@ F 3 "" H 850 5300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 59954183
 P 950 4850
 F 0 "C?" H 975 4950 50  0000 L CNN
@@ -95,7 +49,7 @@ F 5 "y" H 975 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 599541B1
 P 1150 4850
 F 0 "C?" H 1175 4950 50  0000 L CNN
@@ -108,7 +62,7 @@ F 5 "y" H 1175 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 599541DB
 P 1350 4850
 F 0 "C?" H 1375 4950 50  0000 L CNN
@@ -121,7 +75,7 @@ F 5 "y" H 1375 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 599541FC
 P 1550 4850
 F 0 "C?" H 1575 4950 50  0000 L CNN
@@ -134,7 +88,7 @@ F 5 "y" H 1575 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 59954470
 P 1650 6550
 F 0 "C?" H 1675 6650 50  0000 L CNN
@@ -147,7 +101,7 @@ F 5 "y" H 1675 6750 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR?
+L power:GND #PWR?
 U 1 1 5995450B
 P 1400 6550
 F 0 "#PWR?" H 1400 6300 50  0001 C CNN
@@ -158,7 +112,7 @@ F 3 "" H 1400 6550 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 59954578
 P 1650 6100
 F 0 "C?" H 1675 6200 50  0000 L CNN
@@ -171,7 +125,7 @@ F 5 "y" H 1675 6300 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 59955AC7
 P 850 6100
 F 0 "C?" H 875 6200 50  0000 L CNN
@@ -184,7 +138,7 @@ F 5 "y" H 875 6300 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Ferrite_Bead L?
+L device:Ferrite_Bead L?
 U 1 1 59955DBF
 P 1250 5900
 F 0 "L?" V 1100 5925 50  0000 C CNN
@@ -197,7 +151,7 @@ F 5 "y" H 1100 6025 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L +3V3 #PWR?
+L power:+3V3 #PWR?
 U 1 1 59955FA7
 P 750 5900
 F 0 "#PWR?" H 750 5750 50  0001 C CNN
@@ -208,7 +162,7 @@ F 3 "" H 750 5900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L power:GND #PWR?
 U 1 1 59955FD3
 P 750 6300
 F 0 "#PWR?" H 750 6050 50  0001 C CNN
@@ -219,7 +173,7 @@ F 3 "" H 750 6300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 599562CF
 P 5300 6650
 F 0 "C?" H 5325 6750 50  0000 L CNN
@@ -232,7 +186,7 @@ F 5 "y" H 5325 6850 50  0001 C CNN "populate"
 	0    -1   1    0   
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 59956321
 P 5300 7150
 F 0 "C?" H 5325 7250 50  0000 L CNN
@@ -245,7 +199,7 @@ F 5 "y" H 5325 7350 50  0001 C CNN "populate"
 	0    -1   1    0   
 $EndComp
 $Comp
-L R R?
+L device:R R?
 U 1 1 5995635F
 P 4150 6900
 F 0 "R?" V 4230 6900 50  0000 C CNN
@@ -258,7 +212,7 @@ F 5 "y" H 4230 7000 50  0001 C CNN "populate"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L power:GND #PWR?
 U 1 1 5995664C
 P 5600 6900
 F 0 "#PWR?" H 5600 6650 50  0001 C CNN
@@ -269,7 +223,7 @@ F 3 "" H 5600 6900 50  0001 C CNN
 	0    -1   1    0   
 $EndComp
 $Comp
-L +3V3 #PWR?
+L power:+3V3 #PWR?
 U 1 1 59967AA0
 P 1450 7050
 F 0 "#PWR?" H 1450 6900 50  0001 C CNN
@@ -280,7 +234,7 @@ F 3 "" H 1450 7050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R?
+L device:R R?
 U 1 1 59967AE3
 P 1450 7300
 F 0 "R?" V 1530 7300 50  0000 C CNN
@@ -293,7 +247,7 @@ F 5 "y" H 1530 7400 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3.3VA #PWR?
+L power:+3.3VA #PWR?
 U 1 1 59977C27
 P 1800 5850
 F 0 "#PWR?" H 1800 5700 50  0001 C CNN
@@ -304,7 +258,7 @@ F 3 "" H 1800 5850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L PWR_FLAG #FLG?
+L power:PWR_FLAG #FLG?
 U 1 1 59980D1B
 P 1500 5750
 F 0 "#FLG?" H 1500 5825 50  0001 C CNN
@@ -315,7 +269,7 @@ F 3 "" H 1500 5750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L PIC33EPxxxMU810 U?
+L micros:PIC33EPxxxMU810 U?
 U 1 1 599FC02F
 P 8150 2200
 F 0 "U?" H 8900 -1650 60  0000 C CNN
@@ -328,7 +282,7 @@ F 5 "y" H 8900 -1550 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L PIC33EPxxxMU810 U?
+L micros:PIC33EPxxxMU810 U?
 U 2 1 599FC07A
 P 2700 3650
 F 0 "U?" H 3450 -200 60  0000 C CNN
@@ -341,7 +295,7 @@ F 5 "y" H 3450 -100 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 599FDE83
 P 750 4850
 F 0 "C?" H 775 4950 50  0000 L CNN
@@ -354,7 +308,7 @@ F 5 "y" H 775 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C?
+L device:C C?
 U 1 1 599FDED2
 P 1750 4850
 F 0 "C?" H 1775 4950 50  0000 L CNN
@@ -367,7 +321,7 @@ F 5 "y" H 1775 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3V3 #PWR?
+L power:+3V3 #PWR?
 U 1 1 59B2845D
 P 4100 5750
 F 0 "#PWR?" H 4100 5600 50  0001 C CNN
@@ -378,7 +332,7 @@ F 3 "" H 4100 5750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Crystal_GND24 Y?
+L device:Crystal_GND24 Y?
 U 1 1 59BBA021
 P 4700 6900
 F 0 "Y?" V 4825 7100 50  0000 L TNN
@@ -391,7 +345,7 @@ F 5 "y" H 4825 7200 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR?
+L power:GND #PWR?
 U 1 1 59BBA3D3
 P 4950 6900
 F 0 "#PWR?" H 4950 6650 50  0001 C CNN
@@ -402,7 +356,7 @@ F 3 "" H 4950 6900 50  0001 C CNN
 	0    -1   1    0   
 $EndComp
 $Comp
-L GND #PWR?
+L power:GND #PWR?
 U 1 1 59BBA417
 P 4450 6900
 F 0 "#PWR?" H 4450 6650 50  0001 C CNN
@@ -413,7 +367,7 @@ F 3 "" H 4450 6900 50  0001 C CNN
 	0    1    -1   0   
 $EndComp
 $Comp
-L GND #PWR?
+L power:GND #PWR?
 U 1 1 5A45E91E
 P 700 7200
 F 0 "#PWR?" H 700 6950 50  0001 C CNN
@@ -424,7 +378,7 @@ F 3 "" H 700 7200 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L SW_Push SW?
+L switches:SW_Push SW?
 U 1 1 5A45E5E7
 P 950 7200
 F 0 "SW?" H 1000 7300 50  0000 L CNN
@@ -437,7 +391,7 @@ F 5 "y" H 1000 7400 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R?
+L device:R R?
 U 1 1 5A870904
 P 1700 7600
 F 0 "R?" V 1780 7600 50  0000 C CNN
@@ -458,9 +412,9 @@ DEBUG_LED
 Text GLabel 5600 800  0    60   BiDi ~ 0
 DEBUG_PIN
 Wire Wire Line
-	750  5300 2000 5300
+	750  5300 850  5300
 Wire Wire Line
-	750  4400 2000 4400
+	750  4400 850  4400
 Wire Wire Line
 	950  4700 950  4400
 Wire Wire Line
@@ -482,13 +436,13 @@ Wire Wire Line
 Wire Wire Line
 	1500 6550 1400 6550
 Wire Wire Line
-	1400 5900 1950 5900
+	1400 5900 1500 5900
 Wire Wire Line
 	1650 5950 1650 5900
 Wire Wire Line
-	750  6300 1950 6300
+	750  6300 850  6300
 Wire Wire Line
-	750  5900 1100 5900
+	750  5900 850  5900
 Wire Wire Line
 	850  6300 850  6250
 Wire Wire Line
@@ -496,9 +450,9 @@ Wire Wire Line
 Wire Wire Line
 	1650 6250 1650 6300
 Wire Wire Line
-	3950 6650 5150 6650
+	3950 6650 4150 6650
 Wire Wire Line
-	3950 7150 5150 7150
+	3950 7150 4150 7150
 Wire Wire Line
 	4700 7050 4700 7150
 Wire Wire Line
@@ -510,7 +464,7 @@ Wire Wire Line
 Wire Wire Line
 	5500 7150 5450 7150
 Wire Wire Line
-	5500 6650 5500 7150
+	5500 6650 5500 6900
 Wire Wire Line
 	5500 6650 5450 6650
 Wire Wire Line
@@ -518,7 +472,7 @@ Wire Wire Line
 Wire Wire Line
 	1450 7600 1450 7450
 Wire Wire Line
-	850  7600 1550 7600
+	850  7600 1250 7600
 Wire Wire Line
 	1800 5850 1800 5900
 Wire Wire Line
@@ -528,9 +482,9 @@ Wire Wire Line
 Wire Wire Line
 	750  5000 750  5300
 Wire Wire Line
-	2000 4400 2000 4900
+	2000 4400 2000 4500
 Wire Wire Line
-	2000 5300 2000 5700
+	2000 5300 2000 5400
 Wire Wire Line
 	1950 5900 1950 5950
 Wire Wire Line
@@ -612,4 +566,68 @@ Connection ~ 5500 6900
 Connection ~ 2000 4400
 Connection ~ 1250 7600
 NoConn ~ 3900 6150
+Wire Wire Line
+	950  4400 1150 4400
+Wire Wire Line
+	1150 4400 1350 4400
+Wire Wire Line
+	1350 4400 1550 4400
+Wire Wire Line
+	1550 4400 1750 4400
+Wire Wire Line
+	950  5300 1150 5300
+Wire Wire Line
+	1150 5300 1350 5300
+Wire Wire Line
+	1350 5300 1550 5300
+Wire Wire Line
+	1550 5300 1750 5300
+Wire Wire Line
+	850  4400 950  4400
+Wire Wire Line
+	1650 5900 1800 5900
+Wire Wire Line
+	850  6300 1650 6300
+Wire Wire Line
+	850  5900 1100 5900
+Wire Wire Line
+	1650 6300 1950 6300
+Wire Wire Line
+	4700 7150 5150 7150
+Wire Wire Line
+	4150 7150 4700 7150
+Wire Wire Line
+	4150 6650 4700 6650
+Wire Wire Line
+	4700 6650 5150 6650
+Wire Wire Line
+	1450 7600 1550 7600
+Wire Wire Line
+	1800 5900 1950 5900
+Wire Wire Line
+	1500 5900 1650 5900
+Wire Wire Line
+	850  5300 950  5300
+Wire Wire Line
+	2000 5400 2000 5500
+Wire Wire Line
+	2000 5500 2000 5600
+Wire Wire Line
+	2000 5600 2000 5700
+Wire Wire Line
+	2000 4800 2000 4900
+Wire Wire Line
+	2000 4700 2000 4800
+Wire Wire Line
+	2000 4600 2000 4700
+Wire Wire Line
+	2000 4500 2000 4600
+Wire Wire Line
+	1750 4400 2000 4400
+Wire Wire Line
+	1750 5300 2000 5300
+Wire Wire Line
+	5500 6900 5500 7150
+Wire Wire Line
+	1250 7600 1450 7600
 $EndSCHEMATC

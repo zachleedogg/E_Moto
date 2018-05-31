@@ -12,14 +12,14 @@
 
 //Timers
 #define MINS_TO_MILLIS(x) (x*60000)
-#define DOOR_AUTOCLOSE_DELAY MINS_TO_MILLIS(3) //3 minutes
+#define DOOR_AUTOCLOSE_DELAY MINS_TO_MILLIS(4) //4 minutes
 static uint32_t doorAutoCloseTimer = 0;
 
 #define DOOW_SW_HOLD_DELAY 500
 static uint16_t doorSwitchHoldTimer = DOOW_SW_HOLD_DELAY;
 
 /*Password Stuff*/
-static const uint8_t passcode[] = {'7', '6', '8', '2'};
+static const uint8_t passcode[] = {'2', '8', '7', '3'};
 #define PASSCODE_SIZE sizeof(passcode)
 static uint8_t code[PASSCODE_SIZE + 1] = {};
 static uint8_t codeIndex = 0;

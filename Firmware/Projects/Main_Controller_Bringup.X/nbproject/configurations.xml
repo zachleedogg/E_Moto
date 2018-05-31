@@ -9,13 +9,20 @@
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_uart.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_clock.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_ADC.h</itemPath>
-        <itemPath>../../RTOS/framework/framework.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/bolt_OC.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/bolt_pps.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/bolt_CAN.h</itemPath>
+        <itemPath>../../RTOS/Scheduler/SysTick.h</itemPath>
+        <itemPath>../../RTOS/Scheduler/tsk.h</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/inc/bolt_sleep.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="ProjectSpecific" projectFiles="true">
-        <itemPath>framework_configure.h</itemPath>
-        <itemPath>debuggerService.h</itemPath>
-        <itemPath>templateService.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/pinSetup.h</itemPath>
+        <itemPath>tsk_cfg.h</itemPath>
+        <itemPath>SerialDebugger.h</itemPath>
+        <itemPath>Efuse.h</itemPath>
+        <itemPath>MCU_dbc.h</itemPath>
+        <itemPath>StateMachine.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -30,14 +37,20 @@
         <itemPath>../../Libraries/PIC33_plib/src/bolt_clock.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_ADC.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/pins.c</itemPath>
-        <itemPath>../../RTOS/framework/framework.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/src/bolt_OC.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
+        <itemPath>SysTick.c</itemPath>
+        <itemPath>../../Libraries/PIC33_plib/src/bolt_sleep.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="ProjectSpecific" projectFiles="true">
         <itemPath>main.c</itemPath>
-        <itemPath>templateSerivce.c</itemPath>
-        <itemPath>framework_taskRunner.c</itemPath>
-        <itemPath>debuggerSerivce.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/pinSetup.c</itemPath>
+        <itemPath>tsk.c</itemPath>
+        <itemPath>tsk_cfg.c</itemPath>
+        <itemPath>SerialDebugger.c</itemPath>
+        <itemPath>Efuse.c</itemPath>
+        <itemPath>MCU_dbc.c</itemPath>
+        <itemPath>StateMachine.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -51,6 +64,7 @@
     <Elem>../../Libraries/PIC33_plib/src</Elem>
     <Elem>../../RTOS/framework</Elem>
     <Elem>.</Elem>
+    <Elem>../../RTOS/Scheduler</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -103,7 +117,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\RTOS\framework"/>
+                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -273,7 +287,6 @@
         <property key="UART 3" value="true"/>
         <property key="UART 4" value="true"/>
         <property key="USB" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
