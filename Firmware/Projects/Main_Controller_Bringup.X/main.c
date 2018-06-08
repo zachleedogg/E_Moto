@@ -200,7 +200,7 @@ int main(void) {
 
     clockInit(FREQ_120MHZ, EXTERNAL);
 
-    Tsk_RUN(clockFreq());
+    Tsk_Run(clockFreq());
 
     while (1) {
     }

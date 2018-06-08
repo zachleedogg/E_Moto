@@ -94,9 +94,9 @@ void SerialConsole_Run(void) {
                 __asm__ volatile ("reset");
                 break;
             case SLEEP:
-                Tsk_HALT();
+                Tsk_Halt();
                 SleepNow();
-                Tsk_RESUME();
+                Tsk_Resume();
                 debuggerService_print("\nwaking up....\n");
                 break;
             default:

@@ -20,9 +20,10 @@
         <itemPath>../../Libraries/PIC33_plib/inc/pinSetup.h</itemPath>
         <itemPath>tsk_cfg.h</itemPath>
         <itemPath>SerialDebugger.h</itemPath>
-        <itemPath>Efuse.h</itemPath>
+        <itemPath>IO.h</itemPath>
         <itemPath>MCU_dbc.h</itemPath>
         <itemPath>StateMachine.h</itemPath>
+        <itemPath>SystemControl.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -48,9 +49,10 @@
         <itemPath>tsk.c</itemPath>
         <itemPath>tsk_cfg.c</itemPath>
         <itemPath>SerialDebugger.c</itemPath>
-        <itemPath>Efuse.c</itemPath>
+        <itemPath>IO.c</itemPath>
         <itemPath>MCU_dbc.c</itemPath>
         <itemPath>StateMachine.c</itemPath>
+        <itemPath>SystemControl.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"

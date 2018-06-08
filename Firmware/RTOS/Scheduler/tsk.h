@@ -43,11 +43,12 @@ void Tsk_100ms(void);
 
 void Tsk_1000ms(void);
 
-void Tsk_RUN(uint32_t SystemClock);
+void Tsk_Halt(void);
 
-void Tsk_HALT(void);
+void Tsk_Resume(void);
 
-void Tsk_RESUME(void);
+void Tsk_Run(uint32_t SystemClock);
+
 
 
 #endif /*TSK_H_*/

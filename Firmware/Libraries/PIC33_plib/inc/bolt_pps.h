@@ -82,7 +82,7 @@
 #define RP113_IN 0x71
 #define RP118_IN 0x76
 #define RPI119_IN 0x77
-#define RP120_IN0 x78
+#define RP120_IN0 0x78
 #define RPI121_IN 0x79
 #define RPI124_IN 0x7C
 #define RP125_IN 0x7D
