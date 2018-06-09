@@ -30,7 +30,16 @@
 /******************************************************************************
  * Macros
  *******************************************************************************/
+#define DEBUG 1
+#if DEBUG
+#include <stdio.h>
+#include "bolt_uart.h"
 
+static uint8_t debugEnable = 1;
+#define tskService_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
+#else
+#define tskService_print(...)
+#endif
 /******************************************************************************
  * Configuration
  *******************************************************************************/
@@ -83,6 +92,9 @@ void Tsk(void) {
  */
 void Tsk_10ms(void) {
     IO_Run(); //Run the IO layer (Handles all digital IO, highside drivers, efuses, etc...)
+    
+    tskService_print("IGN: %d\n", GET_KILL_SWITCH_IN());
+
 }
 
 /**
