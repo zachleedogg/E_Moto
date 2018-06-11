@@ -19,7 +19,7 @@ static uint32_t doorAutoCloseTimer = 0;
 static uint16_t doorSwitchHoldTimer = DOOW_SW_HOLD_DELAY;
 
 /*Password Stuff*/
-static const uint8_t passcode[] = {'2', '8', '7', '3'};
+static const uint8_t passcode[] = {'1', '9', '8', '7'};
 #define PASSCODE_SIZE sizeof(passcode)
 static uint8_t code[PASSCODE_SIZE + 1] = {};
 static uint8_t codeIndex = 0;
