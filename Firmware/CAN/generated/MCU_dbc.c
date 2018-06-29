@@ -199,11 +199,29 @@ void CAN_mcu_status_throttleMode_set(uint16_t throttleMode){
 void CAN_mcu_status_highBeam_set(uint16_t highBeam){
 	CAN_mcu_status_P->signals.highBeam = highBeam;
 }
-void CAN_mcu_status_brake_set(uint16_t brake){
-	CAN_mcu_status_P->signals.brake = brake;
+void CAN_mcu_status_lowBeam_set(uint16_t lowBeam){
+	CAN_mcu_status_P->signals.lowBeam = lowBeam;
+}
+void CAN_mcu_status_brakeLight_set(uint16_t brakeLight){
+	CAN_mcu_status_P->signals.brakeLight = brakeLight;
+}
+void CAN_mcu_status_tailLight_set(uint16_t tailLight){
+	CAN_mcu_status_P->signals.tailLight = tailLight;
 }
 void CAN_mcu_status_horn_set(uint16_t horn){
 	CAN_mcu_status_P->signals.horn = horn;
+}
+void CAN_mcu_status_turnSignalFR_set(uint16_t turnSignalFR){
+	CAN_mcu_status_P->signals.turnSignalFR = turnSignalFR;
+}
+void CAN_mcu_status_turnSignalFL_set(uint16_t turnSignalFL){
+	CAN_mcu_status_P->signals.turnSignalFL = turnSignalFL;
+}
+void CAN_mcu_status_turnSignalRR_set(uint16_t turnSignalRR){
+	CAN_mcu_status_P->signals.turnSignalRR = turnSignalRR;
+}
+void CAN_mcu_status_turnSignalRL_set(uint16_t turnSignalRL){
+	CAN_mcu_status_P->signals.turnSignalRL = turnSignalRL;
 }
 void CAN_mcu_status_GBSALL_set(uint16_t GBSALL){
 	CAN_mcu_status_P->signals.GBSALL = GBSALL;
@@ -213,6 +231,12 @@ void CAN_mcu_status_contactor_set(uint16_t contactor){
 }
 void CAN_mcu_status_chargePort_set(uint16_t chargePort){
 	CAN_mcu_status_P->signals.chargePort = chargePort;
+}
+void CAN_mcu_status_brakeSwitchFront_set(uint16_t brakeSwitchFront){
+	CAN_mcu_status_P->signals.brakeSwitchFront = brakeSwitchFront;
+}
+void CAN_mcu_status_brakeSwitchRear_set(uint16_t brakeSwitchRear){
+	CAN_mcu_status_P->signals.brakeSwitchRear = brakeSwitchRear;
 }
 void CAN_mcu_status_throttleVal_set(uint16_t throttleVal){
 	CAN_mcu_status_P->signals.throttleVal = throttleVal;

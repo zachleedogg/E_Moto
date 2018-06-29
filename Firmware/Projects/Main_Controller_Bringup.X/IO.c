@@ -13,7 +13,11 @@
 /******************************************************************************
  * Macros
  *******************************************************************************/
-#define MAX_LIMIT 1024
+#define MAX_ADC_BITS 1023
+
+#define VBAT_VOLTAGE_CONVERSION 8.234
+#define PILOT_VOLTAGE_CONVERSION 6.6
+#define PROXIMITY_VOLTAGE_CONVERSION 2.0
 /******************************************************************************
  * Configuration
  *******************************************************************************/
@@ -72,12 +76,13 @@ static uint16_t IC_CONTROLLER_current = 0;
 /******************************************************************************
  * Function Definitions
  *******************************************************************************/
-void IO_Init(void) {
+void IO_Efuse_Init(void) {
+    SET_SW_EN(HIGH);
     SET_DIAG_SELECT_EN(LOW);
     SET_DIAG_EN(HIGH);
 }
 
-void IO_Run(void) {
+void IO_Efuse_Run_10ms(void) {
     /*Check value of Diag pin to select which HSDs are being read out*/
     uint8_t diagSelect = GET_DIAG_SELECT_EN();
 
@@ -96,7 +101,7 @@ void IO_Run(void) {
         }
 
         HIGHBEAM_current = GET_CURRENT_HIGHBEAM();
-        if (HIGHBEAM_current >= MAX_LIMIT) {
+        if (HIGHBEAM_current >= MAX_ADC_BITS) {
             HIGHBEAM_fault = 1;
             SET_HEADLIGHT_HI_EN(LOW);
         }
@@ -133,7 +138,7 @@ void IO_Run(void) {
         }
 
         LOWBEAM_current = GET_CURRENT_LOWBEAM();
-        if (LOWBEAM_current >= MAX_LIMIT) {
+        if (LOWBEAM_current >= MAX_ADC_BITS) {
             LOWBEAM_fault = 1;
             SET_HEADLIGHT_LO_EN(LOW);
         }
@@ -180,9 +185,10 @@ void IO_Run(void) {
 
 }
 
-void IO_Halt(void) {
+void IO_Efuse_Halt(void) {
     SET_DIAG_SELECT_EN(LOW);
     SET_DIAG_EN(LOW);
+    SET_SW_EN(LOW);
 }
 
 void SET_DEBUG_LED_EN(uint8_t state) {
@@ -614,6 +620,25 @@ uint16_t GET_CURRENT_DCDC() {
 uint16_t GET_CURRENT_IC_CONTROLLER() {
     return IC_CONTROLLER_current;
 }
+
+uint16_t GET_VOLTAGE_PILOT(void) {
+    return (uint16_t)((((float)ADC_GetValue(PILOT_MONITOR_AI))*3300.0*PILOT_VOLTAGE_CONVERSION)/MAX_ADC_BITS);
+}
+
+uint16_t GET_VOLTAGE_PROXIMITY(void) {
+    return (uint16_t)((((float)ADC_GetValue(PROXIMITY_MONITOR_AI))*3300.0*PROXIMITY_VOLTAGE_CONVERSION)/MAX_ADC_BITS);
+}
+
+uint16_t GET_VOLTAGE_VBAT(void) {
+    return (uint16_t)((((float)ADC_GetValue(V12_MONITOR_AI))*3300.0*VBAT_VOLTAGE_CONVERSION)/MAX_ADC_BITS);
+}
+
+uint16_t GET_VOLTAGE_VBAT_SW(void) {
+    return (uint16_t)((((float)ADC_GetValue(P12_MONITOR_AI))*3300.0*VBAT_VOLTAGE_CONVERSION)/MAX_ADC_BITS);
+}
+
+
+/*FAULT BITS*/
 
 uint8_t IO_GET_CURRENT_FAN_FAULT(void) {
     return FAN_fault;

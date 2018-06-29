@@ -86,22 +86,38 @@ typedef struct{
 	uint16_t state: 3;
 	uint16_t throttleMode: 3;
 	uint16_t highBeam: 1;
-	uint16_t brake: 1;
+	uint16_t lowBeam: 1;
+	uint16_t brakeLight: 1;
+	uint16_t tailLight: 1;
 	uint16_t horn: 1;
+	uint16_t turnSignalFR: 1;
+	uint16_t turnSignalFL: 1;
+	uint16_t turnSignalRR: 1;
+	uint16_t turnSignalRL: 1;
 	uint16_t GBSALL: 1;
 	uint16_t contactor: 1;
 	uint16_t chargePort: 1;
+	uint16_t brakeSwitchFront: 1;
+	uint16_t brakeSwitchRear: 1;
 	uint16_t throttleVal: 8;
 } CAN_mcu_status_S;
 
 uint16_t CAN_mcu_status_state_get(void);
 uint16_t CAN_mcu_status_throttleMode_get(void);
 uint16_t CAN_mcu_status_highBeam_get(void);
-uint16_t CAN_mcu_status_brake_get(void);
+uint16_t CAN_mcu_status_lowBeam_get(void);
+uint16_t CAN_mcu_status_brakeLight_get(void);
+uint16_t CAN_mcu_status_tailLight_get(void);
 uint16_t CAN_mcu_status_horn_get(void);
+uint16_t CAN_mcu_status_turnSignalFR_get(void);
+uint16_t CAN_mcu_status_turnSignalFL_get(void);
+uint16_t CAN_mcu_status_turnSignalRR_get(void);
+uint16_t CAN_mcu_status_turnSignalRL_get(void);
 uint16_t CAN_mcu_status_GBSALL_get(void);
 uint16_t CAN_mcu_status_contactor_get(void);
 uint16_t CAN_mcu_status_chargePort_get(void);
+uint16_t CAN_mcu_status_brakeSwitchFront_get(void);
+uint16_t CAN_mcu_status_brakeSwitchRear_get(void);
 uint16_t CAN_mcu_status_throttleVal_get(void);
 
 #define CAN_mcu_command_ID 0x712

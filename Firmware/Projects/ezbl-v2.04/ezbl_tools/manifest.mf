@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Name: com/microchip/apps/ezbl
+Specification-Title: ezbl_tools
+Specification-Version: 2.04
+Specification-Vendor: Microchip Technology, Inc.
+Implementation-Title: ezbl_tools
+Implementation-Version: 2.04
+Implementation-Vendor: Microchip Technology, Inc.

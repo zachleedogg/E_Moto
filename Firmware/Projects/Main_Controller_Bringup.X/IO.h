@@ -14,17 +14,17 @@
 /**
  * Initializes Module
  */
-void IO_Init(void);
+void IO_Efuse_Init(void);
 
 /**
  * Run function must be called periodically by scheduler. recommend 1-10ms loop
  */
-void IO_Run(void);
+void IO_Efuse_Run_10ms(void);
 
 /**
  * Disables Module even if RUN is called
  */
-void IO_Halt(void);
+void IO_Efuse_Halt(void);
 
 /**
  * SET_xxxx will set a digital output to the desired state
@@ -139,6 +139,15 @@ uint16_t GET_CURRENT_SPARE_1_CONTROLLER(void);
 uint16_t GET_CURRENT_BATT(void);
 uint16_t GET_CURRENT_DCDC(void);
 uint16_t GET_CURRENT_IC_CONTROLLER(void);
+
+/**
+ * GET_VOLTAGE_xxx will return the converted voltage (including divider) in milliVolts
+ * @return Voltage in milliVolts
+ */
+uint16_t GET_VOLTAGE_PILOT(void);
+uint16_t GET_VOLTAGE_PROXIMITY(void);
+uint16_t GET_VOLTAGE_VBAT(void);
+uint16_t GET_VOLTAGE_VBAT_SW(void);
 
 
 /**

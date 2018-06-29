@@ -6,18 +6,22 @@
  */
 
 #include "bolt_sleep.h"
-#include "bolt_pins.h"
+#include "pins.h"
 
 typedef struct _wake {
     wake_up_type type;
     PINS_pin_S pin;
 } wake;
 
-wake wakeUps[4] = {
-    {-1, 0},
-    {-1, 0},
-    {-1, 0},
-    {-1, 0}
+static wake wakeUps[] = {
+    {-1,
+        {0, 0}},
+    {-1,
+        {0, 0}},
+    {-1,
+        {0, 0}},
+    {-1,
+        {0, 0}}
 };
 
 uint8_t setWakeUp(wake_up_type thisType, PINS_pin_S pin) {
@@ -45,60 +49,61 @@ void SleepNow() {
                 C1INTEbits.WAKIE = 1;
                 break;
             case PIN:
+                _CNIF = 0;
+                _CNIE = 1;
                 PINS_internalRegisters_SetInterrupt(wakeUps[i].pin, 1);
                 break;
             default:
                 break;
         }
     }
-#ifdef PMD1
-    //PMD1 = 0xFFFF;
-    PMD1bits.C1MD = 0;
-    PMD1bits.T5MD = 0;
-#endif
-#ifdef PMD2
-    PMD2 = 0xFFFF;
-#endif
-#ifdef PMD3
-    PMD3 = 0xFFFF;
-#endif
-#ifdef PMD4
-    PMD4 = 0xFFFF;
-#endif
-#ifdef PMD5
-    PMD5 = 0xFFFF;
-#endif
-#ifdef PMD6
-    PMD6 = 0xFFFF;
-#endif
-#ifdef PMD7
-    PMD7 = 0xFFFF;
-#endif
-
+//#ifdef PMD1
+//    //PMD1 = 0xFFFF;
+//    PMD1bits.C1MD = 0;
+//    PMD1bits.T5MD = 0;
+//#endif
+//#ifdef PMD2
+//    PMD2 = 0xFFFF;
+//#endif
+//#ifdef PMD3
+//    PMD3 = 0xFFFF;
+//#endif
+//#ifdef PMD4
+//    PMD4 = 0xFFFF;
+//#endif
+//#ifdef PMD5
+//    PMD5 = 0xFFFF;
+//#endif
+//#ifdef PMD6
+//    PMD6 = 0xFFFF;
+//#endif
+//#ifdef PMD7
+//    PMD7 = 0xFFFF;
+//#endif
     Nop();
     Sleep();
     Nop();
 
-#ifdef PMD1
-    PMD1 = 0x0000;
-#endif
-#ifdef PMD2
-    PMD2 = 0x0000;
-#endif
-#ifdef PMD3
-    PMD3 = 0x0000;
-#endif
-#ifdef PMD4
-    PMD4 = 0x0000;
-#endif
-#ifdef PMD5
-    PMD5 = 0x0000;
-#endif
-#ifdef PMD6
-    PMD6 = 0x0000;
-#endif
-#ifdef PMD7
-    PMD7 = 0x0000;
-#endif
+//#ifdef PMD1
+//    PMD1 = 0x0000;
+//#endif
+//#ifdef PMD2
+//    PMD2 = 0x0000;
+//#endif
+//#ifdef PMD3
+//    PMD3 = 0x0000;
+//#endif
+//#ifdef PMD4
+//    PMD4 = 0x0000;
+//#endif
+//#ifdef PMD5
+//    PMD5 = 0x0000;
+//#endif
+//#ifdef PMD6
+//    PMD6 = 0x0000;
+//#endif
+//#ifdef PMD7
+//    PMD7 = 0x0000;
+//#endif
 
 }

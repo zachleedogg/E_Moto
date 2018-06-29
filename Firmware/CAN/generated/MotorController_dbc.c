@@ -199,11 +199,29 @@ uint16_t CAN_mcu_status_throttleMode_get(void){
 uint16_t CAN_mcu_status_highBeam_get(void){
 	return CAN_mcu_status_P->signals.highBeam;
 }
-uint16_t CAN_mcu_status_brake_get(void){
-	return CAN_mcu_status_P->signals.brake;
+uint16_t CAN_mcu_status_lowBeam_get(void){
+	return CAN_mcu_status_P->signals.lowBeam;
+}
+uint16_t CAN_mcu_status_brakeLight_get(void){
+	return CAN_mcu_status_P->signals.brakeLight;
+}
+uint16_t CAN_mcu_status_tailLight_get(void){
+	return CAN_mcu_status_P->signals.tailLight;
 }
 uint16_t CAN_mcu_status_horn_get(void){
 	return CAN_mcu_status_P->signals.horn;
+}
+uint16_t CAN_mcu_status_turnSignalFR_get(void){
+	return CAN_mcu_status_P->signals.turnSignalFR;
+}
+uint16_t CAN_mcu_status_turnSignalFL_get(void){
+	return CAN_mcu_status_P->signals.turnSignalFL;
+}
+uint16_t CAN_mcu_status_turnSignalRR_get(void){
+	return CAN_mcu_status_P->signals.turnSignalRR;
+}
+uint16_t CAN_mcu_status_turnSignalRL_get(void){
+	return CAN_mcu_status_P->signals.turnSignalRL;
 }
 uint16_t CAN_mcu_status_GBSALL_get(void){
 	return CAN_mcu_status_P->signals.GBSALL;
@@ -213,6 +231,12 @@ uint16_t CAN_mcu_status_contactor_get(void){
 }
 uint16_t CAN_mcu_status_chargePort_get(void){
 	return CAN_mcu_status_P->signals.chargePort;
+}
+uint16_t CAN_mcu_status_brakeSwitchFront_get(void){
+	return CAN_mcu_status_P->signals.brakeSwitchFront;
+}
+uint16_t CAN_mcu_status_brakeSwitchRear_get(void){
+	return CAN_mcu_status_P->signals.brakeSwitchRear;
 }
 uint16_t CAN_mcu_status_throttleVal_get(void){
 	return CAN_mcu_status_P->signals.throttleVal;

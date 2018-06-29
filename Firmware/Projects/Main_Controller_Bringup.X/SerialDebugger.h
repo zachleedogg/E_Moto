@@ -9,7 +9,7 @@
 #define	SERIALDEBUGGER_H
 
 /*Debugging print statement*/
-void SerialConsole_Run(void);
+void SerialConsole_Run_100ms(void);
 
 #endif	/* SERIALDEBUGGER_H */
 

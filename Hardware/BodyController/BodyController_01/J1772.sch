@@ -284,7 +284,7 @@ PROXIMITY_MONITOR_AI
 Text GLabel 3300 4300 0    60   Input ~ 0
 PROXIMITY
 Wire Wire Line
-	2800 1600 4500 1600
+	2800 1600 3200 1600
 Wire Wire Line
 	3200 1600 3200 1800
 Wire Wire Line
@@ -294,13 +294,13 @@ Wire Wire Line
 Wire Wire Line
 	4500 1600 4500 1700
 Wire Wire Line
-	4500 2000 4500 2100
+	4500 2000 4500 2050
 Wire Wire Line
-	4500 2400 4500 2550
+	4500 2400 4500 2450
 Wire Wire Line
 	4900 2100 4900 2050
 Wire Wire Line
-	4500 2050 5150 2050
+	4500 2050 4900 2050
 Wire Wire Line
 	4500 2450 4900 2450
 Wire Wire Line
@@ -312,19 +312,19 @@ Wire Wire Line
 Wire Wire Line
 	3500 2700 3400 2700
 Wire Wire Line
-	1750 1600 2500 1600
+	1750 1600 2050 1600
 Wire Wire Line
 	3100 2700 2900 2700
 Wire Wire Line
 	4500 3800 4500 3900
 Wire Wire Line
-	4500 4200 4500 4400
+	4500 4200 4500 4300
 Wire Wire Line
-	4500 4700 4500 4850
+	4500 4700 4500 4750
 Wire Wire Line
 	5550 4400 5550 4350
 Wire Wire Line
-	5300 4350 5800 4350
+	5300 4350 5550 4350
 Wire Wire Line
 	4500 4750 5550 4750
 Wire Wire Line
@@ -332,7 +332,7 @@ Wire Wire Line
 Wire Wire Line
 	5000 4350 4500 4350
 Wire Wire Line
-	3300 4300 4500 4300
+	3300 4300 3650 4300
 Wire Wire Line
 	2050 2050 2050 2000
 Wire Wire Line
@@ -352,4 +352,26 @@ Connection ~ 5550 4350
 Connection ~ 4500 4300
 Connection ~ 2050 1600
 Connection ~ 3650 4300
+Wire Wire Line
+	3200 1600 3800 1600
+Wire Wire Line
+	3800 1600 4500 1600
+Wire Wire Line
+	4500 2050 4500 2100
+Wire Wire Line
+	4500 2450 4500 2550
+Wire Wire Line
+	4900 2050 5150 2050
+Wire Wire Line
+	4500 4350 4500 4400
+Wire Wire Line
+	4500 4750 4500 4850
+Wire Wire Line
+	5550 4350 5800 4350
+Wire Wire Line
+	4500 4300 4500 4350
+Wire Wire Line
+	2050 1600 2500 1600
+Wire Wire Line
+	3650 4300 4500 4300
 $EndSCHEMATC

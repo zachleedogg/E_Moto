@@ -15,15 +15,19 @@
         <itemPath>../../RTOS/Scheduler/SysTick.h</itemPath>
         <itemPath>../../RTOS/Scheduler/tsk.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_sleep.h</itemPath>
+        <itemPath>../../Libraries/Standard/movingAverage.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="ProjectSpecific" projectFiles="true">
         <itemPath>../../Libraries/PIC33_plib/inc/pinSetup.h</itemPath>
         <itemPath>tsk_cfg.h</itemPath>
         <itemPath>SerialDebugger.h</itemPath>
         <itemPath>IO.h</itemPath>
-        <itemPath>MCU_dbc.h</itemPath>
         <itemPath>StateMachine.h</itemPath>
-        <itemPath>SystemControl.h</itemPath>
+        <itemPath>LightsControl.h</itemPath>
+        <itemPath>IgnitionControl.h</itemPath>
+        <itemPath>HornControl.h</itemPath>
+        <itemPath>j1772.h</itemPath>
+        <itemPath>../../CAN/generated/mcu_dbc.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -42,6 +46,7 @@
         <itemPath>../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
         <itemPath>SysTick.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_sleep.c</itemPath>
+        <itemPath>../../Libraries/Standard/movingAverage.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="ProjectSpecific" projectFiles="true">
         <itemPath>main.c</itemPath>
@@ -50,9 +55,12 @@
         <itemPath>tsk_cfg.c</itemPath>
         <itemPath>SerialDebugger.c</itemPath>
         <itemPath>IO.c</itemPath>
-        <itemPath>MCU_dbc.c</itemPath>
         <itemPath>StateMachine.c</itemPath>
-        <itemPath>SystemControl.c</itemPath>
+        <itemPath>LightsControl.c</itemPath>
+        <itemPath>IgnitionControl.c</itemPath>
+        <itemPath>HornControl.c</itemPath>
+        <itemPath>j1772.c</itemPath>
+        <itemPath>../../CAN/generated/mcu_dbc.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -67,6 +75,8 @@
     <Elem>../../RTOS/framework</Elem>
     <Elem>.</Elem>
     <Elem>../../RTOS/Scheduler</Elem>
+    <Elem>../../Libraries/Standard</Elem>
+    <Elem>../../CAN/generated</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -119,7 +129,7 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated"/>
+                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated;..\..\Libraries\Standard"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>

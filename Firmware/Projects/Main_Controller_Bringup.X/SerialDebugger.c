@@ -33,7 +33,7 @@ unsigned long hash(const char *str);
 
 /*Debugging print statement*/
 
-void SerialConsole_Run(void) {
+void SerialConsole_Run_100ms(void) {
     if (Uart1RXdataReady()) {
         unsigned char msg[64] = {};
         Uart1Read(msg);
@@ -59,6 +59,7 @@ void SerialConsole_Run(void) {
                     debuggerService_print("GPIO_SET failed\n");
                 }
                 break;
+                
             case GPIO_GET:
                 debuggerService_print("running GPIO_GET\n");
                 if (sscanf(msg, "%*s %1c%2d", &port, &pin) == 2) {
@@ -70,14 +71,19 @@ void SerialConsole_Run(void) {
                     debuggerService_print("GPIO_GET failed\n");
                 }
                 break;
+                
             case I2C_SET:
                 debuggerService_print("running I2C_SET\n");
                 break;
+                
             case I2C_GET:
                 debuggerService_print("running I2C_GET\n");
                 break;
+                
             case SPI:
                 debuggerService_print("running SPI\n");
+                break;
+                
             case ADC:
                 debuggerService_print("running ADC\n");
                 if (sscanf(msg, "%*s %2d", &pin) == 1) {
@@ -87,18 +93,20 @@ void SerialConsole_Run(void) {
                 }
                 debuggerService_print("running ADC\n");
                 break;
+                
             case LS:
                 debuggerService_print("Available commands:\ngpioget [port][pin]\ngpioset [port][pin] [value]\nadc [analog pin]\nreset\nsleep\n")
                 break;
+                
             case RESET_BOOT:
                 __asm__ volatile ("reset");
                 break;
+                
             case SLEEP:
-                Tsk_Halt();
-                SleepNow();
-                Tsk_Resume();
+                Tsk_Sleep();
                 debuggerService_print("\nwaking up....\n");
                 break;
+                
             default:
                 debuggerService_print("invalid command: %s\n", cmd);
                 break;

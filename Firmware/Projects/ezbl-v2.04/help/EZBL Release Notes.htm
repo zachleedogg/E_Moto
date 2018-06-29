@@ -1,0 +1,817 @@
+<html>
+
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+        <title>Release Notes for Microchip Easy Bootloader Library</title>
+        <style>
+            <!--
+            /* Font Definitions */
+            @font-face
+            {font-family:"Cambria Math";
+             panose-1:2 4 5 3 5 4 6 3 2 4;}
+            @font-face
+            {font-family:Cambria;
+             panose-1:2 4 5 3 5 4 6 3 2 4;}
+            @font-face
+            {font-family:Tahoma;
+             panose-1:2 11 6 4 3 5 4 4 2 4;}
+            @font-face
+            {font-family:Consolas;
+             panose-1:2 11 6 9 2 2 4 3 2 4;}
+            /* Style Definitions */
+            p.MsoNormal, li.MsoNormal, div.MsoNormal
+            {margin:0in;
+             margin-bottom:.0001pt;
+             font-size:12.0pt;
+             font-family:"Arial","sans-serif";}
+            h1
+            {mso-style-link:"Heading 1 Char";
+             margin-top:12.0pt;
+             margin-right:0in;
+             margin-bottom:3.0pt;
+             margin-left:0in;
+             page-break-after:avoid;
+             font-size:16.0pt;
+             font-family:"Arial","sans-serif";
+             font-weight:bold;}
+            h2
+            {mso-style-link:"Heading 2 Char";
+             margin-top:12.0pt;
+             margin-right:0in;
+             margin-bottom:3.0pt;
+             margin-left:0in;
+             page-break-after:avoid;
+             font-size:14.0pt;
+             font-family:"Arial","sans-serif";
+             font-weight:bold;
+             font-style:italic;}
+            h3
+            {mso-style-link:"Heading 3 Char";
+             margin-right:0in;
+             margin-left:0in;
+             font-size:13.5pt;
+             font-family:"Arial","sans-serif";
+             font-weight:bold;}
+            p.MsoToc1, li.MsoToc1, div.MsoToc1
+            {margin-top:12.0pt;
+             margin-right:0in;
+             margin-bottom:6.0pt;
+             margin-left:0in;
+             font-size:12.0pt;
+             font-family:"Arial","sans-serif";
+             font-weight:bold;}
+            a:link, span.MsoHyperlink
+            {font-family:"Arial","sans-serif";
+             color:blue;
+             text-decoration:underline;}
+            a:visited, span.MsoHyperlinkFollowed
+            {color:purple;
+             text-decoration:underline;}
+            code
+            {font-family:"Courier New";}
+            p
+            {margin-right:0in;
+             margin-left:0in;
+             font-size:12.0pt;
+             font-family:"Arial","sans-serif";}
+            p.Code, li.Code, div.Code
+            {mso-style-name:Code;
+             mso-style-link:"Code Char";
+             margin-top:0in;
+             margin-right:0in;
+             margin-bottom:0in;
+             margin-left:1.5in;
+             margin-bottom:.0001pt;
+             font-size:12.0pt;
+             font-family:"Courier New";}
+            li, p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+            {margin-top:0in;
+             margin-right:0in;
+             margin-bottom:0in;
+             margin-left:0.2in;
+             margin-bottom:0in;
+             font-size:12.0pt;
+             font-family:"Arial","sans-serif";}
+            p.NumberedListPoints, li.NumberedListPoints, div.NumberedListPoints
+            {mso-style-name:"Numbered List Points";
+             margin-top:0in;
+             margin-right:0in;
+             margin-bottom:0in;
+             margin-left:0.2in;
+             margin-bottom:0in;
+             text-indent:-0.2in;
+             font-size:12.0pt;
+             font-family:"Arial","sans-serif";}
+            p.DevicePartNumber, span.DevicePartNumber
+            {color:black;
+             font-size:10.0pt;}
+            p.ProjectName, span.ProjectName
+            {font-style:italic;}
+            p.LegalandTradeMark, span.LegalandTradeMark
+            {color:black;
+             font-style:italic;}
+            @page WordSection1
+            {size:8.5in 11.0in;
+             margin:1.0in 1.25in 1.0in 1.25in;}
+            div.WordSection1
+            {page:WordSection1;}
+            /* List Definitions */
+            ul, ol
+            {margin-bottom:0in;
+             margin-top:0.025in;
+            }
+            tr
+            {height:15.0pt;
+             padding:2.0pt 6.0pt 2.0pt 6.0pt;
+             border-left:solid #538ED5 1.0pt;}
+             border-right:solid #538ED5 1.0pt;}
+            td.lcell
+            {height:15.0pt;
+             padding:2.0pt 6.0pt 2.0pt 6.0pt;
+             border-left:solid #538ED5 1.0pt;
+             font-size:10.0pt;}
+            td.ccell
+            {height:15.0pt;
+             padding:2.0pt 6.0pt 2.0pt 6.0pt;
+             font-size:10.0pt;}
+            td.rcell
+            {height:15.0pt;
+             padding:2.0pt 6.0pt 2.0pt 6.0pt;
+             border-right:solid #538ED5 1.0pt;
+             font-size:10.0pt;}
+            -->
+        </style>
+
+        <meta name=Title content="Release Notes for Microchip Easy Bootloader Library">
+        <meta name=Keywords content="EZBL, Easy Bootloader, Easy Bootloader Library, Easy Bootloader for PIC24 and dsPIC33, Microchip, bootloader, PIC24, dsPIC, dsPIC33, PIC32MM">
+    </head>
+
+    <body lang=EN-US>
+
+        <div class=WordSection1>
+
+            <p class=MsoNormal><b>Release Notes for Microchip Easy Bootloader Library v2.04</b></p>
+            <p class=MsoNormal>Microchip Technology Inc.</p>
+            <p class=MsoNormal>October 2017</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal><b>Table of Contents</b></p>
+            <p class=MsoToc1><span class=MsoHyperlink><a href="#_what_is_ezbl">1. What is Microchip Easy Bootloader Library?</a></span></p>
+            <p class=MsoToc1><span class=MsoHyperlink><a href="#_installing">2. Installing/Uninstalling</a></span></p>
+            <p class=MsoToc1><span class=MsoHyperlink><a href="#_getting_started">3. Getting Started</a></span></p>
+            <p class=MsoToc1><span class=MsoHyperlink><a href="#_whats_new">4. What is New, Changed, and Migration</a></span></p>
+            <p class=MsoToc1><span class=MsoHyperlink><a href="#_problems">5. Known Problems and Limitations</a></span></p>
+            <p class=MsoToc1><span class=MsoHyperlink><a href="#_customer_support">6. Customer Support</a></span></p>
+            <p class=MsoNormal>&nbsp;</p>
+
+    <h1><a name="_what_is_ezbl"></a>1. What is Microchip Easy Bootloader Library?</h1>
+
+            <p class=MsoNormal>Microchip Easy Bootloader Library (EZBL)
+                is a collection of Microchip firmware APIs, example projects and PC-side build
+                tools to address the needs of modern in-the-field flash reprogramming of 16-bit PIC24 MCU and dsPIC33 DSC targets while minimizing
+                development and
+                maintenance effort. The software library helps create modern, richly-featured
+                bootloaders and compatible applications that can reuse bootloader communications,
+                timing, flash read/erase/write and other APIs. EZBL is distributed with full source code,
+                but uses a mix of pre-compiled/archived object code, PC binaries,
+                build-time linker script generation, and editable source files in order
+                to minimize the amount of effort needed to create a stable bootloader using existing
+                UART, I<sup>2</sup>C, or USB Host MSD (&quot;thumb drive&quot;) communications
+                libraries or a custom
+                interface.</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal>Besides being a Bootloader, EZBL offers BIOS-like services.
+                Precision timing, task scheduling and communications software FIFO buffering are initialized for Bootloader use, but
+                they will (optionally) continue to run in the background as the Application
+                executes. The Application can call any public Bootloader API and make use of
+                the versatile library of EZBL functions to avoid having to reimplement or port
+                code over when implementing a first product or implementing a derivative
+                product targeting a new/lower cost or bigger/more powerful target processor.</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+    <h1><a name="_installing"></a>2. Installing/Uninstalling</h1>
+
+            <p class=MsoNormal>To obtain the latest version of EZBL,
+                use the download link on the Microchip web site at <a
+                    href="http://www.microchip.com/ezbl">www.microchip.com/ezbl</a>. EZBL is
+                distributed as a .zip package containing all needed source code, binaries,
+                documentation, and reference projects without using an installer. Simply unzip
+                the package to a desired folder on your computer (that does not contain spaces in
+                the parent path) and either open the
+                reference MPLAB&reg; X IDE projects or documentation in the
+                ezbl-vx.xx.zip: ezbl-vx.xx\help folder.</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal>A preferred method to update to newer versions of EZBL is to
+                unpack the .zip into a new target folder and use a file/directory comparison
+                tool to merge the updated files into your existing EZBL based projects. Note
+                that if a historical EZBL bootloader project has been deployed in your product
+                to the field, it is generally not advised to try and update portions related to EZBL. The Bootloader will not self-update 
+                Bootloader flash when uploading a
+                new Application image, so any changes to EZBL internals or protocols break backwards compatibility. Be sure and always maintain a backup before
+                starting an update (especially if you have deployed the previous version) and
+                read the below Migration section to see what components in this release may be
+                compatible with previous EZBL versions.</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal>The PC-side build components
+                (ezbl_tools.jar) require the Microchip MPLAB&reg; X IDE or IPE be installed, a
+                suitable Microchip XC16 compiler tool-chain and a compatible Java Runtime
+                Environment (JRE). As MPLAB X IDE/IPE are built with Java, any system that
+                already has the MPLAB X IDE and XC16 compiler installed should be able to
+                execute the EZBL build components without the need to install a separate JRE.</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal>For PC-side communications with
+                a Bootloader (via ezbl_tools.jar), a Microsoft Windows x86/x64 based platform
+                with a Java 7 or later JRE is required. It is not necessary to have MPLAB X IDE/IPE
+                installed in order to transmit a firmware update to a Bootloader.</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal>EZBL can be uninstalled by
+                simply deleting the folder that you unpackaged the .zip into. </p>
+            <p class=MsoNormal>&nbsp;</p>
+
+
+    <h1><a name="_getting_started">3. Getting Started</a></h1>
+            <p class=MsoNormal>Read "help\EZBL Hands-on Bootloading Exercises.pdf", Exercise 1 and 2 (pages 3-7).</p>
+            <p class=MsoNormal>&nbsp;</p>
+            <p class=MsoNormal>In most abbreviated form:</p>
+            <ol>
+                <li><p class=NumberedListPoints>To make a typical UART bootloader, open the <span class=ProjectName>ex_boot_uart</span> MPLAB X project, select your target processor in the project properties, then compile and program the project via an ICSP programming tool.</p></li>
+                <li><p class=NumberedListPoints>To test the bootloader, open the <span class=ProjectName>ex_app_led_blink</span> 
+                    MPLAB X project, select the &quot;uart&quot; Build Configuration, again select your target 
+                    processor in the project properties, edit the ezbl_app.mk file (in Important 
+                    Files) to set your PC&#39;s COM port (&quot;-com=COMx&quot; option to ezbl_tools.jar 
+                    --communicator ezbl_post_build: recipe) and then build the project. Successful 
+                    bootloading will be indicated by an LED blinking at 1 Hz with upload status 
+                    printed to the MPLAB built Output window.</p></li>
+            </ol>
+            <p class=MsoNormal>&nbsp;</p>
+            
+            <p class=MsoNormal>For more information and getting started steps for other types of bootloaders, see "help\EZBL Library Documentation.pdf"</p>
+            <p class=MsoNormal>&nbsp;</p>
+            
+
+    <h1><a name="_whats_new"></a>4. What is New, Changed, and Migration</h1>
+
+            <p class=MsoNormal>2017 October 04 v2.04</p>
+            <ol>
+                <li><p class=NumberedListPoints>
+                    Extensive changes affecting all components. This version of EZBL shares the
+                    same structure, build processes, and general behaviors as EZBL v1.xx
+                    bootloaders, but is substantially revised with several device/compiler
+                    compatibility issues resolved, bugs fixed, features added, behaviors updated,
+                    and capabilities increased.
+                    Numerous new 'ezbl_lib.a' APIs and inline macros added to 'ezbl.h'. </p></li>
+
+                <li><p class=NumberedListPoints>New .bl2 &quot;Blob version 2&quot; file format implemented containing bootloader product identification meta-data
+                    and application version information. EZBL v2.xx bootloaders will now automatically reject/ignore
+                    invalid firmware images before erasing an existing application from flash.
+                    Invalid firmware images include ones compiled for different target processors,
+                    different product hardware releases, and/or alternate parties&#8217; products that are
+                    unrelated to your company but happen to also be implementing an EZBL bootloader.
+                    This data is stored as BOOTID_HASH in 'ezbl_boot.mk' files and
+                    APPID_VER_[MAJOR/MINOR/BUILD] in 'ezbl_app.mk' files. This .bl2 file format
+                    replaces the historical .blob file format and is documented in the &quot;help\EZBL
+                    BL2 File Format Specification.pdf&quot; file.</p></li>
+
+                <li><p class=NumberedListPoints>
+                    New communications protocol implemented for UART and I<sup>2</sup>C bootloading.
+                    Historically, a few handshake and command characters had to be transmitted to a
+                    bootloader before sending a .blob firmware image file. With EZBL v2.xx, the .bl2
+                    firmware image contains all needed information to synchronize/wake-up the
+                    bootloader, confirm bootloader applicability and begin the firmware update. The
+                    new protocol involves directly sending a .bl2 file to a bootloader. See the
+                    &quot;help\EZBL Communications Protocol.pdf&quot; file for detailed protocol information.</p></li>
+                    
+                <li><p class=NumberedListPoints>
+                    ezbl_lib16.a/ezbl_lib16ep.a combined into a single ezbl_lib.a file for all
+                    16-bit targets.</p></li>
+                <li><p class=NumberedListPoints>New example projects:
+                    <ul>
+                        <li>
+                            <p class=NumberedListPoints>
+                                ex_app_live_update_smps_v1, ex_app_live_update_smps_v2 and ex_app_live_update_smps_v3 - SMPS Dual Partition,
+                                Live Update projects designed for the MPLAB Starter Kit for Digital Power
+                                (&quot;Digital Power Starter Kit&quot; based on dsPIC33EP64GS502).</p>
+                        </li>
+                        <li>
+                            <p class=NumberedListPoints>
+                                ex_boot_app_blink_dual_partition - General Bootloader and Application combined
+                                example project for Dual Partition capable devices (ex: PIC24FJ1024GB610/GA610,
+                                PIC24FJ256GB412/GA412, dsPIC33EP128GS808 families and the dsPIC33EP64GS50x
+                                devices). This project implements UART bootloading that only erases/programs the
+                                Inactive Partition for ping-pong, non-blocking full replacement of the entire
+                                flash image (inclusive of the application and bootloader logic).</p>
+                        </li>
+                        <li>
+                            <p class=NumberedListPoints>
+                                ex_boot_usb_msd_v2016_11_07 - USB Host Mass Storage Device (&quot;USB thumb drive&quot;)
+                                bootloader based on the v2016_11_07 release of the Microchip Libraries for
+                                Applications (MLA) USB msd_simple_demo project. At reset, this bootloader
+                                searches for a &quot;FIRMWARE.BL2&quot; file in the root folder of a FAT16/FAT32 formatted
+                                USB media, and if different from the existing application in flash, will
+                                automatically result in application reprogramming. The ex_app_led_blink project
+                                has a new &quot;usb_msd&quot; Build Configuration added to build an application demo for
+                                testing the USB MSD bootloader.</p>
+                        </li>
+                        <li>
+                            <p class=NumberedListPoints>
+                                ex_app_non_ezbl_base - LED blinking application project that contains no
+                                association to other EZBL components or a bootloader. This project is used for
+                                learning exercises documented in &quot;help\EZBL Hands-on Bootloading Exercises.pdf&quot;.</p>
+                        </li>
+                    </ul>
+                    </li>
+                <li><p class=NumberedListPoints><i>ex_boot_i2c slave</i>
+                    bootloader project can now be natively tested using the Explorer 16/32
+                    development board or an external MCP2221A USB to I2C bridge device. The
+                    ex_app_led_blink project should be used with the &quot;i2c&quot; Build Configuration
+                    selected.</p></li>
+                <li><p class=NumberedListPoints>
+                    <i>ex_boot_uart_icsp_prog</i> and <i>ex_boot_uart_icsp_prog_to_go</i> projects
+                    temporarily removed, pending protocol migration changes. If ICSP based
+                    programming is desired, EZBL v1.01b code and MPLAB X IDE v4.00 or <i>earlier</i> should be used for this purpose.</p></li>
+                <li><p class=NumberedListPoints>
+                    Fixed incompatibilities with newer MPLAB X IDE and XC16 compiler versions. EZBL v1.01 fails to build Bootloader projects with MPLAB X IDE v4.01+. It also would not work with PIC24F devices with EDS (i.e. DSRPAG/DSWPAG PSV access instead of PSVPAG) while compiling with XC16 v1.30+.
+                    </p></li>
+                <li><p class=NumberedListPoints>
+                    Substantially more documentation added/updated. The "help\EZBL Library Documentation.pdf" file contains updates and additions all throughout.
+                    </p></li>
+            </ol>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal>2015 October 07 v1.01
+            <ol>
+                <li><p class=NumberedListPoints>Fixed a bug in ezbl_tools.jar which caused EZBL_FORWARD_MASK_xxx
+                interrupt forwarding flag symbol values to have a 0x100 or 0x200 value offset
+                on them when read back in both the bootloader and application projects. As a
+                result EZBL v1.00 was limited to at most 8 or 9 implemented ISRs in your
+                bootloader project before run-time interrupt forwarding failure would occur. To
+                migrate to this version from v1.00, you must, at minimum, copy the ezbl_tools.jar
+                and all .gld linker scripts from the v1.01 distribution into your bootloader
+                and application projects.</p></li>
+
+            <li><p class=NumberedListPoints>Corrected PIC24FJ1024GB610 family hardware initializer file
+                (hardware_initializer\pic24fj1024gb610_explorer_16.c) PLL and system clock
+                configuration. Previously, the defined FOSCSEL Configuration Word was set to
+                output 48MHz from the PLL and overclock the device. The PLL is now configured
+                for FRC x4 operation for correct 16 MIPS clocking. The PIC24FJ1024GB610 family
+                of targets should now work correctly.</p></li>
+            </ol>
+            <p class=MsoNormal>&nbsp;</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal>2015 October 05 v1.00</p>
+            <ol>
+                <li><p class=NumberedListPoints>As this is a v1.00 release, there are no new, changed, or migration
+                notes. EZBL is an entirely new software product which is not based on or
+                compatible with AN1094, AN1157, CE417, or any other bootloader that supports
+                PIC24 and dsPIC33 targets.</p></li>
+
+                <li><p class=NumberedListPoints>
+                If you previously used a pre-release copy of EZBL or &#8220;Boot
+                HU&#8221; (this library&#8217;s original name used internally during
+                development), be sure and fully evaluate this EZBL release before committing to
+                transition to it. Although much code will be interchangeable between the
+                pre-releases, certain features may have been removed or redefined.</p></li>
+            </ol>
+            <p class=MsoNormal>&nbsp;</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal><b>4.1 Targets</b></p>
+            <p class=MsoNormal>EZBL supports essentially all PIC24 and dsPIC33 devices across all product classes. Some exceptions are applicable.</p>
+            <p class=MsoNormal>&nbsp;</p>
+            <p class=MsoNormal>&nbsp;</p>
+
+            <p class=MsoNormal><b>4.2 Targets with Known Issues</b></p>
+            <p class=MsoNormal>Known devices that EZBL v2.04 will have problems or limited usability on:</p>
+
+            <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=1233 style='width:925.0pt;margin-left:-1.35pt;border-collapse:collapse;border:solid #4F81BD 1.0pt'>
+                <tr>
+                    <td width=307 valign=top style='width:230.0pt;background:#F2F2F2;border:solid #4F81BD 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:16.5pt'>
+                        <p class=MsoNormal><b>Product Group</p>
+                    </td>
+                    <td width=408 colspan=3 valign=top style='width:4.25in;border:solid #4F81BD 1.0pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:16.5pt'>
+                        <p class=MsoNormal align=center style='text-align:center'><b>Part Numbers</b></p>
+                    </td>
+                    <td width=519 valign=top style='width:389.0pt;border:solid #4F81BD 1.0pt;background:#F2F2F2;padding:0in 5.4pt 0in 5.4pt;height:16.5pt'>
+                        <p class=MsoNormal align=center style='text-align:center'><b>Problem</b></p>
+                    </td>
+                </tr>
+                <tr style='border-top:solid #538ED5 1.0pt;'>
+                    <td rowspan=12 valign=top style='border:solid #538ED5 1.0pt;'><p class=MsoNormal>PIC32MM family devices</p></td>
+                    <td class=lcell><p class=DevicePartNumber>PIC32MM0016GPL020</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC32MM0064GPM028</p></td>
+                    <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    <td rowspan=12 valign=top style='border:solid #538ED5 1.0pt;'>
+                        <p class=MsoNormal>- Under development: Although various code and documentation fragments mention the PIC32MM families, this version of EZBL cannot be used on any PIC32MM device.</p>
+                        <p>Example bootloading projects will be added for PIC32MM devices in a future EZBL release.</p>
+                    </td>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>PIC32MM0016GPL028</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0064GPM036</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>PIC32MM0016GPL036</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0064GPM048</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>PIC32MM0032GPL020</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0064GPM064</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>PIC32MM0032GPL028</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0128GPM028</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>PIC32MM0032GPL036</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0128GPM036</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>PIC32MM0064GPL020</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0128GPM048</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>PIC32MM0064GPL028</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0128GPM064</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>PIC32MM0064GPL036</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0256GPM028</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>&nbsp;</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0256GPM036</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>&nbsp;</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0256GPM048</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                    <tr>
+                        <td class=lcell><p class=DevicePartNumber>&nbsp;</p></td>
+                        <td class=ccell><p class=DevicePartNumber>PIC32MM0256GPM064</p></td>
+                        <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    </tr>
+                </tr>
+                <tr style='border-top:solid #538ED5 1.0pt;'>
+                    <td width=307 rowspan=12 valign=top style='border:solid #538ED5 1.0pt;'>
+                        <p class=MsoNormal><i>PIC24F devices with K-Flash</i>:<br>
+                            PIC24F04KA201,<br>
+                            PIC24F08KA102,<br>
+                            PIC24FV32KA304,<br>
+                            PIC24F16KL402,<br>
+                            PIC24FV16KM204 families</p>
+                    </td>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F04KA200</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F04KL100</p></td>
+                    <td class=rcell><p class=DevicePartNumber>PIC24F08KM101</p></td>
+                    <td width=519 rowspan=12 valign=top style='border:solid #538ED5 1.0pt;'>
+                        <p class=MsoNormal>- Bootloading: 4KB and 8KB devices do not have enough
+                            Flash space to be practical for an EZBL bootloader<br>
+                            <br>
+                            - Bootloading &amp; ICSP: NVMCON operations encoded differently, minimum
+                            erase and programming block sizes not implemented in EZBL code</p>
+                    </td>
+                </tr>                
+                <tr style='border:none;'>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F04KA201</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F04KL101</p></td>
+                    <td class=rcell><p class=DevicePartNumber>PIC24F08KM102</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F08KA101</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F08KL200</p></td>
+                    <td class=rcell><p class=DevicePartNumber>PIC24F08KM202</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F08KA102</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F08KL201</p></td>
+                    <td class=rcell><p class=DevicePartNumber>PIC24F08KM204</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F16KA101</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F08KL301</p></td>
+                    <td class=rcell><p class=DevicePartNumber>PIC24F16KM102</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F16KA102</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F08KL302</p></td>
+                    <td class=rcell><p class=DevicePartNumber>PIC24F16KM104</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F16KA301</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F08KL401</p></td>
+                    <td class=rcell><p class=DevicePartNumber>PIC24F16KM202</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F16KA302</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F08KL402</p></td>
+                    <td class=rcell><p class=DevicePartNumber>PIC24F16KM204</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F16KA304</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F16KL401</p></td>
+                    <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F32KA301</p></td>
+                    <td class=ccell><p class=DevicePartNumber>PIC24F16KL402</p></td>
+                    <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F32KA302</p></td>
+                    <td class=ccell><p class=DevicePartNumber>&nbsp;</p></td>
+                    <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24F32KA304</p></td>
+                    <td class=ccell><p class=DevicePartNumber>&nbsp;</p></td>
+                    <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                </tr>
+                <tr style='border-top:solid #538ED5 1.0pt;'>
+                    <td width=307 rowspan=15 valign=top style='border:solid #538ED5 1.0pt;'>
+                        <p class=MsoNormal>PIC24HJXXXGPX06/X08/X10,<br>
+                            dsPIC33FJXXXGPX06/X08/X10,<br>
+                            dsPIC33FJXXXMCX06/X08/X10 families</p>
+                    </td>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ64GP206</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ64GP206</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ64MC506</p></td>
+                    <td width=519 rowspan=15 valign=top style='border:solid #538ED5 1.0pt;'>
+                        <p class=MsoNormal>- Bootloading &amp; ICSP: Errata #32. Module: Device ID
+                            Register workaround not implemented in EZBL. Programming may appear to work,
+                            but due to the chance of the destructive errata event taking place, these
+                            devices must not be used with EZBL.<br>
+                            <br>
+                            <b>Note</b>: these devices are mature
+                            products superseded by the PIC24HJXXXGPX06A/X08A/X10A,
+                            dsPIC33FJXXXGPX06A/X08A/X10A and dsPIC33FJXXXMCX06A/X08A/X10A families. These
+                            successive families have fewer errata, offer higher temperature options and
+                            are supported by EZBL.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ64GP210</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ64GP306</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ64MC508</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ64GP506</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ64GP310</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ64MC510</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ64GP510</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ64GP706</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ64MC706</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ128GP206</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ64GP708</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ64MC710</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ128GP210</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ64GP710</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ128MC506</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ128GP306</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ128GP206</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ128MC510</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ128GP310</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ128GP306</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ128MC706</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ128GP506</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ128GP310</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ128MC708</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ128GP510</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ128GP706</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ128MC710</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ256GP206</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ128GP708</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ256MC510</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ256GP210</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ128GP710</p></td>
+                    <td class=rcell><p class=DevicePartNumber>dsPIC33FJ256MC710</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>PIC24HJ256GP610</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ256GP506</p></td>
+                    <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ256GP510</p></td>
+                    <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                </tr>
+                <tr>
+                    <td class=lcell><p class=DevicePartNumber>&nbsp;</p></td>
+                    <td class=ccell><p class=DevicePartNumber>dsPIC33FJ256GP710</p></td>
+                    <td class=rcell><p class=DevicePartNumber>&nbsp;</p></td>
+                </tr>
+            </table>
+
+            <p class=MsoNormal>&nbsp;</p>&nbsp;</p>
+
+        <p class=MsoNormal><b>4.3 Tested Targets</b></p>
+
+        <p class=MsoNormal>EZBL v2.04 has been tested with and has out-of-box example hardware initialization code for:</p>
+        <ul>
+            <li>PIC24FJ1024GB610 PIM on Explorer 16/32 Development Board</li>
+            <li>PIC24FJ256GB410 PIM on Explorer 16/32 Development Board</li>
+            <li>PIC24FJ128GC010 on MPLAB Starter Kit for PIC24F Intelligent.Integrated.Analog</li>
+            <li>PIC24FJ128GA310 PIM on Explorer 16/32 Development Board</li>
+            <li>PIC24FJ128GA010 PIM on Explorer 16/32 Development Board</li>
+            <li>PIC24FJ64GA004 PIM on Explorer 16/32 Development Board</li>
+            <li>dsPIC33EP512MU810 PIM on Explorer 16/32 Development Board<br>
+                - For I2C use, place jumper wires on the J48 socket to short P70 = P57 and P69 = P56. The J41/P56_SDA and J42/P57_SCL headers must have jumper shunts installed.</li>
+            <li>dsPIC33EP512GM710 PIM on Explorer 16/32 Development Board</li>
+            <li>dsPIC33EP256GP506 PIM on Explorer 16/32 Development Board</li>
+            <li>dsPIC33EV256GM106 dsPIC33EV 5V CAN-LIN Starter Kit<br>
+                - See comment at the top of &quot;ex_boot_uart\hardware_initializers\dspic33ev256gm106_can_lin_starter_kit.c&quot; for UART interface note. I2C has not been tested with this board.</li>
+            <li>dsPIC33EP64GS502 on MPLAB Starter Kit for Digital Power<br>
+                - Connect <a href="http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ADM00559">MCP2221A Breakout Module</a> J3 TX pin 1 to Starter Kit J1 pin closest to the LCD. I2C has not been tested with this board.</li>
+            <li>dsPIC33FJ256GP710A PIM on Explorer 16/32 Development Board</li>
+            <!-- These should work, despite being commented out.
+            <li>PIC24FJ256GA110 PIM on Explorer 16/32 Development Board</li>
+            <li>PIC24FJ256GB110 PIM on Explorer 16/32 Development Board</li>
+            <li>PIC24HJ256GP610A PIM on Explorer 16/32 Development Board</li>
+            -->
+        </ul>
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>Testing was performed using:</p>
+        <ul>
+            <li>MPLAB X IDE v4.01</li>
+            <li>XC 16 v1.32</li>
+            <li>Microsoft Windows 10 x64</li>
+            <li>MCP2221A USB to UART converter</li>
+        </ul>
+        <p class=MsoNormal>&nbsp;</p>
+        <p class=MsoNormal>&nbsp;</p>
+
+
+        <p class=MsoNormal><b>4.4 Other Targets</b></p>
+
+        <p class=MsoNormal>All other production PIC24 and
+            dsPIC33 targets not named above are expected to be compatible with EZBL, but may not have been explicitly tested. To create and test a viable bootloader for such
+            devices, two project changes are generally required:</p>
+        <ol>
+            <li><p class=NumberedListPoints>Write appropriate hardware initialization code to set the device&#8217;s
+                Configuration words, define the CPU frequency, configure PPS (if present) to
+                gain access to U2TX and U2RX pin functionality and configure one or more GPIO
+                port pins to observe LED blinking. While configuring U2TX, U2RX, and your GPIO
+                pins, any analog functionality that may share the desired pins should be disabled.</p></li>
+            <li><p class=NumberedListPoints>Select the target processor in the bootloader (<span class=ProjectName>ex_boot_uart</span>) and application (<span class=ProjectName>ex_app_led_blink</span>) project properties.</p></li>
+        </ol>
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>Note that the default hardware
+            initializer files for the tested PIMs have pre-processor macros that select the
+            same hardware initialization code for devices that are very similar, such as a
+            device in the same device family and differing only by a reduced Flash memory
+            and/or RAM size. In such cases, if your hardware communications interface mirrors the Explorer 16/32 +
+            tested PIM or dedicated development board, the bootloader may work without code changes. Simply recompiling
+            the projects with the correct target device selected may be sufficient.</p>
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>EZBL gathers target device
+            information from a database installed with MPLAB X IDE, so it is
+            conceptually possible that EZBL will be able to build compatible bootloaders
+            for future devices (when available) simply by installing a copy of MPLAB X IDE
+            and XC16 compiler that contains the needed device support. However, the
+            ability to operate correctly on future devices depends on many variables, so
+            it is recommended that anytime you create a project that implements
+            EZBL, you first download the latest version of EZBL, MPLAB X IDE and XC16.</p>
+        <p class=MsoNormal>&nbsp;</p>
+
+
+        <h1><a name="_problems"></a>5. Known Problems and Limitations</h1>
+        <ol>
+
+            <li>Several <i>ex_boot_usb_msd</i> USB Host MSD Bootloader projects lack valid EZBL hardware initialization code to control actual LEDs on their host development board. This also impacts valid <i>ex_app_led_blink</i> Application LED blinking behavior, even though the code still gets successfully programmed using the Bootloader.
+                <p><strong>Workaround:</strong></p>
+                <p>In the Bootloader project, update the EZBL_DefineLEDMap() call near the top of main.c, and if needed, set/clear ANSEL/PCFG/IOxCON SFR bits to support GPIO output for the LED(s).</p>
+            </li>
+            
+            <li>Reference EZBL API function, macro and variable documentation is absent from &quot;help/EZBL Library Documentation.pdf&quot;
+                <p><strong>Workaround:</strong></p>
+                <p>Most APIs are documented in Java doc source comment form in ezbl.h. Therefore, if you #include this header in your project, you can use the MPLAB X IDE
+                        code editor to display context-sensitive reference API documentation as you
+                        write your code. To trigger this feature, try typing
+                        &#8220;EZBL_printf&#8221; into a .c source file and then press CTRL +
+                        Spacebar (or whichever Keymap combination you have configured the MPLAB X IDE
+                        &#8220;Show Code Completion Popup&#8221; Action in the &#8220;Other&#8221;
+                        Category to). If the IDE finds the header prototype comments, you should get a popup window
+                        listing the EZBL_printf() API parameters and function usage notes.</p>
+
+                <p>If
+                        too many matches exist, such as if you type &#8220;EZBL_&#8221; and then press
+                        CTRL + Spacebar, the Code Completion Popup will only list the IDE&#8217;s best
+                        contextual guess as to what you want to type rather than display a
+                        comprehensive list. Pressing CTRL + Spacebar again can yield a more comprehensive list.</p>
+                        <p>To just list all available functions, macros, variables,
+                        typdefs, etc. in a header or source file, use the IDE&#8217;s Navigator window.
+                        If the Navigator window has been closed, you can reopen it from the Window menu
+                        (default hotkey is likely to be CTRL + 7). Once the Navigator window is
+                        displayed, clicking on any source or header file in the Projects window will
+                        update the Navigator window contents.</p>
+            </li>
+        </ol>
+
+
+        <h1 style='text-indent:.5in'>&nbsp;</h1>
+        <h1 style='margin-left:.5in;text-indent:-.5in'><a name="_customer_support"></a>6. Customer Support</h1>
+
+        <h2>The Microchip Web Site</h2>
+
+        <p class=MsoNormal>Microchip provides online support via our web site at <a
+                href="http://www.microchip.com/">http://www.microchip.com</a>. This web site is
+            used as a means to make files and information easily available to customers.
+            The web site contains the following information:</p>
+
+        <ul style='margin-top:0in' type=disc>
+            <li class=MsoNormal>Product Support - Data sheets and errata, application
+                notes and sample programs, design resources, user's guides and hardware
+                support documents, latest software releases and archived software</li>
+            <li class=MsoNormal>General Technical Support - Frequently Asked Questions
+                (FAQs), technical support requests (<a href="http://support.microchip.com/">http://support.microchip.com</a>),
+                online discussion groups/forums (<a href="http://forum.microchip.com/">http://forum.microchip.com</a>),
+                Microchip consultant program member listing</li>
+            <li class=MsoNormal>Business of Microchip - Product selector and ordering
+                guides, latest Microchip press releases, listing of seminars and events,
+                listings of Microchip sales offices, distributors and factory
+                representatives</li>
+        </ul>
+
+        <h2><a name="_Toc175736819">Additional Support</a></h2>
+
+        <p class=MsoNormal>Users of Microchip products can receive assistance through
+            several channels:</p>
+
+        <ul style='margin-top:0in' type=disc>
+            <li class=MsoNormal>Distributor or Representative</li>
+            <li class=MsoNormal>Local Sales Office</li>
+            <li class=MsoNormal>Field Application Engineer (FAE)</li>
+            <li class=MsoNormal>Technical Support</li>
+        </ul>
+
+        <p class=MsoNormal>Customers should contact their distributor, representative
+            or FAE for support. Local sales offices are also
+            available to help customers. A listing of sales offices and locations is
+            available on our website.</p>
+
+        <p class=MsoNormal>Technical support is available through the web site at: <a
+                href="http://support.microchip.com/">http://support.microchip.com</a><a
+                name="_Toc163987715" id="License_Agreements"></a><a name="License_Agreements"></a></p>
+
+        <h2><a name="_Toc175736820">Training</a></h2>
+
+        <ul style='margin-top:0in' type=disc>
+            <li class=MsoNormal>Regional Training Centers: <a href="http://www.microchip.com/rtc">http://www.microchip.com/rtc</a></li>
+            <li class=MsoNormal>MASTERs Conference: <a href="http://www.microchip.com/masters">http://www.microchip.com/masters</a></li>
+            <li class=MsoNormal>Webseminars: <a href="http://techtrain.microchip.com/webseminars/QuickList.aspx">http://techtrain.microchip.com/webseminars/QuickList.aspx</a></li>
+        </ul>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal>As of the release date, there are no Regional Training
+            Center classes or Webseminars that specifically cover EZBL. MASTERs class 21042_BTL2 is an introductory EZBL bootloading lecture.&nbsp;</p>
+
+        <p class=MsoNormal>&nbsp;</p>
+
+        <p class=MsoNormal><a name="_Toc378830516"></a><a name="_Toc310425466"></a><a name="_Toc329261088"></a><a name="_Toc315952986"></a><b>Trademarks:</b></p>
+
+        <p class=MsoNormal><span class=LegalandTradeMark style='font-size:8.0pt'>The
+                    Microchip name and logo, the Microchip logo, MPLAB, and PIC are registered
+                    trademarks of Microchip Technology Incorporated in the U.S.A. and other
+                    countries.&nbsp;</span></p>
+
+    </div>
+
+</body>
+</html>

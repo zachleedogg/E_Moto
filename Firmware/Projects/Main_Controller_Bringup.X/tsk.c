@@ -10,18 +10,25 @@
 /******************************************************************************
  * Includes
  *******************************************************************************/
-#include "tsk.h"					// For this modules definitions
+// For this modules definitions
+#include "tsk.h"					
 #include "tsk_cfg.h"
 #include "SysTick.h"
 
-#include "pinSetup.h"
+//Direct low level access
 #include "pins.h"
 #include "bolt_uart.h"
+#include "bolt_sleep.h"
+
+//Task Scheduler system control
+#include "pinSetup.h"
 #include "SerialDebugger.h"
+#include "LightsControl.h"
+#include "IgnitionControl.h"
+#include "HornControl.h"
+#include "j1772.h"
 #include "IO.h"
 #include "MCU_dbc.h"
-#include "bolt_sleep.h"
-#include "SystemControl.h"
 
 /******************************************************************************
  * Constants
@@ -66,15 +73,16 @@ void Tsk_init(void);
  * Tsk_init is only run once ever (until a power on reset) so put pin and module stuff here
  */
 void Tsk_init(void) {
-    
-    PinSetup_Init(); //Pin setup should be first
-    IO_Init(); //Init the IO Control Service
-    SystemControl_Init(); //Init the System Control Service
-    CAN_DBC_init(); //Init the CAN System Service
 
-    setWakeUp(WAKE_ON_UART1, (PINS_pin_S) {0, 0}); //This shouldn't go here
-    SET_SW_EN(HIGH); //switch enable must be high during noraml operation, this shouldn't go here....
-    SET_IC_CONTROLLER_SLEEP_EN(LOW);
+    /*Init each module once*/
+    PinSetup_Init(); //Pin setup should be first
+    IO_Efuse_Init(); //Init the Efuse Service
+    LightsControl_Init(); //Init the Lights Control Service
+    CAN_DBC_init(); //Init the CAN System Service
+    IgnitionControl_Init();
+    HornControl_Init();
+
+    SET_IC_CONTROLLER_SLEEP_EN(LOW); //switch enable must be high during noraml operation, this shouldn't go here....
     SET_CAN_SLEEP_EN(LOW);
 
     Uart1Write("Hello World, Task Init Done.\n"); //hi
@@ -91,20 +99,21 @@ void Tsk(void) {
  * Runs every 10ms
  */
 void Tsk_10ms(void) {
-    IO_Run(); //Run the IO layer (Handles all digital IO, highside drivers, efuses, etc...)
-    
-    tskService_print("IGN: %d\n", GET_KILL_SWITCH_IN());
-
+    IO_Efuse_Run_10ms(); //Run the Efuse System
+    IgnitionControl_Run_10ms();
 }
 
 /**
  * Runs every 100ms
  */
 void Tsk_100ms(void) {
-    SerialConsole_Run(); //Debug Serial Terminal Emulation
-    SystemControl_Run(); //Run the System Control layer (Responds to button presses, controls, etc...))
-    CAN_MCU_status_send(); //Send CAN message, this should be wrapped up in "CAN_RUN_100ms()" or similar
-    CAN_MCU_command_send(); //same
+    SerialConsole_Run_100ms(); //Debug Serial Terminal Emulation
+    LightsControl_Run_100ms(); //Run the System Lights layer (Responds to button presses, controls, etc...)
+    HornControl_Run_100ms(); //Run Horn. Horn is disabled if button is held for too long.
+    j1772Control_Run_100ms(); //Run j1772 Proximity and Pilot Signal Control.
+    
+    CAN_mcu_status_send(); //Send CAN message, this should be wrapped up in "CAN_RUN_100ms()" or similar
+    CAN_mcu_command_send(); //same
 }
 
 /**
@@ -112,33 +121,34 @@ void Tsk_100ms(void) {
  */
 void Tsk_1000ms(void) {
     SET_DEBUG_LED_EN(TOGGLE); //Toggle Debug LED at 1Hz for scheduler running status
-    CAN_MCU_motorControllerRequest_send(); //move this
+    
+    CAN_mcu_motorControllerRequest_send(); //move this
 }
 
 /**
  * Tsk Halt will stop the system tick, put any sleep related code here.
- * The service that calls Tsk_Halt must be damn sure it is allowed to call
+ * The service that calls Tsk_Sleep must be damn sure it is allowed to call
  * this function, also, the caller must subsequently call Tsk_Resume to start
  * the scheduler back up again.
  */
-void Tsk_Halt(void) {
+void Tsk_Sleep(void) {
     SysTick_Stop(); //does this idea need clean-up? is this the best way?
-    SET_SW_EN(LOW); //wrap this in "prepare to sleep" or similar
-    SET_IC_CONTROLLER_SLEEP_EN(HIGH);//same
-    SET_CAN_SLEEP_EN(HIGH);//same
-    SET_DIAG_EN(LOW);//same
-    SET_DIAG_SELECT_EN(LOW);//same
-    SET_DEBUG_LED_EN(LOW);//same
-}
-
-/**
- * Resumes the schedule. Can only be called after a halt.
- */
-void Tsk_Resume(void) {
-    SysTick_Resume();//same
-    SET_SW_EN(HIGH);//same
-    SET_IC_CONTROLLER_SLEEP_EN(LOW);//same
-    SET_CAN_SLEEP_EN(LOW);//same
+    SET_SW_EN(LOW);
+    SET_IC_CONTROLLER_SLEEP_EN(HIGH); //same
+    SET_CAN_SLEEP_EN(HIGH); //same
+    
+    IO_Efuse_Halt();
+    LightsControl_Halt();
+    HornControl_Halt();
+    
+    SET_DEBUG_LED_EN(LOW); //same
+    setWakeUp(PIN, IGNITION_SWITCH_IN);
+    SleepNow(); //Go to sleep
+    SysTick_Resume();
+    SET_SW_EN(HIGH);
+    SET_IC_CONTROLLER_SLEEP_EN(LOW); //same
+    SET_CAN_SLEEP_EN(LOW); //same
+    Uart1Write("waking From Sleep");
 }
 
 /**

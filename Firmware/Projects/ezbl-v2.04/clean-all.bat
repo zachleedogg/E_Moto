@@ -1,0 +1,1 @@
+make --directory=ezbl_lib clean-all

@@ -199,11 +199,35 @@
                             "length": "1"
                         },
                         {
-                            "name": "brake",
+                            "name": "lowBeam",
+                            "length": "1"
+                        },
+                        {
+                            "name": "brakeLight",
+                            "length": "1"
+                        },
+                        {
+                            "name": "tailLight",
                             "length": "1"
                         },
                         {
                             "name": "horn",
+                            "length": "1"
+                        },
+                        {
+                            "name": "turnSignalFR",
+                            "length": "1"
+                        },
+                        {
+                            "name": "turnSignalFL",
+                            "length": "1"
+                        },
+                        {
+                            "name": "turnSignalRR",
+                            "length": "1"
+                        },
+                        {
+                            "name": "turnSignalRL",
                             "length": "1"
                         },
                         {
@@ -216,6 +240,14 @@
                         },
                         {
                             "name": "chargePort",
+                            "length": "1"
+                        },
+                        {
+                            "name": "brakeSwitchFront",
+                            "length": "1"
+                        },
+                        {
+                            "name": "brakeSwitchRear",
                             "length": "1"
                         },
                         {

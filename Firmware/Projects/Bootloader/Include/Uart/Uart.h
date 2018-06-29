@@ -38,11 +38,12 @@
 #define UxRXREG         Ux(RXREG)
 #define UxMODEbits		Ux(MODEbits)
 
-//Map U2TX to RF5  and Map U2RX to RF4  
-#define MAP_UART_PINS_mac()   		do{ \
-									RPOR14bits.RP120R = 1;	\
-									_U1RXR = 0x79; 	\
-									}while(0)    								
+//Map U2TX to RF5  and Map U2RX to RF4  //pull up on RX pin to deglitch when UART is disabled.
+#define MAP_UART_PINS_mac()   		do{\
+									RPOR14bits.RP120R = 1;\
+									_U1RXR = 0x79;\
+                                    CNPUGbits.CNPUG9 = 1;\
+									}while(0)			
 
 #define TRANS_LAYER_Init UartInit
 #define TRANS_LAYER_Task UartTask
