@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 5
+Sheet 1 7
 Title ""
 Date ""
 Rev ""
@@ -21,21 +21,33 @@ F0 "MicroController" 98
 F1 "MicroController.sch" 98
 $EndSheet
 $Sheet
-S 3100 700  2200 1000
+S 2900 700  2000 1100
 U 5B2FB036
 F0 "PowerRails" 98
 F1 "PowerRails.sch" 98
 $EndSheet
 $Sheet
-S 800  4200 1800 1000
+S 700  3600 2000 1100
 U 5B2FB0D8
-F0 "DCDC" 98
-F1 "DCDC.sch" 98
+F0 "DCDC_Controller" 98
+F1 "DCDC_Controller.sch" 98
 $EndSheet
 $Sheet
-S 800  5500 1850 900 
-U 5B383331
-F0 "DCDC_POWER" 98
-F1 "DCDC_POWER.sch" 98
+S 700  2150 2000 1100
+U 5B82D31C
+F0 "Communication" 98
+F1 "Commuication.sch" 98
+$EndSheet
+$Sheet
+S 2900 2150 2000 1100
+U 5BC21A84
+F0 "DCDC_Power_Stage" 98
+F1 "DCDC_Power_Stage.sch" 98
+$EndSheet
+$Sheet
+S 2900 3600 2050 1100
+U 5C18C4A5
+F0 "Connectors" 98
+F1 "Connectors.sch" 98
 $EndSheet
 $EndSCHEMATC
