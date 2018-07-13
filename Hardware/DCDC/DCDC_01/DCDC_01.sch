@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 7
+Sheet 1 8
 Title ""
 Date ""
 Rev ""
@@ -15,39 +15,17 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 700  700  2000 1100
-U 5B2FAFE4
-F0 "MicroController" 98
-F1 "MicroController.sch" 98
+S 7950 1850 2050 1100
+U 5C8FC872
+F0 "Top_Level" 197
+F1 "Top_Level.sch" 197
 $EndSheet
-$Sheet
-S 2900 700  2000 1100
-U 5B2FB036
-F0 "PowerRails" 98
-F1 "PowerRails.sch" 98
-$EndSheet
-$Sheet
-S 700  3600 2000 1100
-U 5B2FB0D8
-F0 "DCDC_Controller" 98
-F1 "DCDC_Controller.sch" 98
-$EndSheet
-$Sheet
-S 700  2150 2000 1100
-U 5B82D31C
-F0 "Communication" 98
-F1 "Commuication.sch" 98
-$EndSheet
-$Sheet
-S 2900 2150 2000 1100
-U 5BC21A84
-F0 "DCDC_Power_Stage" 98
-F1 "DCDC_Power_Stage.sch" 98
-$EndSheet
-$Sheet
-S 2900 3600 2050 1100
-U 5C18C4A5
-F0 "Connectors" 98
-F1 "Connectors.sch" 98
-$EndSheet
+Text Notes 1500 2000 0    787  ~ 0
+E-Moto
+Text Notes 2200 2800 0    197  ~ 0
+DCDC Controller
+Text Notes 2350 4250 0    197  ~ 0
+6-140V In\n\n6-18V Out
+Text Notes 2400 4800 0    197  ~ 0
+CAN compatible, Adjustable output, Remote sleep/wake
 $EndSCHEMATC

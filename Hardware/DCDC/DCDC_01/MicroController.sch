@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 7
+Sheet 3 8
 Title ""
 Date ""
 Rev ""
@@ -18,12 +18,16 @@ $Comp
 L device:C C8
 U 1 1 59954470
 P 1650 6550
+AR Path="/5B2FAFE4/59954470" Ref="C8"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59954470" Ref="C8"  Part="1" 
 F 0 "C8" H 1675 6650 50  0000 L CNN
 F 1 "10uF" H 1675 6450 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206" H 1688 6400 50  0001 C CNN
 F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 1650 6550 50  0001 C CNN
-F 4 "C1206C106M3RACAUTO" H 1675 6750 50  0001 C CNN "MPN"
-F 5 "y" H 1675 6750 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "C1206C106M3RACAUTO" H 1675 6750 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 1675 6750 50  0001 C CNN "populate"
 	1    1650 6550
 	0    1    1    0   
 $EndComp
@@ -31,12 +35,15 @@ $Comp
 L device:Ferrite_Bead L1
 U 1 1 59955DBF
 P 1250 5900
+AR Path="/5B2FAFE4/59955DBF" Ref="L1"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59955DBF" Ref="L1"  Part="1" 
 F 0 "L1" V 1100 5925 50  0000 C CNN
 F 1 "Ferrite_Bead" V 1400 5900 50  0000 C CNN
-F 2 "Inductors_SMD:L_0603" V 1180 5900 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/catalog/datasheets/beads_automotive_power_mpz1608_en.pdf" H 1250 5900 50  0001 C CNN
-F 4 "MPZ1608S300ATDH5" H 1100 6025 50  0001 C CNN "MPN"
-F 5 "y" H 1100 6025 50  0001 C CNN "populate"
+F 2 "Inductors_SMD:L_0603_HandSoldering" V 1180 5900 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/beads_automotive_signal_mmz1608_en.pdf" H 1250 5900 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "MMZ1608B121CTDH5" H 1100 6025 50  0001 C CNN "MPN"
+F 6 "" H 1100 6025 50  0001 C CNN "populate"
 	1    1250 5900
 	0    1    1    0   
 $EndComp
@@ -44,6 +51,8 @@ $Comp
 L power:GND #PWR05
 U 1 1 59955FD3
 P 750 6300
+AR Path="/5B2FAFE4/59955FD3" Ref="#PWR05"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59955FD3" Ref="#PWR05"  Part="1" 
 F 0 "#PWR05" H 750 6050 50  0001 C CNN
 F 1 "GND" H 750 6150 50  0000 C CNN
 F 2 "" H 750 6300 50  0001 C CNN
@@ -55,12 +64,16 @@ $Comp
 L device:C C10
 U 1 1 599562CF
 P 5300 6650
+AR Path="/5B2FAFE4/599562CF" Ref="C10"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/599562CF" Ref="C10"  Part="1" 
 F 0 "C10" H 5325 6750 50  0000 L CNN
 F 1 "18pF" H 5325 6550 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 5338 6500 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 5300 6650 50  0001 C CNN
-F 4 "CGA3E2C0G1H180J080AA" H 5325 6850 50  0001 C CNN "MPN"
-F 5 "y" H 5325 6850 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "CGA3E2C0G1H180J080AA" H 5325 6850 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 5325 6850 50  0001 C CNN "populate"
 	1    5300 6650
 	0    -1   1    0   
 $EndComp
@@ -68,12 +81,16 @@ $Comp
 L device:C C11
 U 1 1 59956321
 P 5300 7150
+AR Path="/5B2FAFE4/59956321" Ref="C11"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59956321" Ref="C11"  Part="1" 
 F 0 "C11" H 5325 7250 50  0000 L CNN
 F 1 "18pF" H 5325 7050 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 5338 7000 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 5300 7150 50  0001 C CNN
-F 4 "CGA3E2C0G1H180J080AA" H 5325 7350 50  0001 C CNN "MPN"
-F 5 "y" H 5325 7350 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "CGA3E2C0G1H180J080AA" H 5325 7350 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 5325 7350 50  0001 C CNN "populate"
 	1    5300 7150
 	0    -1   1    0   
 $EndComp
@@ -81,12 +98,15 @@ $Comp
 L device:R R3
 U 1 1 5995635F
 P 4150 6900
+AR Path="/5B2FAFE4/5995635F" Ref="R3"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5995635F" Ref="R3"  Part="1" 
 F 0 "R3" V 4230 6900 50  0000 C CNN
 F 1 "1M" V 4150 6900 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 4080 6900 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4150 6900 50  0001 C CNN
-F 4 "AC0603FR-071ML" H 4230 7000 50  0001 C CNN "MPN"
-F 5 "y" H 4230 7000 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 4230 7000 50  0001 C CNN "MPN"
+F 6 "" H 4230 7000 50  0001 C CNN "populate"
 	1    4150 6900
 	-1   0    0    -1  
 $EndComp
@@ -94,12 +114,15 @@ $Comp
 L device:R R1
 U 1 1 59967AE3
 P 1450 7300
+AR Path="/5B2FAFE4/59967AE3" Ref="R1"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59967AE3" Ref="R1"  Part="1" 
 F 0 "R1" V 1530 7300 50  0000 C CNN
 F 1 "10k" V 1450 7300 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 1380 7300 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 1450 7300 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 1530 7400 50  0001 C CNN "MPN"
-F 5 "y" H 1530 7400 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "AC0603FR-0710KL" H 1530 7400 50  0001 C CNN "MPN"
+F 6 "" H 1530 7400 50  0001 C CNN "populate"
 	1    1450 7300
 	1    0    0    -1  
 $EndComp
@@ -107,6 +130,8 @@ $Comp
 L power:+3.3VA #PWR08
 U 1 1 59977C27
 P 1800 5850
+AR Path="/5B2FAFE4/59977C27" Ref="#PWR08"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59977C27" Ref="#PWR08"  Part="1" 
 F 0 "#PWR08" H 1800 5700 50  0001 C CNN
 F 1 "+3.3VA" H 1800 5990 50  0000 C CNN
 F 2 "" H 1800 5850 50  0001 C CNN
@@ -118,6 +143,8 @@ $Comp
 L power:PWR_FLAG #FLG01
 U 1 1 59980D1B
 P 1500 5750
+AR Path="/5B2FAFE4/59980D1B" Ref="#FLG01"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59980D1B" Ref="#FLG01"  Part="1" 
 F 0 "#FLG01" H 1500 5825 50  0001 C CNN
 F 1 "PWR_FLAG" H 1500 5900 50  0000 C CNN
 F 2 "" H 1500 5750 50  0001 C CNN
@@ -129,12 +156,14 @@ $Comp
 L micros:PIC33EPxxxMU810 U1
 U 1 1 599FC02F
 P 8150 2200
+AR Path="/5B2FAFE4/599FC02F" Ref="U1"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/599FC02F" Ref="U1"  Part="1" 
 F 0 "U1" H 8900 -1650 60  0000 C CNN
 F 1 "PIC33EPxxxMU810" H 8150 -1650 60  0000 C CNN
 F 2 "Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm" H 7400 1800 60  0001 C CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70616g.pdf" H 7400 1800 60  0001 C CNN
-F 4 "DSPIC33EP512MU810-E/PF" H 8900 -1550 50  0001 C CNN "MPN"
-F 5 "y" H 8900 -1550 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "DSPIC33EP512MU810-E/PF" H 8900 -1550 50  0001 C CNN "MPN"
 	1    8150 2200
 	1    0    0    -1  
 $EndComp
@@ -142,12 +171,14 @@ $Comp
 L micros:PIC33EPxxxMU810 U1
 U 2 1 599FC07A
 P 2700 3650
+AR Path="/5B2FAFE4/599FC07A" Ref="U1"  Part="2" 
+AR Path="/5C8FC872/5C8FC883/599FC07A" Ref="U1"  Part="2" 
 F 0 "U1" H 3450 -200 60  0000 C CNN
 F 1 "PIC33EPxxxMU810" H 2700 -200 60  0000 C CNN
 F 2 "Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm" H 1950 3250 60  0001 C CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70616g.pdf" H 1950 3250 60  0001 C CNN
-F 4 "DSPIC33EP512MU810-E/PF" H 3450 -100 50  0001 C CNN "MPN"
-F 5 "y" H 3450 -100 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "DSPIC33EP512MU810-E/PF" H 3450 -100 50  0001 C CNN "MPN"
 	2    2700 3650
 	1    0    0    -1  
 $EndComp
@@ -155,12 +186,16 @@ $Comp
 L device:C C9
 U 1 1 599FDED2
 P 1750 4850
+AR Path="/5B2FAFE4/599FDED2" Ref="C9"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/599FDED2" Ref="C9"  Part="1" 
 F 0 "C9" H 1775 4950 50  0000 L CNN
 F 1 "100nF" H 1775 4750 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 1788 4700 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1750 4850 50  0001 C CNN
-F 4 "GCM188R71H104KA57D" H 1775 5050 50  0001 C CNN "MPN"
-F 5 "y" H 1775 5050 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1775 5050 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 1775 5050 50  0001 C CNN "populate"
 	1    1750 4850
 	1    0    0    -1  
 $EndComp
@@ -168,6 +203,8 @@ $Comp
 L power:+3V3 #PWR09
 U 1 1 59B2845D
 P 4100 5750
+AR Path="/5B2FAFE4/59B2845D" Ref="#PWR09"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59B2845D" Ref="#PWR09"  Part="1" 
 F 0 "#PWR09" H 4100 5600 50  0001 C CNN
 F 1 "+3V3" H 4100 5890 50  0000 C CNN
 F 2 "" H 4100 5750 50  0001 C CNN
@@ -179,12 +216,15 @@ $Comp
 L device:Crystal_GND24 Y1
 U 1 1 59BBA021
 P 4700 6900
+AR Path="/5B2FAFE4/59BBA021" Ref="Y1"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59BBA021" Ref="Y1"  Part="1" 
 F 0 "Y1" V 4825 7100 50  0000 L TNN
 F 1 "8MHz" V 4825 7025 50  0000 L BNN
 F 2 "Crystals:Crystal_SMD_7050-4pin_7.0x5.0mm" H 4700 6900 50  0001 C CNN
 F 3 "http://www.ecsxtal.com/store/pdf/CSM-8Q.pdf" H 4700 6900 50  0001 C CNN
-F 4 "ECS-80-18-20BQ-DS" H 4825 7200 50  0001 C CNN "MPN"
-F 5 "y" H 4825 7200 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "ECS-80-18-20BQ-DS" H 4825 7200 50  0001 C CNN "MPN"
+F 6 "" H 4825 7200 50  0001 C CNN "populate"
 	1    4700 6900
 	0    1    1    0   
 $EndComp
@@ -192,12 +232,15 @@ $Comp
 L Switch:SW_Push SW1
 U 1 1 5A45E5E7
 P 950 7200
+AR Path="/5B2FAFE4/5A45E5E7" Ref="SW1"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5A45E5E7" Ref="SW1"  Part="1" 
 F 0 "SW1" H 1000 7300 50  0000 L CNN
 F 1 "PTS645SM43SMTR92 LFS" H 950 7140 50  0001 C CNN
 F 2 "Buttons_Switches_SMD:SW_SPST_EVQP0" H 950 7400 50  0001 C CNN
 F 3 "https://www.ckswitches.com/media/1471/pts645.pdf" H 950 7400 50  0001 C CNN
-F 4 "PTS645SM43SMTR92 LFS" H 1000 7400 50  0001 C CNN "MPN"
-F 5 "y" H 1000 7400 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "PTS645SM43SMTR92 LFS" H 1000 7400 50  0001 C CNN "MPN"
+F 6 "" H 1000 7400 50  0001 C CNN "populate"
 	1    950  7200
 	1    0    0    -1  
 $EndComp
@@ -205,14 +248,253 @@ $Comp
 L device:R R2
 U 1 1 5A870904
 P 1700 7600
+AR Path="/5B2FAFE4/5A870904" Ref="R2"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5A870904" Ref="R2"  Part="1" 
 F 0 "R2" V 1780 7600 50  0000 C CNN
 F 1 "10k" V 1700 7600 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 1630 7600 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 1700 7600 50  0001 C CNN
-F 4 "AC0603FR-0710KL" H 1780 7700 50  0001 C CNN "MPN"
-F 5 "y" H 1780 7700 50  0001 C CNN "populate"
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "AC0603FR-0710KL" H 1780 7700 50  0001 C CNN "MPN"
+F 6 "" H 1780 7700 50  0001 C CNN "populate"
 	1    1700 7600
 	0    1    1    0   
+$EndComp
+$Comp
+L device:C C6
+U 1 1 5B784523
+P 1550 4850
+AR Path="/5B2FAFE4/5B784523" Ref="C6"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B784523" Ref="C6"  Part="1" 
+F 0 "C6" H 1575 4950 50  0000 L CNN
+F 1 "100nF" H 1575 4750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1588 4700 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1550 4850 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1575 5050 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 1575 5050 50  0001 C CNN "populate"
+	1    1550 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C5
+U 1 1 5B784555
+P 1350 4850
+AR Path="/5B2FAFE4/5B784555" Ref="C5"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B784555" Ref="C5"  Part="1" 
+F 0 "C5" H 1375 4950 50  0000 L CNN
+F 1 "100nF" H 1375 4750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1388 4700 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1350 4850 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1375 5050 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 1375 5050 50  0001 C CNN "populate"
+	1    1350 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C4
+U 1 1 5B78458D
+P 1150 4850
+AR Path="/5B2FAFE4/5B78458D" Ref="C4"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B78458D" Ref="C4"  Part="1" 
+F 0 "C4" H 1175 4950 50  0000 L CNN
+F 1 "100nF" H 1175 4750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1188 4700 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1150 4850 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1175 5050 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 1175 5050 50  0001 C CNN "populate"
+	1    1150 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C3
+U 1 1 5B7845C7
+P 950 4850
+AR Path="/5B2FAFE4/5B7845C7" Ref="C3"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7845C7" Ref="C3"  Part="1" 
+F 0 "C3" H 975 4950 50  0000 L CNN
+F 1 "100nF" H 975 4750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 988 4700 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 950 4850 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 975 5050 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 975 5050 50  0001 C CNN "populate"
+	1    950  4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C1
+U 1 1 5B784601
+P 750 4850
+AR Path="/5B2FAFE4/5B784601" Ref="C1"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B784601" Ref="C1"  Part="1" 
+F 0 "C1" H 775 4950 50  0000 L CNN
+F 1 "100nF" H 775 4750 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 788 4700 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 750 4850 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 775 5050 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 775 5050 50  0001 C CNN "populate"
+	1    750  4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C2
+U 1 1 5B784684
+P 850 6100
+AR Path="/5B2FAFE4/5B784684" Ref="C2"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B784684" Ref="C2"  Part="1" 
+F 0 "C2" H 875 6200 50  0000 L CNN
+F 1 "100nF" H 875 6000 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 888 5950 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 850 6100 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 875 6300 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 875 6300 50  0001 C CNN "populate"
+	1    850  6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C7
+U 1 1 5B7846C6
+P 1650 6100
+AR Path="/5B2FAFE4/5B7846C6" Ref="C7"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7846C6" Ref="C7"  Part="1" 
+F 0 "C7" H 1675 6200 50  0000 L CNN
+F 1 "100nF" H 1675 6000 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 1688 5950 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1650 6100 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1675 6300 50  0001 C CNN "MPN"
+F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
+F 7 "" H 1675 6300 50  0001 C CNN "populate"
+	1    1650 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR03
+U 1 1 5B7848AF
+P 750 5300
+AR Path="/5B2FAFE4/5B7848AF" Ref="#PWR03"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7848AF" Ref="#PWR03"  Part="1" 
+F 0 "#PWR03" H 750 5050 50  0001 C CNN
+F 1 "GND" H 750 5150 50  0000 C CNN
+F 2 "" H 750 5300 50  0001 C CNN
+F 3 "" H 750 5300 50  0001 C CNN
+	1    750  5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR06
+U 1 1 5B78F263
+P 1400 6550
+AR Path="/5B2FAFE4/5B78F263" Ref="#PWR06"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B78F263" Ref="#PWR06"  Part="1" 
+F 0 "#PWR06" H 1400 6300 50  0001 C CNN
+F 1 "GND" H 1400 6400 50  0000 C CNN
+F 2 "" H 1400 6550 50  0001 C CNN
+F 3 "" H 1400 6550 50  0001 C CNN
+	1    1400 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR01
+U 1 1 5B7A4374
+P 700 7200
+AR Path="/5B2FAFE4/5B7A4374" Ref="#PWR01"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7A4374" Ref="#PWR01"  Part="1" 
+F 0 "#PWR01" H 700 6950 50  0001 C CNN
+F 1 "GND" H 700 7050 50  0000 C CNN
+F 2 "" H 700 7200 50  0001 C CNN
+F 3 "" H 700 7200 50  0001 C CNN
+	1    700  7200
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR012
+U 1 1 5B7A43A5
+P 5600 6900
+AR Path="/5B2FAFE4/5B7A43A5" Ref="#PWR012"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7A43A5" Ref="#PWR012"  Part="1" 
+F 0 "#PWR012" H 5600 6650 50  0001 C CNN
+F 1 "GND" H 5600 6750 50  0000 C CNN
+F 2 "" H 5600 6900 50  0001 C CNN
+F 3 "" H 5600 6900 50  0001 C CNN
+	1    5600 6900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR011
+U 1 1 5B7B9539
+P 4950 6900
+AR Path="/5B2FAFE4/5B7B9539" Ref="#PWR011"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7B9539" Ref="#PWR011"  Part="1" 
+F 0 "#PWR011" H 4950 6650 50  0001 C CNN
+F 1 "GND" H 4950 6750 50  0000 C CNN
+F 2 "" H 4950 6900 50  0001 C CNN
+F 3 "" H 4950 6900 50  0001 C CNN
+	1    4950 6900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 5B7B956A
+P 4450 6900
+AR Path="/5B2FAFE4/5B7B956A" Ref="#PWR010"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7B956A" Ref="#PWR010"  Part="1" 
+F 0 "#PWR010" H 4450 6650 50  0001 C CNN
+F 1 "GND" H 4450 6750 50  0000 C CNN
+F 2 "" H 4450 6900 50  0001 C CNN
+F 3 "" H 4450 6900 50  0001 C CNN
+	1    4450 6900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3V3 #PWR02
+U 1 1 5B7B965A
+P 750 4400
+AR Path="/5B2FAFE4/5B7B965A" Ref="#PWR02"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7B965A" Ref="#PWR02"  Part="1" 
+F 0 "#PWR02" H 750 4250 50  0001 C CNN
+F 1 "+3V3" H 750 4540 50  0000 C CNN
+F 2 "" H 750 4400 50  0001 C CNN
+F 3 "" H 750 4400 50  0001 C CNN
+	1    750  4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR04
+U 1 1 5B7B968B
+P 750 5900
+AR Path="/5B2FAFE4/5B7B968B" Ref="#PWR04"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7B968B" Ref="#PWR04"  Part="1" 
+F 0 "#PWR04" H 750 5750 50  0001 C CNN
+F 1 "+3V3" H 750 6040 50  0000 C CNN
+F 2 "" H 750 5900 50  0001 C CNN
+F 3 "" H 750 5900 50  0001 C CNN
+	1    750  5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR07
+U 1 1 5B7B96BC
+P 1450 7050
+AR Path="/5B2FAFE4/5B7B96BC" Ref="#PWR07"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/5B7B96BC" Ref="#PWR07"  Part="1" 
+F 0 "#PWR07" H 1450 6900 50  0001 C CNN
+F 1 "+3V3" H 1450 7190 50  0000 C CNN
+F 2 "" H 1450 7050 50  0001 C CNN
+F 3 "" H 1450 7050 50  0001 C CNN
+	1    1450 7050
+	1    0    0    -1  
 $EndComp
 Text GLabel 10000 700  2    59   Output ~ 0
 SW_EN
@@ -242,6 +524,16 @@ Text GLabel 5600 700  0    60   Output ~ 0
 DEBUG_LED
 Text GLabel 5600 800  0    60   BiDi ~ 0
 DEBUG_PIN
+Text GLabel 5600 2800 0    59   Input ~ 0
+Phase1_Isense_AI
+Text GLabel 5600 2900 0    59   Input ~ 0
+Phase2_Isense_AI
+Text GLabel 10000 2950 2    50   BiDi ~ 0
+I2C_SCL
+Text GLabel 10000 2850 2    50   BiDi ~ 0
+I2C_SDA
+Text GLabel 10000 900  2    50   Output ~ 0
+RUN_LTC
 Wire Wire Line
 	950  4700 950  4400
 Wire Wire Line
@@ -357,11 +649,7 @@ Wire Wire Line
 Wire Wire Line
 	10000 1600 9800 1600
 Wire Wire Line
-	10000 1800 9800 1800
-Wire Wire Line
 	10000 1900 9800 1900
-Wire Wire Line
-	10000 2000 9800 2000
 Wire Wire Line
 	10000 2100 9800 2100
 Wire Wire Line
@@ -493,8 +781,6 @@ Wire Wire Line
 Wire Wire Line
 	10050 3250 9800 3250
 Wire Wire Line
-	9800 2850 10050 2850
-Wire Wire Line
 	5750 2100 5600 2100
 Wire Wire Line
 	9800 2200 10000 2200
@@ -505,46 +791,13 @@ Wire Wire Line
 Wire Wire Line
 	1250 7200 1150 7200
 Wire Wire Line
-	10050 3050 9800 3050
+	9950 3050 9800 3050
 Wire Wire Line
 	5750 1400 5600 1400
 Wire Wire Line
 	5750 1000 5600 1000
 Wire Wire Line
 	5750 800  5600 800 
-Connection ~ 950  4400
-Connection ~ 1150 4400
-Connection ~ 1350 4400
-Connection ~ 1550 4400
-Connection ~ 950  5300
-Connection ~ 1150 5300
-Connection ~ 1350 5300
-Connection ~ 1550 5300
-Connection ~ 1650 5900
-Connection ~ 850  6300
-Connection ~ 850  5900
-Connection ~ 1650 6300
-Connection ~ 4700 7150
-Connection ~ 4150 7150
-Connection ~ 4150 6650
-Connection ~ 4700 6650
-Connection ~ 1450 7600
-Connection ~ 1800 5900
-Connection ~ 1500 5900
-Connection ~ 2000 5400
-Connection ~ 2000 5500
-Connection ~ 2000 5600
-Connection ~ 2000 4800
-Connection ~ 2000 4700
-Connection ~ 2000 4600
-Connection ~ 2000 4500
-Connection ~ 2000 5300
-Connection ~ 1750 4400
-Connection ~ 1750 5300
-Connection ~ 5500 6900
-Connection ~ 2000 4400
-Connection ~ 1250 7600
-NoConn ~ 3900 6150
 Wire Wire Line
 	950  4400 1150 4400
 Wire Wire Line
@@ -605,249 +858,55 @@ Wire Wire Line
 	5500 6900 5500 7150
 Wire Wire Line
 	1250 7600 1450 7600
-$Comp
-L device:C C6
-U 1 1 5B784523
-P 1550 4850
-F 0 "C6" H 1575 4950 50  0000 L CNN
-F 1 "100nF" H 1575 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1588 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1550 4850 50  0001 C CNN
-F 4 "GCM188R71H104KA57D" H 1575 5050 50  0001 C CNN "MPN"
-F 5 "y" H 1575 5050 50  0001 C CNN "populate"
-	1    1550 4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:C C5
-U 1 1 5B784555
-P 1350 4850
-F 0 "C5" H 1375 4950 50  0000 L CNN
-F 1 "100nF" H 1375 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1388 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1350 4850 50  0001 C CNN
-F 4 "GCM188R71H104KA57D" H 1375 5050 50  0001 C CNN "MPN"
-F 5 "y" H 1375 5050 50  0001 C CNN "populate"
-	1    1350 4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:C C4
-U 1 1 5B78458D
-P 1150 4850
-F 0 "C4" H 1175 4950 50  0000 L CNN
-F 1 "100nF" H 1175 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1188 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1150 4850 50  0001 C CNN
-F 4 "GCM188R71H104KA57D" H 1175 5050 50  0001 C CNN "MPN"
-F 5 "y" H 1175 5050 50  0001 C CNN "populate"
-	1    1150 4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:C C3
-U 1 1 5B7845C7
-P 950 4850
-F 0 "C3" H 975 4950 50  0000 L CNN
-F 1 "100nF" H 975 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 988 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 950 4850 50  0001 C CNN
-F 4 "GCM188R71H104KA57D" H 975 5050 50  0001 C CNN "MPN"
-F 5 "y" H 975 5050 50  0001 C CNN "populate"
-	1    950  4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:C C1
-U 1 1 5B784601
-P 750 4850
-F 0 "C1" H 775 4950 50  0000 L CNN
-F 1 "100nF" H 775 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 788 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 750 4850 50  0001 C CNN
-F 4 "GCM188R71H104KA57D" H 775 5050 50  0001 C CNN "MPN"
-F 5 "y" H 775 5050 50  0001 C CNN "populate"
-	1    750  4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:C C2
-U 1 1 5B784684
-P 850 6100
-F 0 "C2" H 875 6200 50  0000 L CNN
-F 1 "100nF" H 875 6000 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 888 5950 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 850 6100 50  0001 C CNN
-F 4 "GCM188R71H104KA57D" H 875 6300 50  0001 C CNN "MPN"
-F 5 "y" H 875 6300 50  0001 C CNN "populate"
-	1    850  6100
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:C C7
-U 1 1 5B7846C6
-P 1650 6100
-F 0 "C7" H 1675 6200 50  0000 L CNN
-F 1 "100nF" H 1675 6000 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1688 5950 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1650 6100 50  0001 C CNN
-F 4 "GCM188R71H104KA57D" H 1675 6300 50  0001 C CNN "MPN"
-F 5 "y" H 1675 6300 50  0001 C CNN "populate"
-	1    1650 6100
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	750  5300 950  5300
-$Comp
-L power:GND #PWR03
-U 1 1 5B7848AF
-P 750 5300
-F 0 "#PWR03" H 750 5050 50  0001 C CNN
-F 1 "GND" H 750 5150 50  0000 C CNN
-F 2 "" H 750 5300 50  0001 C CNN
-F 3 "" H 750 5300 50  0001 C CNN
-	1    750  5300
-	1    0    0    -1  
-$EndComp
-Connection ~ 750  5300
 Wire Wire Line
 	750  5000 750  5300
-$Comp
-L power:GND #PWR06
-U 1 1 5B78F263
-P 1400 6550
-F 0 "#PWR06" H 1400 6300 50  0001 C CNN
-F 1 "GND" H 1400 6400 50  0000 C CNN
-F 2 "" H 1400 6550 50  0001 C CNN
-F 3 "" H 1400 6550 50  0001 C CNN
-	1    1400 6550
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR01
-U 1 1 5B7A4374
-P 700 7200
-F 0 "#PWR01" H 700 6950 50  0001 C CNN
-F 1 "GND" H 700 7050 50  0000 C CNN
-F 2 "" H 700 7200 50  0001 C CNN
-F 3 "" H 700 7200 50  0001 C CNN
-	1    700  7200
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR012
-U 1 1 5B7A43A5
-P 5600 6900
-F 0 "#PWR012" H 5600 6650 50  0001 C CNN
-F 1 "GND" H 5600 6750 50  0000 C CNN
-F 2 "" H 5600 6900 50  0001 C CNN
-F 3 "" H 5600 6900 50  0001 C CNN
-	1    5600 6900
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:GND #PWR011
-U 1 1 5B7B9539
-P 4950 6900
-F 0 "#PWR011" H 4950 6650 50  0001 C CNN
-F 1 "GND" H 4950 6750 50  0000 C CNN
-F 2 "" H 4950 6900 50  0001 C CNN
-F 3 "" H 4950 6900 50  0001 C CNN
-	1    4950 6900
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:GND #PWR010
-U 1 1 5B7B956A
-P 4450 6900
-F 0 "#PWR010" H 4450 6650 50  0001 C CNN
-F 1 "GND" H 4450 6750 50  0000 C CNN
-F 2 "" H 4450 6900 50  0001 C CNN
-F 3 "" H 4450 6900 50  0001 C CNN
-	1    4450 6900
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	750  4400 950  4400
-$Comp
-L power:+3V3 #PWR02
-U 1 1 5B7B965A
-P 750 4400
-F 0 "#PWR02" H 750 4250 50  0001 C CNN
-F 1 "+3V3" H 750 4540 50  0000 C CNN
-F 2 "" H 750 4400 50  0001 C CNN
-F 3 "" H 750 4400 50  0001 C CNN
-	1    750  4400
-	1    0    0    -1  
-$EndComp
+Wire Wire Line
+	9800 2850 10000 2850
+Wire Wire Line
+	9800 2950 10000 2950
+Wire Wire Line
+	9800 2000 10000 2000
+Wire Wire Line
+	9800 1800 10000 1800
+Connection ~ 950  4400
+Connection ~ 1150 4400
+Connection ~ 1350 4400
+Connection ~ 1550 4400
+Connection ~ 950  5300
+Connection ~ 1150 5300
+Connection ~ 1350 5300
+Connection ~ 1550 5300
+Connection ~ 1650 5900
+Connection ~ 850  6300
+Connection ~ 850  5900
+Connection ~ 1650 6300
+Connection ~ 4700 7150
+Connection ~ 4150 7150
+Connection ~ 4150 6650
+Connection ~ 4700 6650
+Connection ~ 1450 7600
+Connection ~ 1800 5900
+Connection ~ 1500 5900
+Connection ~ 2000 5400
+Connection ~ 2000 5500
+Connection ~ 2000 5600
+Connection ~ 2000 4800
+Connection ~ 2000 4700
+Connection ~ 2000 4600
+Connection ~ 2000 4500
+Connection ~ 2000 5300
+Connection ~ 1750 4400
+Connection ~ 1750 5300
+Connection ~ 5500 6900
+Connection ~ 2000 4400
+Connection ~ 1250 7600
+Connection ~ 750  5300
 Connection ~ 750  4400
-$Comp
-L power:+3V3 #PWR04
-U 1 1 5B7B968B
-P 750 5900
-F 0 "#PWR04" H 750 5750 50  0001 C CNN
-F 1 "+3V3" H 750 6040 50  0000 C CNN
-F 2 "" H 750 5900 50  0001 C CNN
-F 3 "" H 750 5900 50  0001 C CNN
-	1    750  5900
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3V3 #PWR07
-U 1 1 5B7B96BC
-P 1450 7050
-F 0 "#PWR07" H 1450 6900 50  0001 C CNN
-F 1 "+3V3" H 1450 7190 50  0000 C CNN
-F 2 "" H 1450 7050 50  0001 C CNN
-F 3 "" H 1450 7050 50  0001 C CNN
-	1    1450 7050
-	1    0    0    -1  
-$EndComp
-Text GLabel 5600 2800 0    59   Input ~ 0
-Phase1_Isense_AI
-Text GLabel 5600 2900 0    59   Input ~ 0
-Phase2_Isense_AI
-Text GLabel 10800 2950 2    50   Output ~ 0
-SPI_CLK
-Text GLabel 10800 2850 2    50   Output ~ 0
-SPI_DATA
-Text GLabel 10400 3050 2    50   Output ~ 0
-Voltage_Digipot_CS
-$Comp
-L device:R R71
-U 1 1 5C087C7D
-P 10450 2950
-F 0 "R71" V 10550 2950 50  0000 C CNN
-F 1 "R" V 10450 2950 50  0000 C CNN
-F 2 "" V 10380 2950 50  0001 C CNN
-F 3 "~" H 10450 2950 50  0001 C CNN
-	1    10450 2950
-	0    -1   -1   0   
-$EndComp
-$Comp
-L device:R R72
-U 1 1 5C09CB7C
-P 10200 2850
-F 0 "R72" V 10300 2850 50  0000 C CNN
-F 1 "R" V 10200 2850 50  0000 C CNN
-F 2 "" V 10130 2850 50  0001 C CNN
-F 3 "~" H 10200 2850 50  0001 C CNN
-	1    10200 2850
-	0    -1   -1   0   
-$EndComp
-$Comp
-L device:R R73
-U 1 1 5C09CBBE
-P 10200 3050
-F 0 "R73" V 10300 3050 50  0000 C CNN
-F 1 "R" V 10200 3050 50  0000 C CNN
-F 2 "" V 10130 3050 50  0001 C CNN
-F 3 "~" H 10200 3050 50  0001 C CNN
-	1    10200 3050
-	0    -1   -1   0   
-$EndComp
-Text GLabel 10000 900  2    50   Output ~ 0
-RUN_LTC
+NoConn ~ 3900 6150
 NoConn ~ 5600 900 
 NoConn ~ 5600 1000
 NoConn ~ 5600 1100
@@ -911,12 +970,5 @@ NoConn ~ 10000 1100
 NoConn ~ 10000 1000
 NoConn ~ 10000 800 
 NoConn ~ 5600 3100
-Wire Wire Line
-	10800 2850 10350 2850
-Wire Wire Line
-	9800 2950 10300 2950
-Wire Wire Line
-	10800 2950 10600 2950
-Wire Wire Line
-	10400 3050 10350 3050
+NoConn ~ 9950 3050
 $EndSCHEMATC
