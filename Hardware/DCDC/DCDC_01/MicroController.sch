@@ -500,25 +500,25 @@ Text GLabel 10000 700  2    59   Output ~ 0
 SW_EN
 Text GLabel 10000 1200 2    59   Output ~ 0
 CAN_SLEEP
-Text GLabel 5600 3700 0    59   Input ~ 0
+Text GLabel 5600 3200 0    59   Input ~ 0
 5V_MONITOR_AI
 Text GLabel 5600 3000 0    59   Input ~ 0
 12V_MONITOR_AI
-Text GLabel 10000 1800 2    60   Output ~ 0
+Text GLabel 10000 1800 2    59   Output ~ 0
 CAN_TX
-Text GLabel 10000 1900 2    60   Input ~ 0
+Text GLabel 10000 1900 2    59   Input ~ 0
 CAN_RX
 Text Notes 1700 950  2    60   ~ 0
 TO ADD
 Text GLabel 850  7600 0    60   Input ~ 0
 nRESET
-Text GLabel 5600 4100 0    60   Input ~ 0
+Text GLabel 5600 4100 0    59   Input ~ 0
 PGED
-Text GLabel 5600 4200 0    60   Input ~ 0
+Text GLabel 5600 4200 0    59   Input ~ 0
 PGEC
-Text GLabel 10000 2000 2    60   Output ~ 0
+Text GLabel 10000 2000 2    59   Output ~ 0
 UART_TX
-Text GLabel 10000 2100 2    60   Input ~ 0
+Text GLabel 10000 2100 2    59   Input ~ 0
 UART_RX
 Text GLabel 5600 700  0    60   Output ~ 0
 DEBUG_LED
@@ -528,11 +528,11 @@ Text GLabel 5600 2800 0    59   Input ~ 0
 Phase1_Isense_AI
 Text GLabel 5600 2900 0    59   Input ~ 0
 Phase2_Isense_AI
-Text GLabel 10000 2950 2    50   BiDi ~ 0
+Text GLabel 10000 2950 2    59   BiDi ~ 0
 I2C_SCL
-Text GLabel 10000 2850 2    50   BiDi ~ 0
+Text GLabel 10000 2850 2    59   BiDi ~ 0
 I2C_SDA
-Text GLabel 10000 900  2    50   Output ~ 0
+Text GLabel 10000 900  2    59   Output ~ 0
 RUN_LTC
 Wire Wire Line
 	950  4700 950  4400
@@ -925,7 +925,7 @@ NoConn ~ 5600 2400
 NoConn ~ 5600 2500
 NoConn ~ 5600 2600
 NoConn ~ 5600 2700
-NoConn ~ 5600 3200
+NoConn ~ 5600 3700
 NoConn ~ 5600 3300
 NoConn ~ 5600 3400
 NoConn ~ 5600 3500
@@ -969,6 +969,7 @@ NoConn ~ 10000 1300
 NoConn ~ 10000 1100
 NoConn ~ 10000 1000
 NoConn ~ 10000 800 
-NoConn ~ 5600 3100
 NoConn ~ 9950 3050
+Text GLabel 5600 3100 0    59   Input ~ 0
+VBATT_MONITOR_AI
 $EndSCHEMATC

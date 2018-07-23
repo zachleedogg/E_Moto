@@ -17,14 +17,14 @@ $EndDescr
 $Sheet
 S 1100 750  1900 1050
 U 5AAB4D1F
-F0 "Micro" 197
-F1 "Micro.sch" 197
+F0 "Micro" 98
+F1 "Micro.sch" 98
 $EndSheet
 $Sheet
 S 3400 750  2000 1100
 U 5AAC0444
-F0 "PowerRails" 197
-F1 "PowerRails.sch" 197
+F0 "PowerRails" 98
+F1 "PowerRails.sch" 98
 $EndSheet
 $Comp
 L device:D D1
@@ -134,7 +134,7 @@ $EndSheet
 $Sheet
 S 6650 750  1800 1150
 U 5AC3D661
-F0 "Communication" 50
-F1 "Communication.sch" 50
+F0 "Communication" 98
+F1 "Communication.sch" 98
 $EndSheet
 $EndSCHEMATC
