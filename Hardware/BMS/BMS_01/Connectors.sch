@@ -1,0 +1,329 @@
+EESchema Schematic File Version 4
+LIBS:BMS_01-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 52 52
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector:USB_B_Micro J?
+U 1 1 5C18C517
+P 8400 4900
+F 0 "J?" H 8455 5367 50  0000 C CNN
+F 1 "USB_B_Micro" H 8455 5276 50  0000 C CNN
+F 2 "" H 8550 4850 50  0001 C CNN
+F 3 "~" H 8550 4850 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+	1    8400 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C18C6FD
+P 8400 5300
+F 0 "#PWR?" H 8400 5050 50  0001 C CNN
+F 1 "GND" H 8405 5127 50  0000 C CNN
+F 2 "" H 8400 5300 50  0001 C CNN
+F 3 "" H 8400 5300 50  0001 C CNN
+	1    8400 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C18C715
+P 7950 5750
+F 0 "#PWR?" H 7950 5500 50  0001 C CNN
+F 1 "GND" H 7955 5577 50  0000 C CNN
+F 2 "" H 7950 5750 50  0001 C CNN
+F 3 "" H 7950 5750 50  0001 C CNN
+	1    7950 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:C C?
+U 1 1 5C18C739
+P 7950 5600
+F 0 "C?" H 8065 5646 50  0000 L CNN
+F 1 "C" H 8065 5555 50  0000 L CNN
+F 2 "" H 7988 5450 50  0001 C CNN
+F 3 "~" H 7950 5600 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+F 5 "50V" H 0   0   50  0001 C CNN "Voltage"
+	1    7950 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x04 J?
+U 1 1 5C18CF62
+P 3950 5100
+F 0 "J?" H 4030 5092 50  0000 L CNN
+F 1 "Conn_01x04" H 4030 5001 50  0000 L CNN
+F 2 "" H 3950 5100 50  0001 C CNN
+F 3 "~" H 3950 5100 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+	1    3950 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C18CFAA
+P 3650 5400
+F 0 "#PWR?" H 3650 5150 50  0001 C CNN
+F 1 "GND" H 3655 5227 50  0000 C CNN
+F 2 "" H 3650 5400 50  0001 C CNN
+F 3 "" H 3650 5400 50  0001 C CNN
+	1    3650 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR?
+U 1 1 5C1B76AE
+P 1050 1700
+F 0 "#PWR?" H 1050 1550 50  0001 C CNN
+F 1 "+BATT" H 1065 1873 50  0000 C CNN
+F 2 "" H 1050 1700 50  0001 C CNN
+F 3 "" H 1050 1700 50  0001 C CNN
+	1    1050 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C1B7790
+P 1600 4500
+F 0 "#PWR?" H 1600 4250 50  0001 C CNN
+F 1 "GND" H 1605 4327 50  0000 C CNN
+F 2 "" H 1600 4500 50  0001 C CNN
+F 3 "" H 1600 4500 50  0001 C CNN
+	1    1600 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x06 J?
+U 1 1 5C490563
+P 8800 1900
+F 0 "J?" H 8880 1892 50  0000 L CNN
+F 1 "Conn_01x06" H 8880 1801 50  0000 L CNN
+F 2 "" H 8800 1900 50  0001 C CNN
+F 3 "~" H 8800 1900 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+	1    8800 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5C4905F0
+P 7300 1700
+F 0 "#PWR?" H 7300 1550 50  0001 C CNN
+F 1 "+3V3" H 7315 1873 50  0000 C CNN
+F 2 "" H 7300 1700 50  0001 C CNN
+F 3 "" H 7300 1700 50  0001 C CNN
+	1    7300 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C490708
+P 7300 2400
+F 0 "#PWR?" H 7300 2150 50  0001 C CNN
+F 1 "GND" H 7305 2227 50  0000 C CNN
+F 2 "" H 7300 2400 50  0001 C CNN
+F 3 "" H 7300 2400 50  0001 C CNN
+	1    7300 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:D_TVS D?
+U 1 1 5C56ABB1
+P 8200 2400
+F 0 "D?" V 8154 2479 50  0000 L CNN
+F 1 "D_TVS" V 8245 2479 50  0000 L CNN
+F 2 "" H 8200 2400 50  0001 C CNN
+F 3 "~" H 8200 2400 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+	1    8200 2400
+	0    1    1    0   
+$EndComp
+$Comp
+L device:D_TVS D?
+U 1 1 5C56AC04
+P 8400 2700
+F 0 "D?" V 8354 2779 50  0000 L CNN
+F 1 "D_TVS" V 8445 2779 50  0000 L CNN
+F 2 "" H 8400 2700 50  0001 C CNN
+F 3 "~" H 8400 2700 50  0001 C CNN
+F 4 " " H 0   0   50  0001 C CNN "DNP"
+	1    8400 2700
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C56B1A3
+P 8200 2550
+F 0 "#PWR?" H 8200 2300 50  0001 C CNN
+F 1 "GND" H 8205 2377 50  0000 C CNN
+F 2 "" H 8200 2550 50  0001 C CNN
+F 3 "" H 8200 2550 50  0001 C CNN
+	1    8200 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C56B1C0
+P 8400 2850
+F 0 "#PWR?" H 8400 2600 50  0001 C CNN
+F 1 "GND" H 8405 2677 50  0000 C CNN
+F 2 "" H 8400 2850 50  0001 C CNN
+F 3 "" H 8400 2850 50  0001 C CNN
+	1    8400 2850
+	1    0    0    -1  
+$EndComp
+Text GLabel 8700 4700 2    60   Output ~ 0
+USB_5V
+Text GLabel 8700 4900 2    60   BiDi ~ 0
+USB_D+
+Text GLabel 8700 5000 2    60   BiDi ~ 0
+USB_D-
+Text GLabel 3750 5100 0    60   BiDi ~ 0
+CAN_P
+Text GLabel 3750 5200 0    60   BiDi ~ 0
+CAN_N
+Text GLabel 3750 5000 0    50   Output ~ 0
+ENABLE_STBY_SUPPLY
+Text GLabel 7550 2000 0    49   Output ~ 0
+PGED
+Text GLabel 7550 2100 0    49   Output ~ 0
+PGEC
+Text GLabel 8600 1700 0    49   Output ~ 0
+nRESET
+Text Notes 2850 1450 0    197  ~ 0
+POWER
+Text Notes 7850 1250 0    197  ~ 0
+DEBUG
+Text Notes 3050 4750 0    197  ~ 0
+SIGNAL
+Text Notes 8100 4200 0    197  ~ 0
+USB
+Wire Wire Line
+	8300 5300 8300 5350
+Wire Wire Line
+	8300 5350 7950 5350
+Wire Wire Line
+	7950 5350 7950 5450
+Wire Wire Line
+	3650 5400 3650 5300
+Wire Wire Line
+	3650 5300 3750 5300
+Wire Wire Line
+	1050 1850 1050 1700
+Wire Wire Line
+	1600 4500 1600 4400
+Wire Wire Line
+	1600 4400 1700 4400
+Wire Wire Line
+	7300 1700 7300 1800
+Wire Wire Line
+	7300 1800 8600 1800
+Wire Wire Line
+	7300 2400 7300 1900
+Wire Wire Line
+	7300 1900 8600 1900
+Wire Wire Line
+	8200 2250 8200 2000
+Wire Wire Line
+	8200 2000 8150 2000
+Wire Wire Line
+	8200 2000 8600 2000
+Wire Wire Line
+	8600 2100 8400 2100
+Wire Wire Line
+	8400 2550 8400 2100
+Wire Wire Line
+	8400 2100 7900 2100
+Connection ~ 8200 2000
+Connection ~ 8400 2100
+NoConn ~ 8700 5100
+NoConn ~ 8600 2200
+$Comp
+L device:R R?
+U 1 1 5B5C8B23
+P 8000 2000
+AR Path="/5B2FB0D8/5B5C8B23" Ref="R?"  Part="1" 
+AR Path="/5BC21A84/5B5C8B23" Ref="R?"  Part="1" 
+AR Path="/5C8FC872/5C8FC88B/5B5C8B23" Ref="R?"  Part="1" 
+AR Path="/5C8FC872/5C8FC88D/5B5C8B23" Ref="R?"  Part="1" 
+F 0 "R?" V 7900 2000 50  0000 C CNN
+F 1 "100R" V 8000 2000 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 7930 2000 50  0001 C CNN
+F 3 "~" H 8000 2000 50  0001 C CNN
+F 4 " " H 0   300 50  0001 C CNN "DNP"
+	1    8000 2000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7850 2000 7550 2000
+$Comp
+L device:R R?
+U 1 1 5B5C912B
+P 7750 2100
+AR Path="/5B2FB0D8/5B5C912B" Ref="R?"  Part="1" 
+AR Path="/5BC21A84/5B5C912B" Ref="R?"  Part="1" 
+AR Path="/5C8FC872/5C8FC88B/5B5C912B" Ref="R?"  Part="1" 
+AR Path="/5C8FC872/5C8FC88D/5B5C912B" Ref="R?"  Part="1" 
+F 0 "R?" V 7650 2100 50  0000 C CNN
+F 1 "100R" V 7750 2100 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 7680 2100 50  0001 C CNN
+F 3 "~" H 7750 2100 50  0001 C CNN
+F 4 " " H -250 400 50  0001 C CNN "DNP"
+	1    7750 2100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7600 2100 7550 2100
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 5B60E1EA
+P 1300 1850
+F 0 "#FLG?" H 1300 1925 50  0001 C CNN
+F 1 "PWR_FLAG" H 1300 2024 50  0000 C CNN
+F 2 "" H 1300 1850 50  0001 C CNN
+F 3 "~" H 1300 1850 50  0001 C CNN
+	1    1300 1850
+	1    0    0    -1  
+$EndComp
+Connection ~ 1300 1850
+Wire Wire Line
+	1300 1850 1050 1850
+$Comp
+L Connector_Generic:Conn_01x12 J?
+U 1 1 5B64F388
+P 1900 3900
+F 0 "J?" H 1819 3075 50  0000 C CNN
+F 1 "Conn_01x12" H 1819 3166 50  0000 C CNN
+F 2 "" H 1900 3900 50  0001 C CNN
+F 3 "~" H 1900 3900 50  0001 C CNN
+	1    1900 3900
+	1    0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x12 J?
+U 1 1 5B64F61D
+P 1900 2450
+F 0 "J?" H 1819 1625 50  0000 C CNN
+F 1 "Conn_01x12" H 1819 1716 50  0000 C CNN
+F 2 "" H 1900 2450 50  0001 C CNN
+F 3 "~" H 1900 2450 50  0001 C CNN
+	1    1900 2450
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	1300 1850 1700 1850
+$EndSCHEMATC

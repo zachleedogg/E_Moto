@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 30
+Sheet 1 52
 Title ""
 Date ""
 Rev ""
@@ -26,17 +26,6 @@ U 5AAC0444
 F0 "PowerRails" 98
 F1 "PowerRails.sch" 98
 $EndSheet
-$Comp
-L device:D D1
-U 1 1 5AC2C048
-P 3050 4750
-F 0 "D1" H 3050 4534 50  0000 C CNN
-F 1 "D" H 3050 4625 50  0000 C CNN
-F 2 "" H 3050 4750 50  0001 C CNN
-F 3 "" H 3050 4750 50  0001 C CNN
-	1    3050 4750
-	-1   0    0    1   
-$EndComp
 Wire Wire Line
 	2750 4450 3300 4450
 Wire Wire Line
@@ -50,24 +39,13 @@ Wire Wire Line
 Wire Wire Line
 	3600 4450 3700 4450
 $Comp
-L device:D D2
-U 1 1 5AC2C068
-P 3250 4650
-F 0 "D2" H 3250 4434 50  0000 C CNN
-F 1 "D" H 3250 4525 50  0000 C CNN
-F 2 "" H 3250 4650 50  0001 C CNN
-F 3 "" H 3250 4650 50  0001 C CNN
-	1    3250 4650
-	-1   0    0    1   
-$EndComp
-$Comp
 L device:D D3
 U 1 1 5AC2BFD0
 P 3450 4450
 F 0 "D3" H 3450 4234 50  0000 C CNN
 F 1 "D" H 3450 4325 50  0000 C CNN
-F 2 "" H 3450 4450 50  0001 C CNN
-F 3 "" H 3450 4450 50  0001 C CNN
+F 2 "Diodes_SMD:D_SOD-123F" H 3450 4450 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/RS1AFA-D.PDF" H 3450 4450 50  0001 C CNN
 	1    3450 4450
 	-1   0    0    1   
 $EndComp
@@ -136,5 +114,71 @@ S 6650 750  1800 1150
 U 5AC3D661
 F0 "Communication" 98
 F1 "Communication.sch" 98
+$EndSheet
+$Sheet
+S 1100 2050 1900 900 
+U 5B56E059
+F0 "TempSensors" 98
+F1 "TempSensors.sch" 98
+$EndSheet
+Wire Wire Line
+	5350 5000 5650 5000
+Wire Wire Line
+	5650 5000 5650 5100
+Wire Wire Line
+	5650 5100 5350 5100
+Wire Wire Line
+	2750 5000 2850 5000
+Wire Wire Line
+	2850 5000 2850 7500
+Wire Wire Line
+	2850 7500 900  7500
+Wire Wire Line
+	900  7500 900  6200
+Wire Wire Line
+	900  6200 1050 6200
+Wire Wire Line
+	2750 5100 2900 5100
+Wire Wire Line
+	2900 5100 2900 4900
+Wire Wire Line
+	2900 4900 2750 4900
+$Comp
+L device:D D2
+U 1 1 5B634C12
+P 3250 4650
+F 0 "D2" H 3250 4434 50  0000 C CNN
+F 1 "D" H 3250 4525 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123F" H 3250 4650 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/RS1AFA-D.PDF" H 3250 4650 50  0001 C CNN
+	1    3250 4650
+	-1   0    0    1   
+$EndComp
+$Comp
+L device:D D1
+U 1 1 5B634C32
+P 3050 4750
+F 0 "D1" H 3050 4534 50  0000 C CNN
+F 1 "D" H 3050 4625 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123F" H 3050 4750 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/RS1AFA-D.PDF" H 3050 4750 50  0001 C CNN
+	1    3050 4750
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5350 4900 5700 4900
+Wire Wire Line
+	5700 4900 5700 7500
+Wire Wire Line
+	5700 7500 3550 7500
+Wire Wire Line
+	3550 7500 3550 6200
+Wire Wire Line
+	3550 6200 3700 6200
+$Sheet
+S 3400 2150 1950 1000
+U 5B64EF74
+F0 "Connectors" 98
+F1 "Connectors.sch" 98
 $EndSheet
 $EndSCHEMATC
