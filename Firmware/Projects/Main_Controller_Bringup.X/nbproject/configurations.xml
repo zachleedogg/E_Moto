@@ -28,6 +28,7 @@
         <itemPath>HornControl.h</itemPath>
         <itemPath>j1772.h</itemPath>
         <itemPath>../../CAN/generated/mcu_dbc.h</itemPath>
+        <itemPath>HeatedGrips.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -61,6 +62,7 @@
         <itemPath>HornControl.c</itemPath>
         <itemPath>j1772.c</itemPath>
         <itemPath>../../CAN/generated/mcu_dbc.c</itemPath>
+        <itemPath>HeatedGrips.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"

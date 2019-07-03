@@ -38,7 +38,7 @@ void HornControl_Init(void) {
     SET_HORN_EN(LOW);
 }
 
-void HornControl_Run_100ms(void) {
+void HornControl_Run_10ms(void) {
 
     static uint8_t counter = 0;
     if (GET_HORN_SWITCH_IN()) {

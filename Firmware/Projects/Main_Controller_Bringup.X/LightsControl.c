@@ -53,46 +53,46 @@ void LightsControl_Run_100ms(void) {
     /**
      * LEFT TURN SIGNAL
      */
-    static uint8_t counter500msLeft = LEFT_TURN_SIGNAL_FREQUENCY;
+    static uint8_t counterLeft = LEFT_TURN_SIGNAL_FREQUENCY;
     if (GET_TURN_LEFT_SWITCH_IN()) {
-        if (++counter500msLeft >= LEFT_TURN_SIGNAL_FREQUENCY) {
+        if (++counterLeft >= LEFT_TURN_SIGNAL_FREQUENCY) {
             SET_TURN_SIGNAL_FL_EN(TOGGLE);
             SET_TURN_SIGNAL_RL_EN(TOGGLE);
-            counter500msLeft = 0;
+            counterLeft = 0;
         }
     } else {
         SET_TURN_SIGNAL_FL_EN(LOW);
         SET_TURN_SIGNAL_RL_EN(LOW);
-        counter500msLeft = LEFT_TURN_SIGNAL_FREQUENCY;
+        counterLeft = LEFT_TURN_SIGNAL_FREQUENCY;
     }
     
     /**
      * RIGHT TURN SIGNAL
      */
-    static uint8_t counter500msRight = RIGHT_TURN_SIGNAL_FREQUENCY;
+    static uint8_t counterRight = RIGHT_TURN_SIGNAL_FREQUENCY;
     if (GET_TURN_RIGHT_SWITCH_IN()) {
-        if (++counter500msRight >= RIGHT_TURN_SIGNAL_FREQUENCY) {
+        if (++counterRight >= RIGHT_TURN_SIGNAL_FREQUENCY) {
             SET_TURN_SIGNAL_FR_EN(TOGGLE);
             SET_TURN_SIGNAL_RR_EN(TOGGLE);
-            counter500msRight = 0;
+            counterRight = 0;
         }
     } else {
         SET_TURN_SIGNAL_FR_EN(LOW);
         SET_TURN_SIGNAL_RR_EN(LOW);
-        counter500msRight = RIGHT_TURN_SIGNAL_FREQUENCY;
+        counterRight = RIGHT_TURN_SIGNAL_FREQUENCY;
     }
 
     /**
      * HEADLIGHT CONTROL
      */
-    SET_HEADLIGHT_LO_EN(GET_SPARE_SWITCH_1_IN());
+    //SET_HEADLIGHT_LO_EN(GET_SPARE_SWITCH_1_IN());
     SET_HEADLIGHT_HI_EN(GET_BRIGHTS_SWITCH_IN());
 
     /**
      * TAILLIGHT CONTROL
      */
     SET_TAILLIGHT_EN(GET_BRIGHTS_SWITCH_IN() || GET_SPARE_SWITCH_1_IN());
-    SET_BRAKE_LIGHT_EN(GET_BRAKE_SWITCH_1_IN() || GET_BRAKE_SWITCH_1_IN());
+    SET_BRAKE_LIGHT_EN(GET_BRAKE_SWITCH_1_IN() || GET_BRAKE_SWITCH_2_IN());
     
     /*CAN status messages for Lights. Use the status of the output, not the switch,
      to determine the status of the light*/

@@ -1,0 +1,368 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 5 8
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Switch:SW_Push SW?
+U 1 1 5D46C422
+P 7800 4250
+AR Path="/5D46C422" Ref="SW?"  Part="1" 
+AR Path="/5D4675EF/5D46C422" Ref="SW3"  Part="1" 
+F 0 "SW3" H 7800 4535 50  0000 C CNN
+F 1 "SW_Push" H 7800 4444 50  0000 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_B3S-1000" H 7800 4450 50  0001 C CNN
+F 3 "" H 7800 4450 50  0001 C CNN
+F 4 "B3S-1000P" H 2850 -2950 50  0001 C CNN "PartNumber"
+	1    7800 4250
+	0    1    1    0   
+$EndComp
+$Comp
+L device:R R?
+U 1 1 5D46C42A
+P 7800 3650
+AR Path="/5D46C42A" Ref="R?"  Part="1" 
+AR Path="/5D4675EF/5D46C42A" Ref="R15"  Part="1" 
+F 0 "R15" H 7730 3604 50  0000 R CNN
+F 1 "10k" H 7730 3695 50  0000 R CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 7730 3650 50  0001 C CNN
+F 3 "~" H 7800 3650 50  0001 C CNN
+F 4 "~" H 2850 -2950 50  0001 C CNN "PartNumber"
+	1    7800 3650
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D46C431
+P 7800 4450
+AR Path="/5D46C431" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C431" Ref="#PWR029"  Part="1" 
+F 0 "#PWR029" H 7800 4200 50  0001 C CNN
+F 1 "GND" V 7805 4322 50  0000 R CNN
+F 2 "" H 7800 4450 50  0001 C CNN
+F 3 "" H 7800 4450 50  0001 C CNN
+	1    7800 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:R R?
+U 1 1 5D46C438
+P 7500 3950
+AR Path="/5D46C438" Ref="R?"  Part="1" 
+AR Path="/5D4675EF/5D46C438" Ref="R14"  Part="1" 
+F 0 "R14" V 7707 3950 50  0000 C CNN
+F 1 "10k" V 7616 3950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 7430 3950 50  0001 C CNN
+F 3 "~" H 7500 3950 50  0001 C CNN
+F 4 "~" H 2850 -2950 50  0001 C CNN "PartNumber"
+	1    7500 3950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7800 4050 7800 3950
+Wire Wire Line
+	7800 3800 7800 3950
+Connection ~ 7800 3950
+Wire Wire Line
+	7800 3950 7650 3950
+$Comp
+L power:+5V #PWR?
+U 1 1 5D46C443
+P 7800 3350
+AR Path="/5D46C443" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C443" Ref="#PWR028"  Part="1" 
+F 0 "#PWR028" H 7800 3200 50  0001 C CNN
+F 1 "+5V" H 7815 3523 50  0000 C CNN
+F 2 "" H 7800 3350 50  0001 C CNN
+F 3 "" H 7800 3350 50  0001 C CNN
+	1    7800 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7800 3350 7800 3500
+Text GLabel 7100 3950 0    50   Output ~ 0
+MODE_BUTTON
+Wire Wire Line
+	7350 3950 7250 3950
+$Comp
+L device:C C?
+U 1 1 5D46C44D
+P 7250 4250
+AR Path="/5D46C44D" Ref="C?"  Part="1" 
+AR Path="/5D4675EF/5D46C44D" Ref="C10"  Part="1" 
+F 0 "C10" H 7365 4296 50  0000 L CNN
+F 1 "10nF" H 7365 4205 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 7288 4100 50  0001 C CNN
+F 3 "~" H 7250 4250 50  0001 C CNN
+F 4 "~" H 2850 -2950 50  0001 C CNN "PartNumber"
+	1    7250 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D46C454
+P 7250 4400
+AR Path="/5D46C454" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C454" Ref="#PWR027"  Part="1" 
+F 0 "#PWR027" H 7250 4150 50  0001 C CNN
+F 1 "GND" V 7255 4272 50  0000 R CNN
+F 2 "" H 7250 4400 50  0001 C CNN
+F 3 "" H 7250 4400 50  0001 C CNN
+	1    7250 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 4100 7250 3950
+Connection ~ 7250 3950
+Wire Wire Line
+	7250 3950 7100 3950
+$Comp
+L Switch:SW_Push SW?
+U 1 1 5D46C45E
+P 5550 4250
+AR Path="/5D46C45E" Ref="SW?"  Part="1" 
+AR Path="/5D4675EF/5D46C45E" Ref="SW2"  Part="1" 
+F 0 "SW2" H 5550 4535 50  0000 C CNN
+F 1 "SW_Push" H 5550 4444 50  0000 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_B3S-1000" H 5550 4450 50  0001 C CNN
+F 3 "" H 5550 4450 50  0001 C CNN
+F 4 "B3S-1000P" H 2150 -2950 50  0001 C CNN "PartNumber"
+	1    5550 4250
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D46C465
+P 5550 4450
+AR Path="/5D46C465" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C465" Ref="#PWR026"  Part="1" 
+F 0 "#PWR026" H 5550 4200 50  0001 C CNN
+F 1 "GND" V 5555 4322 50  0000 R CNN
+F 2 "" H 5550 4450 50  0001 C CNN
+F 3 "" H 5550 4450 50  0001 C CNN
+	1    5550 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:R R?
+U 1 1 5D46C46C
+P 5250 3950
+AR Path="/5D46C46C" Ref="R?"  Part="1" 
+AR Path="/5D4675EF/5D46C46C" Ref="R12"  Part="1" 
+F 0 "R12" V 5457 3950 50  0000 C CNN
+F 1 "10k" V 5366 3950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 5180 3950 50  0001 C CNN
+F 3 "~" H 5250 3950 50  0001 C CNN
+F 4 "~" H 2150 -2950 50  0001 C CNN "PartNumber"
+	1    5250 3950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5550 3950 5400 3950
+$Comp
+L power:+5V #PWR?
+U 1 1 5D46C474
+P 5550 3350
+AR Path="/5D46C474" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C474" Ref="#PWR025"  Part="1" 
+F 0 "#PWR025" H 5550 3200 50  0001 C CNN
+F 1 "+5V" H 5565 3523 50  0000 C CNN
+F 2 "" H 5550 3350 50  0001 C CNN
+F 3 "" H 5550 3350 50  0001 C CNN
+	1    5550 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 3350 5550 3500
+Text GLabel 4850 3950 0    50   Output ~ 0
+SELECT_BUTTON
+Wire Wire Line
+	5100 3950 5000 3950
+$Comp
+L device:C C?
+U 1 1 5D46C47E
+P 5000 4250
+AR Path="/5D46C47E" Ref="C?"  Part="1" 
+AR Path="/5D4675EF/5D46C47E" Ref="C9"  Part="1" 
+F 0 "C9" H 5115 4296 50  0000 L CNN
+F 1 "10nF" H 5115 4205 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 5038 4100 50  0001 C CNN
+F 3 "~" H 5000 4250 50  0001 C CNN
+F 4 "~" H 2150 -2950 50  0001 C CNN "PartNumber"
+	1    5000 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D46C485
+P 5000 4400
+AR Path="/5D46C485" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C485" Ref="#PWR024"  Part="1" 
+F 0 "#PWR024" H 5000 4150 50  0001 C CNN
+F 1 "GND" V 5005 4272 50  0000 R CNN
+F 2 "" H 5000 4400 50  0001 C CNN
+F 3 "" H 5000 4400 50  0001 C CNN
+	1    5000 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 4100 5000 3950
+Connection ~ 5000 3950
+Wire Wire Line
+	5000 3950 4850 3950
+$Comp
+L Switch:SW_Push SW?
+U 1 1 5D46C48F
+P 3250 4250
+AR Path="/5D46C48F" Ref="SW?"  Part="1" 
+AR Path="/5D4675EF/5D46C48F" Ref="SW1"  Part="1" 
+F 0 "SW1" H 3250 4535 50  0000 C CNN
+F 1 "SW_Push" H 3250 4444 50  0000 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_B3S-1000" H 3250 4450 50  0001 C CNN
+F 3 "" H 3250 4450 50  0001 C CNN
+F 4 "B3S-1000P" H 3250 4250 50  0001 C CNN "PartNumber"
+	1    3250 4250
+	0    1    1    0   
+$EndComp
+$Comp
+L device:R R?
+U 1 1 5D46C497
+P 3250 3400
+AR Path="/5D46C497" Ref="R?"  Part="1" 
+AR Path="/5D4675EF/5D46C497" Ref="R11"  Part="1" 
+F 0 "R11" H 3180 3354 50  0000 R CNN
+F 1 "10k" H 3180 3445 50  0000 R CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 3180 3400 50  0001 C CNN
+F 3 "~" H 3250 3400 50  0001 C CNN
+F 4 "~" H 1450 -2950 50  0001 C CNN "PartNumber"
+	1    3250 3400
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D46C49E
+P 3250 4450
+AR Path="/5D46C49E" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C49E" Ref="#PWR023"  Part="1" 
+F 0 "#PWR023" H 3250 4200 50  0001 C CNN
+F 1 "GND" V 3255 4322 50  0000 R CNN
+F 2 "" H 3250 4450 50  0001 C CNN
+F 3 "" H 3250 4450 50  0001 C CNN
+	1    3250 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L device:R R?
+U 1 1 5D46C4A5
+P 2950 3950
+AR Path="/5D46C4A5" Ref="R?"  Part="1" 
+AR Path="/5D4675EF/5D46C4A5" Ref="R10"  Part="1" 
+F 0 "R10" V 3157 3950 50  0000 C CNN
+F 1 "10k" V 3066 3950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 2880 3950 50  0001 C CNN
+F 3 "~" H 2950 3950 50  0001 C CNN
+F 4 "~" H 1450 -2950 50  0001 C CNN "PartNumber"
+	1    2950 3950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3250 4050 3250 3950
+Wire Wire Line
+	3250 3550 3250 3700
+Connection ~ 3250 3950
+Wire Wire Line
+	3250 3950 3100 3950
+$Comp
+L power:+5V #PWR?
+U 1 1 5D46C4B0
+P 3250 3100
+AR Path="/5D46C4B0" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C4B0" Ref="#PWR022"  Part="1" 
+F 0 "#PWR022" H 3250 2950 50  0001 C CNN
+F 1 "+5V" H 3265 3273 50  0000 C CNN
+F 2 "" H 3250 3100 50  0001 C CNN
+F 3 "" H 3250 3100 50  0001 C CNN
+	1    3250 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 3100 3250 3250
+Text GLabel 2550 3950 0    50   Output ~ 0
+WELD_BUTTON
+Wire Wire Line
+	2800 3950 2700 3950
+$Comp
+L device:C C?
+U 1 1 5D46C4BA
+P 2700 4250
+AR Path="/5D46C4BA" Ref="C?"  Part="1" 
+AR Path="/5D4675EF/5D46C4BA" Ref="C8"  Part="1" 
+F 0 "C8" H 2815 4296 50  0000 L CNN
+F 1 "10nF" H 2815 4205 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 2738 4100 50  0001 C CNN
+F 3 "~" H 2700 4250 50  0001 C CNN
+F 4 "~" H 1450 -2950 50  0001 C CNN "PartNumber"
+	1    2700 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5D46C4C1
+P 2700 4400
+AR Path="/5D46C4C1" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D46C4C1" Ref="#PWR021"  Part="1" 
+F 0 "#PWR021" H 2700 4150 50  0001 C CNN
+F 1 "GND" V 2705 4272 50  0000 R CNN
+F 2 "" H 2700 4400 50  0001 C CNN
+F 3 "" H 2700 4400 50  0001 C CNN
+	1    2700 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 4100 2700 3950
+Connection ~ 2700 3950
+Wire Wire Line
+	2700 3950 2550 3950
+Text GLabel 3350 3700 2    50   Output ~ 0
+WELD_BUTTON_OUT
+Wire Wire Line
+	3350 3700 3250 3700
+Connection ~ 3250 3700
+Wire Wire Line
+	3250 3700 3250 3950
+$Comp
+L device:R R?
+U 1 1 5D46C4CF
+P 5550 3650
+AR Path="/5D46C4CF" Ref="R?"  Part="1" 
+AR Path="/5D4675EF/5D46C4CF" Ref="R13"  Part="1" 
+F 0 "R13" H 5480 3604 50  0000 R CNN
+F 1 "10k" H 5480 3695 50  0000 R CNN
+F 2 "Resistors_SMD:R_0603_HandSoldering" V 5480 3650 50  0001 C CNN
+F 3 "~" H 5550 3650 50  0001 C CNN
+F 4 "~" H 2150 -2950 50  0001 C CNN "PartNumber"
+	1    5550 3650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5550 3800 5550 3950
+Wire Wire Line
+	5550 4050 5550 3950
+Connection ~ 5550 3950
+Text Notes 2850 2550 0    197  ~ 0
+WELD
+Text Notes 5150 2500 0    197  ~ 0
+SELECT
+Text Notes 7500 2450 0    197  ~ 0
+MODE
+$EndSCHEMATC

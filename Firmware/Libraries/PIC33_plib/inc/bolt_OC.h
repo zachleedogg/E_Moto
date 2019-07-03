@@ -70,5 +70,7 @@ uint8_t pwmOCinit(oc_pin_number pin);
  */
 uint8_t pwmOCwriteDuty(oc_pin_number pin, uint16_t dutyCycle);
 
+uint8_t pwmOCwriteFreq(oc_pin_number pin, uint16_t frequency);
+
 #endif	/* BOLT_OC_H */
 

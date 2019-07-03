@@ -1,0 +1,390 @@
+EESchema Schematic File Version 4
+LIBS:BMS_01-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 58
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Sheet
+S 1200 750  1900 1050
+U 5B5CD5C1
+F0 "Micro" 98
+F1 "Micro.sch" 98
+$EndSheet
+$Sheet
+S 3500 750  2000 1100
+U 5B5CD5C3
+F0 "PowerRails" 98
+F1 "PowerRails.sch" 98
+$EndSheet
+Wire Wire Line
+	3300 4450 3550 4450
+Wire Wire Line
+	3300 4750 3550 4750
+Wire Wire Line
+	3300 4650 3800 4650
+Wire Wire Line
+	3850 4750 4250 4750
+Wire Wire Line
+	4100 4650 4250 4650
+Wire Wire Line
+	3850 4450 4250 4450
+$Comp
+L device:D D?
+U 1 1 5B5CD5CF
+P 3700 4450
+AR Path="/5B5CD5CF" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5CF" Ref="D3"  Part="1" 
+F 0 "D3" H 3800 4400 50  0000 C CNN
+F 1 "D" H 3800 4500 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123F" H 3700 4450 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/RS1AFA-D.PDF" H 3700 4450 50  0001 C CNN
+	1    3700 4450
+	-1   0    0    1   
+$EndComp
+$Sheet
+S 4250 4350 1650 3000
+U 5B5CD5EA
+F0 "Stack_1" 50
+F1 "BattStack.sch" 50
+F2 "TOS" I R 5900 4900 50 
+F3 "Mode" I R 5900 5000 50 
+F4 "Vreg" I R 5900 5100 50 
+F5 "Vref" I R 5900 5200 50 
+F6 "SCKL" I R 5900 4750 50 
+F7 "SDI" I R 5900 4650 50 
+F8 "SDO" I R 5900 4550 50 
+F9 "CSBI" I R 5900 4450 50 
+F10 "CSBO" I L 4250 4450 50 
+F11 "SDIO" I L 4250 4650 50 
+F12 "SCKO" I L 4250 4750 50 
+F13 "Cell_12" I L 4250 5000 50 
+F14 "Cell_11" I L 4250 5100 50 
+F15 "Cell_10" I L 4250 5200 50 
+F16 "Cell_09" I L 4250 5300 50 
+F17 "Cell_08" I L 4250 5400 50 
+F18 "Cell_07" I L 4250 5500 50 
+F19 "Cell_06" I L 4250 5600 50 
+F20 "Cell_05" I L 4250 5700 50 
+F21 "Cell_04" I L 4250 5800 50 
+F22 "Cell_03" I L 4250 5900 50 
+F23 "Cell_01" I L 4250 6100 50 
+F24 "Cell_GND" I L 4250 6200 50 
+F25 "Cell_02" I L 4250 6000 50 
+$EndSheet
+$Sheet
+S 1600 4350 1700 3000
+U 5B5CD604
+F0 "Stack_2" 50
+F1 "BattStack.sch" 50
+F2 "TOS" I R 3300 4900 50 
+F3 "Mode" I R 3300 5000 50 
+F4 "Vreg" I R 3300 5100 50 
+F5 "Vref" I R 3300 5200 50 
+F6 "SCKL" I R 3300 4750 50 
+F7 "SDI" I R 3300 4650 50 
+F8 "SDO" I R 3300 4550 50 
+F9 "CSBI" I R 3300 4450 50 
+F10 "CSBO" I L 1600 4450 50 
+F11 "SDIO" I L 1600 4650 50 
+F12 "SCKO" I L 1600 4750 50 
+F13 "Cell_12" I L 1600 5000 50 
+F14 "Cell_11" I L 1600 5100 50 
+F15 "Cell_10" I L 1600 5200 50 
+F16 "Cell_09" I L 1600 5300 50 
+F17 "Cell_08" I L 1600 5400 50 
+F18 "Cell_07" I L 1600 5500 50 
+F19 "Cell_06" I L 1600 5600 50 
+F20 "Cell_05" I L 1600 5700 50 
+F21 "Cell_04" I L 1600 5800 50 
+F22 "Cell_03" I L 1600 5900 50 
+F23 "Cell_01" I L 1600 6100 50 
+F24 "Cell_GND" I L 1600 6200 50 
+F25 "Cell_02" I L 1600 6000 50 
+$EndSheet
+$Sheet
+S 5750 750  1800 1150
+U 5B5CD606
+F0 "Communications" 98
+F1 "Communication.sch" 98
+$EndSheet
+$Sheet
+S 1200 2050 1900 900 
+U 5B5CD608
+F0 "TempSensors" 98
+F1 "TempSensors.sch" 98
+$EndSheet
+Wire Wire Line
+	5900 5000 6200 5000
+Wire Wire Line
+	6200 5000 6200 5100
+Wire Wire Line
+	6200 5100 5900 5100
+Wire Wire Line
+	3300 5100 3450 5100
+Wire Wire Line
+	3450 5100 3450 4900
+Wire Wire Line
+	3450 4900 3300 4900
+$Comp
+L device:D D?
+U 1 1 5B5CD614
+P 3950 4650
+AR Path="/5B5CD614" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD614" Ref="D2"  Part="1" 
+F 0 "D2" H 4050 4600 50  0000 C CNN
+F 1 "D" H 4050 4700 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123F" H 3950 4650 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/RS1AFA-D.PDF" H 3950 4650 50  0001 C CNN
+	1    3950 4650
+	-1   0    0    1   
+$EndComp
+$Comp
+L device:D D?
+U 1 1 5B5CD61B
+P 3700 4750
+AR Path="/5B5CD61B" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61B" Ref="D1"  Part="1" 
+F 0 "D1" H 3800 4700 50  0000 C CNN
+F 1 "D" H 3800 4800 50  0000 C CNN
+F 2 "Diodes_SMD:D_SOD-123F" H 3700 4750 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/RS1AFA-D.PDF" H 3700 4750 50  0001 C CNN
+	1    3700 4750
+	-1   0    0    1   
+$EndComp
+$Sheet
+S 3500 2150 1950 1000
+U 5B5CD61E
+F0 "Connectors" 98
+F1 "Connectors.sch" 98
+$EndSheet
+$Comp
+L power:GND #PWR?
+U 1 1 5B5CD624
+P 3900 6400
+AR Path="/5B5CD624" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD624" Ref="#PWR01"  Part="1" 
+F 0 "#PWR01" H 3900 6150 50  0001 C CNN
+F 1 "GND" H 3905 6227 50  0000 C CNN
+F 2 "" H 3900 6400 50  0001 C CNN
+F 3 "" H 3900 6400 50  0001 C CNN
+	1    3900 6400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 6400 3900 6200
+Wire Wire Line
+	3900 6200 4250 6200
+$Comp
+L power:GND #PWR?
+U 1 1 5B5CD62C
+P 6500 5050
+AR Path="/5B5CD62C" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD62C" Ref="#PWR02"  Part="1" 
+F 0 "#PWR02" H 6500 4800 50  0001 C CNN
+F 1 "GND" H 6505 4877 50  0000 C CNN
+F 2 "" H 6500 5050 50  0001 C CNN
+F 3 "" H 6500 5050 50  0001 C CNN
+	1    6500 5050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6500 5050 6500 4900
+Wire Wire Line
+	6500 4900 5900 4900
+Text GLabel 1450 5000 0    50   Input ~ 0
+BANK_24
+Wire Wire Line
+	1450 5000 1600 5000
+Text GLabel 1450 5100 0    50   Input ~ 0
+BANK_23
+Wire Wire Line
+	1450 5100 1600 5100
+Text GLabel 1450 5300 0    50   Input ~ 0
+BANK_21
+Wire Wire Line
+	1450 5300 1600 5300
+Text GLabel 1450 5500 0    50   Input ~ 0
+BANK_19
+Wire Wire Line
+	1450 5500 1600 5500
+Text GLabel 1450 5600 0    50   Input ~ 0
+BANK_18
+Wire Wire Line
+	1450 5600 1600 5600
+Text GLabel 1450 5700 0    50   Input ~ 0
+BANK_17
+Wire Wire Line
+	1450 5700 1600 5700
+Text GLabel 1450 5800 0    50   Input ~ 0
+BANK_16
+Wire Wire Line
+	1450 5800 1600 5800
+Text GLabel 1450 5900 0    50   Input ~ 0
+BANK_15
+Wire Wire Line
+	1450 5900 1600 5900
+Text GLabel 1450 6000 0    50   Input ~ 0
+BANK_14
+Wire Wire Line
+	1450 6000 1600 6000
+Text GLabel 1450 6100 0    50   Input ~ 0
+BANK_13
+Wire Wire Line
+	1450 6100 1600 6100
+Text GLabel 1450 6200 0    50   Input ~ 0
+BANK_12
+Wire Wire Line
+	1450 6200 1600 6200
+Text GLabel 1450 5200 0    50   Input ~ 0
+BANK_22
+Wire Wire Line
+	1450 5200 1600 5200
+Text GLabel 1450 5400 0    50   Input ~ 0
+BANK_20
+Wire Wire Line
+	1450 5400 1600 5400
+Text GLabel 4100 5000 0    50   Input ~ 0
+BANK_12
+Wire Wire Line
+	4100 5000 4250 5000
+Text GLabel 4100 5100 0    50   Input ~ 0
+BANK_11
+Wire Wire Line
+	4100 5100 4250 5100
+Text GLabel 4100 5200 0    50   Input ~ 0
+BANK_10
+Wire Wire Line
+	4100 5200 4250 5200
+Text GLabel 4100 5300 0    50   Input ~ 0
+BANK_09
+Wire Wire Line
+	4100 5300 4250 5300
+Text GLabel 4100 5400 0    50   Input ~ 0
+BANK_08
+Wire Wire Line
+	4100 5400 4250 5400
+Text GLabel 4100 5500 0    50   Input ~ 0
+BANK_07
+Wire Wire Line
+	4100 5500 4250 5500
+Text GLabel 4100 5600 0    50   Input ~ 0
+BANK_06
+Wire Wire Line
+	4100 5600 4250 5600
+Text GLabel 4100 5700 0    50   Input ~ 0
+BANK_05
+Wire Wire Line
+	4100 5700 4250 5700
+Text GLabel 4100 5800 0    50   Input ~ 0
+BANK_04
+Wire Wire Line
+	4100 5800 4250 5800
+Text GLabel 4100 5900 0    50   Input ~ 0
+BANK_03
+Wire Wire Line
+	4100 5900 4250 5900
+Text GLabel 4100 6000 0    50   Input ~ 0
+BANK_02
+Wire Wire Line
+	4100 6000 4250 6000
+Text GLabel 4100 6100 0    50   Input ~ 0
+BANK_01
+Wire Wire Line
+	4100 6100 4250 6100
+Text GLabel 3400 5400 3    50   Input ~ 0
+BANK_12
+Wire Wire Line
+	3400 5400 3400 5000
+Wire Wire Line
+	3400 5000 3300 5000
+NoConn ~ 1600 4450
+NoConn ~ 1600 4650
+NoConn ~ 1600 4750
+Text GLabel 7050 4450 2    59   Input ~ 0
+SPI_CS
+Text GLabel 7050 4550 2    59   Output ~ 0
+SPI_SDO
+Text GLabel 7050 4650 2    59   Input ~ 0
+SPI_SDI
+Text GLabel 7050 4750 2    59   Input ~ 0
+SPI_CKL
+Wire Wire Line
+	7050 4450 6450 4450
+Wire Wire Line
+	7050 4550 6450 4550
+Wire Wire Line
+	7050 4650 6450 4650
+Wire Wire Line
+	7050 4750 6450 4750
+$Comp
+L device:R R189
+U 1 1 5B60AF65
+P 6300 4450
+F 0 "R189" V 6250 4650 50  0000 C CNN
+F 1 "100R" V 6300 4450 50  0000 C CNN
+F 2 "Footprints:R_0603_Standard" V 6230 4450 50  0001 C CNN
+F 3 "~" H 6300 4450 50  0001 C CNN
+	1    6300 4450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6150 4450 5900 4450
+$Comp
+L device:R R191
+U 1 1 5B60B018
+P 6300 4550
+F 0 "R191" V 6250 4750 50  0000 C CNN
+F 1 "100R" V 6300 4550 50  0000 C CNN
+F 2 "Footprints:R_0603_Standard" V 6230 4550 50  0001 C CNN
+F 3 "~" H 6300 4550 50  0001 C CNN
+	1    6300 4550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6150 4550 5900 4550
+$Comp
+L device:R R190
+U 1 1 5B60B04A
+P 6300 4650
+F 0 "R190" V 6250 4850 50  0000 C CNN
+F 1 "100R" V 6300 4650 50  0000 C CNN
+F 2 "Footprints:R_0603_Standard" V 6230 4650 50  0001 C CNN
+F 3 "~" H 6300 4650 50  0001 C CNN
+	1    6300 4650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6150 4650 5900 4650
+$Comp
+L device:R R192
+U 1 1 5B60B07E
+P 6300 4750
+F 0 "R192" V 6250 4950 50  0000 C CNN
+F 1 "100R" V 6300 4750 50  0000 C CNN
+F 2 "Footprints:R_0603_Standard" V 6230 4750 50  0001 C CNN
+F 3 "~" H 6300 4750 50  0001 C CNN
+	1    6300 4750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6150 4750 5900 4750
+NoConn ~ 3400 4550
+Wire Wire Line
+	3400 4550 3300 4550
+$Sheet
+S 5800 2200 1800 950 
+U 5B796068
+F0 "CurrentSense" 98
+F1 "CurrentSense.sch" 98
+$EndSheet
+$EndSCHEMATC

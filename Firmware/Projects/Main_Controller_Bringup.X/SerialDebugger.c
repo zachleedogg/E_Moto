@@ -108,7 +108,7 @@ void SerialConsole_Run_100ms(void) {
                 break;
                 
             default:
-                debuggerService_print("invalid command: %s\n", cmd);
+                debuggerService_print("invalid command. Type 'ls' to list commands: %s\n", cmd);
                 break;
         }
 

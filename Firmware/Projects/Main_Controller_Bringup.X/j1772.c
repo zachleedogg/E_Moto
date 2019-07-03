@@ -10,7 +10,16 @@
 /******************************************************************************
  * Constants
  *******************************************************************************/
+#define DEBUG 0
+#if DEBUG
+#include <stdio.h>
+#include "bolt_uart.h"
 
+static uint8_t debugEnable = 1;
+#define j1772Service_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
+#else
+#define j1772Service_print(...)
+#endif
 /******************************************************************************
  * Macros
  *******************************************************************************/
@@ -19,11 +28,11 @@
 #define PROXIMITY_DISCONNECTED_RANGE_UPPER 2600
 #define PROXIMITY_DISCONNECTED_RANGE_LOWER 2400
 
-#define PROXIMITY_CONNECTED_RANGE_UPPER 1750
-#define PROXIMITY_CONNECTED_RANGE_LOWER 1950
+#define PROXIMITY_CONNECTED_RANGE_UPPER 1300
+#define PROXIMITY_CONNECTED_RANGE_LOWER 1100
 
-#define PROXIMITY_REQUEST_DISCONNECT_RANGE_UPPER 1100
-#define PROXIMITY_REQUEST_DISCONNECT_RANGE_LOWER 1300
+#define PROXIMITY_REQUEST_DISCONNECT_RANGE_UPPER 1950
+#define PROXIMITY_REQUEST_DISCONNECT_RANGE_LOWER 1750
 
 #define PROXIMITY_AVERAGE_WINDOW_SIZE 8
 
@@ -85,8 +94,10 @@ void j1772Control_Run_100ms(void) {
 
     /*Take moving average of Proximity value*/
     uint16_t currentProxAve = takeAverage(proximityAverage, GET_VOLTAGE_PROXIMITY());
-    uint16_t currentPilotAve = takeAverage(pilotAverage, GET_VOLTAGE_PILOT());
-
+    //uint16_t currentPilotAve = takeAverage(pilotAverage, GET_VOLTAGE_PILOT());
+    uint16_t currentPilotAve = GET_VOLTAGE_PILOT();
+    j1772Service_print("PILOT Voltage: %d\nPROX Voltage: %d\n\n",currentPilotAve,currentProxAve);
+    
 
     /*Determine the state of the Proximity Detector*/
     if (currentProxAve >= PROXIMITY_DISCONNECTED_RANGE_LOWER &&
@@ -103,14 +114,19 @@ void j1772Control_Run_100ms(void) {
     /*Run the proximity detection state machine*/
     switch (proximity) {
         case DISCONNECTED:
+            j1772Service_print("Disconnected\n")
+            SET_PILOT_EN(LOW);
             /*Do something*/
             break;
 
         case CONNECTED:
-
+            SET_PILOT_EN(HIGH);
+            j1772Service_print("Connected\n")
             break;
 
         case REQUEST_DISCONNECT:
+            SET_PILOT_EN(LOW);
+            j1772Service_print("Request Disconnect\n")
             /*Send some kind of CAN message to charge to say stop charging*/
             break;
         case SNA_PROX:

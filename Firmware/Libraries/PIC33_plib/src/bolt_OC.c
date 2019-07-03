@@ -8,7 +8,6 @@
 #include "bolt_OC.h" // include processor files - each processor file is guarded.  
 
 #define NUMBER_OC_MODULES 4
-#define OC_PWM_MASTER_PERIOD 2000
 
 #define AVAILABLE 0
 #define UNAVAILABLE 1
@@ -18,7 +17,11 @@ typedef struct _OCmodule {
     uint8_t ppsMap;
     uint8_t Pin;
     uint8_t status;
+    uint8_t duty;
+    uint16_t freq;
 } OCmodule;
+
+static uint16_t OCMasterPeriod = 2000;
 
 static OCmodule modules[NUMBER_OC_MODULES];
 
@@ -37,7 +40,7 @@ uint8_t ppsMapArr[NUMBER_OC_MODULES] = {OC1_PPS_MAP, OC2_PPS_MAP, OC3_PPS_MAP, O
  */
 uint8_t pwmOCinit(oc_pin_number pin) {
 
-    OCmodule currentModule = {0, 0, 0}; /*variable to hold module to assign*/
+    OCmodule currentModule = {}; /*variable to hold module to assign*/
     uint8_t i = 0;
 
     /*check the pin for available modules*/
@@ -47,6 +50,8 @@ uint8_t pwmOCinit(oc_pin_number pin) {
             modules[i].moduleNumber = i;
             modules[i].Pin = pin;
             modules[i].ppsMap = ppsMapArr[i];
+            modules[i].duty = 0;
+            modules[i].freq = OCMasterPeriod;
             currentModule = modules[i];
             break;
         }
@@ -128,7 +133,7 @@ uint8_t pwmOCinit(oc_pin_number pin) {
             _RP57R = currentModule.ppsMap;
             break;
 #endif
-            #ifdef _RP100R
+#ifdef _RP100R
         case PWM_PIN_RP100:
             _RP100R = currentModule.ppsMap;
             break;
@@ -152,7 +157,7 @@ uint8_t pwmOCinit(oc_pin_number pin) {
             OC1CON1bits.OCTSEL = 0x07; /* selects the periph clock as the input to the OC module */
             OC1CON1bits.OCM = 0b110; /* This selects and starts the PWM mode */
             OC1R = 0; /*duty cycle*/
-            OC1RS = OC_PWM_MASTER_PERIOD; /*period*/
+            OC1RS = OCMasterPeriod; /*period*/
             OC1CON2bits.SYNCSEL = 0x1F; /*sync source is itslef*/
             break;
         case 1:
@@ -161,7 +166,7 @@ uint8_t pwmOCinit(oc_pin_number pin) {
             OC2CON1bits.OCTSEL = 0x07; /* selects the periph clock as the input to the OC module */
             OC2CON1bits.OCM = 0b110; /* This selects and starts the PWM mode */
             OC2R = 0; /*duty cycle*/
-            OC2RS = OC_PWM_MASTER_PERIOD; /*period*/
+            OC2RS = OCMasterPeriod; /*period*/
             OC2CON2bits.SYNCSEL = 0x1F; /*sync source is itslef*/
             break;
         case 2:
@@ -170,7 +175,7 @@ uint8_t pwmOCinit(oc_pin_number pin) {
             OC3CON1bits.OCTSEL = 0x07; /* selects the periph clock as the input to the OC module */
             OC3CON1bits.OCM = 0b110; /* This selects and starts the PWM mode */
             OC3R = 0; /*duty cycle*/
-            OC3RS = OC_PWM_MASTER_PERIOD; /*period*/
+            OC3RS = OCMasterPeriod; /*period*/
             OC3CON2bits.SYNCSEL = 0x1F; /*sync source is itslef*/
             break;
         case 3:
@@ -179,7 +184,7 @@ uint8_t pwmOCinit(oc_pin_number pin) {
             OC4CON1bits.OCTSEL = 0x07; /* selects the periph clock as the input to the OC module */
             OC4CON1bits.OCM = 0b110; /* This selects and starts the PWM mode */
             OC4R = 0; /*duty cycle*/
-            OC4RS = OC_PWM_MASTER_PERIOD; /*period*/
+            OC4RS = OCMasterPeriod; /*period*/
             OC4CON2bits.SYNCSEL = 0x1F; /*sync source is itslef*/
             break;
     }
@@ -187,33 +192,73 @@ uint8_t pwmOCinit(oc_pin_number pin) {
 }
 
 uint8_t pwmOCwriteDuty(oc_pin_number pin, uint16_t dutyCycle) {
+    if (dutyCycle > 100) {
+        dutyCycle = 100; /*invalid dutycycle*/
+    }
+    
     uint8_t i = 0;
     uint8_t currentModule = 0;
     for (i = 0; i < NUMBER_OC_MODULES; i++) {
         if (modules[i].Pin == pin) {
             currentModule = modules[i].moduleNumber;
+            modules[i].duty = dutyCycle;
             break;
         }
     }
     if (i == NUMBER_OC_MODULES) {
         return 0; /*invalid pin*/
     }
-    if (dutyCycle > 100) {
-        dutyCycle = 100; /*invalid dutycycle*/
+
+
+    switch (currentModule) {
+        case 0:
+            OC1R = (((uint32_t) modules[0].duty)*((uint32_t) modules[0].freq)) / 100; /*duty cycle*/
+            break;
+        case 1:
+            OC2R = (((uint32_t) modules[1].duty)*((uint32_t) modules[1].freq)) / 100; /*duty cycle*/
+            break;
+        case 2:
+            OC3R = (((uint32_t) modules[2].duty)*((uint32_t) modules[2].freq)) / 100; /*duty cycle*/
+            break;
+        case 3:
+            OC4R = (((uint32_t) modules[3].duty)*((uint32_t) modules[3].freq)) / 100; /*duty cycle*/
+            break;
+        default:
+            return 0; /*invalid pin*/
+    }
+    return 1;
+}
+
+uint8_t pwmOCwriteFreq(oc_pin_number pin, uint16_t frequency) {
+    uint8_t i = 0;
+    uint8_t currentModule = 0;
+    for (i = 0; i < NUMBER_OC_MODULES; i++) {
+        if (modules[i].Pin == pin) {
+            currentModule = modules[i].moduleNumber;
+            modules[i].freq = frequency;
+            break;
+        }
+    }
+    if (i == NUMBER_OC_MODULES) {
+        return 0; /*invalid pin*/
     }
 
     switch (currentModule) {
         case 0:
-            OC1R = (((uint32_t) dutyCycle)*((uint32_t) OC_PWM_MASTER_PERIOD)) / 100; /*duty cycle*/
+            OC1RS = modules[0].freq; /*duty cycle*/
+            OC1R = (((uint32_t) modules[0].duty)*((uint32_t) modules[0].freq)) / 100; /*duty cycle*/
             break;
         case 1:
-            OC2R = (((uint32_t) dutyCycle)*((uint32_t) OC_PWM_MASTER_PERIOD)) / 100; /*duty cycle*/
+            OC2RS = modules[1].freq; /*duty cycle*/
+            OC2R = (((uint32_t) modules[1].duty)*((uint32_t) modules[1].freq)) / 100; /*duty cycle*/
             break;
         case 2:
-            OC3R = (((uint32_t) dutyCycle)*((uint32_t) OC_PWM_MASTER_PERIOD)) / 100; /*duty cycle*/
+            OC3RS = modules[2].freq; /*duty cycle*/
+            OC3R = (((uint32_t) modules[2].duty)*((uint32_t) modules[2].freq)) / 100; /*duty cycle*/
             break;
         case 3:
-            OC4R = (((uint32_t) dutyCycle)*((uint32_t) OC_PWM_MASTER_PERIOD)) / 100; /*duty cycle*/
+            OC4RS = modules[3].freq; /*duty cycle*/
+            OC4R = (((uint32_t) modules[3].duty)*((uint32_t) modules[3].freq)) / 100; /*duty cycle*/
             break;
         default:
             return 0; /*invalid pin*/

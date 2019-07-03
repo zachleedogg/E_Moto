@@ -32,10 +32,10 @@ L BodyController_01-rescue:R-RESCUE-BodyController_01 R73
 U 1 1 5A54F30A
 P 3200 1950
 F 0 "R73" V 3280 1950 50  0000 C CNN
-F 1 "2k74" V 3200 1950 50  0000 C CNN
+F 1 "4k7" V 3200 1950 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 3130 1950 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 3200 1950 50  0001 C CNN
-F 4 "AC0603FR-072K74L" H 3280 2050 50  0001 C CNN "MPN"
+F 3 "fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 3200 1950 50  0001 C CNN
+F 4 "~" H 3280 2050 50  0001 C CNN "MPN"
 F 5 "y" H 3280 2050 50  0001 C CNN "populate"
 	1    3200 1950
 	1    0    0    -1  
@@ -58,10 +58,10 @@ L BodyController_01-rescue:R-RESCUE-BodyController_01 R177
 U 1 1 5A54F390
 P 4500 1850
 F 0 "R177" V 4580 1850 50  0000 C CNN
-F 1 "560k" V 4500 1850 50  0000 C CNN
+F 1 "4k7" V 4500 1850 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 4430 1850 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4500 1850 50  0001 C CNN
-F 4 "AC0603FR-07560KL" H 4580 1950 50  0001 C CNN "MPN"
+F 3 "fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4500 1850 50  0001 C CNN
+F 4 "~" H 4580 1950 50  0001 C CNN "MPN"
 F 5 "y" H 4580 1950 50  0001 C CNN "populate"
 	1    4500 1850
 	1    0    0    -1  
@@ -71,10 +71,10 @@ L BodyController_01-rescue:R-RESCUE-BodyController_01 R178
 U 1 1 5A54F3DC
 P 4500 2250
 F 0 "R178" V 4580 2250 50  0000 C CNN
-F 1 "100k" V 4500 2250 50  0000 C CNN
+F 1 "1k3" V 4500 2250 50  0000 C CNN
 F 2 "Resistors_SMD:R_0603" V 4430 2250 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4500 2250 50  0001 C CNN
-F 4 "AC0603FR-07100KL" H 4580 2350 50  0001 C CNN "MPN"
+F 3 "" H 4500 2250 50  0001 C CNN
+F 4 "~" H 4580 2350 50  0001 C CNN "MPN"
 F 5 "y" H 4580 2350 50  0001 C CNN "populate"
 	1    4500 2250
 	1    0    0    -1  
@@ -162,19 +162,6 @@ F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_5
 F 4 "AC0603FR-07330RL" H 4580 4150 50  0001 C CNN "MPN"
 F 5 "y" H 4580 4150 50  0001 C CNN "populate"
 	1    4500 4050
-	1    0    0    -1  
-$EndComp
-$Comp
-L BodyController_01-rescue:R-RESCUE-BodyController_01 R180
-U 1 1 5A54FFF2
-P 4500 4550
-F 0 "R180" V 4580 4550 50  0000 C CNN
-F 1 "330R" V 4500 4550 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" V 4430 4550 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4500 4550 50  0001 C CNN
-F 4 "AC0603FR-07330RL" H 4580 4650 50  0001 C CNN "MPN"
-F 5 "y" H 4580 4650 50  0001 C CNN "populate"
-	1    4500 4550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -374,4 +361,17 @@ Wire Wire Line
 	2050 1600 2500 1600
 Wire Wire Line
 	3650 4300 4500 4300
+$Comp
+L BodyController_01-rescue:R-RESCUE-BodyController_01 R180
+U 1 1 5D1A16D4
+P 4500 4550
+F 0 "R180" V 4580 4550 50  0000 C CNN
+F 1 "330R" V 4500 4550 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" V 4430 4550 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4500 4550 50  0001 C CNN
+F 4 "AC0603FR-07330RL" H 4580 4650 50  0001 C CNN "MPN"
+F 5 "y" H 4580 4650 50  0001 C CNN "populate"
+	1    4500 4550
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

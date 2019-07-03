@@ -13,11 +13,12 @@
 /******************************************************************************
  * Macros
  *******************************************************************************/
-#define MAX_ADC_BITS 1023
+#define ADC_BIT_DEPTH 1023
+#define ADC_REF_VOLTAGE 3.3
 
 #define VBAT_VOLTAGE_CONVERSION 8.234
-#define PILOT_VOLTAGE_CONVERSION 6.6
-#define PROXIMITY_VOLTAGE_CONVERSION 2.0
+#define PILOT_VOLTAGE_CONVERSION 4.6
+#define PROXIMITY_VOLTAGE_CONVERSION 1
 /******************************************************************************
  * Configuration
  *******************************************************************************/
@@ -101,7 +102,7 @@ void IO_Efuse_Run_10ms(void) {
         }
 
         HIGHBEAM_current = GET_CURRENT_HIGHBEAM();
-        if (HIGHBEAM_current >= MAX_ADC_BITS) {
+        if (HIGHBEAM_current >= ADC_BIT_DEPTH) {
             HIGHBEAM_fault = 1;
             SET_HEADLIGHT_HI_EN(LOW);
         }
@@ -138,7 +139,7 @@ void IO_Efuse_Run_10ms(void) {
         }
 
         LOWBEAM_current = GET_CURRENT_LOWBEAM();
-        if (LOWBEAM_current >= MAX_ADC_BITS) {
+        if (LOWBEAM_current >= ADC_BIT_DEPTH) {
             LOWBEAM_fault = 1;
             SET_HEADLIGHT_LO_EN(LOW);
         }
@@ -622,19 +623,19 @@ uint16_t GET_CURRENT_IC_CONTROLLER() {
 }
 
 uint16_t GET_VOLTAGE_PILOT(void) {
-    return (uint16_t)((((float)ADC_GetValue(PILOT_MONITOR_AI))*3300.0*PILOT_VOLTAGE_CONVERSION)/MAX_ADC_BITS);
+    return (uint16_t)((((float)ADC_GetValue(PILOT_MONITOR_AI))*(ADC_REF_VOLTAGE*PILOT_VOLTAGE_CONVERSION*1000.0)/ADC_BIT_DEPTH));
 }
 
 uint16_t GET_VOLTAGE_PROXIMITY(void) {
-    return (uint16_t)((((float)ADC_GetValue(PROXIMITY_MONITOR_AI))*3300.0*PROXIMITY_VOLTAGE_CONVERSION)/MAX_ADC_BITS);
+    return (uint16_t)((((float)ADC_GetValue(PROXIMITY_MONITOR_AI))*(ADC_REF_VOLTAGE*PROXIMITY_VOLTAGE_CONVERSION*1000.0)/ADC_BIT_DEPTH));
 }
 
 uint16_t GET_VOLTAGE_VBAT(void) {
-    return (uint16_t)((((float)ADC_GetValue(V12_MONITOR_AI))*3300.0*VBAT_VOLTAGE_CONVERSION)/MAX_ADC_BITS);
+    return (uint16_t)((((float)ADC_GetValue(V12_MONITOR_AI))*(ADC_REF_VOLTAGE*VBAT_VOLTAGE_CONVERSION*1000.0)/ADC_BIT_DEPTH));
 }
 
 uint16_t GET_VOLTAGE_VBAT_SW(void) {
-    return (uint16_t)((((float)ADC_GetValue(P12_MONITOR_AI))*3300.0*VBAT_VOLTAGE_CONVERSION)/MAX_ADC_BITS);
+    return (uint16_t)((((float)ADC_GetValue(P12_MONITOR_AI))*(ADC_REF_VOLTAGE*VBAT_VOLTAGE_CONVERSION*1000.0)/ADC_BIT_DEPTH));
 }
 
 

@@ -1,5 +1,4 @@
-#define DEBUG 1
-#define DEBUG_PRINT(x) Serial.print(x)
+
 
 /*PINS*/
 #define TIMER_ADJUST A5
@@ -18,8 +17,8 @@
 #define LED_8 18 //A4
 #define NUMBER_LEDS 8
 
-uint8_t ledArray[8][2] = {{LED_1,0},{LED_2,0},{LED_3,0},{LED_4,0},{LED_5,0},{LED_6,0},{LED_7,0},{LED_8,0}};
-
+uint8_t ledArray[8][2] = {{LED_8,0},{LED_7,0},{LED_6,0},{LED_5,0},{LED_4,0},{LED_3,0},{LED_2,0},{LED_1,0}};
+uint8_t weldTimeAdjust = 1;
 
 /*Zero Crossing Variables*/
 uint32_t currentTime = 0;
@@ -31,40 +30,59 @@ uint32_t aveArr[AVERAGE_WINDOW] = {};
 uint32_t avePtr = 0;
 uint32_t sum = 0;
 bool zeroCross = 0;
-uint32_t count = 0;
 
 /*State machine variables*/
 typedef enum {
   STANDBY_1,
   CLEAN,
+  CLEANING,
   STOP_CLEAN,
   FINISH_CLEAN,
   STANDBY_2,
-  WELD
+  WELD,
+  WELDING,
+  STOP_WELD,
 } welderStates_E;
 welderStates_E welderState = STANDBY_1;
-uint32_t weldStartDelay = 0;
+
+/*Timer Variables*/
 uint32_t weldTimer = 0;
-uint32_t weldPeriod = 0;
+bool weldTimerRunning = false;
+bool weldTimerStatus = false;
+
+/*Weld Variables*/
+const uint32_t cleanPeriod = 50;
+uint32_t weldPeriod = 50;
 uint32_t weldOnce = 1;
 
 /*Button debounce variables*/
-#define DEBOUNCE_PERIOD 250
-uint32_t debounceCount = 0;
-bool buttonPressed = false;
-bool readyToWeld = false;
-uint32_t buttonCount = 0;
+typedef struct button{
+  uint8_t pin;
+  uint32_t debouncePeriod;
+  uint32_t debounceCount;
+  bool buttonState;
+  uint32_t buttonCount;
+  bool buttonRead;
+} button;
+
+button weldButton = {WELD_BUTTON,250,0,false,0,false};
+
+button timeButton = {TIMER_ADJUST, 250,0,false,0,false};
+
+bool buzzer = false;
+
 
 unsigned  secondTimer = 0;
 
 void setup() {
   // put your setup code here, to run once:
-#if DEBUG
+
   Serial.begin(115200);
-  DEBUG_PRINT("hello, welcome to the welder\n\n");
-#endif
+  Serial.print("hello, welcome to the welder\n\n");
+
   pinMode(ZERO_CROSS, INPUT_PULLUP);
   pinMode(WELD_BUTTON, INPUT_PULLUP);
+  pinMode(TIMER_ADJUST, INPUT_PULLUP);
   pinMode(STATUS_LED, OUTPUT);
   pinMode(BUZZER, OUTPUT);
   pinMode(WELDER_GATE, OUTPUT);
@@ -77,86 +95,127 @@ void setup() {
     delay(100);//DO NOT REMOVE this delay prevents weld at startup.
     digitalWrite(ledArray[i][0], LOW);
   }
+  setLED(1);
   secondTimer = millis();
 }
 
 void loop() {
+  //run button checkers
+  runButton(&weldButton);
+  runButton(&timeButton);
+
   //Detect Zero Crossings
-  if (digitalRead(ZERO_CROSS)) {
-    if (zeroCross == false) {//debounce the zero detector
-      zeroCross = true;
-      count++; //count cycles
-      movingAverage(); //find average cycle length
-    }
-  } else {
-    zeroCross = false;
-  }
+  runZeroCrossing();
+
+  //Run Timer
+  runTimer();
 
   //Run the Welder State Machine
   welderRun();
 
+  //Run Buzzer
+  runBuzzer();
+  
   /*Print zeroCross statement every Second*/
-  int temp = millis();
-  if (temp - secondTimer >= 1000) {
-    secondTimer = temp;
-    float Hz = (float)count / 2.0;
-    count = 0;
-    DEBUG_PRINT("Mains frquency is ");
-    DEBUG_PRINT(Hz);
-    DEBUG_PRINT("Hz\nAverage zero crossing period is ");
-    DEBUG_PRINT(averageTime);
-    DEBUG_PRINT(" microSeconds.\n");
-    DEBUG_PRINT("Weld time selected: ");
-    DEBUG_PRINT(weldPeriod);
-    DEBUG_PRINT("\n\n");
-  }
+  runDebugPrint();
 }
 
+/********************************************************************
+ * ***************************WELDER STATE MACHINE*******************
+ * *****************************************************************/
 void welderRun() {
   switch (welderState) {
     case STANDBY_1:
-      getButtonPress();
-      getWeldPeriod();
-      if (zeroCross && readyToWeld) {
-        DEBUG_PRINT("Preparing to weld.......");
-        readyToWeld = false;
-        weldStartDelay = micros() + averageTime / 2; //delay timer to start on a Peak
+      if (getZeroCross() && getButtonState(&weldButton)) {
+        Serial.print("Preparing to clean.......");
+        startTimer(averageTime/2); //delay timer to start on a Peak
+        setBuzzer(true); //quick buzz to acknowledge start
         welderState = CLEAN;
+      }
+      if(getButtonState(&timeButton)){
+        weldTimeAdjust += 1;
+        if(weldTimeAdjust >=9){
+          weldTimeAdjust = 1;
+        }
+        setLED(weldTimeAdjust);
+        
       }
       break;
     case CLEAN:
-      if (micros() >= weldStartDelay) { //When peak is detected, start the timer
-        DEBUG_PRINT("WELDING.....");
+      if (getTimeUp()) { //Peak is 1/4 cycle after zero crossing
+        setBuzzer(false);
         digitalWrite(STATUS_LED, HIGH);
-        digitalWrite(BUZZER, HIGH);
         digitalWrite(WELDER_GATE, HIGH);
-        weldTimer = micros() + weldPeriod * 1000;
+        Serial.print("CLEANING.....");
+        startTimer(cleanPeriod * 1000); //convert to uS
+        welderState = CLEANING;
+      }
+      break;
+    case CLEANING:
+      if(getTimeUp()){
         welderState = STOP_CLEAN;
       }
       break;
     case STOP_CLEAN:
-      if (micros() >= weldTimer) { //When weld Time has expired, prepare to turn off on a ZeroCrossing
-        if (zeroCross) {
-          weldTimer = micros() + averageTime - 200;
-          welderState = FINISH_CLEAN;
-        }
-      }
-      break;
-    case FINISH_CLEAN:
-      if (micros() >= weldTimer) {
-        DEBUG_PRINT("Done.\n\n");
+      if (getZeroCross()) {
+        Serial.print("Done.\n\n");
         digitalWrite(STATUS_LED, LOW);
-        digitalWrite(BUZZER, LOW);
         digitalWrite(WELDER_GATE, LOW);
-        welderState = STANDBY_1;
+        welderState = STANDBY_2;
+        startTimer(1000000); //convert to uS
       }
       break;
+
+
     case STANDBY_2:
+      if (getTimeUp()) {
+        Serial.print("Preparing to weld.......");
+        setBuzzer(true); //quick buzz to acknowledge start
+        delay(500);
+        setBuzzer(false);
+        startTimer(averageTime/2); //delay timer to start on a Peak
+        welderState = WELD;
+      }
       break;
     case WELD:
+      if (getTimeUp()) { //Peak is 1/4 cycle after zero crossing
+        digitalWrite(STATUS_LED, HIGH);
+        digitalWrite(WELDER_GATE, HIGH);
+        Serial.print("WELDING.....");
+        startTimer(weldPeriod*weldTimeAdjust*1000); //convert to uS
+        welderState = WELDING;
+      }
+      break;
+    case WELDING:
+      if(getTimeUp()){
+        welderState = STOP_WELD;
+      }
+      break;
+    case STOP_WELD:
+      if (getZeroCross()) {
+        Serial.print("Done.\n\n");
+        digitalWrite(STATUS_LED, LOW);
+        digitalWrite(WELDER_GATE, LOW);
+        welderState = STANDBY_1;
+        startTimer(1000000); //convert to uS
+      }
       break;
     default:
       break;
+  }
+}
+
+/********************************************************************
+ * ***************************ZERO CROSSING STUFF********************
+ * *****************************************************************/
+void runZeroCrossing(void){
+  if (digitalRead(ZERO_CROSS)) {
+    if (zeroCross == false) {//only detect on pin state transition
+      zeroCross = true;
+      movingAverage(); //find average cycle length
+    }
+  } else {
+    zeroCross = false;
   }
 }
 
@@ -173,33 +232,128 @@ void movingAverage(void) {
   averageTime = sum / AVERAGE_WINDOW;
 }
 
-void getWeldPeriod(void) {
-  uint32_t potVal = analogRead(TIMER_ADJUST);
-  weldPeriod = map(potVal, 0, 1023, 50, 1000);
+bool getZeroCross(void){
+  return zeroCross;
 }
 
-void getButtonPress(void) {
-  uint32_t value = digitalRead(WELD_BUTTON);
-  if (buttonPressed == true) {
-    if (value == 1) { //if button is being pressed
-      if (++debounceCount == DEBOUNCE_PERIOD) {
-        buttonPressed = false;
-        debounceCount = 0;
+
+/********************************************************************
+ * ***************************BUTTON STUFF***************************
+ * *****************************************************************/
+void runButton(button * thisButton) {
+  uint8_t value = digitalRead(thisButton->pin);
+  if (thisButton->buttonState == true) { //if button state is "pressed"
+    if (value == 1) { // and the button is being released
+      if (thisButton->debounceCount++ >= thisButton->debouncePeriod) { //debounce and change state back to "not pressed"
+        thisButton->buttonState = false;
+        thisButton->buttonRead = false;
+        thisButton->debounceCount = 0;
       }
     } else {
-      debounceCount = 0;
+      thisButton->debounceCount = 0;
     }
-  } else {
-    if (value == 0) {
-      if (++debounceCount == DEBOUNCE_PERIOD) {
-        buttonPressed = true;
-        buttonCount++;
-        readyToWeld = true;
-        debounceCount = 0;
+  } else { //if state is "not pressed"
+    if (value == 0) { // and the button is being pressed
+      if (thisButton->debounceCount++ >= thisButton->debouncePeriod) { //debounce and change state to "pressed"
+        thisButton->buttonState = true;
+        thisButton->buttonRead = false;
+        thisButton->debounceCount = 0;
       }
     } else {
-      debounceCount = 0;
+      thisButton->debounceCount = 0;
     }
   }
 }
 
+bool getButtonState(button * thisButton){
+  bool returnVal = false;
+  if(thisButton->buttonRead == false && thisButton->buttonState == true){
+    thisButton->buttonRead = true;
+    returnVal = true;
+  }
+  return returnVal;
+}
+
+
+/********************************************************************
+ * ***************************DEBUG STUFF****************************
+ * *****************************************************************/
+void runDebugPrint(void){
+    int temp = millis();
+  if (temp - secondTimer >= 1000) {
+    secondTimer = temp;
+    float Hz = 1.0/(float)(2*averageTime/1000000.0);
+    Serial.print("Mains frquency is ");
+    Serial.print(Hz);
+    Serial.print("Hz\nAverage zero crossing period is ");
+    Serial.print(averageTime);
+    Serial.print(" microSeconds.\n");
+    Serial.print("Weld time selected: ");
+    Serial.print(weldPeriod*weldTimeAdjust);
+    Serial.print("\nWeld Button Status: ");
+    Serial.print(weldButton.buttonState);
+    Serial.print("\nTime Button Status: ");
+    Serial.print(timeButton.buttonState);
+    
+    Serial.print("\n\n");
+  }
+}
+
+/********************************************************************
+ * ***************************TIMER STUFF****************************
+ * *****************************************************************/
+
+void startTimer(uint32_t duration){
+  weldTimerStatus = false;
+  weldTimerRunning = true;
+  weldTimer = micros() + duration; 
+
+}
+
+void runTimer(void){
+  if(weldTimerRunning){
+    if(micros() >= weldTimer){
+      weldTimerStatus = true;
+      weldTimerRunning = false;
+    }
+  }
+}
+
+bool getTimeUp(void){
+  bool returnVal = false;
+  if(weldTimerStatus == true){
+    weldTimerStatus = false;
+    returnVal = true;
+  }
+  return returnVal;
+}
+
+
+/********************************************************************
+ * ***************************BUZZER STUFF***************************
+ * *****************************************************************/
+ void runBuzzer(void){
+  if(buzzer == true){
+    digitalWrite(BUZZER, !digitalRead(BUZZER));
+  } else {
+    digitalWrite(BUZZER,0);
+  }
+ }
+
+ void setBuzzer(bool enable){
+  buzzer = enable;
+ }
+
+ /********************************************************************
+ * ***************************LED STUFF*******************************
+ * *****************************************************************/
+void setLED(uint8_t thisLED){
+  int i = 0;
+  for(i=0;i<8;i++){
+    if(i == thisLED-1){
+      digitalWrite(ledArray[i][0],ledArray[i][0]);
+    } else{
+      digitalWrite(ledArray[i][0],ledArray[i][1]);
+    }
+  }
+}

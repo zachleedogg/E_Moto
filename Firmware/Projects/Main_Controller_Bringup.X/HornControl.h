@@ -10,7 +10,7 @@
 
 void HornControl_Init(void);
 
-void HornControl_Run_100ms(void);
+void HornControl_Run_10ms(void);
 
 void HornControl_Halt(void);
 

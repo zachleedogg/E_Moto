@@ -19,7 +19,7 @@ static uint32_t doorAutoCloseTimer = 0;
 static uint16_t doorSwitchHoldTimer = DOOW_SW_HOLD_DELAY;
 
 /*Password Stuff*/
-static const uint8_t passcode[] = {'1', '9', '8', '7'};
+static const uint8_t passcode[] = {'8', '9', '8', '9'};
 #define PASSCODE_SIZE sizeof(passcode)
 static uint8_t code[PASSCODE_SIZE + 1] = {};
 static uint8_t codeIndex = 0;
@@ -152,7 +152,7 @@ uint8_t garageDoorSM(uint8_t buttonPressed) {
           break;
         case TRANSITIONING:
         default:
-        //do nothing
+          //do nothing
           break;
       }
       break;

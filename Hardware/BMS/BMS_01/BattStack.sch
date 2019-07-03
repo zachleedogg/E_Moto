@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 17 52
+Sheet 18 58
 Title ""
 Date ""
 Rev ""
@@ -15,11 +15,13 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L device:R R9
+L device:R R?
 U 1 1 5ABBE353
 P 5200 1200
-AR Path="/5AC37515/5ABBE353" Ref="R9"  Part="1" 
-AR Path="/5AC3A314/5ABBE353" Ref="R69"  Part="1" 
+AR Path="/5AC37515/5ABBE353" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5ABBE353" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ABBE353" Ref="R69"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ABBE353" Ref="R9"  Part="1" 
 F 0 "R69" V 5100 1200 50  0000 C CNN
 F 1 "20R0" V 5200 1200 50  0000 C CNN
 F 2 "Capacitors_SMD:C_0805" V 5130 1200 50  0001 C CNN
@@ -32,11 +34,13 @@ Wire Wire Line
 Wire Wire Line
 	5850 1850 5850 1200
 $Comp
-L ICs:LTC6802-1 U5
+L ICs:LTC6802-1 U?
 U 1 1 5ABCFFA4
 P 7350 3100
-AR Path="/5AC37515/5ABCFFA4" Ref="U5"  Part="1" 
-AR Path="/5AC3A314/5ABCFFA4" Ref="U6"  Part="1" 
+AR Path="/5AC37515/5ABCFFA4" Ref="U?"  Part="1" 
+AR Path="/5AC3A314/5ABCFFA4" Ref="U?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ABCFFA4" Ref="U6"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ABCFFA4" Ref="U5"  Part="1" 
 F 0 "U6" H 7350 4615 50  0000 C CNN
 F 1 "LTC6802-1" H 7350 4524 50  0000 C CNN
 F 2 "Housings_SSOP:TSSOP-44_4.4x11.2mm_Pitch0.5mm" H 6850 1850 50  0001 C CNN
@@ -47,11 +51,13 @@ $EndComp
 Wire Wire Line
 	5350 1200 5500 1200
 $Comp
-L device:C C26
+L device:C C?
 U 1 1 5ABD0A5C
 P 5500 1350
-AR Path="/5AC37515/5ABD0A5C" Ref="C26"  Part="1" 
-AR Path="/5AC3A314/5ABD0A5C" Ref="C43"  Part="1" 
+AR Path="/5AC37515/5ABD0A5C" Ref="C?"  Part="1" 
+AR Path="/5AC3A314/5ABD0A5C" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ABD0A5C" Ref="C43"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ABD0A5C" Ref="C26"  Part="1" 
 F 0 "C43" H 5385 1304 50  0000 R CNN
 F 1 "100nF" H 5385 1395 50  0000 R CNN
 F 2 "Capacitors_SMD:C_0805" H 5538 1200 50  0001 C CNN
@@ -61,7 +67,7 @@ F 3 "" H 5500 1350 50  0001 C CNN
 $EndComp
 Connection ~ 5500 1200
 Wire Wire Line
-	5500 1200 5850 1200
+	5500 1200 5700 1200
 $Sheet
 S 1400 5350 1300 450 
 U 5ABD29C9
@@ -430,11 +436,13 @@ Wire Wire Line
 Text Label 1150 7450 2    50   ~ 0
 G
 $Comp
-L device:C C28
+L device:C C?
 U 1 1 5AC90C8F
 P 8850 3300
-AR Path="/5AC37515/5AC90C8F" Ref="C28"  Part="1" 
-AR Path="/5AC3A314/5AC90C8F" Ref="C45"  Part="1" 
+AR Path="/5AC37515/5AC90C8F" Ref="C?"  Part="1" 
+AR Path="/5AC3A314/5AC90C8F" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AC90C8F" Ref="C45"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AC90C8F" Ref="C28"  Part="1" 
 F 0 "C45" H 8965 3346 50  0000 L CNN
 F 1 "C" H 8965 3255 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 8888 3150 50  0001 C CNN
@@ -443,11 +451,13 @@ F 3 "" H 8850 3300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C29
+L device:C C?
 U 1 1 5AC90CE9
 P 9900 3300
-AR Path="/5AC37515/5AC90CE9" Ref="C29"  Part="1" 
-AR Path="/5AC3A314/5AC90CE9" Ref="C46"  Part="1" 
+AR Path="/5AC37515/5AC90CE9" Ref="C?"  Part="1" 
+AR Path="/5AC3A314/5AC90CE9" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AC90CE9" Ref="C46"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AC90CE9" Ref="C29"  Part="1" 
 F 0 "C46" H 10015 3346 50  0000 L CNN
 F 1 "C" H 10015 3255 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 9938 3150 50  0001 C CNN
@@ -483,11 +493,13 @@ Connection ~ 8600 3050
 Wire Wire Line
 	8600 3050 8050 3050
 $Comp
-L device:D_TVS D5
+L device:D_TVS D?
 U 1 1 5ACC514E
 P 4600 1450
-AR Path="/5AC37515/5ACC514E" Ref="D5"  Part="1" 
-AR Path="/5AC3A314/5ACC514E" Ref="D44"  Part="1" 
+AR Path="/5AC37515/5ACC514E" Ref="D?"  Part="1" 
+AR Path="/5AC3A314/5ACC514E" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ACC514E" Ref="D44"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ACC514E" Ref="D5"  Part="1" 
 F 0 "D44" V 4554 1529 50  0000 L CNN
 F 1 "D_TVS" V 4645 1529 50  0000 L CNN
 F 2 "" H 4600 1450 50  0001 C CNN
@@ -496,14 +508,16 @@ F 3 "https://en.wikipedia.org/wiki/Transient-voltage-suppression_diode" H 4600 1
 	0    1    1    0   
 $EndComp
 $Comp
-L device:Ferrite_Bead L4
+L device:Ferrite_Bead L?
 U 1 1 5ACC521D
 P 4900 1200
-AR Path="/5AC37515/5ACC521D" Ref="L4"  Part="1" 
-AR Path="/5AC3A314/5ACC521D" Ref="L5"  Part="1" 
+AR Path="/5AC37515/5ACC521D" Ref="L?"  Part="1" 
+AR Path="/5AC3A314/5ACC521D" Ref="L?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ACC521D" Ref="L5"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ACC521D" Ref="L4"  Part="1" 
 F 0 "L5" V 4626 1200 50  0000 C CNN
 F 1 "Ferrite_Bead" V 4717 1200 50  0000 C CNN
-F 2 "Inductors_SMD:L_0603_HandSoldering" V 4830 1200 50  0001 C CNN
+F 2 "Inductors_SMD:L_0603" V 4830 1200 50  0001 C CNN
 F 3 "" H 4900 1200 50  0001 C CNN
 	1    4900 1200
 	0    1    1    0   
@@ -520,14 +534,16 @@ Wire Wire Line
 Text Label 4600 1750 2    50   ~ 0
 G
 $Comp
-L device:R R12
+L device:R R?
 U 1 1 5ACFBF01
 P 8400 2750
-AR Path="/5AC37515/5ACFBF01" Ref="R12"  Part="1" 
-AR Path="/5AC3A314/5ACFBF01" Ref="R72"  Part="1" 
+AR Path="/5AC37515/5ACFBF01" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5ACFBF01" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ACFBF01" Ref="R72"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ACFBF01" Ref="R12"  Part="1" 
 F 0 "R72" V 8350 2900 50  0000 C CNN
 F 1 "1M" V 8400 2750 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 8330 2750 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 8330 2750 50  0001 C CNN
 F 3 "" H 8400 2750 50  0001 C CNN
 	1    8400 2750
 	0    1    1    0   
@@ -540,11 +556,13 @@ Wire Wire Line
 	8600 2750 8600 2850
 Connection ~ 8600 2850
 $Comp
-L device:Q_PMOS_GSD Q3
+L device:Q_PMOS_GSD Q?
 U 1 1 5AD0D285
 P 9850 1400
-AR Path="/5AC37515/5AD0D285" Ref="Q3"  Part="1" 
-AR Path="/5AC3A314/5AD0D285" Ref="Q18"  Part="1" 
+AR Path="/5AC37515/5AD0D285" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/5AD0D285" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD0D285" Ref="Q18"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD0D285" Ref="Q3"  Part="1" 
 F 0 "Q18" H 10056 1354 50  0000 L CNN
 F 1 "Q_PMOS_GSD" H 10056 1445 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23" H 10050 1500 50  0001 C CNN
@@ -553,27 +571,31 @@ F 3 "https://www.diodes.com/assets/Datasheets/DMP10H4D2S.pdf" H 9850 1400 50  00
 	1    0    0    1   
 $EndComp
 $Comp
-L device:R R18
+L device:R R?
 U 1 1 5AD0D3C2
 P 9950 1750
-AR Path="/5AC37515/5AD0D3C2" Ref="R18"  Part="1" 
-AR Path="/5AC3A314/5AD0D3C2" Ref="R78"  Part="1" 
+AR Path="/5AC37515/5AD0D3C2" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD0D3C2" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD0D3C2" Ref="R78"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD0D3C2" Ref="R18"  Part="1" 
 F 0 "R78" H 10020 1796 50  0000 L CNN
 F 1 "R" V 9950 1700 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 9880 1750 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 9880 1750 50  0001 C CNN
 F 3 "" H 9950 1750 50  0001 C CNN
 	1    9950 1750
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R19
+L device:R R?
 U 1 1 5AD0D42A
 P 9950 2200
-AR Path="/5AC37515/5AD0D42A" Ref="R19"  Part="1" 
-AR Path="/5AC3A314/5AD0D42A" Ref="R79"  Part="1" 
+AR Path="/5AC37515/5AD0D42A" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD0D42A" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD0D42A" Ref="R79"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD0D42A" Ref="R19"  Part="1" 
 F 0 "R79" H 10020 2246 50  0000 L CNN
 F 1 "R" V 9950 2150 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 9880 2200 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 9880 2200 50  0001 C CNN
 F 3 "" H 9950 2200 50  0001 C CNN
 	1    9950 2200
 	1    0    0    -1  
@@ -587,11 +609,13 @@ G
 Text Label 9500 950  0    50   ~ 0
 Stack_top
 $Comp
-L device:Q_NMOS_GSD Q2
+L device:Q_NMOS_GSD Q?
 U 1 1 5AD261AB
 P 9150 2250
-AR Path="/5AC37515/5AD261AB" Ref="Q2"  Part="1" 
-AR Path="/5AC3A314/5AD261AB" Ref="Q17"  Part="1" 
+AR Path="/5AC37515/5AD261AB" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/5AD261AB" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD261AB" Ref="Q17"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD261AB" Ref="Q2"  Part="1" 
 F 0 "Q17" H 9355 2296 50  0000 L CNN
 F 1 "Q_NMOS_GSD" H 9355 2205 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23" H 9350 2350 50  0001 C CNN
@@ -600,27 +624,31 @@ F 3 "https://www.diodes.com/assets/Datasheets/DMN10H700S.pdf" H 9150 2250 50  00
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R15
+L device:R R?
 U 1 1 5AD2E685
 P 9250 1150
-AR Path="/5AC37515/5AD2E685" Ref="R15"  Part="1" 
-AR Path="/5AC3A314/5AD2E685" Ref="R75"  Part="1" 
+AR Path="/5AC37515/5AD2E685" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD2E685" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD2E685" Ref="R75"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD2E685" Ref="R15"  Part="1" 
 F 0 "R75" H 9320 1196 50  0000 L CNN
 F 1 "R" V 9250 1100 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 9180 1150 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 9180 1150 50  0001 C CNN
 F 3 "" H 9250 1150 50  0001 C CNN
 	1    9250 1150
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R16
+L device:R R?
 U 1 1 5AD2E6D1
 P 9250 1700
-AR Path="/5AC37515/5AD2E6D1" Ref="R16"  Part="1" 
-AR Path="/5AC3A314/5AD2E6D1" Ref="R76"  Part="1" 
+AR Path="/5AC37515/5AD2E6D1" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD2E6D1" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD2E6D1" Ref="R76"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD2E6D1" Ref="R16"  Part="1" 
 F 0 "R76" H 9320 1746 50  0000 L CNN
 F 1 "R" V 9250 1650 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 9180 1700 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 9180 1700 50  0001 C CNN
 F 3 "" H 9250 1700 50  0001 C CNN
 	1    9250 1700
 	1    0    0    -1  
@@ -645,24 +673,28 @@ Wire Wire Line
 Text Label 9250 2550 2    50   ~ 0
 G
 $Comp
-L device:R R13
+L device:R R?
 U 1 1 5AD58F31
 P 8800 2250
-AR Path="/5AC37515/5AD58F31" Ref="R13"  Part="1" 
-AR Path="/5AC3A314/5AD58F31" Ref="R73"  Part="1" 
+AR Path="/5AC37515/5AD58F31" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD58F31" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD58F31" Ref="R73"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD58F31" Ref="R13"  Part="1" 
 F 0 "R73" V 8700 2250 50  0000 C CNN
 F 1 "R" V 8800 2250 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 8730 2250 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 8730 2250 50  0001 C CNN
 F 3 "" H 8800 2250 50  0001 C CNN
 	1    8800 2250
 	0    1    1    0   
 $EndComp
 $Comp
-L device:D_Zener D7
+L device:D_Zener D?
 U 1 1 5AD59493
 P 8800 1150
-AR Path="/5AC37515/5AD59493" Ref="D7"  Part="1" 
-AR Path="/5AC3A314/5AD59493" Ref="D46"  Part="1" 
+AR Path="/5AC37515/5AD59493" Ref="D?"  Part="1" 
+AR Path="/5AC3A314/5AD59493" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD59493" Ref="D46"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD59493" Ref="D7"  Part="1" 
 F 0 "D46" V 8754 1229 50  0000 L CNN
 F 1 "15V" V 8845 1229 50  0000 L CNN
 F 2 "Diodes_SMD:D_SOD-123" H 8800 1150 50  0001 C CNN
@@ -695,11 +727,13 @@ Wire Wire Line
 Wire Wire Line
 	8600 2250 8650 2250
 $Comp
-L device:C C30
+L device:C C?
 U 1 1 5AD8FFDF
 P 10950 2150
-AR Path="/5AC37515/5AD8FFDF" Ref="C30"  Part="1" 
-AR Path="/5AC3A314/5AD8FFDF" Ref="C47"  Part="1" 
+AR Path="/5AC37515/5AD8FFDF" Ref="C?"  Part="1" 
+AR Path="/5AC3A314/5AD8FFDF" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD8FFDF" Ref="C47"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD8FFDF" Ref="C30"  Part="1" 
 F 0 "C47" H 11065 2196 50  0000 L CNN
 F 1 "C" H 11065 2105 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 10988 2000 50  0001 C CNN
@@ -708,14 +742,16 @@ F 3 "" H 10950 2150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R20
+L device:R R?
 U 1 1 5AD900BF
 P 10600 1950
-AR Path="/5AC37515/5AD900BF" Ref="R20"  Part="1" 
-AR Path="/5AC3A314/5AD900BF" Ref="R80"  Part="1" 
+AR Path="/5AC37515/5AD900BF" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD900BF" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD900BF" Ref="R80"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD900BF" Ref="R20"  Part="1" 
 F 0 "R80" V 10500 1850 50  0000 L CNN
 F 1 "10k" V 10600 1850 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 10530 1950 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 10530 1950 50  0001 C CNN
 F 3 "" H 10600 1950 50  0001 C CNN
 	1    10600 1950
 	0    1    1    0   
@@ -738,11 +774,13 @@ Wire Wire Line
 	8350 3350 8050 3350
 Connection ~ 10950 1950
 $Comp
-L device:C C27
+L device:C C?
 U 1 1 5ADB8309
 P 8650 4050
-AR Path="/5AC37515/5ADB8309" Ref="C27"  Part="1" 
-AR Path="/5AC3A314/5ADB8309" Ref="C44"  Part="1" 
+AR Path="/5AC37515/5ADB8309" Ref="C?"  Part="1" 
+AR Path="/5AC3A314/5ADB8309" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ADB8309" Ref="C44"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ADB8309" Ref="C27"  Part="1" 
 F 0 "C44" H 8765 4096 50  0000 L CNN
 F 1 "C" H 8765 4005 50  0000 L CNN
 F 2 "Capacitors_SMD:C_0603" H 8688 3900 50  0001 C CNN
@@ -751,40 +789,46 @@ F 3 "" H 8650 4050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R14
+L device:R R?
 U 1 1 5ADB8391
 P 9000 3850
-AR Path="/5AC37515/5ADB8391" Ref="R14"  Part="1" 
-AR Path="/5AC3A314/5ADB8391" Ref="R74"  Part="1" 
+AR Path="/5AC37515/5ADB8391" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5ADB8391" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ADB8391" Ref="R74"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ADB8391" Ref="R14"  Part="1" 
 F 0 "R74" H 9070 3896 50  0000 L CNN
 F 1 "R" V 9000 3800 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 8930 3850 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 8930 3850 50  0001 C CNN
 F 3 "" H 9000 3850 50  0001 C CNN
 	1    9000 3850
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R17
+L device:R R?
 U 1 1 5ADB84AB
 P 9250 3650
-AR Path="/5AC37515/5ADB84AB" Ref="R17"  Part="1" 
-AR Path="/5AC3A314/5ADB84AB" Ref="R77"  Part="1" 
+AR Path="/5AC37515/5ADB84AB" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5ADB84AB" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ADB84AB" Ref="R77"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ADB84AB" Ref="R17"  Part="1" 
 F 0 "R77" H 9320 3696 50  0000 L CNN
 F 1 "R" V 9250 3600 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 9180 3650 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 9180 3650 50  0001 C CNN
 F 3 "" H 9250 3650 50  0001 C CNN
 	1    9250 3650
 	-1   0    0    1   
 $EndComp
 $Comp
-L device:Thermistor_NTC TH1
+L device:Thermistor_NTC TH?
 U 1 1 5ADB85C7
 P 9250 4200
-AR Path="/5AC37515/5ADB85C7" Ref="TH1"  Part="1" 
-AR Path="/5AC3A314/5ADB85C7" Ref="TH2"  Part="1" 
+AR Path="/5AC37515/5ADB85C7" Ref="TH?"  Part="1" 
+AR Path="/5AC3A314/5ADB85C7" Ref="TH?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ADB85C7" Ref="TH2"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ADB85C7" Ref="TH1"  Part="1" 
 F 0 "TH2" H 9348 4246 50  0000 L CNN
 F 1 "Thermistor_NTC" H 9348 4155 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" H 9250 4250 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" H 9250 4250 50  0001 C CNN
 F 3 "" H 9250 4250 50  0001 C CNN
 	1    9250 4200
 	1    0    0    -1  
@@ -1036,11 +1080,13 @@ Wire Wire Line
 Wire Wire Line
 	2800 7550 2800 7450
 $Comp
-L device:Q_NMOS_GSD Q1
+L device:Q_NMOS_GSD Q?
 U 1 1 5B5AC907
 P 7650 5650
-AR Path="/5AC37515/5B5AC907" Ref="Q1"  Part="1" 
-AR Path="/5AC3A314/5B5AC907" Ref="Q16"  Part="1" 
+AR Path="/5AC37515/5B5AC907" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/5B5AC907" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5B5AC907" Ref="Q16"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5B5AC907" Ref="Q1"  Part="1" 
 F 0 "Q16" H 7855 5696 50  0000 L CNN
 F 1 "Q_NMOS_GSD" H 7855 5605 50  0000 L CNN
 F 2 "TO_SOT_Packages_SMD:SOT-23" H 7850 5750 50  0001 C CNN
@@ -1049,14 +1095,16 @@ F 3 "https://www.diodes.com/assets/Datasheets/DMN10H700S.pdf" H 7650 5650 50  00
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R11
+L device:R R?
 U 1 1 5B5AC90E
 P 7750 4950
-AR Path="/5AC37515/5B5AC90E" Ref="R11"  Part="1" 
-AR Path="/5AC3A314/5B5AC90E" Ref="R71"  Part="1" 
+AR Path="/5AC37515/5B5AC90E" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5B5AC90E" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5B5AC90E" Ref="R71"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5B5AC90E" Ref="R11"  Part="1" 
 F 0 "R71" H 7820 4996 50  0000 L CNN
 F 1 "R" V 7750 4900 50  0000 L CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7680 4950 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 7680 4950 50  0001 C CNN
 F 3 "" H 7750 4950 50  0001 C CNN
 	1    7750 4950
 	1    0    0    -1  
@@ -1066,14 +1114,16 @@ Wire Wire Line
 Text Label 7750 5950 2    50   ~ 0
 G
 $Comp
-L device:R R10
+L device:R R?
 U 1 1 5B5AC918
 P 7300 5650
-AR Path="/5AC37515/5B5AC918" Ref="R10"  Part="1" 
-AR Path="/5AC3A314/5B5AC918" Ref="R70"  Part="1" 
+AR Path="/5AC37515/5B5AC918" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5B5AC918" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5B5AC918" Ref="R70"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5B5AC918" Ref="R10"  Part="1" 
 F 0 "R70" V 7200 5650 50  0000 C CNN
 F 1 "R" V 7300 5650 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603_HandSoldering" V 7230 5650 50  0001 C CNN
+F 2 "Footprints:R_0603_Standard" V 7230 5650 50  0001 C CNN
 F 3 "" H 7300 5650 50  0001 C CNN
 	1    7300 5650
 	0    1    1    0   
@@ -1085,11 +1135,13 @@ GPO_LED
 Wire Wire Line
 	7150 5650 6700 5650
 $Comp
-L device:LED D6
+L device:LED D?
 U 1 1 5B5CDBE2
 P 7750 5250
-AR Path="/5AC37515/5B5CDBE2" Ref="D6"  Part="1" 
-AR Path="/5AC3A314/5B5CDBE2" Ref="D45"  Part="1" 
+AR Path="/5AC37515/5B5CDBE2" Ref="D?"  Part="1" 
+AR Path="/5AC3A314/5B5CDBE2" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5B5CDBE2" Ref="D45"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5B5CDBE2" Ref="D6"  Part="1" 
 F 0 "D45" V 7788 5133 50  0000 R CNN
 F 1 "LED" V 7697 5133 50  0000 R CNN
 F 2 "Diodes_SMD:D_0603" H 7750 5250 50  0001 C CNN
@@ -1105,4 +1157,24 @@ Wire Wire Line
 	9950 1950 10450 1950
 Wire Wire Line
 	9950 2400 10950 2400
+Text Label 9550 3050 0    50   ~ 0
+Vreg
+Text Label 9050 3150 0    50   ~ 0
+Vref
+$Comp
+L power:PWR_FLAG #FLG0105
+U 1 1 5B74EC71
+P 5700 1200
+AR Path="/5B5CD4CD/5B5CD5EA/5B74EC71" Ref="#FLG0105"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5B74EC71" Ref="#FLG0107"  Part="1" 
+F 0 "#FLG0107" H 5700 1275 50  0001 C CNN
+F 1 "PWR_FLAG" H 5700 1374 50  0000 C CNN
+F 2 "" H 5700 1200 50  0001 C CNN
+F 3 "~" H 5700 1200 50  0001 C CNN
+	1    5700 1200
+	1    0    0    -1  
+$EndComp
+Connection ~ 5700 1200
+Wire Wire Line
+	5700 1200 5850 1200
 $EndSCHEMATC

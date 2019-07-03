@@ -26,6 +26,7 @@
 #include "LightsControl.h"
 #include "IgnitionControl.h"
 #include "HornControl.h"
+#include "HeatedGrips.h"
 #include "j1772.h"
 #include "IO.h"
 #include "MCU_dbc.h"
@@ -78,6 +79,7 @@ void Tsk_init(void) {
     PinSetup_Init(); //Pin setup should be first
     IO_Efuse_Init(); //Init the Efuse Service
     LightsControl_Init(); //Init the Lights Control Service
+    HeatedGripControl_Init(); //Init the heated grips
     CAN_DBC_init(); //Init the CAN System Service
     IgnitionControl_Init();
     HornControl_Init();
@@ -101,6 +103,7 @@ void Tsk(void) {
 void Tsk_10ms(void) {
     IO_Efuse_Run_10ms(); //Run the Efuse System
     IgnitionControl_Run_10ms();
+    HornControl_Run_10ms(); //Run Horn. Horn is disabled if button is held for too long.
 }
 
 /**
@@ -109,7 +112,7 @@ void Tsk_10ms(void) {
 void Tsk_100ms(void) {
     SerialConsole_Run_100ms(); //Debug Serial Terminal Emulation
     LightsControl_Run_100ms(); //Run the System Lights layer (Responds to button presses, controls, etc...)
-    HornControl_Run_100ms(); //Run Horn. Horn is disabled if button is held for too long.
+    HeatedGripControl_Run_100ms(); //Run Heated Grips. Currently activated by spare sw 2
     j1772Control_Run_100ms(); //Run j1772 Proximity and Pilot Signal Control.
     
     CAN_mcu_status_send(); //Send CAN message, this should be wrapped up in "CAN_RUN_100ms()" or similar
@@ -139,7 +142,9 @@ void Tsk_Sleep(void) {
     
     IO_Efuse_Halt();
     LightsControl_Halt();
+    HeatedGripControl_Halt();
     HornControl_Halt();
+    j1772Control_Halt();
     
     SET_DEBUG_LED_EN(LOW); //same
     setWakeUp(PIN, IGNITION_SWITCH_IN);
