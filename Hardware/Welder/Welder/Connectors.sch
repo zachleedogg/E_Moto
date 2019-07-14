@@ -151,6 +151,7 @@ F 0 "J1" H 1770 2775 50  0000 C CNN
 F 1 "Conn_01x08" H 1770 2866 50  0000 C CNN
 F 2 "Connectors_Samtec:SL-108-X-XX_1x08" H 1850 3400 50  0001 C CNN
 F 3 "~" H 1850 3400 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    1850 3400
 	-1   0    0    1   
 $EndComp
@@ -540,8 +541,9 @@ U 1 1 5D28CEA3
 P 5250 5350
 F 0 "MK1" H 5350 5401 50  0000 L CNN
 F 1 "Mounting_Hole_PAD" H 5350 5310 50  0000 L CNN
-F 2 "" H 5250 5350 50  0001 C CNN
-F 3 "" H 5250 5350 50  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_4.3mm_M4_Pad_Via" H 5250 5350 50  0001 C CNN
+F 3 "~" H 5250 5350 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    5250 5350
 	1    0    0    -1  
 $EndComp
@@ -562,8 +564,9 @@ U 1 1 5D28D4D0
 P 5250 5850
 F 0 "MK2" H 5350 5901 50  0000 L CNN
 F 1 "Mounting_Hole_PAD" H 5350 5810 50  0000 L CNN
-F 2 "" H 5250 5850 50  0001 C CNN
-F 3 "" H 5250 5850 50  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_4.3mm_M4_Pad_Via" H 5250 5850 50  0001 C CNN
+F 3 "~" H 5250 5850 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    5250 5850
 	1    0    0    -1  
 $EndComp
@@ -584,8 +587,9 @@ U 1 1 5D28D6EC
 P 5250 6350
 F 0 "MK3" H 5350 6401 50  0000 L CNN
 F 1 "Mounting_Hole_PAD" H 5350 6310 50  0000 L CNN
-F 2 "" H 5250 6350 50  0001 C CNN
-F 3 "" H 5250 6350 50  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_4.3mm_M4_Pad_Via" H 5250 6350 50  0001 C CNN
+F 3 "~" H 5250 6350 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    5250 6350
 	1    0    0    -1  
 $EndComp
@@ -606,8 +610,9 @@ U 1 1 5D28D8F5
 P 5250 6850
 F 0 "MK4" H 5350 6901 50  0000 L CNN
 F 1 "Mounting_Hole_PAD" H 5350 6810 50  0000 L CNN
-F 2 "" H 5250 6850 50  0001 C CNN
-F 3 "" H 5250 6850 50  0001 C CNN
+F 2 "Mounting_Holes:MountingHole_4.3mm_M4_Pad_Via" H 5250 6850 50  0001 C CNN
+F 3 "~" H 5250 6850 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "PartNumber"
 	1    5250 6850
 	1    0    0    -1  
 $EndComp
