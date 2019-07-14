@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:Welder-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -483,7 +484,7 @@ Wire Wire Line
 	6550 4450 6800 4450
 Connection ~ 6800 4450
 Wire Wire Line
-	6800 4450 6800 4600
+	6800 4450 6800 4550
 $Comp
 L device:D_Schottky_x2_Serial_AKC D?
 U 1 1 5D46F604
@@ -522,4 +523,40 @@ Wire Notes Line
 	2550 3750 2550 2550
 Text Notes 2550 2500 0    98   ~ 0
 HIGH VOLTAGE
+$Comp
+L device:C C?
+U 1 1 5D1DA4CE
+P 7150 4750
+AR Path="/5D1DA4CE" Ref="C?"  Part="1" 
+AR Path="/5D4675EF/5D1DA4CE" Ref="C?"  Part="1" 
+AR Path="/5D46DEF4/5D1DA4CE" Ref="C13"  Part="1" 
+F 0 "C13" H 7265 4796 50  0000 L CNN
+F 1 "10nF" H 7265 4705 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0603" H 7188 4600 50  0001 C CNN
+F 3 "~" H 7150 4750 50  0001 C CNN
+F 4 "~" H 4550 2350 50  0001 C CNN "PartNumber"
+	1    7150 4750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7150 4600 7150 4550
+Wire Wire Line
+	7150 4550 6800 4550
+$Comp
+L power:GND #PWR?
+U 1 1 5D1DA4D7
+P 7150 4900
+AR Path="/5D1DA4D7" Ref="#PWR?"  Part="1" 
+AR Path="/5D4675EF/5D1DA4D7" Ref="#PWR?"  Part="1" 
+AR Path="/5D46DEF4/5D1DA4D7" Ref="#PWR069"  Part="1" 
+F 0 "#PWR069" H 7150 4650 50  0001 C CNN
+F 1 "GND" V 7155 4772 50  0000 R CNN
+F 2 "" H 7150 4900 50  0001 C CNN
+F 3 "" H 7150 4900 50  0001 C CNN
+	1    7150 4900
+	1    0    0    -1  
+$EndComp
+Connection ~ 6800 4550
+Wire Wire Line
+	6800 4550 6800 4600
 $EndSCHEMATC
