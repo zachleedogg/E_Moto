@@ -7,10 +7,10 @@ extern "C" {
 const byte ROWS = 4; //four rows
 const byte COLS = 3; //three columns
 char keys[ROWS][COLS] = {
-    {'1','2','3'},
-    {'4','5','6'},
-    {'7','8','9'},
-    {'*','0','#'}
+    {'#','0','*'},
+    {'9','8','7'},
+    {'6','5','4'},
+    {'3','2','1'}
 };
 
 byte rowPins[ROWS] = {12,11,10,9}; //connect to the row pinouts of the keypad
@@ -76,12 +76,7 @@ static inline void FRAMEWORK_TASKRUNNER_1ms(void) {
     Serial.print(garageDoorStateString[state]);
   }
 
-  if (Serial.available()) {
-    unsigned char temp = Serial.read();
-    char tempstr[10];
-    sprintf(tempstr, "rcvd: %x\n", temp);
-    Serial.write(tempstr);
-  }
+
 
 }
 
@@ -92,13 +87,19 @@ static inline void FRAMEWORK_TASKRUNNER_10ms(void) {
 
 static inline void FRAMEWORK_TASKRUNNER_100ms(void) {
 
+  //Echo serial input for some reason...
+  if (Serial.available()) {
+    unsigned char temp = Serial.read();
+    char tempstr[10];
+    sprintf(tempstr, "rcvd: %x\n", temp);
+    Serial.write(tempstr);
+  }
+  
 }
 
 static inline void FRAMEWORK_TASKRUNNER_1000ms(void) {
-  //char mystr[15];
-  //sprintf(mystr, "Hello: %d\n", timer.secs);
-  //Serial.write(mystr);
 
+  //Blick LED once per second
   digitalWrite(DEBUG_LED, digitalRead(DEBUG_LED) ? 0 : 1);
 
 }
@@ -138,7 +139,3 @@ void FRAMEWORK_TASKRUNNER_run(void) {
     }
   }
 }
-
-
-
-

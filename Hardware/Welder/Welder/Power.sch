@@ -22,7 +22,7 @@ AR Path="/5D445499" Ref="TR?"  Part="1"
 AR Path="/5D43ED05/5D445499" Ref="TR1"  Part="1" 
 F 0 "TR1" H 4050 3832 50  0000 C CNN
 F 1 "TRANSF6" H 4050 3741 50  0000 C CNN
-F 2 "Transformers_THT:Transformer_Breve_TEZ-22x24" H 4050 3350 50  0001 C CNN
+F 2 "Footprints:FS20-120-C2" H 4050 3350 50  0001 C CNN
 F 3 "http://catalog.triadmagnetics.com/Asset/FS20-120-C2.pdf" H 4050 3350 50  0001 C CNN
 F 4 "FS20-120-C2" H 2400 2150 50  0001 C CNN "PartNumber"
 	1    4050 3350

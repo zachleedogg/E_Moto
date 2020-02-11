@@ -9,7 +9,6 @@
 #define REED_1 5
 
 
-
 //Timers
 #define MINS_TO_MILLIS(x) (x*60000)
 #define DOOR_AUTOCLOSE_DELAY MINS_TO_MILLIS(4) //4 minutes
@@ -19,8 +18,13 @@ static uint32_t doorAutoCloseTimer = 0;
 static uint16_t doorSwitchHoldTimer = DOOW_SW_HOLD_DELAY;
 
 /*Password Stuff*/
-static const uint8_t passcode[] = {'8', '9', '8', '9'};
-#define PASSCODE_SIZE sizeof(passcode)
+#define PASSCODE_SIZE 4
+static const uint8_t passcode[][PASSCODE_SIZE] = {
+  {'7','7','2','8'}, //Amazon
+  {'0','5','0','4'}, // US
+  {'2','1','9','9'} //Air BNB
+};
+#define NUMBER_OF_CODES sizeof(passcode) / sizeof(passcode[0])
 static uint8_t code[PASSCODE_SIZE + 1] = {};
 static uint8_t codeIndex = 0;
 typedef enum {
@@ -225,18 +229,30 @@ static passwordOutcomes_E passwordHandler(uint8_t value) {
       break;
 
     case '#':
+      returnVal = FAILED;
       codeIndex = 0;
       uint16_t i = 0;
-      for (i = 0; i < PASSCODE_SIZE; i++) {
-        if (code[i] != passcode[i]) {
-          returnVal = FAILED;
+      uint16_t each_code = 0;
+      //Loop through each of the stored code
+      for (each_code=0; each_code < NUMBER_OF_CODES; each_code++){
+        //Compare the input code to the stored code
+        for (i = 0; i < PASSCODE_SIZE; i++) {
+          if (code[i] != passcode[each_code][i]) {
+            break;
+          }
+          if (i == PASSCODE_SIZE-1) {
+            returnVal = PASSED;
+          }
+        }
+        if(returnVal == PASSED){
           break;
         }
+      }
+
+      for (i = 0; i < PASSCODE_SIZE; i++) {
         code[i] = 0;
       }
-      if (i == PASSCODE_SIZE) {
-        returnVal = PASSED;
-      }
+
       break;
 
     default:
