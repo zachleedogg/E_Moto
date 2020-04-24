@@ -1,0 +1,12 @@
+Hi power Battery Cable
+https://www.amphenol-industrial.com/images/catalogs/UPC%20Brochure.pdf
+https://www.amphenol-industrial.com/upc
+
+Connector Plug: UPC P 012A LS1 https://www.newark.com/amphenol-industrial/upc-p-012a-ls1/power-entry-plug-250a-1kv-cable/dp/91Y7111?CMP=AFC-OP
+Connector Receptacle: UPC R 012A LS1 https://www.newark.com/amphenol-industrial/upc-r-012a-ls1/power-entry-rcpt-250a-1kv-panel/dp/91Y7113
+
+Low power Cabbles
+https://www.amphenol-industrial.com/images/datasheets/IDS-94-ePower-Lite.pdf
+
+Connector Plug: ELP2A02 https://www.mouser.com/ProductDetail/Amphenol-Industrial/ELP2A02?qs=sGAEpiMZZMs7eK6h2EBtKrBVNgqPYMNyV9AWs%2Fr4fIY%3D
+Connector Receptable: ELR2A02 https://www.mouser.com/ProductDetail/Amphenol-Industrial/ELR2A02?qs=sGAEpiMZZMs7eK6h2EBtKrBVNgqPYMNyovzPH%2F6Gk%2Fc%3D

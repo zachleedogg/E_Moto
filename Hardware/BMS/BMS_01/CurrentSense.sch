@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 58 58
+Sheet 58 59
 Title ""
 Date ""
 Rev ""
@@ -18,26 +18,26 @@ Text Notes 3250 1000 0    197  ~ 0
 Transducer Input
 Text Notes 3350 3650 0    197  ~ 0
 Transducer Reference
-Text GLabel 5550 4150 2    59   Output ~ 0
+Text GLabel 5650 4500 2    59   Output ~ 0
 Transducer_Ref
 $Comp
-L device:R R194
+L Device:R R194
 U 1 1 5B7963F1
 P 3750 4300
 F 0 "R194" V 3850 4200 50  0000 L CNN
 F 1 "R" V 3750 4300 50  0000 L CNN
-F 2 "Footprints:R_0603_Standard" V 3680 4300 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3680 4300 50  0001 C CNN
 F 3 "~" H 3750 4300 50  0001 C CNN
 	1    3750 4300
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R195
+L Device:R R195
 U 1 1 5B7964B5
 P 3750 4800
 F 0 "R195" V 3850 4700 50  0000 L CNN
 F 1 "R" V 3750 4750 50  0000 L CNN
-F 2 "Footprints:R_0603_Standard" V 3680 4800 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3680 4800 50  0001 C CNN
 F 3 "~" H 3750 4800 50  0001 C CNN
 	1    3750 4800
 	1    0    0    -1  
@@ -54,12 +54,12 @@ F 3 "" H 3750 4950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C98
+L Device:C C98
 U 1 1 5B7966BE
 P 3400 4350
 F 0 "C98" H 3515 4396 50  0000 L CNN
 F 1 "C" H 3515 4305 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 3438 4200 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3438 4200 50  0001 C CNN
 F 3 "~" H 3400 4350 50  0001 C CNN
 	1    3400 4350
 	1    0    0    -1  
@@ -76,12 +76,12 @@ F 3 "" H 3400 4500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:Ferrite_Bead L10
+L Device:Ferrite_Bead L10
 U 1 1 5B79900C
 P 3650 6600
 F 0 "L10" V 3376 6600 50  0000 C CNN
 F 1 "Ferrite_Bead" V 3467 6600 50  0000 C CNN
-F 2 "Inductors_SMD:L_0603" V 3580 6600 50  0001 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 3580 6600 50  0001 C CNN
 F 3 "~" H 3650 6600 50  0001 C CNN
 	1    3650 6600
 	0    1    1    0   
@@ -91,12 +91,12 @@ Transducer_Pwr
 Wire Wire Line
 	4300 6600 4200 6600
 $Comp
-L device:C C100
+L Device:C C100
 U 1 1 5B7996D1
 P 4200 6900
 F 0 "C100" H 4315 6946 50  0000 L CNN
 F 1 "C" H 4315 6855 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 4238 6750 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 4238 6750 50  0001 C CNN
 F 3 "~" H 4200 6900 50  0001 C CNN
 	1    4200 6900
 	1    0    0    -1  
@@ -120,23 +120,23 @@ Wire Wire Line
 Text GLabel 5150 1350 2    59   Input ~ 0
 Transducer_Input
 $Comp
-L device:R R197
+L Device:R R197
 U 1 1 5B79A2B6
 P 4800 1750
 F 0 "R197" V 4700 1750 50  0000 C CNN
 F 1 "R" V 4800 1750 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 4730 1750 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4730 1750 50  0001 C CNN
 F 3 "~" H 4800 1750 50  0001 C CNN
 	1    4800 1750
 	-1   0    0    1   
 $EndComp
 $Comp
-L device:R R198
+L Device:R R198
 U 1 1 5B79A370
 P 4800 2150
 F 0 "R198" V 4700 2150 50  0000 C CNN
 F 1 "R" V 4800 2150 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 4730 2150 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4730 2150 50  0001 C CNN
 F 3 "~" H 4800 2150 50  0001 C CNN
 	1    4800 2150
 	-1   0    0    1   
@@ -160,12 +160,12 @@ F 3 "" H 4800 2300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C99
+L Device:C C99
 U 1 1 5B79B2CC
 P 4000 2150
 F 0 "C99" H 4115 2196 50  0000 L CNN
 F 1 "C" H 4115 2105 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 4038 2000 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 4038 2000 50  0001 C CNN
 F 3 "~" H 4000 2150 50  0001 C CNN
 	1    4000 2150
 	1    0    0    -1  
@@ -186,64 +186,51 @@ F 3 "" H 4000 2300 50  0001 C CNN
 	1    4000 2300
 	1    0    0    -1  
 $EndComp
-$Comp
-L ICs:TPS7B4250QDBVRQ1 U10
-U 1 1 5B79C552
-P 4600 4300
-F 0 "U10" H 4850 3800 59  0000 C CNN
-F 1 "TPS7B4250QDBVRQ1" H 4600 4631 59  0000 C CNN
-F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 4600 4300 59  0001 C CNN
-F 3 "" H 4600 4300 59  0001 C CNN
-	1    4600 4300
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3750 4450 3750 4550
 Wire Wire Line
 	3400 4150 3400 4200
-Wire Wire Line
-	4100 4300 4100 4550
 Wire Wire Line
 	4100 4550 3750 4550
 Connection ~ 3750 4550
 Wire Wire Line
 	3750 4550 3750 4650
 Wire Wire Line
-	5550 4150 5300 4150
+	5650 4500 5400 4500
 $Comp
-L device:C C101
+L Device:C C101
 U 1 1 5B79E839
-P 5300 4400
-F 0 "C101" H 5415 4446 50  0000 L CNN
-F 1 "C" H 5415 4355 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 5338 4250 50  0001 C CNN
-F 3 "~" H 5300 4400 50  0001 C CNN
-	1    5300 4400
+P 5400 4750
+F 0 "C101" H 5515 4796 50  0000 L CNN
+F 1 "C" H 5515 4705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5438 4600 50  0001 C CNN
+F 3 "~" H 5400 4750 50  0001 C CNN
+	1    5400 4750
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0153
 U 1 1 5B79E840
-P 5300 4550
-F 0 "#PWR0153" H 5300 4300 50  0001 C CNN
-F 1 "GND" H 5305 4377 50  0000 C CNN
-F 2 "" H 5300 4550 50  0001 C CNN
-F 3 "" H 5300 4550 50  0001 C CNN
-	1    5300 4550
+P 5400 4900
+F 0 "#PWR0153" H 5400 4650 50  0001 C CNN
+F 1 "GND" H 5405 4727 50  0000 C CNN
+F 2 "" H 5400 4900 50  0001 C CNN
+F 3 "" H 5400 4900 50  0001 C CNN
+	1    5400 4900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5300 4150 5300 4250
-Connection ~ 5300 4150
+	5400 4500 5400 4600
+Connection ~ 5400 4500
 Wire Wire Line
-	5300 4150 5100 4150
+	5400 4500 5200 4500
 $Comp
-L device:R R196
+L Device:R R196
 U 1 1 5B79FA14
 P 4450 1950
 F 0 "R196" V 4350 1950 50  0000 C CNN
 F 1 "10k0" V 4450 1950 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 4380 1950 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4380 1950 50  0001 C CNN
 F 3 "~" H 4450 1950 50  0001 C CNN
 	1    4450 1950
 	0    1    1    0   
@@ -253,26 +240,21 @@ Wire Wire Line
 $Comp
 L power:GND #PWR0150
 U 1 1 5B7A0E85
-P 4550 4950
-F 0 "#PWR0150" H 4550 4700 50  0001 C CNN
-F 1 "GND" H 4555 4777 50  0000 C CNN
-F 2 "" H 4550 4950 50  0001 C CNN
-F 3 "" H 4550 4950 50  0001 C CNN
-	1    4550 4950
+P 4700 5000
+F 0 "#PWR0150" H 4700 4750 50  0001 C CNN
+F 1 "GND" H 4705 4827 50  0000 C CNN
+F 2 "" H 4700 5000 50  0001 C CNN
+F 3 "" H 4700 5000 50  0001 C CNN
+	1    4700 5000
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4650 4900 4550 4900
-Wire Wire Line
-	4550 4900 4550 4950
-Connection ~ 4550 4900
 $Comp
-L device:Ferrite_Bead L9
+L Device:Ferrite_Bead L9
 U 1 1 5B7A1A3A
 P 2900 4150
 F 0 "L9" V 2626 4150 50  0000 C CNN
 F 1 "Ferrite_Bead" V 2717 4150 50  0000 C CNN
-F 2 "Inductors_SMD:L_0603" V 2830 4150 50  0001 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 2830 4150 50  0001 C CNN
 F 3 "~" H 2900 4150 50  0001 C CNN
 	1    2900 4150
 	0    1    1    0   
@@ -280,12 +262,12 @@ $EndComp
 Text GLabel 3650 1950 0    59   Output ~ 0
 Transducer_Input_AI
 $Comp
-L device:C C102
+L Device:C C102
 U 1 1 5B7A4459
 P 4100 4800
 F 0 "C102" H 4215 4846 50  0000 L CNN
 F 1 "C" H 4215 4755 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 4138 4650 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 4138 4650 50  0001 C CNN
 F 3 "~" H 4100 4800 50  0001 C CNN
 	1    4100 4800
 	1    0    0    -1  
@@ -308,8 +290,6 @@ Connection ~ 3400 4150
 Wire Wire Line
 	3400 4150 3600 4150
 Connection ~ 3750 4150
-Wire Wire Line
-	3750 4150 4100 4150
 Text Notes 2850 6000 0    197  ~ 0
 Transducer Power
 Wire Wire Line
@@ -362,4 +342,36 @@ Wire Wire Line
 	3600 4150 3750 4150
 Wire Wire Line
 	3050 4150 3400 4150
+$Comp
+L Amplifier_Operational:TLV2371DBV U10
+U 1 1 5E99C338
+P 4800 4500
+F 0 "U10" H 4800 5000 50  0000 L CNN
+F 1 "TLV2371QDBVRQ1" H 4800 5100 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-5" H 4800 4500 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tlv2371-q1.pdf" H 4800 4500 50  0001 C CNN
+	1    4800 4500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 4400 4500 4400
+Wire Wire Line
+	4100 4400 4100 4550
+Wire Wire Line
+	3750 4150 4700 4150
+Wire Wire Line
+	4700 4150 4700 4200
+Wire Wire Line
+	4500 4600 4450 4600
+Wire Wire Line
+	4450 4600 4450 5350
+Wire Wire Line
+	4450 5350 5200 5350
+Wire Wire Line
+	5200 5350 5200 4500
+Wire Wire Line
+	5200 4500 5100 4500
+Connection ~ 5200 4500
+Wire Wire Line
+	4700 4800 4700 5000
 $EndSCHEMATC

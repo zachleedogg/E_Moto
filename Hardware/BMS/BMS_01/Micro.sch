@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 58
+Sheet 3 59
 Title ""
 Date ""
 Rev ""
@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 59954470
 P 1650 6550
 AR Path="/5B2FAFE4/59954470" Ref="C?"  Part="1" 
@@ -24,7 +24,7 @@ AR Path="/5AAB4D1F/59954470" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/59954470" Ref="C8"  Part="1" 
 F 0 "C8" H 1675 6650 50  0000 L CNN
 F 1 "10uF" H 1675 6450 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206" H 1688 6400 50  0001 C CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 1688 6400 50  0001 C CNN
 F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 1650 6550 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "C1206C106M3RACAUTO" H 1675 6750 50  0001 C CNN "MPN"
@@ -34,7 +34,7 @@ F 7 "" H 1675 6750 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:Ferrite_Bead L?
+L Device:Ferrite_Bead L?
 U 1 1 59955DBF
 P 1250 5900
 AR Path="/5B2FAFE4/59955DBF" Ref="L?"  Part="1" 
@@ -43,7 +43,7 @@ AR Path="/5AAB4D1F/59955DBF" Ref="L?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/59955DBF" Ref="L1"  Part="1" 
 F 0 "L1" V 1100 5925 50  0000 C CNN
 F 1 "Ferrite_Bead" V 1400 5900 50  0000 C CNN
-F 2 "Inductors_SMD:L_0603" V 1180 5900 50  0001 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 1180 5900 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/catalog/datasheets/beads_automotive_signal_mmz1608_en.pdf" H 1250 5900 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "MMZ1608B121CTDH5" H 1100 6025 50  0001 C CNN "MPN"
@@ -66,7 +66,7 @@ F 3 "" H 750 6300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 599562CF
 P 5300 6650
 AR Path="/5B2FAFE4/599562CF" Ref="C?"  Part="1" 
@@ -75,7 +75,7 @@ AR Path="/5AAB4D1F/599562CF" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/599562CF" Ref="C10"  Part="1" 
 F 0 "C10" H 5325 6750 50  0000 L CNN
 F 1 "18pF" H 5325 6550 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 5338 6500 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5338 6500 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 5300 6650 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "CGA3E2C0G1H180J080AA" H 5325 6850 50  0001 C CNN "MPN"
@@ -85,7 +85,7 @@ F 7 "" H 5325 6850 50  0001 C CNN "populate"
 	0    -1   1    0   
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 59956321
 P 5300 7150
 AR Path="/5B2FAFE4/59956321" Ref="C?"  Part="1" 
@@ -94,7 +94,7 @@ AR Path="/5AAB4D1F/59956321" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/59956321" Ref="C11"  Part="1" 
 F 0 "C11" H 5325 7250 50  0000 L CNN
 F 1 "18pF" H 5325 7050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 5338 7000 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5338 7000 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 5300 7150 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "CGA3E2C0G1H180J080AA" H 5325 7350 50  0001 C CNN "MPN"
@@ -104,7 +104,7 @@ F 7 "" H 5325 7350 50  0001 C CNN "populate"
 	0    -1   1    0   
 $EndComp
 $Comp
-L device:R R?
+L Device:R R?
 U 1 1 5995635F
 P 4150 6900
 AR Path="/5B2FAFE4/5995635F" Ref="R?"  Part="1" 
@@ -113,7 +113,7 @@ AR Path="/5AAB4D1F/5995635F" Ref="R?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5995635F" Ref="R3"  Part="1" 
 F 0 "R3" V 4230 6900 50  0000 C CNN
 F 1 "1M" V 4150 6900 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 4080 6900 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4080 6900 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4150 6900 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "AC0603FR-071ML" H 4230 7000 50  0001 C CNN "MPN"
@@ -122,7 +122,7 @@ F 6 "" H 4230 7000 50  0001 C CNN "populate"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L device:R R?
+L Device:R R?
 U 1 1 59967AE3
 P 1450 7300
 AR Path="/5B2FAFE4/59967AE3" Ref="R?"  Part="1" 
@@ -131,7 +131,7 @@ AR Path="/5AAB4D1F/59967AE3" Ref="R?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/59967AE3" Ref="R1"  Part="1" 
 F 0 "R1" V 1530 7300 50  0000 C CNN
 F 1 "10k" V 1450 7300 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 1380 7300 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 1380 7300 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 1450 7300 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "AC0603FR-0710KL" H 1530 7400 50  0001 C CNN "MPN"
@@ -204,7 +204,7 @@ F 5 "DSPIC33EP512MU810-E/PF" H 3450 -100 50  0001 C CNN "MPN"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 599FDED2
 P 1750 4850
 AR Path="/5B2FAFE4/599FDED2" Ref="C?"  Part="1" 
@@ -213,7 +213,7 @@ AR Path="/5AAB4D1F/599FDED2" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/599FDED2" Ref="C9"  Part="1" 
 F 0 "C9" H 1775 4950 50  0000 L CNN
 F 1 "100nF" H 1775 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1788 4700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1788 4700 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1750 4850 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "GCM188R71H104KA57D" H 1775 5050 50  0001 C CNN "MPN"
@@ -238,7 +238,7 @@ F 3 "" H 4100 5750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:Crystal Y?
+L Device:Crystal Y?
 U 1 1 59BBA021
 P 4700 6900
 AR Path="/5B2FAFE4/59BBA021" Ref="Y?"  Part="1" 
@@ -247,7 +247,7 @@ AR Path="/5AAB4D1F/59BBA021" Ref="Y?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/59BBA021" Ref="Y1"  Part="1" 
 F 0 "Y1" V 4825 7100 50  0000 L TNN
 F 1 "8MHz" V 4825 7025 50  0000 L BNN
-F 2 "Crystals:Crystal_SMD_5032-2pin_5.0x3.2mm" H 4700 6900 50  0001 C CNN
+F 2 "Crystal:Crystal_SMD_5032-2Pin_5.0x3.2mm" H 4700 6900 50  0001 C CNN
 F 3 "https://media.digikey.com/pdf/Data%20Sheets/NDK%20PDFs/NX5032GA_STD-CSU-1,-2.pdf" H 4700 6900 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "NX5032GA-8.000M-STD-CSU-1" H 4825 7200 50  0001 C CNN "MPN"
@@ -264,16 +264,15 @@ AR Path="/5AAB4D1F/5A45E5E7" Ref="SW?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5A45E5E7" Ref="SW1"  Part="1" 
 F 0 "SW1" H 1000 7300 50  0000 L CNN
 F 1 "PTS645SM43SMTR92 LFS" H 950 7140 50  0001 C CNN
-F 2 "Buttons_Switches_SMD:SW_SPST_EVQP0" H 950 7400 50  0001 C CNN
+F 2 "Button_Switch_SMD:SW_SPST_EVQP0" H 950 7400 50  0001 C CNN
 F 3 "https://www.ckswitches.com/media/1471/pts645.pdf" H 950 7400 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "PTS645SM43SMTR92 LFS" H 1000 7400 50  0001 C CNN "MPN"
-F 6 "" H 1000 7400 50  0001 C CNN "populate"
 	1    950  7200
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R?
+L Device:R R?
 U 1 1 5A870904
 P 1700 7600
 AR Path="/5B2FAFE4/5A870904" Ref="R?"  Part="1" 
@@ -282,7 +281,7 @@ AR Path="/5AAB4D1F/5A870904" Ref="R?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5A870904" Ref="R2"  Part="1" 
 F 0 "R2" V 1780 7600 50  0000 C CNN
 F 1 "10k" V 1700 7600 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 1630 7600 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 1630 7600 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 1700 7600 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "AC0603FR-0710KL" H 1780 7700 50  0001 C CNN "MPN"
@@ -291,7 +290,7 @@ F 6 "" H 1780 7700 50  0001 C CNN "populate"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 5B784523
 P 1550 4850
 AR Path="/5B2FAFE4/5B784523" Ref="C?"  Part="1" 
@@ -300,7 +299,7 @@ AR Path="/5AAB4D1F/5B784523" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5B784523" Ref="C6"  Part="1" 
 F 0 "C6" H 1575 4950 50  0000 L CNN
 F 1 "100nF" H 1575 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1588 4700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1588 4700 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1550 4850 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "GCM188R71H104KA57D" H 1575 5050 50  0001 C CNN "MPN"
@@ -310,7 +309,7 @@ F 7 "" H 1575 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 5B784555
 P 1350 4850
 AR Path="/5B2FAFE4/5B784555" Ref="C?"  Part="1" 
@@ -319,7 +318,7 @@ AR Path="/5AAB4D1F/5B784555" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5B784555" Ref="C5"  Part="1" 
 F 0 "C5" H 1375 4950 50  0000 L CNN
 F 1 "100nF" H 1375 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1388 4700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1388 4700 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1350 4850 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "GCM188R71H104KA57D" H 1375 5050 50  0001 C CNN "MPN"
@@ -329,7 +328,7 @@ F 7 "" H 1375 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 5B78458D
 P 1150 4850
 AR Path="/5B2FAFE4/5B78458D" Ref="C?"  Part="1" 
@@ -338,7 +337,7 @@ AR Path="/5AAB4D1F/5B78458D" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5B78458D" Ref="C4"  Part="1" 
 F 0 "C4" H 1175 4950 50  0000 L CNN
 F 1 "100nF" H 1175 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1188 4700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1188 4700 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1150 4850 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "GCM188R71H104KA57D" H 1175 5050 50  0001 C CNN "MPN"
@@ -348,7 +347,7 @@ F 7 "" H 1175 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 5B7845C7
 P 950 4850
 AR Path="/5B2FAFE4/5B7845C7" Ref="C?"  Part="1" 
@@ -357,7 +356,7 @@ AR Path="/5AAB4D1F/5B7845C7" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5B7845C7" Ref="C3"  Part="1" 
 F 0 "C3" H 975 4950 50  0000 L CNN
 F 1 "100nF" H 975 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 988 4700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 988 4700 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 950 4850 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "GCM188R71H104KA57D" H 975 5050 50  0001 C CNN "MPN"
@@ -367,7 +366,7 @@ F 7 "" H 975 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 5B784601
 P 750 4850
 AR Path="/5B2FAFE4/5B784601" Ref="C?"  Part="1" 
@@ -376,7 +375,7 @@ AR Path="/5AAB4D1F/5B784601" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5B784601" Ref="C1"  Part="1" 
 F 0 "C1" H 775 4950 50  0000 L CNN
 F 1 "100nF" H 775 4750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 788 4700 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 788 4700 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 750 4850 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "GCM188R71H104KA57D" H 775 5050 50  0001 C CNN "MPN"
@@ -386,7 +385,7 @@ F 7 "" H 775 5050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 5B784684
 P 850 6100
 AR Path="/5B2FAFE4/5B784684" Ref="C?"  Part="1" 
@@ -395,7 +394,7 @@ AR Path="/5AAB4D1F/5B784684" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5B784684" Ref="C2"  Part="1" 
 F 0 "C2" H 875 6200 50  0000 L CNN
 F 1 "100nF" H 875 6000 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 888 5950 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 888 5950 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 850 6100 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "GCM188R71H104KA57D" H 875 6300 50  0001 C CNN "MPN"
@@ -405,7 +404,7 @@ F 7 "" H 875 6300 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 5B7846C6
 P 1650 6100
 AR Path="/5B2FAFE4/5B7846C6" Ref="C?"  Part="1" 
@@ -414,7 +413,7 @@ AR Path="/5AAB4D1F/5B7846C6" Ref="C?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD5C1/5B7846C6" Ref="C7"  Part="1" 
 F 0 "C7" H 1675 6200 50  0000 L CNN
 F 1 "100nF" H 1675 6000 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 1688 5950 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1688 5950 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1650 6100 50  0001 C CNN
 F 4 " " H 0   0   50  0001 C CNN "DNP"
 F 5 "GCM188R71H104KA57D" H 1675 6300 50  0001 C CNN "MPN"
@@ -832,14 +831,10 @@ NoConn ~ 9800 3650
 NoConn ~ 9800 3750
 NoConn ~ 9800 1200
 NoConn ~ 9800 1100
-NoConn ~ 9800 1000
-NoConn ~ 9800 900 
 NoConn ~ 9800 800 
 NoConn ~ 5750 1000
 NoConn ~ 5750 1100
 NoConn ~ 5750 1200
-NoConn ~ 5750 1300
-NoConn ~ 5750 1400
 NoConn ~ 5750 1500
 NoConn ~ 5750 1600
 NoConn ~ 5750 1700
@@ -848,7 +843,6 @@ NoConn ~ 5750 4400
 NoConn ~ 5750 4500
 NoConn ~ 5750 4600
 NoConn ~ 5750 4700
-NoConn ~ 5750 4800
 NoConn ~ 5750 5100
 NoConn ~ 5750 5200
 NoConn ~ 5750 5300
@@ -864,4 +858,14 @@ Text GLabel 5750 900  0    59   Input ~ 0
 5V_SW_nFAULT
 NoConn ~ 5750 700 
 NoConn ~ 5750 800 
+Text GLabel 5750 4800 0    50   Output ~ 0
+PRE_CHARGE_EN
+Text GLabel 5750 1300 0    50   Input ~ 0
+HV_BUS_MONITOR_AI
+Text GLabel 9800 900  2    50   Output ~ 0
+CONTACTOR_PWM
+Text GLabel 9800 1000 2    50   Input ~ 0
+CONTACTOR_STATUS
+Text GLabel 5750 1400 0    50   Input ~ 0
+12V_POWER_MONITOR_AI
 $EndSCHEMATC

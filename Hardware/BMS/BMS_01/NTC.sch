@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 42 58
+Sheet 44 59
 Title ""
 Date ""
 Rev ""
@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L device:R R?
+L Device:R R?
 U 1 1 5B579950
 P 5850 3550
 AR Path="/5B56E059/5B579950" Ref="R?"  Part="1" 
@@ -64,14 +64,15 @@ AR Path="/5B5CD4CD/5B5CD608/5B5E09F1/5B579950" Ref="R182"  Part="1"
 AR Path="/5B5CD4CD/5B5CD608/5B5E09FF/5B579950" Ref="R184"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD608/5B5E0A0D/5B579950" Ref="R186"  Part="1" 
 F 0 "R186" H 5920 3596 50  0000 L CNN
-F 1 "R" H 5920 3505 50  0000 L CNN
-F 2 "Footprints:R_0603_Standard" V 5780 3550 50  0001 C CNN
-F 3 "~" H 5850 3550 50  0001 C CNN
+F 1 "10k" H 5920 3505 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5780 3550 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 5850 3550 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
 	1    5850 3550
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R?
+L Device:R R?
 U 1 1 5B57995D
 P 5600 3800
 AR Path="/5B56E059/5B57995D" Ref="R?"  Part="1" 
@@ -120,14 +121,15 @@ AR Path="/5B5CD4CD/5B5CD608/5B5E09F1/5B57995D" Ref="R181"  Part="1"
 AR Path="/5B5CD4CD/5B5CD608/5B5E09FF/5B57995D" Ref="R183"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD608/5B5E0A0D/5B57995D" Ref="R185"  Part="1" 
 F 0 "R185" V 5393 3800 50  0000 C CNN
-F 1 "R" V 5484 3800 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 5530 3800 50  0001 C CNN
-F 3 "~" H 5600 3800 50  0001 C CNN
+F 1 "10k" V 5484 3800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5530 3800 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 5600 3800 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
 	1    5600 3800
 	0    1    1    0   
 $EndComp
 $Comp
-L device:C C?
+L Device:C C?
 U 1 1 5B579964
 P 5250 4050
 AR Path="/5B56E059/5B579964" Ref="C?"  Part="1" 
@@ -176,8 +178,8 @@ AR Path="/5B5CD4CD/5B5CD608/5B5E09F1/5B579964" Ref="C93"  Part="1"
 AR Path="/5B5CD4CD/5B5CD608/5B5E09FF/5B579964" Ref="C94"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD608/5B5E0A0D/5B579964" Ref="C95"  Part="1" 
 F 0 "C95" H 5365 4096 50  0000 L CNN
-F 1 "C" H 5365 4005 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 5288 3900 50  0001 C CNN
+F 1 "10n" H 5365 4005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 5288 3900 50  0001 C CNN
 F 3 "~" H 5250 4050 50  0001 C CNN
 	1    5250 4050
 	1    0    0    -1  

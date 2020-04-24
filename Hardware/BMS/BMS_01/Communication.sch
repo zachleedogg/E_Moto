@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 31 58
+Sheet 31 59
 Title ""
 Date ""
 Rev ""
@@ -26,12 +26,12 @@ F 3 "" H 7450 3050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C66
+L Device:C C66
 U 1 1 59956B93
 P 7150 1700
 F 0 "C66" H 7175 1800 50  0000 L CNN
 F 1 "10uF" H 7175 1600 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206" H 7188 1550 50  0001 C CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 7188 1550 50  0001 C CNN
 F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 7150 1700 50  0001 C CNN
 F 4 "C1206C106M3RACAUTO" H 7175 1900 50  0001 C CNN "MPN"
 F 5 "y" H 7175 1900 50  0001 C CNN "populate"
@@ -50,51 +50,51 @@ F 3 "" H 7150 1900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R135
+L Device:R R135
 U 1 1 59956C83
 P 6450 2400
 F 0 "R135" V 6400 2600 50  0000 C CNN
 F 1 "100R" V 6450 2400 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 6380 2400 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6450 2400 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6380 2400 50  0001 C CNN
+F 3 "" H 6450 2400 50  0001 C CNN
 F 4 "AC0603FR-07100RL" H 6530 2500 50  0001 C CNN "MPN"
 F 5 "y" H 6530 2500 50  0001 C CNN "populate"
 	1    6450 2400
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R133
+L Device:R R133
 U 1 1 59956CE0
 P 6450 2500
 F 0 "R133" V 6400 2700 50  0000 C CNN
 F 1 "100R" V 6450 2500 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 6380 2500 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6450 2500 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6380 2500 50  0001 C CNN
+F 3 "" H 6450 2500 50  0001 C CNN
 F 4 "AC0603FR-07100RL" H 6530 2600 50  0001 C CNN "MPN"
 F 5 "y" H 6530 2600 50  0001 C CNN "populate"
 	1    6450 2500
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R134
+L Device:R R134
 U 1 1 59956D1A
 P 6100 2800
 F 0 "R134" V 6050 3000 50  0000 C CNN
 F 1 "100R" V 6100 2800 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 6030 2800 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6100 2800 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6030 2800 50  0001 C CNN
+F 3 "" H 6100 2800 50  0001 C CNN
 F 4 "AC0603FR-07100RL" H 6180 2900 50  0001 C CNN "MPN"
 F 5 "y" H 6180 2900 50  0001 C CNN "populate"
 	1    6100 2800
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R136
+L Device:R R136
 U 1 1 59956D57
 P 9450 2400
 F 0 "R136" V 9530 2400 50  0000 C CNN
 F 1 "60R" V 9450 2400 50  0000 C CNN
-F 2 "Resistors_SMD:R_2512" V 9380 2400 50  0001 C CNN
+F 2 "Resistor_SMD:R_2512_6332Metric" V 9380 2400 50  0001 C CNN
 F 3 "https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf" H 9450 2400 50  0001 C CNN
 F 4 "RMCF2512JT62R0" H 9530 2500 50  0001 C CNN "MPN"
 F 5 "y" H 9530 2500 50  0001 C CNN "populate"
@@ -102,12 +102,12 @@ F 5 "y" H 9530 2500 50  0001 C CNN "populate"
 	-1   0    0    1   
 $EndComp
 $Comp
-L device:R R137
+L Device:R R137
 U 1 1 59956DAD
 P 9450 2800
 F 0 "R137" V 9530 2800 50  0000 C CNN
 F 1 "60R" V 9450 2800 50  0000 C CNN
-F 2 "Resistors_SMD:R_2512" V 9380 2800 50  0001 C CNN
+F 2 "Resistor_SMD:R_2512_6332Metric" V 9380 2800 50  0001 C CNN
 F 3 "https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf" H 9450 2800 50  0001 C CNN
 F 4 "RMCF2512JT62R0" H 9530 2900 50  0001 C CNN "MPN"
 F 5 "y" H 9530 2900 50  0001 C CNN "populate"
@@ -115,12 +115,12 @@ F 5 "y" H 9530 2900 50  0001 C CNN "populate"
 	-1   0    0    1   
 $EndComp
 $Comp
-L device:C C64
+L Device:C C64
 U 1 1 59956F4F
 P 6750 3100
 F 0 "C64" H 6775 3200 50  0000 L CNN
 F 1 "10nF" H 6775 3000 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 6788 2950 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6788 2950 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 6750 3100 50  0001 C CNN
 F 4 "CGA3E2X7R1H103K080AA" H 6775 3300 50  0001 C CNN "MPN"
 F 5 "y" H 6775 3300 50  0001 C CNN "populate"
@@ -150,25 +150,12 @@ F 3 "" H 6650 2700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L ftdi:FT230XS U7
-U 1 1 59A81FAF
-P 4050 5750
-F 0 "U7" H 4500 5150 60  0000 C CNN
-F 1 "FT230X" H 3650 5150 60  0000 C CNN
-F 2 "Housings_SSOP:SSOP-16_3.9x4.9mm_Pitch0.635mm" H 4050 5750 60  0001 C CNN
-F 3 "http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT230X.pdf" H 4050 5750 60  0001 C CNN
-F 4 "FT230XS-R" H 4600 5450 50  0001 C CNN "MPN"
-F 5 "y" H 4600 5450 50  0001 C CNN "populate"
-	1    4050 5750
-	1    0    0    -1  
-$EndComp
-$Comp
-L device:C C61
+L Device:C C61
 U 1 1 59A83975
 P 2700 4300
 F 0 "C61" H 2725 4400 50  0000 L CNN
 F 1 "10nF" H 2725 4200 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 2738 4150 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 2738 4150 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 2700 4300 50  0001 C CNN
 F 4 "CGA3E2X7R1H103K080AA" H 2725 4500 50  0001 C CNN "MPN"
 F 5 "y" H 2725 4500 50  0001 C CNN "populate"
@@ -176,12 +163,12 @@ F 5 "y" H 2725 4500 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C63
+L Device:C C63
 U 1 1 59A839B7
 P 3700 4300
 F 0 "C63" H 3725 4400 50  0000 L CNN
 F 1 "100nF" H 3725 4200 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 3738 4150 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3738 4150 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 3700 4300 50  0001 C CNN
 F 4 "GCM188R71H104KA57D" H 3725 4500 50  0001 C CNN "MPN"
 F 5 "y" H 3725 4500 50  0001 C CNN "populate"
@@ -189,12 +176,12 @@ F 5 "y" H 3725 4500 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C62
+L Device:C C62
 U 1 1 59A84BC7
 P 3400 4300
 F 0 "C62" H 3425 4400 50  0000 L CNN
 F 1 "4u7" H 3425 4200 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206" H 3438 4150 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3438 4150 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/catalog/datasheets/mlcc_automotive_soft_en.pdf" H 3400 4300 50  0001 C CNN
 F 4 "CGA5L3X7R1H475K160AE" H 3425 4500 50  0001 C CNN "MPN"
 F 5 "y" H 3425 4500 50  0001 C CNN "populate"
@@ -235,12 +222,12 @@ F 3 "" H 2700 4500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:D_Schottky D83
+L Device:D_Schottky D83
 U 1 1 59A85899
 P 4350 4050
 F 0 "D83" H 4350 4150 50  0000 C CNN
 F 1 "D_Schottky" H 4350 3950 50  0000 C CNN
-F 2 "Diodes_SMD:D_SOD-123" H 4350 4050 50  0001 C CNN
+F 2 "Diode_SMD:D_SOD-123" H 4350 4050 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/PMEG6020AELR.pdf" H 4350 4050 50  0001 C CNN
 F 4 "PMEG6020AELRX" H 4350 4250 50  0001 C CNN "MPN"
 F 5 "y" H 4350 4250 50  0001 C CNN "populate"
@@ -270,12 +257,12 @@ F 3 "" H 4050 6600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C65
+L Device:C C65
 U 1 1 59A895EF
 P 6800 1700
 F 0 "C65" H 6825 1800 50  0000 L CNN
 F 1 "10nF" H 6825 1600 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 6838 1550 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6838 1550 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 6800 1700 50  0001 C CNN
 F 4 "CGA3E2X7R1H103K080AA" H 6825 1900 50  0001 C CNN "MPN"
 F 5 "y" H 6825 1900 50  0001 C CNN "populate"
@@ -294,12 +281,12 @@ F 3 "" H 6800 1850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C60
+L Device:C C60
 U 1 1 5A45C0D4
 P 3050 6350
 F 0 "C60" H 3075 6450 50  0000 L CNN
 F 1 "100nF" H 3075 6250 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 3088 6200 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3088 6200 50  0001 C CNN
 F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 3050 6350 50  0001 C CNN
 F 4 "GCM188R71H104KA57D" H 3075 6550 50  0001 C CNN "MPN"
 F 5 "y" H 3075 6550 50  0001 C CNN "populate"
@@ -318,12 +305,12 @@ F 3 "" H 3050 6550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:LED D84
+L Device:LED D84
 U 1 1 5A45CB14
 P 9700 5000
 F 0 "D84" H 9700 5100 50  0000 C CNN
 F 1 "D_LED" H 9700 4900 50  0000 C CNN
-F 2 "Diodes_SMD:D_0603" H 9700 5000 50  0001 C CNN
+F 2 "Diode_SMD:D_0603_1608Metric" H 9700 5000 50  0001 C CNN
 F 3 "http://optoelectronics.liteon.com/upload/download/DS22-2000-223/LTST-C191KRKT.PDF" H 9700 5000 50  0001 C CNN
 F 4 "LTST-C191KRKT" H 9700 5200 50  0001 C CNN "MPN"
 F 5 "y" H 9700 5200 50  0001 C CNN "populate"
@@ -331,13 +318,13 @@ F 5 "y" H 9700 5200 50  0001 C CNN "populate"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R138
+L Device:R R138
 U 1 1 5A45CC59
 P 9700 5450
 F 0 "R138" V 9780 5450 50  0000 C CNN
 F 1 "100R" V 9700 5450 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 9630 5450 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 9700 5450 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9630 5450 50  0001 C CNN
+F 3 "" H 9700 5450 50  0001 C CNN
 F 4 "AC0603FR-07100RL" H 9780 5550 50  0001 C CNN "MPN"
 F 5 "y" H 9780 5550 50  0001 C CNN "populate"
 	1    9700 5450
@@ -355,12 +342,12 @@ F 3 "" H 9700 5650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C71
+L Device:C C71
 U 1 1 5A45DDEF
 P 9750 2600
 F 0 "C71" H 9775 2700 50  0000 L CNN
 F 1 "10nF" H 9775 2500 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 9788 2450 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9788 2450 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2X7R1H103K080AA.pdf" H 9750 2600 50  0001 C CNN
 F 4 "CGA3E2X7R1H103K080AA" H 9775 2800 50  0001 C CNN "MPN"
 F 5 "y" H 9775 2800 50  0001 C CNN "populate"
@@ -379,12 +366,12 @@ F 3 "" H 9950 2600 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R130
+L Device:R R130
 U 1 1 5A45ECCD
 P 2650 5650
 F 0 "R130" V 2700 5450 50  0000 C CNN
 F 1 "22R" V 2650 5650 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 2580 5650 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 2580 5650 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 2650 5650 50  0001 C CNN
 F 4 "AC0603FR-0722RL" H 2730 5750 50  0001 C CNN "MPN"
 F 5 "y" H 2730 5750 50  0001 C CNN "populate"
@@ -392,12 +379,12 @@ F 5 "y" H 2730 5750 50  0001 C CNN "populate"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R129
+L Device:R R129
 U 1 1 5A45EF18
 P 2650 5750
 F 0 "R129" V 2700 5550 50  0000 C CNN
 F 1 "22R" V 2650 5750 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 2580 5750 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 2580 5750 50  0001 C CNN
 F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 2650 5750 50  0001 C CNN
 F 4 "AC0603FR-0722RL" H 2730 5850 50  0001 C CNN "MPN"
 F 5 "y" H 2730 5850 50  0001 C CNN "populate"
@@ -405,7 +392,7 @@ F 5 "y" H 2730 5850 50  0001 C CNN "populate"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:EMI_Filter_CommonMode L6
+L Device:EMI_Filter_CommonMode L6
 U 1 1 5A5FE9AD
 P 8700 2600
 F 0 "L6" H 8700 2775 50  0000 C CNN
@@ -418,12 +405,12 @@ F 5 "y" H 8700 2600 60  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C69
+L Device:C C69
 U 1 1 5A5FF6F2
 P 9200 2000
 F 0 "C69" H 9225 2100 50  0000 L CNN
 F 1 "18pF" H 9225 1900 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 9238 1850 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9238 1850 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 9200 2000 50  0001 C CNN
 F 4 "CGA3E2C0G1H180J080AA" H 9225 2200 50  0001 C CNN "MPN"
 F 5 "y" H 9225 2200 50  0001 C CNN "populate"
@@ -431,12 +418,12 @@ F 5 "y" H 9225 2200 50  0001 C CNN "populate"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L device:C C70
+L Device:C C70
 U 1 1 5A5FF939
 P 9200 3200
 F 0 "C70" H 9225 3300 50  0000 L CNN
 F 1 "18pF" H 9225 3100 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 9238 3050 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9238 3050 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 9200 3200 50  0001 C CNN
 F 4 "CGA3E2C0G1H180J080AA" H 9225 3400 50  0001 C CNN "MPN"
 F 5 "y" H 9225 3400 50  0001 C CNN "populate"
@@ -466,12 +453,12 @@ F 3 "" H 9200 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C68
+L Device:C C68
 U 1 1 5A600AF0
 P 8200 3200
 F 0 "C68" H 8225 3300 50  0000 L CNN
 F 1 "18pF" H 8225 3100 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 8238 3050 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8238 3050 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 8200 3200 50  0001 C CNN
 F 4 "CGA3E2C0G1H180J080AA" H 8225 3400 50  0001 C CNN "MPN"
 F 5 "y" H 8225 3400 50  0001 C CNN "populate"
@@ -490,12 +477,12 @@ F 3 "" H 8200 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C67
+L Device:C C67
 U 1 1 5A600B61
 P 8200 2000
 F 0 "C67" H 8225 2100 50  0000 L CNN
 F 1 "18pF" H 8225 1900 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 8238 1850 50  0001 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8238 1850 50  0001 C CNN
 F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 8200 2000 50  0001 C CNN
 F 4 "CGA3E2C0G1H180J080AA" H 8225 2200 50  0001 C CNN "MPN"
 F 5 "y" H 8225 2200 50  0001 C CNN "populate"
@@ -514,7 +501,7 @@ F 3 "" H 8200 1850 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L device:D_Schottky_x2_ACom_AKK D85
+L Device:D_Schottky_x2_ACom_AKK D85
 U 1 1 5A623006
 P 10400 2600
 F 0 "D85" H 10450 2500 50  0000 C CNN
@@ -725,26 +712,26 @@ Wire Wire Line
 	7450 1450 7450 1550
 Connection ~ 7450 1550
 $Comp
-L device:R R132
+L Device:R R132
 U 1 1 5AC12568
 P 5350 5350
 F 0 "R132" V 5300 5150 50  0000 C CNN
 F 1 "100R" V 5350 5350 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 5280 5350 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 5350 5350 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5280 5350 50  0001 C CNN
+F 3 "" H 5350 5350 50  0001 C CNN
 F 4 "AC0603FR-07100RL" H 5430 5450 50  0001 C CNN "MPN"
 F 5 "y" H 5430 5450 50  0001 C CNN "populate"
 	1    5350 5350
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R131
+L Device:R R131
 U 1 1 5AC12571
 P 5350 5450
 F 0 "R131" V 5300 5250 50  0000 C CNN
 F 1 "100R" V 5350 5450 50  0000 C CNN
-F 2 "Footprints:R_0603_Standard" V 5280 5450 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 5350 5450 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5280 5450 50  0001 C CNN
+F 3 "" H 5350 5450 50  0001 C CNN
 F 4 "AC0603FR-07100RL" H 5430 5550 50  0001 C CNN "MPN"
 F 5 "y" H 5430 5550 50  0001 C CNN "populate"
 	1    5350 5450
@@ -762,7 +749,7 @@ U 1 1 5B93E2B4
 P 7450 2600
 F 0 "U8" H 7050 2950 50  0000 L CNN
 F 1 "MCP2562-E-SN" H 7500 2950 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 7450 2100 50  0001 C CIN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 7450 2100 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/25167A.pdf" H 7450 2600 50  0001 C CNN
 	1    7450 2600
 	1    0    0    -1  
@@ -791,23 +778,12 @@ Wire Wire Line
 	6300 2500 5950 2500
 Text GLabel 8150 5400 0    60   Input ~ 0
 DEBUG_PIN
-$Comp
-L Connector:Test_Point TP1
-U 1 1 5B73CF88
-P 8250 5300
-F 0 "TP1" H 8308 5420 50  0000 L CNN
-F 1 "Test_Point" H 8308 5329 50  0000 L CNN
-F 2 "Measurement_Points:Test_Point_Keystone_5015_Micro-Minature" H 8450 5300 50  0001 C CNN
-F 3 "~" H 8450 5300 50  0001 C CNN
-	1    8250 5300
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	8250 5300 8250 5400
 Wire Wire Line
 	8250 5400 8150 5400
 $Comp
-L device:D_TVS D?
+L Device:D_TVS D?
 U 1 1 5B740FE4
 P 8250 5550
 AR Path="/5B64EF74/5B740FE4" Ref="D?"  Part="1" 
@@ -815,7 +791,7 @@ AR Path="/5B5CD4CD/5B5CD61E/5B740FE4" Ref="D?"  Part="1"
 AR Path="/5B5CD4CD/5B5CD606/5B740FE4" Ref="D88"  Part="1" 
 F 0 "D88" V 8204 5629 50  0000 L CNN
 F 1 "D_TVS" V 8295 5629 50  0000 L CNN
-F 2 "Diodes_SMD:D_0603" H 8250 5550 50  0001 C CNN
+F 2 "Diode_SMD:D_0603_1608Metric" H 8250 5550 50  0001 C CNN
 F 3 "~" H 8250 5550 50  0001 C CNN
 F 4 " " H -150 2850 50  0001 C CNN "DNP"
 	1    8250 5550
@@ -836,7 +812,7 @@ F 3 "" H 8250 5700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:D_Schottky_x2_ACom_AKK D89
+L Device:D_Schottky_x2_ACom_AKK D89
 U 1 1 5B743130
 P 1300 5700
 F 0 "D89" H 1350 5600 50  0000 C CNN
@@ -874,4 +850,26 @@ F 3 "" H 1100 5700 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2700 4050 3400 4050
+$Comp
+L Interface_USB:FT230XS U7
+U 1 1 5E94D7FF
+P 4050 5750
+F 0 "U7" H 4400 6700 50  0000 C CNN
+F 1 "FT230XS" H 4400 6600 50  0000 C CNN
+F 2 "Package_SO:SSOP-16_3.9x4.9mm_P0.635mm" H 5050 5150 50  0001 C CNN
+F 3 "https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT230X.pdf" H 4050 5750 50  0001 C CNN
+	1    4050 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP1
+U 1 1 5E93D1AD
+P 8250 5300
+F 0 "TP1" H 8308 5420 50  0000 L CNN
+F 1 "TestPoint" H 8308 5329 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_1.0x1.0mm" H 8450 5300 50  0001 C CNN
+F 3 "~" H 8450 5300 50  0001 C CNN
+	1    8250 5300
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

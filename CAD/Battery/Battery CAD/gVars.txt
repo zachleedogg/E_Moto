@@ -1,6 +1,8 @@
 
-"ABS_thickness" = 1.59	
-"ABS_thickness_1/8" = 3.175	
+"ABS_thickness_1/16" = 1.524	
+"ABS_thickness_3/32" = 2.3622
+"ABS_thickness_1/8" = 2.9972	
+"ABS_thickness_1/4" = 5.9944
 "Bus_bar_thickness" = 3.175
 
 "Connector_width" = 20.2
@@ -10,3 +12,7 @@
 
 "Cell_height" = 65.0
 "Cell_diam" = 18.0
+
+"Enclosure_Width" = 292
+"Enclosure_Length" = 260
+"Enclosure_Height" = 515
