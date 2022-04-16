@@ -13,7 +13,8 @@ typedef struct {
 static CAN_message_TX_S CAN_dash_status={
 	.txM = 
 	{
-		.canID = 1793,
+		.canID = CAN_dash_status_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -61,7 +62,8 @@ void CAN_dash_status_send(void){
 static CAN_message_TX_S CAN_dash_command={
 	.txM = 
 	{
-		.canID = 1794,
+		.canID = CAN_dash_command_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -103,7 +105,8 @@ void CAN_dash_command_send(void){
 static CAN_message_TX_S CAN_dash_data1={
 	.txM = 
 	{
-		.canID = 1795,
+		.canID = CAN_dash_data1_ID,
+		.canXID = 1,
 		.payload = 0
 	},
 	.txP =
@@ -142,7 +145,8 @@ void CAN_dash_data1_send(void){
 static CAN_message_TX_S CAN_dash_data2={
 	.txM = 
 	{
-		.canID = 1796,
+		.canID = CAN_dash_data2_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -187,7 +191,8 @@ void CAN_dash_data2_send(void){
 static CAN_message_TX_S CAN_mcu_status={
 	.txM = 
 	{
-		.canID = 1809,
+		.canID = CAN_mcu_status_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -261,7 +266,8 @@ uint16_t CAN_mcu_status_throttleVal_get(void){
 static CAN_message_TX_S CAN_mcu_command={
 	.txM = 
 	{
-		.canID = 1810,
+		.canID = CAN_mcu_command_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -284,57 +290,11 @@ uint16_t CAN_mcu_command_doSomthingElse_get(void){
 	return CAN_mcu_command_P->signals.doSomthingElse;
 }
 
-static CAN_message_TX_S CAN_mcu_motorStatus={
-	.txM = 
-	{
-		.canID = 1811,
-		.payload = 0
-	},
-	.txP =
-	{
-		.word0 = 0,
-		.word1 = 0,
-		.word2 = 0,
-		.word3 = 0
-	}
-};
-
-typedef union {
-	CAN_payload_S packedMessage;
-	CAN_mcu_motorStatus_S signals;
-} CAN_mcu_motorStatus_U;
-
-static CAN_mcu_motorStatus_U * CAN_mcu_motorStatus_P;
-
-uint16_t CAN_mcu_motorStatus_motorSpeed_get(void){
-	return CAN_mcu_motorStatus_P->signals.motorSpeed;
-}
-uint16_t CAN_mcu_motorStatus_motorCurrent_get(void){
-	return CAN_mcu_motorStatus_P->signals.motorCurrent;
-}
-uint16_t CAN_mcu_motorStatus_IphaseA_get(void){
-	return CAN_mcu_motorStatus_P->signals.IphaseA;
-}
-uint16_t CAN_mcu_motorStatus_IphaseB_get(void){
-	return CAN_mcu_motorStatus_P->signals.IphaseB;
-}
-uint16_t CAN_mcu_motorStatus_IphaseC_get(void){
-	return CAN_mcu_motorStatus_P->signals.IphaseC;
-}
-uint16_t CAN_mcu_motorStatus_VphaseA_get(void){
-	return CAN_mcu_motorStatus_P->signals.VphaseA;
-}
-uint16_t CAN_mcu_motorStatus_VphaseB_get(void){
-	return CAN_mcu_motorStatus_P->signals.VphaseB;
-}
-uint16_t CAN_mcu_motorStatus_VphaseC_get(void){
-	return CAN_mcu_motorStatus_P->signals.VphaseC;
-}
-
 static CAN_message_TX_S CAN_mcu_motorControllerRequest={
 	.txM = 
 	{
-		.canID = 1792,
+		.canID = CAN_mcu_motorControllerRequest_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -366,7 +326,8 @@ uint16_t CAN_mcu_motorControllerRequest_requestType_get(void){
 static CAN_message_TX_S CAN_bms_status={
 	.txM = 
 	{
-		.canID = 1825,
+		.canID = CAN_bms_status_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -404,10 +365,62 @@ uint16_t CAN_bms_status_maxTemp_get(void){
 	return CAN_bms_status_P->signals.maxTemp;
 }
 
+static CAN_message_TX_S CAN_bms_charger_request={
+	.txM = 
+	{
+		.canID = CAN_bms_charger_request_ID,
+		.canXID = 1,
+		.payload = 0
+	},
+	.txP =
+	{
+		.word0 = 0,
+		.word1 = 0,
+		.word2 = 0,
+		.word3 = 0
+	}
+};
+
+typedef union {
+	CAN_payload_S packedMessage;
+	CAN_bms_charger_request_S signals;
+} CAN_bms_charger_request_U;
+
+static CAN_bms_charger_request_U * CAN_bms_charger_request_P;
+
+uint16_t CAN_bms_charger_request_output_voltage_high_byte_get(void){
+	return CAN_bms_charger_request_P->signals.output_voltage_high_byte;
+}
+uint16_t CAN_bms_charger_request_output_voltage_low_byte_get(void){
+	return CAN_bms_charger_request_P->signals.output_voltage_low_byte;
+}
+uint16_t CAN_bms_charger_request_output_current_high_byte_get(void){
+	return CAN_bms_charger_request_P->signals.output_current_high_byte;
+}
+uint16_t CAN_bms_charger_request_output_current_low_byte_get(void){
+	return CAN_bms_charger_request_P->signals.output_current_low_byte;
+}
+uint16_t CAN_bms_charger_request_start_charge_request_get(void){
+	return CAN_bms_charger_request_P->signals.start_charge_request;
+}
+uint16_t CAN_bms_charger_request_charge_mode_get(void){
+	return CAN_bms_charger_request_P->signals.charge_mode;
+}
+uint16_t CAN_bms_charger_request_packCurrent_get(void){
+	return CAN_bms_charger_request_P->signals.packCurrent;
+}
+uint16_t CAN_bms_charger_request_byte_7_get(void){
+	return CAN_bms_charger_request_P->signals.byte_7;
+}
+uint16_t CAN_bms_charger_request_byte_8_get(void){
+	return CAN_bms_charger_request_P->signals.byte_8;
+}
+
 static CAN_message_TX_S CAN_bms_cellVoltages={
 	.txM = 
 	{
-		.canID = 1826,
+		.canID = CAN_bms_cellVoltages_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -451,10 +464,59 @@ uint16_t CAN_bms_cellVoltages_cell5_get(void){
 /**********************************************************
  * motorcontroller NODE MESSAGES
  */
+static CAN_message_TX_S CAN_motorcontroller_motorStatus={
+	.txM = 
+	{
+		.canID = CAN_motorcontroller_motorStatus_ID,
+		.canXID = 0,
+		.payload = 0
+	},
+	.txP =
+	{
+		.word0 = 0,
+		.word1 = 0,
+		.word2 = 0,
+		.word3 = 0
+	}
+};
+
+typedef union {
+	CAN_payload_S packedMessage;
+	CAN_motorcontroller_motorStatus_S signals;
+} CAN_motorcontroller_motorStatus_U;
+
+static CAN_motorcontroller_motorStatus_U * CAN_motorcontroller_motorStatus_P;
+
+uint16_t CAN_motorcontroller_motorStatus_motorSpeed_get(void){
+	return CAN_motorcontroller_motorStatus_P->signals.motorSpeed;
+}
+uint16_t CAN_motorcontroller_motorStatus_motorCurrent_get(void){
+	return CAN_motorcontroller_motorStatus_P->signals.motorCurrent;
+}
+uint16_t CAN_motorcontroller_motorStatus_IphaseA_get(void){
+	return CAN_motorcontroller_motorStatus_P->signals.IphaseA;
+}
+uint16_t CAN_motorcontroller_motorStatus_IphaseB_get(void){
+	return CAN_motorcontroller_motorStatus_P->signals.IphaseB;
+}
+uint16_t CAN_motorcontroller_motorStatus_IphaseC_get(void){
+	return CAN_motorcontroller_motorStatus_P->signals.IphaseC;
+}
+uint16_t CAN_motorcontroller_motorStatus_VphaseA_get(void){
+	return CAN_motorcontroller_motorStatus_P->signals.VphaseA;
+}
+uint16_t CAN_motorcontroller_motorStatus_VphaseB_get(void){
+	return CAN_motorcontroller_motorStatus_P->signals.VphaseB;
+}
+uint16_t CAN_motorcontroller_motorStatus_VphaseC_get(void){
+	return CAN_motorcontroller_motorStatus_P->signals.VphaseC;
+}
+
 static CAN_message_TX_S CAN_motorcontroller_response={
 	.txM = 
 	{
-		.canID = 1792,
+		.canID = CAN_motorcontroller_response_ID,
+		.canXID = 0,
 		.payload = 0
 	},
 	.txP =
@@ -498,18 +560,24 @@ uint16_t CAN_motorcontroller_response_byte8_get(void){
 	return CAN_motorcontroller_response_P->signals.byte8;
 }
 
+
+
+
+/**********************************************************
+ * charger NODE MESSAGES
+ */
 void CAN_DBC_init() {
 	CAN_dash_status.txM.payload = &CAN_dash_status.txP;
-	CAN_dash_status_P = (CAN_dash_status_U*) & CAN_dash_status.txP;
+	CAN_dash_status_P = (CAN_dash_status_U*) &CAN_dash_status.txP;
 
 	CAN_dash_command.txM.payload = &CAN_dash_command.txP;
-	CAN_dash_command_P = (CAN_dash_command_U*) & CAN_dash_command.txP;
+	CAN_dash_command_P = (CAN_dash_command_U*) &CAN_dash_command.txP;
 
 	CAN_dash_data1.txM.payload = &CAN_dash_data1.txP;
-	CAN_dash_data1_P = (CAN_dash_data1_U*) & CAN_dash_data1.txP;
+	CAN_dash_data1_P = (CAN_dash_data1_U*) &CAN_dash_data1.txP;
 
 	CAN_dash_data2.txM.payload = &CAN_dash_data2.txP;
-	CAN_dash_data2_P = (CAN_dash_data2_U*) & CAN_dash_data2.txP;
+	CAN_dash_data2_P = (CAN_dash_data2_U*) &CAN_dash_data2.txP;
 
 	CAN_configureMailbox(&CAN_mcu_status.txM);
 	CAN_mcu_status_P = (CAN_mcu_status_U*) CAN_mcu_status.txM.payload;
@@ -517,17 +585,20 @@ void CAN_DBC_init() {
 	CAN_configureMailbox(&CAN_mcu_command.txM);
 	CAN_mcu_command_P = (CAN_mcu_command_U*) CAN_mcu_command.txM.payload;
 
-	CAN_configureMailbox(&CAN_mcu_motorStatus.txM);
-	CAN_mcu_motorStatus_P = (CAN_mcu_motorStatus_U*) CAN_mcu_motorStatus.txM.payload;
-
 	CAN_configureMailbox(&CAN_mcu_motorControllerRequest.txM);
 	CAN_mcu_motorControllerRequest_P = (CAN_mcu_motorControllerRequest_U*) CAN_mcu_motorControllerRequest.txM.payload;
 
 	CAN_configureMailbox(&CAN_bms_status.txM);
 	CAN_bms_status_P = (CAN_bms_status_U*) CAN_bms_status.txM.payload;
 
+	CAN_configureMailbox(&CAN_bms_charger_request.txM);
+	CAN_bms_charger_request_P = (CAN_bms_charger_request_U*) CAN_bms_charger_request.txM.payload;
+
 	CAN_configureMailbox(&CAN_bms_cellVoltages.txM);
 	CAN_bms_cellVoltages_P = (CAN_bms_cellVoltages_U*) CAN_bms_cellVoltages.txM.payload;
+
+	CAN_configureMailbox(&CAN_motorcontroller_motorStatus.txM);
+	CAN_motorcontroller_motorStatus_P = (CAN_motorcontroller_motorStatus_U*) CAN_motorcontroller_motorStatus.txM.payload;
 
 	CAN_configureMailbox(&CAN_motorcontroller_response.txM);
 	CAN_motorcontroller_response_P = (CAN_motorcontroller_response_U*) CAN_motorcontroller_response.txM.payload;

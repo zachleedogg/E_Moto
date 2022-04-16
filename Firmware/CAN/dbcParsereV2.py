@@ -64,19 +64,33 @@ try:
             
             #loop through each message for a given Node.
             for j in range(0,numberOfMessages):
+                if i == thisNode:
+                    pass
+                # add messages if node is a consumer, or if the consumer field doesn't exist.
+                elif not data["NODE"][i]["messages"][j].get("consumers"):
+                    pass
+                elif data["NODE"][thisNode]["name"] in data["NODE"][i]["messages"][j].get("consumers"):
+                    pass
+                else:
+                    continue
                 
                 #define the CAN ID
-                dot_h.write("#define CAN_" + str(data["NODE"][i]["name"]) + "_" + data["NODE"][i]["messages"][j]["name"] + "_ID")
-                if(data["NODE"][i]["messages"][j]["id"] == "NA"):
+                ID_name = "CAN_" + str(data["NODE"][i]["name"]) + "_" + data["NODE"][i]["messages"][j]["name"]
+                if data["NODE"][i]["messages"][j]["id"] == "NA":
                     canID = (0b111 << 8) | (i << 4) | (j+1)   
                 else:
-                    canID =  int(data["NODE"][i]["messages"][j]["id"])
-                dot_h.write(" " + hex(canID) + "\n")
-                #create a struct for the signals in each message      
+                    canID = int(data["NODE"][i]["messages"][j]["id"])
+                dot_h.write("#define " + ID_name + "_ID " + hex(canID) + "\n")
+                if data["NODE"][i]["messages"][j].get("x_id"):
+                    canXID = data["NODE"][i]["messages"][j].get("x_id")
+                else:
+                    canXID = "0"
+                # create a struct for the signals in each message
                 dot_h.write("typedef struct{\n")
                 print("\t" + data["NODE"][i]["messages"][j]["name"])
-                dot_c.write("static CAN_message_TX_S CAN_" + str(data["NODE"][i]["name"]) + "_" + data["NODE"][i]["messages"][j]["name"] + "={\n")
-                dot_c.write("\t.txM = \n\t{\n\t\t.canID = " + str(canID) + ",\n\t\t.payload = 0\n\t},\n\t.txP =\n\t{\n\t\t.word0 = 0,\n\t\t.word1 = 0,\n\t\t.word2 = 0,\n\t\t.word3 = 0\n\t}\n};\n\n")
+                dot_c.write("static CAN_message_TX_S " + ID_name + "={\n")
+                st = "\t.txM = \n\t{\n\t\t.canID = " + ID_name + "_ID" + ",\n\t\t.canXID = " + canXID + ",\n\t\t.payload = 0\n\t},\n\t.txP =\n\t{\n\t\t.word0 = 0,\n\t\t.word1 = 0,\n\t\t.word2 = 0,\n\t\t.word3 = 0\n\t}\n};\n\n"
+                dot_c.write("\t.txM = \n\t{\n\t\t.canID = " + ID_name + "_ID" + ",\n\t\t.canXID = " + canXID + ",\n\t\t.payload = 0\n\t},\n\t.txP =\n\t{\n\t\t.word0 = 0,\n\t\t.word1 = 0,\n\t\t.word2 = 0,\n\t\t.word3 = 0\n\t}\n};\n\n")
                 dot_c.write("typedef union {\n\tCAN_payload_S packedMessage;\n")
                 dot_c.write("\tCAN_" + str(data["NODE"][i]["name"]) + "_" + data["NODE"][i]["messages"][j]["name"] + "_S signals;\n")
                 dot_c.write("} CAN_" + str(data["NODE"][i]["name"]) + "_" + data["NODE"][i]["messages"][j]["name"] + "_U;\n\n")
@@ -105,7 +119,7 @@ try:
                     dot_h.write("\n")
                     dot_c.write("\n")
                 else:
-                    #loop through signals again and create retrieve functions        
+                    #loop through signals again and create retrieve functions
                     for k in range(0,numberOfSignals):
                         dot_h.write("uint16_t CAN_" + str(data["NODE"][i]["name"]) + "_"
                             + str(data["NODE"][i]["messages"][j]["name"]) + "_"
@@ -129,20 +143,28 @@ try:
         dot_h.write("\n\n#endif /*"+str(data["NODE"][node]["name"]) +"_DBC_H*/\n")
         dot_c.write("void CAN_DBC_init() {\n")
         for i in range(0, numberOfNodes):
-            if(i ==  thisNode):
+            if i == thisNode:
                 numberOfMessages = len(data["NODE"][i]["messages"])
                 for j in range(0, numberOfMessages):
                     dot_c.write("\tCAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + ".txM.payload = &CAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + ".txP;\n")
-                    dot_c.write("\tCAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + "_P = (CAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + "_U*) & CAN_"  + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + ".txP;\n\n")
+                    dot_c.write("\tCAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + "_P = (CAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + "_U*) &CAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + ".txP;\n\n")
             else:
                 numberOfMessages = len(data["NODE"][i]["messages"])
                 for j in range(0, numberOfMessages):
+                    # add messages if node is a consumer, or if the consumer field doesn't exist.
+                    if not data["NODE"][i]["messages"][j].get("consumers"):
+                        pass
+                    elif data["NODE"][thisNode]["name"] in data["NODE"][i]["messages"][j].get("consumers"):
+                        pass
+                    else:
+                        continue
                     dot_c.write("\tCAN_configureMailbox(&CAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + ".txM);\n")
-                    dot_c.write("\tCAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + "_P = (CAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + "_U*) CAN_"  + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + ".txM.payload;\n\n")
+                    dot_c.write("\tCAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + "_P = (CAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + "_U*) CAN_" + str(data["NODE"][i]["name"]) + "_" + str(data["NODE"][i]["messages"][j]["name"]) + ".txM.payload;\n\n")
         dot_c.write("}\n")
         dot_h.close
         dot_c.close
-except:
+except Exception as e:
+    print(e)
     s = input("error durring parsing, press enter to quit")
     quit()
 s = input("DBC files succefully generated! press enter to quit")

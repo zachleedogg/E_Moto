@@ -89,7 +89,7 @@
 #define RP126_IN 0x7E
 #define RP127_IN 0x7F
 
-
+#define RP36_OUT _RP36R
 #define RP96_OUT _RP96R
 #define RP97_OUT _RP97R
 #define RP98_OUT _RP98R

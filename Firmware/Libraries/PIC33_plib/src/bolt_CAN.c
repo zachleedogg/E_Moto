@@ -13,6 +13,7 @@
  ****************************************************************************************/
 #include "bolt_CAN.h"
 #include "bolt_clock.h"
+#include <math.h>
 
 /*DEBUGGING*/
 #define CAN_DEBUG 0
@@ -66,16 +67,20 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
     C1CTRL1bits.WIN = 0; /*set control window to configure baud & registers*/
 
     uint32_t fPerif = clockFreq(); /*peripheral clock Freq*/
-    uint32_t timeQuanta = 10; /*define number TQ per CAN bit.*/
+    uint32_t timeQuanta = 20; /*define number TQ per CAN bit.*/
     uint32_t fTQ = timeQuanta*baud; /*define TQ frequency*/
-    uint32_t canBaud = (fPerif / (2 * fTQ)) - 1; /*calculate baud prescalar*/
+    uint32_t canBaud = (uint32_t)((((double)(fPerif) / (2.0 * (double)(fTQ))) - 1.0) +0.5); /*calculate baud prescalar*/
+    uint8_t prop_seg = timeQuanta*.15;
+    uint8_t seg2 = timeQuanta*.3;
+    uint8_t seg1 = timeQuanta - (4 + prop_seg + seg2);
     C1CTRL1bits.CANCKS = 0x1; /* set clock source select bit so that Fcan = 2*Fp = ClockFreq*/
     C1CFG1bits.BRP = canBaud; //canBaud; /* Configure Baud Rate */
     C1CFG1bits.SJW = 1; /* SJW = 2 TQ */
-    C1CFG2bits.SEG1PH = 3; /* legth of phase 1 segment = 4TQ */
+    C1CFG2bits.PRSEG = prop_seg; /* propogation segmeny = 1TQ */
+
     C1CFG2bits.SEG2PHTS = 1; /*phase 2 segment is freely programmable */
-    C1CFG2bits.SEG2PH = 3; /* phase 2 segment = 4TQ */
-    C1CFG2bits.PRSEG = 0; /* propogation segmeny = 1TQ */
+    C1CFG2bits.SEG2PH = seg2; /* phase 2 segment = 4TQ */
+    C1CFG2bits.SEG1PH =  seg1;/* legth of phase 1 segment = 4TQ */
     C1CFG2bits.SAM = 0; /* bus line sampled one time at sampple point */
     C1CFG2bits.WAKFIL = 1; /* use CAN bus line filter for wakeup */
 
@@ -136,17 +141,19 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
     /* Configure FilterMask0 register to mask SID<10:8> to remove Freq section 
      * of CanID. Mask bits (11-bits): 0b 000 1111 1111 */
     C1RXM0SIDbits.SID = 0x0FF;
-    C1RXM0SIDbits.MIDE = 0x1; /*Standard IDs only*/
+    C1RXM0SIDbits.MIDE = 0x1; /*Match standard and extended (0) or match ID type in filter (1)*/
     /*Mask 1*/
     /* Configure FilterMask1 register to mask SID<10:0> to accept all 
      * of CanID. Mask bits (11-bits): 0b 000 0000 0000 */
     C1RXM1SIDbits.SID = 0x000;
-    C1RXM1SIDbits.MIDE = 0x1; /*Standard IDs only*/
+    C1RXM1SIDbits.MIDE = 0x0; /*Match standard and extended (0) or match ID type in filter (1)*/
     /*Mask 2*/
     /* Configure FilterMask1 register to mask SID<10:0> for an EXACT MACH
      * . Mask bits (11-bits): 0b 111 111 1111 */
     C1RXM2SIDbits.SID = 0x7FF;
-    C1RXM2SIDbits.MIDE = 0x1; /*Standard IDs only*/
+    C1RXM2SIDbits.EID = 0x3;
+    C1RXM2EIDbits.EID = 0xFFFF;
+    C1RXM2SIDbits.MIDE = 0x1; /*Match standard and extended (0) or match ID type in filter (1)*/
 
 
 
@@ -185,26 +192,40 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
 
     /* CAN is ready for transmit / receive, place in normal or loopback mode */
     C1CTRL1bits.REQOP = opMode;
-    //    while (C1CTRL1bits.OPMODE != opMode) {
-    //        ;
-    //    }
+        while (C1CTRL1bits.OPMODE != opMode) {
+            ;
+        }
     return 0;
 }
 
 uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
     uint8_t returnVal = 1;
+    uint16_t SID;
+    uint32_t XID_upper = 0;
+    uint32_t XID_lower = 0;
     if (mBoxNumber > 15) {
         returnVal = 0;
     } else {
         C1CTRL1bits.REQOP = 4;
         C1CTRL1bits.WIN = 1; /* set window bit to access ECAN filter registers */
+        
+
+        if (newMessage->canXID){
+            SID = newMessage->canID >> 18;
+            XID_upper = (newMessage->canID & 0x0003FFFF) >> 16;
+            XID_lower = newMessage->canID & 0x0000FFFF;
+        } else {
+            SID = newMessage->canID;
+        }
         switch (mBoxNumber) {
             case 0:
                 /*FILTERS*/
                 /*Filter 0*/
                 C1FMSKSEL1bits.F0MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
-                C1RXF0SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF0SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF0SIDbits.SID = SID; /* Filter Value*/
+                C1RXF0SIDbits.EID = XID_upper;
+                C1RXF0EIDbits.EID = XID_lower;
+                C1RXF0SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT1bits.F0BP = 0x8; /*Store Hits in RX Buffer 8*/
                 C1FEN1bits.FLTEN0 = 0x1; /* filter 0 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[8][3];
@@ -212,8 +233,10 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
             case 1:
                 /*Filter 1*/
                 C1FMSKSEL1bits.F1MSK = 0x2; /* select Mask 2* for EXACT MATCH*/
-                C1RXF1SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF1SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF1SIDbits.SID = SID; /* Filter Value*/
+                C1RXF1SIDbits.EID = XID_upper;
+                C1RXF1EIDbits.EID = XID_lower;
+                C1RXF1SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT1bits.F1BP = 0x9; /*Store Hits in RX Buffer 9*/
                 C1FEN1bits.FLTEN1 = 0x1; /* filter 1 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[9][3];
@@ -221,8 +244,10 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
             case 2:
                 /*Filter 2*/
                 C1FMSKSEL1bits.F2MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
-                C1RXF2SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF2SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF2SIDbits.SID = SID; /* Filter Value*/
+                C1RXF2SIDbits.EID = XID_upper;
+                C1RXF2EIDbits.EID = XID_lower;
+                C1RXF2SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT1bits.F2BP = 0xA; /*Store Hits in BR Buffer 10*/
                 C1FEN1bits.FLTEN2 = 0x1; /* filter 2 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[10][3];
@@ -230,8 +255,10 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
             case 3:
                 /*Filter 3*/
                 C1FMSKSEL1bits.F3MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
-                C1RXF3SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF3SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF3SIDbits.SID = SID; /* Filter Value*/
+                C1RXF3SIDbits.EID = XID_upper;
+                C1RXF3EIDbits.EID = XID_lower;
+                C1RXF3SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT1bits.F3BP = 0xB; /*Store Hits in BR Buffer 11*/
                 C1FEN1bits.FLTEN3 = 0x1; /* filter 3 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[11][3];
@@ -239,8 +266,10 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
             case 4:
                 /*Filter 4*/
                 C1FMSKSEL1bits.F4MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
-                C1RXF4SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF4SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF4SIDbits.SID = SID; /* Filter Value*/
+                C1RXF4SIDbits.EID = XID_upper;
+                C1RXF4EIDbits.EID = XID_lower;
+                C1RXF4SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT2bits.F4BP = 0xC; /*Store Hits in BR Buffer 12*/
                 C1FEN1bits.FLTEN4 = 0x1; /* filter 2 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[12][3];
@@ -248,8 +277,10 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
             case 5:
                 /*Filter 5*/
                 C1FMSKSEL1bits.F5MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
-                C1RXF5SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF5SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF5SIDbits.SID = SID; /* Filter Value*/
+                C1RXF5SIDbits.EID = XID_upper;
+                C1RXF5EIDbits.EID = XID_lower;
+                C1RXF5SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT2bits.F5BP = 0xD; /*Store Hits in BR Buffer 13*/
                 C1FEN1bits.FLTEN5 = 0x1; /* filter 5 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[13][3];
@@ -257,8 +288,10 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
             case 6:
                 /*Filter 6*/
                 C1FMSKSEL1bits.F6MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
-                C1RXF6SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF6SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF6SIDbits.SID = SID; /* Filter Value*/
+                C1RXF6SIDbits.EID = XID_upper;
+                C1RXF6EIDbits.EID = XID_lower;
+                C1RXF6SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT2bits.F6BP = 0xE; /*Store Hits in BR Buffer 14*/
                 C1FEN1bits.FLTEN6 = 0x1; /* filter 6 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[14][3];
@@ -267,7 +300,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 7*/
                 C1FMSKSEL1bits.F7MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF7SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF7SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF7SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT2bits.F7BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN7 = 0x1; /* filter 7 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[0][3];
@@ -276,7 +309,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 8*/
                 C1FMSKSEL2bits.F8MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF8SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF8SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF8SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT3bits.F8BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN8 = 0x1; /* filter 8 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[1][3];
@@ -285,7 +318,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 9*/
                 C1FMSKSEL2bits.F9MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF9SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF9SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF9SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT3bits.F9BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN9 = 0x1; /* filter 9 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[2][3];
@@ -294,7 +327,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 10*/
                 C1FMSKSEL2bits.F10MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF10SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF10SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF10SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT3bits.F10BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN10 = 0x1; /* filter 10 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[3][3];
@@ -303,7 +336,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 11*/
                 C1FMSKSEL2bits.F11MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF11SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF11SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF11SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT3bits.F11BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN11 = 0x1; /* filter 11 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[4][3];
@@ -312,7 +345,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 12*/
                 C1FMSKSEL2bits.F12MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF12SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF12SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF12SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT4bits.F12BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN12 = 0x1; /* filter 12 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[5][3];
@@ -321,7 +354,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 13*/
                 C1FMSKSEL2bits.F13MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF13SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF13SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF13SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT4bits.F13BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN13 = 0x1; /* filter 13 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[6][3];
@@ -330,7 +363,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 14*/
                 C1FMSKSEL2bits.F14MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF14SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF14SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF14SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT4bits.F14BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN14 = 0x1; /* filter 14 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[7][3];
@@ -339,7 +372,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 /*Filter 15*/
                 C1FMSKSEL2bits.F15MSK = 0x2; /* select Mask 2 for EXACT MATCH*/
                 C1RXF15SIDbits.SID = newMessage->canID; /* Filter Value*/
-                C1RXF15SIDbits.EXIDE = 0x0; /*Standard IDs only*/
+                C1RXF15SIDbits.EXIDE = newMessage->canXID; /*Standard (0) or Extended (1) IDs*/
                 C1BUFPNT4bits.F15BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN15 = 0x1; /* filter 15 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[8][3];
@@ -364,23 +397,35 @@ uint8_t CAN_write(CAN_message_S data) {
     if (ThisTXBuffer == CAN_TX_FIFO_BUFFER_SIZE) {
         ThisTXBuffer = 0;
     }
+    uint16_t SID;
+    uint32_t XID_upper = 0;
+    uint32_t XID_lower = 0;
+    if (data.canXID){
+        SID = data.canID >> 18;
+        XID_upper = (data.canID & 0x0003FFFF) >> 6;
+        XID_lower = data.canID & 0x3F;
+    } else {
+        SID = data.canID;
+    }
 
     /* Here we right the standard ID to the buffer, plus bits for remot request
      * (off) and extended ID (off). We write frequency to <10:8>, then a Node ID 
      * to <7:4>, then a message ID code to <3:0> */
-    ecan1MsgBuf[thisBuffer][0] = data.canID << 2;
+    ecan1MsgBuf[thisBuffer][0] = SID << 2;
+    ecan1MsgBuf[thisBuffer][0] |= data.canXID << 1;
+    ecan1MsgBuf[thisBuffer][0] |= data.canXID;
 
-    /* This is left blank because no extended ID */
+    /* This is extended ID upper bits*/
     /* C1TRBnEID = 0bxxxx 0000 0000 0000
      EID<17:6> = 0b0000 0000 0000 */
-    ecan1MsgBuf[thisBuffer][1] = 0x0000;
+    ecan1MsgBuf[thisBuffer][1] = XID_upper;
 
     /* No remote transmit, data length = 8 bytes */
     /* RTR = 0b0
      * RB1 = 0b0
      * RB0 = 0b0
      * DLC = 0b1000 */
-    ecan1MsgBuf[thisBuffer][2] = 0x0008;
+    ecan1MsgBuf[thisBuffer][2] = 0x0008 | (XID_lower << 10);
 
     /* write message to the data bytes */
 

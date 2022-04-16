@@ -174,7 +174,7 @@ F 3 "" H 6650 2700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L ftdi:FT230XS U29
+L BodyController_01-rescue:FT230XS-ftdi U29
 U 1 1 59A81FAF
 P 3800 5750
 F 0 "U29" H 4350 5350 60  0000 C CNN

@@ -24,7 +24,7 @@
 #include "DISPLAY_INTERFACE.h"
 #include "led_driver.h"
 
-#include "..\..\CAN\generated\dbc.h"
+#include "..\..\CAN\generated\dash_dbc.h"
 #include "bolt_CAN.h"
 
 #define DEFINES_SYSTEM_CLOCK_FREQ FREQ_140MHZ

@@ -28,7 +28,8 @@ typedef struct {
 } CAN_payload_S;
 
 typedef struct CAN_message_S {
-    uint16_t canID;
+    uint32_t canID;
+    uint8_t canXID;
     volatile CAN_payload_S * payload;
 } CAN_message_S;
 

@@ -18,7 +18,7 @@
 /***************************************************************************************
  Micro Functions
  ***************************************************************************************/
-#define INTERNAL_OSC 7394800
+#define INTERNAL_OSC 7370000
 #define EXTERNAL_OSC 8000000
 
 static uint32_t freq;
@@ -61,7 +61,7 @@ uint16_t clockInit(uint32_t clockSpeed, uint8_t source) {
         }
 
         /*Set PLL multiplier PLL_MULT*/
-        pllMult = (clockSpeed * ((uint32_t) ((pllPost + 1)*2)) / (OSC / ((uint32_t) (pllPre + 2))) - 2);
+        pllMult = (uint32_t)(((double)(clockSpeed) * ((double) ((pllPost + 1)*2.0)) / ((double)(OSC) / ((double)(pllPre + 2.0)))) - 2.0);
         if (pllMult > 511) {
             return 1; /*Failure*/
         }

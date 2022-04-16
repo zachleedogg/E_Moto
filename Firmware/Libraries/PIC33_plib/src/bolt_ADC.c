@@ -20,7 +20,9 @@
 // Section: Module Defines and variables
 // *****************************************************************************
 // *****************************************************************************
+#ifdef AD2CON1
 #define ADC2
+#endif
 
 #define ON 1
 #define OFF 0
@@ -262,112 +264,113 @@ uint16_t ADC_GetValue(ADC_pinNumber_E thisPin) {
             ADC_activePinBitsBeforeThisPin++;
         }
     }
-    return *ADC_1_buffer[ADC_activePinBitsBeforeThisPin];
+    uint16_t val = *ADC_1_buffer[ADC_activePinBitsBeforeThisPin];
+    return val;
 #endif
 }
 
 static void ADC_selectPin(ADC_pinNumber_E thisPin, uint8_t state) {
-    //    switch (thisPin) {
-    //#ifdef _ANSA0
-    //        case AN0:
-    //            _ANSA0 = state;
-    //            _TRISA0 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSA1
-    //        case AN1:
-    //            _ANSA1 = state;
-    //            _TRISA1 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSB0
-    //        case AN2:
-    //            _ANSB0 = state;
-    //            _TRISB0 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSB1
-    //        case AN3:
-    //            _ANSB1 = state;
-    //            _TRISB1 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSB2
-    //        case AN4:
-    //            _ANSB2 = state;
-    //            _TRISB2 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSB3
-    //        case AN5:
-    //            _ANSB3 = state;
-    //            _TRISB3 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSC0
-    //        case AN6:
-    //            _ANSC0 = state;
-    //            _TRISC0 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSC1
-    //        case AN7:
-    //            _ANSC1 = state;
-    //            _TRISC1 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSC2
-    //        case AN8:
-    //            _ANSC2 = state;
-    //            _TRISC2 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSA11
-    //        case AN9:
-    //            _ANSA11 = state;
-    //            _TRISA11 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSA12
-    //        case AN10:
-    //            _ANSA12 = state;
-    //            _TRISA12 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSC11
-    //        case AN11:
-    //            _ANSC11 = state;
-    //            _TRISC11 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSE12
-    //        case AN12:
-    //            _ANSE12 = state;
-    //            _TRISE12 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSE13
-    //        case AN13:
-    //            _ANSE13 = state;
-    //            _TRISE13 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSE14
-    //        case AN14:
-    //            _ANSE14 = state;
-    //            _TRISE14 = 1;
-    //            break;
-    //#endif
-    //#ifdef _ANSE15
-    //        case AN15:
-    //            _ANSE15 = state;
-    //            _TRISE15 = 1;
-    //            break;
-    //#endif
-    //        default:
-    //            break;
-    //    }
     switch (thisPin) {
+#if defined(__dsPIC33EP32GP502__) || defined(__dsPIC33EP256MC502__) || defined(__dsPIC33EP64GP506__)
+
+#ifdef _ANSA0
+        case AN0:
+            _ANSA0 = state;
+            _TRISA0 = 1;
+            break;
+#endif
+#ifdef _ANSA1
+        case AN1:
+            _ANSA1 = state;
+            _TRISA1 = 1;
+            break;
+#endif
+#ifdef _ANSB0
+        case AN2:
+            _ANSB0 = state;
+            _TRISB0 = 1;
+            break;
+#endif
+#ifdef _ANSB1
+        case AN3:
+            _ANSB1 = state;
+            _TRISB1 = 1;
+            break;
+#endif
+#ifdef _ANSB2
+        case AN4:
+            _ANSB2 = state;
+            _TRISB2 = 1;
+            break;
+#endif
+#ifdef _ANSB3
+        case AN5:
+            _ANSB3 = state;
+            _TRISB3 = 1;
+            break;
+#endif
+#ifdef _ANSC0
+        case AN6:
+            _ANSC0 = state;
+            _TRISC0 = 1;
+            break;
+#endif
+#ifdef _ANSC1
+        case AN7:
+            _ANSC1 = state;
+            _TRISC1 = 1;
+            break;
+#endif
+#ifdef _ANSC2
+        case AN8:
+            _ANSC2 = state;
+            _TRISC2 = 1;
+            break;
+#endif
+#ifdef _ANSA11
+        case AN9:
+            _ANSA11 = state;
+            _TRISA11 = 1;
+            break;
+#endif
+#ifdef _ANSA12
+        case AN10:
+            _ANSA12 = state;
+            _TRISA12 = 1;
+            break;
+#endif
+#ifdef _ANSC11
+        case AN11:
+            _ANSC11 = state;
+            _TRISC11 = 1;
+            break;
+#endif
+#ifdef _ANSE12
+        case AN12:
+            _ANSE12 = state;
+            _TRISE12 = 1;
+            break;
+#endif
+#ifdef _ANSE13
+        case AN13:
+            _ANSE13 = state;
+            _TRISE13 = 1;
+            break;
+#endif
+#ifdef _ANSE14
+        case AN14:
+            _ANSE14 = state;
+            _TRISE14 = 1;
+            break;
+#endif
+#ifdef _ANSE15
+        case AN15:
+            _ANSE15 = state;
+            _TRISE15 = 1;
+            break;
+#endif
+            
+#elif defined(__dsPIC33EP512MU810__)
 #ifdef _ANSB0
         case AN0:
             _ANSB0 = state;
@@ -493,6 +496,9 @@ static void ADC_selectPin(ADC_pinNumber_E thisPin, uint8_t state) {
             _ANSA7 = state;
             _TRISA7 = 1;
             break;
+#endif
+#else
+#error No Processor defined in list above. Ensure you add the micro you want because all analog pins are different.
 #endif
         default:
             break;

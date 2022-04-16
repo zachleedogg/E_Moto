@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 59
+Sheet 3 61
 Title ""
 Date ""
 Rev ""
@@ -17,855 +17,1058 @@ $EndDescr
 $Comp
 L Device:C C?
 U 1 1 59954470
-P 1650 6550
+P 2400 6050
 AR Path="/5B2FAFE4/59954470" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/59954470" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/59954470" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/59954470" Ref="C8"  Part="1" 
-F 0 "C8" H 1675 6650 50  0000 L CNN
-F 1 "10uF" H 1675 6450 50  0000 L CNN
-F 2 "Capacitor_SMD:C_1206_3216Metric" H 1688 6400 50  0001 C CNN
-F 3 "https://content.kemet.com/datasheets/KEM_C1023_X7R_AUTO_SMD.pdf" H 1650 6550 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "C1206C106M3RACAUTO" H 1675 6750 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 1675 6750 50  0001 C CNN "populate"
-	1    1650 6550
+F 0 "C8" H 2425 6150 50  0000 L CNN
+F 1 "10uF" H 2425 5950 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 2438 5900 50  0001 C CNN
+F 3 "" H 2400 6050 50  0001 C CNN
+F 4 " " H 750 -500 50  0001 C CNN "DNP"
+F 5 "CL31B106KOHVPNE" H 2425 6250 50  0001 C CNN "MPN"
+F 6 "50V" H 750 -500 50  0001 C CNN "Voltage"
+F 7 "" H 2425 6250 50  0001 C CNN "populate"
+F 8 "CL31B106KOHVPNE" H 750 -500 50  0001 C CNN "Part Number"
+F 9 "1276-6797-1-ND" H 750 -500 50  0001 C CNN "Digikey_PN"
+	1    2400 6050
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:Ferrite_Bead L?
 U 1 1 59955DBF
-P 1250 5900
+P 1950 5400
 AR Path="/5B2FAFE4/59955DBF" Ref="L?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/59955DBF" Ref="L?"  Part="1" 
 AR Path="/5AAB4D1F/59955DBF" Ref="L?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/59955DBF" Ref="L1"  Part="1" 
-F 0 "L1" V 1100 5925 50  0000 C CNN
-F 1 "Ferrite_Bead" V 1400 5900 50  0000 C CNN
-F 2 "Inductor_SMD:L_0603_1608Metric" V 1180 5900 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/catalog/datasheets/beads_automotive_signal_mmz1608_en.pdf" H 1250 5900 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "MMZ1608B121CTDH5" H 1100 6025 50  0001 C CNN "MPN"
-	1    1250 5900
+F 0 "L1" V 1800 5425 50  0000 C CNN
+F 1 "Ferrite_Bead" V 2100 5400 50  0000 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 1880 5400 50  0001 C CNN
+F 3 "https://www.we-online.com/katalog/datasheet/742792609.pdf" H 1950 5400 50  0001 C CNN
+F 4 " " H 700 -500 50  0001 C CNN "DNP"
+F 5 "742792609" H 1800 5525 50  0001 C CNN "MPN"
+F 6 "742792609" H 700 -500 50  0001 C CNN "Part Number"
+F 7 "732-1591-1-ND" H 700 -500 50  0001 C CNN "Digikey_PN"
+	1    1950 5400
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 59955FD3
-P 750 6300
+P 1450 5800
 AR Path="/5B2FAFE4/59955FD3" Ref="#PWR?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/59955FD3" Ref="#PWR?"  Part="1" 
 AR Path="/5AAB4D1F/59955FD3" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/59955FD3" Ref="#PWR07"  Part="1" 
-F 0 "#PWR07" H 750 6050 50  0001 C CNN
-F 1 "GND" H 750 6150 50  0000 C CNN
-F 2 "" H 750 6300 50  0001 C CNN
-F 3 "" H 750 6300 50  0001 C CNN
-	1    750  6300
+F 0 "#PWR07" H 1450 5550 50  0001 C CNN
+F 1 "GND" H 1450 5650 50  0000 C CNN
+F 2 "" H 1450 5800 50  0001 C CNN
+F 3 "" H 1450 5800 50  0001 C CNN
+	1    1450 5800
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 599562CF
-P 5300 6650
+P 1350 6350
 AR Path="/5B2FAFE4/599562CF" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/599562CF" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/599562CF" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/599562CF" Ref="C10"  Part="1" 
-F 0 "C10" H 5325 6750 50  0000 L CNN
-F 1 "18pF" H 5325 6550 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 5338 6500 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 5300 6650 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "CGA3E2C0G1H180J080AA" H 5325 6850 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 5325 6850 50  0001 C CNN "populate"
-	1    5300 6650
-	0    -1   1    0   
+F 0 "C10" H 1375 6450 50  0000 L CNN
+F 1 "18pF" H 1375 6250 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1388 6200 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 1350 6350 50  0001 C CNN
+F 4 " " H -3950 -300 50  0001 C CNN "DNP"
+F 5 "CGA3E2C0G1H180J080AA" H 1375 6550 50  0001 C CNN "MPN"
+F 6 "50V" H -3950 -300 50  0001 C CNN "Voltage"
+F 7 "" H 1375 6550 50  0001 C CNN "populate"
+F 8 "CGA3E2C0G1H180J080AA" H -3950 -300 50  0001 C CNN "Part Number"
+F 9 "445-5631-1-ND" H -3950 -300 50  0001 C CNN "Digikey_PN"
+	1    1350 6350
+	0    1    1    0   
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 59956321
-P 5300 7150
+P 1350 6850
 AR Path="/5B2FAFE4/59956321" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/59956321" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/59956321" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/59956321" Ref="C11"  Part="1" 
-F 0 "C11" H 5325 7250 50  0000 L CNN
-F 1 "18pF" H 5325 7050 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 5338 7000 50  0001 C CNN
-F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 5300 7150 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "CGA3E2C0G1H180J080AA" H 5325 7350 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 5325 7350 50  0001 C CNN "populate"
-	1    5300 7150
-	0    -1   1    0   
+F 0 "C11" H 1375 6950 50  0000 L CNN
+F 1 "18pF" H 1375 6750 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1388 6700 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA3E2C0G1H180J080AA.pdf" H 1350 6850 50  0001 C CNN
+F 4 " " H -3950 -300 50  0001 C CNN "DNP"
+F 5 "CGA3E2C0G1H180J080AA" H 1375 7050 50  0001 C CNN "MPN"
+F 6 "50V" H -3950 -300 50  0001 C CNN "Voltage"
+F 7 "" H 1375 7050 50  0001 C CNN "populate"
+F 8 "CGA3E2C0G1H180J080AA" H -3950 -300 50  0001 C CNN "Part Number"
+F 9 "445-5631-1-ND" H -3950 -300 50  0001 C CNN "Digikey_PN"
+	1    1350 6850
+	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5995635F
-P 4150 6900
+P 2500 6600
 AR Path="/5B2FAFE4/5995635F" Ref="R?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5995635F" Ref="R?"  Part="1" 
 AR Path="/5AAB4D1F/5995635F" Ref="R?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5995635F" Ref="R3"  Part="1" 
-F 0 "R3" V 4230 6900 50  0000 C CNN
-F 1 "1M" V 4150 6900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 4080 6900 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 4150 6900 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "AC0603FR-071ML" H 4230 7000 50  0001 C CNN "MPN"
-F 6 "" H 4230 7000 50  0001 C CNN "populate"
-	1    4150 6900
-	-1   0    0    -1  
+F 0 "R3" V 2580 6600 50  0000 C CNN
+F 1 "1M" V 2500 6600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 2430 6600 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 2500 6600 50  0001 C CNN
+F 4 " " H -1650 -300 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 2580 6700 50  0001 C CNN "MPN"
+F 6 "" H 2580 6700 50  0001 C CNN "populate"
+F 7 "AC0603FR-071ML" H -1650 -300 50  0001 C CNN "Part Number"
+F 8 "311-1MLDCT-ND" H -1650 -300 50  0001 C CNN "Digikey_PN"
+	1    2500 6600
+	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 59967AE3
-P 1450 7300
+P 2200 7350
 AR Path="/5B2FAFE4/59967AE3" Ref="R?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/59967AE3" Ref="R?"  Part="1" 
 AR Path="/5AAB4D1F/59967AE3" Ref="R?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/59967AE3" Ref="R1"  Part="1" 
-F 0 "R1" V 1530 7300 50  0000 C CNN
-F 1 "10k" V 1450 7300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 1380 7300 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 1450 7300 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "AC0603FR-0710KL" H 1530 7400 50  0001 C CNN "MPN"
-F 6 "" H 1530 7400 50  0001 C CNN "populate"
-	1    1450 7300
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3.3VA #PWR?
-U 1 1 59977C27
-P 1800 5850
-AR Path="/5B2FAFE4/59977C27" Ref="#PWR?"  Part="1" 
-AR Path="/5C8FC872/5C8FC883/59977C27" Ref="#PWR?"  Part="1" 
-AR Path="/5AAB4D1F/59977C27" Ref="#PWR?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD5C1/59977C27" Ref="#PWR010"  Part="1" 
-F 0 "#PWR010" H 1800 5700 50  0001 C CNN
-F 1 "+3.3VA" H 1800 5990 50  0000 C CNN
-F 2 "" H 1800 5850 50  0001 C CNN
-F 3 "" H 1800 5850 50  0001 C CNN
-	1    1800 5850
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:PWR_FLAG #FLG?
-U 1 1 59980D1B
-P 1500 5750
-AR Path="/5B2FAFE4/59980D1B" Ref="#FLG?"  Part="1" 
-AR Path="/5C8FC872/5C8FC883/59980D1B" Ref="#FLG?"  Part="1" 
-AR Path="/5AAB4D1F/59980D1B" Ref="#FLG?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD5C1/59980D1B" Ref="#FLG01"  Part="1" 
-F 0 "#FLG01" H 1500 5825 50  0001 C CNN
-F 1 "PWR_FLAG" H 1500 5900 50  0000 C CNN
-F 2 "" H 1500 5750 50  0001 C CNN
-F 3 "" H 1500 5750 50  0001 C CNN
-	1    1500 5750
-	1    0    0    -1  
-$EndComp
-$Comp
-L micros:PIC33EPxxxMU810 U?
-U 1 1 599FC02F
-P 8150 2200
-AR Path="/5B2FAFE4/599FC02F" Ref="U?"  Part="1" 
-AR Path="/5C8FC872/5C8FC883/599FC02F" Ref="U?"  Part="1" 
-AR Path="/5AAB4D1F/599FC02F" Ref="U?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD5C1/599FC02F" Ref="U1"  Part="1" 
-F 0 "U1" H 8900 -1650 60  0000 C CNN
-F 1 "PIC33EPxxxMU810" H 8150 -1650 60  0000 C CNN
-F 2 "Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm" H 7400 1800 60  0001 C CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70616g.pdf" H 7400 1800 60  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "DSPIC33EP512MU810-E/PF" H 8900 -1550 50  0001 C CNN "MPN"
-	1    8150 2200
-	1    0    0    -1  
-$EndComp
-$Comp
-L micros:PIC33EPxxxMU810 U?
-U 2 1 599FC07A
-P 2700 3650
-AR Path="/5B2FAFE4/599FC07A" Ref="U?"  Part="2" 
-AR Path="/5C8FC872/5C8FC883/599FC07A" Ref="U?"  Part="2" 
-AR Path="/5AAB4D1F/599FC07A" Ref="U?"  Part="2" 
-AR Path="/5B5CD4CD/5B5CD5C1/599FC07A" Ref="U1"  Part="2" 
-F 0 "U1" H 3450 -200 60  0000 C CNN
-F 1 "PIC33EPxxxMU810" H 2700 -200 60  0000 C CNN
-F 2 "Housings_QFP:TQFP-100_14x14mm_Pitch0.5mm" H 1950 3250 60  0001 C CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70616g.pdf" H 1950 3250 60  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "DSPIC33EP512MU810-E/PF" H 3450 -100 50  0001 C CNN "MPN"
-	2    2700 3650
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C?
-U 1 1 599FDED2
-P 1750 4850
-AR Path="/5B2FAFE4/599FDED2" Ref="C?"  Part="1" 
-AR Path="/5C8FC872/5C8FC883/599FDED2" Ref="C?"  Part="1" 
-AR Path="/5AAB4D1F/599FDED2" Ref="C?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD5C1/599FDED2" Ref="C9"  Part="1" 
-F 0 "C9" H 1775 4950 50  0000 L CNN
-F 1 "100nF" H 1775 4750 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 1788 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1750 4850 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "GCM188R71H104KA57D" H 1775 5050 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 1775 5050 50  0001 C CNN "populate"
-	1    1750 4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3V3 #PWR?
-U 1 1 59B2845D
-P 4100 5750
-AR Path="/5B2FAFE4/59B2845D" Ref="#PWR?"  Part="1" 
-AR Path="/5C8FC872/5C8FC883/59B2845D" Ref="#PWR?"  Part="1" 
-AR Path="/5AAB4D1F/59B2845D" Ref="#PWR?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD5C1/59B2845D" Ref="#PWR011"  Part="1" 
-F 0 "#PWR011" H 4100 5600 50  0001 C CNN
-F 1 "+3V3" H 4100 5890 50  0000 C CNN
-F 2 "" H 4100 5750 50  0001 C CNN
-F 3 "" H 4100 5750 50  0001 C CNN
-	1    4100 5750
+F 0 "R1" V 2280 7350 50  0000 C CNN
+F 1 "10k0" V 2200 7350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 2130 7350 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 2200 7350 50  0001 C CNN
+F 4 " " H 750 50  50  0001 C CNN "DNP"
+F 5 "AC0603FR-0710KL" H 2280 7450 50  0001 C CNN "MPN"
+F 6 "" H 2280 7450 50  0001 C CNN "populate"
+F 7 "AC0603FR-0710KL" H 750 50  50  0001 C CNN "Part Number"
+F 8 "311-10KLDCT-ND" H 750 50  50  0001 C CNN "Digikey_PN"
+	1    2200 7350
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:Crystal Y?
 U 1 1 59BBA021
-P 4700 6900
+P 1950 6600
 AR Path="/5B2FAFE4/59BBA021" Ref="Y?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/59BBA021" Ref="Y?"  Part="1" 
 AR Path="/5AAB4D1F/59BBA021" Ref="Y?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/59BBA021" Ref="Y1"  Part="1" 
-F 0 "Y1" V 4825 7100 50  0000 L TNN
-F 1 "8MHz" V 4825 7025 50  0000 L BNN
-F 2 "Crystal:Crystal_SMD_5032-2Pin_5.0x3.2mm" H 4700 6900 50  0001 C CNN
-F 3 "https://media.digikey.com/pdf/Data%20Sheets/NDK%20PDFs/NX5032GA_STD-CSU-1,-2.pdf" H 4700 6900 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "NX5032GA-8.000M-STD-CSU-1" H 4825 7200 50  0001 C CNN "MPN"
-	1    4700 6900
-	0    1    1    0   
-$EndComp
-$Comp
-L Switch:SW_Push SW?
-U 1 1 5A45E5E7
-P 950 7200
-AR Path="/5B2FAFE4/5A45E5E7" Ref="SW?"  Part="1" 
-AR Path="/5C8FC872/5C8FC883/5A45E5E7" Ref="SW?"  Part="1" 
-AR Path="/5AAB4D1F/5A45E5E7" Ref="SW?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD5C1/5A45E5E7" Ref="SW1"  Part="1" 
-F 0 "SW1" H 1000 7300 50  0000 L CNN
-F 1 "PTS645SM43SMTR92 LFS" H 950 7140 50  0001 C CNN
-F 2 "Button_Switch_SMD:SW_SPST_EVQP0" H 950 7400 50  0001 C CNN
-F 3 "https://www.ckswitches.com/media/1471/pts645.pdf" H 950 7400 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "PTS645SM43SMTR92 LFS" H 1000 7400 50  0001 C CNN "MPN"
-	1    950  7200
-	1    0    0    -1  
+F 0 "Y1" V 2075 6800 50  0000 L TNN
+F 1 "8MHz" V 2075 6725 50  0000 L BNN
+F 2 "Crystal:Crystal_SMD_5032-2Pin_5.0x3.2mm" H 1950 6600 50  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/NDK%20PDFs/NX5032GA_STD-CSU-1,-2.pdf" H 1950 6600 50  0001 C CNN
+F 4 " " H -2750 -300 50  0001 C CNN "DNP"
+F 5 "NX5032GA-8.000M-STD-CSU-1" H 2075 6900 50  0001 C CNN "MPN"
+F 6 "NX5032GA-8.000M-STD-CSU-1" H -2750 -300 50  0001 C CNN "Part Number"
+F 7 "XC3144CT-ND" H -2750 -300 50  0001 C CNN "Digikey_PN"
+	1    1950 6600
+	0    -1   1    0   
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5A870904
-P 1700 7600
+P 2450 7600
 AR Path="/5B2FAFE4/5A870904" Ref="R?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5A870904" Ref="R?"  Part="1" 
 AR Path="/5AAB4D1F/5A870904" Ref="R?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5A870904" Ref="R2"  Part="1" 
-F 0 "R2" V 1780 7600 50  0000 C CNN
-F 1 "10k" V 1700 7600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 1630 7600 50  0001 C CNN
-F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 1700 7600 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "AC0603FR-0710KL" H 1780 7700 50  0001 C CNN "MPN"
-F 6 "" H 1780 7700 50  0001 C CNN "populate"
-	1    1700 7600
+F 0 "R2" V 2530 7600 50  0000 C CNN
+F 1 "10k0" V 2450 7600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 2380 7600 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 2450 7600 50  0001 C CNN
+F 4 " " H 750 0   50  0001 C CNN "DNP"
+F 5 "AC0603FR-0710KL" H 2530 7700 50  0001 C CNN "MPN"
+F 6 "" H 2530 7700 50  0001 C CNN "populate"
+F 7 "AC0603FR-0710KL" H 750 0   50  0001 C CNN "Part Number"
+F 8 "311-10KLDCT-ND" H 750 0   50  0001 C CNN "Digikey_PN"
+	1    2450 7600
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C C?
-U 1 1 5B784523
-P 1550 4850
-AR Path="/5B2FAFE4/5B784523" Ref="C?"  Part="1" 
-AR Path="/5C8FC872/5C8FC883/5B784523" Ref="C?"  Part="1" 
-AR Path="/5AAB4D1F/5B784523" Ref="C?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD5C1/5B784523" Ref="C6"  Part="1" 
-F 0 "C6" H 1575 4950 50  0000 L CNN
-F 1 "100nF" H 1575 4750 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 1588 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1550 4850 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "GCM188R71H104KA57D" H 1575 5050 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 1575 5050 50  0001 C CNN "populate"
-	1    1550 4850
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C?
 U 1 1 5B784555
-P 1350 4850
+P 2100 4550
 AR Path="/5B2FAFE4/5B784555" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B784555" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/5B784555" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B784555" Ref="C5"  Part="1" 
-F 0 "C5" H 1375 4950 50  0000 L CNN
-F 1 "100nF" H 1375 4750 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 1388 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1350 4850 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "GCM188R71H104KA57D" H 1375 5050 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 1375 5050 50  0001 C CNN "populate"
-	1    1350 4850
+F 0 "C5" H 2125 4650 50  0000 L CNN
+F 1 "100nF" H 2125 4450 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 2138 4400 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 2100 4550 50  0001 C CNN
+F 4 " " H 750 -300 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 2125 4750 50  0001 C CNN "MPN"
+F 6 "50V" H 750 -300 50  0001 C CNN "Voltage"
+F 7 "" H 2125 4750 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 750 -300 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 750 -300 50  0001 C CNN "Digikey_PN"
+	1    2100 4550
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 5B78458D
-P 1150 4850
+P 1900 4550
 AR Path="/5B2FAFE4/5B78458D" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B78458D" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/5B78458D" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B78458D" Ref="C4"  Part="1" 
-F 0 "C4" H 1175 4950 50  0000 L CNN
-F 1 "100nF" H 1175 4750 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 1188 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1150 4850 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "GCM188R71H104KA57D" H 1175 5050 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 1175 5050 50  0001 C CNN "populate"
-	1    1150 4850
+F 0 "C4" H 1925 4650 50  0000 L CNN
+F 1 "100nF" H 1925 4450 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1938 4400 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1900 4550 50  0001 C CNN
+F 4 " " H 750 -300 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1925 4750 50  0001 C CNN "MPN"
+F 6 "50V" H 750 -300 50  0001 C CNN "Voltage"
+F 7 "" H 1925 4750 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 750 -300 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 750 -300 50  0001 C CNN "Digikey_PN"
+	1    1900 4550
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 5B7845C7
-P 950 4850
+P 1700 4550
 AR Path="/5B2FAFE4/5B7845C7" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B7845C7" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/5B7845C7" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B7845C7" Ref="C3"  Part="1" 
-F 0 "C3" H 975 4950 50  0000 L CNN
-F 1 "100nF" H 975 4750 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 988 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 950 4850 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "GCM188R71H104KA57D" H 975 5050 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 975 5050 50  0001 C CNN "populate"
-	1    950  4850
+F 0 "C3" H 1725 4650 50  0000 L CNN
+F 1 "100nF" H 1725 4450 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1738 4400 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1700 4550 50  0001 C CNN
+F 4 " " H 750 -300 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1725 4750 50  0001 C CNN "MPN"
+F 6 "50V" H 750 -300 50  0001 C CNN "Voltage"
+F 7 "" H 1725 4750 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 750 -300 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 750 -300 50  0001 C CNN "Digikey_PN"
+	1    1700 4550
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 5B784601
-P 750 4850
+P 1500 4550
 AR Path="/5B2FAFE4/5B784601" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B784601" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/5B784601" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B784601" Ref="C1"  Part="1" 
-F 0 "C1" H 775 4950 50  0000 L CNN
-F 1 "100nF" H 775 4750 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 788 4700 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 750 4850 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "GCM188R71H104KA57D" H 775 5050 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 775 5050 50  0001 C CNN "populate"
-	1    750  4850
+F 0 "C1" H 1525 4650 50  0000 L CNN
+F 1 "100nF" H 1525 4450 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1538 4400 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1500 4550 50  0001 C CNN
+F 4 " " H 750 -300 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1525 4750 50  0001 C CNN "MPN"
+F 6 "50V" H 750 -300 50  0001 C CNN "Voltage"
+F 7 "" H 1525 4750 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 750 -300 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 750 -300 50  0001 C CNN "Digikey_PN"
+	1    1500 4550
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 5B784684
-P 850 6100
+P 1550 5600
 AR Path="/5B2FAFE4/5B784684" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B784684" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/5B784684" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B784684" Ref="C2"  Part="1" 
-F 0 "C2" H 875 6200 50  0000 L CNN
-F 1 "100nF" H 875 6000 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 888 5950 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 850 6100 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "GCM188R71H104KA57D" H 875 6300 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 875 6300 50  0001 C CNN "populate"
-	1    850  6100
+F 0 "C2" H 1575 5700 50  0000 L CNN
+F 1 "100nF" H 1575 5500 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1588 5450 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1550 5600 50  0001 C CNN
+F 4 " " H 700 -500 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 1575 5800 50  0001 C CNN "MPN"
+F 6 "50V" H 700 -500 50  0001 C CNN "Voltage"
+F 7 "" H 1575 5800 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 700 -500 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 700 -500 50  0001 C CNN "Digikey_PN"
+	1    1550 5600
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 5B7846C6
-P 1650 6100
+P 2350 5600
 AR Path="/5B2FAFE4/5B7846C6" Ref="C?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B7846C6" Ref="C?"  Part="1" 
 AR Path="/5AAB4D1F/5B7846C6" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B7846C6" Ref="C7"  Part="1" 
-F 0 "C7" H 1675 6200 50  0000 L CNN
-F 1 "100nF" H 1675 6000 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 1688 5950 50  0001 C CNN
-F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1650 6100 50  0001 C CNN
-F 4 " " H 0   0   50  0001 C CNN "DNP"
-F 5 "GCM188R71H104KA57D" H 1675 6300 50  0001 C CNN "MPN"
-F 6 "50V" H 0   0   50  0001 C CNN "Voltage"
-F 7 "" H 1675 6300 50  0001 C CNN "populate"
-	1    1650 6100
+F 0 "C7" H 2375 5700 50  0000 L CNN
+F 1 "100nF" H 2375 5500 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 2388 5450 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 2350 5600 50  0001 C CNN
+F 4 " " H 700 -500 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 2375 5800 50  0001 C CNN "MPN"
+F 6 "50V" H 700 -500 50  0001 C CNN "Voltage"
+F 7 "" H 2375 5800 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 700 -500 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 700 -500 50  0001 C CNN "Digikey_PN"
+	1    2350 5600
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5B7848AF
-P 750 5300
+P 1500 5000
 AR Path="/5B2FAFE4/5B7848AF" Ref="#PWR?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B7848AF" Ref="#PWR?"  Part="1" 
 AR Path="/5AAB4D1F/5B7848AF" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B7848AF" Ref="#PWR05"  Part="1" 
-F 0 "#PWR05" H 750 5050 50  0001 C CNN
-F 1 "GND" H 750 5150 50  0000 C CNN
-F 2 "" H 750 5300 50  0001 C CNN
-F 3 "" H 750 5300 50  0001 C CNN
-	1    750  5300
+F 0 "#PWR05" H 1500 4750 50  0001 C CNN
+F 1 "GND" H 1500 4850 50  0000 C CNN
+F 2 "" H 1500 5000 50  0001 C CNN
+F 3 "" H 1500 5000 50  0001 C CNN
+	1    1500 5000
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5B78F263
-P 1400 6550
+P 2150 6050
 AR Path="/5B2FAFE4/5B78F263" Ref="#PWR?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B78F263" Ref="#PWR?"  Part="1" 
 AR Path="/5AAB4D1F/5B78F263" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B78F263" Ref="#PWR08"  Part="1" 
-F 0 "#PWR08" H 1400 6300 50  0001 C CNN
-F 1 "GND" H 1400 6400 50  0000 C CNN
-F 2 "" H 1400 6550 50  0001 C CNN
-F 3 "" H 1400 6550 50  0001 C CNN
-	1    1400 6550
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 5B7A4374
-P 700 7200
-AR Path="/5B2FAFE4/5B7A4374" Ref="#PWR?"  Part="1" 
-AR Path="/5C8FC872/5C8FC883/5B7A4374" Ref="#PWR?"  Part="1" 
-AR Path="/5AAB4D1F/5B7A4374" Ref="#PWR?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD5C1/5B7A4374" Ref="#PWR03"  Part="1" 
-F 0 "#PWR03" H 700 6950 50  0001 C CNN
-F 1 "GND" H 700 7050 50  0000 C CNN
-F 2 "" H 700 7200 50  0001 C CNN
-F 3 "" H 700 7200 50  0001 C CNN
-	1    700  7200
+F 0 "#PWR08" H 2150 5800 50  0001 C CNN
+F 1 "GND" H 2150 5900 50  0000 C CNN
+F 2 "" H 2150 6050 50  0001 C CNN
+F 3 "" H 2150 6050 50  0001 C CNN
+	1    2150 6050
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5B7A43A5
-P 5600 6900
+P 1050 6600
 AR Path="/5B2FAFE4/5B7A43A5" Ref="#PWR?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B7A43A5" Ref="#PWR?"  Part="1" 
 AR Path="/5AAB4D1F/5B7A43A5" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B7A43A5" Ref="#PWR014"  Part="1" 
-F 0 "#PWR014" H 5600 6650 50  0001 C CNN
-F 1 "GND" H 5600 6750 50  0000 C CNN
-F 2 "" H 5600 6900 50  0001 C CNN
-F 3 "" H 5600 6900 50  0001 C CNN
-	1    5600 6900
-	0    -1   -1   0   
+F 0 "#PWR014" H 1050 6350 50  0001 C CNN
+F 1 "GND" H 1050 6450 50  0000 C CNN
+F 2 "" H 1050 6600 50  0001 C CNN
+F 3 "" H 1050 6600 50  0001 C CNN
+	1    1050 6600
+	0    1    -1   0   
 $EndComp
 $Comp
 L power:+3V3 #PWR?
 U 1 1 5B7B965A
-P 750 4400
+P 1500 4350
 AR Path="/5B2FAFE4/5B7B965A" Ref="#PWR?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B7B965A" Ref="#PWR?"  Part="1" 
 AR Path="/5AAB4D1F/5B7B965A" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B7B965A" Ref="#PWR04"  Part="1" 
-F 0 "#PWR04" H 750 4250 50  0001 C CNN
-F 1 "+3V3" H 750 4540 50  0000 C CNN
-F 2 "" H 750 4400 50  0001 C CNN
-F 3 "" H 750 4400 50  0001 C CNN
-	1    750  4400
+F 0 "#PWR04" H 1500 4200 50  0001 C CNN
+F 1 "+3V3" H 1500 4490 50  0000 C CNN
+F 2 "" H 1500 4350 50  0001 C CNN
+F 3 "" H 1500 4350 50  0001 C CNN
+	1    1500 4350
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR?
 U 1 1 5B7B968B
-P 750 5900
+P 1450 5400
 AR Path="/5B2FAFE4/5B7B968B" Ref="#PWR?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B7B968B" Ref="#PWR?"  Part="1" 
 AR Path="/5AAB4D1F/5B7B968B" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B7B968B" Ref="#PWR06"  Part="1" 
-F 0 "#PWR06" H 750 5750 50  0001 C CNN
-F 1 "+3V3" H 750 6040 50  0000 C CNN
-F 2 "" H 750 5900 50  0001 C CNN
-F 3 "" H 750 5900 50  0001 C CNN
-	1    750  5900
+F 0 "#PWR06" H 1450 5250 50  0001 C CNN
+F 1 "+3V3" H 1450 5540 50  0000 C CNN
+F 2 "" H 1450 5400 50  0001 C CNN
+F 3 "" H 1450 5400 50  0001 C CNN
+	1    1450 5400
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR?
 U 1 1 5B7B96BC
-P 1450 7050
+P 2200 7150
 AR Path="/5B2FAFE4/5B7B96BC" Ref="#PWR?"  Part="1" 
 AR Path="/5C8FC872/5C8FC883/5B7B96BC" Ref="#PWR?"  Part="1" 
 AR Path="/5AAB4D1F/5B7B96BC" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD5C1/5B7B96BC" Ref="#PWR09"  Part="1" 
-F 0 "#PWR09" H 1450 6900 50  0001 C CNN
-F 1 "+3V3" H 1450 7190 50  0000 C CNN
-F 2 "" H 1450 7050 50  0001 C CNN
-F 3 "" H 1450 7050 50  0001 C CNN
-	1    1450 7050
+F 0 "#PWR09" H 2200 7000 50  0001 C CNN
+F 1 "+3V3" H 2200 7290 50  0000 C CNN
+F 2 "" H 2200 7150 50  0001 C CNN
+F 3 "" H 2200 7150 50  0001 C CNN
+	1    2200 7150
 	1    0    0    -1  
 $EndComp
-Text GLabel 9800 2200 2    59   Output ~ 0
-SW_EN
-Text GLabel 9800 4050 2    59   Output ~ 0
-CAN_SLEEP
-Text GLabel 9800 3950 2    59   Output ~ 0
-CAN_TX
-Text GLabel 9800 3850 2    59   Input ~ 0
-CAN_RX
 Text Notes 1700 950  2    60   ~ 0
 TO ADD
-Text GLabel 850  7600 0    60   Input ~ 0
+Text GLabel 1600 7600 0    60   Input ~ 0
 nRESET
-Text GLabel 5600 4100 0    59   Input ~ 0
+Wire Wire Line
+	1700 4400 1700 4350
+Wire Wire Line
+	1900 4400 1900 4350
+Wire Wire Line
+	2100 4400 2100 4350
+Wire Wire Line
+	1700 4700 1700 5000
+Wire Wire Line
+	1900 4700 1900 5000
+Wire Wire Line
+	2100 4700 2100 5000
+Wire Wire Line
+	2550 6050 2750 6050
+Wire Wire Line
+	2250 6050 2150 6050
+Wire Wire Line
+	2100 5400 2200 5400
+Wire Wire Line
+	2350 5450 2350 5400
+Wire Wire Line
+	1450 5800 1550 5800
+Wire Wire Line
+	1450 5400 1550 5400
+Wire Wire Line
+	1550 5800 1550 5750
+Wire Wire Line
+	1550 5450 1550 5400
+Wire Wire Line
+	2350 5750 2350 5800
+Wire Wire Line
+	2700 6350 2500 6350
+Wire Wire Line
+	2700 6850 2500 6850
+Wire Wire Line
+	1950 6750 1950 6850
+Wire Wire Line
+	2500 6750 2500 6850
+Wire Wire Line
+	2500 6450 2500 6350
+Wire Wire Line
+	1950 6450 1950 6350
+Wire Wire Line
+	1150 6850 1200 6850
+Wire Wire Line
+	1150 6350 1150 6600
+Wire Wire Line
+	1150 6350 1200 6350
+Wire Wire Line
+	2200 7150 2200 7200
+Wire Wire Line
+	2200 7600 2200 7500
+Wire Wire Line
+	2200 5250 2200 5400
+Wire Wire Line
+	1500 4350 1500 4400
+Wire Wire Line
+	2650 5400 2650 5550
+Wire Wire Line
+	2650 5550 2750 5550
+Wire Wire Line
+	2650 5800 2650 5650
+Wire Wire Line
+	2650 5650 2750 5650
+Wire Wire Line
+	2750 7100 2650 7100
+Wire Wire Line
+	2650 7100 2650 7600
+Wire Wire Line
+	2650 7600 2600 7600
+Wire Wire Line
+	2700 6350 2700 6550
+Wire Wire Line
+	2700 6550 2750 6550
+Wire Wire Line
+	2700 6850 2700 6650
+Wire Wire Line
+	2700 6650 2750 6650
+Wire Wire Line
+	1050 6600 1150 6600
+Wire Wire Line
+	1700 4350 1900 4350
+Wire Wire Line
+	1900 4350 2100 4350
+Wire Wire Line
+	1700 5000 1900 5000
+Wire Wire Line
+	1900 5000 2100 5000
+Wire Wire Line
+	1550 5800 2350 5800
+Wire Wire Line
+	1550 5400 1800 5400
+Wire Wire Line
+	2350 5800 2650 5800
+Wire Wire Line
+	1950 6850 1500 6850
+Wire Wire Line
+	2500 6850 1950 6850
+Wire Wire Line
+	2500 6350 1950 6350
+Wire Wire Line
+	1950 6350 1500 6350
+Wire Wire Line
+	2200 7600 2300 7600
+Wire Wire Line
+	2200 5400 2350 5400
+Wire Wire Line
+	1150 6600 1150 6850
+Wire Wire Line
+	1500 5000 1700 5000
+Wire Wire Line
+	1500 4700 1500 5000
+Wire Wire Line
+	1500 4350 1700 4350
+Connection ~ 1700 4350
+Connection ~ 1900 4350
+Connection ~ 2100 4350
+Connection ~ 1700 5000
+Connection ~ 1900 5000
+Connection ~ 2100 5000
+Connection ~ 2350 5400
+Connection ~ 1550 5800
+Connection ~ 1550 5400
+Connection ~ 2350 5800
+Connection ~ 1950 6850
+Connection ~ 2500 6850
+Connection ~ 2500 6350
+Connection ~ 1950 6350
+Connection ~ 2200 7600
+Connection ~ 2200 5400
+Connection ~ 1150 6600
+Connection ~ 1500 5000
+Connection ~ 1500 4350
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 59980D1B
+P 2200 5250
+AR Path="/5B2FAFE4/59980D1B" Ref="#FLG?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/59980D1B" Ref="#FLG?"  Part="1" 
+AR Path="/5AAB4D1F/59980D1B" Ref="#FLG?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/59980D1B" Ref="#FLG01"  Part="1" 
+F 0 "#FLG01" H 2200 5325 50  0001 C CNN
+F 1 "PWR_FLAG" H 2200 5400 50  0000 C CNN
+F 2 "" H 2200 5250 50  0001 C CNN
+F 3 "" H 2200 5250 50  0001 C CNN
+	1    2200 5250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2350 5400 2650 5400
+Wire Wire Line
+	1600 7600 2200 7600
+$Comp
+L micros:PIC33EP256MC506 U1
+U 1 1 62A638CA
+P 2650 6000
+F 0 "U1" H 3778 6353 60  0000 L CNN
+F 1 "PIC33EP256MC506" H 3778 6247 60  0000 L CNN
+F 2 "Package_QFP:TQFP-64_10x10mm_P0.5mm" H 8700 9550 60  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/268/70000657H-277982.pdf" H 8700 9550 60  0001 C CNN
+F 4 "579-33EP64GP506IPT" H 2650 6000 50  0001 C CNN "Mouser_PN"
+F 5 "DSPIC33EP64GP506-I/PT" H 2650 6000 50  0001 C CNN "Part Number"
+	1    2650 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L micros:PIC33EP256MC506 U1
+U 2 1 62A63949
+P 7450 5000
+F 0 "U1" H 8050 7187 60  0000 C CNN
+F 1 "PIC33EP256MC506" H 8050 7081 60  0000 C CNN
+F 2 "Package_QFP:TQFP-64_10x10mm_P0.5mm" H 13500 8550 60  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/268/70000657H-277982.pdf" H 13500 8550 60  0001 C CNN
+F 4 "579-33EP64GP506IPT" H 7450 5000 50  0001 C CNN "Mouser_PN"
+F 5 "DSPIC33EP64GP506-I/PT" H 7450 5000 50  0001 C CNN "Part Number"
+	2    7450 5000
+	1    0    0    -1  
+$EndComp
+Text GLabel 6050 4650 0    59   Input ~ 0
 PGED
-Text GLabel 5600 4200 0    59   Input ~ 0
+Text GLabel 6050 4750 0    59   Input ~ 0
 PGEC
-Text GLabel 9800 2550 2    59   Output ~ 0
-UART_TX
-Text GLabel 9800 2450 2    59   Input ~ 0
-UART_RX
-Text GLabel 5750 4900 0    60   Output ~ 0
+Text GLabel 10050 5550 2    59   Output ~ 0
 DEBUG_LED
-Text GLabel 5750 5000 0    60   BiDi ~ 0
+Text GLabel 6050 5550 0    59   BiDi ~ 0
 DEBUG_PIN
-Wire Wire Line
-	950  4700 950  4400
-Wire Wire Line
-	1150 4700 1150 4400
-Wire Wire Line
-	1350 4700 1350 4400
-Wire Wire Line
-	1550 4700 1550 4400
-Wire Wire Line
-	950  5000 950  5300
-Wire Wire Line
-	1150 5000 1150 5300
-Wire Wire Line
-	1350 5000 1350 5300
-Wire Wire Line
-	1550 5000 1550 5300
-Wire Wire Line
-	1800 6550 2000 6550
-Wire Wire Line
-	1500 6550 1400 6550
-Wire Wire Line
-	1400 5900 1500 5900
-Wire Wire Line
-	1650 5950 1650 5900
-Wire Wire Line
-	750  6300 850  6300
-Wire Wire Line
-	750  5900 850  5900
-Wire Wire Line
-	850  6300 850  6250
-Wire Wire Line
-	850  5950 850  5900
-Wire Wire Line
-	1650 6250 1650 6300
-Wire Wire Line
-	3950 6650 4150 6650
-Wire Wire Line
-	3950 7150 4150 7150
-Wire Wire Line
-	4700 7050 4700 7150
-Wire Wire Line
-	4150 7050 4150 7150
-Wire Wire Line
-	4150 6750 4150 6650
-Wire Wire Line
-	4700 6750 4700 6650
-Wire Wire Line
-	5500 7150 5450 7150
-Wire Wire Line
-	5500 6650 5500 6900
-Wire Wire Line
-	5500 6650 5450 6650
-Wire Wire Line
-	1450 7050 1450 7150
-Wire Wire Line
-	1450 7600 1450 7450
-Wire Wire Line
-	850  7600 1250 7600
-Wire Wire Line
-	1800 5850 1800 5900
-Wire Wire Line
-	1500 5750 1500 5900
-Wire Wire Line
-	750  4400 750  4700
-Wire Wire Line
-	2000 4400 2000 4500
-Wire Wire Line
-	2000 5300 2000 5400
-Wire Wire Line
-	1950 5900 1950 5950
-Wire Wire Line
-	1950 5950 2000 5950
-Wire Wire Line
-	1950 6300 1950 6250
-Wire Wire Line
-	1950 6250 2000 6250
-Wire Wire Line
-	2000 7100 1900 7100
-Wire Wire Line
-	1900 7100 1900 7600
-Wire Wire Line
-	1900 7600 1850 7600
-Wire Wire Line
-	3950 6650 3950 6750
-Wire Wire Line
-	3950 6750 3900 6750
-Wire Wire Line
-	3950 7150 3950 7050
-Wire Wire Line
-	3950 7050 3900 7050
-Wire Wire Line
-	1750 4400 1750 4700
-Wire Wire Line
-	1750 5000 1750 5300
-Wire Wire Line
-	5750 4200 5600 4200
-Wire Wire Line
-	5750 4100 5600 4100
-Wire Wire Line
-	4100 5750 4100 5800
-Wire Wire Line
-	4100 5800 3900 5800
-Wire Wire Line
-	5600 6900 5500 6900
-Wire Wire Line
-	1250 7600 1250 7200
-Wire Wire Line
-	750  7200 700  7200
-Wire Wire Line
-	1250 7200 1150 7200
-Wire Wire Line
-	950  4400 1150 4400
-Wire Wire Line
-	1150 4400 1350 4400
-Wire Wire Line
-	1350 4400 1550 4400
-Wire Wire Line
-	1550 4400 1750 4400
-Wire Wire Line
-	950  5300 1150 5300
-Wire Wire Line
-	1150 5300 1350 5300
-Wire Wire Line
-	1350 5300 1550 5300
-Wire Wire Line
-	1550 5300 1750 5300
-Wire Wire Line
-	1650 5900 1800 5900
-Wire Wire Line
-	850  6300 1650 6300
-Wire Wire Line
-	850  5900 1100 5900
-Wire Wire Line
-	1650 6300 1950 6300
-Wire Wire Line
-	4700 7150 5150 7150
-Wire Wire Line
-	4150 7150 4700 7150
-Wire Wire Line
-	4150 6650 4700 6650
-Wire Wire Line
-	4700 6650 5150 6650
-Wire Wire Line
-	1450 7600 1550 7600
-Wire Wire Line
-	1800 5900 1950 5900
-Wire Wire Line
-	1500 5900 1650 5900
-Wire Wire Line
-	2000 5400 2000 5500
-Wire Wire Line
-	2000 5500 2000 5600
-Wire Wire Line
-	2000 5600 2000 5700
-Wire Wire Line
-	2000 4800 2000 4900
-Wire Wire Line
-	2000 4700 2000 4800
-Wire Wire Line
-	2000 4600 2000 4700
-Wire Wire Line
-	2000 4500 2000 4600
-Wire Wire Line
-	1750 4400 2000 4400
-Wire Wire Line
-	1750 5300 2000 5300
-Wire Wire Line
-	5500 6900 5500 7150
-Wire Wire Line
-	1250 7600 1450 7600
-Wire Wire Line
-	750  5300 950  5300
-Wire Wire Line
-	750  5000 750  5300
-Wire Wire Line
-	750  4400 950  4400
-Connection ~ 950  4400
-Connection ~ 1150 4400
-Connection ~ 1350 4400
-Connection ~ 1550 4400
-Connection ~ 950  5300
-Connection ~ 1150 5300
-Connection ~ 1350 5300
-Connection ~ 1550 5300
-Connection ~ 1650 5900
-Connection ~ 850  6300
-Connection ~ 850  5900
-Connection ~ 1650 6300
-Connection ~ 4700 7150
-Connection ~ 4150 7150
-Connection ~ 4150 6650
-Connection ~ 4700 6650
-Connection ~ 1450 7600
-Connection ~ 1800 5900
-Connection ~ 1500 5900
-Connection ~ 2000 5400
-Connection ~ 2000 5500
-Connection ~ 2000 5600
-Connection ~ 2000 4800
-Connection ~ 2000 4700
-Connection ~ 2000 4600
-Connection ~ 2000 4500
-Connection ~ 2000 5300
-Connection ~ 1750 4400
-Connection ~ 1750 5300
-Connection ~ 5500 6900
-Connection ~ 2000 4400
-Connection ~ 1250 7600
-Connection ~ 750  5300
-Connection ~ 750  4400
-NoConn ~ 3900 6150
-Text GLabel 9800 1300 2    59   Output ~ 0
-NTC_1_AI
-Text GLabel 9800 1400 2    59   Output ~ 0
-NTC_2_AI
-Text GLabel 5750 3700 0    59   Output ~ 0
+Text GLabel 5450 1250 2    59   Input ~ 0
 NTC_3_AI
-Text GLabel 5750 3800 0    59   Output ~ 0
+Text GLabel 5450 1550 2    59   Input ~ 0
 NTC_4_AI
-Text GLabel 5750 3900 0    59   Output ~ 0
+Text GLabel 5450 1750 2    59   Input ~ 0
 NTC_5_AI
-Text GLabel 5750 4000 0    59   Output ~ 0
+Text GLabel 5450 1950 2    59   Input ~ 0
 NTC_6_AI
-Text GLabel 9800 1500 2    59   Output ~ 0
-NTC_7_AI
-Text GLabel 9800 1600 2    59   Output ~ 0
-NTC_8_AI
-Text GLabel 5750 2500 0    59   Output ~ 0
+Text GLabel 7550 1400 2    59   Input ~ 0
 NTC_9_AI
-Text GLabel 5750 2400 0    59   Output ~ 0
+Text GLabel 7550 1300 2    59   Input ~ 0
 NTC_10_AI
-Text GLabel 5750 2300 0    59   Output ~ 0
+Text GLabel 7550 1200 2    59   Input ~ 0
 NTC_11_AI
-Text GLabel 5750 2200 0    59   Output ~ 0
+Text GLabel 7550 1500 2    59   Input ~ 0
 NTC_12_AI
-Text GLabel 5750 2100 0    59   Output ~ 0
+Text GLabel 7550 1700 2    59   Input ~ 0
 NTC_13_AI
-Text GLabel 5750 2000 0    59   Output ~ 0
+Text GLabel 7550 1900 2    59   Input ~ 0
 NTC_14_AI
-Text GLabel 5750 2600 0    59   Output ~ 0
+Text GLabel 7550 1800 2    59   Input ~ 0
 NTC_15_AI
-Text GLabel 5750 2700 0    59   Output ~ 0
+Text GLabel 7550 1600 2    59   Input ~ 0
 NTC_16_AI
-Text GLabel 5750 2800 0    59   Output ~ 0
+Text GLabel 9700 1400 2    59   Input ~ 0
 NTC_17_AI
-Text GLabel 5750 2900 0    59   Output ~ 0
+Text GLabel 9700 1300 2    59   Input ~ 0
 NTC_18_AI
-Text GLabel 5750 3000 0    59   Output ~ 0
+Text GLabel 9700 1200 2    59   Input ~ 0
 NTC_19_AI
-Text GLabel 5750 3100 0    59   Output ~ 0
+Text GLabel 9700 1500 2    59   Input ~ 0
 NTC_20_AI
-Text GLabel 5750 3200 0    59   Output ~ 0
+Text GLabel 9700 1700 2    59   Input ~ 0
 NTC_21_AI
-Text GLabel 5750 3300 0    59   Output ~ 0
+Text GLabel 9700 1900 2    59   Input ~ 0
 NTC_22_AI
-Text GLabel 5750 3400 0    59   Output ~ 0
-NTC_23_AI
-Text GLabel 5750 3500 0    59   Output ~ 0
-NTC_24_AI
-Text GLabel 9800 2100 2    59   Output ~ 0
-SPI_CS
-Text GLabel 9800 1900 2    59   Input ~ 0
-SPI_SDO
-Text GLabel 9800 2000 2    59   Output ~ 0
-SPI_SDI
-Text GLabel 9800 1800 2    59   Output ~ 0
-SPI_CKL
-NoConn ~ 9800 2650
-NoConn ~ 9800 2750
-NoConn ~ 9800 2850
-NoConn ~ 9800 2950
-NoConn ~ 9800 3050
-NoConn ~ 9800 3150
-NoConn ~ 9800 3250
-NoConn ~ 9800 3450
-NoConn ~ 9800 3550
-NoConn ~ 9800 3650
-NoConn ~ 9800 3750
-NoConn ~ 9800 1200
-NoConn ~ 9800 1100
-NoConn ~ 9800 800 
-NoConn ~ 5750 1000
-NoConn ~ 5750 1100
-NoConn ~ 5750 1200
-NoConn ~ 5750 1500
-NoConn ~ 5750 1600
-NoConn ~ 5750 1700
-NoConn ~ 5750 1800
-NoConn ~ 5750 4400
-NoConn ~ 5750 4500
-NoConn ~ 5750 4600
-NoConn ~ 5750 4700
-NoConn ~ 5750 5100
-NoConn ~ 5750 5200
-NoConn ~ 5750 5300
-NoConn ~ 5750 5400
-NoConn ~ 5750 5500
-NoConn ~ 5750 5600
-NoConn ~ 5750 5700
-NoConn ~ 5750 5800
-NoConn ~ 5750 5900
-Text GLabel 9800 700  2    59   Input ~ 0
+Text GLabel 6050 3850 0    59   Input ~ 0
 Transducer_Input_AI
-Text GLabel 5750 900  0    59   Input ~ 0
+Text GLabel 6050 3550 0    59   Input ~ 0
 5V_SW_nFAULT
-NoConn ~ 5750 700 
-NoConn ~ 5750 800 
-Text GLabel 5750 4800 0    50   Output ~ 0
+Text GLabel 6050 5350 0    59   Output ~ 0
 PRE_CHARGE_EN
-Text GLabel 5750 1300 0    50   Input ~ 0
-HV_BUS_MONITOR_AI
-Text GLabel 9800 900  2    50   Output ~ 0
-CONTACTOR_PWM
-Text GLabel 9800 1000 2    50   Input ~ 0
-CONTACTOR_STATUS
-Text GLabel 5750 1400 0    50   Input ~ 0
-12V_POWER_MONITOR_AI
+Text GLabel 6050 3250 0    59   Input ~ 0
+HV_BUS_VOLTAGE_AI
+Text GLabel 6050 4850 0    59   Output ~ 0
+DCDC_ENABLE
+Text GLabel 6050 5050 0    59   Output ~ 0
+CHARGE_PUMP_PWM
+Text GLabel 6050 4950 0    59   Output ~ 0
+EV_CHARGER_ENABLE
+Text GLabel 6050 5250 0    59   Output ~ 0
+DISCHARGE_EN
+Text GLabel 10050 4450 2    39   Input ~ 0
+DCDC_~FAULT~
+Text GLabel 10050 4550 2    39   Input ~ 0
+EV_CHARGER_~FAULT~
+Text GLabel 6050 3150 0    59   Input ~ 0
+ISOLATION_VOLTAGE_AI
+Text GLabel 6050 3950 0    59   Input ~ 0
+LOW_CURRENT_SHUNT_AI
+Text GLabel 6050 4550 0    59   Output ~ 0
+SW_EN
+Text GLabel 10050 3450 2    59   Output ~ 0
+CAN_TX
+Text GLabel 10050 3350 2    59   Input ~ 0
+CAN_RX
+Text GLabel 10050 3650 2    59   Output ~ 0
+UART_TX
+Text GLabel 10050 3750 2    59   Input ~ 0
+UART_RX
+Text GLabel 5450 1450 2    59   Input ~ 0
+NTC_2_AI
+Text GLabel 5450 1850 2    59   Input ~ 0
+NTC_7_AI
+Text GLabel 5450 1650 2    59   Input ~ 0
+NTC_8_AI
+Text GLabel 9700 1800 2    59   Input ~ 0
+NTC_23_AI
+Text GLabel 9700 1600 2    59   Input ~ 0
+NTC_24_AI
+Text GLabel 10050 5650 2    59   Output ~ 0
+SPI_CS
+Text GLabel 6050 3350 0    59   Output ~ 0
+SPI_MOPI
+Text GLabel 6050 3650 0    59   Input ~ 0
+SPI_MIPO
+Text GLabel 10050 5750 2    59   Output ~ 0
+SPI_CKL
+Text GLabel 10050 5150 2    59   Output ~ 0
+CONTACTOR_PWM_1
+Text GLabel 10050 5250 2    59   Output ~ 0
+CONTACTOR_PWM_2
+Text GLabel 6050 4250 0    59   Input ~ 0
+DCDC_OUTPUT_CURRENT_AI
+Text GLabel 6050 4150 0    59   Input ~ 0
+EV_CHARGER_CURRENT_AI
+Text GLabel 5450 1350 2    59   Input ~ 0
+NTC_1_AI
+Text GLabel 6050 4450 0    59   Input ~ 0
+DCDC_OUTPUT_VOLTAGE_AI
+Text GLabel 6050 4350 0    59   Input ~ 0
+EV_CHARGER_VOLTAGE_AI
+Text GLabel 10050 4350 2    59   Input ~ 0
+12V_POWER_STATUS
+Wire Wire Line
+	2100 4350 2750 4350
+Wire Wire Line
+	2100 5000 2750 5000
+Connection ~ 2750 4900
+Wire Wire Line
+	2750 4900 2750 4800
+Connection ~ 2750 5000
+Wire Wire Line
+	2750 5000 2750 4900
+Wire Wire Line
+	2750 4350 2750 4450
+Connection ~ 2750 4450
+Wire Wire Line
+	2750 4450 2750 4550
+Connection ~ 2750 4550
+Connection ~ 2750 4350
+Wire Wire Line
+	2750 4550 2750 4650
+$Comp
+L Analog_Switch:CD4051B U5
+U 1 1 630F9FC1
+P 4950 1450
+F 0 "U5" H 4600 2100 50  0000 C CNN
+F 1 "CD4051B" H 5200 800 50  0000 C CNN
+F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 5100 700 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/cd4052b.pdf" H 4930 1550 50  0001 C CNN
+F 4 "296-49580-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "CD4051BQPWRG4Q1" H 0   0   50  0001 C CNN "MPN"
+F 6 "CD4051BQPWRG4Q1" H 0   0   50  0001 C CNN "Part Number"
+	1    4950 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Analog_Switch:CD4051B U17
+U 1 1 63108B17
+P 7050 1400
+F 0 "U17" H 6650 2050 50  0000 C CNN
+F 1 "CD4051B" H 7300 750 50  0000 C CNN
+F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 7200 650 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/cd4052b.pdf" H 7030 1500 50  0001 C CNN
+F 4 "296-49580-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "CD4051BQPWRG4Q1" H 0   0   50  0001 C CNN "MPN"
+F 6 "CD4051BQPWRG4Q1" H 0   0   50  0001 C CNN "Part Number"
+	1    7050 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Analog_Switch:CD4051B U26
+U 1 1 63108B87
+P 9200 1400
+F 0 "U26" H 8850 2050 50  0000 C CNN
+F 1 "CD4051B" H 9450 750 50  0000 C CNN
+F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 9350 650 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/cd4052b.pdf" H 9180 1500 50  0001 C CNN
+F 4 "296-49580-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "CD4051BQPWRG4Q1" H 0   0   50  0001 C CNN "MPN"
+F 6 "CD4051BQPWRG4Q1" H 0   0   50  0001 C CNN "Part Number"
+	1    9200 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 63110DB0
+P 4850 2250
+AR Path="/5B2FAFE4/63110DB0" Ref="#PWR?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/63110DB0" Ref="#PWR?"  Part="1" 
+AR Path="/5AAB4D1F/63110DB0" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/63110DB0" Ref="#PWR0166"  Part="1" 
+F 0 "#PWR0166" H 4850 2000 50  0001 C CNN
+F 1 "GND" H 4850 2100 50  0000 C CNN
+F 2 "" H 4850 2250 50  0001 C CNN
+F 3 "" H 4850 2250 50  0001 C CNN
+	1    4850 2250
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4950 2150 4850 2150
+Wire Wire Line
+	4850 2150 4850 2250
+Connection ~ 4850 2150
+$Comp
+L power:GND #PWR?
+U 1 1 63113472
+P 6950 2200
+AR Path="/5B2FAFE4/63113472" Ref="#PWR?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/63113472" Ref="#PWR?"  Part="1" 
+AR Path="/5AAB4D1F/63113472" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/63113472" Ref="#PWR0202"  Part="1" 
+F 0 "#PWR0202" H 6950 1950 50  0001 C CNN
+F 1 "GND" H 6950 2050 50  0000 C CNN
+F 2 "" H 6950 2200 50  0001 C CNN
+F 3 "" H 6950 2200 50  0001 C CNN
+	1    6950 2200
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 2100 6950 2200
+$Comp
+L power:GND #PWR?
+U 1 1 63114788
+P 9100 2200
+AR Path="/5B2FAFE4/63114788" Ref="#PWR?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/63114788" Ref="#PWR?"  Part="1" 
+AR Path="/5AAB4D1F/63114788" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/63114788" Ref="#PWR0276"  Part="1" 
+F 0 "#PWR0276" H 9100 1950 50  0001 C CNN
+F 1 "GND" H 9100 2050 50  0000 C CNN
+F 2 "" H 9100 2200 50  0001 C CNN
+F 3 "" H 9100 2200 50  0001 C CNN
+	1    9100 2200
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 2100 9100 2200
+Wire Wire Line
+	9200 2100 9100 2100
+Connection ~ 9100 2100
+Wire Wire Line
+	7050 2100 6950 2100
+Connection ~ 6950 2100
+Text GLabel 4450 950  0    59   Input ~ 0
+MUX_A
+Text GLabel 4450 1050 0    59   Input ~ 0
+MUX_B
+Text GLabel 4450 1150 0    59   Input ~ 0
+MUX_C
+Text GLabel 4450 1350 0    59   Output ~ 0
+MUX_1_AI
+Text GLabel 6550 900  0    59   Input ~ 0
+MUX_A
+Text GLabel 6550 1000 0    59   Input ~ 0
+MUX_B
+Text GLabel 6550 1100 0    59   Input ~ 0
+MUX_C
+Text GLabel 6550 1300 0    59   Output ~ 0
+MUX_2_AI
+Text GLabel 8700 900  0    59   Input ~ 0
+MUX_A
+Text GLabel 8700 1000 0    59   Input ~ 0
+MUX_B
+Text GLabel 8700 1100 0    59   Input ~ 0
+MUX_C
+Text GLabel 8700 1300 0    59   Output ~ 0
+MUX_3_AI
+$Comp
+L Device:C C?
+U 1 1 6313F409
+P 3550 950
+AR Path="/5B2FAFE4/6313F409" Ref="C?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/6313F409" Ref="C?"  Part="1" 
+AR Path="/5AAB4D1F/6313F409" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/6313F409" Ref="C64"  Part="1" 
+F 0 "C64" H 3575 1050 50  0000 L CNN
+F 1 "100nF" H 3575 850 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3588 800 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 3550 950 50  0001 C CNN
+F 4 " " H 2200 -3900 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 3575 1150 50  0001 C CNN "MPN"
+F 6 "50V" H 2200 -3900 50  0001 C CNN "Voltage"
+F 7 "" H 3575 1150 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 2200 -3900 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 2200 -3900 50  0001 C CNN "Digikey_PN"
+	1    3550 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 6313F416
+P 3350 950
+AR Path="/5B2FAFE4/6313F416" Ref="C?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/6313F416" Ref="C?"  Part="1" 
+AR Path="/5AAB4D1F/6313F416" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/6313F416" Ref="C9"  Part="1" 
+F 0 "C9" H 3375 1050 50  0000 L CNN
+F 1 "100nF" H 3375 850 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3388 800 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 3350 950 50  0001 C CNN
+F 4 " " H 2200 -3900 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 3375 1150 50  0001 C CNN "MPN"
+F 6 "50V" H 2200 -3900 50  0001 C CNN "Voltage"
+F 7 "" H 3375 1150 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 2200 -3900 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 2200 -3900 50  0001 C CNN "Digikey_PN"
+	1    3350 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 6313F423
+P 3150 950
+AR Path="/5B2FAFE4/6313F423" Ref="C?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/6313F423" Ref="C?"  Part="1" 
+AR Path="/5AAB4D1F/6313F423" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/6313F423" Ref="C6"  Part="1" 
+F 0 "C6" H 3175 1050 50  0000 L CNN
+F 1 "100nF" H 3175 850 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3188 800 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 3150 950 50  0001 C CNN
+F 4 " " H 2200 -3900 50  0001 C CNN "DNP"
+F 5 "GCM188R71H104KA57D" H 3175 1150 50  0001 C CNN "MPN"
+F 6 "50V" H 2200 -3900 50  0001 C CNN "Voltage"
+F 7 "" H 3175 1150 50  0001 C CNN "populate"
+F 8 "GCM188R71H104KA57D" H 2200 -3900 50  0001 C CNN "Part Number"
+F 9 "490-4779-1-ND" H 2200 -3900 50  0001 C CNN "Digikey_PN"
+	1    3150 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 800  3350 800 
+Connection ~ 3350 800 
+Wire Wire Line
+	3350 800  3150 800 
+Wire Wire Line
+	3150 1100 3350 1100
+Connection ~ 3350 1100
+Wire Wire Line
+	3350 1100 3500 1100
+$Comp
+L power:GND #PWR?
+U 1 1 63143277
+P 3500 1100
+AR Path="/5B2FAFE4/63143277" Ref="#PWR?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/63143277" Ref="#PWR?"  Part="1" 
+AR Path="/5AAB4D1F/63143277" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/63143277" Ref="#PWR011"  Part="1" 
+F 0 "#PWR011" H 3500 850 50  0001 C CNN
+F 1 "GND" H 3500 950 50  0000 C CNN
+F 2 "" H 3500 1100 50  0001 C CNN
+F 3 "" H 3500 1100 50  0001 C CNN
+	1    3500 1100
+	-1   0    0    -1  
+$EndComp
+Connection ~ 3500 1100
+Wire Wire Line
+	3500 1100 3550 1100
+Text GLabel 10050 5850 2    59   Input ~ 0
+MUX_1_AI
+Text GLabel 10050 4950 2    59   Input ~ 0
+MUX_2_AI
+Text GLabel 10050 4850 2    59   Input ~ 0
+MUX_3_AI
+Text GLabel 10050 3950 2    59   Output ~ 0
+MUX_A
+Text GLabel 10050 4050 2    59   Output ~ 0
+MUX_B
+Text GLabel 10050 4150 2    59   Output ~ 0
+MUX_C
+Text GLabel 10050 6050 2    59   Input ~ 0
+HIGH_CURRENT_SHUNT_AI
+NoConn ~ 6050 3450
+NoConn ~ 6050 3750
+NoConn ~ 6050 5150
+NoConn ~ 6050 5450
+NoConn ~ 6050 5650
+NoConn ~ 10050 3150
+NoConn ~ 10050 3250
+NoConn ~ 10050 4750
+NoConn ~ 10050 5050
+NoConn ~ 10050 5350
+NoConn ~ 10050 5450
+NoConn ~ 10050 5950
+$Comp
+L power:GND #PWR?
+U 1 1 632165A3
+P 4300 1500
+AR Path="/5B2FAFE4/632165A3" Ref="#PWR?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/632165A3" Ref="#PWR?"  Part="1" 
+AR Path="/5AAB4D1F/632165A3" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/632165A3" Ref="#PWR0193"  Part="1" 
+F 0 "#PWR0193" H 4300 1250 50  0001 C CNN
+F 1 "GND" H 4300 1350 50  0000 C CNN
+F 2 "" H 4300 1500 50  0001 C CNN
+F 3 "" H 4300 1500 50  0001 C CNN
+	1    4300 1500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 632165DA
+P 6400 1450
+AR Path="/5B2FAFE4/632165DA" Ref="#PWR?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/632165DA" Ref="#PWR?"  Part="1" 
+AR Path="/5AAB4D1F/632165DA" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/632165DA" Ref="#PWR0253"  Part="1" 
+F 0 "#PWR0253" H 6400 1200 50  0001 C CNN
+F 1 "GND" H 6400 1300 50  0000 C CNN
+F 2 "" H 6400 1450 50  0001 C CNN
+F 3 "" H 6400 1450 50  0001 C CNN
+	1    6400 1450
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 63216611
+P 8550 1450
+AR Path="/5B2FAFE4/63216611" Ref="#PWR?"  Part="1" 
+AR Path="/5C8FC872/5C8FC883/63216611" Ref="#PWR?"  Part="1" 
+AR Path="/5AAB4D1F/63216611" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/63216611" Ref="#PWR0277"  Part="1" 
+F 0 "#PWR0277" H 8550 1200 50  0001 C CNN
+F 1 "GND" H 8550 1300 50  0000 C CNN
+F 2 "" H 8550 1450 50  0001 C CNN
+F 3 "" H 8550 1450 50  0001 C CNN
+	1    8550 1450
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	8550 1400 8550 1450
+Wire Wire Line
+	8550 1400 8700 1400
+Wire Wire Line
+	6550 1400 6400 1400
+Wire Wire Line
+	6400 1400 6400 1450
+Wire Wire Line
+	4450 1450 4300 1450
+Wire Wire Line
+	4300 1450 4300 1500
+$Comp
+L power:+5VA #PWR?
+U 1 1 6321CA85
+P 3150 800
+AR Path="/5B5CD4CD/5B5CD5C3/6321CA85" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/6321CA85" Ref="#PWR0279"  Part="1" 
+F 0 "#PWR0279" H 3150 650 50  0001 C CNN
+F 1 "+5VA" H 3165 973 50  0000 C CNN
+F 2 "" H 3150 800 50  0001 C CNN
+F 3 "" H 3150 800 50  0001 C CNN
+	1    3150 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VA #PWR?
+U 1 1 6321E4AA
+P 5050 750
+AR Path="/5B5CD4CD/5B5CD5C3/6321E4AA" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/6321E4AA" Ref="#PWR0280"  Part="1" 
+F 0 "#PWR0280" H 5050 600 50  0001 C CNN
+F 1 "+5VA" H 5065 923 50  0000 C CNN
+F 2 "" H 5050 750 50  0001 C CNN
+F 3 "" H 5050 750 50  0001 C CNN
+	1    5050 750 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VA #PWR?
+U 1 1 6321FE47
+P 7150 700
+AR Path="/5B5CD4CD/5B5CD5C3/6321FE47" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/6321FE47" Ref="#PWR0281"  Part="1" 
+F 0 "#PWR0281" H 7150 550 50  0001 C CNN
+F 1 "+5VA" H 7165 873 50  0000 C CNN
+F 2 "" H 7150 700 50  0001 C CNN
+F 3 "" H 7150 700 50  0001 C CNN
+	1    7150 700 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VA #PWR?
+U 1 1 632217E4
+P 9300 700
+AR Path="/5B5CD4CD/5B5CD5C3/632217E4" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C1/632217E4" Ref="#PWR0282"  Part="1" 
+F 0 "#PWR0282" H 9300 550 50  0001 C CNN
+F 1 "+5VA" H 9315 873 50  0000 C CNN
+F 2 "" H 9300 700 50  0001 C CNN
+F 3 "" H 9300 700 50  0001 C CNN
+	1    9300 700 
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

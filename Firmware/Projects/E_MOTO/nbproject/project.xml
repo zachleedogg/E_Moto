@@ -12,6 +12,40 @@
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>.</sourceRootElem>
+                <sourceRootElem>../../Libraries/PIC33_plib/inc</sourceRootElem>
+                <sourceRootElem>../../Libraries/PIC33_plib/src</sourceRootElem>
+                <sourceRootElem>../../Libraries/Drivers/TFT_LCD/inc</sourceRootElem>
+                <sourceRootElem>../../CAN/generated</sourceRootElem>
+                <sourceRootElem>../../Libraries/Drivers/TFT_LCD/src</sourceRootElem>
+                <sourceRootElem>../../Libraries/Drivers/PingSensor</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>EVAL_2</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>EVAL_2_DEBUG</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>EVAL_1</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>EVAL_1_DEBUG</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>E_MOTO_SIMULATOR</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
         </data>
     </configuration>
 </project>

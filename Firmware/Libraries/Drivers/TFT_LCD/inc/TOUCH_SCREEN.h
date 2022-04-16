@@ -22,13 +22,14 @@
 typedef enum _TOUCH_SCREEN_touchDataStatus_E {
     IDLE,
     TOUCHED,
-    RELEASED
 } TOUCH_SCREEN_touchDataStatus_E;
 
 typedef struct _TOUCH_SCREEN_touchData_S {
     uint8_t status;
     uint16_t xPos;
     uint16_t yPos;
+    uint8_t xStatus;
+    uint8_t yStatus;
 } TOUCH_SCREEN_touchData_S;
 
 /*******************************************************************************

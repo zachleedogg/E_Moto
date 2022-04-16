@@ -755,7 +755,7 @@ F 5 "y" H 5425 2050 50  0001 C CNN "populate"
 	1    0    0    -1  
 $EndComp
 $Comp
-L regul:TLV70033_SOT23-5 U18
+L BodyController_01-rescue:TLV70033_SOT23-5-regul U18
 U 1 1 59A6966E
 P 2350 6950
 F 0 "U18" H 2100 7150 50  0000 C CNN
@@ -829,7 +829,7 @@ F 3 "" H 4000 6750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L regul:TLV70033_SOT23-5 U17
+L BodyController_01-rescue:TLV70033_SOT23-5-regul U17
 U 1 1 5A49C58E
 P 9950 5500
 F 0 "U17" H 9700 5700 50  0000 C CNN
@@ -921,7 +921,7 @@ F 3 "" H 6400 6850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L regul:TLV70033_SOT23-5 U19
+L BodyController_01-rescue:TLV70033_SOT23-5-regul U19
 U 1 1 5A4AAC85
 P 5550 6950
 F 0 "U19" H 5300 7150 50  0000 C CNN

@@ -9,6 +9,7 @@ typedef enum{
     mcu,
     bms,
     motorcontroller,
+    charger,
 } CAN_nodes_E;
 
 
@@ -49,7 +50,7 @@ uint16_t CAN_dash_command_batteryEjectRequest_get(void);
 uint16_t CAN_dash_command_lightsRequest_get(void);
 uint16_t CAN_dash_command_hornRequest_get(void);
 
-#define CAN_dash_data1_ID 0x703
+#define CAN_dash_data1_ID 0x1806e5f5
 typedef struct{
 	uint16_t speed: 16;
 	uint16_t odometer: 16;
@@ -133,30 +134,6 @@ void CAN_mcu_command_doSomthingElse_set(uint16_t doSomthingElse);
 void CAN_mcu_command_send(void);
 
 
-#define CAN_mcu_motorStatus_ID 0x713
-typedef struct{
-	uint16_t motorSpeed: 8;
-	uint16_t motorCurrent: 8;
-	uint16_t IphaseA: 8;
-	uint16_t IphaseB: 8;
-	uint16_t IphaseC: 8;
-	uint16_t VphaseA: 8;
-	uint16_t VphaseB: 8;
-	uint16_t VphaseC: 8;
-} CAN_mcu_motorStatus_S;
-
-void CAN_mcu_motorStatus_motorSpeed_set(uint16_t motorSpeed);
-void CAN_mcu_motorStatus_motorCurrent_set(uint16_t motorCurrent);
-void CAN_mcu_motorStatus_IphaseA_set(uint16_t IphaseA);
-void CAN_mcu_motorStatus_IphaseB_set(uint16_t IphaseB);
-void CAN_mcu_motorStatus_IphaseC_set(uint16_t IphaseC);
-void CAN_mcu_motorStatus_VphaseA_set(uint16_t VphaseA);
-void CAN_mcu_motorStatus_VphaseB_set(uint16_t VphaseB);
-void CAN_mcu_motorStatus_VphaseC_set(uint16_t VphaseC);
-
-void CAN_mcu_motorStatus_send(void);
-
-
 #define CAN_mcu_motorControllerRequest_ID 0x700
 typedef struct{
 	uint16_t requestType: 8;
@@ -190,29 +167,33 @@ uint16_t CAN_bms_status_packCurrent_get(void);
 uint16_t CAN_bms_status_minTemp_get(void);
 uint16_t CAN_bms_status_maxTemp_get(void);
 
-#define CAN_bms_cellVoltages_ID 0x722
-typedef struct{
-	uint16_t MultiPlex: 4;
-	uint16_t cell1: 12;
-	uint16_t cell2: 12;
-	uint16_t cell3: 12;
-	uint16_t cell4: 12;
-	uint16_t cell5: 12;
-} CAN_bms_cellVoltages_S;
-
-uint16_t CAN_bms_cellVoltages_MultiPlex_get(void);
-uint16_t CAN_bms_cellVoltages_cell1_get(void);
-uint16_t CAN_bms_cellVoltages_cell2_get(void);
-uint16_t CAN_bms_cellVoltages_cell3_get(void);
-uint16_t CAN_bms_cellVoltages_cell4_get(void);
-uint16_t CAN_bms_cellVoltages_cell5_get(void);
-
 
 
 
 /**********************************************************
  * motorcontroller NODE MESSAGES
  */
+#define CAN_motorcontroller_motorStatus_ID 0x731
+typedef struct{
+	uint16_t motorSpeed: 8;
+	uint16_t motorCurrent: 8;
+	uint16_t IphaseA: 8;
+	uint16_t IphaseB: 8;
+	uint16_t IphaseC: 8;
+	uint16_t VphaseA: 8;
+	uint16_t VphaseB: 8;
+	uint16_t VphaseC: 8;
+} CAN_motorcontroller_motorStatus_S;
+
+uint16_t CAN_motorcontroller_motorStatus_motorSpeed_get(void);
+uint16_t CAN_motorcontroller_motorStatus_motorCurrent_get(void);
+uint16_t CAN_motorcontroller_motorStatus_IphaseA_get(void);
+uint16_t CAN_motorcontroller_motorStatus_IphaseB_get(void);
+uint16_t CAN_motorcontroller_motorStatus_IphaseC_get(void);
+uint16_t CAN_motorcontroller_motorStatus_VphaseA_get(void);
+uint16_t CAN_motorcontroller_motorStatus_VphaseB_get(void);
+uint16_t CAN_motorcontroller_motorStatus_VphaseC_get(void);
+
 #define CAN_motorcontroller_response_ID 0x700
 typedef struct{
 	uint16_t byte1: 8;
@@ -234,6 +215,12 @@ uint16_t CAN_motorcontroller_response_byte6_get(void);
 uint16_t CAN_motorcontroller_response_byte7_get(void);
 uint16_t CAN_motorcontroller_response_byte8_get(void);
 
+
+
+
+/**********************************************************
+ * charger NODE MESSAGES
+ */
 void CAN_DBC_init();
 
 

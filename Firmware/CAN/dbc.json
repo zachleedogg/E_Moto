@@ -1,415 +1,644 @@
 {
-    "NODE": [
+    "NODE":[
         {
-            "name": "dash",
-    		"messages": [
-    			{
-    			"name": "status",
-                "id": "NA",
-                "freq": "10ms",
-    			"signals":
-    				[
+            "name":"dash",
+            "messages":[
+                {
+                    "name":"status",
+                    "id":"NA",
+                    "freq":"10ms",
+                    "consumers":[
+                        "mcu"
+                    ],
+                    "signals":[
                         {
-                            "name": "heartBeat",
-                            "length": "4",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":[]
-                        },
-        				{
-                            "name": "state",
-                            "length": "3",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["sleep","welcome","locked","safe","running","charging"]
+                            "name":"heartBeat",
+                            "length":"4",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                
+                            ]
                         },
                         {
-                            "name": "killButton",
-                            "length": "2",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["On,Off,Pressed"]
+                            "name":"state",
+                            "length":"3",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "sleep",
+                                "welcome",
+                                "locked",
+                                "safe",
+                                "running",
+                                "charging"
+                            ]
                         },
                         {
-                            "name": "ignButton",
-                            "length": "2",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["On,Off,Pressed"]
+                            "name":"killButton",
+                            "length":"2",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "On,Off,Pressed"
+                            ]
                         },
                         {
-                            "name": "modeButton",
-                            "length": "2",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["On,Off,Pressed"]
+                            "name":"ignButton",
+                            "length":"2",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "On,Off,Pressed"
+                            ]
                         },
                         {
-                            "name": "selectButton",
-                            "length": "2",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["On,Off,Pressed"]
-                        },
-         				{
-                            "name": "driveMode",
-                            "length": "3",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["Econ,Sport,Demo1,Demo2,Custom"]
-                        } 
-    				]
-    			},
-    			{
-    			"name": "command",
-                "id": "NA",
-                "freq": "10ms",
-    			"signals":
-                    [
-        				{
-                            "name": "ignitionRequest",
-                            "length": "1",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        },
-         				{
-                            "name": "killRequest",
-                            "length": "1",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        },
-         				{
-                            "name": "batteryEjectRequest",
-                            "length": "1",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        },
-         				{
-                            "name": "lightsRequest",
-                            "length": "1",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
+                            "name":"modeButton",
+                            "length":"2",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "On,Off,Pressed"
+                            ]
                         },
                         {
-                            "name": "hornRequest",
-                            "length": "1",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        } 
-                    ]
-    			},
-    			{
-    			"name": "data1",
-                "id": "NA",
-                "freq": "10ms",
-    			"signals":
-                    [
-        				{
-                            "name": "speed",
-                            "length": "16",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":[]
-                        },
-         				{
-                            "name": "odometer",
-                            "length": "16",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        },
-         				{
-                            "name": "tripA",
-                            "length": "16",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        },
-         				{
-                            "name": "tripB",
-                            "length": "16",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        }
-                    ]
-    			},
-    			{
-    			"name": "data2",
-                "id": "NA",
-                "freq": "10ms",
-    			"signals":
-                    [
-        				{
-                            "name": "runningTime",
-                            "length": "16",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":[]
-                        },
-         				{
-                            "name": "odometer",
-                            "length": "16",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        },
-         				{
-                            "name": "tripA",
-                            "length": "16",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        },
-         				{
-                            "name": "tripB",
-                            "length": "16",
-                            "scale": "1",
-                            "offset": "0",
-                            "values":["low","high"]
-                        }
-                    ]
-    			}
-            ]
-        },
-        {
-            "name": "mcu",
-    		"messages": [
-    			{
-                "name": "status",
-                "id": "NA",
-                "freq": "10ms",
-                "signals":
-                    [
-                        {
-                            "name": "state",
-                            "length": "3"
+                            "name":"selectButton",
+                            "length":"2",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "On,Off,Pressed"
+                            ]
                         },
                         {
-                            "name": "throttleMode",
-                            "length": "3"
-                        },
-                        {
-                            "name": "highBeam",
-                            "length": "1"
-                        },
-                        {
-                            "name": "lowBeam",
-                            "length": "1"
-                        },
-                        {
-                            "name": "brakeLight",
-                            "length": "1"
-                        },
-                        {
-                            "name": "tailLight",
-                            "length": "1"
-                        },
-                        {
-                            "name": "horn",
-                            "length": "1"
-                        },
-                        {
-                            "name": "turnSignalFR",
-                            "length": "1"
-                        },
-                        {
-                            "name": "turnSignalFL",
-                            "length": "1"
-                        },
-                        {
-                            "name": "turnSignalRR",
-                            "length": "1"
-                        },
-                        {
-                            "name": "turnSignalRL",
-                            "length": "1"
-                        },
-                        {
-                            "name": "GBSALL",
-                            "length": "1"
-                        },
-                        {
-                            "name": "contactor",
-                            "length": "1"
-                        },
-                        {
-                            "name": "chargePort",
-                            "length": "1"
-                        },
-                        {
-                            "name": "brakeSwitchFront",
-                            "length": "1"
-                        },
-                        {
-                            "name": "brakeSwitchRear",
-                            "length": "1"
-                        },
-                        {
-                            "name": "throttleVal",
-                            "length": "8"
+                            "name":"driveMode",
+                            "length":"3",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "Econ,Sport,Demo1,Demo2,Custom"
+                            ]
                         }
                     ]
                 },
                 {
-                "name": "command",
-                "id": "NA",
-                "freq": "10ms",
-                "signals":
-                    [
+                    "name":"command",
+                    "id":"NA",
+                    "freq":"10ms",
+                    "consumers":[
+                        "mcu"
+                    ],
+                    "signals":[
                         {
-                            "name": "doSomthingElse",
-                            "length": "1"
-                        }
-                    ]   
-                },
-                {
-                "name": "motorStatus",
-                "id": "NA",
-                "freq": "10ms",
-                "signals": 
-                    [
-                        {
-                            "name": "motorSpeed",
-                            "length": "8"
+                            "name":"ignitionRequest",
+                            "length":"1",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
                         },
                         {
-                            "name": "motorCurrent",
-                            "length": "8"
+                            "name":"killRequest",
+                            "length":"1",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
                         },
                         {
-                            "name": "IphaseA",
-                            "length": "8"
+                            "name":"batteryEjectRequest",
+                            "length":"1",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
                         },
                         {
-                            "name": "IphaseB",
-                            "length": "8"
+                            "name":"lightsRequest",
+                            "length":"1",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
                         },
                         {
-                            "name": "IphaseC",
-                            "length": "8"
-                        },
-                        {
-                            "name": "VphaseA",
-                            "length": "8"
-                        },
-                        {
-                            "name": "VphaseB",
-                            "length": "8"
-                        },
-                        {
-                            "name": "VphaseC",
-                            "length": "8"
+                            "name":"hornRequest",
+                            "length":"1",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
                         }
                     ]
                 },
                 {
-                "name": "motorControllerRequest",
-                "id": "1792",
-                "freq": "1ms",
-                "signals": 
-                    [
+                    "name":"data1",
+                    "id":"403105269",
+                    "x_id": "1",
+                    "freq":"10ms",
+                    "signals":[
                         {
-                            "name": "requestType",
-                            "length": "8"
+                            "name":"speed",
+                            "length":"16",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                
+                            ]
+                        },
+                        {
+                            "name":"odometer",
+                            "length":"16",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"tripA",
+                            "length":"16",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"tripB",
+                            "length":"16",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name":"data2",
+                    "id":"NA",
+                    "freq":"10ms",
+                    "signals":[
+                        {
+                            "name":"runningTime",
+                            "length":"16",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                
+                            ]
+                        },
+                        {
+                            "name":"odometer",
+                            "length":"16",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"tripA",
+                            "length":"16",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"tripB",
+                            "length":"16",
+                            "scale":"1",
+                            "offset":"0",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
                         }
                     ]
                 }
             ]
         },
         {
-            "name": "bms",
-    		"messages": [
-    			{
-    			"name": "status",
-                "id": "NA",
-                "freq": "10ms",
-    			"signals":
-    				[
-        				{"name": "state",
-                        "length": "3"},
-                        {"name": "SOC",
-                        "length": "7"},
-                        {"name": "packVoltage",
-                        "length": "12"},
-                        {"name": "packCurrent",
-                        "length": "10"},
-                        {"name": "minTemp",
-                        "length": "12"},
-                        {"name": "maxTemp",
-                        "length": "12"}
-    				]
-    			},
-    			{
-    			"name": "cellVoltages",
-                "id": "NA",
-                "freq": "10ms",
-    			"signals":
-    				[
-                        {"name": "MultiPlex",
-                        "length": "4"},
-        				{"name": "cell1",
-                        "length": "12"},
-                        {"name": "cell2",
-                        "length": "12"},
-                        {"name": "cell3",
-                        "length": "12"},
-                        {"name": "cell4",
-                        "length": "12"},
-                        {"name": "cell5",
-                        "length": "12"}
-    				]   
-    			}
+            "name":"mcu",
+            "messages":[
+                {
+                    "name":"status",
+                    "id":"NA",
+                    "freq":"10ms",
+                    "consumers":[
+                        "dash",
+                        "bms"
+                    ],
+                    "signals":[
+                        {
+                            "name":"state",
+                            "length":"3"
+                        },
+                        {
+                            "name":"throttleMode",
+                            "length":"3"
+                        },
+                        {
+                            "name":"highBeam",
+                            "length":"1"
+                        },
+                        {
+                            "name":"lowBeam",
+                            "length":"1"
+                        },
+                        {
+                            "name":"brakeLight",
+                            "length":"1"
+                        },
+                        {
+                            "name":"tailLight",
+                            "length":"1"
+                        },
+                        {
+                            "name":"horn",
+                            "length":"1"
+                        },
+                        {
+                            "name":"turnSignalFR",
+                            "length":"1"
+                        },
+                        {
+                            "name":"turnSignalFL",
+                            "length":"1"
+                        },
+                        {
+                            "name":"turnSignalRR",
+                            "length":"1"
+                        },
+                        {
+                            "name":"turnSignalRL",
+                            "length":"1"
+                        },
+                        {
+                            "name":"GBSALL",
+                            "length":"1"
+                        },
+                        {
+                            "name":"contactor",
+                            "length":"1"
+                        },
+                        {
+                            "name":"chargePort",
+                            "length":"1"
+                        },
+                        {
+                            "name":"brakeSwitchFront",
+                            "length":"1"
+                        },
+                        {
+                            "name":"brakeSwitchRear",
+                            "length":"1"
+                        },
+                        {
+                            "name":"throttleVal",
+                            "length":"8"
+                        }
+                    ]
+                },
+                {
+                    "name":"command",
+                    "id":"NA",
+                    "freq":"10ms",
+                    "signals":[
+                        {
+                            "name":"doSomthingElse",
+                            "length":"1"
+                        }
+                    ]
+                },
+                {
+                    "name":"motorControllerRequest",
+                    "id":"1792",
+                    "freq":"1ms",
+                    "signals":[
+                        {
+                            "name":"requestType",
+                            "length":"8"
+                        }
+                    ]
+                }
             ]
         },
         {
-            "name": "motorcontroller",
-    		"messages": [
-    			{
-    			"name": "response",
-                "id": "1792",
-                "freq": "0ms",
-    			"signals":
-    				[
-        				{
-                        "name": "byte1",
-                        "length": "8"
+            "name":"bms",
+            "messages":[
+                {
+                    "name":"status",
+                    "id":"NA",
+                    "freq":"10ms",
+                    "consumers":[
+                        "mcu",
+                        "dash"
+                    ],
+                    "signals":[
+                        {
+                            "name":"state",
+                            "length":"3"
                         },
                         {
-                        "name": "byte2",
-                        "length": "8"
+                            "name":"SOC",
+                            "length":"7"
                         },
                         {
-                        "name": "byte3",
-                        "length": "8"
+                            "name":"packVoltage",
+                            "length":"12"
                         },
                         {
-                        "name": "byte4",
-                        "length": "8"
+                            "name":"packCurrent",
+                            "length":"10"
                         },
                         {
-                        "name": "byte5",
-                        "length": "8"
+                            "name":"minTemp",
+                            "length":"12"
                         },
                         {
-                        "name": "byte6",
-                        "length": "8"
-                        },
-                        {
-                        "name": "byte7",
-                        "length": "8"
-                        },
-                        {
-                        "name": "byte8",
-                        "length": "8"
+                            "name":"maxTemp",
+                            "length":"12"
                         }
-    				]
-    			}
+                    ]
+                },
+                {
+                    "name":"charger_request",
+                    "id":"403105268",
+                    "x_id": "1",
+                    "freq":"1000ms",
+                    "consumers":[
+                        "charger",
+                        "dash"
+                    ],
+                    "signals":[
+                        {
+                            "name":"output_voltage_high_byte",
+                            "length":"8"
+                        },
+                        {
+                            "name":"output_voltage_low_byte",
+                            "length":"8"
+                        },
+                        {
+                            "name":"output_current_high_byte",
+                            "length":"8"
+                        },
+                        {
+                            "name":"output_current_low_byte",
+                            "length":"8"
+                        },
+                        {
+                            "name":"start_charge_request",
+                            "length":"8",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"charge_mode",
+                            "length":"8",
+                            "values":[
+                                "charging",
+                                "heating"
+                            ]
+                        },
+                        {
+                            "name":"packCurrent",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte_7",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte_8",
+                            "length":"8"
+                        }
+                    ]
+                },
+                {
+                    "name":"cellVoltages",
+                    "id":"NA",
+                    "freq":"10ms",
+                    "consumers":[
+                        "dash"
+                    ],
+                    "signals":[
+                        {
+                            "name":"MultiPlex",
+                            "length":"4"
+                        },
+                        {
+                            "name":"cell1",
+                            "length":"12"
+                        },
+                        {
+                            "name":"cell2",
+                            "length":"12"
+                        },
+                        {
+                            "name":"cell3",
+                            "length":"12"
+                        },
+                        {
+                            "name":"cell4",
+                            "length":"12"
+                        },
+                        {
+                            "name":"cell5",
+                            "length":"12"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name":"motorcontroller",
+            "messages":[
+                {
+                    "name":"motorStatus",
+                    "id":"NA",
+                    "freq":"10ms",
+                    "signals":[
+                        {
+                            "name":"motorSpeed",
+                            "length":"8"
+                        },
+                        {
+                            "name":"motorCurrent",
+                            "length":"8"
+                        },
+                        {
+                            "name":"IphaseA",
+                            "length":"8"
+                        },
+                        {
+                            "name":"IphaseB",
+                            "length":"8"
+                        },
+                        {
+                            "name":"IphaseC",
+                            "length":"8"
+                        },
+                        {
+                            "name":"VphaseA",
+                            "length":"8"
+                        },
+                        {
+                            "name":"VphaseB",
+                            "length":"8"
+                        },
+                        {
+                            "name":"VphaseC",
+                            "length":"8"
+                        }
+                    ]
+                },
+                {
+                    "name":"response",
+                    "id":"1792",
+                    "freq":"0ms",
+                    "signals":[
+                        {
+                            "name":"byte1",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte2",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte3",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte4",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte5",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte6",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte7",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte8",
+                            "length":"8"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name":"charger",
+            "messages":[
+                {
+                    "name":"charger_status",
+                    "id":"419385573",
+                    "x_id": "1",
+                    "freq":"1000ms",
+                    "consumers":[
+                        "bms"
+                    ],
+                    "signals":[
+                        {
+                            "name":"output_voltage_high_byte",
+                            "scale":"10",
+                            "offset":"255",
+                            "length":"8"
+                        },
+                        {
+                            "name":"output_voltage_low_byte",
+                            "scale":"10",
+                            "offset":"255",
+                            "length":"8"
+                        },
+                        {
+                            "name":"output_current_high_byte",
+                            "scale":"10",
+                            "length":"8"
+                        },
+                        {
+                            "name":"output_current_low_byte",
+                            "scale":"10",
+                            "length":"8"
+                        },
+                        {
+                            "name":"hardware_error",
+                            "length":"1",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"charger_overtemp_error",
+                            "length":"1",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"input_voltage_error",
+                            "length":"1",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"battery_detect_error",
+                            "length":"1",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"communication_error",
+                            "length":"1",
+                            "values":[
+                                "low",
+                                "high"
+                            ]
+                        },
+                        {
+                            "name":"byte7",
+                            "length":"8"
+                        },
+                        {
+                            "name":"byte8",
+                            "length":"8"
+                        }
+                    ]
+                }
             ]
         }
     ]

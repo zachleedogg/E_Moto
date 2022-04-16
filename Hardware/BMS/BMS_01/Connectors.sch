@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 57 59
+Sheet 57 61
 Title ""
 Date ""
 Rev ""
@@ -17,69 +17,46 @@ $EndDescr
 $Comp
 L Connector:USB_B_Micro J?
 U 1 1 5C18C517
-P 9450 4100
+P 8400 5100
 AR Path="/5B64EF74/5C18C517" Ref="J?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD61E/5C18C517" Ref="J14"  Part="1" 
-F 0 "J14" H 9505 4567 50  0000 C CNN
-F 1 "USB_B_Micro" H 9505 4476 50  0000 C CNN
-F 2 "Connector_USB:USB_Micro-B_Molex-105017-0001" H 9600 4050 50  0001 C CNN
-F 3 "~" H 9600 4050 50  0001 C CNN
-F 4 " " H 1050 -800 50  0001 C CNN "DNP"
-	1    9450 4100
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 5C18C6FD
-P 9450 4500
-AR Path="/5B64EF74/5C18C6FD" Ref="#PWR?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD61E/5C18C6FD" Ref="#PWR0139"  Part="1" 
-F 0 "#PWR0139" H 9450 4250 50  0001 C CNN
-F 1 "GND" H 9455 4327 50  0000 C CNN
-F 2 "" H 9450 4500 50  0001 C CNN
-F 3 "" H 9450 4500 50  0001 C CNN
-	1    9450 4500
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 5C18C715
-P 9000 4950
-AR Path="/5B64EF74/5C18C715" Ref="#PWR?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD61E/5C18C715" Ref="#PWR0137"  Part="1" 
-F 0 "#PWR0137" H 9000 4700 50  0001 C CNN
-F 1 "GND" H 9005 4777 50  0000 C CNN
-F 2 "" H 9000 4950 50  0001 C CNN
-F 3 "" H 9000 4950 50  0001 C CNN
-	1    9000 4950
+F 0 "J14" H 8455 5567 50  0000 C CNN
+F 1 "USB_B_Micro" H 8455 5476 50  0000 C CNN
+F 2 "Connector_USB:USB_Micro-B_Molex-105017-0001" H 8550 5050 50  0001 C CNN
+F 3 "~" H 8550 5050 50  0001 C CNN
+F 4 " " H 0   200 50  0001 C CNN "DNP"
+	1    8400 5100
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C C?
 U 1 1 5C18C739
-P 9000 4800
+P 7950 5800
 AR Path="/5B64EF74/5C18C739" Ref="C?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD61E/5C18C739" Ref="C96"  Part="1" 
-F 0 "C96" H 9115 4846 50  0000 L CNN
-F 1 "C" H 9115 4755 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 9038 4650 50  0001 C CNN
-F 3 "~" H 9000 4800 50  0001 C CNN
-F 4 " " H 1050 -800 50  0001 C CNN "DNP"
-F 5 "50V" H 1050 -800 50  0001 C CNN "Voltage"
-	1    9000 4800
+F 0 "C96" H 8065 5846 50  0000 L CNN
+F 1 "100nF" H 8065 5755 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 7988 5650 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 7950 5800 50  0001 C CNN
+F 4 " " H 0   200 50  0001 C CNN "DNP"
+F 5 "50V" H 0   200 50  0001 C CNN "Voltage"
+F 6 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "MPN"
+F 7 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "Part Number"
+F 8 "490-4779-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    7950 5800
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5C18CFAA
-P 6300 4700
+P 6700 3300
 AR Path="/5B64EF74/5C18CFAA" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD61E/5C18CFAA" Ref="#PWR0141"  Part="1" 
-F 0 "#PWR0141" H 6300 4450 50  0001 C CNN
-F 1 "GND" H 6305 4527 50  0000 C CNN
-F 2 "" H 6300 4700 50  0001 C CNN
-F 3 "" H 6300 4700 50  0001 C CNN
-	1    6300 4700
+F 0 "#PWR0141" H 6700 3050 50  0001 C CNN
+F 1 "GND" H 6705 3127 50  0000 C CNN
+F 2 "" H 6700 3300 50  0001 C CNN
+F 3 "" H 6700 3300 50  0001 C CNN
+	1    6700 3300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -98,14 +75,14 @@ $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 5C1B7790
-P 6250 2250
+P 6100 2500
 AR Path="/5B64EF74/5C1B7790" Ref="#PWR?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD61E/5C1B7790" Ref="#PWR0134"  Part="1" 
-F 0 "#PWR0134" H 6250 2000 50  0001 C CNN
-F 1 "GND" H 6255 2077 50  0000 C CNN
-F 2 "" H 6250 2250 50  0001 C CNN
-F 3 "" H 6250 2250 50  0001 C CNN
-	1    6250 2250
+F 0 "#PWR0134" H 6100 2250 50  0001 C CNN
+F 1 "GND" H 6105 2327 50  0000 C CNN
+F 2 "" H 6100 2500 50  0001 C CNN
+F 3 "" H 6100 2500 50  0001 C CNN
+	1    6100 2500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -134,120 +111,55 @@ F 3 "" H 8300 2150 50  0001 C CNN
 	1    8300 2150
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:D_TVS D?
-U 1 1 5C56ABB1
-P 9300 2150
-AR Path="/5B64EF74/5C56ABB1" Ref="D?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD61E/5C56ABB1" Ref="D86"  Part="1" 
-F 0 "D86" V 9254 2229 50  0000 L CNN
-F 1 "D_TVS" V 9345 2229 50  0000 L CNN
-F 2 "Diode_SMD:D_0603_1608Metric" H 9300 2150 50  0001 C CNN
-F 3 "~" H 9300 2150 50  0001 C CNN
-F 4 " " H 1100 -250 50  0001 C CNN "DNP"
-	1    9300 2150
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:D_TVS D?
-U 1 1 5C56AC04
-P 9500 2450
-AR Path="/5B64EF74/5C56AC04" Ref="D?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD61E/5C56AC04" Ref="D87"  Part="1" 
-F 0 "D87" V 9454 2529 50  0000 L CNN
-F 1 "D_TVS" V 9545 2529 50  0000 L CNN
-F 2 "Diode_SMD:D_0603_1608Metric" H 9500 2450 50  0001 C CNN
-F 3 "~" H 9500 2450 50  0001 C CNN
-F 4 " " H 1100 -250 50  0001 C CNN "DNP"
-	1    9500 2450
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 5C56B1A3
-P 9300 2300
-AR Path="/5B64EF74/5C56B1A3" Ref="#PWR?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD61E/5C56B1A3" Ref="#PWR0138"  Part="1" 
-F 0 "#PWR0138" H 9300 2050 50  0001 C CNN
-F 1 "GND" H 9305 2127 50  0000 C CNN
-F 2 "" H 9300 2300 50  0001 C CNN
-F 3 "" H 9300 2300 50  0001 C CNN
-	1    9300 2300
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 5C56B1C0
-P 9500 2600
-AR Path="/5B64EF74/5C56B1C0" Ref="#PWR?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD61E/5C56B1C0" Ref="#PWR0140"  Part="1" 
-F 0 "#PWR0140" H 9500 2350 50  0001 C CNN
-F 1 "GND" H 9505 2427 50  0000 C CNN
-F 2 "" H 9500 2600 50  0001 C CNN
-F 3 "" H 9500 2600 50  0001 C CNN
-	1    9500 2600
-	1    0    0    -1  
-$EndComp
-Text GLabel 9750 3900 2    60   Output ~ 0
+Text GLabel 8700 4900 2    60   Output ~ 0
 USB_5V
-Text GLabel 9750 4100 2    60   BiDi ~ 0
+Text GLabel 8700 5100 2    60   BiDi ~ 0
 USB_D+
-Text GLabel 9750 4200 2    60   BiDi ~ 0
+Text GLabel 8700 5200 2    60   BiDi ~ 0
 USB_D-
-Text GLabel 6450 3350 0    60   BiDi ~ 0
+Text GLabel 6400 4700 0    60   BiDi ~ 0
 CAN_P
-Text GLabel 6450 3450 0    60   BiDi ~ 0
+Text GLabel 6400 4800 0    60   BiDi ~ 0
 CAN_N
 Text GLabel 8650 1750 0    49   Output ~ 0
 PGED
 Text GLabel 8650 1850 0    49   Output ~ 0
 PGEC
-Text GLabel 9700 1450 0    49   Output ~ 0
+Text GLabel 8700 1450 0    49   Output ~ 0
 nRESET
 Text Notes 5650 1350 0    197  ~ 0
 POWER
 Text Notes 8300 950  0    197  ~ 0
 DEBUG/JTAG
-Text Notes 6050 3050 0    197  ~ 0
+Text Notes 6000 4400 0    197  ~ 0
 CAN
-Text Notes 9150 3400 0    197  ~ 0
+Text Notes 8100 4400 0    197  ~ 0
 USB
 Wire Wire Line
-	9350 4500 9350 4550
+	8300 5500 8300 5550
 Wire Wire Line
-	9350 4550 9000 4550
+	8300 5550 7950 5550
 Wire Wire Line
-	9000 4550 9000 4650
+	7950 5550 7950 5650
 Wire Wire Line
 	6100 2050 6100 1900
 Wire Wire Line
-	6250 2250 6250 2150
-Wire Wire Line
-	6250 2150 6550 2150
+	6100 2500 6100 2350
 Wire Wire Line
 	8300 1450 8300 1550
 Wire Wire Line
-	8300 1550 9700 1550
+	8300 1550 9350 1550
 Wire Wire Line
 	8300 2150 8300 1650
 Wire Wire Line
-	8300 1650 9700 1650
-Wire Wire Line
-	9300 2000 9300 1750
+	8300 1650 10100 1650
 Wire Wire Line
 	9300 1750 9250 1750
 Wire Wire Line
-	9300 1750 9700 1750
-Wire Wire Line
-	9700 1850 9500 1850
-Wire Wire Line
-	9500 2300 9500 1850
-Wire Wire Line
-	9500 1850 9000 1850
+	9300 1750 10100 1750
 Connection ~ 9300 1750
-Connection ~ 9500 1850
-NoConn ~ 9750 4300
-NoConn ~ 9700 1950
+NoConn ~ 8700 5300
+NoConn ~ 10100 1950
 $Comp
 L Device:R R?
 U 1 1 5B5C8B23
@@ -264,6 +176,8 @@ F 2 "Resistor_SMD:R_0603_1608Metric" V 9030 1750 50  0001 C CNN
 F 3 "" H 9100 1750 50  0001 C CNN
 F 4 " " H 1100 50  50  0001 C CNN "DNP"
 F 5 "AC0603FR-07100RL" H 0   0   50  0001 C CNN "MPN"
+F 6 "AC0603FR-07100RL" H 0   0   50  0001 C CNN "Part Number"
+F 7 "YAG3561CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
 	1    9100 1750
 	0    1    1    0   
 $EndComp
@@ -285,41 +199,25 @@ F 2 "Resistor_SMD:R_0603_1608Metric" V 8780 1850 50  0001 C CNN
 F 3 "" H 8850 1850 50  0001 C CNN
 F 4 " " H 850 150 50  0001 C CNN "DNP"
 F 5 "AC0603FR-07100RL" H 0   0   50  0001 C CNN "MPN"
+F 6 "AC0603FR-07100RL" H 0   0   50  0001 C CNN "Part Number"
+F 7 "YAG3561CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
 	1    8850 1850
 	0    1    1    0   
 $EndComp
 Wire Wire Line
 	8700 1850 8650 1850
-$Comp
-L power:PWR_FLAG #FLG?
-U 1 1 5B60E1EA
-P 6350 2050
-AR Path="/5B64EF74/5B60E1EA" Ref="#FLG?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD61E/5B60E1EA" Ref="#FLG03"  Part="1" 
-F 0 "#FLG03" H 6350 2125 50  0001 C CNN
-F 1 "PWR_FLAG" H 6350 2224 50  0000 C CNN
-F 2 "" H 6350 2050 50  0001 C CNN
-F 3 "~" H 6350 2050 50  0001 C CNN
-	1    6350 2050
-	1    0    0    -1  
-$EndComp
-Connection ~ 6350 2050
-Wire Wire Line
-	6350 2050 6100 2050
-Text GLabel 1550 3900 0    50   Input ~ 0
-BANK_12
 Text GLabel 1550 4000 0    50   Input ~ 0
-BANK_11
+BANK_12
 Text GLabel 1550 4100 0    50   Input ~ 0
-BANK_10
+BANK_11
 Text GLabel 1550 4200 0    50   Input ~ 0
-BANK_09
+BANK_10
 Text GLabel 1550 4300 0    50   Input ~ 0
-BANK_08
+BANK_09
 Text GLabel 1550 4400 0    50   Input ~ 0
-BANK_07
+BANK_08
 Text GLabel 1550 4500 0    50   Input ~ 0
-BANK_06
+BANK_07
 Text GLabel 1500 5150 0    50   Input ~ 0
 BANK_05
 Text GLabel 1500 5250 0    50   Input ~ 0
@@ -350,183 +248,120 @@ Text GLabel 1550 1900 0    50   Input ~ 0
 BANK_22
 Text GLabel 1550 2100 0    50   Input ~ 0
 BANK_20
-Text GLabel 3500 4050 0    59   Input ~ 0
+Text GLabel 3450 5150 0    59   Input ~ 0
 NTC_18_OUT
-Text GLabel 4000 4050 2    59   Output ~ 0
-NTC_18_RTN
-Text GLabel 3450 4400 0    59   Input ~ 0
+Text GLabel 3450 5700 0    59   Input ~ 0
 NTC_19_OUT
-Text GLabel 3950 4400 2    59   Output ~ 0
-NTC_19_RTN
-Text GLabel 3450 4500 0    59   Input ~ 0
+Text GLabel 3450 5800 0    59   Input ~ 0
 NTC_20_OUT
-Text GLabel 3950 4500 2    59   Output ~ 0
-NTC_20_RTN
-Text GLabel 3450 4600 0    59   Input ~ 0
+Text GLabel 3450 5900 0    59   Input ~ 0
 NTC_21_OUT
-Text GLabel 3950 4600 2    59   Output ~ 0
-NTC_21_RTN
-Text GLabel 3450 4700 0    59   Input ~ 0
+Text GLabel 3450 6000 0    59   Input ~ 0
 NTC_22_OUT
-Text GLabel 3950 4700 2    59   Output ~ 0
-NTC_22_RTN
-Text GLabel 3450 4800 0    59   Input ~ 0
+Text GLabel 3450 6100 0    59   Input ~ 0
 NTC_23_OUT
-Text GLabel 3950 4800 2    59   Output ~ 0
-NTC_23_RTN
-Text GLabel 3450 4900 0    59   Input ~ 0
+Text GLabel 3450 6200 0    59   Input ~ 0
 NTC_24_OUT
-Text GLabel 3950 4900 2    59   Output ~ 0
-NTC_24_RTN
-Text GLabel 3500 3950 0    59   Input ~ 0
+Text GLabel 3450 5050 0    59   Input ~ 0
 NTC_17_OUT
-Text GLabel 4000 3950 2    59   Output ~ 0
-NTC_17_RTN
-Text GLabel 3500 2900 0    59   Input ~ 0
+Text GLabel 3400 3750 0    59   Input ~ 0
 NTC_9_OUT
-Text GLabel 4000 2900 2    59   Output ~ 0
-NTC_9_RTN
-Text GLabel 3500 3000 0    59   Input ~ 0
+Text GLabel 3400 3850 0    59   Input ~ 0
 NTC_10_OUT
-Text GLabel 4000 3000 2    59   Output ~ 0
-NTC_10_RTN
-Text GLabel 3500 3100 0    59   Input ~ 0
+Text GLabel 3400 3950 0    59   Input ~ 0
 NTC_11_OUT
-Text GLabel 4000 3100 2    59   Output ~ 0
-NTC_11_RTN
-Text GLabel 3500 3200 0    59   Input ~ 0
+Text GLabel 3400 4050 0    59   Input ~ 0
 NTC_12_OUT
-Text GLabel 4000 3200 2    59   Output ~ 0
-NTC_12_RTN
-Text GLabel 3500 3550 0    59   Input ~ 0
+Text GLabel 3450 4650 0    59   Input ~ 0
 NTC_13_OUT
-Text GLabel 4000 3550 2    59   Output ~ 0
-NTC_13_RTN
-Text GLabel 3500 3650 0    59   Input ~ 0
+Text GLabel 3450 4750 0    59   Input ~ 0
 NTC_14_OUT
-Text GLabel 4000 3650 2    59   Output ~ 0
-NTC_14_RTN
-Text GLabel 3500 3750 0    59   Input ~ 0
+Text GLabel 3450 4850 0    59   Input ~ 0
 NTC_15_OUT
-Text GLabel 4000 3750 2    59   Output ~ 0
-NTC_15_RTN
-Text GLabel 3500 3850 0    59   Input ~ 0
+Text GLabel 3450 4950 0    59   Input ~ 0
 NTC_16_OUT
-Text GLabel 4000 3850 2    59   Output ~ 0
-NTC_16_RTN
-Text GLabel 3500 1850 0    59   Input ~ 0
+Text GLabel 3400 2600 0    59   Input ~ 0
 NTC_1_OUT
-Text GLabel 4000 1850 2    59   Output ~ 0
-NTC_1_RTN
-Text GLabel 3500 1950 0    59   Input ~ 0
+Text GLabel 3400 2700 0    59   Input ~ 0
 NTC_2_OUT
-Text GLabel 4000 1950 2    59   Output ~ 0
-NTC_2_RTN
-Text GLabel 3500 2050 0    59   Input ~ 0
+Text GLabel 3400 2800 0    59   Input ~ 0
 NTC_3_OUT
-Text GLabel 4000 2050 2    59   Output ~ 0
-NTC_3_RTN
-Text GLabel 3500 2150 0    59   Input ~ 0
+Text GLabel 3400 2900 0    59   Input ~ 0
 NTC_4_OUT
-Text GLabel 4000 2150 2    59   Output ~ 0
-NTC_4_RTN
-Text GLabel 3500 2250 0    59   Input ~ 0
+Text GLabel 3400 3000 0    59   Input ~ 0
 NTC_5_OUT
-Text GLabel 4000 2250 2    59   Output ~ 0
-NTC_5_RTN
-Text GLabel 3500 2350 0    59   Input ~ 0
+Text GLabel 3400 3100 0    59   Input ~ 0
 NTC_6_OUT
-Text GLabel 4000 2350 2    59   Output ~ 0
-NTC_6_RTN
-Text GLabel 3500 2700 0    59   Input ~ 0
+Text GLabel 3400 3550 0    59   Input ~ 0
 NTC_7_OUT
-Text GLabel 4000 2700 2    59   Output ~ 0
-NTC_7_RTN
-Text GLabel 3500 2800 0    59   Input ~ 0
+Text GLabel 3400 3650 0    59   Input ~ 0
 NTC_8_OUT
-Text GLabel 4000 2800 2    59   Output ~ 0
-NTC_8_RTN
-Text Notes 3300 1350 0    295  ~ 0
+Text Notes -1500 2200 0    295  ~ 0
 NTCs
-Text GLabel 6450 4500 0    59   Input ~ 0
+Text GLabel 6850 3100 0    59   Input ~ 0
 Transducer_Ref
-Text GLabel 6450 4600 0    59   Input ~ 0
+Text GLabel 6850 3200 0    59   Input ~ 0
 Transducer_Pwr
-Text GLabel 6450 4400 0    59   Output ~ 0
+Text GLabel 6850 3000 0    59   Output ~ 0
 Transducer_Input
-$Comp
-L power:GND #PWR?
-U 1 1 5B7C6A36
-P 6350 3550
-AR Path="/5B64EF74/5B7C6A36" Ref="#PWR?"  Part="1" 
-AR Path="/5B5CD4CD/5B5CD61E/5B7C6A36" Ref="#PWR0156"  Part="1" 
-F 0 "#PWR0156" H 6350 3300 50  0001 C CNN
-F 1 "GND" H 6355 3377 50  0000 C CNN
-F 2 "" H 6350 3550 50  0001 C CNN
-F 3 "" H 6350 3550 50  0001 C CNN
-	1    6350 3550
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	6350 3550 6450 3550
+	6300 4900 6400 4900
 $Comp
 L Connector_Generic:Conn_01x06 J?
 U 1 1 5C490563
-P 9900 1650
+P 10300 1650
 AR Path="/5B64EF74/5C490563" Ref="J?"  Part="1" 
 AR Path="/5B5CD4CD/5B5CD61E/5C490563" Ref="J13"  Part="1" 
-F 0 "J13" H 9980 1642 50  0000 L CNN
-F 1 "Conn_01x06" H 9980 1551 50  0000 L CNN
-F 2 "Connector_Molex:Molex_KK-254_AE-6410-06A_1x06_P2.54mm_Vertical" H 9900 1650 50  0001 C CNN
-F 3 "~" H 9900 1650 50  0001 C CNN
-F 4 " " H 1100 -250 50  0001 C CNN "DNP"
-	1    9900 1650
+F 0 "J13" H 10380 1642 50  0000 L CNN
+F 1 "Conn_01x06" H 10380 1551 50  0000 L CNN
+F 2 "Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical" H 10300 1650 50  0001 C CNN
+F 3 "~" H 10300 1650 50  0001 C CNN
+F 4 " " H 1500 -250 50  0001 C CNN "DNP"
+	1    10300 1650
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6350 2050 6550 2050
-Wire Wire Line
-	6300 4700 6450 4700
+	6700 3300 6850 3300
 $Comp
 L Connector_Generic:Conn_01x07 J1
 U 1 1 5E8CAB39
 P 1700 5350
 F 0 "J1" H 1619 4825 50  0000 C CNN
 F 1 "Conn_01x07" H 1619 4916 50  0000 C CNN
-F 2 "Connector_JST:JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical" H 1700 5350 50  0001 C CNN
+F 2 "Connector_JST:JST_XH_B7B-XH-A_1x07_P2.50mm_Vertical" H 1700 5350 50  0001 C CNN
 F 3 "~" H 1700 5350 50  0001 C CNN
 	1    1700 5350
 	1    0    0    1   
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x07 J2
+L Connector_Generic:Conn_01x06 J2
 U 1 1 5E8CB9B4
-P 1750 4200
-F 0 "J2" H 1669 3675 50  0000 C CNN
-F 1 "Conn_01x07" H 1669 3766 50  0000 C CNN
-F 2 "Connector_JST:JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical" H 1750 4200 50  0001 C CNN
-F 3 "~" H 1750 4200 50  0001 C CNN
-	1    1750 4200
+P 1750 4300
+F 0 "J2" H 1669 3775 50  0000 C CNN
+F 1 "Conn_01x06" H 1669 3866 50  0000 C CNN
+F 2 "Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical" H 1750 4300 50  0001 C CNN
+F 3 "~" H 1750 4300 50  0001 C CNN
+	1    1750 4300
 	1    0    0    1   
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x07 J3
+L Connector_Generic:Conn_01x06 J3
 U 1 1 5E8CBA04
 P 1750 3050
 F 0 "J3" H 1669 2525 50  0000 C CNN
-F 1 "Conn_01x07" H 1669 2616 50  0000 C CNN
-F 2 "Connector_JST:JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical" H 1750 3050 50  0001 C CNN
+F 1 "Conn_01x06" H 1669 2616 50  0000 C CNN
+F 2 "Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical" H 1750 3050 50  0001 C CNN
 F 3 "~" H 1750 3050 50  0001 C CNN
 	1    1750 3050
 	1    0    0    1   
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x07 J4
+L Connector_Generic:Conn_01x06 J4
 U 1 1 5E8CBA46
 P 1750 2000
 F 0 "J4" H 1669 1475 50  0000 C CNN
-F 1 "Conn_01x07" H 1669 1566 50  0000 C CNN
-F 2 "Connector_JST:JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical" H 1750 2000 50  0001 C CNN
+F 1 "Conn_01x06" H 1669 1566 50  0000 C CNN
+F 2 "Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical" H 1750 2000 50  0001 C CNN
 F 3 "~" H 1750 2000 50  0001 C CNN
 	1    1750 2000
 	1    0    0    1   
@@ -535,115 +370,476 @@ Text GLabel 1550 3150 0    50   Input ~ 0
 BANK_14
 Text GLabel 1550 3250 0    50   Input ~ 0
 BANK_13
-Text GLabel 1500 5650 0    50   Input ~ 0
-BANK_00
 Text GLabel 1500 5050 0    50   Input ~ 0
 BANK_06
-Text GLabel 1550 3350 0    50   Input ~ 0
-BANK_12
-Text GLabel 1550 2300 0    50   Input ~ 0
-BANK_18
 $Comp
 L Connector_Generic:Conn_01x04 J9
 U 1 1 5E91878E
-P 6650 4500
-F 0 "J9" H 6730 4492 50  0000 L CNN
-F 1 "Conn_01x04" H 6730 4401 50  0000 L CNN
-F 2 "Connector_JST:JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical" H 6650 4500 50  0001 C CNN
-F 3 "~" H 6650 4500 50  0001 C CNN
-	1    6650 4500
+P 7050 3100
+F 0 "J9" H 7130 3092 50  0000 L CNN
+F 1 "Conn_01x04" H 7130 3001 50  0000 L CNN
+F 2 "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical" H 7050 3100 50  0001 C CNN
+F 3 "~" H 7050 3100 50  0001 C CNN
+	1    7050 3100
 	1    0    0    -1  
 $EndComp
 Text Notes 950  1300 0    197  ~ 0
 Balancing
-Text GLabel 6450 5700 0    50   Input ~ 0
-PRE_CHARGE_OUT
+Text GLabel 8700 3000 0    59   Input ~ 0
+HV_PRECHARGE_OUT
 $Comp
-L Connector_Generic:Conn_01x02 J10
-U 1 1 5E9386C8
-P 6750 2050
-F 0 "J10" H 6830 2042 50  0000 L CNN
-F 1 "Conn_01x02" H 6830 1951 50  0000 L CNN
-F 2 "Connector_JST:JST_EH_B2B-EH-A_1x02_P2.50mm_Vertical" H 6750 2050 50  0001 C CNN
-F 3 "~" H 6750 2050 50  0001 C CNN
-	1    6750 2050
+L Connector_Generic:Conn_01x04 J11
+U 1 1 5E9387ED
+P 6600 4700
+F 0 "J11" H 6680 4692 50  0000 L CNN
+F 1 "Conn_01x04" H 6680 4601 50  0000 L CNN
+F 2 "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical" H 6600 4700 50  0001 C CNN
+F 3 "~" H 6600 4700 50  0001 C CNN
+	1    6600 4700
+	1    0    0    -1  
+$EndComp
+Text GLabel 6450 5800 0    59   Input ~ 0
+CONTACTOR_PWM_1_OUT
+Text GLabel 5600 4600 0    59   Output ~ 0
+12V_POWER
+Text GLabel 6450 5900 0    59   Input ~ 0
+12V_POWER
+$Comp
+L power:GND1 #PWR0197
+U 1 1 622859FD
+P 6300 4900
+F 0 "#PWR0197" H 6300 4650 50  0001 C CNN
+F 1 "GND1" H 6305 4727 50  0000 C CNN
+F 2 "" H 6300 4900 50  0001 C CNN
+F 3 "" H 6300 4900 50  0001 C CNN
+	1    6300 4900
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x03 J12
-U 1 1 5E93873B
+L power:GND1 #PWR0198
+U 1 1 62285A5D
+P 7950 5950
+F 0 "#PWR0198" H 7950 5700 50  0001 C CNN
+F 1 "GND1" H 7955 5777 50  0000 C CNN
+F 2 "" H 7950 5950 50  0001 C CNN
+F 3 "" H 7950 5950 50  0001 C CNN
+	1    7950 5950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND1 #PWR0199
+U 1 1 62285A8E
+P 8400 5500
+F 0 "#PWR0199" H 8400 5250 50  0001 C CNN
+F 1 "GND1" H 8405 5327 50  0000 C CNN
+F 2 "" H 8400 5500 50  0001 C CNN
+F 3 "" H 8400 5500 50  0001 C CNN
+	1    8400 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J12
+U 1 1 621F0A68
+P 6550 5300
+F 0 "J12" H 6630 5292 50  0000 L CNN
+F 1 "Conn_01x02" H 6630 5201 50  0000 L CNN
+F 2 "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical" H 6550 5300 50  0001 C CNN
+F 3 "~" H 6550 5300 50  0001 C CNN
+	1    6550 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J15
+U 1 1 621F0BB2
 P 6650 5800
-F 0 "J12" H 6730 5792 50  0000 L CNN
+F 0 "J15" H 6730 5792 50  0000 L CNN
 F 1 "Conn_01x02" H 6730 5701 50  0000 L CNN
-F 2 "Connector_JST:JST_EH_B3B-EH-A_1x03_P2.50mm_Vertical" H 6650 5800 50  0001 C CNN
+F 2 "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical" H 6650 5800 50  0001 C CNN
 F 3 "~" H 6650 5800 50  0001 C CNN
 	1    6650 5800
 	1    0    0    -1  
 $EndComp
+Text GLabel 6350 5300 0    59   Input ~ 0
+CONTACTOR_PWM_2_OUT
+Text GLabel 6350 5400 0    59   Input ~ 0
+12V_POWER
 $Comp
-L Connector_Generic:Conn_01x04 J11
-U 1 1 5E9387ED
-P 6650 3350
-F 0 "J11" H 6730 3342 50  0000 L CNN
-F 1 "Conn_01x04" H 6730 3251 50  0000 L CNN
-F 2 "Connector_JST:JST_SH_BM04B-SRSS-TB_1x04-1MP_P1.00mm_Vertical" H 6650 3350 50  0001 C CNN
-F 3 "~" H 6650 3350 50  0001 C CNN
-	1    6650 3350
+L Connector_Generic:Conn_01x02 J16
+U 1 1 621F0FE7
+P 8900 3000
+F 0 "J16" H 8980 2992 50  0000 L CNN
+F 1 "Conn_01x02" H 8980 2901 50  0000 L CNN
+F 2 "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical" H 8900 3000 50  0001 C CNN
+F 3 "~" H 8900 3000 50  0001 C CNN
+	1    8900 3000
 	1    0    0    -1  
 $EndComp
-Text GLabel 6050 2150 0    59   UnSpc ~ 0
-GND
-Connection ~ 6250 2150
+Text GLabel 8750 3450 0    59   Input ~ 0
+HV_DCDC_OUTPUT
+Text GLabel 8750 3750 0    59   Output ~ 0
+HV_EV_CHARGER_INPUT
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 63671A5E
+P 5750 4500
+AR Path="/5B64EF74/63671A5E" Ref="#FLG?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/63671A5E" Ref="#FLG0117"  Part="1" 
+F 0 "#FLG0117" H 5750 4575 50  0001 C CNN
+F 1 "PWR_FLAG" H 5750 4674 50  0000 C CNN
+F 2 "" H 5750 4500 50  0001 C CNN
+F 3 "~" H 5750 4500 50  0001 C CNN
+	1    5750 4500
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
-	6250 2150 6050 2150
+	5750 4500 5750 4600
+Wire Wire Line
+	5600 4600 5750 4600
+Connection ~ 5750 4600
+Wire Wire Line
+	5750 4600 6400 4600
+Wire Wire Line
+	9000 1850 9050 1850
 $Comp
-L Connector_Generic:Conn_02x06_Top_Bottom J6
-U 1 1 5E99461B
-P 3700 2900
-F 0 "J6" H 3750 3317 50  0000 C CNN
-F 1 "Conn_02x06_Top_Bottom" H 3750 3226 50  0000 C CNN
-F 2 "Connector_JST:JST_SH_BM12B-SRSS-TB_1x12-1MP_P1.00mm_Vertical" H 3700 2900 50  0001 C CNN
-F 3 "~" H 3700 2900 50  0001 C CNN
-	1    3700 2900
+L Device:D_Schottky_x2_ACom_AKK D?
+U 1 1 63AFD7DB
+P 8950 2400
+AR Path="/5B5CD4CD/5B5CD606/63AFD7DB" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/63AFD7DB" Ref="D28"  Part="1" 
+F 0 "D28" H 9000 2300 50  0000 C CNN
+F 1 "D_Schottky_x2_ACom_AKK" H 8950 2500 50  0001 C CNN
+F 2 "Footprints:D_SOT-23_ANK" H 8950 2400 50  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/ST%20Microelectronics%20PDFS/ESDCAN(01,24)-2BLY,.pdf" H 8950 2400 50  0001 C CNN
+F 4 "ESDCAN24-2BLY" H 8950 2400 60  0001 C CNN "MPN"
+F 5 "ESDCAN24-2BLY" H -550 450 50  0001 C CNN "Part Number"
+F 6 "1727-5397-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    8950 2400
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	9300 2400 9250 2400
+Wire Wire Line
+	9300 1750 9300 2400
+Wire Wire Line
+	8650 2400 8600 2400
+Wire Wire Line
+	8600 2400 8600 2250
+Wire Wire Line
+	8600 2250 9050 2250
+Wire Wire Line
+	9050 2250 9050 1850
+Connection ~ 9050 1850
+Wire Wire Line
+	9050 1850 10100 1850
 $Comp
-L Connector_Generic:Conn_02x06_Top_Bottom J7
-U 1 1 5E9948D7
-P 3700 3750
-F 0 "J7" H 3750 4167 50  0000 C CNN
-F 1 "Conn_02x06_Top_Bottom" H 3750 4076 50  0000 C CNN
-F 2 "Connector_JST:JST_SH_BM12B-SRSS-TB_1x12-1MP_P1.00mm_Vertical" H 3700 3750 50  0001 C CNN
-F 3 "~" H 3700 3750 50  0001 C CNN
-	1    3700 3750
+L power:GND #PWR?
+U 1 1 63AFF27A
+P 8950 2600
+AR Path="/5B64EF74/63AFF27A" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/63AFF27A" Ref="#PWR012"  Part="1" 
+F 0 "#PWR012" H 8950 2350 50  0001 C CNN
+F 1 "GND" H 8955 2427 50  0000 C CNN
+F 2 "" H 8950 2600 50  0001 C CNN
+F 3 "" H 8950 2600 50  0001 C CNN
+	1    8950 2600
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	8700 1450 10050 1450
 $Comp
-L Connector_Generic:Conn_02x06_Top_Bottom J8
-U 1 1 5E99491D
-P 3650 4600
-F 0 "J8" H 3700 5017 50  0000 C CNN
-F 1 "Conn_02x06_Top_Bottom" H 3700 4926 50  0000 C CNN
-F 2 "Connector_JST:JST_SH_BM12B-SRSS-TB_1x12-1MP_P1.00mm_Vertical" H 3650 4600 50  0001 C CNN
-F 3 "~" H 3650 4600 50  0001 C CNN
-	1    3650 4600
+L Device:D_Schottky_x2_ACom_AKK D?
+U 1 1 63B14ABA
+P 9700 2400
+AR Path="/5B5CD4CD/5B5CD606/63B14ABA" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/63B14ABA" Ref="D29"  Part="1" 
+F 0 "D29" H 9750 2300 50  0000 C CNN
+F 1 "D_Schottky_x2_ACom_AKK" H 9700 2500 50  0001 C CNN
+F 2 "Footprints:D_SOT-23_ANK" H 9700 2400 50  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/ST%20Microelectronics%20PDFS/ESDCAN(01,24)-2BLY,.pdf" H 9700 2400 50  0001 C CNN
+F 4 "ESDCAN24-2BLY" H 9700 2400 60  0001 C CNN "MPN"
+F 5 "ESDCAN24-2BLY" H 200 450 50  0001 C CNN "Part Number"
+F 6 "1727-5397-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    9700 2400
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	10000 2400 10050 2400
+Wire Wire Line
+	10050 2400 10050 1450
+Connection ~ 10050 1450
+Wire Wire Line
+	10050 1450 10100 1450
+Wire Wire Line
+	9400 2400 9350 2400
+Wire Wire Line
+	9350 2400 9350 1550
+Connection ~ 9350 1550
+Wire Wire Line
+	9350 1550 10100 1550
 $Comp
-L Connector_Generic:Conn_02x06_Top_Bottom J5
-U 1 1 5E994977
-P 3700 2050
-F 0 "J5" H 3750 2467 50  0000 C CNN
-F 1 "Conn_02x06_Top_Bottom" H 3750 2376 50  0000 C CNN
-F 2 "Connector_JST:JST_SH_BM12B-SRSS-TB_1x12-1MP_P1.00mm_Vertical" H 3700 2050 50  0001 C CNN
-F 3 "~" H 3700 2050 50  0001 C CNN
-	1    3700 2050
+L power:GND #PWR?
+U 1 1 63B1558E
+P 9700 2600
+AR Path="/5B64EF74/63B1558E" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/63B1558E" Ref="#PWR030"  Part="1" 
+F 0 "#PWR030" H 9700 2350 50  0001 C CNN
+F 1 "GND" H 9705 2427 50  0000 C CNN
+F 2 "" H 9700 2600 50  0001 C CNN
+F 3 "" H 9700 2600 50  0001 C CNN
+	1    9700 2600
 	1    0    0    -1  
 $EndComp
-Text GLabel 6450 5800 0    50   Input ~ 0
-CONTACTOR_PWM_OUT
-Text GLabel 6450 3250 0    59   Output ~ 0
-12V_POWER
-Text GLabel 6450 5900 0    59   Input ~ 0
-12V_POWER
+Wire Wire Line
+	6100 2350 6550 2350
+$Comp
+L Connectors:7807 J19
+U 1 1 623F86CE
+P 8850 3650
+F 0 "J19" H 8482 3697 60  0000 R CNN
+F 1 "7807" H 8482 3803 60  0000 R CNN
+F 2 "Footprints:7807" H 8810 3680 60  0001 C CNN
+F 3 "https://www.keyelco.com/userAssets/file/M65p69.pdf" H 8810 3680 60  0001 C CNN
+F 4 "7807" H 0   0   50  0001 C CNN "MPN"
+F 5 "7807" H 0   0   50  0001 C CNN "Part Number"
+F 6 "36-7807-ND " H 0   0   50  0001 C CNN "Digikey_PN"
+	1    8850 3650
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connectors:7807 J18
+U 1 1 623F876A
+P 8850 3350
+F 0 "J18" H 8482 3397 60  0000 R CNN
+F 1 "7807" H 8482 3503 60  0000 R CNN
+F 2 "Footprints:7807" H 8810 3380 60  0001 C CNN
+F 3 "https://www.keyelco.com/userAssets/file/M65p69.pdf" H 8810 3380 60  0001 C CNN
+F 4 "7807" H 0   0   50  0001 C CNN "MPN"
+F 5 "7807" H 0   0   50  0001 C CNN "Part Number"
+F 6 "36-7807-ND " H 0   0   50  0001 C CNN "Digikey_PN"
+	1    8850 3350
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connectors:7807 J10
+U 1 1 623F8934
+P 6650 1950
+F 0 "J10" H 6282 1997 60  0000 R CNN
+F 1 "7807" H 6282 2103 60  0000 R CNN
+F 2 "Footprints:7807" H 6610 1980 60  0001 C CNN
+F 3 "https://www.keyelco.com/userAssets/file/M65p69.pdf" H 6610 1980 60  0001 C CNN
+F 4 "7807" H 0   0   50  0001 C CNN "MPN"
+F 5 "7807" H 0   0   50  0001 C CNN "Part Number"
+F 6 "36-7807-ND " H 0   0   50  0001 C CNN "Digikey_PN"
+	1    6650 1950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connectors:7807 J17
+U 1 1 623F8976
+P 6650 2250
+F 0 "J17" H 6282 2297 60  0000 R CNN
+F 1 "7807" H 6282 2403 60  0000 R CNN
+F 2 "Footprints:7807" H 6610 2280 60  0001 C CNN
+F 3 "https://www.keyelco.com/userAssets/file/M65p69.pdf" H 6610 2280 60  0001 C CNN
+F 4 "7807" H 0   0   50  0001 C CNN "MPN"
+F 5 "7807" H 0   0   50  0001 C CNN "Part Number"
+F 6 "36-7807-ND " H 0   0   50  0001 C CNN "Digikey_PN"
+	1    6650 2250
+	-1   0    0    1   
+$EndComp
+NoConn ~ 8700 3100
+Wire Wire Line
+	6100 2050 6550 2050
+$Comp
+L Connector_Generic:Conn_02x06_Odd_Even J5
+U 1 1 6270B613
+P 3600 2900
+F 0 "J5" H 3650 2375 50  0000 C CNN
+F 1 "Conn_02x06_Odd_Even" H 3650 2466 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical" H 3600 2900 50  0001 C CNN
+F 3 "~" H 3600 2900 50  0001 C CNN
+	1    3600 2900
+	1    0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x06_Odd_Even J8
+U 1 1 6270B744
+P 3650 6000
+F 0 "J8" H 3700 5475 50  0000 C CNN
+F 1 "Conn_02x06_Odd_Even" H 3700 5566 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical" H 3650 6000 50  0001 C CNN
+F 3 "~" H 3650 6000 50  0001 C CNN
+	1    3650 6000
+	1    0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x06_Odd_Even J6
+U 1 1 6270C508
+P 3600 3850
+F 0 "J6" H 3650 3325 50  0000 C CNN
+F 1 "Conn_02x06_Odd_Even" H 3650 3416 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical" H 3600 3850 50  0001 C CNN
+F 3 "~" H 3600 3850 50  0001 C CNN
+	1    3600 3850
+	1    0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x06_Odd_Even J7
+U 1 1 6270C55A
+P 3650 4950
+F 0 "J7" H 3700 4425 50  0000 C CNN
+F 1 "Conn_02x06_Odd_Even" H 3700 4516 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical" H 3650 4950 50  0001 C CNN
+F 3 "~" H 3650 4950 50  0001 C CNN
+	1    3650 4950
+	1    0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 628DA85E
+P 1500 5650
+AR Path="/5B64EF74/628DA85E" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/628DA85E" Ref="#PWR0139"  Part="1" 
+F 0 "#PWR0139" H 1500 5400 50  0001 C CNN
+F 1 "GND" H 1505 5477 50  0000 C CNN
+F 2 "" H 1500 5650 50  0001 C CNN
+F 3 "" H 1500 5650 50  0001 C CNN
+	1    1500 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3900 2600 3900 2700
+Connection ~ 3900 2700
+Wire Wire Line
+	3900 2700 3900 2800
+Connection ~ 3900 2800
+Wire Wire Line
+	3900 2800 3900 2900
+Connection ~ 3900 2900
+Wire Wire Line
+	3900 2900 3900 3000
+Connection ~ 3900 3000
+Wire Wire Line
+	3900 3000 3900 3100
+$Comp
+L power:GND #PWR?
+U 1 1 628DC15F
+P 3900 3200
+AR Path="/5B64EF74/628DC15F" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/628DC15F" Ref="#PWR0140"  Part="1" 
+F 0 "#PWR0140" H 3900 2950 50  0001 C CNN
+F 1 "GND" H 3905 3027 50  0000 C CNN
+F 2 "" H 3900 3200 50  0001 C CNN
+F 3 "" H 3900 3200 50  0001 C CNN
+	1    3900 3200
+	1    0    0    -1  
+$EndComp
+Connection ~ 3900 3100
+Wire Wire Line
+	3900 3550 3900 3650
+Connection ~ 3900 3650
+Wire Wire Line
+	3900 3650 3900 3750
+Connection ~ 3900 3750
+Wire Wire Line
+	3900 3750 3900 3850
+Connection ~ 3900 3850
+Wire Wire Line
+	3900 3850 3900 3950
+Connection ~ 3900 3950
+Wire Wire Line
+	3900 3950 3900 4050
+$Comp
+L power:GND #PWR?
+U 1 1 628DC9BC
+P 3900 4150
+AR Path="/5B64EF74/628DC9BC" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/628DC9BC" Ref="#PWR0146"  Part="1" 
+F 0 "#PWR0146" H 3900 3900 50  0001 C CNN
+F 1 "GND" H 3905 3977 50  0000 C CNN
+F 2 "" H 3900 4150 50  0001 C CNN
+F 3 "" H 3900 4150 50  0001 C CNN
+	1    3900 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 4650 3950 4750
+Connection ~ 3950 4750
+Wire Wire Line
+	3950 4750 3950 4850
+Connection ~ 3950 4850
+Wire Wire Line
+	3950 4850 3950 4950
+Connection ~ 3950 4950
+Wire Wire Line
+	3950 4950 3950 5050
+Connection ~ 3950 5050
+Wire Wire Line
+	3950 5050 3950 5150
+$Comp
+L power:GND #PWR?
+U 1 1 628DDB64
+P 3950 5250
+AR Path="/5B64EF74/628DDB64" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/628DDB64" Ref="#PWR0148"  Part="1" 
+F 0 "#PWR0148" H 3950 5000 50  0001 C CNN
+F 1 "GND" H 3955 5077 50  0000 C CNN
+F 2 "" H 3950 5250 50  0001 C CNN
+F 3 "" H 3950 5250 50  0001 C CNN
+	1    3950 5250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 5700 3950 5800
+Connection ~ 3950 5800
+Wire Wire Line
+	3950 5800 3950 5900
+Connection ~ 3950 5900
+Wire Wire Line
+	3950 5900 3950 6000
+Connection ~ 3950 6000
+Wire Wire Line
+	3950 6000 3950 6100
+Connection ~ 3950 6100
+Wire Wire Line
+	3950 6100 3950 6200
+$Comp
+L power:GND #PWR?
+U 1 1 628DF183
+P 3950 6300
+AR Path="/5B64EF74/628DF183" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/628DF183" Ref="#PWR0156"  Part="1" 
+F 0 "#PWR0156" H 3950 6050 50  0001 C CNN
+F 1 "GND" H 3955 6127 50  0000 C CNN
+F 2 "" H 3950 6300 50  0001 C CNN
+F 3 "" H 3950 6300 50  0001 C CNN
+	1    3950 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 5150 3950 5250
+Connection ~ 3950 5150
+Wire Wire Line
+	3950 6200 3950 6300
+Connection ~ 3950 6200
+Wire Wire Line
+	3900 4050 3900 4150
+Connection ~ 3900 4050
+Wire Wire Line
+	3900 3100 3900 3200
+Text GLabel 5300 3150 0    59   Input ~ 0
+SHUNT_P
+Text GLabel 5300 3050 0    59   Input ~ 0
+SHUNT_N
+$Comp
+L Connector_Generic:Conn_01x02 J20
+U 1 1 629F9233
+P 5500 3050
+F 0 "J20" H 5580 3042 50  0000 L CNN
+F 1 "Conn_01x02" H 5580 2951 50  0000 L CNN
+F 2 "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical" H 5500 3050 50  0001 C CNN
+F 3 "~" H 5500 3050 50  0001 C CNN
+	1    5500 3050
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

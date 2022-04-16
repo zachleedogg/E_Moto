@@ -1,19 +1,22 @@
 #include "TOUCH_SCREEN.h"
 #include "pins.h"
+#include "movingAverage.h"
 
-#define HIEGTH_
+/*height and width ADC values experimentally found*/
 #define HIEGHT_LOWER 120
-#define HIEGHT_UPPER 875
-
+#define HIEGHT_UPPER 800
 #define WIDTH_LOWER 120
-#define WIDTH_UPPER 925
+#define WIDTH_UPPER 875
 
+/*Touch debounce sensitivty and filtering weight.*/
+#define DEBOUNCE_SIZE 32
+#define FILTER_WEIGHT 0.05
 
+/*digital and ADC pin holders*/
 static PINS_pin_S _x0;
 static PINS_pin_S _x1;
 static PINS_pin_S _y0;
 static PINS_pin_S _y1;
-
 static ADC_pinNumber_E an_X = 0;
 static ADC_pinNumber_E an_Y = 0;
 
@@ -21,19 +24,11 @@ static uint8_t toggler = 1;
 
 static TOUCH_SCREEN_touchData_S thisScreenData = {};
 
-static uint8_t debounce = 0;
+static uint16_t debounce_x = 0;
+static uint16_t debounce_y = 0;
 
-#define AVERAGE_SIZE 8
-
-typedef struct _average {
-    uint16_t x[AVERAGE_SIZE];
-    uint16_t sum_x;
-    uint16_t y[AVERAGE_SIZE];
-    uint16_t sum_y;
-    uint8_t index;
-} average;
-
-static average touchAve;
+NEW_LOW_PASS_FILTER(lpf_x, FILTER_WEIGHT);
+NEW_LOW_PASS_FILTER(lpf_y, FILTER_WEIGHT);
 
 static void setXpins();
 static void setYpins();
@@ -48,12 +43,12 @@ void TOUCH_SCREEN_INIT(PINS_pin_S x0, PINS_pin_S x1, PINS_pin_S y0, PINS_pin_S y
     _y1 = y1;
     an_X = an_x;
     an_Y = an_y;
-    ADC_Init();
+//    ADC_Init();
     setXpins();
 }
 
 //TODO ZACH:
-//fix debounce to go both ways. Make cleaner
+//fix debounce_x to go both ways. Make cleaner
 uint8_t TOUCH_SCREEN_run(void) {
     if (toggler) {
         toggler = 0;
@@ -62,19 +57,19 @@ uint8_t TOUCH_SCREEN_run(void) {
         /*Filter out boundaries*/
         if (temp < HIEGHT_LOWER || temp > HIEGHT_UPPER) {
             temp = HIEGHT_LOWER;
-            thisScreenData.status = IDLE;
-            debounce = 0;
+            thisScreenData.xStatus = IDLE;
+            debounce_x = 0;
+            lpf_x->accum = HIEGHT_UPPER - HIEGHT_LOWER;
         } else {
-            debounce++;
+            if (thisScreenData.xStatus == IDLE ) {
+                debounce_x++;
+            }
+            /*take moving average*/
+            takeLowPassFilter(lpf_x, temp);
         }
-        if (debounce == AVERAGE_SIZE) {
-            debounce = 0;
-            thisScreenData.status = TOUCHED;
+        if (debounce_x >= DEBOUNCE_SIZE) {
+            thisScreenData.xStatus = TOUCHED;
         }
-        /*take moving average*/
-        touchAve.sum_x -= touchAve.x[touchAve.index];
-        touchAve.x[touchAve.index] = temp;
-        touchAve.sum_x += temp;
     } else {
         toggler = 1;
         /*get y position*/
@@ -82,21 +77,29 @@ uint8_t TOUCH_SCREEN_run(void) {
         /*filter out boundaries*/
         if (temp < WIDTH_LOWER || temp > WIDTH_UPPER) {
             temp = WIDTH_LOWER;
-            thisScreenData.status = IDLE;
+            thisScreenData.yStatus = IDLE;
+            debounce_y = 0;
+            lpf_y->accum = HIEGHT_UPPER - HIEGHT_LOWER;
+        } else {
+            if (thisScreenData.yStatus == IDLE ) {
+                debounce_y++;
+            }
+            /*take moving average*/
+            takeLowPassFilter(lpf_y, temp);
         }
-        /*take moving average*/
-        touchAve.sum_y -= touchAve.y[touchAve.index];
-        touchAve.y[touchAve.index] = temp;
-        touchAve.sum_y += temp;
-        
-        /*wrap around protection*/
-        if (++touchAve.index == AVERAGE_SIZE) {
-            touchAve.index = 0;
+        if (debounce_y >= DEBOUNCE_SIZE) {
+            thisScreenData.yStatus = TOUCHED;
         }
     }
+    
+    if ((thisScreenData.yStatus == TOUCHED) && (thisScreenData.xStatus == TOUCHED)) {
+        thisScreenData.status = TOUCHED;
+    } else {
+        thisScreenData.status = IDLE;
+    }
 
-    thisScreenData.xPos = map(touchAve.sum_x / AVERAGE_SIZE, HIEGHT_LOWER, HIEGHT_UPPER, 0, 320);
-    thisScreenData.yPos = map(touchAve.sum_y / AVERAGE_SIZE, WIDTH_LOWER, WIDTH_UPPER, 0, 480);
+    thisScreenData.xPos = map(lpf_x->accum, HIEGHT_LOWER, HIEGHT_UPPER, 0, 320);
+    thisScreenData.yPos = map(lpf_y->accum, WIDTH_LOWER, WIDTH_UPPER, 0, 480);
     return thisScreenData.status;
 }
 
@@ -106,41 +109,41 @@ TOUCH_SCREEN_touchData_S TOUCH_SCREEN_get_data(void) {
 }
 
 static uint16_t TOUCH_SCREEN_get_x_pos(void) {
-    uint16_t returnVal = ADC_GetValue(an_X);
+    uint16_t returnVal = ADC_GetValue(an_X); /*1.1 to account for pull-down resistors*/
     setYpins();
     return returnVal;
 }
 
 static uint16_t TOUCH_SCREEN_get_y_pos(void) {
-    uint16_t returnVal = ADC_GetValue(an_Y);
+    uint16_t returnVal = ADC_GetValue(an_Y);/*1.1 to account for pull-down resistors*/
     setXpins();
     return returnVal;
 }
 
 static void setXpins(void) {
     /*Set Y pins Hi-Z*/
+    ADC_RemovePin(an_Y);
     PINS_direction(_y0, INPUT);
     PINS_direction(_y1, INPUT);
-    ADC_RemovePin(an_Y);
     /*Turn on AN pin X and enable x pins*/
     ADC_SetPin(an_X);
     PINS_direction(_x0, OUTPUT);
-    PINS_write(_x0, HIGH);
     PINS_direction(_x1, OUTPUT);
-    PINS_write(_x1, LOW);
+    PINS_write(_x0, LOW);
+    PINS_write(_x1, HIGH);
 }
 
 static void setYpins(void) {
     /*Set X pins Hi-Z*/
+    ADC_RemovePin(an_X);
     PINS_direction(_x0, INPUT);
     PINS_direction(_x1, INPUT);
-    ADC_RemovePin(an_X);
     /*Turn on AN pin Y and enable y pins*/
     ADC_SetPin(an_Y);
     PINS_direction(_y0, OUTPUT);
-    PINS_write(_y0, LOW);
     PINS_direction(_y1, OUTPUT);
-    PINS_write(_y1, HIGH);
+    PINS_write(_y0, HIGH);
+    PINS_write(_y1, LOW);
 }
 
 static uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {

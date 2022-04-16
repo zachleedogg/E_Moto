@@ -9,47 +9,14 @@ typedef enum{
     mcu,
     bms,
     motorcontroller,
+    charger,
 } CAN_nodes_E;
 
 
 /**********************************************************
  * dash NODE MESSAGES
  */
-#define CAN_dash_status_ID 0x701
-typedef struct{
-	uint16_t heartBeat: 4;
-	uint16_t state: 3;
-	uint16_t killButton: 2;
-	uint16_t ignButton: 2;
-	uint16_t modeButton: 2;
-	uint16_t selectButton: 2;
-	uint16_t driveMode: 3;
-} CAN_dash_status_S;
-
-uint16_t CAN_dash_status_heartBeat_get(void);
-uint16_t CAN_dash_status_state_get(void);
-uint16_t CAN_dash_status_killButton_get(void);
-uint16_t CAN_dash_status_ignButton_get(void);
-uint16_t CAN_dash_status_modeButton_get(void);
-uint16_t CAN_dash_status_selectButton_get(void);
-uint16_t CAN_dash_status_driveMode_get(void);
-
-#define CAN_dash_command_ID 0x702
-typedef struct{
-	uint16_t ignitionRequest: 1;
-	uint16_t killRequest: 1;
-	uint16_t batteryEjectRequest: 1;
-	uint16_t lightsRequest: 1;
-	uint16_t hornRequest: 1;
-} CAN_dash_command_S;
-
-uint16_t CAN_dash_command_ignitionRequest_get(void);
-uint16_t CAN_dash_command_killRequest_get(void);
-uint16_t CAN_dash_command_batteryEjectRequest_get(void);
-uint16_t CAN_dash_command_lightsRequest_get(void);
-uint16_t CAN_dash_command_hornRequest_get(void);
-
-#define CAN_dash_data1_ID 0x703
+#define CAN_dash_data1_ID 0x1806e5f5
 typedef struct{
 	uint16_t speed: 16;
 	uint16_t odometer: 16;
@@ -127,27 +94,6 @@ typedef struct{
 
 uint16_t CAN_mcu_command_doSomthingElse_get(void);
 
-#define CAN_mcu_motorStatus_ID 0x713
-typedef struct{
-	uint16_t motorSpeed: 8;
-	uint16_t motorCurrent: 8;
-	uint16_t IphaseA: 8;
-	uint16_t IphaseB: 8;
-	uint16_t IphaseC: 8;
-	uint16_t VphaseA: 8;
-	uint16_t VphaseB: 8;
-	uint16_t VphaseC: 8;
-} CAN_mcu_motorStatus_S;
-
-uint16_t CAN_mcu_motorStatus_motorSpeed_get(void);
-uint16_t CAN_mcu_motorStatus_motorCurrent_get(void);
-uint16_t CAN_mcu_motorStatus_IphaseA_get(void);
-uint16_t CAN_mcu_motorStatus_IphaseB_get(void);
-uint16_t CAN_mcu_motorStatus_IphaseC_get(void);
-uint16_t CAN_mcu_motorStatus_VphaseA_get(void);
-uint16_t CAN_mcu_motorStatus_VphaseB_get(void);
-uint16_t CAN_mcu_motorStatus_VphaseC_get(void);
-
 #define CAN_mcu_motorControllerRequest_ID 0x700
 typedef struct{
 	uint16_t requestType: 8;
@@ -181,7 +127,33 @@ void CAN_bms_status_maxTemp_set(uint16_t maxTemp);
 void CAN_bms_status_send(void);
 
 
-#define CAN_bms_cellVoltages_ID 0x722
+#define CAN_bms_charger_request_ID 0x1806e5f4
+typedef struct{
+	uint16_t output_voltage_high_byte: 8;
+	uint16_t output_voltage_low_byte: 8;
+	uint16_t output_current_high_byte: 8;
+	uint16_t output_current_low_byte: 8;
+	uint16_t start_charge_request: 8;
+	uint16_t charge_mode: 8;
+	uint16_t packCurrent: 8;
+	uint16_t byte_7: 8;
+	uint16_t byte_8: 8;
+} CAN_bms_charger_request_S;
+
+void CAN_bms_charger_request_output_voltage_high_byte_set(uint16_t output_voltage_high_byte);
+void CAN_bms_charger_request_output_voltage_low_byte_set(uint16_t output_voltage_low_byte);
+void CAN_bms_charger_request_output_current_high_byte_set(uint16_t output_current_high_byte);
+void CAN_bms_charger_request_output_current_low_byte_set(uint16_t output_current_low_byte);
+void CAN_bms_charger_request_start_charge_request_set(uint16_t start_charge_request);
+void CAN_bms_charger_request_charge_mode_set(uint16_t charge_mode);
+void CAN_bms_charger_request_packCurrent_set(uint16_t packCurrent);
+void CAN_bms_charger_request_byte_7_set(uint16_t byte_7);
+void CAN_bms_charger_request_byte_8_set(uint16_t byte_8);
+
+void CAN_bms_charger_request_send(void);
+
+
+#define CAN_bms_cellVoltages_ID 0x723
 typedef struct{
 	uint16_t MultiPlex: 4;
 	uint16_t cell1: 12;
@@ -207,6 +179,27 @@ void CAN_bms_cellVoltages_send(void);
 /**********************************************************
  * motorcontroller NODE MESSAGES
  */
+#define CAN_motorcontroller_motorStatus_ID 0x731
+typedef struct{
+	uint16_t motorSpeed: 8;
+	uint16_t motorCurrent: 8;
+	uint16_t IphaseA: 8;
+	uint16_t IphaseB: 8;
+	uint16_t IphaseC: 8;
+	uint16_t VphaseA: 8;
+	uint16_t VphaseB: 8;
+	uint16_t VphaseC: 8;
+} CAN_motorcontroller_motorStatus_S;
+
+uint16_t CAN_motorcontroller_motorStatus_motorSpeed_get(void);
+uint16_t CAN_motorcontroller_motorStatus_motorCurrent_get(void);
+uint16_t CAN_motorcontroller_motorStatus_IphaseA_get(void);
+uint16_t CAN_motorcontroller_motorStatus_IphaseB_get(void);
+uint16_t CAN_motorcontroller_motorStatus_IphaseC_get(void);
+uint16_t CAN_motorcontroller_motorStatus_VphaseA_get(void);
+uint16_t CAN_motorcontroller_motorStatus_VphaseB_get(void);
+uint16_t CAN_motorcontroller_motorStatus_VphaseC_get(void);
+
 #define CAN_motorcontroller_response_ID 0x700
 typedef struct{
 	uint16_t byte1: 8;
@@ -227,6 +220,39 @@ uint16_t CAN_motorcontroller_response_byte5_get(void);
 uint16_t CAN_motorcontroller_response_byte6_get(void);
 uint16_t CAN_motorcontroller_response_byte7_get(void);
 uint16_t CAN_motorcontroller_response_byte8_get(void);
+
+
+
+
+/**********************************************************
+ * charger NODE MESSAGES
+ */
+#define CAN_charger_charger_status_ID 0x18ff50e5
+typedef struct{
+	uint16_t output_voltage_high_byte: 8;
+	uint16_t output_voltage_low_byte: 8;
+	uint16_t output_current_high_byte: 8;
+	uint16_t output_current_low_byte: 8;
+	uint16_t hardware_error: 1;
+	uint16_t charger_overtemp_error: 1;
+	uint16_t input_voltage_error: 1;
+	uint16_t battery_detect_error: 1;
+	uint16_t communication_error: 1;
+	uint16_t byte7: 8;
+	uint16_t byte8: 8;
+} CAN_charger_charger_status_S;
+
+uint16_t CAN_charger_charger_status_output_voltage_high_byte_get(void);
+uint16_t CAN_charger_charger_status_output_voltage_low_byte_get(void);
+uint16_t CAN_charger_charger_status_output_current_high_byte_get(void);
+uint16_t CAN_charger_charger_status_output_current_low_byte_get(void);
+uint16_t CAN_charger_charger_status_hardware_error_get(void);
+uint16_t CAN_charger_charger_status_charger_overtemp_error_get(void);
+uint16_t CAN_charger_charger_status_input_voltage_error_get(void);
+uint16_t CAN_charger_charger_status_battery_detect_error_get(void);
+uint16_t CAN_charger_charger_status_communication_error_get(void);
+uint16_t CAN_charger_charger_status_byte7_get(void);
+uint16_t CAN_charger_charger_status_byte8_get(void);
 
 void CAN_DBC_init();
 

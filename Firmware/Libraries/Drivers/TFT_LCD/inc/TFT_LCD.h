@@ -29,8 +29,8 @@
 #define TFT_LCD_WHITE   0xFFFF
 
 /*Arrangement Defintions*/
-#define TFT_LCD_CENTER 0xFFFF
-#define TFT_LCD_MIDLLE 0xFFFF
+#define TFT_LCD_CENTER 240
+#define TFT_LCD_MIDLLE 160
 
 typedef enum _TFT_LCD_dataFormat_E {
     DATA,

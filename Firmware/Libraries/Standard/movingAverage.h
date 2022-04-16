@@ -11,11 +11,16 @@
 #include <stdint.h>
 
 typedef struct {
-    uint8_t index;
-    const uint8_t windowSize;
+    uint16_t index;
+    const uint16_t windowSize;
     uint32_t sum;
     uint16_t *buffer;
 } movingAverage_S;
+
+typedef struct {
+    double alpha;
+    uint16_t accum;
+} lowPassFilter_S;
 
 #define CONCAT(a,b) a##b
 
@@ -23,7 +28,7 @@ typedef struct {
 /**
  * @brief Creates a moving average object
  * @param x: name of the average object
- * @param value: Window average size
+ * @param y: Window average size
  * @return none
  */
 #define NEW_AVERAGE(x,y) \
@@ -36,6 +41,19 @@ static movingAverage_S x##Object = {\
 };\
 static movingAverage_S * x = &x##Object\
 
+/**
+ * @brief Creates a moving average object
+ * @param x: name of the average object
+ * @param y: Weight (alpha)
+ * @return none
+ */
+#define NEW_LOW_PASS_FILTER(x,y) \
+static lowPassFilter_S x##Object = {\
+    .alpha = y, \
+    .accum = 0, \
+};\
+static lowPassFilter_S * x = &x##Object\
+
 
 /**
  * @brief: Call with Moving Average object repeatedly
@@ -43,7 +61,15 @@ static movingAverage_S * x = &x##Object\
  * @param value: New value to include in the average
  * @return : running average
  */
-uint16_t takeAverage(movingAverage_S *x, uint16_t value);
+uint16_t takeMovingAverage(movingAverage_S *x, uint16_t value);
+
+/**
+ * @brief: Call with Filtered object repeatedly
+ * @param x: Name of the average object
+ * @param value: New value to include in the average
+ * @return : LPF output
+ */
+uint16_t takeLowPassFilter(lowPassFilter_S *x, uint16_t value);
 
 #endif	/* MOVINGAVERAGE_H */
 

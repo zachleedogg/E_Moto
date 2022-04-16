@@ -37,6 +37,10 @@
 
 void Tsk(void);
 
+void Tsk_1ms(void);
+
+void Tsk_5ms(void);
+
 void Tsk_10ms(void);
 
 void Tsk_100ms(void);

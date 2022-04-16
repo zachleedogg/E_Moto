@@ -1,0 +1,3345 @@
+EESchema Schematic File Version 4
+LIBS:BMS_01-cache
+EELAYER 26 0
+EELAYER END
+$Descr A3 16535 11693
+encoding utf-8
+Sheet 60 61
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:GND #PWR?
+U 1 1 62212CD9
+P 3050 9200
+AR Path="/5AAC0444/62212CD9" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62212CD9" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62212CD9" Ref="#PWR0210"  Part="1" 
+F 0 "#PWR0210" H 3050 8950 50  0001 C CNN
+F 1 "GND" H 3055 9027 50  0000 C CNN
+F 2 "" H 3050 9200 50  0001 C CNN
+F 3 "" H 3050 9200 50  0001 C CNN
+	1    3050 9200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 8900 3400 9400
+Connection ~ 3400 8900
+$Comp
+L Device:D_Schottky_x2_Serial_AKC D17
+U 1 1 622130E2
+P 4650 8450
+F 0 "D17" H 4650 8667 50  0000 C CNN
+F 1 "D_Schottky_x2_Serial_AKC" H 4650 8576 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 4650 8450 50  0001 C CNN
+F 3 "https://www.onsemi.com/pdf/datasheet/mmbd1405-d.pdf" H 4650 8450 50  0001 C CNN
+F 4 "MMBD1403" H 4650 8450 50  0001 C CNN "MPN"
+F 5 "MMBD1403" H 0   0   50  0001 C CNN "Part Number"
+F 6 "MMBD1403CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4650 8450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 8650 4650 8900
+Wire Wire Line
+	4650 9700 4550 9700
+$Comp
+L Device:R R223
+U 1 1 62213257
+P 4400 9700
+F 0 "R223" V 4607 9700 50  0000 C CNN
+F 1 "3R3" V 4516 9700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4330 9700 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 4400 9700 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4400 9700
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4250 9700 3800 9700
+Wire Wire Line
+	3400 8900 3050 8900
+Wire Wire Line
+	3400 8750 3400 8900
+$Comp
+L power:+BATT #PWR?
+U 1 1 62213EAF
+P 650 7350
+AR Path="/5AAC0444/62213EAF" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62213EAF" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62213EAF" Ref="#PWR054"  Part="1" 
+F 0 "#PWR054" H 650 7200 50  0001 C CNN
+F 1 "+BATT" H 665 7523 50  0000 C CNN
+F 2 "" H 650 7350 50  0001 C CNN
+F 3 "" H 650 7350 50  0001 C CNN
+	1    650  7350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R225
+U 1 1 6221456D
+P 4850 9800
+F 0 "R225" V 5057 9800 50  0000 C CNN
+F 1 "3R3" V 4966 9800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 4780 9800 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 4850 9800 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4850 9800
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5150 8450 5150 8900
+Wire Wire Line
+	4650 9200 4650 9700
+$Comp
+L power:+BATT #PWR?
+U 1 1 62216F3A
+P 6550 8900
+AR Path="/5AAC0444/62216F3A" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62216F3A" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62216F3A" Ref="#PWR0225"  Part="1" 
+F 0 "#PWR0225" H 6550 8750 50  0001 C CNN
+F 1 "+BATT" H 6565 9073 50  0000 C CNN
+F 2 "" H 6550 8900 50  0001 C CNN
+F 3 "" H 6550 8900 50  0001 C CNN
+	1    6550 8900
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6550 8600 6550 8450
+Wire Wire Line
+	6550 8200 6550 8450
+Connection ~ 6550 8450
+$Comp
+L power:+BATT #PWR?
+U 1 1 62218DD3
+P 4650 1250
+AR Path="/5AAC0444/62218DD3" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62218DD3" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62218DD3" Ref="#PWR0218"  Part="1" 
+F 0 "#PWR0218" H 4650 1100 50  0001 C CNN
+F 1 "+BATT" H 4665 1423 50  0000 C CNN
+F 2 "" H 4650 1250 50  0001 C CNN
+F 3 "" H 4650 1250 50  0001 C CNN
+	1    4650 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GDS Q43
+U 1 1 62218E5D
+P 4550 3450
+F 0 "Q43" H 4750 3300 50  0000 L CNN
+F 1 "NTB5D0N15MC" H 4750 3600 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 4750 3550 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/308/1/NTB5D0N15MC_D-2318612.pdf" H 4550 3450 50  0001 C CNN
+F 4 "NTB5D0N15MC" H 0   0   50  0001 C CNN "Part Number"
+F 5 "NTB5D0N15MC" H 0   0   50  0001 C CNN "MPN"
+F 6 "863-NTB5D0N15MC" H 0   0   50  0001 C CNN "Mouser_PN"
+	1    4550 3450
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R R221
+U 1 1 62219DFD
+P 4050 2950
+F 0 "R221" V 4257 2950 50  0000 C CNN
+F 1 "3R3" V 4166 2950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3980 2950 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 4050 2950 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4050 2950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R222
+U 1 1 62219F9A
+P 4050 3450
+F 0 "R222" V 4257 3450 50  0000 C CNN
+F 1 "3R3" V 4166 3450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3980 3450 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 4050 3450 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4050 3450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R220
+U 1 1 62219FD6
+P 3400 2950
+F 0 "R220" V 3607 2950 50  0000 C CNN
+F 1 "3R3" V 3516 2950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3330 2950 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 3400 2950 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    3400 2950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4350 3450 4200 3450
+Wire Wire Line
+	4350 2950 4200 2950
+$Comp
+L Device:R R224
+U 1 1 6221CC98
+P 4650 2050
+F 0 "R224" H 4720 2096 50  0000 L CNN
+F 1 "R001" H 4720 2005 50  0000 L CNN
+F 2 "Footprints:R_2512_6332Metric_PMR100" V 4580 2050 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/pmr-e.pdf" H 4650 2050 50  0001 C CNN
+F 4 "PMR100HZPFV1L00" H 4650 2050 50  0001 C CNN "Part Number"
+F 5 "PMR100HZPFV1L00" H 0   0   50  0001 C CNN "MPN"
+F 6 "RHM.001AUCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4650 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L ICs:INA290 U19
+U 1 1 62220044
+P 3950 2050
+F 0 "U19" H 4200 2200 50  0000 C CNN
+F 1 "INA290A3" H 4650 1950 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-353_SC-70-5" H 4150 2800 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/ina290-q1.pdf?ts=1624044330872&ref_url=https%253A%252F%252Fwww.ti.com%252Famplifier-circuit%252Fcurrent-sense%252Fanalog-output%252Fproducts.html" H 4150 2800 50  0001 C CNN
+F 4 "INA290A3IDCKR" H 4450 1850 50  0000 C CNN "Part Number"
+F 5 "296-INA290A3IDCKRCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    3950 2050
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6222494F
+P 3950 2350
+AR Path="/5AAC0444/6222494F" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/6222494F" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/6222494F" Ref="#PWR0217"  Part="1" 
+F 0 "#PWR0217" H 3950 2100 50  0001 C CNN
+F 1 "GND" H 3955 2177 50  0000 C CNN
+F 2 "" H 3950 2350 50  0001 C CNN
+F 3 "" H 3950 2350 50  0001 C CNN
+	1    3950 2350
+	1    0    0    -1  
+$EndComp
+Text GLabel 6150 4000 2    59   Input ~ 0
+HV_EV_CHARGER_INPUT
+Wire Wire Line
+	4650 2200 4650 2300
+Text GLabel 1500 4800 0    59   Input ~ 0
+EV_CHARGER_ENABLE
+$Comp
+L ICs:FAN3216TMX-F085 U18
+U 1 1 62275F65
+P 3100 10300
+F 0 "U18" H 3600 11250 98  0000 C CNN
+F 1 "FAN3216TMX-F085" H 4450 10400 98  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 2650 11400 98  0001 C CNN
+F 3 "https://www.onsemi.com/pdf/datasheet/fan3217-d.pdf" H 2750 11500 98  0001 C CNN
+F 4 "FAN3216TMX-F085" H 0   0   50  0001 C CNN "Part Number"
+F 5 "FAN3216TMX-F085CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    3100 10300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5150 9200 5150 9800
+Wire Wire Line
+	3800 9800 4700 9800
+$Comp
+L power:GND #PWR?
+U 1 1 6227C8B4
+P 3400 10400
+AR Path="/5AAC0444/6227C8B4" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/6227C8B4" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/6227C8B4" Ref="#PWR0214"  Part="1" 
+F 0 "#PWR0214" H 3400 10150 50  0001 C CNN
+F 1 "GND" H 3405 10227 50  0000 C CNN
+F 2 "" H 3400 10400 50  0001 C CNN
+F 3 "" H 3400 10400 50  0001 C CNN
+	1    3400 10400
+	1    0    0    -1  
+$EndComp
+Text Label 3850 9700 0    79   ~ 0
+outa
+Text Label 2700 9800 0    79   ~ 0
+outa
+Wire Wire Line
+	3000 9800 2700 9800
+Text GLabel 2300 9700 0    59   Input ~ 0
+CHARGE_PUMP_PWM
+$Comp
+L Device:R R216
+U 1 1 6227F1E4
+P 2500 9700
+F 0 "R216" V 2707 9700 50  0000 C CNN
+F 1 "100R" V 2616 9700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 2430 9700 50  0001 C CNN
+F 3 "" H 2500 9700 50  0001 C CNN
+F 4 "AC0603FR-07100RL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-07100RL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "YAG3561CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    2500 9700
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3000 9700 2650 9700
+Wire Wire Line
+	2350 9700 2300 9700
+Text GLabel 1750 800  0    59   Output ~ 0
+EV_CHARGER_CURRENT_AI
+$Comp
+L Device:R R217
+U 1 1 622C1224
+P 2600 800
+F 0 "R217" V 2807 800 50  0000 C CNN
+F 1 "10k0" V 2716 800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 2530 800 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 2600 800 50  0001 C CNN
+F 4 "< ... >" H 0   0   50  0001 C CNN "DNP"
+F 5 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 6 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 7 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+	1    2600 800 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 622C1296
+P 1850 1050
+AR Path="/5AAC0444/622C1296" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/622C1296" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/622C1296" Ref="C120"  Part="1" 
+F 0 "C120" H 1965 1096 50  0000 L CNN
+F 1 "10nF" H 1965 1005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1888 900 50  0001 C CNN
+F 3 "~" H 1850 1050 50  0001 C CNN
+F 4 "GCM188R72A103KA37D" H -500 0   50  0001 C CNN "MPN"
+F 5 "GCM188R72A103KA37D" H -500 0   50  0001 C CNN "Part Number"
+F 6 "490-4781-1-ND" H -500 0   50  0001 C CNN "Digikey_PN"
+	1    1850 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 800  1850 900 
+Connection ~ 1850 800 
+Wire Wire Line
+	1850 800  1750 800 
+$Comp
+L power:GND #PWR?
+U 1 1 622C547F
+P 1850 1200
+AR Path="/5AAC0444/622C547F" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/622C547F" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/622C547F" Ref="#PWR060"  Part="1" 
+F 0 "#PWR060" H 1850 950 50  0001 C CNN
+F 1 "GND" H 1855 1027 50  0000 C CNN
+F 2 "" H 1850 1200 50  0001 C CNN
+F 3 "" H 1850 1200 50  0001 C CNN
+	1    1850 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 2050 3000 2050
+Wire Wire Line
+	3000 800  2750 800 
+$Comp
+L ICs:Q_NMOS_SSSGD Q55
+U 1 1 622E096D
+P 13800 2050
+F 0 "Q55" H 14450 1850 50  0000 L CNN
+F 1 "TPH3300CNH,L1Q" H 14450 1750 50  0000 L CNN
+F 2 "Package_SO:PowerPAK_SO-8_Single" H 14000 2150 50  0001 C CNN
+F 3 "file:///C:/Users/kid%20group/Downloads/TPH3300CNH_datasheet_en_20140225.pdf" H 13800 2050 50  0001 C CNN
+F 4 "TPH3300CNH,L1Q" H -500 -400 50  0001 C CNN "Part Number"
+F 5 "TPH3300CNH,L1Q" H -500 -400 50  0001 C CNN "MPN"
+F 6 "TPH3300CNHL1QCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    13800 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR?
+U 1 1 622E0974
+P 14400 1550
+AR Path="/5AAC0444/622E0974" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/622E0974" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/622E0974" Ref="#PWR0242"  Part="1" 
+F 0 "#PWR0242" H 14400 1400 50  0001 C CNN
+F 1 "+BATT" H 14415 1723 50  0000 C CNN
+F 2 "" H 14400 1550 50  0001 C CNN
+F 3 "" H 14400 1550 50  0001 C CNN
+	1    14400 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	14400 2650 14400 2700
+$Comp
+L Device:R R250
+U 1 1 622E0982
+P 13800 2450
+F 0 "R250" V 14007 2450 50  0000 C CNN
+F 1 "3R3" V 13916 2450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 13730 2450 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 13800 2450 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    13800 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R251
+U 1 1 622E0989
+P 13800 2950
+F 0 "R251" V 14007 2950 50  0000 C CNN
+F 1 "3R3" V 13916 2950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 13730 2950 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 13800 2950 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    13800 2950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	14100 2950 13950 2950
+Wire Wire Line
+	14100 2450 13950 2450
+Wire Wire Line
+	13650 2450 13550 2450
+Wire Wire Line
+	13550 2950 13650 2950
+$Comp
+L Device:R R252
+U 1 1 622E099E
+P 14400 1800
+F 0 "R252" H 14470 1846 50  0000 L CNN
+F 1 "R001" H 14470 1755 50  0000 L CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 14330 1800 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-hcs.pdf" H 14400 1800 50  0001 C CNN
+F 4 "HCS1206FT1L00" H 14400 1800 50  0001 C CNN "Part Number"
+F 5 "HCS1206FT1L00" H 0   0   50  0001 C CNN "MPN"
+F 6 "HCS1206FT1L00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    14400 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L ICs:INA290 U22
+U 1 1 622E09A6
+P 13700 1800
+F 0 "U22" H 14000 1700 50  0000 C CNN
+F 1 "INA290" H 14550 1600 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-353_SC-70-5" H 13900 2550 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/ina290-q1.pdf?ts=1624044330872&ref_url=https%253A%252F%252Fwww.ti.com%252Famplifier-circuit%252Fcurrent-sense%252Fanalog-output%252Fproducts.html" H 13900 2550 50  0001 C CNN
+F 4 "INA290A4QDCKRQ1" H 14300 1500 50  0000 C CNN "Part Number"
+F 5 "296-INA290A4QDCKRQ1CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    13700 1800
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 622E09AD
+P 13700 2100
+AR Path="/5AAC0444/622E09AD" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/622E09AD" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/622E09AD" Ref="#PWR0241"  Part="1" 
+F 0 "#PWR0241" H 13700 1850 50  0001 C CNN
+F 1 "GND" H 13705 1927 50  0000 C CNN
+F 2 "" H 13700 2100 50  0001 C CNN
+F 3 "" H 13700 2100 50  0001 C CNN
+	1    13700 2100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	14400 3750 14400 3150
+Text GLabel 15100 3750 2    59   Output ~ 0
+HV_DCDC_OUTPUT
+Text GLabel 12000 1350 0    59   Output ~ 0
+DCDC_OUTPUT_CURRENT_AI
+$Comp
+L Device:R R246
+U 1 1 622E0A73
+P 12350 1350
+F 0 "R246" V 12557 1350 50  0000 C CNN
+F 1 "10k0" V 12466 1350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 12280 1350 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 12350 1350 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12350 1350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 622E0A7A
+P 12100 1600
+AR Path="/5AAC0444/622E0A7A" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/622E0A7A" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/622E0A7A" Ref="C132"  Part="1" 
+F 0 "C132" H 12215 1646 50  0000 L CNN
+F 1 "10nF" H 12215 1555 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 12138 1450 50  0001 C CNN
+F 3 "~" H 12100 1600 50  0001 C CNN
+F 4 "GCM188R72A103KA37D" H 0   0   50  0001 C CNN "MPN"
+F 5 "GCM188R72A103KA37D" H 0   0   50  0001 C CNN "Part Number"
+F 6 "490-4781-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12100 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12200 1350 12100 1350
+Wire Wire Line
+	12100 1350 12100 1450
+Connection ~ 12100 1350
+Wire Wire Line
+	12100 1350 12000 1350
+$Comp
+L power:GND #PWR?
+U 1 1 622E0A85
+P 12100 1750
+AR Path="/5AAC0444/622E0A85" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/622E0A85" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/622E0A85" Ref="#PWR0236"  Part="1" 
+F 0 "#PWR0236" H 12100 1500 50  0001 C CNN
+F 1 "GND" H 12105 1577 50  0000 C CNN
+F 2 "" H 12100 1750 50  0001 C CNN
+F 3 "" H 12100 1750 50  0001 C CNN
+	1    12100 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	13300 1800 12600 1800
+Wire Wire Line
+	12600 1800 12600 1350
+Wire Wire Line
+	12600 1350 12500 1350
+Wire Wire Line
+	14400 1950 14400 2000
+Wire Wire Line
+	14400 1550 14400 1600
+Wire Wire Line
+	14250 1700 14250 1600
+Wire Wire Line
+	14250 1600 14400 1600
+Wire Wire Line
+	13900 1700 14250 1700
+Connection ~ 14400 1600
+Wire Wire Line
+	14400 1600 14400 1650
+Wire Wire Line
+	14250 1900 14250 2000
+Wire Wire Line
+	14250 2000 14400 2000
+Wire Wire Line
+	13900 1900 14250 1900
+Connection ~ 14400 2000
+Wire Wire Line
+	3950 1200 3950 1350
+$Comp
+L Device:C C?
+U 1 1 6231C8E4
+P 3400 1650
+AR Path="/5AAC0444/6231C8E4" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/6231C8E4" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/6231C8E4" Ref="C122"  Part="1" 
+F 0 "C122" H 3515 1696 50  0000 L CNN
+F 1 "10nF" H 3515 1605 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 3438 1500 50  0001 C CNN
+F 3 "~" H 3400 1650 50  0001 C CNN
+F 4 "GCM188R72A103KA37D" H 0   0   50  0001 C CNN "MPN"
+F 5 "GCM188R72A103KA37D" H 0   0   50  0001 C CNN "Part Number"
+F 6 "490-4781-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    3400 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6231C8EB
+P 3400 1800
+AR Path="/5AAC0444/6231C8EB" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/6231C8EB" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/6231C8EB" Ref="#PWR0212"  Part="1" 
+F 0 "#PWR0212" H 3400 1550 50  0001 C CNN
+F 1 "GND" H 3405 1627 50  0000 C CNN
+F 2 "" H 3400 1800 50  0001 C CNN
+F 3 "" H 3400 1800 50  0001 C CNN
+	1    3400 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 1350 3400 1350
+Wire Wire Line
+	3400 1350 3400 1500
+Connection ~ 3950 1350
+Wire Wire Line
+	3950 1350 3950 1750
+$Comp
+L Device:C C?
+U 1 1 62347ED2
+P 13150 1400
+AR Path="/5AAC0444/62347ED2" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62347ED2" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62347ED2" Ref="C133"  Part="1" 
+F 0 "C133" H 13265 1446 50  0000 L CNN
+F 1 "10nF" H 13265 1355 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 13188 1250 50  0001 C CNN
+F 3 "~" H 13150 1400 50  0001 C CNN
+F 4 "GCM188R72A103KA37D" H 0   0   50  0001 C CNN "MPN"
+F 5 "GCM188R72A103KA37D" H 0   0   50  0001 C CNN "Part Number"
+F 6 "490-4781-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    13150 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 62347ED9
+P 13150 1550
+AR Path="/5AAC0444/62347ED9" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62347ED9" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62347ED9" Ref="#PWR0238"  Part="1" 
+F 0 "#PWR0238" H 13150 1300 50  0001 C CNN
+F 1 "GND" H 13155 1377 50  0000 C CNN
+F 2 "" H 13150 1550 50  0001 C CNN
+F 3 "" H 13150 1550 50  0001 C CNN
+	1    13150 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	13700 1100 13150 1100
+Wire Wire Line
+	13150 1100 13150 1250
+Wire Wire Line
+	13700 1050 13700 1100
+Connection ~ 13700 1100
+Wire Wire Line
+	13700 1100 13700 1500
+$Comp
+L ICs:INA290 U20
+U 1 1 6239BDB8
+P 5800 2050
+F 0 "U20" H 6050 2200 50  0000 C CNN
+F 1 "INA290A4" H 6500 1950 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-353_SC-70-5" H 6000 2800 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/ina290-q1.pdf?ts=1624044330872&ref_url=https%253A%252F%252Fwww.ti.com%252Famplifier-circuit%252Fcurrent-sense%252Fanalog-output%252Fproducts.html" H 6000 2800 50  0001 C CNN
+F 4 "INA290A4QDCKRQ1" H 6300 1850 50  0000 C CNN "Part Number"
+F 5 "296-INA290A4QDCKRQ1CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5800 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 2150 5600 2150
+Wire Wire Line
+	5450 1950 5600 1950
+Wire Wire Line
+	5800 1200 5800 1350
+$Comp
+L Device:C C?
+U 1 1 623C5356
+P 6350 1650
+AR Path="/5AAC0444/623C5356" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/623C5356" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/623C5356" Ref="C127"  Part="1" 
+F 0 "C127" H 6465 1696 50  0000 L CNN
+F 1 "10nF" H 6465 1605 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6388 1500 50  0001 C CNN
+F 3 "~" H 6350 1650 50  0001 C CNN
+F 4 "GCM188R72A103KA37D" H 0   0   50  0001 C CNN "MPN"
+F 5 "GCM188R72A103KA37D" H 0   0   50  0001 C CNN "Part Number"
+F 6 "490-4781-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    6350 1650
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 1350 6350 1350
+Wire Wire Line
+	6350 1350 6350 1500
+Connection ~ 5800 1350
+Wire Wire Line
+	5800 1350 5800 1750
+$Comp
+L power:GND #PWR?
+U 1 1 623DB3FD
+P 6350 1800
+AR Path="/5AAC0444/623DB3FD" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/623DB3FD" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/623DB3FD" Ref="#PWR0222"  Part="1" 
+F 0 "#PWR0222" H 6350 1550 50  0001 C CNN
+F 1 "GND" H 6355 1627 50  0000 C CNN
+F 2 "" H 6350 1800 50  0001 C CNN
+F 3 "" H 6350 1800 50  0001 C CNN
+	1    6350 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 623DB484
+P 5800 2350
+AR Path="/5AAC0444/623DB484" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/623DB484" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/623DB484" Ref="#PWR0221"  Part="1" 
+F 0 "#PWR0221" H 5800 2100 50  0001 C CNN
+F 1 "GND" H 5805 2177 50  0000 C CNN
+F 2 "" H 5800 2350 50  0001 C CNN
+F 3 "" H 5800 2350 50  0001 C CNN
+	1    5800 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 623E3595
+P 8200 8400
+AR Path="/5AAC0444/623E3595" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/623E3595" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/623E3595" Ref="#PWR0231"  Part="1" 
+F 0 "#PWR0231" H 8200 8150 50  0001 C CNN
+F 1 "GND" H 8205 8227 50  0000 C CNN
+F 2 "" H 8200 8400 50  0001 C CNN
+F 3 "" H 8200 8400 50  0001 C CNN
+	1    8200 8400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 623E37A8
+P 7650 8100
+AR Path="/5AAC0444/623E37A8" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/623E37A8" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/623E37A8" Ref="C131"  Part="1" 
+F 0 "C131" H 7765 8146 50  0000 L CNN
+F 1 "100nF" H 7765 8055 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 7688 7950 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 7650 8100 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "MPN"
+F 5 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "Part Number"
+F 6 "490-4779-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    7650 8100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 8250 7650 8400
+Wire Wire Line
+	7650 8400 8200 8400
+Wire Wire Line
+	7650 7950 7650 7800
+Wire Wire Line
+	7650 7800 8200 7800
+$Comp
+L Device:R R236
+U 1 1 623FB314
+P 7650 6350
+F 0 "R236" H 7720 6396 50  0000 L CNN
+F 1 "19k6" H 7720 6305 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7580 6350 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 7650 6350 50  0001 C CNN
+F 4 "" H 0   0   50  0001 C CNN "DNP"
+F 5 "RMCF0603FT19K6CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 6 "RMCF0603FT19K6" H 0   0   50  0001 C CNN "MPN"
+F 7 "RMCF0603FT19K6" H 0   0   50  0001 C CNN "Part Number"
+	1    7650 6350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R237
+U 1 1 623FB31B
+P 7650 6750
+F 0 "R237" H 7720 6796 50  0000 L CNN
+F 1 "10k0" H 7720 6705 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7580 6750 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 7650 6750 50  0001 C CNN
+F 4 "< ... >" H 0   0   50  0001 C CNN "DNP"
+F 5 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 6 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 7 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+	1    7650 6750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 62403238
+P 7650 6950
+AR Path="/5AAC0444/62403238" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62403238" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62403238" Ref="#PWR0229"  Part="1" 
+F 0 "#PWR0229" H 7650 6700 50  0001 C CNN
+F 1 "GND" H 7655 6777 50  0000 C CNN
+F 2 "" H 7650 6950 50  0001 C CNN
+F 3 "" H 7650 6950 50  0001 C CNN
+	1    7650 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 6550 7200 6550
+Connection ~ 7650 6550
+Wire Wire Line
+	7650 6550 7650 6500
+$Comp
+L Device:C C?
+U 1 1 6241344C
+P 7200 6750
+AR Path="/5AAC0444/6241344C" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/6241344C" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/6241344C" Ref="C130"  Part="1" 
+F 0 "C130" H 7315 6796 50  0000 L CNN
+F 1 "100nF" H 7315 6705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 7238 6600 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 7200 6750 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "MPN"
+F 5 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "Part Number"
+F 6 "490-4779-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    7200 6750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 6600 7650 6550
+Wire Wire Line
+	7650 6900 7650 6950
+$Comp
+L Device:R R238
+U 1 1 62456921
+P 7750 5800
+F 0 "R238" V 7957 5800 50  0000 C CNN
+F 1 "10k0" V 7866 5800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7680 5800 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 7750 5800 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    7750 5800
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 62456928
+P 7000 6050
+AR Path="/5AAC0444/62456928" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62456928" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62456928" Ref="C129"  Part="1" 
+F 0 "C129" H 7115 6096 50  0000 L CNN
+F 1 "1nF" H 7115 6005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 7038 5900 50  0001 C CNN
+F 3 "https://product.tdk.com/system/files/dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_general_en.pdf" H 7000 6050 50  0001 C CNN
+F 4 "CGA3E2X7R1H102K080AA" H 0   0   50  0001 C CNN "MPN"
+F 5 "CGA3E2X7R1H102K080AA" H 0   0   50  0001 C CNN "Part Number"
+F 6 "445-5659-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    7000 6050
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	7000 5800 7000 5900
+$Comp
+L power:GND #PWR?
+U 1 1 62456933
+P 7000 6200
+AR Path="/5AAC0444/62456933" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62456933" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62456933" Ref="#PWR0226"  Part="1" 
+F 0 "#PWR0226" H 7000 5950 50  0001 C CNN
+F 1 "GND" H 7005 6027 50  0000 C CNN
+F 2 "" H 7000 6200 50  0001 C CNN
+F 3 "" H 7000 6200 50  0001 C CNN
+	1    7000 6200
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 5800 6450 5800
+Wire Wire Line
+	6450 6550 6450 6350
+Wire Wire Line
+	6450 6000 6300 6000
+Wire Wire Line
+	6450 5800 6450 5500
+Connection ~ 6450 5800
+Wire Wire Line
+	6450 5800 7000 5800
+$Comp
+L Device:R R226
+U 1 1 624E36C6
+P 5150 5150
+F 0 "R226" H 5080 5104 50  0000 R CNN
+F 1 "10k0" H 5080 5195 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5080 5150 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 5150 5150 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5150 5150
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	5150 5300 5150 5400
+Connection ~ 5150 5300
+Wire Wire Line
+	5150 5900 5150 5800
+Wire Wire Line
+	5150 5900 5550 5900
+$Comp
+L Comparator:LMV393 U21
+U 1 1 625F4545
+P 6000 5900
+F 0 "U21" H 6000 5533 50  0000 C CNN
+F 1 "LMV393" H 6000 5624 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 6000 5900 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lmv331.pdf" H 6000 5900 50  0001 C CNN
+F 4 "LMV393" H 6000 5900 50  0001 C CNN "Part Number"
+F 5 "LMV393MX/NOPBCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    6000 5900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Comparator:LMV393 U21
+U 2 1 6260147E
+P 13650 5950
+F 0 "U21" H 13650 5583 50  0000 C CNN
+F 1 "LMV393" H 13650 5674 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 13650 5950 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lmv331.pdf" H 13650 5950 50  0001 C CNN
+F 4 "LMV393" H 13650 5950 50  0001 C CNN "Part Number"
+F 5 "LMV393MX/NOPBCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	2    13650 5950
+	-1   0    0    1   
+$EndComp
+$Comp
+L Comparator:LMV393 U21
+U 3 1 62601561
+P 8300 8100
+F 0 "U21" H 8258 8146 50  0000 L CNN
+F 1 "LMV393" H 8258 8055 50  0000 L CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 8300 8100 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lmv331.pdf" H 8300 8100 50  0001 C CNN
+F 4 "LMV393" H 8300 8100 50  0001 C CNN "Part Number"
+F 5 "LMV393MX/NOPBCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	3    8300 8100
+	1    0    0    -1  
+$EndComp
+Connection ~ 8200 8400
+Text Notes 2500 7950 0    98   ~ 0
+Charge Pump Batt + 10V
+$Comp
+L Device:R R255
+U 1 1 626DD5AC
+P 15300 6400
+F 0 "R255" H 15370 6446 50  0000 L CNN
+F 1 "10k0" H 15370 6355 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 15230 6400 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 15300 6400 50  0001 C CNN
+F 4 "< ... >" H 0   0   50  0001 C CNN "DNP"
+F 5 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 6 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 7 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+	1    15300 6400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R256
+U 1 1 626DD5B3
+P 15300 6800
+F 0 "R256" H 15370 6846 50  0000 L CNN
+F 1 "19k6" H 15370 6755 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 15230 6800 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 15300 6800 50  0001 C CNN
+F 4 "RMCF0603FT19K6CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RMCF0603FT19K6" H 0   0   50  0001 C CNN "MPN"
+F 6 "RMCF0603FT19K6" H 0   0   50  0001 C CNN "Part Number"
+	1    15300 6800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 626DD5BA
+P 15300 7000
+AR Path="/5AAC0444/626DD5BA" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/626DD5BA" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/626DD5BA" Ref="#PWR0247"  Part="1" 
+F 0 "#PWR0247" H 15300 6750 50  0001 C CNN
+F 1 "GND" H 15305 6827 50  0000 C CNN
+F 2 "" H 15300 7000 50  0001 C CNN
+F 3 "" H 15300 7000 50  0001 C CNN
+	1    15300 7000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	15300 6600 14950 6600
+Connection ~ 15300 6600
+Wire Wire Line
+	15300 6600 15300 6550
+$Comp
+L Device:C C?
+U 1 1 626DD5C9
+P 14950 6800
+AR Path="/5AAC0444/626DD5C9" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/626DD5C9" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/626DD5C9" Ref="C136"  Part="1" 
+F 0 "C136" H 15065 6846 50  0000 L CNN
+F 1 "100nF" H 15065 6755 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 14988 6650 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 14950 6800 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "MPN"
+F 5 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "Part Number"
+F 6 "490-4779-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    14950 6800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	14950 6650 14950 6600
+Wire Wire Line
+	14950 7000 14950 6950
+Wire Wire Line
+	15300 6650 15300 6600
+Wire Wire Line
+	15300 6950 15300 7000
+$Comp
+L Device:R R254
+U 1 1 626DD5D7
+P 15000 5700
+F 0 "R254" V 15207 5700 50  0000 C CNN
+F 1 "10k0" V 15116 5700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 14930 5700 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 15000 5700 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    15000 5700
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 626DD5DE
+P 14650 6100
+AR Path="/5AAC0444/626DD5DE" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/626DD5DE" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/626DD5DE" Ref="C134"  Part="1" 
+F 0 "C134" H 14765 6146 50  0000 L CNN
+F 1 "1nF" H 14765 6055 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 14688 5950 50  0001 C CNN
+F 3 "https://product.tdk.com/system/files/dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_general_en.pdf" H 14650 6100 50  0001 C CNN
+F 4 "CGA3E2X7R1H102K080AA" H 0   0   50  0001 C CNN "MPN"
+F 5 "CGA3E2X7R1H102K080AA" H 0   0   50  0001 C CNN "Part Number"
+F 6 "445-5659-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    14650 6100
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	14650 5850 14650 5950
+$Comp
+L power:GND #PWR?
+U 1 1 626DD5E6
+P 14650 6250
+AR Path="/5AAC0444/626DD5E6" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/626DD5E6" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/626DD5E6" Ref="#PWR0243"  Part="1" 
+F 0 "#PWR0243" H 14650 6000 50  0001 C CNN
+F 1 "GND" H 14655 6077 50  0000 C CNN
+F 2 "" H 14650 6250 50  0001 C CNN
+F 3 "" H 14650 6250 50  0001 C CNN
+	1    14650 6250
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	13950 5850 14100 5850
+Wire Wire Line
+	14100 6600 14100 6050
+Wire Wire Line
+	14100 6050 14000 6050
+Wire Wire Line
+	14100 5850 14100 5550
+Connection ~ 14100 5850
+Wire Wire Line
+	14100 5850 14650 5850
+$Comp
+L Device:R R249
+U 1 1 626DD608
+P 12800 5200
+F 0 "R249" H 12730 5154 50  0000 R CNN
+F 1 "10k0" H 12730 5245 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 12730 5200 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 12800 5200 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12800 5200
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	12800 5350 12800 5450
+Connection ~ 12800 5350
+Wire Wire Line
+	12800 5950 12800 5850
+Wire Wire Line
+	12800 5950 13300 5950
+Text Label 12700 1800 0    59   ~ 0
+dcdc_i
+Text Label 15250 5700 0    59   ~ 0
+dcdc_i
+Wire Wire Line
+	15550 5700 15150 5700
+$Comp
+L Device:R R253
+U 1 1 6222B282
+P 14850 6100
+F 0 "R253" V 15057 6100 50  0000 C CNN
+F 1 "10k0" V 14966 6100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 14780 6100 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 14850 6100 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    14850 6100
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	14850 5700 14850 5850
+Wire Wire Line
+	14850 5850 14650 5850
+Connection ~ 14650 5850
+$Comp
+L Device:R R233
+U 1 1 6226B218
+P 7250 6050
+F 0 "R233" V 7457 6050 50  0000 C CNN
+F 1 "10k0" V 7366 6050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7180 6050 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 7250 6050 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    7250 6050
+	1    0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6228C05D
+P 14850 6250
+AR Path="/5AAC0444/6228C05D" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/6228C05D" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/6228C05D" Ref="#PWR0245"  Part="1" 
+F 0 "#PWR0245" H 14850 6000 50  0001 C CNN
+F 1 "GND" H 14855 6077 50  0000 C CNN
+F 2 "" H 14850 6250 50  0001 C CNN
+F 3 "" H 14850 6250 50  0001 C CNN
+	1    14850 6250
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	14850 5950 14850 5850
+Connection ~ 14850 5850
+Connection ~ 7000 5800
+Wire Wire Line
+	7000 5800 7250 5800
+$Comp
+L power:GND #PWR?
+U 1 1 622CE09D
+P 7250 6200
+AR Path="/5AAC0444/622CE09D" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/622CE09D" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/622CE09D" Ref="#PWR0227"  Part="1" 
+F 0 "#PWR0227" H 7250 5950 50  0001 C CNN
+F 1 "GND" H 7255 6027 50  0000 C CNN
+F 2 "" H 7250 6200 50  0001 C CNN
+F 3 "" H 7250 6200 50  0001 C CNN
+	1    7250 6200
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 5900 7250 5800
+Connection ~ 7250 5800
+Wire Wire Line
+	7600 5800 7250 5800
+$Comp
+L Device:Q_NMOS_GDS Q42
+U 1 1 62301513
+P 4550 2950
+F 0 "Q42" H 4750 3100 50  0000 L CNN
+F 1 "NTB5D0N15MC" H 4750 2750 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 4750 3050 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/308/1/NTB5D0N15MC_D-2318612.pdf" H 4550 2950 50  0001 C CNN
+F 4 "NTB5D0N15MC" H 0   0   50  0001 C CNN "Part Number"
+F 5 "NTB5D0N15MC" H 0   0   50  0001 C CNN "MPN"
+F 6 "863-NTB5D0N15MC" H 4550 2950 50  0001 C CNN "Mouser_PN"
+	1    4550 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GDS Q45
+U 1 1 62301A23
+P 5550 2950
+F 0 "Q45" H 5750 3100 50  0000 L CNN
+F 1 "NTB5D0N15MC" H 5750 2750 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 5750 3050 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/308/1/NTB5D0N15MC_D-2318612.pdf" H 5550 2950 50  0001 C CNN
+F 4 "NTB5D0N15MC" H 0   0   50  0001 C CNN "Part Number"
+F 5 "NTB5D0N15MC" H 0   0   50  0001 C CNN "MPN"
+F 6 "863-NTB5D0N15MC" H 0   0   50  0001 C CNN "Mouser_PN"
+	1    5550 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GDS Q46
+U 1 1 62301E4B
+P 5550 3450
+F 0 "Q46" H 5750 3250 50  0000 L CNN
+F 1 "NTB5D0N15MC" H 5750 3600 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 5750 3550 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/308/1/NTB5D0N15MC_D-2318612.pdf" H 5550 3450 50  0001 C CNN
+F 4 "NTB5D0N15MC" H 0   0   50  0001 C CNN "Part Number"
+F 5 "NTB5D0N15MC" H 0   0   50  0001 C CNN "MPN"
+F 6 "863-NTB5D0N15MC" H 0   0   50  0001 C CNN "Mouser_PN"
+	1    5550 3450
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	5650 3150 5650 3200
+Wire Wire Line
+	5650 3200 4650 3200
+Connection ~ 5650 3200
+Wire Wire Line
+	5650 3200 5650 3250
+Wire Wire Line
+	5650 3650 4650 3650
+$Comp
+L Device:R R227
+U 1 1 623458F1
+P 5200 2950
+F 0 "R227" V 5407 2950 50  0000 C CNN
+F 1 "3R3" V 5316 2950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5130 2950 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 5200 2950 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5200 2950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R228
+U 1 1 623459D1
+P 5200 3450
+F 0 "R228" V 5407 3450 50  0000 C CNN
+F 1 "3R3" V 5316 3450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5130 3450 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 5200 3450 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5200 3450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4650 3150 4650 3200
+Connection ~ 4650 3200
+Wire Wire Line
+	4650 3200 4650 3250
+Wire Wire Line
+	4650 3650 4650 4000
+Connection ~ 4650 3650
+$Comp
+L ICs:Q_NMOS_SSSGD Q56
+U 1 1 6243B60D
+P 13800 3350
+F 0 "Q56" H 14500 3100 50  0000 L CNN
+F 1 "TPH3300CNH,L1Q" H 14500 3000 50  0000 L CNN
+F 2 "Package_SO:PowerPAK_SO-8_Single" H 14000 3450 50  0001 C CNN
+F 3 "file:///C:/Users/kid%20group/Downloads/TPH3300CNH_datasheet_en_20140225.pdf" H 13800 3350 50  0001 C CNN
+F 4 "TPH3300CNH,L1Q" H -500 400 50  0001 C CNN "Part Number"
+F 5 "TPH3300CNH,L1Q" H -500 400 50  0001 C CNN "MPN"
+F 6 "TPH3300CNHL1QCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    13800 3350
+	1    0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0215
+U 1 1 62529CB9
+P 3650 5200
+F 0 "#PWR0215" H 3650 4950 50  0001 C CNN
+F 1 "GND" H 3655 5027 50  0000 C CNN
+F 2 "" H 3650 5200 50  0001 C CNN
+F 3 "" H 3650 5200 50  0001 C CNN
+	1    3650 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 2950 3200 2950
+Wire Wire Line
+	2600 2950 2600 2900
+Wire Wire Line
+	2600 2950 2600 3000
+Connection ~ 2600 2950
+Text Label 3550 2950 0    50   ~ 0
+HV_ev_g
+Text Label 3600 3450 0    50   ~ 0
+HV_ev_g
+Text Label 4750 3450 0    50   ~ 0
+HV_ev_g
+Wire Wire Line
+	4750 3450 5050 3450
+Text Label 4750 2950 0    50   ~ 0
+HV_ev_g
+Wire Wire Line
+	4750 2950 5050 2950
+$Comp
+L Device:Q_NMOS_GDS Q48
+U 1 1 6257F9A1
+P 6700 3450
+F 0 "Q48" H 6900 3300 50  0000 L CNN
+F 1 "NTB5D0N15MC" H 6900 3600 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 6900 3550 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/308/1/NTB5D0N15MC_D-2318612.pdf" H 6700 3450 50  0001 C CNN
+F 4 "NTB5D0N15MC" H 0   0   50  0001 C CNN "Part Number"
+F 5 "NTB5D0N15MC" H 0   0   50  0001 C CNN "MPN"
+F 6 "863-NTB5D0N15MC" H 0   0   50  0001 C CNN "Mouser_PN"
+	1    6700 3450
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R R231
+U 1 1 6257F9A8
+P 6200 2950
+F 0 "R231" V 6407 2950 50  0000 C CNN
+F 1 "3R3" V 6316 2950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6130 2950 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 6200 2950 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    6200 2950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R232
+U 1 1 6257F9AF
+P 6200 3450
+F 0 "R232" V 6407 3450 50  0000 C CNN
+F 1 "3R3" V 6316 3450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6130 3450 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 6200 3450 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    6200 3450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6500 3450 6350 3450
+Wire Wire Line
+	6500 2950 6350 2950
+$Comp
+L Device:Q_NMOS_GDS Q47
+U 1 1 6257F9B8
+P 6700 2950
+F 0 "Q47" H 6900 3100 50  0000 L CNN
+F 1 "NTB5D0N15MC" H 6900 2750 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 6900 3050 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/308/1/NTB5D0N15MC_D-2318612.pdf" H 6700 2950 50  0001 C CNN
+F 4 "NTB5D0N15MC" H 0   0   50  0001 C CNN "Part Number"
+F 5 "NTB5D0N15MC" H 0   0   50  0001 C CNN "MPN"
+F 6 "863-NTB5D0N15MC" H 0   0   50  0001 C CNN "Mouser_PN"
+	1    6700 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GDS Q49
+U 1 1 6257F9BF
+P 7700 2950
+F 0 "Q49" H 7900 3100 50  0000 L CNN
+F 1 "NTB5D0N15MC" H 7900 2750 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 7900 3050 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/308/1/NTB5D0N15MC_D-2318612.pdf" H 7700 2950 50  0001 C CNN
+F 4 "NTB5D0N15MC" H 0   0   50  0001 C CNN "Part Number"
+F 5 "NTB5D0N15MC" H 0   0   50  0001 C CNN "MPN"
+F 6 "863-NTB5D0N15MC" H 0   0   50  0001 C CNN "Mouser_PN"
+	1    7700 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GDS Q50
+U 1 1 6257F9C6
+P 7700 3450
+F 0 "Q50" H 7900 3250 50  0000 L CNN
+F 1 "NTB5D0N15MC" H 7900 3600 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:TO-263-2" H 7900 3550 50  0001 C CNN
+F 3 "https://www.mouser.com/datasheet/2/308/1/NTB5D0N15MC_D-2318612.pdf" H 7700 3450 50  0001 C CNN
+F 4 "NTB5D0N15MC" H 0   0   50  0001 C CNN "Part Number"
+F 5 "NTB5D0N15MC" H 0   0   50  0001 C CNN "MPN"
+F 6 "863-NTB5D0N15MC" H 0   0   50  0001 C CNN "Mouser_PN"
+	1    7700 3450
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R R234
+U 1 1 6257F9D3
+P 7350 2950
+F 0 "R234" V 7557 2950 50  0000 C CNN
+F 1 "3R3" V 7466 2950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7280 2950 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 7350 2950 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    7350 2950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R235
+U 1 1 6257F9DA
+P 7350 3450
+F 0 "R235" V 7557 3450 50  0000 C CNN
+F 1 "3R3" V 7466 3450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7280 3450 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 7350 3450 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    7350 3450
+	0    -1   -1   0   
+$EndComp
+Text Label 5750 2950 0    50   ~ 0
+HV_ev_g
+Text Label 5750 3450 0    50   ~ 0
+HV_ev_g
+Wire Wire Line
+	5750 3450 6050 3450
+Text Label 6900 3450 0    50   ~ 0
+HV_ev_g
+Wire Wire Line
+	6900 3450 7200 3450
+Text Label 6900 2950 0    50   ~ 0
+HV_ev_g
+Wire Wire Line
+	6900 2950 7200 2950
+Wire Wire Line
+	7800 3150 7800 3200
+Wire Wire Line
+	6800 3150 6800 3200
+Wire Wire Line
+	7800 3200 6800 3200
+Connection ~ 7800 3200
+Wire Wire Line
+	7800 3200 7800 3250
+Connection ~ 6800 3200
+Wire Wire Line
+	6800 3200 6800 3250
+Wire Wire Line
+	6800 3200 5650 3200
+Connection ~ 5650 3650
+Wire Wire Line
+	5650 3650 6800 3650
+Connection ~ 6800 3650
+Wire Wire Line
+	6800 3650 7800 3650
+Wire Wire Line
+	4650 2650 5650 2650
+Wire Wire Line
+	5650 2650 5650 2750
+Connection ~ 4650 2650
+Wire Wire Line
+	4650 2650 4650 2750
+Wire Wire Line
+	5650 2650 6800 2650
+Wire Wire Line
+	6800 2650 6800 2750
+Connection ~ 5650 2650
+Wire Wire Line
+	6800 2650 7800 2650
+Wire Wire Line
+	7800 2650 7800 2750
+Connection ~ 6800 2650
+Wire Wire Line
+	6050 2950 5750 2950
+Text Label 3600 3200 0    50   ~ 0
+HV_ev_source
+Text Label 4750 2650 0    50   ~ 0
+HV_ev_shunt
+Wire Wire Line
+	6200 2050 8650 2050
+Wire Wire Line
+	8650 2050 8650 5800
+$Comp
+L Device:R R207
+U 1 1 6269AD97
+P 900 2000
+F 0 "R207" V 1107 2000 50  0000 C CNN
+F 1 "51k0" V 1016 2000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 830 2000 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 900 2000 50  0001 C CNN
+F 4 "RMCF0805JT51K0" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0805JT51K0" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0805JT51K0CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    900  2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 3450 3900 3450
+Wire Wire Line
+	2600 1800 2600 2500
+$Comp
+L Device:R R215
+U 1 1 62723CE0
+P 2050 3200
+F 0 "R215" V 2257 3200 50  0000 C CNN
+F 1 "1k" V 2166 3200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 1980 3200 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 2050 3200 50  0001 C CNN
+F 4 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT1K00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    2050 3200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R211
+U 1 1 62723DB6
+P 1700 3200
+F 0 "R211" V 1907 3200 50  0000 C CNN
+F 1 "1k" V 1816 3200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 1630 3200 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 1700 3200 50  0001 C CNN
+F 4 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT1K00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    1700 3200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2300 3200 2200 3200
+Wire Wire Line
+	2300 2700 2200 2700
+Wire Wire Line
+	1900 2700 1850 2700
+Wire Wire Line
+	900  2200 900  2150
+Wire Wire Line
+	900  1800 900  1850
+Wire Wire Line
+	900  2700 900  3200
+Connection ~ 900  2700
+Wire Wire Line
+	1850 3200 1900 3200
+Wire Wire Line
+	3550 2950 3900 2950
+Wire Wire Line
+	3500 3200 3500 3450
+Wire Wire Line
+	3500 3450 3200 3450
+Wire Wire Line
+	2600 3450 2600 3400
+Wire Wire Line
+	3500 3200 4650 3200
+$Comp
+L Device:R R218
+U 1 1 62851FFE
+P 3200 3200
+F 0 "R218" V 3407 3200 50  0000 C CNN
+F 1 "499k" V 3316 3200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3130 3200 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 3200 3200 50  0001 C CNN
+F 4 "RMCF0603FT499K" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT499K" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT499KCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    3200 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3200 3450 3200 3350
+Connection ~ 3200 3450
+Wire Wire Line
+	3200 3450 2600 3450
+Wire Wire Line
+	3200 3050 3200 2950
+Connection ~ 3200 2950
+Wire Wire Line
+	3200 2950 2600 2950
+Wire Wire Line
+	1550 2700 1450 2700
+Wire Wire Line
+	900  2700 1150 2700
+Wire Wire Line
+	900  3200 1550 3200
+Wire Wire Line
+	900  3750 900  3200
+Connection ~ 900  3200
+Wire Wire Line
+	3350 5000 3250 5000
+$Comp
+L Device:Q_DUAL_NPN_PNP_E1B1C2E2B2C1 Q40
+U 1 1 62932776
+P 2500 2700
+F 0 "Q40" H 2691 2700 50  0000 L CNN
+F 1 "Q_DUAL_NPN_PNP_E1B1C2E2B2C1" H 2691 2655 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 2700 2800 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30171.pdf" H 2500 2700 50  0001 C CNN
+F 4 "MMDT5451-7-F" H 0   0   50  0001 C CNN "Part Number"
+F 5 "MMDT5451-7-F" H 0   0   50  0001 C CNN "MPN"
+F 6 "MMDT5451-FDICT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    2500 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_DUAL_NPN_PNP_E1B1C2E2B2C1 Q40
+U 2 1 629329E0
+P 2500 3200
+F 0 "Q40" H 2691 3200 50  0000 L CNN
+F 1 "Q_DUAL_NPN_PNP_E1B1C2E2B2C1" H 2691 3155 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 2700 3300 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30171.pdf" H 2500 3200 50  0001 C CNN
+F 4 "MMDT5451-7-F" H 0   0   50  0001 C CNN "Part Number"
+F 5 "MMDT5451-7-F" H 0   0   50  0001 C CNN "MPN"
+F 6 "MMDT5451-FDICT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	2    2500 3200
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	900  1800 2600 1800
+$Comp
+L Device:Q_PMOS_GSD Q?
+U 1 1 6295E180
+P 1750 7450
+AR Path="/5AC37515/6295E180" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/6295E180" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/6295E180" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/6295E180" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/6295E180" Ref="Q38"  Part="1" 
+F 0 "Q38" V 2100 7400 50  0000 L CNN
+F 1 "Q_PMOS_GSD" V 2000 7400 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 1950 7550 50  0001 C CNN
+F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/TP5335-P-Channel-Enhancement-Mode-Vertical-DMOS-FET-Data-Sheet-20005704C.pdf" H 1750 7450 50  0001 C CNN
+F 4 "TP5335K1-G" V 1750 7450 50  0001 C CNN "Part Number"
+F 5 "TP5335K1-G" H 0   0   50  0001 C CNN "MPN"
+F 6 "TP5335K1-GCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    1750 7450
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:R R209
+U 1 1 6295EF6B
+P 1000 7600
+F 0 "R209" H 1070 7646 50  0000 L CNN
+F 1 "100k" H 1070 7555 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 930 7600 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 1000 7600 50  0001 C CNN
+F 4 "RMCF0603FT100KCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RMCF0603FT100K" H 0   0   50  0001 C CNN "MPN"
+F 6 "RMCF0603FT100K" H 0   0   50  0001 C CNN "Part Number"
+	1    1000 7600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R212
+U 1 1 62972E01
+P 1750 8000
+F 0 "R212" H 1820 8046 50  0000 L CNN
+F 1 "100k" H 1820 7955 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 1680 8000 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 1750 8000 50  0001 C CNN
+F 4 "RMCF0603FT100KCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RMCF0603FT100K" H 0   0   50  0001 C CNN "MPN"
+F 6 "RMCF0603FT100K" H 0   0   50  0001 C CNN "Part Number"
+	1    1750 8000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R213
+U 1 1 62972F01
+P 1750 8400
+F 0 "R213" H 1820 8446 50  0000 L CNN
+F 1 "499k" H 1820 8355 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 1680 8400 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 1750 8400 50  0001 C CNN
+F 4 "RMCF0603FT499KCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RMCF0603FT499K" H 0   0   50  0001 C CNN "MPN"
+F 6 "RMCF0603FT499K" H 0   0   50  0001 C CNN "Part Number"
+	1    1750 8400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1000 7350 1000 7450
+Wire Wire Line
+	1000 7750 1000 7800
+Wire Wire Line
+	1750 8150 1750 8250
+Wire Wire Line
+	1950 7350 2250 7350
+Wire Wire Line
+	2250 7350 2250 8450
+Wire Wire Line
+	2250 8450 4350 8450
+Wire Wire Line
+	1750 8550 1750 8650
+$Comp
+L power:GND #PWR?
+U 1 1 62A5247E
+P 1750 9050
+AR Path="/5AAC0444/62A5247E" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62A5247E" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62A5247E" Ref="#PWR057"  Part="1" 
+F 0 "#PWR057" H 1750 8800 50  0001 C CNN
+F 1 "GND" H 1755 8877 50  0000 C CNN
+F 2 "" H 1750 9050 50  0001 C CNN
+F 3 "" H 1750 9050 50  0001 C CNN
+	1    1750 9050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Zener D14
+U 1 1 62A679F3
+P 650 7600
+F 0 "D14" V 604 7680 50  0000 L CNN
+F 1 "12V" V 695 7680 50  0000 L CNN
+F 2 "Diode_SMD:D_SOD-323F" H 650 7600 50  0001 C CNN
+F 3 "https://www.onsemi.com/pdf/datasheet/mm3z9v1c-d.pdf" H 650 7600 50  0001 C CNN
+F 4 "MM3Z12VC" H 0   0   50  0001 C CNN "MPN"
+F 5 "MM3Z12VC" H 0   0   50  0001 C CNN "Part Number"
+F 6 "MM3Z12VCCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    650  7600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	650  7800 650  7750
+Wire Wire Line
+	650  7450 650  7350
+Wire Wire Line
+	650  7350 1000 7350
+Connection ~ 650  7350
+$Comp
+L Device:C C?
+U 1 1 62A944FE
+P 1400 7600
+AR Path="/5AAC0444/62A944FE" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/62A944FE" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62A944FE" Ref="C119"  Part="1" 
+F 0 "C119" H 1515 7646 50  0000 L CNN
+F 1 "100nF" H 1515 7555 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1438 7450 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 1400 7600 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "MPN"
+F 5 "GCM188R71H104KA57D" H 0   0   50  0001 C CNN "Part Number"
+F 6 "490-4779-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    1400 7600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1750 7650 1750 7800
+Wire Wire Line
+	1400 7750 1400 7800
+Connection ~ 1400 7800
+Wire Wire Line
+	1400 7450 1400 7350
+Connection ~ 1400 7350
+Wire Wire Line
+	1400 7350 1550 7350
+Wire Wire Line
+	1400 7800 1750 7800
+Connection ~ 1750 7800
+Wire Wire Line
+	1750 7800 1750 7850
+Wire Wire Line
+	900  3750 3650 3750
+Wire Wire Line
+	2500 4800 2350 4800
+$Comp
+L Device:R R219
+U 1 1 62BEB694
+P 3250 5150
+F 0 "R219" H 3180 5104 50  0000 R CNN
+F 1 "10k0" H 3180 5195 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3180 5150 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 3250 5150 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    3250 5150
+	1    0    0    1   
+$EndComp
+Connection ~ 3250 5000
+$Comp
+L power:GND #PWR0211
+U 1 1 62BEB786
+P 3250 5300
+F 0 "#PWR0211" H 3250 5050 50  0001 C CNN
+F 1 "GND" H 3255 5127 50  0000 C CNN
+F 2 "" H 3250 5300 50  0001 C CNN
+F 3 "" H 3250 5300 50  0001 C CNN
+	1    3250 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 8850 1150 8800
+Wire Wire Line
+	1150 8850 1450 8850
+Wire Wire Line
+	3000 800  3000 2050
+Wire Wire Line
+	7900 5800 8650 5800
+Wire Wire Line
+	1500 4800 1550 4800
+Wire Wire Line
+	3650 3750 3650 4800
+Wire Wire Line
+	2350 4800 2350 5900
+Wire Wire Line
+	2350 5900 5150 5900
+Connection ~ 5150 5900
+Text GLabel 1500 5900 0    59   Output ~ 0
+EV_CHARGER_~FAULT~
+Wire Wire Line
+	1500 5900 2350 5900
+Connection ~ 2350 5900
+Wire Wire Line
+	1550 4800 1550 5600
+Connection ~ 1550 4800
+Wire Wire Line
+	1550 4800 1650 4800
+$Comp
+L power:+5VA #PWR?
+U 1 1 62DD8D35
+P 3400 8750
+AR Path="/5B5CD4CD/5B5CD5C3/62DD8D35" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62DD8D35" Ref="#PWR0213"  Part="1" 
+F 0 "#PWR0213" H 3400 8600 50  0001 C CNN
+F 1 "+5VA" H 3415 8923 50  0000 C CNN
+F 2 "" H 3400 8750 50  0001 C CNN
+F 3 "" H 3400 8750 50  0001 C CNN
+	1    3400 8750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VA #PWR?
+U 1 1 62E0A5C5
+P 3950 1200
+AR Path="/5B5CD4CD/5B5CD5C3/62E0A5C5" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62E0A5C5" Ref="#PWR0216"  Part="1" 
+F 0 "#PWR0216" H 3950 1050 50  0001 C CNN
+F 1 "+5VA" H 3965 1373 50  0000 C CNN
+F 2 "" H 3950 1200 50  0001 C CNN
+F 3 "" H 3950 1200 50  0001 C CNN
+	1    3950 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VA #PWR?
+U 1 1 62E22D42
+P 5800 1200
+AR Path="/5B5CD4CD/5B5CD5C3/62E22D42" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62E22D42" Ref="#PWR0220"  Part="1" 
+F 0 "#PWR0220" H 5800 1050 50  0001 C CNN
+F 1 "+5VA" H 5815 1373 50  0000 C CNN
+F 2 "" H 5800 1200 50  0001 C CNN
+F 3 "" H 5800 1200 50  0001 C CNN
+	1    5800 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VA #PWR?
+U 1 1 62E3C200
+P 13700 1050
+AR Path="/5B5CD4CD/5B5CD5C3/62E3C200" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62E3C200" Ref="#PWR0240"  Part="1" 
+F 0 "#PWR0240" H 13700 900 50  0001 C CNN
+F 1 "+5VA" H 13715 1223 50  0000 C CNN
+F 2 "" H 13700 1050 50  0001 C CNN
+F 3 "" H 13700 1050 50  0001 C CNN
+	1    13700 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VA #PWR?
+U 1 1 62E55230
+P 8200 7800
+AR Path="/5B5CD4CD/5B5CD5C3/62E55230" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62E55230" Ref="#PWR0230"  Part="1" 
+F 0 "#PWR0230" H 8200 7650 50  0001 C CNN
+F 1 "+5VA" H 8215 7973 50  0000 C CNN
+F 2 "" H 8200 7800 50  0001 C CNN
+F 3 "" H 8200 7800 50  0001 C CNN
+	1    8200 7800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 62E6E192
+P 1950 4600
+AR Path="/5B5CD4CD/5B5CD5C3/62E6E192" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62E6E192" Ref="#PWR059"  Part="1" 
+F 0 "#PWR059" H 1950 4450 50  0001 C CNN
+F 1 "+3.3VA" H 1965 4773 50  0000 C CNN
+F 2 "" H 1950 4600 50  0001 C CNN
+F 3 "" H 1950 4600 50  0001 C CNN
+	1    1950 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 62E8690F
+P 2800 4600
+AR Path="/5B5CD4CD/5B5CD5C3/62E8690F" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62E8690F" Ref="#PWR0165"  Part="1" 
+F 0 "#PWR0165" H 2800 4450 50  0001 C CNN
+F 1 "+3.3VA" H 2815 4773 50  0000 C CNN
+F 2 "" H 2800 4600 50  0001 C CNN
+F 3 "" H 2800 4600 50  0001 C CNN
+	1    2800 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 62E9F0FB
+P 5850 4850
+AR Path="/5B5CD4CD/5B5CD5C3/62E9F0FB" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62E9F0FB" Ref="#PWR0223"  Part="1" 
+F 0 "#PWR0223" H 5850 4700 50  0001 C CNN
+F 1 "+3.3VA" H 5865 5023 50  0000 C CNN
+F 2 "" H 5850 4850 50  0001 C CNN
+F 3 "" H 5850 4850 50  0001 C CNN
+	1    5850 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 62EB791C
+P 1150 8800
+AR Path="/5B5CD4CD/5B5CD5C3/62EB791C" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62EB791C" Ref="#PWR056"  Part="1" 
+F 0 "#PWR056" H 1150 8650 50  0001 C CNN
+F 1 "+3.3VA" H 1165 8973 50  0000 C CNN
+F 2 "" H 1150 8800 50  0001 C CNN
+F 3 "" H 1150 8800 50  0001 C CNN
+	1    1150 8800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 62ED06A3
+P 13450 4950
+AR Path="/5B5CD4CD/5B5CD5C3/62ED06A3" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62ED06A3" Ref="#PWR0239"  Part="1" 
+F 0 "#PWR0239" H 13450 4800 50  0001 C CNN
+F 1 "+3.3VA" H 13465 5123 50  0000 C CNN
+F 2 "" H 13450 4950 50  0001 C CNN
+F 3 "" H 13450 4950 50  0001 C CNN
+	1    13450 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 62F00E08
+P 15300 6250
+AR Path="/5B5CD4CD/5B5CD5C3/62F00E08" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62F00E08" Ref="#PWR0246"  Part="1" 
+F 0 "#PWR0246" H 15300 6100 50  0001 C CNN
+F 1 "+3.3VA" H 15315 6423 50  0000 C CNN
+F 2 "" H 15300 6250 50  0001 C CNN
+F 3 "" H 15300 6250 50  0001 C CNN
+	1    15300 6250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	14400 2000 14400 2250
+$Comp
+L Device:R R248
+U 1 1 62FAE54F
+P 12650 2450
+F 0 "R248" V 12857 2450 50  0000 C CNN
+F 1 "3R3" V 12766 2450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 12580 2450 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 12650 2450 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" V 12650 2450 50  0001 C CNN "Digikey_PN"
+	1    12650 2450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	12500 2450 12450 2450
+Wire Wire Line
+	11850 2450 11850 2400
+Wire Wire Line
+	11850 2450 11850 2500
+Connection ~ 11850 2450
+$Comp
+L Device:R R244
+U 1 1 62FAE570
+P 11300 2700
+F 0 "R244" V 11507 2700 50  0000 C CNN
+F 1 "1k" V 11416 2700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 11230 2700 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 11300 2700 50  0001 C CNN
+F 4 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT1K00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    11300 2700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R242
+U 1 1 62FAE577
+P 10950 2700
+F 0 "R242" V 11157 2700 50  0000 C CNN
+F 1 "1k" V 11066 2700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 10880 2700 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 10950 2700 50  0001 C CNN
+F 4 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT1K00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    10950 2700
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	11550 2700 11450 2700
+Wire Wire Line
+	11550 2200 11450 2200
+Wire Wire Line
+	11150 2200 11100 2200
+Wire Wire Line
+	10150 2200 10150 2000
+Wire Wire Line
+	10150 2200 10150 2700
+Connection ~ 10150 2200
+Wire Wire Line
+	11100 2700 11150 2700
+Wire Wire Line
+	11850 2950 11850 2900
+$Comp
+L Device:R R247
+U 1 1 62FAE587
+P 12450 2700
+F 0 "R247" V 12657 2700 50  0000 C CNN
+F 1 "499k" V 12566 2700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 12380 2700 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 12450 2700 50  0001 C CNN
+F 4 "RMCF0603FT499K" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT499K" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT499KCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12450 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12450 2950 12450 2850
+Connection ~ 12450 2950
+Wire Wire Line
+	12450 2950 11850 2950
+Wire Wire Line
+	12450 2550 12450 2450
+Connection ~ 12450 2450
+Wire Wire Line
+	12450 2450 11850 2450
+Wire Wire Line
+	10800 2200 10700 2200
+Wire Wire Line
+	10150 2200 10400 2200
+Wire Wire Line
+	10150 2700 10800 2700
+Wire Wire Line
+	10150 3250 10150 2700
+Connection ~ 10150 2700
+$Comp
+L Device:Q_DUAL_NPN_PNP_E1B1C2E2B2C1 Q52
+U 1 1 62FAE5A1
+P 11750 2200
+F 0 "Q52" H 11941 2200 50  0000 L CNN
+F 1 "Q_DUAL_NPN_PNP_E1B1C2E2B2C1" H 11941 2155 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 11950 2300 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30171.pdf" H 11750 2200 50  0001 C CNN
+F 4 "MMDT5451-7-F" H 0   0   50  0001 C CNN "Part Number"
+F 5 "MMDT5451-7-F" H 0   0   50  0001 C CNN "MPN"
+F 6 "MMDT5451-FDICT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    11750 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_DUAL_NPN_PNP_E1B1C2E2B2C1 Q52
+U 2 1 62FAE5A9
+P 11750 2700
+F 0 "Q52" H 11941 2700 50  0000 L CNN
+F 1 "Q_DUAL_NPN_PNP_E1B1C2E2B2C1" H 11941 2655 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 11950 2800 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30171.pdf" H 11750 2700 50  0001 C CNN
+F 4 "MMDT5451-7-F" H 0   0   50  0001 C CNN "Part Number"
+F 5 "MMDT5451-7-F" H 0   0   50  0001 C CNN "MPN"
+F 6 "MMDT5451-FDICT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	2    11750 2700
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	13550 2450 13550 2950
+Wire Wire Line
+	13550 2450 12800 2450
+Connection ~ 13550 2450
+Wire Wire Line
+	13250 2950 13250 2700
+Wire Wire Line
+	13250 2700 14400 2700
+Wire Wire Line
+	12450 2950 13250 2950
+Connection ~ 14400 2700
+Wire Wire Line
+	14400 2700 14400 2750
+Wire Wire Line
+	10150 1250 10150 1300
+Wire Wire Line
+	10150 1600 10150 1700
+Wire Wire Line
+	10150 1250 10600 1250
+Wire Wire Line
+	10600 1250 10600 1850
+Wire Wire Line
+	10600 1850 11850 1850
+Wire Wire Line
+	11850 1850 11850 2000
+$Comp
+L Device:Q_NMOS_GSD Q?
+U 1 1 630BAFCB
+P 12100 4950
+AR Path="/5AC37515/630BAFCB" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/630BAFCB" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/630BAFCB" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/630BAFCB" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/630BAFCB" Ref="Q53"  Part="1" 
+F 0 "Q53" H 12305 4996 50  0000 L CNN
+F 1 "Q_NMOS_GSD" H 12305 4905 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 12300 5050 50  0001 C CNN
+F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/TN5335-N-Channel-Enhancement-Mode-Vertical-DMOS-FET-Data-Sheet-20005955A.pdf" H 12100 4950 50  0001 C CNN
+F 4 "TN5335K1-G" H 12100 4950 50  0001 C CNN "Part Number"
+F 5 "TN5335K1-G" H 0   0   50  0001 C CNN "MPN"
+F 6 "TN5335K1-GCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12100 4950
+	1    0    0    -1  
+$EndComp
+Text GLabel 10050 4750 0    59   Input ~ 0
+DCDC_ENABLE
+$Comp
+L power:GND #PWR0237
+U 1 1 630BAFD3
+P 12200 5150
+F 0 "#PWR0237" H 12200 4900 50  0001 C CNN
+F 1 "GND" H 12205 4977 50  0000 C CNN
+F 2 "" H 12200 5150 50  0001 C CNN
+F 3 "" H 12200 5150 50  0001 C CNN
+	1    12200 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11900 4950 11800 4950
+Wire Wire Line
+	11050 4750 10900 4750
+$Comp
+L Device:R R245
+U 1 1 630BAFEC
+P 11800 5100
+F 0 "R245" H 11730 5054 50  0000 R CNN
+F 1 "10k0" H 11730 5145 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 11730 5100 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 11800 5100 50  0001 C CNN
+F 4 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 5 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+F 6 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    11800 5100
+	1    0    0    1   
+$EndComp
+Connection ~ 11800 4950
+$Comp
+L power:GND #PWR0235
+U 1 1 630BAFF5
+P 11800 5250
+F 0 "#PWR0235" H 11800 5000 50  0001 C CNN
+F 1 "GND" H 11805 5077 50  0000 C CNN
+F 2 "" H 11800 5250 50  0001 C CNN
+F 3 "" H 11800 5250 50  0001 C CNN
+	1    11800 5250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10050 4750 10100 4750
+Text GLabel 10050 5950 0    59   Output ~ 0
+DCDC_~FAULT~
+Wire Wire Line
+	10100 4750 10100 5650
+Connection ~ 10100 4750
+Wire Wire Line
+	10100 4750 10200 4750
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 630BB006
+P 10500 4550
+AR Path="/5B5CD4CD/5B5CD5C3/630BB006" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/630BB006" Ref="#PWR0233"  Part="1" 
+F 0 "#PWR0233" H 10500 4400 50  0001 C CNN
+F 1 "+3.3VA" H 10515 4723 50  0000 C CNN
+F 2 "" H 10500 4550 50  0001 C CNN
+F 3 "" H 10500 4550 50  0001 C CNN
+	1    10500 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 630BB00C
+P 11350 4550
+AR Path="/5B5CD4CD/5B5CD5C3/630BB00C" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/630BB00C" Ref="#PWR0234"  Part="1" 
+F 0 "#PWR0234" H 11350 4400 50  0001 C CNN
+F 1 "+3.3VA" H 11365 4723 50  0000 C CNN
+F 2 "" H 11350 4550 50  0001 C CNN
+F 3 "" H 11350 4550 50  0001 C CNN
+	1    11350 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12200 3250 12200 4750
+Wire Wire Line
+	10150 3250 12200 3250
+Wire Wire Line
+	12800 5950 10900 5950
+Connection ~ 12800 5950
+Wire Wire Line
+	10900 5950 10050 5950
+Connection ~ 10900 5950
+Wire Wire Line
+	10900 4750 10900 5950
+Text Label 12900 2450 0    50   ~ 0
+HV_dcdc_gate
+Text Label 12700 2950 0    50   ~ 0
+HV_dcdc_source
+Text Label 14400 2150 0    50   ~ 0
+HV_dcdc_shunt
+Connection ~ 14950 6600
+Wire Wire Line
+	14950 7000 15300 7000
+Connection ~ 15300 7000
+Wire Wire Line
+	14100 6600 14950 6600
+Wire Wire Line
+	7200 6600 7200 6550
+Connection ~ 7200 6550
+Wire Wire Line
+	7200 6550 6450 6550
+Wire Wire Line
+	7200 6950 7200 6900
+Wire Wire Line
+	7200 6950 7650 6950
+Connection ~ 7650 6950
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 63285958
+P 7650 6200
+AR Path="/5B5CD4CD/5B5CD5C3/63285958" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/63285958" Ref="#PWR0228"  Part="1" 
+F 0 "#PWR0228" H 7650 6050 50  0001 C CNN
+F 1 "+3.3VA" H 7665 6373 50  0000 C CNN
+F 2 "" H 7650 6200 50  0001 C CNN
+F 3 "" H 7650 6200 50  0001 C CNN
+	1    7650 6200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4950 8450 5150 8450
+$Comp
+L Device:R R229
+U 1 1 632CF3AD
+P 5650 9450
+F 0 "R229" V 5857 9450 50  0000 C CNN
+F 1 "3R3" V 5766 9450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5580 9450 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/esr-e.pdf" H 5650 9450 50  0001 C CNN
+F 4 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "MPN"
+F 5 "ESR03EZPJ3R3" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RHM303DCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5650 9450
+	1    0    0    -1  
+$EndComp
+Text Label 5350 9700 0    79   ~ 0
+outa
+Wire Wire Line
+	5650 9200 5650 9300
+Wire Wire Line
+	5650 9600 5650 9700
+Connection ~ 5150 8450
+Wire Wire Line
+	5150 8450 5350 8450
+Wire Wire Line
+	5150 9800 5000 9800
+Wire Wire Line
+	5650 9700 5350 9700
+$Comp
+L ICs:Q_DUAL_NMOS_PMOS Q54
+U 1 1 63452B48
+P 12800 5650
+F 0 "Q54" H 12917 5650 50  0000 L CNN
+F 1 "Q_DUAL_NMOS_PMOS" H 12800 5650 50  0001 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 12800 5650 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/discrete/transistor/mosfet/us6m2.pdf" H 12800 5650 50  0001 C CNN
+F 4 "US6M2TR" H 12800 5650 50  0001 C CNN "Part Number"
+F 5 "US6M2TR" H 0   0   50  0001 C CNN "MPN"
+F 6 "US6M2CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12800 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L ICs:Q_DUAL_NMOS_PMOS Q54
+U 2 1 63452C69
+P 14100 5350
+F 0 "Q54" H 14217 5350 50  0000 L CNN
+F 1 "Q_DUAL_NMOS_PMOS" H 14100 5350 50  0001 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 14100 5350 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/discrete/transistor/mosfet/us6m2.pdf" H 14100 5350 50  0001 C CNN
+F 4 "US6M2TR" H 14100 5350 50  0001 C CNN "Part Number"
+F 5 "US6M2TR" H 0   0   50  0001 C CNN "MPN"
+F 6 "US6M2CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	2    14100 5350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	12800 5350 13900 5350
+Wire Wire Line
+	10100 5650 12600 5650
+$Comp
+L ICs:Q_DUAL_NMOS_PMOS Q44
+U 1 1 634957DE
+P 5150 5600
+F 0 "Q44" H 5267 5600 50  0000 L CNN
+F 1 "Q_DUAL_NMOS_PMOS" H 5150 5600 50  0001 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 5150 5600 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/discrete/transistor/mosfet/us6m2.pdf" H 5150 5600 50  0001 C CNN
+F 4 "US6M2TR" H 5150 5600 50  0001 C CNN "Part Number"
+F 5 "US6M2TR" H 0   0   50  0001 C CNN "MPN"
+F 6 "US6M2CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5150 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L ICs:Q_DUAL_NMOS_PMOS Q44
+U 2 1 63495C4C
+P 6450 5300
+F 0 "Q44" H 6567 5300 50  0000 L CNN
+F 1 "Q_DUAL_NMOS_PMOS" H 6450 5300 50  0001 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 6450 5300 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/discrete/transistor/mosfet/us6m2.pdf" H 6450 5300 50  0001 C CNN
+F 4 "US6M2TR" H 6450 5300 50  0001 C CNN "Part Number"
+F 5 "US6M2TR" H 0   0   50  0001 C CNN "MPN"
+F 6 "US6M2CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	2    6450 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5150 5300 6250 5300
+Wire Wire Line
+	1550 5600 4950 5600
+$Comp
+L Device:Q_NMOS_GSD Q?
+U 1 1 634FCB78
+P 3550 5000
+AR Path="/5AC37515/634FCB78" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/634FCB78" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/634FCB78" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/634FCB78" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/634FCB78" Ref="Q41"  Part="1" 
+F 0 "Q41" H 3755 5046 50  0000 L CNN
+F 1 "Q_NMOS_GSD" H 3755 4955 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 3750 5100 50  0001 C CNN
+F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/TN5335-N-Channel-Enhancement-Mode-Vertical-DMOS-FET-Data-Sheet-20005955A.pdf" H 3550 5000 50  0001 C CNN
+F 4 "TN5335K1-G" H 3550 5000 50  0001 C CNN "Part Number"
+F 5 "TN5335K1-G" H 0   0   50  0001 C CNN "MPN"
+F 6 "TN5335K1-GCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    3550 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GSD Q?
+U 1 1 634FDB7E
+P 1650 8850
+AR Path="/5AC37515/634FDB7E" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/634FDB7E" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/634FDB7E" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/634FDB7E" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/634FDB7E" Ref="Q37"  Part="1" 
+F 0 "Q37" H 1855 8896 50  0000 L CNN
+F 1 "Q_NMOS_GSD" H 1855 8805 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 1850 8950 50  0001 C CNN
+F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/TN5335-N-Channel-Enhancement-Mode-Vertical-DMOS-FET-Data-Sheet-20005955A.pdf" H 1650 8850 50  0001 C CNN
+F 4 "TN5335K1-G" H 1650 8850 50  0001 C CNN "Part Number"
+F 5 "TN5335K1-G" H 0   0   50  0001 C CNN "MPN"
+F 6 "TN5335K1-GCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    1650 8850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_DUAL_PMOS_S1G1D2S2G2D1 Q51
+U 1 1 634FEDFD
+P 10400 4750
+F 0 "Q51" H 10605 4750 50  0000 L CNN
+F 1 "Q_DUAL_PMOS_S1G1D2S2G2D1" H 10605 4795 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 10450 4750 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/NX3008PBKS.pdf" H 10450 4750 50  0001 C CNN
+F 4 "NX3008PBKS,115" H 10400 4750 50  0001 C CNN "Part Number"
+F 5 "NX3008PBKS,115" H 0   0   50  0001 C CNN "MPN"
+F 6 "1727-1282-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    10400 4750
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:Q_DUAL_PMOS_S1G1D2S2G2D1 Q51
+U 2 1 634FEF0C
+P 11250 4750
+F 0 "Q51" H 11455 4750 50  0000 L CNN
+F 1 "Q_DUAL_PMOS_S1G1D2S2G2D1" H 11455 4795 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 11300 4750 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/NX3008PBKS.pdf" H 11300 4750 50  0001 C CNN
+F 4 "NX3008PBKS,115" H 11250 4750 50  0001 C CNN "Part Number"
+F 5 "NX3008PBKS,115" H 0   0   50  0001 C CNN "MPN"
+F 6 "1727-1282-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	2    11250 4750
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	10500 4950 11350 4950
+Connection ~ 11350 4950
+Wire Wire Line
+	11350 4950 11800 4950
+Wire Wire Line
+	1950 5000 2800 5000
+$Comp
+L Device:Q_DUAL_PMOS_S1G1D2S2G2D1 Q39
+U 1 1 6352B3EB
+P 1850 4800
+F 0 "Q39" H 2055 4800 50  0000 L CNN
+F 1 "Q_DUAL_PMOS_S1G1D2S2G2D1" H 2055 4845 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 1900 4800 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/NX3008PBKS.pdf" H 1900 4800 50  0001 C CNN
+F 4 "NX3008PBKS,115" H 1850 4800 50  0001 C CNN "Part Number"
+F 5 "NX3008PBKS,115" H 0   0   50  0001 C CNN "MPN"
+F 6 "1727-1282-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    1850 4800
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:Q_DUAL_PMOS_S1G1D2S2G2D1 Q39
+U 2 1 6352B4DC
+P 2700 4800
+F 0 "Q39" H 2905 4800 50  0000 L CNN
+F 1 "Q_DUAL_PMOS_S1G1D2S2G2D1" H 2905 4845 50  0001 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-363_SC-70-6" H 2750 4800 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/NX3008PBKS.pdf" H 2750 4800 50  0001 C CNN
+F 4 "NX3008PBKS,115" H 2700 4800 50  0001 C CNN "Part Number"
+F 5 "NX3008PBKS,115" H 0   0   50  0001 C CNN "MPN"
+F 6 "1727-1282-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	2    2700 4800
+	1    0    0    1   
+$EndComp
+Connection ~ 2800 5000
+Wire Wire Line
+	2800 5000 3250 5000
+$Comp
+L Device:D_Schottky_x2_Serial_AKC D19
+U 1 1 6355ACAB
+P 5650 8450
+F 0 "D19" H 5650 8667 50  0000 C CNN
+F 1 "D_Schottky_x2_Serial_AKC" H 5650 8576 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 5650 8450 50  0001 C CNN
+F 3 "https://www.onsemi.com/pdf/datasheet/mmbd1405-d.pdf" H 5650 8450 50  0001 C CNN
+F 4 "MMBD1403" H 5650 8450 50  0001 C CNN "MPN"
+F 5 "MMBD1403" H 0   0   50  0001 C CNN "Part Number"
+F 6 "MMBD1403CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5650 8450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 636E2A17
+P 6350 8450
+AR Path="/5B5CD4CD/5B5CD5C3/636E2A17" Ref="#FLG?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/636E2A17" Ref="#FLG0111"  Part="1" 
+F 0 "#FLG0111" H 6350 8525 50  0001 C CNN
+F 1 "PWR_FLAG" H 6350 8624 50  0000 C CNN
+F 2 "" H 6350 8450 50  0001 C CNN
+F 3 "~" H 6350 8450 50  0001 C CNN
+	1    6350 8450
+	1    0    0    -1  
+$EndComp
+Connection ~ 6350 8450
+Wire Wire Line
+	6350 8450 6550 8450
+Wire Wire Line
+	4650 2300 5000 2300
+Connection ~ 4650 2300
+Wire Wire Line
+	4650 1800 5000 1800
+Connection ~ 4650 1800
+Wire Wire Line
+	4650 1800 4650 1900
+Wire Wire Line
+	5000 1900 5000 1800
+Wire Wire Line
+	5000 2200 5000 2300
+$Comp
+L Device:R R265
+U 1 1 637C1EFD
+P 5000 2050
+F 0 "R265" H 5070 2096 50  0000 L CNN
+F 1 "R001" H 5070 2005 50  0000 L CNN
+F 2 "Footprints:R_2512_6332Metric_PMR100" V 4930 2050 50  0001 C CNN
+F 3 "https://fscdn.rohm.com/en/products/databook/datasheet/passive/resistor/chip_resistor/pmr-e.pdf" H 5000 2050 50  0001 C CNN
+F 4 "PMR100HZPFV1L00" H 5000 2050 50  0001 C CNN "Part Number"
+F 5 "PMR100HZPFV1L00" H 0   0   50  0001 C CNN "MPN"
+F 6 "RHM.001AUCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5000 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Schottky D?
+U 1 1 638205AF
+P 10550 2200
+AR Path="/5B5CD4CD/5B5CD5C3/638205AF" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/638205AF" Ref="D20"  Part="1" 
+F 0 "D20" H 10550 1983 50  0000 C CNN
+F 1 "D_Schottky" H 10550 2074 50  0000 C CNN
+F 2 "Diode_SMD:D_SMA" H 10550 2200 50  0001 C CNN
+F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/c8/2f/54/15/4c/14/44/bb/CD00003321.pdf/files/CD00003321.pdf/jcr:content/translations/en.CD00003321.pdf" H 10550 2200 50  0001 C CNN
+F 4 "STPS1150A" V 10550 2200 50  0001 C CNN "Part Number"
+F 5 "STPS1150A" H 0   0   50  0001 C CNN "MPN"
+F 6 "497-7545-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    10550 2200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:D_Schottky D?
+U 1 1 638A77B6
+P 1300 2700
+AR Path="/5B5CD4CD/5B5CD5C3/638A77B6" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/638A77B6" Ref="D16"  Part="1" 
+F 0 "D16" H 1300 2483 50  0000 C CNN
+F 1 "D_Schottky" H 1300 2574 50  0000 C CNN
+F 2 "Diode_SMD:D_SMA" H 1300 2700 50  0001 C CNN
+F 3 "https://www.st.com/content/ccc/resource/technical/document/datasheet/c8/2f/54/15/4c/14/44/bb/CD00003321.pdf/files/CD00003321.pdf/jcr:content/translations/en.CD00003321.pdf" H 1300 2700 50  0001 C CNN
+F 4 "STPS1150A" V 1300 2700 50  0001 C CNN "Part Number"
+F 5 "STPS1150A" H 0   0   50  0001 C CNN "MPN"
+F 6 "497-7545-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    1300 2700
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R239
+U 1 1 639EE893
+P 900 2350
+F 0 "R239" V 1107 2350 50  0000 C CNN
+F 1 "51k0" V 1016 2350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 830 2350 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 900 2350 50  0001 C CNN
+F 4 "RMCF0805JT51K0" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0805JT51K0" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0805JT51K0CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    900  2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  2500 900  2700
+$Comp
+L Device:R R240
+U 1 1 639EEB3E
+P 10150 1450
+F 0 "R240" V 10357 1450 50  0000 C CNN
+F 1 "51k0" V 10266 1450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 10080 1450 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 10150 1450 50  0001 C CNN
+F 4 "RMCF0805JT51K0" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0805JT51K0" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0805JT51K0CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    10150 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R268
+U 1 1 639EF204
+P 10150 1850
+F 0 "R268" V 10357 1850 50  0000 C CNN
+F 1 "51k0" V 10266 1850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 10080 1850 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 10150 1850 50  0001 C CNN
+F 4 "RMCF0805JT51K0" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0805JT51K0" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0805JT51K0CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    10150 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Zener D23
+U 1 1 639F18AE
+P 4650 4200
+F 0 "D23" V 4604 4280 50  0000 L CNN
+F 1 "D_TVS" V 4695 4280 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 4650 4200 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds19002.pdf" H 4650 4200 50  0001 C CNN
+F 4 "SMBJ120A-13-F" V 4650 4200 50  0001 C CNN "Part Number"
+F 5 "SMBJ120A-FDICT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4650 4200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4650 4000 6150 4000
+$Comp
+L power:GND #PWR049
+U 1 1 639F1D1C
+P 4650 4350
+F 0 "#PWR049" H 4650 4100 50  0001 C CNN
+F 1 "GND" H 4655 4177 50  0000 C CNN
+F 2 "" H 4650 4350 50  0001 C CNN
+F 3 "" H 4650 4350 50  0001 C CNN
+	1    4650 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 4050 4650 4000
+Connection ~ 4650 4000
+$Comp
+L Device:D_Zener D25
+U 1 1 63A089E5
+P 14400 3950
+F 0 "D25" V 14354 4030 50  0000 L CNN
+F 1 "D_TVS" V 14445 4030 50  0000 L CNN
+F 2 "Diode_SMD:D_SMB" H 14400 3950 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds19002.pdf" H 14400 3950 50  0001 C CNN
+F 4 "SMBJ120A-13-F" V 14400 3950 50  0001 C CNN "Part Number"
+F 5 "SMBJ120A-FDICT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    14400 3950
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR061
+U 1 1 63A089EC
+P 14400 4100
+F 0 "#PWR061" H 14400 3850 50  0001 C CNN
+F 1 "GND" H 14405 3927 50  0000 C CNN
+F 2 "" H 14400 4100 50  0001 C CNN
+F 3 "" H 14400 4100 50  0001 C CNN
+	1    14400 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	14400 3800 14400 3750
+Wire Wire Line
+	14400 3750 15100 3750
+Connection ~ 14400 3750
+$Comp
+L Device:C C?
+U 1 1 63A80C5B
+P 4650 9050
+AR Path="/5AAC0444/63A80C5B" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/63A80C5B" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/63A80C5B" Ref="C104"  Part="1" 
+F 0 "C104" H 4765 9096 50  0000 L CNN
+F 1 "100nF" H 4765 9005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 4688 8900 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L3X7R2E104K160AA.pdf" H 4650 9050 50  0001 C CNN
+F 4 "CGA5L3X7R2E104K160AA" H 4650 9050 50  0001 C CNN "Part Number"
+F 5 "CGA5L3X7R2E104K160AA" H 0   0   50  0001 C CNN "MPN"
+F 6 "445-5851-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4650 9050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 63A972DE
+P 5150 9050
+AR Path="/5AAC0444/63A972DE" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/63A972DE" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/63A972DE" Ref="C105"  Part="1" 
+F 0 "C105" H 5265 9096 50  0000 L CNN
+F 1 "100nF" H 5265 9005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 5188 8900 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L3X7R2E104K160AA.pdf" H 5150 9050 50  0001 C CNN
+F 4 "CGA5L3X7R2E104K160AA" H 5150 9050 50  0001 C CNN "Part Number"
+F 5 "CGA5L3X7R2E104K160AA" H 0   0   50  0001 C CNN "MPN"
+F 6 "445-5851-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5150 9050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 63A973CA
+P 5650 9050
+AR Path="/5AAC0444/63A973CA" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/63A973CA" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/63A973CA" Ref="C107"  Part="1" 
+F 0 "C107" H 5765 9096 50  0000 L CNN
+F 1 "100nF" H 5765 9005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 5688 8900 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L3X7R2E104K160AA.pdf" H 5650 9050 50  0001 C CNN
+F 4 "CGA5L3X7R2E104K160AA" H 5650 9050 50  0001 C CNN "Part Number"
+F 5 "CGA5L3X7R2E104K160AA" H 0   0   50  0001 C CNN "MPN"
+F 6 "445-5851-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5650 9050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 63AA25E5
+P 6550 8750
+AR Path="/5B5CD4CD/5B5CD606/63AA25E5" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/63AA25E5" Ref="C110"  Part="1" 
+F 0 "C110" H 6575 8850 50  0000 L CNN
+F 1 "4u7" H 6575 8650 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 6588 8600 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/mlcc_automotive_soft_en.pdf" H 6550 8750 50  0001 C CNN
+F 4 "CGA5L3X7R1H475K160AE" H 6575 8950 50  0001 C CNN "MPN"
+F 5 "y" H 6575 8950 50  0001 C CNN "populate"
+F 6 "CGA5L3X7R1H475K160AE" H -1250 5000 50  0001 C CNN "Part Number"
+F 7 "445-172481-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    6550 8750
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R R214
+U 1 1 63B29345
+P 2050 2700
+F 0 "R214" V 2257 2700 50  0000 C CNN
+F 1 "1k" V 2166 2700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 1980 2700 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 2050 2700 50  0001 C CNN
+F 4 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT1K00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    2050 2700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R210
+U 1 1 63B29437
+P 1700 2700
+F 0 "R210" V 1907 2700 50  0000 C CNN
+F 1 "1k" V 1816 2700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 1630 2700 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 1700 2700 50  0001 C CNN
+F 4 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT1K00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    1700 2700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R241
+U 1 1 63B29DEB
+P 10950 2200
+F 0 "R241" V 11157 2200 50  0000 C CNN
+F 1 "1k" V 11066 2200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 10880 2200 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 10950 2200 50  0001 C CNN
+F 4 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT1K00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    10950 2200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R243
+U 1 1 63B29ED9
+P 11300 2200
+F 0 "R243" V 11507 2200 50  0000 C CNN
+F 1 "1k" V 11416 2200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 11230 2200 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 11300 2200 50  0001 C CNN
+F 4 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT1K00" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT1K00CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    11300 2200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5650 8650 5650 8900
+Wire Wire Line
+	5950 8450 6350 8450
+$Comp
+L Device:C C?
+U 1 1 63B32F99
+P 3050 9050
+AR Path="/5B5CD4CD/5B5CD606/63B32F99" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/63B32F99" Ref="C121"  Part="1" 
+F 0 "C121" H 3075 9150 50  0000 L CNN
+F 1 "4u7" H 3075 8950 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 3088 8900 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/mlcc_automotive_soft_en.pdf" H 3050 9050 50  0001 C CNN
+F 4 "CGA5L3X7R1H475K160AE" H 3075 9250 50  0001 C CNN "MPN"
+F 5 "y" H 3075 9250 50  0001 C CNN "populate"
+F 6 "CGA5L3X7R1H475K160AE" H -4750 5300 50  0001 C CNN "Part Number"
+F 7 "445-172481-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    3050 9050
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	14600 2650 14600 2700
+Wire Wire Line
+	14500 2650 14500 2700
+Wire Wire Line
+	14400 2700 14500 2700
+Connection ~ 14500 2700
+Wire Wire Line
+	14500 2700 14500 2750
+Wire Wire Line
+	14500 2700 14600 2700
+Connection ~ 14600 2700
+Wire Wire Line
+	14600 2700 14600 2750
+Wire Wire Line
+	6450 4850 5850 4850
+Wire Wire Line
+	5150 4850 5150 5000
+Wire Wire Line
+	6450 4850 6450 5100
+Connection ~ 5850 4850
+Wire Wire Line
+	5850 4850 5150 4850
+Wire Wire Line
+	14100 4950 13450 4950
+Wire Wire Line
+	12800 4950 12800 5050
+Wire Wire Line
+	14100 4950 14100 5150
+Connection ~ 13450 4950
+Wire Wire Line
+	13450 4950 12800 4950
+$Comp
+L Device:R R?
+U 1 1 624004C4
+P 9800 8300
+AR Path="/5B5CD4CD/5E919B99/624004C4" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/624004C4" Ref="R272"  Part="1" 
+F 0 "R272" H 9730 8254 50  0000 R CNN
+F 1 "1M" H 9730 8345 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9730 8300 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 9800 8300 50  0001 C CNN
+F 4 "< ... >" H 6000 5400 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 6000 5400 50  0001 C CNN "MPN"
+F 6 "AC0603FR-071ML" H 6000 5400 50  0001 C CNN "Part Number"
+F 7 "311-1MLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    9800 8300
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 624004CE
+P 9800 8750
+AR Path="/5B5CD4CD/5E919B99/624004CE" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/624004CE" Ref="R273"  Part="1" 
+F 0 "R273" H 9730 8704 50  0000 R CNN
+F 1 "100k" H 9730 8795 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9730 8750 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 9800 8750 50  0001 C CNN
+F 4 "" H 6000 5300 50  0001 C CNN "DNP"
+F 5 "RMCF0603FT100K" H 6000 5300 50  0001 C CNN "MPN"
+F 6 "RMCF0603FT100K" H 6000 5300 50  0001 C CNN "Part Number"
+F 7 "RMCF0603FT100KCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    9800 8750
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 624004D5
+P 9800 8900
+AR Path="/624004D5" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/624004D5" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5E919B99/624004D5" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/624004D5" Ref="#PWR033"  Part="1" 
+F 0 "#PWR033" H 9800 8650 50  0001 C CNN
+F 1 "GND" H 9805 8727 50  0000 C CNN
+F 2 "" H 9800 8900 50  0001 C CNN
+F 3 "" H 9800 8900 50  0001 C CNN
+	1    9800 8900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 624004E6
+P 10500 8750
+AR Path="/5B56E059/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B579897/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5D4/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A1BC/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A221/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A268/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A276/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A284/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A2EF/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A2FD/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A30B/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A3FE/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A59C/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5AA/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5B8/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5C6/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5E2/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5F0/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5FE/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A60C/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A61A/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5F0/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B579897/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A1BC/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A221/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A268/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A276/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A284/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A2EF/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A2FD/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A30B/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A3FE/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A59C/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5AA/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5B8/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5C6/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5D4/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5E2/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5FE/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A60C/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A61A/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B5E09E3/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B5E09F1/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B5E09FF/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B5E0A0D/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5E919B99/624004E6" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/624004E6" Ref="C98"  Part="1" 
+F 0 "C98" H 10615 8796 50  0000 L CNN
+F 1 "10nF" H 10615 8705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 10538 8600 50  0001 C CNN
+F 3 "~" H 10500 8750 50  0001 C CNN
+F 4 "GCM188R72A103KA37D" H 6000 5300 50  0001 C CNN "MPN"
+F 5 "GCM188R72A103KA37D" H 6000 5300 50  0001 C CNN "Part Number"
+F 6 "490-4781-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    10500 8750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 624004ED
+P 10500 8900
+AR Path="/624004ED" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/624004ED" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5E919B99/624004ED" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/624004ED" Ref="#PWR065"  Part="1" 
+F 0 "#PWR065" H 10500 8650 50  0001 C CNN
+F 1 "GND" H 10505 8727 50  0000 C CNN
+F 2 "" H 10500 8900 50  0001 C CNN
+F 3 "" H 10500 8900 50  0001 C CNN
+	1    10500 8900
+	1    0    0    -1  
+$EndComp
+Text GLabel 10700 8550 2    50   Output ~ 0
+EV_CHARGER_VOLTAGE_AI
+Wire Wire Line
+	10700 8550 10500 8550
+Connection ~ 10500 8550
+$Comp
+L Device:R R?
+U 1 1 624004FC
+P 9800 7950
+AR Path="/5B5CD4CD/5E919B99/624004FC" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/624004FC" Ref="R271"  Part="1" 
+F 0 "R271" H 9730 7904 50  0000 R CNN
+F 1 "1M" H 9730 7995 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9730 7950 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 9800 7950 50  0001 C CNN
+F 4 "< ... >" H 6000 5550 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 6000 5550 50  0001 C CNN "MPN"
+F 6 "AC0603FR-071ML" H 6000 5550 50  0001 C CNN "Part Number"
+F 7 "311-1MLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    9800 7950
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9800 8100 9800 8150
+Connection ~ 9800 8550
+Wire Wire Line
+	9800 8550 9800 8600
+Wire Wire Line
+	9800 8450 9800 8550
+$Comp
+L Device:R R?
+U 1 1 62417FEB
+P 9800 7600
+AR Path="/5B5CD4CD/5E919B99/62417FEB" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62417FEB" Ref="R270"  Part="1" 
+F 0 "R270" H 9730 7554 50  0000 R CNN
+F 1 "1M" H 9730 7645 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9730 7600 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 9800 7600 50  0001 C CNN
+F 4 "< ... >" H 6000 5200 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 6000 5200 50  0001 C CNN "MPN"
+F 6 "AC0603FR-071ML" H 6000 5200 50  0001 C CNN "Part Number"
+F 7 "311-1MLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    9800 7600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9800 7750 9800 7800
+Wire Wire Line
+	10500 8600 10500 8550
+$Comp
+L Device:R R?
+U 1 1 625351BB
+P 12150 8300
+AR Path="/5B5CD4CD/5E919B99/625351BB" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/625351BB" Ref="R277"  Part="1" 
+F 0 "R277" H 12080 8254 50  0000 R CNN
+F 1 "1M" H 12080 8345 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 12080 8300 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 12150 8300 50  0001 C CNN
+F 4 "< ... >" H 8350 5400 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 8350 5400 50  0001 C CNN "MPN"
+F 6 "AC0603FR-071ML" H 8350 5400 50  0001 C CNN "Part Number"
+F 7 "311-1MLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12150 8300
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 625351C5
+P 12150 8750
+AR Path="/5B5CD4CD/5E919B99/625351C5" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/625351C5" Ref="R278"  Part="1" 
+F 0 "R278" H 12080 8704 50  0000 R CNN
+F 1 "100k" H 12080 8795 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 12080 8750 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 12150 8750 50  0001 C CNN
+F 4 "" H 8350 5300 50  0001 C CNN "DNP"
+F 5 "RMCF0603FT100K" H 8350 5300 50  0001 C CNN "MPN"
+F 6 "RMCF0603FT100K" H 8350 5300 50  0001 C CNN "Part Number"
+F 7 "RMCF0603FT100KCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12150 8750
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 625351CC
+P 12150 8900
+AR Path="/625351CC" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/625351CC" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5E919B99/625351CC" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/625351CC" Ref="#PWR066"  Part="1" 
+F 0 "#PWR066" H 12150 8650 50  0001 C CNN
+F 1 "GND" H 12155 8727 50  0000 C CNN
+F 2 "" H 12150 8900 50  0001 C CNN
+F 3 "" H 12150 8900 50  0001 C CNN
+	1    12150 8900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 625351DD
+P 12850 8750
+AR Path="/5B56E059/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B579897/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5D4/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A1BC/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A221/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A268/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A276/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A284/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A2EF/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A2FD/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A30B/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A3FE/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A59C/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5AA/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5B8/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5C6/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5E2/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5F0/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A5FE/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A60C/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B56E059/5B57A61A/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5F0/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B579897/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A1BC/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A221/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A268/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A276/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A284/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A2EF/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A2FD/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A30B/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A3FE/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A59C/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5AA/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5B8/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5C6/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5D4/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5E2/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A5FE/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A60C/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B57A61A/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B5E09E3/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B5E09F1/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B5E09FF/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD608/5B5E0A0D/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5E919B99/625351DD" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/625351DD" Ref="C124"  Part="1" 
+F 0 "C124" H 12965 8796 50  0000 L CNN
+F 1 "10nF" H 12965 8705 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 12888 8600 50  0001 C CNN
+F 3 "~" H 12850 8750 50  0001 C CNN
+F 4 "GCM188R72A103KA37D" H 8350 5300 50  0001 C CNN "MPN"
+F 5 "GCM188R72A103KA37D" H 8350 5300 50  0001 C CNN "Part Number"
+F 6 "490-4781-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12850 8750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 625351E4
+P 12850 8900
+AR Path="/625351E4" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/625351E4" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5E919B99/625351E4" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/625351E4" Ref="#PWR067"  Part="1" 
+F 0 "#PWR067" H 12850 8650 50  0001 C CNN
+F 1 "GND" H 12855 8727 50  0000 C CNN
+F 2 "" H 12850 8900 50  0001 C CNN
+F 3 "" H 12850 8900 50  0001 C CNN
+	1    12850 8900
+	1    0    0    -1  
+$EndComp
+Text GLabel 13050 8550 2    50   Output ~ 0
+DCDC_OUTPUT_VOLTAGE_AI
+Wire Wire Line
+	13050 8550 12850 8550
+Connection ~ 12850 8550
+$Comp
+L Device:R R?
+U 1 1 625351F1
+P 12150 7950
+AR Path="/5B5CD4CD/5E919B99/625351F1" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/625351F1" Ref="R276"  Part="1" 
+F 0 "R276" H 12080 7904 50  0000 R CNN
+F 1 "1M" H 12080 7995 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 12080 7950 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 12150 7950 50  0001 C CNN
+F 4 "< ... >" H 8350 5550 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 8350 5550 50  0001 C CNN "MPN"
+F 6 "AC0603FR-071ML" H 8350 5550 50  0001 C CNN "Part Number"
+F 7 "311-1MLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12150 7950
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	12150 8100 12150 8150
+Connection ~ 12150 8550
+Wire Wire Line
+	12150 8550 12150 8600
+Wire Wire Line
+	12150 8450 12150 8550
+$Comp
+L Device:R R?
+U 1 1 62535200
+P 12150 7600
+AR Path="/5B5CD4CD/5E919B99/62535200" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/62535200" Ref="R275"  Part="1" 
+F 0 "R275" H 12080 7554 50  0000 R CNN
+F 1 "1M" H 12080 7645 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 12080 7600 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 12150 7600 50  0001 C CNN
+F 4 "< ... >" H 8350 5200 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 8350 5200 50  0001 C CNN "MPN"
+F 6 "AC0603FR-071ML" H 8350 5200 50  0001 C CNN "Part Number"
+F 7 "311-1MLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    12150 7600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	12150 7750 12150 7800
+Wire Wire Line
+	12850 8600 12850 8550
+Text Label 5050 4000 0    50   ~ 0
+HV_EV_CHARGER_INPUT
+Text Label 9800 7450 0    50   ~ 0
+HV_EV_CHARGER_INPUT
+Wire Wire Line
+	9800 7450 10650 7450
+Text Label 14450 3750 0    50   ~ 0
+HV_DCDC_OUTPUT
+Text Label 12150 7450 0    50   ~ 0
+HV_DCDC_OUTPUT
+Wire Wire Line
+	12150 7450 12800 7450
+Wire Wire Line
+	9800 8550 10500 8550
+Wire Wire Line
+	12150 8550 12850 8550
+Text Label 2650 8450 0    50   ~ 0
+HV_charge_pump_input
+Text Label 4650 8800 0    50   ~ 0
+HV_cp_s1
+Text Label 5150 8750 0    50   ~ 0
+HV_cp_s2
+Text Label 5650 8750 0    50   ~ 0
+HV_cp_s3
+Text Label 2050 3750 0    50   ~ 0
+HV_ev_signal
+Text Label 2750 2950 0    50   ~ 0
+HV_ev_g_R
+Text Label 10950 3250 0    50   ~ 0
+HV_dcdc_signal
+Text Label 11900 2450 0    50   ~ 0
+HV_DCDC_gate_r
+Text Label 6550 8200 0    50   ~ 0
+HV_CHARGEPUMP_POWER
+Wire Wire Line
+	6550 8200 7500 8200
+Text Label 900  1800 0    50   ~ 0
+HV_CHARGEPUMP_POWER
+Text Label 10150 1250 0    50   ~ 0
+HV_CHARGEPUMP_POWER
+Wire Wire Line
+	5500 2150 5500 2500
+Wire Wire Line
+	5450 1650 5450 1950
+Wire Wire Line
+	4250 1950 4600 2350
+Wire Wire Line
+	4600 2350 4650 2350
+Wire Wire Line
+	4650 2350 4650 2500
+Wire Wire Line
+	4150 1950 4250 1950
+Connection ~ 4650 2500
+Wire Wire Line
+	4250 2150 4600 1750
+Wire Wire Line
+	4600 1750 4650 1750
+Wire Wire Line
+	4650 1750 4650 1650
+Wire Wire Line
+	4150 2150 4250 2150
+Connection ~ 4650 1650
+Wire Wire Line
+	4650 2300 4650 2350
+Wire Wire Line
+	4650 1250 4650 1650
+Connection ~ 4650 1750
+Wire Wire Line
+	4650 1750 4650 1800
+Connection ~ 4650 2350
+Wire Wire Line
+	4650 2500 4650 2650
+Wire Wire Line
+	4650 2500 5500 2500
+Wire Wire Line
+	4650 1650 5450 1650
+Connection ~ 1000 7350
+Connection ~ 1000 7800
+Wire Wire Line
+	1000 7800 650  7800
+Wire Wire Line
+	1000 7350 1400 7350
+Wire Wire Line
+	1000 7800 1400 7800
+Text Notes 15450 6650 0    50   ~ 0
+2.18V
+Text Notes 10550 6350 0    50   ~ 0
+5V range, 200V/V gain, 1mOhm shunt, voltage-divide-by-2, 2.18V reference.\n2*2.18/200/.001 = 21.8A current limit
+Text Notes 3050 6250 0    50   ~ 0
+5V range, 200V/V gain, 500uOhm shunt, divide-by-2, 1.115V reference.\n2*1.115/200/.0005 = 22.3A current limit
+Text Notes 7800 6550 0    50   ~ 0
+1.115V
+Wire Wire Line
+	1850 800  2300 800 
+Wire Wire Line
+	2300 800  2300 900 
+Connection ~ 2300 800 
+Wire Wire Line
+	2300 800  2450 800 
+$Comp
+L power:GND #PWR?
+U 1 1 632BED79
+P 2300 1200
+AR Path="/5AAC0444/632BED79" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/632BED79" Ref="#PWR?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/632BED79" Ref="#PWR077"  Part="1" 
+F 0 "#PWR077" H 2300 950 50  0001 C CNN
+F 1 "GND" H 2305 1027 50  0000 C CNN
+F 2 "" H 2300 1200 50  0001 C CNN
+F 3 "" H 2300 1200 50  0001 C CNN
+	1    2300 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R11
+U 1 1 632BFFD3
+P 2300 1050
+F 0 "R11" H 2370 1096 50  0000 L CNN
+F 1 "19k6" H 2370 1005 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 2230 1050 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 2300 1050 50  0001 C CNN
+F 4 "" H -5350 -5300 50  0001 C CNN "DNP"
+F 5 "RMCF0603FT19K6CT-ND" H -5350 -5300 50  0001 C CNN "Digikey_PN"
+F 6 "RMCF0603FT19K6" H -5350 -5300 50  0001 C CNN "MPN"
+F 7 "RMCF0603FT19K6" H -5350 -5300 50  0001 C CNN "Part Number"
+	1    2300 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 632E1CC1
+P 13700 6350
+AR Path="/5B5CD4CD/5E919B99/632E1CC1" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/632E1CC1" Ref="R20"  Part="1" 
+F 0 "R20" H 13630 6304 50  0000 R CNN
+F 1 "1M" H 13630 6395 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 13630 6350 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 13700 6350 50  0001 C CNN
+F 4 "< ... >" H 9900 3950 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 9900 3950 50  0001 C CNN "MPN"
+F 6 "AC0603FR-071ML" H 9900 3950 50  0001 C CNN "Part Number"
+F 7 "311-1MLDCT-ND" H 1550 -1250 50  0001 C CNN "Digikey_PN"
+	1    13700 6350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	14000 6050 14000 6350
+Wire Wire Line
+	14000 6350 13850 6350
+Connection ~ 14000 6050
+Wire Wire Line
+	14000 6050 13950 6050
+Wire Wire Line
+	13550 6350 13300 6350
+Wire Wire Line
+	13300 6350 13300 5950
+Connection ~ 13300 5950
+Wire Wire Line
+	13300 5950 13350 5950
+$Comp
+L Device:R R?
+U 1 1 633183DB
+P 6000 6350
+AR Path="/5B5CD4CD/5E919B99/633183DB" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/633183DB" Ref="R14"  Part="1" 
+F 0 "R14" H 5930 6304 50  0000 R CNN
+F 1 "1M" H 5930 6395 50  0000 R CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5930 6350 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 6000 6350 50  0001 C CNN
+F 4 "< ... >" H 2200 3950 50  0001 C CNN "DNP"
+F 5 "AC0603FR-071ML" H 2200 3950 50  0001 C CNN "MPN"
+F 6 "AC0603FR-071ML" H 2200 3950 50  0001 C CNN "Part Number"
+F 7 "311-1MLDCT-ND" H -6150 -1250 50  0001 C CNN "Digikey_PN"
+	1    6000 6350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6150 6350 6450 6350
+Connection ~ 6450 6350
+Wire Wire Line
+	6450 6350 6450 6000
+Wire Wire Line
+	5850 6350 5550 6350
+Wire Wire Line
+	5550 6350 5550 5900
+Connection ~ 5550 5900
+Wire Wire Line
+	5550 5900 5700 5900
+$EndSCHEMATC

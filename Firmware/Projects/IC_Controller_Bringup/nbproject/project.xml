@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>com.microchip.mplab.nbide.embedded.makeproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>IC_Controller_Bringup</name>
+            <creation-uuid>1b0ba382-2c26-4543-b76f-117eb8ab0756</creation-uuid>
+            <make-project-type>0</make-project-type>
+            <c-extensions>c</c-extensions>
+            <cpp-extensions/>
+            <header-extensions>h</header-extensions>
+            <asminc-extensions/>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
+            <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>.</sourceRootElem>
+                <sourceRootElem>../../Libraries/PIC33_plib/inc</sourceRootElem>
+                <sourceRootElem>../../Libraries/PIC33_plib/src</sourceRootElem>
+                <sourceRootElem>../../RTOS/Scheduler</sourceRootElem>
+                <sourceRootElem>../../Libraries/Standard</sourceRootElem>
+                <sourceRootElem>../../CAN/generated</sourceRootElem>
+                <sourceRootElem>../../Libraries/Drivers/TFT_LCD/src</sourceRootElem>
+                <sourceRootElem>../../Libraries/Drivers/TFT_LCD/inc</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>502_DEBUG</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>810_DEBUG</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
+        </data>
+    </configuration>
+</project>

@@ -24,13 +24,13 @@
  * ****************************************************************************/
 
 /**
- * 
+ * Places a rectagular button with text. Returns button ID number.
  * @param string
  * @param x
  * @param y
  * @param color
  * @param size
- * @return 
+ * @return Button ID number
  */
 uint8_t  DISPLAY_INTERFACE_place_button(const char* string, uint8_t x, uint8_t y, uint16_t color, uint8_t size);
 
@@ -41,15 +41,20 @@ uint8_t  DISPLAY_INTERFACE_place_button(const char* string, uint8_t x, uint8_t y
 uint8_t DISPLAY_INTERFACE_button_handler(void);
 
 /**
- * 
+ * deletes all existing buttons.
  */
 void DISPLAY_INTERFACE_destroy_buttons(void);
 
 /**
- * Draws a dot where the screen is touched
- * @param color: color to draw
+ * Draws a dot where the screen is touched. To be called continuously.
  */
-void DISPLAY_INTERFACE_draw(uint16_t color);
+void DISPLAY_INTERFACE_draw(void);
+
+/**
+ * 
+ * @param enable
+ */
+void DISPLAY_INTERFACE_enable_drawing(uint8_t enable, uint16_t color);
 
 #endif	/* DISPLAY_INTERFACE_H */
 
