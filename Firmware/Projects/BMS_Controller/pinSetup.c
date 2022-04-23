@@ -89,7 +89,7 @@ void PinSetup_Init(void) {
 //    Uart1INIT(UART_TX, UART_RX, UART_BAUD_115200);
     
     /*CAN*/
-    CAN_Init(CAN_TX, CAN_RX, CAN_BAUD_1M, CAN_NORMAL);
+    CAN_Init(CAN_TX, CAN_RX, CAN_BAUD_500k, CAN_NORMAL);
     
 
 }

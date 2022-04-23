@@ -65,6 +65,8 @@ CAN_MSG_FIELD myField;
 uint16_t counter_led;
 uint16_t counter_can;
 
+static bool can_flag = false;
+
 void TMR1_CallBack(void)
 {
     // run the CAN TP tick
@@ -79,15 +81,7 @@ void TMR1_CallBack(void)
     
     counter_can++;
     if (counter_can == 250){
-        //Send a boot ID message
-        *dummyByte = bootByte;
-        myField.idType = 0;
-        myField.dlc = 0b1000;
-        myField.frameType = 0;
-        myMessage.msgId = 0xAA;
-        myMessage.data = dummyByte;
-        myMessage.field = myField;
-        CAN1_Transmit(CAN_PRIORITY_LOW, &myMessage);
+        //can_flag = true;
         counter_can = 0;
     }
 
@@ -114,6 +108,19 @@ int main(void)
     {       
         CAN_TP_Tasks();
         BOOT_DEMO_Tasks();       
+        if(can_flag){
+            can_flag = false;
+            //Send a boot ID message
+            *dummyByte = &bootByte;
+            myField.idType = 0;
+            myField.dlc = 0b1000;
+            myField.frameType = 0;
+            myMessage.msgId = 0xAA;
+            myMessage.data = dummyByte;
+            myMessage.field = myField;
+            CAN1_Transmit(CAN_PRIORITY_LOW, &myMessage);
+            
+        }
 
     }
         

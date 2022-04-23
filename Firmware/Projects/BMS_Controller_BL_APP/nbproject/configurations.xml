@@ -41,6 +41,7 @@
         <itemPath>pinSetup.h</itemPath>
         <itemPath>../../CAN/generated/bms_dbc.h</itemPath>
       </logicalFolder>
+      <itemPath>can_iso_tp.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -64,12 +65,12 @@
                      displayName="MCC Generated Files"
                      projectFiles="true">
         <logicalFolder name="boot" displayName="boot" projectFiles="true">
-          <itemPath>mcc_generated_files/boot/application_header_not_blank.S</itemPath>
           <itemPath>mcc_generated_files/boot/user_interrupt_table.S</itemPath>
-          <itemPath>mcc_generated_files/boot/combineAppAndBootloaderHex.sh</itemPath>
           <itemPath>mcc_generated_files/boot/hardware_interrupt_table.S</itemPath>
           <itemPath>mcc_generated_files/boot/interrupts.S</itemPath>
           <itemPath>mcc_generated_files/boot/memory_partition.S</itemPath>
+          <itemPath>mcc_generated_files/boot/combineAppAndBootloaderHex.sh</itemPath>
+          <itemPath>mcc_generated_files/boot/application_header_not_blank.S</itemPath>
         </logicalFolder>
         <itemPath>mcc_generated_files/reset.c</itemPath>
         <itemPath>mcc_generated_files/mcc.c</itemPath>
@@ -88,6 +89,7 @@
         <itemPath>pinSetup.c</itemPath>
         <itemPath>../../CAN/generated/bms_dbc.c</itemPath>
       </logicalFolder>
+      <itemPath>can_iso_tp.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -121,7 +123,7 @@
         <targetDevice>dsPIC33EP256MC502</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>2.00</languageToolchainVersion>
         <platform>3</platform>
@@ -305,6 +307,7 @@
         <property key="OUTPUT COMPARE 3" value="true"/>
         <property key="OUTPUT COMPARE 4" value="true"/>
         <property key="PTG" value="true"/>
+        <property key="PWM" value="true"/>
         <property key="SPI 1" value="true"/>
         <property key="SPI 2" value="true"/>
         <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
@@ -610,6 +613,7 @@
         <property key="OUTPUT COMPARE 3" value="true"/>
         <property key="OUTPUT COMPARE 4" value="true"/>
         <property key="PTG" value="true"/>
+        <property key="PWM" value="true"/>
         <property key="SPI 1" value="true"/>
         <property key="SPI 2" value="true"/>
         <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>

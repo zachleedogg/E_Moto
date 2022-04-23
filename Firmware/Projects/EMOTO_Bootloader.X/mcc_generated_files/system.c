@@ -79,14 +79,14 @@
 #include "clock.h"
 #include "system.h"
 #include "system_types.h"
-#include "uart1.h"
+#include "dma.h"
 #include "tmr1.h"
-#include "memory/flash.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "can1.h"
 #include "boot/boot_process.h"
-#include "dma.h"
+#include "uart1.h"
+#include "can1.h"
+#include "memory/flash.h"
 
 void SYSTEM_Initialize(void)
 {
@@ -96,8 +96,8 @@ void SYSTEM_Initialize(void)
     INTERRUPT_Initialize();
     UART1_Initialize();
     CAN1_Initialize();
-    TMR1_Initialize();
     DMA_Initialize();
+    TMR1_Initialize();
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
 }

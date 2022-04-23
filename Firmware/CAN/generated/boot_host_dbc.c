@@ -1,4 +1,4 @@
-#include "charger_dbc.h"
+#include "boot_host_dbc.h"
 
 
 
@@ -100,43 +100,43 @@ uint16_t CAN_mcu_motorControllerRequest_requestType_get(void){
 /**********************************************************
  * bms NODE MESSAGES
  */
-static CAN_message_S CAN_bms_charger_request={
-	.canID = CAN_bms_charger_request_ID,
-	.canXID = 1,
+static CAN_message_S CAN_bms_boot_response={
+	.canID = CAN_bms_boot_response_ID,
+	.canXID = 0,
 	.payload = 0,
 	.canMessageStatus = 0
 };
 
-uint8_t CAN_bms_charger_request_checkDataIsFresh(void){
-	return CAN_checkDataIsFresh(&CAN_bms_charger_request);
+uint8_t CAN_bms_boot_response_checkDataIsFresh(void){
+	return CAN_checkDataIsFresh(&CAN_bms_boot_response);
 }
 
-uint16_t CAN_bms_charger_request_output_voltage_high_byte_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_OUTPUT_VOLTAGE_HIGH_BYTE_OFFSET, CAN_BMS_CHARGER_REQUEST_OUTPUT_VOLTAGE_HIGH_BYTE_RANGE);
+uint16_t CAN_bms_boot_response_code_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_CODE_OFFSET, CAN_BMS_BOOT_RESPONSE_CODE_RANGE);
 }
-uint16_t CAN_bms_charger_request_output_voltage_low_byte_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_OUTPUT_VOLTAGE_LOW_BYTE_OFFSET, CAN_BMS_CHARGER_REQUEST_OUTPUT_VOLTAGE_LOW_BYTE_RANGE);
+uint16_t CAN_bms_boot_response_type_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_TYPE_OFFSET, CAN_BMS_BOOT_RESPONSE_TYPE_RANGE);
 }
-uint16_t CAN_bms_charger_request_output_current_high_byte_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_OUTPUT_CURRENT_HIGH_BYTE_OFFSET, CAN_BMS_CHARGER_REQUEST_OUTPUT_CURRENT_HIGH_BYTE_RANGE);
+uint16_t CAN_bms_boot_response_byte1_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_BYTE1_OFFSET, CAN_BMS_BOOT_RESPONSE_BYTE1_RANGE);
 }
-uint16_t CAN_bms_charger_request_output_current_low_byte_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_OUTPUT_CURRENT_LOW_BYTE_OFFSET, CAN_BMS_CHARGER_REQUEST_OUTPUT_CURRENT_LOW_BYTE_RANGE);
+uint16_t CAN_bms_boot_response_byte2_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_BYTE2_OFFSET, CAN_BMS_BOOT_RESPONSE_BYTE2_RANGE);
 }
-uint16_t CAN_bms_charger_request_start_charge_request_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_START_CHARGE_REQUEST_OFFSET, CAN_BMS_CHARGER_REQUEST_START_CHARGE_REQUEST_RANGE);
+uint16_t CAN_bms_boot_response_byte3_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_BYTE3_OFFSET, CAN_BMS_BOOT_RESPONSE_BYTE3_RANGE);
 }
-uint16_t CAN_bms_charger_request_charge_mode_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_OFFSET, CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_RANGE);
+uint16_t CAN_bms_boot_response_byte4_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_BYTE4_OFFSET, CAN_BMS_BOOT_RESPONSE_BYTE4_RANGE);
 }
-uint16_t CAN_bms_charger_request_packCurrent_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_PACKCURRENT_OFFSET, CAN_BMS_CHARGER_REQUEST_PACKCURRENT_RANGE);
+uint16_t CAN_bms_boot_response_byte5_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_BYTE5_OFFSET, CAN_BMS_BOOT_RESPONSE_BYTE5_RANGE);
 }
-uint16_t CAN_bms_charger_request_byte_7_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_BYTE_7_OFFSET, CAN_BMS_CHARGER_REQUEST_BYTE_7_RANGE);
+uint16_t CAN_bms_boot_response_byte6_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_BYTE6_OFFSET, CAN_BMS_BOOT_RESPONSE_BYTE6_RANGE);
 }
-uint16_t CAN_bms_charger_request_byte_8_get(void){
-	return get_bits(CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_BYTE_8_OFFSET, CAN_BMS_CHARGER_REQUEST_BYTE_8_RANGE);
+uint16_t CAN_bms_boot_response_byte7_get(void){
+	return get_bits(CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_BYTE7_OFFSET, CAN_BMS_BOOT_RESPONSE_BYTE7_RANGE);
 }
 
 
@@ -226,64 +226,58 @@ uint16_t CAN_motorcontroller_response_byte8_get(void){
 /**********************************************************
  * charger NODE MESSAGES
  */
-static CAN_payload_S CAN_charger_charger_status_payload __attribute__((aligned(sizeof(CAN_payload_S))));
-static CAN_message_S CAN_charger_charger_status={
-	.canID = CAN_charger_charger_status_ID,
-	.canXID = 1,
-	.payload = &CAN_charger_charger_status_payload,
-	.canMessageStatus = 0
-};
-
-void CAN_charger_charger_status_output_voltage_high_byte_set(uint16_t output_voltage_high_byte){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_OUTPUT_VOLTAGE_HIGH_BYTE_OFFSET, CAN_CHARGER_CHARGER_STATUS_OUTPUT_VOLTAGE_HIGH_BYTE_RANGE, output_voltage_high_byte);
-}
-void CAN_charger_charger_status_output_voltage_low_byte_set(uint16_t output_voltage_low_byte){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_OUTPUT_VOLTAGE_LOW_BYTE_OFFSET, CAN_CHARGER_CHARGER_STATUS_OUTPUT_VOLTAGE_LOW_BYTE_RANGE, output_voltage_low_byte);
-}
-void CAN_charger_charger_status_output_current_high_byte_set(uint16_t output_current_high_byte){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_OUTPUT_CURRENT_HIGH_BYTE_OFFSET, CAN_CHARGER_CHARGER_STATUS_OUTPUT_CURRENT_HIGH_BYTE_RANGE, output_current_high_byte);
-}
-void CAN_charger_charger_status_output_current_low_byte_set(uint16_t output_current_low_byte){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_OUTPUT_CURRENT_LOW_BYTE_OFFSET, CAN_CHARGER_CHARGER_STATUS_OUTPUT_CURRENT_LOW_BYTE_RANGE, output_current_low_byte);
-}
-void CAN_charger_charger_status_hardware_error_set(uint16_t hardware_error){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_HARDWARE_ERROR_OFFSET, CAN_CHARGER_CHARGER_STATUS_HARDWARE_ERROR_RANGE, hardware_error);
-}
-void CAN_charger_charger_status_charger_overtemp_error_set(uint16_t charger_overtemp_error){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_CHARGER_OVERTEMP_ERROR_OFFSET, CAN_CHARGER_CHARGER_STATUS_CHARGER_OVERTEMP_ERROR_RANGE, charger_overtemp_error);
-}
-void CAN_charger_charger_status_input_voltage_error_set(uint16_t input_voltage_error){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_INPUT_VOLTAGE_ERROR_OFFSET, CAN_CHARGER_CHARGER_STATUS_INPUT_VOLTAGE_ERROR_RANGE, input_voltage_error);
-}
-void CAN_charger_charger_status_battery_detect_error_set(uint16_t battery_detect_error){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_BATTERY_DETECT_ERROR_OFFSET, CAN_CHARGER_CHARGER_STATUS_BATTERY_DETECT_ERROR_RANGE, battery_detect_error);
-}
-void CAN_charger_charger_status_communication_error_set(uint16_t communication_error){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_COMMUNICATION_ERROR_OFFSET, CAN_CHARGER_CHARGER_STATUS_COMMUNICATION_ERROR_RANGE, communication_error);
-}
-void CAN_charger_charger_status_byte7_set(uint16_t byte7){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_BYTE7_OFFSET, CAN_CHARGER_CHARGER_STATUS_BYTE7_RANGE, byte7);
-}
-void CAN_charger_charger_status_byte8_set(uint16_t byte8){
-	set_bits(CAN_charger_charger_status.payload, CAN_CHARGER_CHARGER_STATUS_BYTE8_OFFSET, CAN_CHARGER_CHARGER_STATUS_BYTE8_RANGE, byte8);
-}
-
-void CAN_charger_charger_status_send(void){
-	CAN_write(CAN_charger_charger_status);
-}
-
 
 
 
 /**********************************************************
  * boot_host NODE MESSAGES
  */
+static CAN_payload_S CAN_boot_host_bms_payload __attribute__((aligned(sizeof(CAN_payload_S))));
+static CAN_message_S CAN_boot_host_bms={
+	.canID = CAN_boot_host_bms_ID,
+	.canXID = 0,
+	.payload = &CAN_boot_host_bms_payload,
+	.canMessageStatus = 0
+};
+
+void CAN_boot_host_bms_code_set(uint16_t code){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_CODE_OFFSET, CAN_BOOT_HOST_BMS_CODE_RANGE, code);
+}
+void CAN_boot_host_bms_type_set(uint16_t type){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_TYPE_OFFSET, CAN_BOOT_HOST_BMS_TYPE_RANGE, type);
+}
+void CAN_boot_host_bms_byte1_set(uint16_t byte1){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_BYTE1_OFFSET, CAN_BOOT_HOST_BMS_BYTE1_RANGE, byte1);
+}
+void CAN_boot_host_bms_byte2_set(uint16_t byte2){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_BYTE2_OFFSET, CAN_BOOT_HOST_BMS_BYTE2_RANGE, byte2);
+}
+void CAN_boot_host_bms_byte3_set(uint16_t byte3){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_BYTE3_OFFSET, CAN_BOOT_HOST_BMS_BYTE3_RANGE, byte3);
+}
+void CAN_boot_host_bms_byte4_set(uint16_t byte4){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_BYTE4_OFFSET, CAN_BOOT_HOST_BMS_BYTE4_RANGE, byte4);
+}
+void CAN_boot_host_bms_byte5_set(uint16_t byte5){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_BYTE5_OFFSET, CAN_BOOT_HOST_BMS_BYTE5_RANGE, byte5);
+}
+void CAN_boot_host_bms_byte6_set(uint16_t byte6){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_BYTE6_OFFSET, CAN_BOOT_HOST_BMS_BYTE6_RANGE, byte6);
+}
+void CAN_boot_host_bms_byte7_set(uint16_t byte7){
+	set_bits(CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_BYTE7_OFFSET, CAN_BOOT_HOST_BMS_BYTE7_RANGE, byte7);
+}
+
+void CAN_boot_host_bms_send(void){
+	CAN_write(CAN_boot_host_bms);
+}
+
 void CAN_DBC_init() {
 	CAN_configureMailbox(&CAN_dash_data1);
 	CAN_configureMailbox(&CAN_dash_data2);
 	CAN_configureMailbox(&CAN_mcu_command);
 	CAN_configureMailbox(&CAN_mcu_motorControllerRequest);
-	CAN_configureMailbox(&CAN_bms_charger_request);
+	CAN_configureMailbox(&CAN_bms_boot_response);
 	CAN_configureMailbox(&CAN_motorcontroller_motorStatus);
 	CAN_configureMailbox(&CAN_motorcontroller_response);
 }

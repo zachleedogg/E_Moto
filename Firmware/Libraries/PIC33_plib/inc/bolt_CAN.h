@@ -15,6 +15,7 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include <stddef.h>
 
 /****************************************************************************************
  module defines
@@ -30,7 +31,8 @@ typedef struct {
 typedef struct CAN_message_S {
     uint32_t canID;
     uint8_t canXID;
-    volatile CAN_payload_S * payload;
+    CAN_payload_S * payload;
+    uint8_t * canMessageStatus;
 } CAN_message_S;
 
 /* mode types */
@@ -96,5 +98,32 @@ uint8_t CAN_RxDataIsReady();
  */
 uint8_t CAN_write(CAN_message_S data);
 
+
+/**
+ * Checks if data is fresh.
+ * @param data
+ * @return 1 if fresh, 0 if stale.
+ */
+uint8_t CAN_checkDataIsFresh(CAN_message_S * data);
+
+/**
+ * Helper function to extract stuffed bits within a CAN data frame
+ * @param payload: pointer to a CAN_payload_S type
+ * @param offset: number of bits from start of 8-byte message
+ * @param range: number of bit length of the signal
+ * @return the extracted signal
+ */
+uint16_t get_bits(CAN_payload_S * payload, uint8_t offset, uint8_t range);
+
+
+/**
+ * 
+ * @param payload
+ * @param offset
+ * @param range
+ * @param value
+ * @return 
+ */
+uint16_t set_bits(CAN_payload_S * payload, uint8_t offset, uint8_t range, uint16_t value);
 
 #endif /* CAN_FUNC_H */

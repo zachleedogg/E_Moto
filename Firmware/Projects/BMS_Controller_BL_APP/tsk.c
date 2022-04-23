@@ -27,6 +27,7 @@
 #include "SerialDebugger.h"
 #include "IO.h"
 #include "bms_dbc.h"
+#include "can_iso_tp.h"
 
 /******************************************************************************
  * Constants
@@ -95,6 +96,7 @@ void Tsk(void) {
  * Runs every 1ms
  */
 void Tsk_1ms(void) {
+    run_iso_tp_basic();
 }
 
 
@@ -119,6 +121,16 @@ void Tsk_10ms(void) {
 void Tsk_100ms(void) {
     
 //    SerialConsole_Run_100ms(); //Debug Serial Terminal Emulation
+    uint8_t time = 0;
+    if (CAN_dash_data2_checkDataIsFresh()){
+        time = CAN_dash_data2_runningTime_get();
+    }
+    uint8_t speed = 0;
+    if (CAN_dash_data1_checkDataIsFresh()){
+        speed = CAN_dash_data1_speed_get();
+    }
+    CAN_bms_status_SOC_set(time);
+    CAN_bms_status_maxTemp_set(speed);
     CAN_bms_status_send(); //Send CAN message, this should be wrapped up in "CAN_RUN_100ms()" or similar
     //CAN_dash_command_send(); //same
     SET_DEBUG_LED_EN(TOGGLE); //Toggle Debug LED at 1Hz for scheduler running status
@@ -128,7 +140,11 @@ void Tsk_100ms(void) {
  * Runs every 1000ms
  */
 void Tsk_1000ms(void) {
-    
+    static uint8_t i = 0;
+    if (i > 15){
+        i = 0;
+    }
+    CAN_bms_charger_request_output_voltage_high_byte_set(i++);
     CAN_bms_charger_request_send();
 
 }

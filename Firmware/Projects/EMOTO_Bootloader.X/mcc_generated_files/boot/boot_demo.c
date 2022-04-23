@@ -58,7 +58,6 @@ Copyright (c) [2012-2022] Microchip Technology Inc.
 #include <stdbool.h>
 #include <stdint.h>
 #include "boot_config.h"
-#include "boot_application_header.h"
 #include "boot_process.h"
 #include "mcc_generated_files/tmr1.h"
 #include "mcc_generated_files/can1.h"

@@ -1109,7 +1109,7 @@
     }
   ],
   "verification": "Not Blank",
-  "bootloaderFoscValue": 40074375,
+  "bootloaderFoscValue": 40023151,
   "isCodeProtectEnabled": false,
   "isAntiRollBackEnabled": false,
   "downloadStartAddress": 12288,

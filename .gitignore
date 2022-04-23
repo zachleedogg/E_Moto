@@ -2,3 +2,5 @@ Thumbs.db
 *.dip~
 *.dch~
 ~$*
+.generated_files/
+*.mc3*
