@@ -6,7 +6,6 @@
  */
 
 #include "bolt_spi.h"
-#include "bolt_uart.h"
 
 /*Output PPS registers*/
 #define RP20_SPI_PPS    _RP20R
@@ -188,7 +187,6 @@ uint8_t spi2Ready(void) {
 }
 
 void __attribute__((__interrupt__, auto_psv)) _SPI1Interrupt(void) {
-    //Uart1Write("int");
     _SPI1IF = 0; /* Clear the Interrupt flag*/
     spi1Status = 1;
     uint16_t temp = SPI1BUF; /*clear input buffer because it just always fills up*/

@@ -85,13 +85,13 @@ Copyright (c) [2012-2022] Microchip Technology Inc.
     
 #ifdef REMAP_TABLE    
 
-REMAP_TO_APPLICATION   OscillatorFail       
-REMAP_TO_APPLICATION   AddressError       
-REMAP_TO_APPLICATION   HardTrapError       
-REMAP_TO_APPLICATION   StackError       
-REMAP_TO_APPLICATION   MathError       
-REMAP_TO_APPLICATION   DMACError       
-REMAP_TO_APPLICATION   SoftTrapError       
+KEEP_IN_BOOTLOADER   OscillatorFail       
+KEEP_IN_BOOTLOADER   AddressError       
+KEEP_IN_BOOTLOADER   HardTrapError       
+KEEP_IN_BOOTLOADER   StackError       
+KEEP_IN_BOOTLOADER   MathError       
+KEEP_IN_BOOTLOADER   DMACError       
+KEEP_IN_BOOTLOADER   SoftTrapError       
 REMAP_TO_APPLICATION_DEFAULT   ReservedTrap7       
 REMAP_TO_APPLICATION   INT0Interrupt       
 REMAP_TO_APPLICATION   IC1Interrupt       

@@ -210,11 +210,11 @@
  */
 int main(void) {
     
-    //SYSTEM_Initialize();
+    SYSTEM_Initialize();
 
-    clockInit(FREQ_80MHZ, INTERNAL);
+    clockInit(FREQ_120MHZ, INTERNAL);
 
-    Tsk_Run(clockFreq());
+    Tsk_Run(FREQ_120MHZ);
 
     while (1) {
     }

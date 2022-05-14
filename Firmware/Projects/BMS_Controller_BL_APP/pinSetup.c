@@ -78,7 +78,6 @@ void PinSetup_Init(void) {
     /*Set all digital IO*/
     PINS_direction(DEBUG_LED_EN, OUTPUT);
     PINS_direction(SW_EN, OUTPUT);
-    PINS_direction(CAN_SLEEP_EN, OUTPUT);
     
     /*ANALOG*/
     ADC_Init();

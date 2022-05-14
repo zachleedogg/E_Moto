@@ -1,1 +1,0 @@
- -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -DXPRJ_Config_2=$(CND_CONF)    -Wa,-g,--no-relax$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"C:\Users\kid group\Documents\Repos\E_Moto\Firmware\Projects\BMS_Controller_BL\mcc_generated_files\boot\interrupts.S

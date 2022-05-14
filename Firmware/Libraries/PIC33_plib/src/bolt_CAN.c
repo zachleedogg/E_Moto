@@ -39,8 +39,7 @@ static uint8_t debugEnable = 0;
 #define NUM_OF_SW_CAN_BUFFERS 9
 
 /* ECAN message buffer declaration, with buffer alignment */
-volatile unsigned int ecan1MsgBuf[NUM_OF_ECAN_BUFFERS][8]
-__attribute__((aligned(NUM_OF_ECAN_BUFFERS * 16)));
+volatile unsigned int ecan1MsgBuf[NUM_OF_ECAN_BUFFERS][8] __attribute__((aligned(NUM_OF_ECAN_BUFFERS * 16)));
 
 /* ECAN SW message buffer declaration*/
 volatile unsigned int ecanSWMsgBuf[NUM_OF_SW_CAN_BUFFERS][8];
@@ -96,6 +95,8 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
     /* DMA Start adresses */
     DMA0STAL = (unsigned int) &ecan1MsgBuf;
     DMA0STAH = (unsigned int) &ecan1MsgBuf;
+    //DMA0STAL = __builtin_dmaoffset(&ecan1MsgBuf);
+    //DMA0STAH = 0;
     DMA0CONbits.CHEN = 0x1; /* DMA channel enable */
 
     /* Configure Message Buffer 0-7 for Transmission and assign priority */
@@ -131,6 +132,8 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
     /* DMA Start adresses */
     DMA1STAL = (unsigned int) &ecan1MsgBuf;
     DMA1STAH = (unsigned int) &ecan1MsgBuf;
+//    DMA1STAL = __builtin_dmaoffset(&ecan1MsgBuf);
+//    DMA1STAH = 0;
     DMA1CONbits.CHEN = 0x1; /* DMA channel enable */
 
     C1CTRL1bits.WIN = 1; /* set window bit to access ECAN filter registers */
@@ -198,6 +201,15 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
     return 0;
 }
 
+CAN_changeOpMode(uint8_t opMode){
+    /* CAN is ready for transmit / receive, place in normal or loopback mode */
+    C1CTRL1bits.REQOP = opMode;
+        while (C1CTRL1bits.OPMODE != opMode) {
+            ;
+        }
+    return 0;
+}
+
 uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
     uint8_t returnVal = 1;
     uint16_t SID;
@@ -229,6 +241,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT1bits.F0BP = 0x8; /*Store Hits in RX Buffer 8*/
                 C1FEN1bits.FLTEN0 = 0x1; /* filter 0 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[8][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecan1MsgBuf[8][7];
                 break;
             case 1:
                 /*Filter 1*/
@@ -240,6 +253,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT1bits.F1BP = 0x9; /*Store Hits in RX Buffer 9*/
                 C1FEN1bits.FLTEN1 = 0x1; /* filter 1 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[9][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecan1MsgBuf[9][7];
                 break;
             case 2:
                 /*Filter 2*/
@@ -251,6 +265,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT1bits.F2BP = 0xA; /*Store Hits in BR Buffer 10*/
                 C1FEN1bits.FLTEN2 = 0x1; /* filter 2 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[10][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecan1MsgBuf[10][7];
                 break;
             case 3:
                 /*Filter 3*/
@@ -262,6 +277,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT1bits.F3BP = 0xB; /*Store Hits in BR Buffer 11*/
                 C1FEN1bits.FLTEN3 = 0x1; /* filter 3 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[11][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecan1MsgBuf[11][7];
                 break;
             case 4:
                 /*Filter 4*/
@@ -273,6 +289,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT2bits.F4BP = 0xC; /*Store Hits in BR Buffer 12*/
                 C1FEN1bits.FLTEN4 = 0x1; /* filter 2 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[12][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecan1MsgBuf[12][7];
                 break;
             case 5:
                 /*Filter 5*/
@@ -284,6 +301,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT2bits.F5BP = 0xD; /*Store Hits in BR Buffer 13*/
                 C1FEN1bits.FLTEN5 = 0x1; /* filter 5 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[13][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecan1MsgBuf[13][7];
                 break;
             case 6:
                 /*Filter 6*/
@@ -295,6 +313,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT2bits.F6BP = 0xE; /*Store Hits in BR Buffer 14*/
                 C1FEN1bits.FLTEN6 = 0x1; /* filter 6 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecan1MsgBuf[14][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecan1MsgBuf[14][7];
                 break;
             case 7:
                 /*Filter 7*/
@@ -304,6 +323,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT2bits.F7BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN7 = 0x1; /* filter 7 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[0][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[0][7];
                 break;
             case 8:
                 /*Filter 8*/
@@ -313,6 +333,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT3bits.F8BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN8 = 0x1; /* filter 8 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[1][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[1][7];
                 break;
             case 9:
                 /*Filter 9*/
@@ -322,6 +343,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT3bits.F9BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN9 = 0x1; /* filter 9 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[2][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[2][7];
                 break;
             case 10:
                 /*Filter 10*/
@@ -331,6 +353,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT3bits.F10BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN10 = 0x1; /* filter 10 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[3][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[3][7];
                 break;
             case 11:
                 /*Filter 11*/
@@ -340,6 +363,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT3bits.F11BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN11 = 0x1; /* filter 11 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[4][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[4][7];
                 break;
             case 12:
                 /*Filter 12*/
@@ -349,6 +373,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT4bits.F12BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN12 = 0x1; /* filter 12 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[5][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[5][7];
                 break;
             case 13:
                 /*Filter 13*/
@@ -358,6 +383,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT4bits.F13BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN13 = 0x1; /* filter 13 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[6][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[6][7];
                 break;
             case 14:
                 /*Filter 14*/
@@ -367,6 +393,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT4bits.F14BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN14 = 0x1; /* filter 14 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[7][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[7][7];
                 break;
             case 15:
                 /*Filter 15*/
@@ -376,6 +403,7 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 C1BUFPNT4bits.F15BP = 0xF; /*Store Hits in FIFO*/
                 C1FEN1bits.FLTEN15 = 0x1; /* filter 15 enabled*/
                 newMessage->payload = (CAN_payload_S*) & ecanSWMsgBuf[8][3];
+                newMessage->canMessageStatus = (uint8_t*) & ecanSWMsgBuf[8][7];
                 break;
             default:
                 break;
@@ -466,6 +494,12 @@ uint8_t CAN_write(CAN_message_S data) {
     return 0; /*message placed successfully on the bus */
 }
 
+uint8_t CAN_checkDataIsFresh(CAN_message_S * data){
+    uint8_t ret = *(data->canMessageStatus);
+    *(data->canMessageStatus) = 0;
+    return ret;
+}
+
 uint8_t CAN_RxDataIsReady() {
     return 0;
     if (C1RXFUL2 || (C1RXFUL1 & 0x8000)) {
@@ -510,18 +544,20 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
         C1INTFbits.RBIF = 0;
         if (temp < 15) {/*if RX event was to a static buffer*/
             C1RXFUL1 &= ~(1 << temp);
+            ecan1MsgBuf[temp][7] |= 0x01;
         } else {/*if RX event was in the FIFO*/
             uint16_t thisBuff = C1FIFObits.FNRB;
             if (thisBuff == 15) {
-                C1RXFUL1 = 0x7FF;
+                C1RXFUL1 &= ~(1 << 15);
             } else {
-                C1RXFUL2 = ~(1 << (temp - 0x10));
+                C1RXFUL2 &= ~(1 << (temp - 16));
             }
             uint8_t filterHit = (ecan1MsgBuf[thisBuff][7] >> 8);
             int i = 0;
-            for (i = 0; i < 8; i++) {
+            for (i = 0; i < NUM_OF_SW_CAN_BUFFERS; i++) {
                 ecanSWMsgBuf[filterHit - 7][i] = ecan1MsgBuf[thisBuff][i];
             }
+            ecanSWMsgBuf[filterHit - 7][7] |= 0x01;
         }
         can_print("RX_INT %d\n", temp);
         /*do something here...*/
@@ -582,3 +618,4 @@ void __attribute__((__interrupt__, auto_psv)) _C1RxRdyInterrupt(void) {
     _C1RXIF = 0;
     can_print("CAN RCVD\n");
 }
+

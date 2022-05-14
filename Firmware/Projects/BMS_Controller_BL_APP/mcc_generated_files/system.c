@@ -45,12 +45,12 @@
 // Configuration bits: selected in the GUI
 
 // FICD
-#pragma config ICS = PGD1    //ICD Communication Channel Select bits->Communicate on PGEC1 and PGED1
+#pragma config ICS = PGD2    //ICD Communication Channel Select bits->Communicate on PGEC1 and PGED1
 #pragma config JTAGEN = OFF    //JTAG Enable bit->JTAG is disabled
 
 // FPOR
-#pragma config ALTI2C1 = ON    //Alternate I2C1 pins->I2C1 mapped to ASDA1/ASCL1 pins
-#pragma config ALTI2C2 = ON    //Alternate I2C2 pins->I2C2 mapped to ASDA2/ASCL2 pins
+#pragma config ALTI2C1 = OFF    //Alternate I2C1 pins->I2C1 mapped to ASDA1/ASCL1 pins
+#pragma config ALTI2C2 = OFF    //Alternate I2C2 pins->I2C2 mapped to ASDA2/ASCL2 pins
 #pragma config WDTWIN = WIN25    //Watchdog Window Select bits->WDT Window is 25% of WDT period
 
 // FWDT
@@ -68,7 +68,7 @@
 
 // FOSCSEL
 #pragma config FNOSC = FRC    //Oscillator Source Selection->FRC
-#pragma config PWMLOCK = ON    //PWM Lock Enable bit->Certain PWM registers may only be written after key sequence
+//#pragma config PWMLOCK = ON    //PWM Lock Enable bit->Certain PWM registers may only be written after key sequence
 #pragma config IESO = OFF    //Two-speed Oscillator Start-up Enable bit->Start up with user-selected oscillator source
 
 // FGS
@@ -85,6 +85,7 @@
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
+    _RC5 = 1;
     CLOCK_Initialize();
     INTERRUPT_Initialize();
     INTERRUPT_GlobalEnable();

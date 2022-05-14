@@ -15,6 +15,7 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include <stddef.h>
 
 /****************************************************************************************
  module defines
@@ -30,11 +31,13 @@ typedef struct {
 typedef struct CAN_message_S {
     uint32_t canID;
     uint8_t canXID;
-    volatile CAN_payload_S * payload;
+    CAN_payload_S * payload;
+    uint8_t * canMessageStatus;
 } CAN_message_S;
 
 /* mode types */
 #define CAN_NORMAL 0
+#define CAN_DISABLE 1
 #define CAN_LOOPBACK 2
 
 /* Baud Rates */
@@ -96,5 +99,12 @@ uint8_t CAN_RxDataIsReady();
  */
 uint8_t CAN_write(CAN_message_S data);
 
+
+/**
+ * Checks if data is fresh.
+ * @param data
+ * @return 1 if fresh, 0 if stale.
+ */
+uint8_t CAN_checkDataIsFresh(CAN_message_S * data);
 
 #endif /* CAN_FUNC_H */

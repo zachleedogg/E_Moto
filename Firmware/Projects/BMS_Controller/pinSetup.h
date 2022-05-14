@@ -26,11 +26,7 @@
 /*COMUNICATION*/
 //#define UART_TX RP120_OUT
 //#define UART_RX RPI121_IN
-#ifdef DEBUG_502
 #define CAN_TX RP36_OUT
-#else 
-#define CAN_TX RP96_OUT
-#endif
 #define CAN_RX RPI20_IN
 
 #define TFT_LCD_CS PIN_DEF(B,10)
