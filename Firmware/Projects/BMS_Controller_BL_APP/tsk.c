@@ -77,7 +77,7 @@ void Tsk_init(void) {
     PinSetup_Init(); //Pin setup should be first
     CAN_DBC_init(); //Init the CAN System Service
     StateMachine_Init();
-    SET_CAN_SLEEP_EN(LOW);
+    SET_SW_EN(HIGH);
     
 #if DEBUG
     Uart1Write("Hello World, Task Init Done.\n"); //hi
@@ -96,7 +96,7 @@ void Tsk(void) {
  * Runs every 1ms
  */
 void Tsk_1ms(void) {
-    run_iso_tp_basic();
+    //run_iso_tp_basic();
 }
 
 
@@ -104,7 +104,7 @@ void Tsk_1ms(void) {
  * Runs every 5ms
  */
 void Tsk_5ms(void) {
-    StateMachine_Run();
+    //StateMachine_Run();
 }
 
 /**
@@ -144,8 +144,8 @@ void Tsk_1000ms(void) {
     if (i > 15){
         i = 0;
     }
-    CAN_bms_charger_request_output_voltage_high_byte_set(i++);
-    CAN_bms_charger_request_send();
+    //CAN_bms_charger_request_output_voltage_high_byte_set(i++);
+    //CAN_bms_charger_request_send();
 
 }
 
@@ -158,14 +158,12 @@ void Tsk_1000ms(void) {
 void Tsk_Sleep(void) {
     SysTick_Stop(); //does this idea need clean-up? is this the best way?
     SET_SW_EN(LOW);
-    SET_CAN_SLEEP_EN(HIGH); //same
     SET_DEBUG_LED_EN(LOW); //same
     
     SleepNow(); //Go to sleep
     
     SysTick_Resume();
     SET_SW_EN(HIGH);
-    SET_CAN_SLEEP_EN(LOW); //same
 #if DEBUG
     Uart1Write("waking From Sleep");
 #endif

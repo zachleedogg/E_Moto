@@ -201,6 +201,15 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
     return 0;
 }
 
+CAN_changeOpMode(uint8_t opMode){
+    /* CAN is ready for transmit / receive, place in normal or loopback mode */
+    C1CTRL1bits.REQOP = opMode;
+        while (C1CTRL1bits.OPMODE != opMode) {
+            ;
+        }
+    return 0;
+}
+
 uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
     uint8_t returnVal = 1;
     uint16_t SID;
@@ -610,39 +619,3 @@ void __attribute__((__interrupt__, auto_psv)) _C1RxRdyInterrupt(void) {
     can_print("CAN RCVD\n");
 }
 
-
-uint16_t bitWidth = sizeof(size_t)*8;
-
-uint16_t set_bits(CAN_payload_S * payload, uint8_t offset, uint8_t range, uint16_t value){
-    if (value >= 1 << range){ //ensure value can fit in desired range
-        //printf("failed to set. Invalid value\n");
-        return 1;
-    }
-    uint16_t word = (offset / bitWidth);  //find the word offset from bit offset
-    uint16_t shift = offset - word*bitWidth;  //find shift amount required from start of word
-    size_t * address = ((size_t*)payload)+word;  //get address of the word
-    size_t mask = ((1 << range)-1)<<shift;  //create a mask the size of our value
-    *address &= ~mask;  //clear only the bits that will hold our value
-    *address |= (size_t)value << (shift);  //shift our value into position and OR them into the word.
-    if (shift + range >= bitWidth){  //if the value wraps around to the next word, run the algo again.
-        address += 1;  //get the next word
-        size_t newValue = value >> (bitWidth - shift);  //shift out the bits we have already written
-        set_bits(payload, bitWidth*(word+1), (range - (bitWidth - shift)), newValue);  //run the algo again with ramaining piece of value and new offset
-    }
-    return 0;
-}
-
-uint16_t get_bits(CAN_payload_S * payload, uint8_t offset, uint8_t range){
-    uint16_t word = (offset / bitWidth);  //find word offset from bit offset
-    uint16_t shift = offset - word*bitWidth;  //find shift amount required from start of word
-    size_t * address = ((size_t*)payload)+word;  //get address of the word
-    size_t val = *address >> shift;  //shift the bits, get desired value
-    if (shift + range > bitWidth){  //if the value wraps around to the next word, run the algo again.
-        address += 1;  //get the next word
-        uint16_t newRange = range-(bitWidth-shift);  //calculate how many bits are left to get
-        val += (get_bits(payload, bitWidth*(word+1), newRange) << (bitWidth-shift));  //run algo again, and shift the next set of bits into our result
-    } else{  //the value is in the LSB position but we need to mask everything above it.
-        val &= (1 << range)-1;  //create a mask the same length as our value and mask the result
-    }
-    return val;
-}

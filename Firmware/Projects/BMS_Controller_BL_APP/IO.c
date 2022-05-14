@@ -47,10 +47,6 @@ void SET_SW_EN(uint8_t state) {
     PINS_write(SW_EN, state);
 }
 
-void SET_CAN_SLEEP_EN(uint8_t state) {
-    PINS_write(CAN_SLEEP_EN, state);
-}
-
 /*INPUTS*/
 
 uint8_t GET_DEBUG_LED_EN(void) {
@@ -61,9 +57,7 @@ uint8_t GET_SW_EN(void) {
     return PINS_read(SW_EN);
 }
 
-uint8_t GET_CAN_SLEEP_EN(void) {
-    return PINS_read(CAN_SLEEP_EN);
-}
+
 
 
 /*** End of File **************************************************************/

@@ -1,0 +1,1 @@
+hexmate r0-5FFF,../../../BMS_Bootloader.X/dist/default/production/BMS_Bootloader.X.production.hex r6000-14FFF,../../dist/default/production/BMS_App.X.production.hex r15000-FFFFFFFF,../../../BMS_Bootloader.X/dist/default/production/BMS_Bootloader.X.production.hex -O../../dist/default/production/combined.production.hex

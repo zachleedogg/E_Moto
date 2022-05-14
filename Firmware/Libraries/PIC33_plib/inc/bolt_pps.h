@@ -77,6 +77,7 @@
 #define RP87_IN 0x57
 #define RPI88_IN 0x58
 #define RPI89_IN 0x59
+#define RPI96_IN 0x60
 #define RP109_IN 0x6D
 #define RP112_IN 0x70
 #define RP113_IN 0x71

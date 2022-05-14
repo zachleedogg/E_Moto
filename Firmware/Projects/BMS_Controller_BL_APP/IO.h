@@ -18,7 +18,6 @@
  */
 void SET_DEBUG_LED_EN(uint8_t state);
 void SET_SW_EN(uint8_t state);
-void SET_CAN_SLEEP_EN(uint8_t state);
 
 /**
  * GET_xxxx will return the state of a digital input or output
@@ -26,7 +25,6 @@ void SET_CAN_SLEEP_EN(uint8_t state);
  */
 uint8_t GET_DEBUG_LED_EN(void);
 uint8_t GET_SW_EN(void);
-uint8_t GET_CAN_SLEEP_EN(void);
 
 
 /**
