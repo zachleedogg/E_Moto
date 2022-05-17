@@ -6,7 +6,8 @@
                 {
                     "name": "status",
                     "id": null,
-                    "freq":10,
+                    "x_id": 0,
+                    "freq": 10,
                     "consumers": [
                         "mcu"
                     ],
@@ -14,89 +15,52 @@
                         {
                             "name": "heartBeat",
                             "length": 4,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "state",
                             "length": 3,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "sleep",
-                                "welcome",
-                                "locked",
-                                "safe",
-                                "running",
-                                "charging"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "killButton",
                             "length": 2,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "On",
-								"Off",
-								"Pressed"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "ignButton",
                             "length": 2,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "On",
-								"Off",
-								"Pressed"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "modeButton",
                             "length": 2,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "On",
-								"Off",
-								"Pressed"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "selectButton",
                             "length": 2,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "On",
-								"Off",
-								"Pressed"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "driveMode",
                             "length": 3,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "Econ",
-								"Sport",
-								"Demo1",
-								"Demo2",
-								"Custom"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
                 {
                     "name": "command",
                     "id": null,
-                    "freq":10,
+                    "x_id": 0,
+                    "freq": 10,
                     "consumers": [
                         "mcu"
                     ],
@@ -104,52 +68,32 @@
                         {
                             "name": "ignitionRequest",
                             "length": 1,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "killRequest",
                             "length": 1,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "batteryEjectRequest",
                             "length": 1,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "lightsRequest",
                             "length": 1,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "hornRequest",
                             "length": 1,
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
@@ -157,98 +101,69 @@
                     "name": "data1",
                     "id": 403105269,
                     "x_id": 1,
-                    "freq":10,
+                    "freq": 10,
                     "consumers": [
                         "mcu"
                     ],
                     "signals": [
                         {
                             "name": "speed",
-                            "length": "16",
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                
-                            ]
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "odometer",
-                            "length": "16",
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "tripA",
-                            "length": "16",
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "tripB",
-                            "length": "16",
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
                 {
                     "name": "data2",
                     "id": null,
-                    "freq":10,
+                    "x_id": 0,
+                    "freq": 10,
                     "consumers": [
                         "mcu"
                     ],
                     "signals": [
                         {
                             "name": "runningTime",
-                            "length": "16",
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                
-                            ]
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "odometer",
-                            "length": "16",
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "tripA",
-                            "length": "16",
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "tripB",
-                            "length": "16",
-                            "scale": 1,
-                            "offset": 0,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 }
@@ -260,7 +175,8 @@
                 {
                     "name": "status",
                     "id": null,
-                    "freq":10,
+                    "x_id": 0,
+                    "freq": 10,
                     "consumers": [
                         "dash",
                         "bms"
@@ -268,104 +184,148 @@
                     "signals": [
                         {
                             "name": "state",
-                            "length": "3"
+                            "length": 3,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "throttleMode",
-                            "length": "3"
+                            "length": 3,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "highBeam",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "lowBeam",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "brakeLight",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "tailLight",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "horn",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "turnSignalFR",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "turnSignalFL",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "turnSignalRR",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "turnSignalRL",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "GBSALL",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "contactor",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "chargePort",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "brakeSwitchFront",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "brakeSwitchRear",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "throttleVal",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
                 {
                     "name": "command",
                     "id": null,
-                    "freq":10,
+                    "x_id": 0,
+                    "freq": 10,
                     "signals": [
                         {
                             "name": "DCDC_enable",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "ev_charger_enable",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "motor_controller_enable",
-                            "length": "1"
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
                 {
                     "name": "motorControllerRequest",
                     "id": 1792,
-                    "freq":1,
+                    "x_id": 0,
+                    "freq": 1,
                     "consumers": [
                         "motorcontroller"
                     ],
                     "signals": [
                         {
                             "name": "requestType",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 }
@@ -377,7 +337,8 @@
                 {
                     "name": "status",
                     "id": null,
-                    "freq":10,
+                    "x_id": 0,
+                    "freq": 10,
                     "consumers": [
                         "mcu",
                         "dash"
@@ -385,76 +346,104 @@
                     "signals": [
                         {
                             "name": "state",
-                            "length": "3"
+                            "length": 3,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "SOC",
-                            "length": "7"
+                            "length": 7,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "packVoltage",
-                            "length": "16"
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "packCurrent",
-                            "length": "16"
+                            "length": 16,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "minTemp",
-                            "length": "12"
+                            "length": 12,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "maxTemp",
-                            "length": "12"
+                            "length": 12,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
                 {
                     "name": "boot_response",
                     "id": 162,
+                    "x_id": 0,
                     "freq": "",
                     "consumers": [
                         "boot_host"
-                        ],
+                    ],
                     "signals": [
                         {
                             "name": "code",
-                            "scale": "",
-                            "length": "4"
+                            "length": 4,
+                            "scale": 1.0,
+                            "offset": 0
                         },
-                                                {
+                        {
                             "name": "type",
-                            "scale": "",
-                            "length": "4"
+                            "length": 4,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte1",
-                            "scale": "",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte2",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte3",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte4",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte5",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte6",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte7",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
@@ -462,7 +451,7 @@
                     "name": "charger_request",
                     "id": 403105268,
                     "x_id": 1,
-                    "freq":1000,
+                    "freq": 1000,
                     "consumers": [
                         "charger",
                         "dash"
@@ -470,81 +459,104 @@
                     "signals": [
                         {
                             "name": "output_voltage_high_byte",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "output_voltage_low_byte",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "output_current_high_byte",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "output_current_low_byte",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "start_charge_request",
                             "length": 8,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "charge_mode",
                             "length": 8,
-                            "values": [
-                                "charging",
-                                "heating"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "packCurrent",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte_7",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte_8",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
                 {
                     "name": "cellVoltages",
                     "id": null,
-                    "freq":10,
+                    "x_id": 0,
+                    "freq": 10,
                     "consumers": [
                         "dash"
                     ],
                     "signals": [
                         {
                             "name": "MultiPlex",
-                            "length": "4"
+                            "length": 4,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "cell1",
-                            "length": "12"
+                            "length": 12,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "cell2",
-                            "length": "12"
+                            "length": 12,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "cell3",
-                            "length": "12"
+                            "length": 12,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "cell4",
-                            "length": "12"
+                            "length": 12,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "cell5",
-                            "length": "12"
+                            "length": 12,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 }
@@ -556,48 +568,66 @@
                 {
                     "name": "motorStatus",
                     "id": null,
-                    "freq":10,
+                    "x_id": 0,
+                    "freq": 10,
                     "consumers": [
                         "mcu"
                     ],
                     "signals": [
                         {
                             "name": "motorSpeed",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "motorCurrent",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "IphaseA",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "IphaseB",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "IphaseC",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "VphaseA",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "VphaseB",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "VphaseC",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 },
                 {
                     "name": "response",
                     "id": 1792,
+                    "x_id": 0,
                     "freq": null,
                     "consumers": [
                         "mcu"
@@ -605,35 +635,51 @@
                     "signals": [
                         {
                             "name": "byte1",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte2",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte3",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte4",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte5",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte6",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte7",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte8",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 }
@@ -646,80 +692,76 @@
                     "name": "status",
                     "id": 419385573,
                     "x_id": 1,
-                    "freq":1000,
+                    "freq": 1000,
                     "consumers": [
                         "bms"
                     ],
                     "signals": [
                         {
                             "name": "output_voltage_high_byte",
-                            "scale": "10",
-                            "offset": "255",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 10.0,
+                            "offset": "255"
                         },
                         {
                             "name": "output_voltage_low_byte",
-                            "scale": "10",
-                            "offset": "255",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 10.0,
+                            "offset": "255"
                         },
                         {
                             "name": "output_current_high_byte",
-                            "scale": "10",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 10.0,
+                            "offset": 0
                         },
                         {
                             "name": "output_current_low_byte",
-                            "scale": "10",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 10.0,
+                            "offset": 0
                         },
                         {
                             "name": "hardware_error",
                             "length": 1,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "charger_overtemp_error",
                             "length": 1,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "input_voltage_error",
                             "length": 1,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "battery_detect_error",
                             "length": 1,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "communication_error",
                             "length": 1,
-                            "values": [
-                                "low",
-                                "high"
-                            ]
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte7",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte8",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 }
@@ -732,51 +774,64 @@
                     "name": "bms",
                     "id": 161,
                     "x_id": 0,
-                    "freq":1,
+                    "freq": 1,
                     "consumers": [
                         "bms"
                     ],
                     "signals": [
                         {
                             "name": "code",
-                            "scale": "",
-                            "offset": "",
-                            "length": "4"
+                            "length": 4,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "type",
-                            "scale": "",
-                            "offset": 4,
-                            "length": "4"
+                            "length": 4,
+                            "scale": 1.0,
+                            "offset": 4
                         },
                         {
                             "name": "byte1",
-                            "scale": "",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte2",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte3",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte4",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte5",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte6",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         },
                         {
                             "name": "byte7",
-                            "length": "8"
+                            "length": 8,
+                            "scale": 1.0,
+                            "offset": 0
                         }
                     ]
                 }
