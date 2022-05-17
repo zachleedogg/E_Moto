@@ -54,6 +54,20 @@ void CAN_bms_status_maxTemp_set(uint16_t maxTemp);
 void CAN_bms_status_send(void);
 
 
+void CAN_bms_status_2_DCDC_state_set(uint16_t DCDC_state);
+void CAN_bms_status_2_DCDC_fault_set(uint16_t DCDC_fault);
+void CAN_bms_status_2_DCDC_voltage_set(uint16_t DCDC_voltage);
+void CAN_bms_status_2_DCDC_current_set(uint16_t DCDC_current);
+void CAN_bms_status_2_EV_charger_state_set(uint16_t EV_charger_state);
+void CAN_bms_status_2_EV_charger_fault_set(uint16_t EV_charger_fault);
+void CAN_bms_status_2_EV_charger_voltage_set(uint16_t EV_charger_voltage);
+void CAN_bms_status_2_EV_charger_current_set(uint16_t EV_charger_current);
+void CAN_bms_status_2_HV_precharge_state_set(uint16_t HV_precharge_state);
+void CAN_bms_status_2_HV_contactor_state_set(uint16_t HV_contactor_state);
+void CAN_bms_status_2_HV_bus_voltage_set(uint16_t HV_bus_voltage);
+void CAN_bms_status_2_send(void);
+
+
 void CAN_bms_boot_response_code_set(uint16_t code);
 void CAN_bms_boot_response_type_set(uint16_t type);
 void CAN_bms_boot_response_byte1_set(uint16_t byte1);
@@ -72,7 +86,6 @@ void CAN_bms_charger_request_output_current_high_byte_set(uint16_t output_curren
 void CAN_bms_charger_request_output_current_low_byte_set(uint16_t output_current_low_byte);
 void CAN_bms_charger_request_start_charge_request_set(uint16_t start_charge_request);
 void CAN_bms_charger_request_charge_mode_set(uint16_t charge_mode);
-void CAN_bms_charger_request_packCurrent_set(uint16_t packCurrent);
 void CAN_bms_charger_request_byte_7_set(uint16_t byte_7);
 void CAN_bms_charger_request_byte_8_set(uint16_t byte_8);
 void CAN_bms_charger_request_send(void);
@@ -83,7 +96,6 @@ void CAN_bms_cellVoltages_cell1_set(uint16_t cell1);
 void CAN_bms_cellVoltages_cell2_set(uint16_t cell2);
 void CAN_bms_cellVoltages_cell3_set(uint16_t cell3);
 void CAN_bms_cellVoltages_cell4_set(uint16_t cell4);
-void CAN_bms_cellVoltages_cell5_set(uint16_t cell5);
 void CAN_bms_cellVoltages_send(void);
 
 

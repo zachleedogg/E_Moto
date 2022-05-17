@@ -43,6 +43,8 @@
         <itemPath>../../CAN/generated/bms_dbc.h</itemPath>
         <itemPath>ltc_6802.h</itemPath>
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_spi.h</itemPath>
+        <itemPath>can_populate.h</itemPath>
+        <itemPath>ev_charger.h</itemPath>
       </logicalFolder>
       <itemPath>can_iso_tp.h</itemPath>
     </logicalFolder>
@@ -94,6 +96,8 @@
         <itemPath>pinSetup.c</itemPath>
         <itemPath>../../CAN/generated/bms_dbc.c</itemPath>
         <itemPath>ltc_6802.c</itemPath>
+        <itemPath>can_populate.c</itemPath>
+        <itemPath>ev_charger.c</itemPath>
       </logicalFolder>
       <itemPath>can_iso_tp.c</itemPath>
     </logicalFolder>
@@ -330,6 +334,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

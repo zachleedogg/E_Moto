@@ -62,6 +62,7 @@ Copyright (c) [2012-2022] Microchip Technology Inc.
 #include "boot_process.h"
 #include "mcc_generated_files/tmr1.h"
 #include "mcc_generated_files/can1.h"
+#include "mcc_generated_files/pin_manager.h"
 
 #define DOWNLOADED_IMAGE    0u
 #define EXECUTION_IMAGE     0u
@@ -82,6 +83,10 @@ void BOOT_DEMO_Initialize(void)
 
 void BOOT_DEMO_Tasks(void)
 {
+    
+    if (BOOT_ProcessCommand() == BOOT_COMMAND_SUCCESS){
+        bootloadLastTime = TMR1_SoftwareCounterGet();
+    }
 
     if (BOOT_Verify()){
         if (TMR1_SoftwareCounterGet() - bootloadLastTime > bootloadTimeOutTime){
@@ -92,13 +97,10 @@ void BOOT_DEMO_Tasks(void)
              //#warning "All interrupt sources and peripherals should be disabled before starting the application.  Add any code required here to disable all interrupts and peripherals used in the bootloader."
 
             TMR1_Stop();
-            //CAN1_OperationModeSet(CAN_DISABLE_MODE);
+            CAN1_OperationModeSet(CAN_DISABLE_MODE);
+            SW_EN_SetLow();
             BOOT_StartApplication();
         }
     }
-  
-    
-    if (BOOT_ProcessCommand() == BOOT_COMMAND_SUCCESS){
-        bootloadLastTime = TMR1_SoftwareCounterGet();
-    }
+
 }

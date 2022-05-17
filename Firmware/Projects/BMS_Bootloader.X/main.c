@@ -75,7 +75,7 @@ void TMR1_CallBack(void)
     //Blink the Debug LED
     counter_led++;
     if (counter_led == 250){
-        IO_RC5_Toggle();
+        DEBUG_LED_Toggle();
         counter_led = 0;
     }
     
@@ -94,6 +94,7 @@ int main(void)
     
     SYSTEM_Initialize();
     BOOT_DEMO_Initialize();
+    SW_EN_SetHigh();
     
     CAN_TP_Initialize();
     CAN_TP_RxMessageBufferSet(rxBuffer, sizeof(rxBuffer)); 

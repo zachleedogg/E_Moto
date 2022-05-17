@@ -19,6 +19,7 @@
 #include "bolt_pps.h"
 //#include "bolt_sleep.h"
 #include <xc.h>
+#include "clock.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -112,10 +113,10 @@ void PinSetup_Init(void) {
     pwmOCinit(CONTACTOR_2_PWM);
     pwmOCwriteFreq(CONTACTOR_2_PWM, 3000); //20kHz
     /*UART*/
-    Uart1INIT(UART_TX, UART_RX, UART_BAUD_115200);
+    //Uart1INIT(UART_TX, UART_RX, UART_BAUD_115200);
     
     /*CAN*/
-    CAN_Init(CAN_TX, CAN_RX, CAN_BAUD_500k, CAN_DISABLE);
+    CAN_Init(CAN_TX, CAN_RX, CAN_BAUD_500k, CAN_DISABLE, CLOCK_SystemFrequencyGet());
     
 
 }

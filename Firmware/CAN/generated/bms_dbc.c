@@ -149,16 +149,16 @@ static CAN_message_S CAN_bms_status={
 
 #define CAN_BMS_STATUS_STATE_RANGE 3
 #define CAN_BMS_STATUS_STATE_OFFSET 0
-#define CAN_BMS_STATUS_SOC_RANGE 7
+#define CAN_BMS_STATUS_SOC_RANGE 8
 #define CAN_BMS_STATUS_SOC_OFFSET 3
 #define CAN_BMS_STATUS_PACKVOLTAGE_RANGE 16
-#define CAN_BMS_STATUS_PACKVOLTAGE_OFFSET 10
+#define CAN_BMS_STATUS_PACKVOLTAGE_OFFSET 11
 #define CAN_BMS_STATUS_PACKCURRENT_RANGE 16
-#define CAN_BMS_STATUS_PACKCURRENT_OFFSET 26
-#define CAN_BMS_STATUS_MINTEMP_RANGE 12
-#define CAN_BMS_STATUS_MINTEMP_OFFSET 42
-#define CAN_BMS_STATUS_MAXTEMP_RANGE 12
-#define CAN_BMS_STATUS_MAXTEMP_OFFSET 54
+#define CAN_BMS_STATUS_PACKCURRENT_OFFSET 27
+#define CAN_BMS_STATUS_MINTEMP_RANGE 8
+#define CAN_BMS_STATUS_MINTEMP_OFFSET 43
+#define CAN_BMS_STATUS_MAXTEMP_RANGE 8
+#define CAN_BMS_STATUS_MAXTEMP_OFFSET 51
 
 void CAN_bms_status_state_set(uint16_t state){
 	set_bits((size_t*)CAN_bms_status.payload, CAN_BMS_STATUS_STATE_OFFSET, CAN_BMS_STATUS_STATE_RANGE, state);
@@ -180,6 +180,76 @@ void CAN_bms_status_maxTemp_set(uint16_t maxTemp){
 }
 void CAN_bms_status_send(void){
 	CAN_write(CAN_bms_status);
+}
+
+#define CAN_bms_status_2_ID 0x722
+
+static CAN_payload_S CAN_bms_status_2_payload __attribute__((aligned(sizeof(CAN_payload_S))));
+static CAN_message_S CAN_bms_status_2={
+	.canID = CAN_bms_status_2_ID,
+	.canXID = 0x0,
+	.payload = &CAN_bms_status_2_payload,
+	.canMessageStatus = 0
+};
+
+#define CAN_BMS_STATUS_2_DCDC_STATE_RANGE 1
+#define CAN_BMS_STATUS_2_DCDC_STATE_OFFSET 0
+#define CAN_BMS_STATUS_2_DCDC_FAULT_RANGE 1
+#define CAN_BMS_STATUS_2_DCDC_FAULT_OFFSET 1
+#define CAN_BMS_STATUS_2_DCDC_VOLTAGE_RANGE 8
+#define CAN_BMS_STATUS_2_DCDC_VOLTAGE_OFFSET 2
+#define CAN_BMS_STATUS_2_DCDC_CURRENT_RANGE 8
+#define CAN_BMS_STATUS_2_DCDC_CURRENT_OFFSET 10
+#define CAN_BMS_STATUS_2_EV_CHARGER_STATE_RANGE 1
+#define CAN_BMS_STATUS_2_EV_CHARGER_STATE_OFFSET 18
+#define CAN_BMS_STATUS_2_EV_CHARGER_FAULT_RANGE 1
+#define CAN_BMS_STATUS_2_EV_CHARGER_FAULT_OFFSET 19
+#define CAN_BMS_STATUS_2_EV_CHARGER_VOLTAGE_RANGE 8
+#define CAN_BMS_STATUS_2_EV_CHARGER_VOLTAGE_OFFSET 20
+#define CAN_BMS_STATUS_2_EV_CHARGER_CURRENT_RANGE 8
+#define CAN_BMS_STATUS_2_EV_CHARGER_CURRENT_OFFSET 28
+#define CAN_BMS_STATUS_2_HV_PRECHARGE_STATE_RANGE 1
+#define CAN_BMS_STATUS_2_HV_PRECHARGE_STATE_OFFSET 36
+#define CAN_BMS_STATUS_2_HV_CONTACTOR_STATE_RANGE 1
+#define CAN_BMS_STATUS_2_HV_CONTACTOR_STATE_OFFSET 37
+#define CAN_BMS_STATUS_2_HV_BUS_VOLTAGE_RANGE 8
+#define CAN_BMS_STATUS_2_HV_BUS_VOLTAGE_OFFSET 38
+
+void CAN_bms_status_2_DCDC_state_set(uint16_t DCDC_state){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_DCDC_STATE_OFFSET, CAN_BMS_STATUS_2_DCDC_STATE_RANGE, DCDC_state);
+}
+void CAN_bms_status_2_DCDC_fault_set(uint16_t DCDC_fault){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_DCDC_FAULT_OFFSET, CAN_BMS_STATUS_2_DCDC_FAULT_RANGE, DCDC_fault);
+}
+void CAN_bms_status_2_DCDC_voltage_set(uint16_t DCDC_voltage){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_DCDC_VOLTAGE_OFFSET, CAN_BMS_STATUS_2_DCDC_VOLTAGE_RANGE, DCDC_voltage);
+}
+void CAN_bms_status_2_DCDC_current_set(uint16_t DCDC_current){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_DCDC_CURRENT_OFFSET, CAN_BMS_STATUS_2_DCDC_CURRENT_RANGE, DCDC_current);
+}
+void CAN_bms_status_2_EV_charger_state_set(uint16_t EV_charger_state){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_EV_CHARGER_STATE_OFFSET, CAN_BMS_STATUS_2_EV_CHARGER_STATE_RANGE, EV_charger_state);
+}
+void CAN_bms_status_2_EV_charger_fault_set(uint16_t EV_charger_fault){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_EV_CHARGER_FAULT_OFFSET, CAN_BMS_STATUS_2_EV_CHARGER_FAULT_RANGE, EV_charger_fault);
+}
+void CAN_bms_status_2_EV_charger_voltage_set(uint16_t EV_charger_voltage){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_EV_CHARGER_VOLTAGE_OFFSET, CAN_BMS_STATUS_2_EV_CHARGER_VOLTAGE_RANGE, EV_charger_voltage);
+}
+void CAN_bms_status_2_EV_charger_current_set(uint16_t EV_charger_current){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_EV_CHARGER_CURRENT_OFFSET, CAN_BMS_STATUS_2_EV_CHARGER_CURRENT_RANGE, EV_charger_current);
+}
+void CAN_bms_status_2_HV_precharge_state_set(uint16_t HV_precharge_state){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_HV_PRECHARGE_STATE_OFFSET, CAN_BMS_STATUS_2_HV_PRECHARGE_STATE_RANGE, HV_precharge_state);
+}
+void CAN_bms_status_2_HV_contactor_state_set(uint16_t HV_contactor_state){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_HV_CONTACTOR_STATE_OFFSET, CAN_BMS_STATUS_2_HV_CONTACTOR_STATE_RANGE, HV_contactor_state);
+}
+void CAN_bms_status_2_HV_bus_voltage_set(uint16_t HV_bus_voltage){
+	set_bits((size_t*)CAN_bms_status_2.payload, CAN_BMS_STATUS_2_HV_BUS_VOLTAGE_OFFSET, CAN_BMS_STATUS_2_HV_BUS_VOLTAGE_RANGE, HV_bus_voltage);
+}
+void CAN_bms_status_2_send(void){
+	CAN_write(CAN_bms_status_2);
 }
 
 #define CAN_bms_boot_response_ID 0xa2
@@ -264,12 +334,10 @@ static CAN_message_S CAN_bms_charger_request={
 #define CAN_BMS_CHARGER_REQUEST_START_CHARGE_REQUEST_OFFSET 32
 #define CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_RANGE 8
 #define CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_OFFSET 40
-#define CAN_BMS_CHARGER_REQUEST_PACKCURRENT_RANGE 8
-#define CAN_BMS_CHARGER_REQUEST_PACKCURRENT_OFFSET 48
 #define CAN_BMS_CHARGER_REQUEST_BYTE_7_RANGE 8
-#define CAN_BMS_CHARGER_REQUEST_BYTE_7_OFFSET 56
+#define CAN_BMS_CHARGER_REQUEST_BYTE_7_OFFSET 48
 #define CAN_BMS_CHARGER_REQUEST_BYTE_8_RANGE 8
-#define CAN_BMS_CHARGER_REQUEST_BYTE_8_OFFSET 64
+#define CAN_BMS_CHARGER_REQUEST_BYTE_8_OFFSET 56
 
 void CAN_bms_charger_request_output_voltage_high_byte_set(uint16_t output_voltage_high_byte){
 	set_bits((size_t*)CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_OUTPUT_VOLTAGE_HIGH_BYTE_OFFSET, CAN_BMS_CHARGER_REQUEST_OUTPUT_VOLTAGE_HIGH_BYTE_RANGE, output_voltage_high_byte);
@@ -289,9 +357,6 @@ void CAN_bms_charger_request_start_charge_request_set(uint16_t start_charge_requ
 void CAN_bms_charger_request_charge_mode_set(uint16_t charge_mode){
 	set_bits((size_t*)CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_OFFSET, CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_RANGE, charge_mode);
 }
-void CAN_bms_charger_request_packCurrent_set(uint16_t packCurrent){
-	set_bits((size_t*)CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_PACKCURRENT_OFFSET, CAN_BMS_CHARGER_REQUEST_PACKCURRENT_RANGE, packCurrent);
-}
 void CAN_bms_charger_request_byte_7_set(uint16_t byte_7){
 	set_bits((size_t*)CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_BYTE_7_OFFSET, CAN_BMS_CHARGER_REQUEST_BYTE_7_RANGE, byte_7);
 }
@@ -302,7 +367,7 @@ void CAN_bms_charger_request_send(void){
 	CAN_write(CAN_bms_charger_request);
 }
 
-#define CAN_bms_cellVoltages_ID 0x724
+#define CAN_bms_cellVoltages_ID 0x725
 
 static CAN_payload_S CAN_bms_cellVoltages_payload __attribute__((aligned(sizeof(CAN_payload_S))));
 static CAN_message_S CAN_bms_cellVoltages={
@@ -312,18 +377,16 @@ static CAN_message_S CAN_bms_cellVoltages={
 	.canMessageStatus = 0
 };
 
-#define CAN_BMS_CELLVOLTAGES_MULTIPLEX_RANGE 4
+#define CAN_BMS_CELLVOLTAGES_MULTIPLEX_RANGE 8
 #define CAN_BMS_CELLVOLTAGES_MULTIPLEX_OFFSET 0
 #define CAN_BMS_CELLVOLTAGES_CELL1_RANGE 12
-#define CAN_BMS_CELLVOLTAGES_CELL1_OFFSET 4
+#define CAN_BMS_CELLVOLTAGES_CELL1_OFFSET 8
 #define CAN_BMS_CELLVOLTAGES_CELL2_RANGE 12
-#define CAN_BMS_CELLVOLTAGES_CELL2_OFFSET 16
+#define CAN_BMS_CELLVOLTAGES_CELL2_OFFSET 20
 #define CAN_BMS_CELLVOLTAGES_CELL3_RANGE 12
-#define CAN_BMS_CELLVOLTAGES_CELL3_OFFSET 28
+#define CAN_BMS_CELLVOLTAGES_CELL3_OFFSET 32
 #define CAN_BMS_CELLVOLTAGES_CELL4_RANGE 12
-#define CAN_BMS_CELLVOLTAGES_CELL4_OFFSET 40
-#define CAN_BMS_CELLVOLTAGES_CELL5_RANGE 12
-#define CAN_BMS_CELLVOLTAGES_CELL5_OFFSET 52
+#define CAN_BMS_CELLVOLTAGES_CELL4_OFFSET 44
 
 void CAN_bms_cellVoltages_MultiPlex_set(uint16_t MultiPlex){
 	set_bits((size_t*)CAN_bms_cellVoltages.payload, CAN_BMS_CELLVOLTAGES_MULTIPLEX_OFFSET, CAN_BMS_CELLVOLTAGES_MULTIPLEX_RANGE, MultiPlex);
@@ -339,9 +402,6 @@ void CAN_bms_cellVoltages_cell3_set(uint16_t cell3){
 }
 void CAN_bms_cellVoltages_cell4_set(uint16_t cell4){
 	set_bits((size_t*)CAN_bms_cellVoltages.payload, CAN_BMS_CELLVOLTAGES_CELL4_OFFSET, CAN_BMS_CELLVOLTAGES_CELL4_RANGE, cell4);
-}
-void CAN_bms_cellVoltages_cell5_set(uint16_t cell5){
-	set_bits((size_t*)CAN_bms_cellVoltages.payload, CAN_BMS_CELLVOLTAGES_CELL5_OFFSET, CAN_BMS_CELLVOLTAGES_CELL5_RANGE, cell5);
 }
 void CAN_bms_cellVoltages_send(void){
 	CAN_write(CAN_bms_cellVoltages);
@@ -493,6 +553,7 @@ void CAN_DBC_init(void) {
 
 void CAN_send_10ms(void){
 	CAN_bms_status_send();
+	CAN_bms_status_2_send();
 	CAN_bms_cellVoltages_send();
 }
 

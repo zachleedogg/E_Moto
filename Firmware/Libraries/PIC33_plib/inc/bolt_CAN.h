@@ -39,6 +39,8 @@ typedef struct CAN_message_S {
 #define CAN_NORMAL 0
 #define CAN_DISABLE 1
 #define CAN_LOOPBACK 2
+#define CAN_LISTEN 3
+#define CAN_CONFIG 4
 
 /* Baud Rates */
 #define CAN_BAUD_125k 125000
@@ -68,12 +70,19 @@ typedef struct CAN_message_S {
          baud rate
  return: success / failure
  */
-#define CAN_Init(TX_PIN, RX_PIN, BAUD, MODE) \
+#define CAN_Init(TX_PIN, RX_PIN, BAUD, MODE, SYSTEM_FREQ) \
 _C1RXR=RX_PIN; \
 TX_PIN=14; \
-CAN_init(BAUD, MODE) \
+CAN_init(BAUD, MODE, SYSTEM_FREQ) \
 
-uint8_t CAN_init(uint32_t baud, uint8_t mode);
+uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq);
+
+/**
+ * 
+ * @param opMode
+ * @return 
+ */
+uint8_t CAN_changeOpMode(uint8_t opMode);
 
 /**
  * CAN_configureMailbox configures mailboxes 0-15 to accept an exact ID match

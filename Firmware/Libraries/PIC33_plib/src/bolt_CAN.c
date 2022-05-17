@@ -12,7 +12,7 @@
  5/15/16: fixed math error in module and app codes
  ****************************************************************************************/
 #include "bolt_CAN.h"
-#include "bolt_clock.h"
+#include "clock.h"
 #include <math.h>
 
 /*DEBUGGING*/
@@ -53,11 +53,14 @@ static uint8_t mBoxNumber = 0;
 
 static uint8_t opMode = 0;
 
-uint8_t CAN_init(uint32_t baud, uint8_t mode) {
+uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq) {
     opMode = mode;
 
     /*Module must first be placed in configuration mode */
-    C1CTRL1bits.REQOP = 4;
+    C1CTRL1bits.REQOP = CAN_CONFIG;
+    while (C1CTRL1bits.OPMODE != CAN_CONFIG) {
+        ;
+    }
 
     /********************************************************************************************
      Transmit Configuration
@@ -65,7 +68,7 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
 
     C1CTRL1bits.WIN = 0; /*set control window to configure baud & registers*/
 
-    uint32_t fPerif = clockFreq(); /*peripheral clock Freq*/
+    uint32_t fPerif = system_freq; /*peripheral clock Freq*/
     uint32_t timeQuanta = 20; /*define number TQ per CAN bit.*/
     uint32_t fTQ = timeQuanta*baud; /*define TQ frequency*/
     uint32_t canBaud = (uint32_t)((((double)(fPerif) / (2.0 * (double)(fTQ))) - 1.0) +0.5); /*calculate baud prescalar*/
@@ -201,7 +204,7 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode) {
     return 0;
 }
 
-CAN_changeOpMode(uint8_t opMode){
+uint8_t CAN_changeOpMode(uint8_t opMode){
     /* CAN is ready for transmit / receive, place in normal or loopback mode */
     C1CTRL1bits.REQOP = opMode;
         while (C1CTRL1bits.OPMODE != opMode) {

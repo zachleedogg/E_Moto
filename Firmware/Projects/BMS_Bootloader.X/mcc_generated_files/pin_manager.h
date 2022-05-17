@@ -56,6 +56,152 @@
 */
 /**
   @Summary
+    Sets the GPIO pin, RB4, high using LATB4.
+
+  @Description
+    Sets the GPIO pin, RB4, high using LATB4.
+
+  @Preconditions
+    The RB4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB4 high (1)
+    SW_EN_SetHigh();
+    </code>
+
+*/
+#define SW_EN_SetHigh()          (_LATB4 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RB4, low using LATB4.
+
+  @Description
+    Sets the GPIO pin, RB4, low using LATB4.
+
+  @Preconditions
+    The RB4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB4 low (0)
+    SW_EN_SetLow();
+    </code>
+
+*/
+#define SW_EN_SetLow()           (_LATB4 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RB4, using LATB4.
+
+  @Description
+    Toggles the GPIO pin, RB4, using LATB4.
+
+  @Preconditions
+    The RB4 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RB4
+    SW_EN_Toggle();
+    </code>
+
+*/
+#define SW_EN_Toggle()           (_LATB4 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RB4.
+
+  @Description
+    Reads the value of the GPIO pin, RB4.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RB4
+    postValue = SW_EN_GetValue();
+    </code>
+
+*/
+#define SW_EN_GetValue()         _RB4
+/**
+  @Summary
+    Configures the GPIO pin, RB4, as an input.
+
+  @Description
+    Configures the GPIO pin, RB4, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB4 as an input
+    SW_EN_SetDigitalInput();
+    </code>
+
+*/
+#define SW_EN_SetDigitalInput()  (_TRISB4 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RB4, as an output.
+
+  @Description
+    Configures the GPIO pin, RB4, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB4 as an output
+    SW_EN_SetDigitalOutput();
+    </code>
+
+*/
+#define SW_EN_SetDigitalOutput() (_TRISB4 = 0)
+/**
+  @Summary
     Sets the GPIO pin, RC5, high using LATC5.
 
   @Description
@@ -73,11 +219,11 @@
   @Example
     <code>
     // Set RC5 high (1)
-    IO_RC5_SetHigh();
+    DEBUG_LED_SetHigh();
     </code>
 
 */
-#define IO_RC5_SetHigh()          (_LATC5 = 1)
+#define DEBUG_LED_SetHigh()          (_LATC5 = 1)
 /**
   @Summary
     Sets the GPIO pin, RC5, low using LATC5.
@@ -97,11 +243,11 @@
   @Example
     <code>
     // Set RC5 low (0)
-    IO_RC5_SetLow();
+    DEBUG_LED_SetLow();
     </code>
 
 */
-#define IO_RC5_SetLow()           (_LATC5 = 0)
+#define DEBUG_LED_SetLow()           (_LATC5 = 0)
 /**
   @Summary
     Toggles the GPIO pin, RC5, using LATC5.
@@ -121,11 +267,11 @@
   @Example
     <code>
     // Toggle RC5
-    IO_RC5_Toggle();
+    DEBUG_LED_Toggle();
     </code>
 
 */
-#define IO_RC5_Toggle()           (_LATC5 ^= 1)
+#define DEBUG_LED_Toggle()           (_LATC5 ^= 1)
 /**
   @Summary
     Reads the value of the GPIO pin, RC5.
@@ -147,11 +293,11 @@
     uint16_t portValue;
 
     // Read RC5
-    postValue = IO_RC5_GetValue();
+    postValue = DEBUG_LED_GetValue();
     </code>
 
 */
-#define IO_RC5_GetValue()         _RC5
+#define DEBUG_LED_GetValue()         _RC5
 /**
   @Summary
     Configures the GPIO pin, RC5, as an input.
@@ -171,11 +317,11 @@
   @Example
     <code>
     // Sets the RC5 as an input
-    IO_RC5_SetDigitalInput();
+    DEBUG_LED_SetDigitalInput();
     </code>
 
 */
-#define IO_RC5_SetDigitalInput()  (_TRISC5 = 1)
+#define DEBUG_LED_SetDigitalInput()  (_TRISC5 = 1)
 /**
   @Summary
     Configures the GPIO pin, RC5, as an output.
@@ -195,11 +341,11 @@
   @Example
     <code>
     // Sets the RC5 as an output
-    IO_RC5_SetDigitalOutput();
+    DEBUG_LED_SetDigitalOutput();
     </code>
 
 */
-#define IO_RC5_SetDigitalOutput() (_TRISC5 = 0)
+#define DEBUG_LED_SetDigitalOutput() (_TRISC5 = 0)
 
 /**
     Section: Function Prototypes

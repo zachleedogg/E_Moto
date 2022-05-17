@@ -33,7 +33,6 @@ uint16_t CAN_bms_charger_request_output_current_high_byte_get(void);
 uint16_t CAN_bms_charger_request_output_current_low_byte_get(void);
 uint16_t CAN_bms_charger_request_start_charge_request_get(void);
 uint16_t CAN_bms_charger_request_charge_mode_get(void);
-uint16_t CAN_bms_charger_request_packCurrent_get(void);
 uint16_t CAN_bms_charger_request_byte_7_get(void);
 uint16_t CAN_bms_charger_request_byte_8_get(void);
 

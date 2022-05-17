@@ -85,16 +85,18 @@ uint16_t CAN_bms_status_packCurrent_get(void);
 uint16_t CAN_bms_status_minTemp_get(void);
 uint16_t CAN_bms_status_maxTemp_get(void);
 
-uint8_t CAN_bms_charger_request_checkDataIsFresh(void);
-uint16_t CAN_bms_charger_request_output_voltage_high_byte_get(void);
-uint16_t CAN_bms_charger_request_output_voltage_low_byte_get(void);
-uint16_t CAN_bms_charger_request_output_current_high_byte_get(void);
-uint16_t CAN_bms_charger_request_output_current_low_byte_get(void);
-uint16_t CAN_bms_charger_request_start_charge_request_get(void);
-uint16_t CAN_bms_charger_request_charge_mode_get(void);
-uint16_t CAN_bms_charger_request_packCurrent_get(void);
-uint16_t CAN_bms_charger_request_byte_7_get(void);
-uint16_t CAN_bms_charger_request_byte_8_get(void);
+uint8_t CAN_bms_status_2_checkDataIsFresh(void);
+uint16_t CAN_bms_status_2_DCDC_state_get(void);
+uint16_t CAN_bms_status_2_DCDC_fault_get(void);
+uint16_t CAN_bms_status_2_DCDC_voltage_get(void);
+uint16_t CAN_bms_status_2_DCDC_current_get(void);
+uint16_t CAN_bms_status_2_EV_charger_state_get(void);
+uint16_t CAN_bms_status_2_EV_charger_fault_get(void);
+uint16_t CAN_bms_status_2_EV_charger_voltage_get(void);
+uint16_t CAN_bms_status_2_EV_charger_current_get(void);
+uint16_t CAN_bms_status_2_HV_precharge_state_get(void);
+uint16_t CAN_bms_status_2_HV_contactor_state_get(void);
+uint16_t CAN_bms_status_2_HV_bus_voltage_get(void);
 
 uint8_t CAN_bms_cellVoltages_checkDataIsFresh(void);
 uint16_t CAN_bms_cellVoltages_MultiPlex_get(void);
@@ -102,7 +104,6 @@ uint16_t CAN_bms_cellVoltages_cell1_get(void);
 uint16_t CAN_bms_cellVoltages_cell2_get(void);
 uint16_t CAN_bms_cellVoltages_cell3_get(void);
 uint16_t CAN_bms_cellVoltages_cell4_get(void);
-uint16_t CAN_bms_cellVoltages_cell5_get(void);
 
 /**********************************************************
  * motorcontroller NODE MESSAGES

@@ -18,9 +18,6 @@
 //Direct low level access
 #include "bolt_uart.h"
 #include "bolt_sleep.h"
-#include "bolt_ADC.h"
-#include "bolt_OC.h"
-
 
 
 //Task Scheduler system control
@@ -30,6 +27,7 @@
 #include "IO.h"
 #include "bms_dbc.h"
 #include "can_iso_tp.h"
+#include "can_populate.h"
 
 /******************************************************************************
  * Constants
@@ -80,11 +78,6 @@ void Tsk_init(void) {
     CAN_DBC_init(); // Initialize the CAN mailboxes
     StateMachine_Init();
     IO_SET_DEBUG_LED_EN(HIGH);
-    IO_SET_SW_EN(HIGH);
-    CAN_changeOpMode(CAN_NORMAL);
-    pwmOCwriteDuty(CHARGE_PUMP_PWM, 50);
-    IO_SET_DCDC_EN(HIGH);
-    IO_SET_EV_CHARGER_EN(HIGH);
     
 #if DEBUG
     Uart1Write("Hello World, Task Init Done.\n"); //hi
@@ -104,6 +97,7 @@ void Tsk(void) {
  */
 void Tsk_1ms(void) {
     run_iso_tp_basic();
+    CAN_populate();
 }
 
 
@@ -134,15 +128,6 @@ void Tsk_100ms(void) {
  */
 void Tsk_1000ms(void) {
     CAN_send_1000ms();
-    uint32_t val = IO_GET_ISOLATION_VOLTAGE();
-    uint32_t valA = IO_GET_MUX_1_VOLTAGE();
-    uint32_t valB = IO_GET_MUX_2_VOLTAGE();
-    uint32_t valC = IO_GET_MUX_3_VOLTAGE();
-    uint32_t val2 = IO_GET_DCDC_OUTPUT_VOLTAGE();
-    uint32_t val3 = IO_GET_EV_CHARGER_VOLTAGE();
-    
-    Nop();
-    Nop();
 }
 
 /**

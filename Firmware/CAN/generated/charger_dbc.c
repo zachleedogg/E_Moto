@@ -62,12 +62,10 @@ uint8_t CAN_bms_charger_request_checkDataIsFresh(void){
 #define CAN_BMS_CHARGER_REQUEST_START_CHARGE_REQUEST_OFFSET 32
 #define CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_RANGE 8
 #define CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_OFFSET 40
-#define CAN_BMS_CHARGER_REQUEST_PACKCURRENT_RANGE 8
-#define CAN_BMS_CHARGER_REQUEST_PACKCURRENT_OFFSET 48
 #define CAN_BMS_CHARGER_REQUEST_BYTE_7_RANGE 8
-#define CAN_BMS_CHARGER_REQUEST_BYTE_7_OFFSET 56
+#define CAN_BMS_CHARGER_REQUEST_BYTE_7_OFFSET 48
 #define CAN_BMS_CHARGER_REQUEST_BYTE_8_RANGE 8
-#define CAN_BMS_CHARGER_REQUEST_BYTE_8_OFFSET 64
+#define CAN_BMS_CHARGER_REQUEST_BYTE_8_OFFSET 56
 
 uint16_t CAN_bms_charger_request_output_voltage_high_byte_get(void){
 	return get_bits((size_t*)CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_OUTPUT_VOLTAGE_HIGH_BYTE_OFFSET, CAN_BMS_CHARGER_REQUEST_OUTPUT_VOLTAGE_HIGH_BYTE_RANGE);
@@ -86,9 +84,6 @@ uint16_t CAN_bms_charger_request_start_charge_request_get(void){
 }
 uint16_t CAN_bms_charger_request_charge_mode_get(void){
 	return get_bits((size_t*)CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_OFFSET, CAN_BMS_CHARGER_REQUEST_CHARGE_MODE_RANGE);
-}
-uint16_t CAN_bms_charger_request_packCurrent_get(void){
-	return get_bits((size_t*)CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_PACKCURRENT_OFFSET, CAN_BMS_CHARGER_REQUEST_PACKCURRENT_RANGE);
 }
 uint16_t CAN_bms_charger_request_byte_7_get(void){
 	return get_bits((size_t*)CAN_bms_charger_request.payload, CAN_BMS_CHARGER_REQUEST_BYTE_7_OFFSET, CAN_BMS_CHARGER_REQUEST_BYTE_7_RANGE);

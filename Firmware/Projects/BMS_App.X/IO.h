@@ -14,7 +14,7 @@
 
 /**
  * IO_SET_xxxx will set a digital output to the desired state
- * @param state: HIGH, LOW or TOGGLE
+ * @param state: HIGH, LOW or TOGGLE (or duty cycle from 0-100)
  */
 void IO_SET_DEBUG_LED_EN(uint8_t state);
 void IO_SET_SW_EN(uint8_t state);
@@ -26,6 +26,11 @@ void IO_SET_MUX_A(uint8_t state);
 void IO_SET_MUX_B(uint8_t state);
 void IO_SET_MUX_C(uint8_t state);
 void IO_SET_SPI_CS(uint8_t state);
+
+void IO_SET_CHARGEPUMP_PWM(uint8_t duty);
+void IO_SET_CONTACTOR_1_PWM(uint8_t duty);
+void IO_SET_CONTACTOR_2_PWM(uint8_t duty);
+
 
 /**
  * IO_GET_xxxx will return the state of a digital input or output

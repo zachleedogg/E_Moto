@@ -4,6 +4,7 @@
 #include "IO.h"
 #include "pinSetup.h"
 #include "bolt_ADC.h"
+#include "bolt_OC.h"
 
 
 /******************************************************************************
@@ -75,6 +76,18 @@ void IO_SET_MUX_C(uint8_t state) {
 
 void IO_SET_SPI_CS(uint8_t state){
     PINS_write(SPI_CS, state);
+}
+
+void IO_SET_CHARGEPUMP_PWM(uint8_t duty){
+    pwmOCwriteDuty(CHARGE_PUMP_PWM, duty);
+}
+
+void IO_SET_CONTACTOR_1_PWM(uint8_t duty){
+    pwmOCwriteDuty(CONTACTOR_1_PWM, duty);
+}
+
+void IO_SET_CONTACTOR_2_PWM(uint8_t duty){
+    pwmOCwriteDuty(CONTACTOR_2_PWM, duty);
 }
 
 /*INPUTS*/
