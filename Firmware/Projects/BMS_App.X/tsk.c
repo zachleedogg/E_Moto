@@ -26,8 +26,10 @@
 #include "SerialDebugger.h"
 #include "IO.h"
 #include "bms_dbc.h"
-#include "can_iso_tp.h"
+#include "can_iso_tp_lite.h"
 #include "can_populate.h"
+#include "ev_charger.h"
+#include "bms.h"
 
 /******************************************************************************
  * Constants
@@ -78,6 +80,7 @@ void Tsk_init(void) {
     CAN_DBC_init(); // Initialize the CAN mailboxes
     StateMachine_Init();
     IO_SET_DEBUG_LED_EN(HIGH);
+    BMS_init();
     
 #if DEBUG
     Uart1Write("Hello World, Task Init Done.\n"); //hi
@@ -96,8 +99,9 @@ void Tsk(void) {
  * Runs every 1ms
  */
 void Tsk_1ms(void) {
+    CAN_populate_1ms();
     run_iso_tp_basic();
-    CAN_populate();
+    
 }
 
 
@@ -112,21 +116,26 @@ void Tsk_5ms(void) {
  * Runs every 10ms
  */
 void Tsk_10ms(void) {
+    EV_CHARGER_Run_10ms();
+    BMS_run_10ms();
+    
+    CAN_populate_10ms();
     CAN_send_10ms();
-
 }
 
 /**
  * Runs every 100ms
  */
 void Tsk_100ms(void) {
-    //IO_SET_DEBUG_LED_EN(TOGGLE); //Toggle Debug LED at 1Hz for scheduler running status
+    IO_SET_DEBUG_LED_EN(TOGGLE); //Toggle Debug LED at 10Hz for scheduler running status
 }
 
 /**
  * Runs every 1000ms
  */
 void Tsk_1000ms(void) {
+    BMS_run_1000ms();
+    CAN_populate_1000ms();
     CAN_send_1000ms();
 }
 

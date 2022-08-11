@@ -21,6 +21,7 @@
                 <sourceRootElem>../../CAN/generated</sourceRootElem>
                 <sourceRootElem>../../Libraries/Drivers/TFT_LCD/src</sourceRootElem>
                 <sourceRootElem>../../Libraries/Drivers/TFT_LCD/inc</sourceRootElem>
+                <sourceRootElem>../../Libraries/Drivers/ISO_TP_LITE</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

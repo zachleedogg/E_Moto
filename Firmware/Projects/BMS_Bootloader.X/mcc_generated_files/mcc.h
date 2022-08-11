@@ -54,15 +54,15 @@
 #include "reset.h"
 
 #include "reset.h"
-#include "dma.h"
-#include "boot/boot_process.h"
 #include "memory/flash.h"
-#include "can1.h"
 #include "tmr1.h"
+#include "uart1.h"
+#include "dma.h"
+#include "watchdog.h"
+#include "can1.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "uart1.h"
-#include "watchdog.h"
+#include "boot/boot_process.h"
 
 #warning "This file will be removed in future MCC releases. Use system.h instead."
 

@@ -77,9 +77,20 @@ void PinSetup_Init(void) {
 #endif
 
     /*Set all digital IO*/
+    PINS_write(DEBUG_LED_EN, LOW);
+    //PINS_write(SW_EN, LOW);
+    //PINS_write(DEBUG_PIN, LOW);
+    PINS_write(DCDC_EN, LOW);
+    PINS_write(EV_CHARGER_EN, LOW);
+    PINS_write(DISCHARGE_EN, LOW);
+    PINS_write(PRE_CHARGE_EN, LOW);
+    PINS_write(MUX_A, LOW);
+    PINS_write(MUX_B, LOW);
+    PINS_write(MUX_C, LOW);
+    
     PINS_direction(DEBUG_LED_EN, OUTPUT);
     PINS_direction(SW_EN, OUTPUT);
-    PINS_direction(DEBUG_PIN, OUTPUT);
+    //PINS_direction(DEBUG_PIN, OUTPUT);
     PINS_direction(DCDC_EN, OUTPUT);
     PINS_direction(EV_CHARGER_EN, OUTPUT);
     PINS_direction(DISCHARGE_EN, OUTPUT);
@@ -87,9 +98,15 @@ void PinSetup_Init(void) {
     PINS_direction(MUX_A, OUTPUT);
     PINS_direction(MUX_B, OUTPUT);
     PINS_direction(MUX_C, OUTPUT);
+    PINS_direction(SPI_CS, OUTPUT);
     
     PINS_direction(EV_CHARGER_nFAULT, INPUT);
     PINS_direction(DCDC_nFAULT,INPUT);
+    PINS_pullUp(DEBUG_PIN, HIGH);
+    PINS_pullUp(EV_CHARGER_nFAULT, HIGH);
+    PINS_pullUp(DCDC_nFAULT, HIGH);
+    PINS_pullUp(CAN_TX_PIN, HIGH);
+    PINS_openDrain(CAN_TX_PIN, HIGH);
     /*ANALOG*/
     ADC_Init();
     ADC_SetPin(ISOLATION_VOLTAGE_AI);

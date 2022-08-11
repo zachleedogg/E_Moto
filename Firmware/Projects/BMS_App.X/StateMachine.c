@@ -5,6 +5,7 @@
 #include "IO.h"
 #include "bolt_CAN.h"
 #include "bms_dbc.h"
+#include "pinSetup.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -34,8 +35,6 @@ state(sleep)\
  * Configuration
  *******************************************************************************/
 
-
-
 /******************************************************************************
  * Typedefs
  *******************************************************************************/
@@ -47,7 +46,7 @@ typedef enum {
 typedef enum {
     ENTRY,
     EXIT,
-    RUN            
+    RUN
 } STATE_MACHINE_entry_types_E;
 
 typedef void(*statePtr)(STATE_MACHINE_entry_types_E);
@@ -68,15 +67,15 @@ static STATE_MACHINE_states_E nextState = standby_state; /* initialize current s
  * Function Prototypes
  *******************************************************************************/
 void StateMachine_DCDC_helper(void);
-
+void StateMachine_precharge_helper(void);
 /******************************************************************************
  * Function Definitions
  *******************************************************************************/
-void StateMachine_Init(void){
+void StateMachine_Init(void) {
 
 }
 
-void StateMachine_Run(void){
+void StateMachine_Run(void) {
 
     /* This only happens during state transition
      * State transitions thus have priority over posting new events
@@ -91,24 +90,24 @@ void StateMachine_Run(void){
     }
 }
 
-
-
-void standby(STATE_MACHINE_entry_types_E entry_type){
-        switch(entry_type){
+void standby(STATE_MACHINE_entry_types_E entry_type) {
+    switch (entry_type) {
         case ENTRY:
-            IO_SET_SW_EN(LOW);
             CAN_changeOpMode(CAN_DISABLE);
+            IO_SET_SW_EN(LOW);
+            PINS_pullUp(CAN_TX_PIN, LOW);
             IO_SET_DCDC_EN(LOW);
             IO_SET_EV_CHARGER_EN(LOW);
             IO_SET_CHARGEPUMP_PWM(0);
             break;
         case EXIT:
+            PINS_pullUp(CAN_TX_PIN, HIGH);
             IO_SET_SW_EN(HIGH);
             CAN_changeOpMode(CAN_NORMAL);
             IO_SET_CHARGEPUMP_PWM(50);
             break;
         case RUN:
-            if (IO_GET_V12_POWER_STATUS()){
+            if (IO_GET_V12_POWER_STATUS()) {
                 nextState = idle_state;
             }
             break;
@@ -117,29 +116,30 @@ void standby(STATE_MACHINE_entry_types_E entry_type){
     }
 }
 
-void idle(STATE_MACHINE_entry_types_E entry_type){
-    switch(entry_type){
+void idle(STATE_MACHINE_entry_types_E entry_type) {
+    switch (entry_type) {
         case ENTRY:
             break;
         case EXIT:
             break;
         case RUN:
             StateMachine_DCDC_helper();
-            
-            if (!IO_GET_V12_POWER_STATUS()){
+            StateMachine_precharge_helper();
+
+            if (!IO_GET_V12_POWER_STATUS()) {
                 nextState = standby_state;
             }
             break;
         default:
             break;
     }
-    
+
 }
 
-void running(STATE_MACHINE_entry_types_E entry_type){
-        switch(entry_type){
+void running(STATE_MACHINE_entry_types_E entry_type) {
+    switch (entry_type) {
         case ENTRY:
-            
+
             break;
         case EXIT:
             break;
@@ -151,8 +151,8 @@ void running(STATE_MACHINE_entry_types_E entry_type){
     }
 }
 
-void charging(STATE_MACHINE_entry_types_E entry_type){
-        switch(entry_type){
+void charging(STATE_MACHINE_entry_types_E entry_type) {
+    switch (entry_type) {
         case ENTRY:
             break;
         case EXIT:
@@ -164,8 +164,8 @@ void charging(STATE_MACHINE_entry_types_E entry_type){
     }
 }
 
-void sleep(STATE_MACHINE_entry_types_E entry_type){
-        switch(entry_type){
+void sleep(STATE_MACHINE_entry_types_E entry_type) {
+    switch (entry_type) {
         case ENTRY:
             break;
         case EXIT:
@@ -179,21 +179,13 @@ void sleep(STATE_MACHINE_entry_types_E entry_type){
 
 /****Helpers*******************************************************************/
 
-void StateMachine_DCDC_helper(void){
-    
-    static uint32_t last_valid_message = 0;
-    if (CAN_mcu_command_checkDataIsFresh()){
-        last_valid_message = SysTick_Get();
-    }
-    uint8_t message_valid = (SysTick_Get() - last_valid_message) < 1000 ? 1 : 0;
-    
-    if (CAN_mcu_command_DCDC_enable_get() && message_valid){
-        IO_SET_DCDC_EN(HIGH);
-    } else {
-        IO_SET_DCDC_EN(LOW);
-    }
+void StateMachine_DCDC_helper(void) {
+    IO_SET_DCDC_EN(CAN_mcu_command_DCDC_enable_get());
 }
 
+void StateMachine_precharge_helper(void) {
+    IO_SET_PRE_CHARGE_EN(CAN_mcu_command_precharge_enable_get());
+}
 
 /*** End of File **************************************************************/
 

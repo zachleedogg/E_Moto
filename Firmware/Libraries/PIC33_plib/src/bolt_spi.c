@@ -40,8 +40,8 @@
 
 static const uint8_t ppsOut[2] = {SCK2, SDO2};
 
-static uint8_t spi1Status = 1;
-static uint8_t spi2Status = 0;
+static volatile uint8_t spi1Status = 1;
+static volatile uint8_t spi2Status = 0;
 
 void spi1Init(void) {
 
@@ -74,7 +74,7 @@ void spi1Init(void) {
       010 = Secondary prescale 6:1
       001 = Secondary prescale 7:1
       000 = Secondary prescale 8:1*/
-    SPI1CON1bits.SPRE = 0b110;
+    SPI1CON1bits.SPRE = 0b100;
 
 
     IPC2bits.SPI1EIP = 3; //priority 5
@@ -189,8 +189,8 @@ uint8_t spi2Ready(void) {
 void __attribute__((__interrupt__, auto_psv)) _SPI1Interrupt(void) {
     _SPI1IF = 0; /* Clear the Interrupt flag*/
     spi1Status = 1;
-    uint16_t temp = SPI1BUF; /*clear input buffer because it just always fills up*/
-    temp = 0; /*Suppress Warning*/
+    //uint16_t temp = SPI1BUF; /*clear input buffer because it just always fills up*/
+    //temp = 0; /*Suppress Warning*/
 }
 
 void __attribute__((__interrupt__, auto_psv)) _SPI2Interrupt(void) {

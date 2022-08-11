@@ -1,0 +1,1341 @@
+EESchema Schematic File Version 4
+LIBS:BMS_01-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 18 61
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Device:R R?
+U 1 1 5ABBE353
+P 5200 1200
+AR Path="/5AC37515/5ABBE353" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5ABBE353" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ABBE353" Ref="R69"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ABBE353" Ref="R9"  Part="1" 
+F 0 "R69" V 5100 1200 50  0000 C CNN
+F 1 "20R0" V 5200 1200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5130 1200 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 5200 1200 50  0001 C CNN
+F 4 "RMCF0603FT20R0" H 0   0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT20R0" H 0   0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT20R0CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5200 1200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7050 1750 5850 1750
+Wire Wire Line
+	5850 1750 5850 1200
+Wire Wire Line
+	5350 1200 5500 1200
+$Comp
+L Device:C C?
+U 1 1 5ABD0A5C
+P 5500 1350
+AR Path="/5AC37515/5ABD0A5C" Ref="C?"  Part="1" 
+AR Path="/5AC3A314/5ABD0A5C" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ABD0A5C" Ref="C43"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ABD0A5C" Ref="C26"  Part="1" 
+F 0 "C43" H 5385 1304 50  0000 R CNN
+F 1 "100nF" H 5385 1395 50  0000 R CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 5538 1200 50  0001 C CNN
+F 3 "https://product.tdk.com/info/en/documents/chara_sheet/CGA5L3X7R2E104K160AA.pdf" H 5500 1350 50  0001 C CNN
+F 4 "CGA5L3X7R2E104K160AA" H 0   0   50  0001 C CNN "Part Number"
+F 5 "CGA5L3X7R2E104K160AA" H 0   0   50  0001 C CNN "MPN"
+F 6 "445-5851-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    5500 1350
+	-1   0    0    1   
+$EndComp
+Connection ~ 5500 1200
+Wire Wire Line
+	5500 1200 5700 1200
+$Sheet
+S 1400 5350 1300 450 
+U 5ABD29C9
+F0 "Bank_4" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 5500 50 
+F3 "CellBot" O L 1400 5650 50 
+F4 "G" I R 2700 5650 50 
+F5 "C" O R 2700 5450 50 
+F6 "S" I R 2700 5550 50 
+F7 "C-1" I R 2700 5750 47 
+$EndSheet
+Wire Wire Line
+	6650 1950 3850 1950
+Wire Wire Line
+	3850 650  2700 650 
+Wire Wire Line
+	6650 2050 3750 2050
+Wire Wire Line
+	3750 750  2700 750 
+Wire Wire Line
+	6650 2150 3650 2150
+Wire Wire Line
+	3650 2150 3650 1250
+Wire Wire Line
+	3650 1250 2850 1250
+Wire Wire Line
+	6650 2250 3550 2250
+Wire Wire Line
+	3550 2250 3550 1350
+Wire Wire Line
+	3550 1350 2700 1350
+Wire Wire Line
+	6650 2350 3450 2350
+Wire Wire Line
+	3450 2350 3450 1850
+Wire Wire Line
+	3450 1850 2850 1850
+Wire Wire Line
+	2700 1950 3350 1950
+Wire Wire Line
+	3350 1950 3350 2450
+Wire Wire Line
+	3350 2450 6650 2450
+Wire Wire Line
+	6650 2550 3250 2550
+Wire Wire Line
+	3250 2550 3250 2450
+Wire Wire Line
+	3250 2450 2850 2450
+Wire Wire Line
+	6650 2750 3550 2750
+Wire Wire Line
+	3550 2750 3550 3050
+Wire Wire Line
+	3550 3050 2850 3050
+Wire Wire Line
+	2700 3150 3650 3150
+Wire Wire Line
+	3650 3150 3650 2850
+Wire Wire Line
+	3650 2850 6650 2850
+Wire Wire Line
+	6650 2950 3750 2950
+Wire Wire Line
+	3750 2950 3750 3650
+Wire Wire Line
+	3750 3650 2850 3650
+Wire Wire Line
+	2700 3750 3850 3750
+Wire Wire Line
+	3850 3750 3850 3050
+Wire Wire Line
+	3850 3050 6650 3050
+Wire Wire Line
+	6650 3150 3950 3150
+Wire Wire Line
+	3950 3150 3950 4250
+Wire Wire Line
+	3950 4250 2850 4250
+Wire Wire Line
+	2700 4350 4050 4350
+Wire Wire Line
+	4050 4350 4050 3250
+Wire Wire Line
+	4050 3250 6650 3250
+Wire Wire Line
+	6650 3350 4150 3350
+Wire Wire Line
+	4150 3350 4150 4850
+Wire Wire Line
+	4150 4850 2850 4850
+Wire Wire Line
+	2700 4950 4250 4950
+Wire Wire Line
+	4250 4950 4250 3450
+Wire Wire Line
+	4250 3450 6650 3450
+Wire Wire Line
+	2700 5450 2850 5450
+Wire Wire Line
+	4350 5450 4350 3550
+Wire Wire Line
+	4350 3550 6650 3550
+Wire Wire Line
+	6650 3650 4450 3650
+Wire Wire Line
+	4450 3650 4450 5550
+Wire Wire Line
+	4450 5550 2700 5550
+Wire Wire Line
+	2700 6050 2850 6050
+Wire Wire Line
+	4550 6050 4550 3750
+Wire Wire Line
+	4550 3750 6650 3750
+Wire Wire Line
+	6650 3850 4650 3850
+Wire Wire Line
+	4650 3850 4650 6150
+Wire Wire Line
+	4650 6150 2700 6150
+Wire Wire Line
+	2700 6650 2850 6650
+Wire Wire Line
+	4750 6650 4750 3950
+Wire Wire Line
+	4750 3950 6650 3950
+Wire Wire Line
+	6650 4050 4850 4050
+Wire Wire Line
+	4850 4050 4850 6750
+Wire Wire Line
+	4850 6750 2700 6750
+Wire Wire Line
+	2700 2550 3150 2550
+Wire Wire Line
+	3150 2550 3150 2650
+Wire Wire Line
+	3150 2650 6650 2650
+Wire Wire Line
+	6650 4150 4950 4150
+Wire Wire Line
+	4950 4150 4950 7250
+Wire Wire Line
+	4950 7250 2850 7250
+Wire Wire Line
+	2700 7350 5050 7350
+Wire Wire Line
+	5050 7350 5050 4250
+Wire Wire Line
+	5050 4250 6650 4250
+Text HLabel 7650 2150 2    50   Input ~ 0
+TOS
+Text HLabel 8550 2050 2    50   Input ~ 0
+Vreg
+Text HLabel 7950 3350 2    50   Input ~ 0
+SCKL
+Text HLabel 7950 3450 2    50   Input ~ 0
+SDI
+Text HLabel 8750 3550 2    50   Input ~ 0
+SDO
+Text HLabel 7950 3650 2    50   Input ~ 0
+CSBI
+Text HLabel 6400 5400 1    50   Input ~ 0
+CSB_daisy
+Text HLabel 7300 5400 1    50   Input ~ 0
+SDI_daisy
+Text HLabel 8200 5400 1    50   Input ~ 0
+SCK_daisy
+Text Label 5500 1600 2    50   ~ 0
+G
+Text Label 6800 4550 2    50   ~ 0
+G
+Wire Wire Line
+	2800 850  2700 850 
+Text Label 2800 850  2    50   ~ 0
+G
+Wire Wire Line
+	2800 1450 2700 1450
+Text Label 2800 1450 2    50   ~ 0
+G
+Wire Wire Line
+	2800 2050 2700 2050
+Text Label 2800 2050 2    50   ~ 0
+G
+Wire Wire Line
+	2800 2650 2700 2650
+Text Label 2800 2650 2    50   ~ 0
+G
+Wire Wire Line
+	2800 3250 2700 3250
+Text Label 2800 3250 2    50   ~ 0
+G
+Wire Wire Line
+	2800 3850 2700 3850
+Text Label 2800 3850 2    50   ~ 0
+G
+Wire Wire Line
+	2800 5050 2700 5050
+Text Label 2800 5050 2    50   ~ 0
+G
+Wire Wire Line
+	2800 4450 2700 4450
+Text Label 2800 4450 2    50   ~ 0
+G
+Wire Wire Line
+	2800 5650 2700 5650
+Text Label 2800 5650 2    50   ~ 0
+G
+Wire Wire Line
+	2800 6250 2700 6250
+Text Label 2800 6250 2    50   ~ 0
+G
+Wire Wire Line
+	2800 6850 2700 6850
+Text Label 2800 6850 2    50   ~ 0
+G
+Wire Wire Line
+	2800 7450 2700 7450
+Text Label 2800 7450 2    50   ~ 0
+G
+Wire Wire Line
+	6950 4550 6800 4550
+Wire Wire Line
+	5500 1500 5500 1600
+Text HLabel 950  700  0    50   Input ~ 0
+Cell_12
+Text HLabel 950  1300 0    50   Input ~ 0
+Cell_11
+Text HLabel 950  1900 0    50   Input ~ 0
+Cell_10
+Text HLabel 950  2500 0    50   Input ~ 0
+Cell_09
+Text HLabel 950  3100 0    50   Input ~ 0
+Cell_08
+Text HLabel 950  3700 0    50   Input ~ 0
+Cell_07
+Text HLabel 950  4300 0    50   Input ~ 0
+Cell_06
+Text HLabel 950  4900 0    50   Input ~ 0
+Cell_05
+Text HLabel 950  5500 0    50   Input ~ 0
+Cell_04
+Text HLabel 950  6100 0    50   Input ~ 0
+Cell_03
+Text HLabel 950  7300 0    50   Input ~ 0
+Cell_01
+Text HLabel 950  7450 0    50   Input ~ 0
+Cell_GND
+Wire Wire Line
+	950  7450 1400 7450
+Wire Wire Line
+	950  7300 1200 7300
+Text HLabel 950  6700 0    50   Input ~ 0
+Cell_02
+Wire Wire Line
+	950  6700 1200 6700
+Wire Wire Line
+	1400 6850 1200 6850
+Wire Wire Line
+	1200 6850 1200 7300
+Connection ~ 1200 7300
+Wire Wire Line
+	1200 7300 1400 7300
+Wire Wire Line
+	1400 6250 1200 6250
+Wire Wire Line
+	1200 6250 1200 6700
+Connection ~ 1200 6700
+Wire Wire Line
+	1200 6700 1400 6700
+Wire Wire Line
+	950  6100 1200 6100
+Wire Wire Line
+	1400 5650 1200 5650
+Wire Wire Line
+	1200 5650 1200 6100
+Connection ~ 1200 6100
+Wire Wire Line
+	1200 6100 1400 6100
+Wire Wire Line
+	950  5500 1200 5500
+Wire Wire Line
+	1200 5500 1200 5050
+Wire Wire Line
+	1200 5050 1400 5050
+Connection ~ 1200 5500
+Wire Wire Line
+	1200 5500 1400 5500
+Wire Wire Line
+	950  4900 1200 4900
+Wire Wire Line
+	1200 4900 1200 4450
+Wire Wire Line
+	1200 4450 1400 4450
+Connection ~ 1200 4900
+Wire Wire Line
+	1200 4900 1400 4900
+Wire Wire Line
+	950  4300 1200 4300
+Wire Wire Line
+	1200 4300 1200 3850
+Wire Wire Line
+	1200 3850 1400 3850
+Connection ~ 1200 4300
+Wire Wire Line
+	1200 4300 1400 4300
+Wire Wire Line
+	950  3700 1200 3700
+Wire Wire Line
+	1200 3700 1200 3250
+Wire Wire Line
+	1200 3250 1400 3250
+Connection ~ 1200 3700
+Wire Wire Line
+	1200 3700 1400 3700
+Wire Wire Line
+	950  3100 1200 3100
+Wire Wire Line
+	1200 3100 1200 2650
+Wire Wire Line
+	1200 2650 1400 2650
+Connection ~ 1200 3100
+Wire Wire Line
+	1200 3100 1400 3100
+Wire Wire Line
+	950  2500 1200 2500
+Wire Wire Line
+	1200 2500 1200 2050
+Wire Wire Line
+	1200 2050 1400 2050
+Connection ~ 1200 2500
+Wire Wire Line
+	1200 2500 1400 2500
+Wire Wire Line
+	950  1900 1200 1900
+Wire Wire Line
+	1200 1900 1200 1450
+Wire Wire Line
+	1200 1450 1400 1450
+Connection ~ 1200 1900
+Wire Wire Line
+	1200 1900 1400 1900
+Wire Wire Line
+	950  1300 1200 1300
+Wire Wire Line
+	1200 1300 1200 850 
+Wire Wire Line
+	1200 850  1400 850 
+Connection ~ 1200 1300
+Wire Wire Line
+	1200 1300 1400 1300
+Wire Wire Line
+	950  700  1400 700 
+Text Label 1150 7450 2    50   ~ 0
+G
+$Comp
+L Device:C C?
+U 1 1 5AC90C8F
+P 8100 2300
+AR Path="/5AC37515/5AC90C8F" Ref="C?"  Part="1" 
+AR Path="/5AC3A314/5AC90C8F" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AC90C8F" Ref="C45"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AC90C8F" Ref="C28"  Part="1" 
+F 0 "C45" H 8215 2346 50  0000 L CNN
+F 1 "1uF" H 8215 2255 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8138 2150 50  0001 C CNN
+F 3 "https://product.tdk.com/system/files/dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_general_en.pdf" H 8100 2300 50  0001 C CNN
+F 4 "CGA3E1X7R1C105K080AC" H 8100 2300 50  0001 C CNN "Part Number"
+F 5 "445-12539-1-ND" H -750 -1000 50  0001 C CNN "Digikey_PN"
+	1    8100 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5AC90CE9
+P 8450 2300
+AR Path="/5AC37515/5AC90CE9" Ref="C?"  Part="1" 
+AR Path="/5AC3A314/5AC90CE9" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AC90CE9" Ref="C46"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AC90CE9" Ref="C29"  Part="1" 
+F 0 "C46" H 8565 2346 50  0000 L CNN
+F 1 "1uF" H 8565 2255 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8488 2150 50  0001 C CNN
+F 3 "https://product.tdk.com/system/files/dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_general_en.pdf" H 8450 2300 50  0001 C CNN
+F 4 "CGA3E1X7R1C105K080AC" H 8450 2300 50  0001 C CNN "Part Number"
+F 5 "445-12539-1-ND" H -1450 -1000 50  0001 C CNN "Digikey_PN"
+	1    8450 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8550 2050 8450 2050
+Wire Wire Line
+	8450 2150 8450 2050
+Wire Wire Line
+	8100 2450 8100 2550
+Wire Wire Line
+	8450 2450 8450 2550
+Text Label 8100 2550 2    50   ~ 0
+G
+Text Label 8450 2550 2    50   ~ 0
+G
+$Comp
+L Device:Ferrite_Bead L?
+U 1 1 5ACC521D
+P 4900 1200
+AR Path="/5AC37515/5ACC521D" Ref="L?"  Part="1" 
+AR Path="/5AC3A314/5ACC521D" Ref="L?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ACC521D" Ref="L5"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ACC521D" Ref="L4"  Part="1" 
+F 0 "L5" V 4626 1200 50  0000 C CNN
+F 1 "Ferrite_Bead" V 4717 1200 50  0000 C CNN
+F 2 "Inductor_SMD:L_0603_1608Metric" V 4830 1200 50  0001 C CNN
+F 3 "https://www.we-online.com/katalog/datasheet/742792609.pdf" H 4900 1200 50  0001 C CNN
+F 4 "742792609" H 0   0   50  0001 C CNN "MPN"
+F 5 "742792609" H 0   0   50  0001 C CNN "Part Number"
+F 6 "732-1591-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4900 1200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4000 1200 4600 1200
+Wire Wire Line
+	4600 1300 4600 1200
+Connection ~ 4600 1200
+Wire Wire Line
+	4600 1200 4750 1200
+Wire Wire Line
+	4600 1600 4600 1750
+Text Label 4600 1750 2    50   ~ 0
+G
+$Comp
+L Device:Q_PMOS_GSD Q?
+U 1 1 5AD0D285
+P 9850 1400
+AR Path="/5AC37515/5AD0D285" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/5AD0D285" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD0D285" Ref="Q18"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD0D285" Ref="Q3"  Part="1" 
+F 0 "Q18" H 10056 1354 50  0000 L CNN
+F 1 "Q_PMOS_GSD" H 10056 1445 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 10050 1500 50  0001 C CNN
+F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/TP5335-P-Channel-Enhancement-Mode-Vertical-DMOS-FET-Data-Sheet-20005704C.pdf" H 9850 1400 50  0001 C CNN
+F 4 "TP5335K1-G" H 0   0   50  0001 C CNN "Part Number"
+F 5 "TP5335K1-G" H 0   0   50  0001 C CNN "MPN"
+F 6 "TP5335K1-GCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    9850 1400
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5AD0D3C2
+P 9950 1750
+AR Path="/5AC37515/5AD0D3C2" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD0D3C2" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD0D3C2" Ref="R78"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD0D3C2" Ref="R18"  Part="1" 
+F 0 "R78" H 10020 1796 50  0000 L CNN
+F 1 "499k" V 9950 1700 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9880 1750 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 9950 1750 50  0001 C CNN
+F 4 "RMCF0603FT499KCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RMCF0603FT499K" H 0   0   50  0001 C CNN "MPN"
+F 6 "RMCF0603FT499K" H 0   0   50  0001 C CNN "Part Number"
+	1    9950 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5AD0D42A
+P 9950 2200
+AR Path="/5AC37515/5AD0D42A" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD0D42A" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD0D42A" Ref="R79"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD0D42A" Ref="R19"  Part="1" 
+F 0 "R79" H 10020 2246 50  0000 L CNN
+F 1 "26k1 0.1%" V 9850 2000 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9880 2200 50  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Tyco%20Electronics%20P%20B%20PDFs/RQ73-0618%20v2.pdf" H 9950 2200 50  0001 C CNN
+F 4 "RQ73C1J26K1BTD" H 9950 2200 50  0001 C CNN "Part Number"
+F 5 "A140602CT-ND" H 9950 2200 50  0001 C CNN "Digikey_PN"
+	1    9950 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9950 2050 9950 1950
+Wire Wire Line
+	9950 2350 9950 2400
+Text Label 9950 2550 2    50   ~ 0
+G
+$Comp
+L Device:Q_NMOS_GSD Q?
+U 1 1 5AD261AB
+P 9150 2550
+AR Path="/5AC37515/5AD261AB" Ref="Q?"  Part="1" 
+AR Path="/5AC3A314/5AD261AB" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD261AB" Ref="Q17"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD261AB" Ref="Q2"  Part="1" 
+F 0 "Q17" H 9355 2596 50  0000 L CNN
+F 1 "Q_NMOS_GSD" H 9355 2505 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 9350 2650 50  0001 C CNN
+F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/TN5335-N-Channel-Enhancement-Mode-Vertical-DMOS-FET-Data-Sheet-20005955A.pdf" H 9150 2550 50  0001 C CNN
+F 4 "TN5335K1-G" H 0   300 50  0001 C CNN "Part Number"
+F 5 "TN5335K1-G" H 0   300 50  0001 C CNN "MPN"
+F 6 "TN5335K1-GCT-ND" H 0   300 50  0001 C CNN "Digikey_PN"
+	1    9150 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5AD2E685
+P 9250 1150
+AR Path="/5AC37515/5AD2E685" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD2E685" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD2E685" Ref="R75"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD2E685" Ref="R15"  Part="1" 
+F 0 "R75" H 9320 1196 50  0000 L CNN
+F 1 "10k0" V 9250 1100 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9180 1150 50  0001 C CNN
+F 3 "http://www.yageo.com/NewPortal/yageodocoutput?fileName=/pdf/R-Chip/PYu-AC_51_RoHS_L_6.pdf" H 9250 1150 50  0001 C CNN
+F 4 "< ... >" H 0   0   50  0001 C CNN "DNP"
+F 5 "311-10KLDCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 6 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "MPN"
+F 7 "AC0603FR-0710KL" H 0   0   50  0001 C CNN "Part Number"
+	1    9250 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5AD2E6D1
+P 9250 1700
+AR Path="/5AC37515/5AD2E6D1" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD2E6D1" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD2E6D1" Ref="R76"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD2E6D1" Ref="R16"  Part="1" 
+F 0 "R76" H 9320 1746 50  0000 L CNN
+F 1 "32k0" V 9250 1650 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9180 1700 50  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/KOA%20Speer/RN73R_Type_DS.pdf" H 9250 1700 50  0001 C CNN
+F 4 "2019-RN73R1JTTD3202B25CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RN73R1JTTD3202B25" H 0   0   50  0001 C CNN "MPN"
+F 6 "RN73R1JTTD3202B25" H 0   0   50  0001 C CNN "Part Number"
+	1    9250 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9950 1200 9950 950 
+Wire Wire Line
+	9950 950  9250 950 
+Wire Wire Line
+	9250 950  9250 1000
+Wire Wire Line
+	9250 1300 9250 1350
+Wire Wire Line
+	9650 1400 9250 1400
+Connection ~ 9250 1400
+Wire Wire Line
+	9250 1400 9250 1550
+Wire Wire Line
+	9250 1850 9250 1950
+Wire Wire Line
+	9250 2750 9250 2850
+Text Label 9250 2850 2    50   ~ 0
+G
+$Comp
+L Device:R R?
+U 1 1 5AD58F31
+P 8800 2550
+AR Path="/5AC37515/5AD58F31" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5AD58F31" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD58F31" Ref="R73"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD58F31" Ref="R13"  Part="1" 
+F 0 "R73" V 8700 2550 50  0000 C CNN
+F 1 "100R" V 8800 2550 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 8730 2550 50  0001 C CNN
+F 3 "" H 8800 2550 50  0001 C CNN
+F 4 "AC0603FR-07100RL" H 0   300 50  0001 C CNN "MPN"
+F 5 "AC0603FR-07100RL" H 0   300 50  0001 C CNN "Part Number"
+F 6 "YAG3561CT-ND" H 0   300 50  0001 C CNN "Digikey_PN"
+	1    8800 2550
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 5AD59493
+P 8800 1150
+AR Path="/5AC37515/5AD59493" Ref="D?"  Part="1" 
+AR Path="/5AC3A314/5AD59493" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5AD59493" Ref="D46"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5AD59493" Ref="D7"  Part="1" 
+F 0 "D46" V 8754 1229 50  0000 L CNN
+F 1 "12V" V 8845 1229 50  0000 L CNN
+F 2 "Diode_SMD:D_SOD-323F" H 8800 1150 50  0001 C CNN
+F 3 "https://www.onsemi.com/pdf/datasheet/mm3z9v1c-d.pdf" H 8800 1150 50  0001 C CNN
+F 4 "MM3Z12VC" H 0   0   50  0001 C CNN "MPN"
+F 5 "MM3Z12VC" H 0   0   50  0001 C CNN "Part Number"
+F 6 "MM3Z12VCCT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    8800 1150
+	0    1    1    0   
+$EndComp
+Connection ~ 9950 1950
+Wire Wire Line
+	9950 1950 9950 1900
+Connection ~ 9950 2400
+Wire Wire Line
+	9950 2400 9950 2550
+Wire Wire Line
+	9250 950  8800 950 
+Wire Wire Line
+	8800 950  8800 1000
+Connection ~ 9250 950 
+Wire Wire Line
+	8800 1300 8800 1350
+Wire Wire Line
+	8800 1350 9250 1350
+Connection ~ 9250 1350
+Wire Wire Line
+	9250 1350 9250 1400
+Wire Wire Line
+	8600 3050 8600 2550
+Wire Wire Line
+	8600 2550 8650 2550
+Wire Wire Line
+	10700 1950 10700 2000
+Wire Wire Line
+	10700 2300 10700 2400
+Wire Wire Line
+	11100 1950 11100 4650
+Wire Wire Line
+	11100 4650 8350 4650
+Wire Wire Line
+	8350 4650 8350 4050
+Wire Wire Line
+	8350 4050 7650 4050
+$Comp
+L Device:R R?
+U 1 1 5ADB84AB
+P 9550 3650
+AR Path="/5AC37515/5ADB84AB" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/5ADB84AB" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ADB84AB" Ref="R77"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ADB84AB" Ref="R17"  Part="1" 
+F 0 "R77" H 9620 3696 50  0000 L CNN
+F 1 "100k" V 9550 3550 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9480 3650 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-rmcf_rmcp.pdf" H 9550 3650 50  0001 C CNN
+F 4 "RMCF0603FT100K" H 300 0   50  0001 C CNN "MPN"
+F 5 "RMCF0603FT100K" H 300 0   50  0001 C CNN "Part Number"
+F 6 "RMCF0603FT100KCT-ND" H 300 0   50  0001 C CNN "Digikey_PN"
+	1    9550 3650
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:Thermistor_NTC TH?
+U 1 1 5ADB85C7
+P 9550 4300
+AR Path="/5AC37515/5ADB85C7" Ref="TH?"  Part="1" 
+AR Path="/5AC3A314/5ADB85C7" Ref="TH?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5ADB85C7" Ref="TH2"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5ADB85C7" Ref="TH1"  Part="1" 
+F 0 "TH2" H 9648 4346 50  0000 L CNN
+F 1 "Thermistor_NTC" H 9648 4255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 9550 4350 50  0001 C CNN
+F 3 "https://www.tdk-electronics.tdk.com/inf/50/db/ntc/NTC_SMD_Automotive_series_0603.pdf?ref_disty=digikey" H 9550 4350 50  0001 C CNN
+F 4 "B57355V5104F360" H 300 100 50  0001 C CNN "MPN"
+F 5 "B57355V5104F360" H 300 100 50  0001 C CNN "Part Number"
+F 6 "495-76084-1-ND" H 300 100 50  0001 C CNN "Digikey_PN"
+	1    9550 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9550 4150 9550 3950
+Connection ~ 9550 3950
+Wire Wire Line
+	8950 4300 8950 4550
+Wire Wire Line
+	8950 4550 9550 4550
+Wire Wire Line
+	9550 4550 9550 4450
+Text Label 9100 4550 2    50   ~ 0
+G
+Wire Wire Line
+	9550 3500 9550 3150
+Wire Wire Line
+	9550 3150 9150 3150
+$Sheet
+S 1400 5950 1300 450 
+U 5B9C5715
+F0 "Bank_3" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 6100 50 
+F3 "CellBot" O L 1400 6250 50 
+F4 "G" I R 2700 6250 50 
+F5 "C" O R 2700 6050 50 
+F6 "S" I R 2700 6150 50 
+F7 "C-1" I R 2700 6350 47 
+$EndSheet
+$Sheet
+S 1400 6550 1300 450 
+U 5B9DC0CD
+F0 "Bank_2" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 6700 50 
+F3 "CellBot" O L 1400 6850 50 
+F4 "G" I R 2700 6850 50 
+F5 "C" O R 2700 6650 50 
+F6 "S" I R 2700 6750 50 
+F7 "C-1" I R 2700 6950 47 
+$EndSheet
+$Sheet
+S 1400 7150 1300 450 
+U 5B9E743C
+F0 "Bank_1" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 7300 50 
+F3 "CellBot" O L 1400 7450 50 
+F4 "G" I R 2700 7450 50 
+F5 "C" O R 2700 7250 50 
+F6 "S" I R 2700 7350 50 
+F7 "C-1" I R 2700 7550 47 
+$EndSheet
+Wire Wire Line
+	3750 2050 3750 750 
+Wire Wire Line
+	3850 1950 3850 650 
+$Sheet
+S 1400 4750 1300 450 
+U 5BADE91A
+F0 "Bank_5" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 4900 50 
+F3 "CellBot" O L 1400 5050 50 
+F4 "G" I R 2700 5050 50 
+F5 "C" O R 2700 4850 50 
+F6 "S" I R 2700 4950 50 
+F7 "C-1" I R 2700 5150 47 
+$EndSheet
+$Sheet
+S 1400 4150 1300 450 
+U 5BAE9DC4
+F0 "Bank_6" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 4300 50 
+F3 "CellBot" O L 1400 4450 50 
+F4 "G" I R 2700 4450 50 
+F5 "C" O R 2700 4250 50 
+F6 "S" I R 2700 4350 50 
+F7 "C-1" I R 2700 4550 47 
+$EndSheet
+$Sheet
+S 1400 3550 1300 450 
+U 5BAF51E4
+F0 "Bank_7" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 3700 50 
+F3 "CellBot" O L 1400 3850 50 
+F4 "G" I R 2700 3850 50 
+F5 "C" O R 2700 3650 50 
+F6 "S" I R 2700 3750 50 
+F7 "C-1" I R 2700 3950 47 
+$EndSheet
+$Sheet
+S 1400 2950 1300 450 
+U 5BB006BC
+F0 "Bank_8" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 3100 50 
+F3 "CellBot" O L 1400 3250 50 
+F4 "G" I R 2700 3250 50 
+F5 "C" O R 2700 3050 50 
+F6 "S" I R 2700 3150 50 
+F7 "C-1" I R 2700 3350 47 
+$EndSheet
+$Sheet
+S 1400 2350 1300 450 
+U 5BB0BADC
+F0 "Bank_9" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 2500 50 
+F3 "CellBot" O L 1400 2650 50 
+F4 "G" I R 2700 2650 50 
+F5 "C" O R 2700 2450 50 
+F6 "S" I R 2700 2550 50 
+F7 "C-1" I R 2700 2750 47 
+$EndSheet
+$Sheet
+S 1400 1750 1300 450 
+U 5BB16EFC
+F0 "Bank_10" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 1900 50 
+F3 "CellBot" O L 1400 2050 50 
+F4 "G" I R 2700 2050 50 
+F5 "C" O R 2700 1850 50 
+F6 "S" I R 2700 1950 50 
+F7 "C-1" I R 2700 2150 47 
+$EndSheet
+$Sheet
+S 1400 1150 1300 450 
+U 5BB2D7C6
+F0 "Bank_11" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 1300 50 
+F3 "CellBot" O L 1400 1450 50 
+F4 "G" I R 2700 1450 50 
+F5 "C" O R 2700 1250 50 
+F6 "S" I R 2700 1350 50 
+F7 "C-1" I R 2700 1550 47 
+$EndSheet
+$Sheet
+S 1400 550  1300 450 
+U 5BB38BE6
+F0 "Bank_12" 50
+F1 "CellMonitor.sch" 50
+F2 "CellTop" I L 1400 700 50 
+F3 "CellBot" O L 1400 850 50 
+F4 "G" I R 2700 850 50 
+F5 "C" O R 2700 650 50 
+F6 "S" I R 2700 750 50 
+F7 "C-1" I R 2700 950 47 
+$EndSheet
+Wire Wire Line
+	2700 950  2850 950 
+Wire Wire Line
+	2850 950  2850 1250
+Connection ~ 2850 1250
+Wire Wire Line
+	2850 1250 2700 1250
+Wire Wire Line
+	2700 1550 2850 1550
+Wire Wire Line
+	2850 1550 2850 1850
+Connection ~ 2850 1850
+Wire Wire Line
+	2850 1850 2700 1850
+Wire Wire Line
+	2700 2150 2850 2150
+Wire Wire Line
+	2850 2150 2850 2450
+Connection ~ 2850 2450
+Wire Wire Line
+	2850 2450 2700 2450
+Wire Wire Line
+	2700 2750 2850 2750
+Wire Wire Line
+	2850 2750 2850 3050
+Connection ~ 2850 3050
+Wire Wire Line
+	2850 3050 2700 3050
+Wire Wire Line
+	2700 3350 2850 3350
+Wire Wire Line
+	2850 3350 2850 3650
+Connection ~ 2850 3650
+Wire Wire Line
+	2850 3650 2700 3650
+Wire Wire Line
+	2700 3950 2850 3950
+Wire Wire Line
+	2850 3950 2850 4250
+Connection ~ 2850 4250
+Wire Wire Line
+	2850 4250 2700 4250
+Wire Wire Line
+	2700 4550 2850 4550
+Wire Wire Line
+	2850 4550 2850 4850
+Connection ~ 2850 4850
+Wire Wire Line
+	2850 4850 2700 4850
+Wire Wire Line
+	2700 5150 2850 5150
+Wire Wire Line
+	2850 5150 2850 5450
+Connection ~ 2850 5450
+Wire Wire Line
+	2850 5450 4350 5450
+Wire Wire Line
+	2700 5750 2850 5750
+Wire Wire Line
+	2850 5750 2850 6050
+Connection ~ 2850 6050
+Wire Wire Line
+	2850 6050 4550 6050
+Wire Wire Line
+	2700 6350 2850 6350
+Wire Wire Line
+	2850 6350 2850 6650
+Connection ~ 2850 6650
+Wire Wire Line
+	2850 6650 4750 6650
+Wire Wire Line
+	2700 6950 2850 6950
+Wire Wire Line
+	2850 6950 2850 7250
+Connection ~ 2850 7250
+Wire Wire Line
+	2850 7250 2700 7250
+Wire Wire Line
+	2700 7550 2800 7550
+Wire Wire Line
+	2800 7550 2800 7450
+$Comp
+L Device:LED D?
+U 1 1 5B5CDBE2
+P 9250 2100
+AR Path="/5AC37515/5B5CDBE2" Ref="D?"  Part="1" 
+AR Path="/5AC3A314/5B5CDBE2" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5B5CDBE2" Ref="D45"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/5B5CDBE2" Ref="D6"  Part="1" 
+F 0 "D45" V 9288 1983 50  0000 R CNN
+F 1 "D_LED" V 9197 1983 50  0000 R CNN
+F 2 "Diode_SMD:D_0603_1608Metric" H 9250 2100 50  0001 C CNN
+F 3 "http://optoelectronics.liteon.com/upload/download/DS22-2000-223/LTST-C191KRKT.PDF" H 9250 2100 50  0001 C CNN
+F 4 "160-1447-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "LTST-C191KRKT" H 0   0   50  0001 C CNN "MPN"
+F 6 "LTST-C191KRKT" H 0   0   50  0001 C CNN "Part Number"
+	1    9250 2100
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9950 2400 10700 2400
+Text Label 9150 3150 0    50   ~ 0
+Vref
+$Comp
+L power:PWR_FLAG #FLG0105
+U 1 1 5B74EC71
+P 5700 1200
+AR Path="/5B5CD4CD/5B5CD5EA/5B74EC71" Ref="#FLG0105"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/5B74EC71" Ref="#FLG0107"  Part="1" 
+F 0 "#FLG0107" H 5700 1275 50  0001 C CNN
+F 1 "PWR_FLAG" H 5700 1374 50  0000 C CNN
+F 2 "" H 5700 1200 50  0001 C CNN
+F 3 "~" H 5700 1200 50  0001 C CNN
+	1    5700 1200
+	1    0    0    -1  
+$EndComp
+Connection ~ 5700 1200
+Wire Wire Line
+	5700 1200 5850 1200
+Text HLabel 4750 650  0    50   Input ~ 0
+Stack_Top
+Text Label 4900 650  0    50   ~ 0
+Top_of_stack
+Wire Wire Line
+	4900 650  4750 650 
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 635AADF8
+P 10400 5050
+AR Path="/5B64EF74/635AADF8" Ref="#FLG?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD61E/635AADF8" Ref="#FLG?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/635AADF8" Ref="#FLG0108"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/635AADF8" Ref="#FLG0109"  Part="1" 
+F 0 "#FLG0109" H 10400 5125 50  0001 C CNN
+F 1 "PWR_FLAG" H 10400 5224 50  0000 C CNN
+F 2 "" H 10400 5050 50  0001 C CNN
+F 3 "~" H 10400 5050 50  0001 C CNN
+	1    10400 5050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10400 5050 10400 5350
+Wire Wire Line
+	10400 5350 10650 5350
+Text Label 10650 5350 2    50   ~ 0
+G
+Text Label 4000 1200 0    50   ~ 0
+Top_of_stack
+Text Label 9300 950  0    50   ~ 0
+Top_of_stack
+Text HLabel 10650 5350 2    50   Input ~ 0
+ground
+$Comp
+L Device:D_Zener D5
+U 1 1 63AB8B62
+P 4600 1450
+AR Path="/5B5CD4CD/5B5CD5EA/63AB8B62" Ref="D5"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/63AB8B62" Ref="D26"  Part="1" 
+F 0 "D26" V 4554 1530 50  0000 L CNN
+F 1 "D_TVS" V 4645 1530 50  0000 L CNN
+F 2 "Diode_SMD:D_SMA" H 4600 1450 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/SMAJ5.0CA-SMAJ200CA.pdf" H 4600 1450 50  0001 C CNN
+F 4 "SMAJ60A-13-F" V 4600 1450 50  0001 C CNN "Part Number"
+F 5 "SMAJ60A-FDICT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    4600 1450
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 63AD591D
+P 10700 2150
+AR Path="/5AAC0444/63AD591D" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/63AD591D" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/63AD591D" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/63AD591D" Ref="C30"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/63AD591D" Ref="C20"  Part="1" 
+F 0 "C30" H 10815 2196 50  0000 L CNN
+F 1 "100nF" H 10815 2105 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 10738 2000 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 10700 2150 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H -4250 -4650 50  0001 C CNN "MPN"
+F 5 "GCM188R71H104KA57D" H -4250 -4650 50  0001 C CNN "Part Number"
+F 6 "490-4779-1-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+	1    10700 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 63AE6636
+P 8950 4150
+AR Path="/5AAC0444/63AE6636" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5C3/63AE6636" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/6220E47E/63AE6636" Ref="C?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/63AE6636" Ref="C19"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/63AE6636" Ref="C27"  Part="1" 
+F 0 "C27" H 9065 4196 50  0000 L CNN
+F 1 "100nF" H 9065 4105 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8988 4000 50  0001 C CNN
+F 3 "http://psearch.en.murata.com/capacitor/product/GCM188R71H104KA57%23.pdf" H 8950 4150 50  0001 C CNN
+F 4 "GCM188R71H104KA57D" H -6000 -2650 50  0001 C CNN "MPN"
+F 5 "GCM188R71H104KA57D" H -6000 -2650 50  0001 C CNN "Part Number"
+F 6 "490-4779-1-ND" H 300 100 50  0001 C CNN "Digikey_PN"
+	1    8950 4150
+	1    0    0    -1  
+$EndComp
+Connection ~ 10700 1950
+Wire Wire Line
+	10700 1950 11100 1950
+$Comp
+L ICs:LTC6802-2 U11
+U 1 1 62A7C781
+P 7100 3000
+AR Path="/5B5CD4CD/5B5CD604/62A7C781" Ref="U11"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/62A7C781" Ref="U6"  Part="1" 
+F 0 "U11" H 7050 4428 50  0000 C CNN
+F 1 "LTC6802-2" H 7050 4337 50  0000 C CNN
+F 2 "Package_SO:TSSOP-44_4.4x11.2mm_P0.5mm" H 5600 5100 50  0001 C CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/LTC6802-2.pdf" H 5600 5100 50  0001 C CNN
+F 4 "LTC6802IG-2#3ZZPBF" H 0   0   50  0001 C CNN "MPN"
+F 5 "584-6802IG-2#3ZZPBF" H 0   0   50  0001 C CNN "Mouser_PN"
+F 6 "LTC6802IG-2#3ZZPBF" H 0   0   50  0001 C CNN "Part Number"
+	1    7100 3000
+	-1   0    0    -1  
+$EndComp
+Text Label 7650 1950 0    50   ~ 0
+Vref
+Wire Wire Line
+	8950 3950 8950 4000
+Wire Wire Line
+	9550 3800 9550 3950
+Text HLabel 7650 2450 2    50   Input ~ 0
+A0
+Wire Wire Line
+	7650 2550 7650 2650
+Connection ~ 7650 2650
+Wire Wire Line
+	7650 2650 7650 2750
+Text Label 7750 2750 2    50   ~ 0
+G
+Wire Wire Line
+	7750 2750 7650 2750
+Connection ~ 7650 2750
+Text Label 7650 2050 0    50   ~ 0
+Vreg
+Wire Wire Line
+	7650 3050 8600 3050
+Text HLabel 5450 5400 1    50   Input ~ 0
+SDO_daisy
+Wire Wire Line
+	7950 3350 7650 3350
+Wire Wire Line
+	7950 3450 7650 3450
+Wire Wire Line
+	7950 3650 7650 3650
+Text Label 7700 3350 0    50   ~ 0
+SCK
+Text Label 7700 3450 0    50   ~ 0
+SDI
+Text Label 8500 3550 0    50   ~ 0
+SDO
+Text Label 7700 3650 0    50   ~ 0
+CSB
+$Comp
+L Device:Q_NPN_BEC Q?
+U 1 1 62CF8D0C
+P 8100 5600
+AR Path="/5B5CD4CD/5E919B99/62CF8D0C" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/62CF8D0C" Ref="Q65"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/62CF8D0C" Ref="Q68"  Part="1" 
+F 0 "Q68" H 8291 5646 50  0000 L CNN
+F 1 "Q_NPN_BEC" H 8291 5555 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 8300 5700 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30062.pdf" H 8100 5600 50  0001 C CNN
+F 4 "MMBTA42-7-F" H 6050 1600 50  0001 C CNN "Part Number"
+F 5 "MMBTA42-7-F" H 6050 1600 50  0001 C CNN "MPN"
+F 6 "FMMTA42CT-ND" H 6050 1600 50  0001 C CNN "Digikey_PN"
+	1    8100 5600
+	1    0    0    -1  
+$EndComp
+Text Label 7750 5600 0    50   ~ 0
+Vreg
+Wire Wire Line
+	7900 5600 7750 5600
+$Comp
+L Device:Q_NPN_BEC Q?
+U 1 1 62D29C5E
+P 7200 5600
+AR Path="/5B5CD4CD/5E919B99/62D29C5E" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/62D29C5E" Ref="Q64"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/62D29C5E" Ref="Q67"  Part="1" 
+F 0 "Q67" H 7391 5646 50  0000 L CNN
+F 1 "Q_NPN_BEC" H 7391 5555 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 7400 5700 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30062.pdf" H 7200 5600 50  0001 C CNN
+F 4 "MMBTA42-7-F" H 5150 1600 50  0001 C CNN "Part Number"
+F 5 "MMBTA42-7-F" H 5150 1600 50  0001 C CNN "MPN"
+F 6 "FMMTA42CT-ND" H 5150 1600 50  0001 C CNN "Digikey_PN"
+	1    7200 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NPN_BEC Q?
+U 1 1 62D29CBE
+P 6300 5600
+AR Path="/5B5CD4CD/5E919B99/62D29CBE" Ref="Q?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/62D29CBE" Ref="Q63"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/62D29CBE" Ref="Q66"  Part="1" 
+F 0 "Q66" H 6491 5646 50  0000 L CNN
+F 1 "Q_NPN_BEC" H 6491 5555 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 6500 5700 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds30062.pdf" H 6300 5600 50  0001 C CNN
+F 4 "MMBTA42-7-F" H 4250 1600 50  0001 C CNN "Part Number"
+F 5 "MMBTA42-7-F" H 4250 1600 50  0001 C CNN "MPN"
+F 6 "FMMTA42CT-ND" H 4250 1600 50  0001 C CNN "Digikey_PN"
+	1    6300 5600
+	1    0    0    -1  
+$EndComp
+Text Label 6850 5600 0    50   ~ 0
+Vreg
+Wire Wire Line
+	7000 5600 6850 5600
+Text Label 5950 5600 0    50   ~ 0
+Vreg
+Wire Wire Line
+	6100 5600 5950 5600
+$Comp
+L Device:R R?
+U 1 1 62D6E525
+P 7300 6050
+AR Path="/5AC37515/62D6E525" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/62D6E525" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/62D6E525" Ref="R285"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/62D6E525" Ref="R266"  Part="1" 
+F 0 "R285" H 7370 6096 50  0000 L CNN
+F 1 "2k2" V 7300 6000 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 7230 6050 50  0001 C CNN
+F 3 "~" H 7300 6050 50  0001 C CNN
+F 4 "RMCF0603FT2K20CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RMCF0603FT2K20" H 0   0   50  0001 C CNN "MPN"
+F 6 "RMCF0603FT2K20" H 0   0   50  0001 C CNN "Part Number"
+	1    7300 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 62D6E659
+P 8200 6050
+AR Path="/5AC37515/62D6E659" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/62D6E659" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/62D6E659" Ref="R286"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/62D6E659" Ref="R283"  Part="1" 
+F 0 "R286" H 8270 6096 50  0000 L CNN
+F 1 "2k2" V 8200 6000 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 8130 6050 50  0001 C CNN
+F 3 "~" H 8200 6050 50  0001 C CNN
+F 4 "RMCF0603FT2K20CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RMCF0603FT2K20" H 0   0   50  0001 C CNN "MPN"
+F 6 "RMCF0603FT2K20" H 0   0   50  0001 C CNN "Part Number"
+	1    8200 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 62D6E6B7
+P 6400 6050
+AR Path="/5AC37515/62D6E6B7" Ref="R?"  Part="1" 
+AR Path="/5AC3A314/62D6E6B7" Ref="R?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/62D6E6B7" Ref="R284"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/62D6E6B7" Ref="R72"  Part="1" 
+F 0 "R284" H 6470 6096 50  0000 L CNN
+F 1 "2k2" V 6400 6000 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 6330 6050 50  0001 C CNN
+F 3 "~" H 6400 6050 50  0001 C CNN
+F 4 "RMCF0603FT2K20CT-ND" H 0   0   50  0001 C CNN "Digikey_PN"
+F 5 "RMCF0603FT2K20" H 0   0   50  0001 C CNN "MPN"
+F 6 "RMCF0603FT2K20" H 0   0   50  0001 C CNN "Part Number"
+	1    6400 6050
+	1    0    0    -1  
+$EndComp
+Text Label 8000 6300 0    50   ~ 0
+SCK
+Wire Wire Line
+	8200 6200 8200 6300
+Wire Wire Line
+	8200 6300 8000 6300
+Text Label 7150 6300 0    50   ~ 0
+SDI
+Text Label 6200 6300 0    50   ~ 0
+CSB
+Wire Wire Line
+	7300 6200 7300 6300
+Wire Wire Line
+	7300 6300 7150 6300
+Wire Wire Line
+	6400 6200 6400 6300
+Wire Wire Line
+	6400 6300 6200 6300
+Wire Wire Line
+	6400 5900 6400 5800
+Wire Wire Line
+	7300 5800 7300 5900
+Wire Wire Line
+	8200 5800 8200 5900
+$Comp
+L Device:D_Schottky D?
+U 1 1 62E0A78E
+P 8250 3550
+AR Path="/62E0A78E" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/62E0A78E" Ref="D?"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD5EA/62E0A78E" Ref="D32"  Part="1" 
+AR Path="/5B5CD4CD/5B5CD604/62E0A78E" Ref="D34"  Part="1" 
+F 0 "D34" H 8350 3500 50  0000 C CNN
+F 1 "D_Schottky" H 8400 3650 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-123F" H 8250 3550 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/RS1AFA-D.PDF" H 8250 3550 50  0001 C CNN
+F 4 "RS1GFA" H 4550 -1200 50  0001 C CNN "MPN"
+F 5 "RS1GFA" H 4650 -2150 50  0001 C CNN "Part Number"
+F 6 "S215FACT-ND" H 4650 -2150 50  0001 C CNN "Digikey_PN"
+	1    8250 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 3950 8950 3950
+Connection ~ 8950 3950
+Wire Wire Line
+	8100 3550 7650 3550
+Wire Wire Line
+	8400 3550 8750 3550
+Text Label 5450 5550 0    50   ~ 0
+SDO
+Text HLabel 7650 4350 2    50   Input ~ 0
+WDT
+Wire Wire Line
+	7900 2250 7900 2050
+Wire Wire Line
+	7900 2050 7650 2050
+Wire Wire Line
+	7650 2250 7900 2250
+Wire Wire Line
+	9250 2250 9250 2350
+Connection ~ 7900 2050
+Connection ~ 8450 2050
+Wire Wire Line
+	7900 2050 8450 2050
+Wire Wire Line
+	8100 2150 8100 1950
+Wire Wire Line
+	8100 1950 7650 1950
+NoConn ~ 7650 2950
+Wire Wire Line
+	9950 1950 10700 1950
+Wire Wire Line
+	8950 3950 9550 3950
+Wire Wire Line
+	5450 5400 5450 5550
+Wire Wire Line
+	5600 5550 5450 5550
+$EndSCHEMATC

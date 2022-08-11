@@ -50,7 +50,7 @@ typedef struct _uartDataQueue {
 
 void enQ(volatile uartDataQueue * thisQ);
 uint8_t deQ(volatile uartDataQueue * thisQ);
-uint8_t Uart1Init(uint32_t baudRate);
+uint8_t Uart1Init(uint32_t baudRate, uint32_t clock_freq);
 
 #if UART1_ENABLE
 static volatile uartBuffer RX1buffer = {
@@ -94,9 +94,9 @@ static volatile uint8_t TX2status = 0;
 
 static uint16_t delayTime;
 
-uint8_t Uart1Init(uint32_t baudRate) {
+uint8_t Uart1Init(uint32_t baudRate, uint32_t clock_freq) {
     // Configure oscillator as needed
-    uint32_t FP = clockFreq() / 2;
+    uint32_t FP = clock_freq / 2;
     if (FP <= FREQ_250KHZ) {
         return 0; //too slow for UART
     }

@@ -59,26 +59,26 @@ uint8_t IO_GET_DCDC_FAULT(void);
 uint8_t IO_GET_EV_CHARGER_FAULT(void);
 
 /**
- * IO_GET_xxx_VOLTAGE will return the converted voltage (including divider) in milliVolts
- * @return Voltage in milliVolts
+ * IO_GET_xxx_VOLTAGE will return the converted voltage (including divider) in Volts
+ * @return Voltage in Volts
  */
-uint32_t IO_GET_ISOLATION_VOLTAGE(void);
-uint32_t IO_GET_HV_BUS_VOLTAGE(void);
-uint32_t IO_GET_EV_CHARGER_VOLTAGE(void);
-uint32_t IO_GET_DCDC_OUTPUT_VOLTAGE(void);
-uint32_t IO_GET_MUX_1_VOLTAGE(void);
-uint32_t IO_GET_MUX_2_VOLTAGE(void);
-uint32_t IO_GET_MUX_3_VOLTAGE(void);
+float IO_GET_ISOLATION_VOLTAGE(void);
+float IO_GET_HV_BUS_VOLTAGE(void);
+float IO_GET_EV_CHARGER_VOLTAGE(void);
+float IO_GET_DCDC_OUTPUT_VOLTAGE(void);
+float IO_GET_MUX_1_VOLTAGE(void);
+float IO_GET_MUX_2_VOLTAGE(void);
+float IO_GET_MUX_3_VOLTAGE(void);
 
 /**
- * IO_GET_xxx_CURRENT will return the converted current (including divider) in milliAmps
- * @return Current in milliAmps
+ * IO_GET_xxx_CURRENT will return the converted current (including divider) in Amps
+ * @return Current in Amps
  */
-uint32_t IO_GET_DCDC_CURRENT(void);
-uint32_t IO_GET_EV_CHARGER_CURRENT(void);
-uint32_t IO_GET_SHUNT_HIGH_CURRENT(void);
-uint32_t IO_GET_SHUNT_LOW_CURRENT(void);
-uint32_t IO_GET_TRANSDUCER_CURRENT(void);
+float IO_GET_DCDC_CURRENT(void);
+float IO_GET_EV_CHARGER_CURRENT(void);
+float IO_GET_SHUNT_HIGH_CURRENT(void);
+float IO_GET_SHUNT_LOW_CURRENT(void);
+float IO_GET_TRANSDUCER_CURRENT(void);
 
 
 

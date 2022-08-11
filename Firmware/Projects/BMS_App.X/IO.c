@@ -147,51 +147,51 @@ uint8_t IO_GET_EV_CHARGER_FAULT(void) {
 
 /* Analog */
 
-uint32_t IO_GET_ISOLATION_VOLTAGE(void){
-    return ADC_GetValue(ISOLATION_VOLTAGE_AI)*1000.0*31.0*ADC_FACTOR;
+float IO_GET_ISOLATION_VOLTAGE(void){
+    return ((float)ADC_GetValue(ISOLATION_VOLTAGE_AI))*31.0*ADC_FACTOR;
 }
 
-uint32_t IO_GET_HV_BUS_VOLTAGE(void){
-    return ADC_GetValue(HV_BUS_VOLTAGE_AI)*1000.0*31.0*ADC_FACTOR;
+float IO_GET_HV_BUS_VOLTAGE(void){
+    return ((float)ADC_GetValue(HV_BUS_VOLTAGE_AI))*30.70*ADC_FACTOR;
 }
 
-uint32_t IO_GET_EV_CHARGER_VOLTAGE(void){
-    return ADC_GetValue(EV_CHARGER_VOLTAGE_AI)*1000.0*31.0*ADC_FACTOR;
+float IO_GET_EV_CHARGER_VOLTAGE(void){
+    return ((float)ADC_GetValue(EV_CHARGER_VOLTAGE_AI))*30.9*ADC_FACTOR;
 }
 
-uint32_t IO_GET_DCDC_OUTPUT_VOLTAGE(void){
-    return ADC_GetValue(DCDC_OUTPUT_VOLTAGE_AI)*1000.0*31.0*ADC_FACTOR;
+float IO_GET_DCDC_OUTPUT_VOLTAGE(void){
+    return ((float)ADC_GetValue(DCDC_OUTPUT_VOLTAGE_AI))*30.70*ADC_FACTOR;
 }
 
-uint32_t IO_GET_MUX_1_VOLTAGE(void){
-    return ADC_GetValue(MUX_1_AI)*1000.0*ADC_FACTOR;
+float IO_GET_MUX_1_VOLTAGE(void){
+    return ((float)ADC_GetValue(MUX_1_AI))*ADC_FACTOR;
 }
 
-uint32_t IO_GET_MUX_2_VOLTAGE(void){
-    return ADC_GetValue(MUX_2_AI)*1000.0*ADC_FACTOR;
+float IO_GET_MUX_2_VOLTAGE(void){
+    return ((float)ADC_GetValue(MUX_2_AI))*ADC_FACTOR;
 }
 
-uint32_t IO_GET_MUX_3_VOLTAGE(void){
-    return ADC_GetValue(MUX_3_AI)*1000.0*ADC_FACTOR;
+float IO_GET_MUX_3_VOLTAGE(void){
+    return ((float)ADC_GetValue(MUX_3_AI))*ADC_FACTOR;
 }
 
-uint32_t IO_GET_DCDC_CURRENT(void){
-    return ADC_GetValue(DCDC_OUTPUT_CURRENT_AI)*1000.0*5*ADC_FACTOR;
+float IO_GET_DCDC_CURRENT(void){
+    return ((float)ADC_GetValue(DCDC_OUTPUT_CURRENT_AI))*5.0*ADC_FACTOR;
 }
 
-uint32_t IO_GET_EV_CHARGER_CURRENT(void){
-    return ADC_GetValue(EV_CHARGER_CURRENT_AI)*1000.0*20*ADC_FACTOR;
+float IO_GET_EV_CHARGER_CURRENT(void){
+    return ((float)ADC_GetValue(EV_CHARGER_CURRENT_AI))*20.0*ADC_FACTOR;
 }
 
-uint32_t IO_GET_SHUNT_HIGH_CURRENT(void){
+float IO_GET_SHUNT_HIGH_CURRENT(void){
     return 0;
 }
 
-uint32_t IO_GET_SHUNT_LOW_CURRENT(void){
+float IO_GET_SHUNT_LOW_CURRENT(void){
     return 0;
 }
 
-uint32_t IO_GET_TRANSDUCER_CURRENT(void){
+float IO_GET_TRANSDUCER_CURRENT(void){
     return 0;
 }
 

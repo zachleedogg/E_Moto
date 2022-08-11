@@ -6,9 +6,9 @@
 
 [BUSMASTER_VERSION] [3.2.2]
 
-[NUMBER_OF_MESSAGES] 15
+[NUMBER_OF_MESSAGES] 21
 
-[START_MSG] dash_status,1,8,7,1,S
+[START_MSG] dash_status,1793,8,7,1,S
 [START_SIGNALS] heartBeat,4,1,0.0,U,15,0,1,0,1.0,,
 [START_SIGNALS] state,3,1,4.0,U,7,0,1,0,1.0,,
 [START_SIGNALS] killButton,2,1,7.0,U,3,0,1,0,1.0,,
@@ -18,7 +18,7 @@
 [START_SIGNALS] driveMode,3,2,7.0,U,7,0,1,0,1.0,,
 [END_MSG]
 
-[START_MSG] dash_command,2,8,5,1,S
+[START_MSG] dash_command,1794,8,5,1,S
 [START_SIGNALS] ignitionRequest,1,1,0.0,B,1,0,1,0,1.0,,
 [START_SIGNALS] killRequest,1,1,1.0,B,1,0,1,0,1.0,,
 [START_SIGNALS] batteryEjectRequest,1,1,2.0,B,1,0,1,0,1.0,,
@@ -33,50 +33,88 @@
 [START_SIGNALS] tripB,16,7,0.0,U,65535,0,1,0,1.0,,
 [END_MSG]
 
-[START_MSG] dash_data2,3,8,4,1,S
+[START_MSG] dash_data2,1796,8,4,1,S
 [START_SIGNALS] runningTime,16,1,0.0,U,65535,0,1,0,1.0,,
 [START_SIGNALS] odometer,16,3,0.0,U,65535,0,1,0,1.0,,
 [START_SIGNALS] tripA,16,5,0.0,U,65535,0,1,0,1.0,,
 [START_SIGNALS] tripB,16,7,0.0,U,65535,0,1,0,1.0,,
 [END_MSG]
 
-[START_MSG] mcu_status,4,8,17,1,S
-[START_SIGNALS] state,3,1,0.0,U,7,0,1,0,1.0,,
-[START_SIGNALS] throttleMode,3,1,3.0,U,7,0,1,0,1.0,,
-[START_SIGNALS] highBeam,1,1,6.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] lowBeam,1,1,7.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] brakeLight,1,2,0.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] tailLight,1,2,1.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] horn,1,2,2.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] turnSignalFR,1,2,3.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] turnSignalFL,1,2,4.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] turnSignalRR,1,2,5.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] turnSignalRL,1,2,6.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] GBSALL,1,2,7.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] contactor,1,3,0.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] chargePort,1,3,1.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] brakeSwitchFront,1,3,2.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] brakeSwitchRear,1,3,3.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] throttleVal,8,3,4.0,U,255,0,1,0,1.0,,
+[START_MSG] mcu_status,1809,8,18,1,S
+[START_SIGNALS] heartbeat,4,1,0.0,U,15,0,1,0,1.0,,
+[START_SIGNALS] state,3,1,4.0,U,7,0,1,0,1.0,,
+[START_SIGNALS] throttleMode,3,1,7.0,U,7,0,1,0,1.0,,
+[START_SIGNALS] highBeam,1,2,2.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] lowBeam,1,2,3.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] brakeLight,1,2,4.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] tailLight,1,2,5.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] horn,1,2,6.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] turnSignalFR,1,2,7.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] turnSignalFL,1,3,0.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] turnSignalRR,1,3,1.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] turnSignalRL,1,3,2.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] GBSALL,1,3,3.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] contactor,1,3,4.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] chargePort,1,3,5.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] brakeSwitchFront,1,3,6.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] brakeSwitchRear,1,3,7.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] throttleVal,8,4,0.0,U,255,0,1,0,1.0,,
 [END_MSG]
 
-[START_MSG] mcu_command,5,8,3,1,S
+[START_MSG] mcu_command,1810,8,5,1,S
 [START_SIGNALS] DCDC_enable,1,1,0.0,B,1,0,1,0,1.0,,
 [START_SIGNALS] ev_charger_enable,1,1,1.0,B,1,0,1,0,1.0,,
-[START_SIGNALS] motor_controller_enable,1,1,2.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] ev_charger_current,13,1,2.0,U,8191,0,1,0,0.1,,
+[START_SIGNALS] precharge_enable,1,2,7.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] motor_controller_enable,1,3,0.0,B,1,0,1,0,1.0,,
 [END_MSG]
 
 [START_MSG] mcu_motorControllerRequest,1792,8,1,1,S
 [START_SIGNALS] requestType,8,1,0.0,U,255,0,1,0,1.0,,
 [END_MSG]
 
-[START_MSG] bms_status,6,8,6,1,S
+[START_MSG] mcu_boot_response,162,8,9,1,S
+[START_SIGNALS] code,4,1,0.0,U,15,0,1,0,1.0,,
+[START_SIGNALS] type,4,1,4.0,U,15,0,1,0,1.0,,
+[START_SIGNALS] byte1,8,2,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte2,8,3,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte3,8,4,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte4,8,5,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte5,8,6,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte6,8,7,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte7,8,8,0.0,U,255,0,1,0,1.0,,
+[END_MSG]
+
+[START_MSG] bms_status,1825,8,6,1,S
 [START_SIGNALS] state,3,1,0.0,U,7,0,1,0,1.0,,
-[START_SIGNALS] SOC,7,1,3.0,U,127,0,1,0,1.0,,
-[START_SIGNALS] packVoltage,16,2,2.0,U,65535,0,1,0,1.0,,
-[START_SIGNALS] packCurrent,16,4,2.0,U,65535,0,1,0,1.0,,
-[START_SIGNALS] minTemp,12,6,2.0,U,4095,0,1,0,1.0,,
-[START_SIGNALS] maxTemp,12,7,6.0,U,4095,0,1,0,1.0,,
+[START_SIGNALS] SOC,9,1,3.0,U,511,0,1,0,0.1,,
+[START_SIGNALS] packVoltage,16,2,4.0,U,65535,0,1,0,0.01,,
+[START_SIGNALS] packCurrent,16,4,4.0,U,65535,0,1,0,0.01,,
+[START_SIGNALS] minTemp,10,6,4.0,U,1023,0,1,-40,0.1,,
+[START_SIGNALS] maxTemp,10,7,6.0,U,1023,0,1,-40,0.1,,
+[END_MSG]
+
+[START_MSG] bms_status_2,1826,8,11,1,S
+[START_SIGNALS] DCDC_state,1,1,0.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] DCDC_fault,1,1,1.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] DCDC_voltage,10,1,2.0,U,1023,0,1,0,0.1,,
+[START_SIGNALS] DCDC_current,10,2,4.0,U,1023,0,1,0,0.1,,
+[START_SIGNALS] EV_charger_state,1,3,6.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] EV_charger_fault,1,3,7.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] EV_charger_voltage,10,4,0.0,U,1023,0,1,0,0.1,,
+[START_SIGNALS] EV_charger_current,10,5,2.0,U,1023,0,1,0,0.1,,
+[START_SIGNALS] HV_precharge_state,1,6,4.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] HV_isolation_voltage,10,6,5.0,U,1023,0,1,0,0.1,,
+[START_SIGNALS] HV_contactor_state,1,7,7.0,B,1,0,1,0,1.0,,
+[END_MSG]
+
+[START_MSG] bms_debug,1827,8,6,1,S
+[START_SIGNALS] bool0,1,1,0.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] bool1,1,1,1.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] bool2,1,1,2.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] bool3,1,1,3.0,B,1,0,1,0,1.0,,
+[START_SIGNALS] float1,16,1,4.0,U,65535,0,1,0,0.01,,
+[START_SIGNALS] float2,16,3,4.0,U,65535,0,1,0,0.01,,
 [END_MSG]
 
 [START_MSG] bms_boot_response,162,8,9,1,S
@@ -91,30 +129,36 @@
 [START_SIGNALS] byte7,8,8,0.0,U,255,0,1,0,1.0,,
 [END_MSG]
 
-[START_MSG] bms_charger_request,403105268,8,9,1,X
+[START_MSG] bms_charger_request,403105268,8,8,1,X
 [START_SIGNALS] output_voltage_high_byte,8,1,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] output_voltage_low_byte,8,2,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] output_current_high_byte,8,3,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] output_current_low_byte,8,4,0.0,U,255,0,1,0,1.0,,
-[START_SIGNALS] start_charge_request,8,5,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] start_charge_not_request,8,5,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] charge_mode,8,6,0.0,U,255,0,1,0,1.0,,
-[START_SIGNALS] packCurrent,8,7,0.0,U,255,0,1,0,1.0,,
-[START_SIGNALS] byte_7,8,8,0.0,U,255,0,1,0,1.0,,
-[START_SIGNALS] byte_8,8,9,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte_7,8,7,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte_8,8,8,0.0,U,255,0,1,0,1.0,,
 [END_MSG]
 
-[START_MSG] bms_cellVoltages,7,8,6,1,S
+[START_MSG] bms_cellVoltages,1829,8,5,1,S
 [START_SIGNALS] MultiPlex,4,1,0.0,U,15,0,1,0,1.0,,
-[START_SIGNALS] cell1,12,1,4.0,U,4095,0,1,0,1.0,,
-[START_SIGNALS] cell2,12,3,0.0,U,4095,0,1,0,1.0,,
-[START_SIGNALS] cell3,12,4,4.0,U,4095,0,1,0,1.0,,
-[START_SIGNALS] cell4,12,6,0.0,U,4095,0,1,0,1.0,,
-[START_SIGNALS] cell5,12,7,4.0,U,4095,0,1,0,1.0,,
+[START_SIGNALS] cell_1_voltage,15,1,4.0,U,32767,0,1,0,0.001,,
+[START_SIGNALS] cell_2_voltage,15,3,3.0,U,32767,0,1,0,0.001,,
+[START_SIGNALS] cell_3_voltage,15,5,2.0,U,32767,0,1,0,0.001,,
+[START_SIGNALS] cell_4_voltage,15,7,1.0,U,32767,0,1,0,0.001,,
 [END_MSG]
 
-[START_MSG] motorcontroller_motorStatus,8,8,8,1,S
+[START_MSG] bms_cellTemperaturs,1830,8,5,1,S
+[START_SIGNALS] MultiPlex,4,1,0.0,U,15,0,1,0,1.0,,
+[START_SIGNALS] temp_1,12,1,4.0,U,4095,0,1,-40,0.1,,
+[START_SIGNALS] temp_2,12,3,0.0,U,4095,0,1,-40,0.1,,
+[START_SIGNALS] temp_3,12,4,4.0,U,4095,0,1,-40,0.1,,
+[START_SIGNALS] temp_4,12,6,0.0,U,4095,0,1,-40,0.1,,
+[END_MSG]
+
+[START_MSG] motorcontroller_motorStatus,1841,8,8,1,S
 [START_SIGNALS] motorSpeed,8,1,0.0,U,255,0,1,0,1.0,,
-[START_SIGNALS] motorCurrent,8,2,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] motorCurrent,8,2,0.0,U,255,0,1,0,0.01,,
 [START_SIGNALS] IphaseA,8,3,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] IphaseB,8,4,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] IphaseC,8,5,0.0,U,255,0,1,0,1.0,,
@@ -123,7 +167,7 @@
 [START_SIGNALS] VphaseC,8,8,0.0,U,255,0,1,0,1.0,,
 [END_MSG]
 
-[START_MSG] motorcontroller_response,1792,8,8,1,S
+[START_MSG] motorcontroller_response,1791,8,8,1,S
 [START_SIGNALS] byte1,8,1,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] byte2,8,2,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] byte3,8,3,0.0,U,255,0,1,0,1.0,,
@@ -135,10 +179,10 @@
 [END_MSG]
 
 [START_MSG] charger_status,419385573,8,11,1,X
-[START_SIGNALS] output_voltage_high_byte,8,1,0.0,U,255,0,1,255,10.0,,
-[START_SIGNALS] output_voltage_low_byte,8,2,0.0,U,255,0,1,255,10.0,,
-[START_SIGNALS] output_current_high_byte,8,3,0.0,U,255,0,1,0,10.0,,
-[START_SIGNALS] output_current_low_byte,8,4,0.0,U,255,0,1,0,10.0,,
+[START_SIGNALS] output_voltage_high_byte,8,1,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] output_voltage_low_byte,8,2,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] output_current_high_byte,8,3,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] output_current_low_byte,8,4,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] hardware_error,1,5,0.0,B,1,0,1,0,1.0,,
 [START_SIGNALS] charger_overtemp_error,1,5,1.0,B,1,0,1,0,1.0,,
 [START_SIGNALS] input_voltage_error,1,5,2.0,B,1,0,1,0,1.0,,
@@ -150,7 +194,31 @@
 
 [START_MSG] boot_host_bms,161,8,9,1,S
 [START_SIGNALS] code,4,1,0.0,U,15,0,1,0,1.0,,
-[START_SIGNALS] type,4,1,4.0,U,15,0,1,4,1.0,,
+[START_SIGNALS] type,4,1,4.0,U,15,0,1,0,1.0,,
+[START_SIGNALS] byte1,8,2,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte2,8,3,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte3,8,4,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte4,8,5,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte5,8,6,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte6,8,7,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte7,8,8,0.0,U,255,0,1,0,1.0,,
+[END_MSG]
+
+[START_MSG] boot_host_mcu,163,8,9,1,S
+[START_SIGNALS] code,4,1,0.0,U,15,0,1,0,1.0,,
+[START_SIGNALS] type,4,1,4.0,U,15,0,1,0,1.0,,
+[START_SIGNALS] byte1,8,2,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte2,8,3,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte3,8,4,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte4,8,5,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte5,8,6,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte6,8,7,0.0,U,255,0,1,0,1.0,,
+[START_SIGNALS] byte7,8,8,0.0,U,255,0,1,0,1.0,,
+[END_MSG]
+
+[START_MSG] boot_host_dash,165,8,9,1,S
+[START_SIGNALS] code,4,1,0.0,U,15,0,1,0,1.0,,
+[START_SIGNALS] type,4,1,4.0,U,15,0,1,0,1.0,,
 [START_SIGNALS] byte1,8,2,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] byte2,8,3,0.0,U,255,0,1,0,1.0,,
 [START_SIGNALS] byte3,8,4,0.0,U,255,0,1,0,1.0,,

@@ -49,12 +49,12 @@
  * @param baudRate: use any define Baud rate
  * @return 
  */
-#define Uart1INIT(TX_PIN, RX_PIN, BAUD) \
+#define Uart1INIT(TX_PIN, RX_PIN, BAUD, CLOCK_FREQ) \
 _U1RXR=RX_PIN; \
 TX_PIN=1; \
-Uart1Init(BAUD) \
+Uart1Init(BAUD, CLOCK_FREQ) \
 
-uint8_t Uart1Init(uint32_t baudRate);
+uint8_t Uart1Init(uint32_t baudRate, uint32_t clock_freq);
 
 /**
  * Stops the UART1 module

@@ -63,21 +63,41 @@ Copyright (c) [2012-2022] Microchip Technology Inc.
 #include "mcc_generated_files/tmr1.h"
 #include "mcc_generated_files/can1.h"
 #include "mcc_generated_files/pin_manager.h"
+#include "mcc_generated_files/uart1.h"
 
 #define DOWNLOADED_IMAGE    0u
 #define EXECUTION_IMAGE     0u
 
-static bool inBootloadMode = false;
-static bool executionImageRequiresValidation = true;
-static bool executionImageValid = false;
 static uint16_t bootloadTimeOutTime = 5000; //ms
 static uint32_t bootloadLastTime = 0;
-
-static bool EnterBootloadMode(void);
 
 void BOOT_DEMO_Initialize(void)
 {    
     
+    TMR1_SoftwareCounterClear();
+    bootloadLastTime = 0;
+    if(RCONbits.SWR == 1){
+        bootloadTimeOutTime = 5000;
+    } else {
+        bootloadTimeOutTime = 0;
+    }
+    
+    char hello[] = "Reset Reason: ";
+    uint8_t i = 0;
+    for (i=0;i<sizeof(hello);i++){
+        UART1_Write(hello[i]);
+    }
+    
+    uint8_t low = (uint8_t)RCON;
+    uint8_t high = (uint8_t)(RCON>>8);
+    
+    for (i=0;i<8;i++){
+        UART1_Write(((high >> (7-i)) & 0x01)+48);
+    }
+        for (i=0;i<8;i++){
+        UART1_Write(((low >> (7-i)) & 0x01)+48);
+    }
+    UART1_Write(0xA);//newline
 }
 
 
@@ -97,8 +117,8 @@ void BOOT_DEMO_Tasks(void)
              //#warning "All interrupt sources and peripherals should be disabled before starting the application.  Add any code required here to disable all interrupts and peripherals used in the bootloader."
 
             TMR1_Stop();
-            CAN1_OperationModeSet(CAN_DISABLE_MODE);
-            SW_EN_SetLow();
+            //CAN1_OperationModeSet(CAN_DISABLE_MODE);
+            //SW_EN_SetLow();
             BOOT_StartApplication();
         }
     }

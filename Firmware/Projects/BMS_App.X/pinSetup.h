@@ -24,6 +24,7 @@
 #define MUX_A PIN_DEF(E,15)
 #define MUX_B PIN_DEF(E,14)
 #define MUX_C PIN_DEF(E,13)
+#define CAN_TX_PIN PIN_DEF(G,6)
 
 //Inputs
 #define V5_SW_nFAULT PIN_DEF(A,8)

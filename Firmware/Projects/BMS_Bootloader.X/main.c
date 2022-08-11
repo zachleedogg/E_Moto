@@ -49,8 +49,10 @@
 #include "mcc_generated_files/system.h"
 #include "mcc_generated_files/can1.h"
 #include "mcc_generated_files/pin_manager.h"
+#include "mcc_generated_files/tmr1.h"
 #include "can_tp.h"
 #include "mcc_generated_files/boot/boot_demo.h"
+#include "mcc_generated_files/uart1.h"
 
 /*
                          Main application
@@ -66,6 +68,8 @@ uint16_t counter_led;
 uint16_t counter_can;
 
 static bool can_flag = false;
+
+void send_boot_message(void);
 
 void TMR1_CallBack(void)
 {
@@ -91,7 +95,6 @@ void TMR1_CallBack(void)
 int main(void)
 {
     // initialize the device
-    
     SYSTEM_Initialize();
     BOOT_DEMO_Initialize();
     SW_EN_SetHigh();
@@ -103,31 +106,41 @@ int main(void)
     //Can we call from   BOOT_COM_Initialize();???
     CAN1_TransmitEnable(); 
     CAN1_ReceiveEnable();
+    
+    send_boot_message();
+    
+    char hello[] = "Bootloader\n";
+    uint8_t i = 0;
+    for (i=0;i<sizeof(hello);i++){
+        UART1_Write(hello[i]);
+    }
 
 
     while (1)
     {       
         CAN_TP_Tasks();
-        BOOT_DEMO_Tasks();       
+        BOOT_DEMO_Tasks();
+        
         if(can_flag){
             can_flag = false;
-            //Send a boot ID message
-            *dummyByte = &bootByte;
-            myField.idType = 0;
-            myField.dlc = 0b1000;
-            myField.frameType = 0;
-            myMessage.msgId = 0xAA;
-            myMessage.data = dummyByte;
-            myMessage.field = myField;
-            CAN1_Transmit(CAN_PRIORITY_LOW, &myMessage);
-            
+            send_boot_message();
         }
 
     }
         
     return 1;
 }
+
+void send_boot_message(void){
+    //Send a boot ID message
+    myField.idType = 0;
+    myField.dlc = 0b1000;
+    myField.frameType = 0;
+    myMessage.msgId = 0xA2;
+    myMessage.data = dummyByte;
+    myMessage.field = myField;
+    CAN1_Transmit(CAN_PRIORITY_LOW, &myMessage);
+}
 /**
  End of File
 */
-

@@ -62,7 +62,6 @@ typedef struct {
 
 /**
  * 
- * @param port
  * @param pin
  * @param dir
  */
@@ -70,7 +69,6 @@ void PINS_direction(PINS_pin_S pin, PINS_direction_E dir);
 
 /**
  * 
- * @param port
  * @param pin
  * @param state
  */
@@ -78,7 +76,6 @@ void PINS_write(PINS_pin_S pin, PINS_internalRegisters_State_E state);
 
 /**
  * 
- * @param port
  * @param pin
  * @return 
  */
@@ -86,7 +83,6 @@ PINS_internalRegisters_State_E PINS_read(PINS_pin_S pin);
 
 /**
  * 
- * @param port
  * @param pin
  * @param state
  */
@@ -94,7 +90,6 @@ void PINS_pullUp(PINS_pin_S pin, PINS_internalRegisters_State_E state);
 
 /**
  * 
- * @param port
  * @param pin
  * @param state
  */
@@ -102,7 +97,13 @@ void PINS_pullDown(PINS_pin_S pin, PINS_internalRegisters_State_E state);
 
 /**
  * 
- * @param port
+ * @param pin
+ * @param state
+ */
+void PINS_openDrain(PINS_pin_S pin, PINS_internalRegisters_State_E state);
+
+/**
+ * 
  * @param pin
  * @param state
  */

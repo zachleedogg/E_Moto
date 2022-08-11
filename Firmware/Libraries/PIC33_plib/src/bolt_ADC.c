@@ -116,8 +116,8 @@ void ADC_Init(void) {
     _SMPI = 0; /*number of pins + 1 to read per interrupt*/
 
     /*Config Reg 3*/
-    _ADCS = 0x0F; /*ADC Clock Period (TAD = 228ns = (ADCS + 1)/(SYSCLOCK/2)) Should be for 72ns...*/
-    _SAMC = 0x0F; /*Sample for t = SAMC*TAD before converting*/
+    _ADCS = 0x5F; /*ADC Clock Period (TAD = 228ns = (ADCS + 1)/(SYSCLOCK/2)) Should be for 72ns...*/
+    _SAMC = 0x1F; /*Sample for t = SAMC*TAD before converting*/
 
     /*Config Reg 4*/
     AD1CON4 = 0x0000;

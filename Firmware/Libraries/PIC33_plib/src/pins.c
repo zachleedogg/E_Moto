@@ -12,6 +12,7 @@ typedef struct _PINS_internalRegisters_S {
     volatile uint16_t* const lat;
     volatile uint16_t* const pu;
     volatile uint16_t* const pd;
+    volatile uint16_t* const od;
     volatile uint16_t* const inter;
 } PINS_internalRegisters_S;
 
@@ -25,6 +26,7 @@ static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
     [PIN_PORTA].lat = &LATA,
     [PIN_PORTA].pu = &CNPUA,
     [PIN_PORTA].pd = &CNPDA,
+    [PIN_PORTA].od = &ODCA,
     [PIN_PORTA].inter = &CNENA,
 #endif
 #ifdef PORTB
@@ -33,6 +35,7 @@ static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
     [PIN_PORTB].lat = &LATB,
     [PIN_PORTB].pu = &CNPUB,
     [PIN_PORTB].pd = &CNPDB,
+    //[PIN_PORTB].od = &ODCB,
     [PIN_PORTB].inter = &CNENB,
 #endif
 #ifdef PORTC
@@ -41,6 +44,7 @@ static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
     [PIN_PORTC].lat = &LATC,
     [PIN_PORTC].pu = &CNPUC,
     [PIN_PORTC].pd = &CNPDC,
+    //[PIN_PORTC].od = &ODCC,
     [PIN_PORTC].inter = &CNENC,
 #endif
 #ifdef PORTD
@@ -49,6 +53,7 @@ static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
     [PIN_PORTD].lat = &LATD,
     [PIN_PORTD].pu = &CNPUD,
     [PIN_PORTD].pd = &CNPDD,
+    [PIN_PORTD].od = &ODCD,
     [PIN_PORTD].inter = &CNEND,
 #endif
 #ifdef PORTE
@@ -57,6 +62,7 @@ static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
     [PIN_PORTE].lat = &LATE,
     [PIN_PORTE].pu = &CNPUE,
     [PIN_PORTE].pd = &CNPDE,
+    //[PIN_PORTE].od = &ODCE,
     [PIN_PORTE].inter = &CNENE,
 #endif
 #ifdef PORTF
@@ -65,6 +71,7 @@ static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
     [PIN_PORTF].lat = &LATF,
     [PIN_PORTF].pu = &CNPUF,
     [PIN_PORTF].pd = &CNPDF,
+    [PIN_PORTF].od = &ODCF,
     [PIN_PORTF].inter = &CNENF,
 #endif
 #ifdef PORTG
@@ -73,6 +80,7 @@ static const PINS_internalRegisters_S PINS_portsArray[PINS_NUMBER_OF_PORTS] = {
     [PIN_PORTG].lat = &LATG,
     [PIN_PORTG].pu = &CNPUG,
     [PIN_PORTG].pd = &CNPDG,
+    [PIN_PORTG].od = &ODCG,
     [PIN_PORTG].inter = &CNENG,
 #endif
 };
@@ -118,6 +126,15 @@ void PINS_pullUp(PINS_pin_S pin, PINS_internalRegisters_State_E state) {
 }
 
 void PINS_pullDown(PINS_pin_S pin, PINS_internalRegisters_State_E state) {
+    uint16_t thisPin = 1 << pin.pin;
+    if (state == 0) {
+        clear(PINS_portsArray[pin.port].pd, thisPin);
+    } else {
+        set(PINS_portsArray[pin.port].pd, thisPin);
+    }
+}
+
+void PINS_openDrain(PINS_pin_S pin, PINS_internalRegisters_State_E state) {
     uint16_t thisPin = 1 << pin.pin;
     if (state == 0) {
         clear(PINS_portsArray[pin.port].pd, thisPin);

@@ -5,7 +5,7 @@ static const uint8_t wordWidth = sizeof(size_t)*8;
 uint16_t set_bits(size_t * payload, uint8_t offset, uint8_t range, uint16_t value){
     if (value >= 1 << range){ //ensure value can fit in desired range
         //printf("failed to set. Invalid value\n");
-        return 1;
+        value &= ((1 << range)-1); // mask any bits off of our value in case the user value is out of range
     }
     uint16_t word = (offset / wordWidth);  //find the word offset from bit offset
     uint16_t shift = offset - word*wordWidth;  //find shift amount required from start of word

@@ -49,6 +49,30 @@ void SysTick_Resume(void){
     T5CONbits.TON = 1;
 }
 
+/**
+ * SysTick_Timer will create a timer vaiable with a given name.
+ * @param myTimer name of variable
+ */
+#define SysTick_Timer(x) static SysTick_Timer_S x
+
+void SysTick_TimerStart(uint32_t time, SysTick_Timer timer){
+    timer->start_time = SysTick_Get();
+    timer->end_value = timer->start_time + time;
+}
+
+/**
+ * @brief SysTick_TimeOut will check if the timer is expired
+ * @param timer
+ * @return 
+ */
+uint8_t SysTick_TimeOut(SysTick_Timer timer){
+    if (timer->end_value <= SysTick_Get()){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 
 void __attribute__((__interrupt__, __auto_psv__, __shadow__)) _T5Interrupt(void) {
     /* clear timer interrupt Flag*/

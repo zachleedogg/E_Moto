@@ -1,0 +1,1 @@
+hexmate r0-5FFF,../../../MCU_Bootloader.X/dist/default/production/MCU_Bootloader.X.production.hex r6000-AAFFF,../../dist/default/production/MCU_App.X.production.hex rAB000-FFFFFFFF,../../../MCU_Bootloader.X/dist/default/production/MCU_Bootloader.X.production.hex -O../../dist/default/production/combined.production.hex

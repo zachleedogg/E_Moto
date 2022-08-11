@@ -1,0 +1,14 @@
+BMS Issues
+
+Need soft start on 5V and 3v3 rail DONE
+Fix footprint for ltc6802 DONE
+add input caps and esd protection everywhere
+consider better common-mode amps, or protect the inputs better.
+fix glitch on HV outputs.
+Consider soft-starts for each output, or just diode-or them on the board and get rid of the discharge circuit. DONE
+Need pull-ups on the LTC gpos. DONE
+fix SDO resistor values. See simulation. (2k2 and 1k8 are swapped) DONE
+consider 5V ldo following the the switching regulator to reduce noise/ripple. ADD a electrolytic cap. DONE
+fix leakage from CAN_TX to 3v3 rail DONE
+move ground from lower LTC chip DONE
+change usb connector to more common one.

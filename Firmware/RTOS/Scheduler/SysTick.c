@@ -39,6 +39,16 @@ void SysTick_Init(uint32_t sysClock) {
     T5CONbits.TON = 1;
 }
 
+void SysTick_Stop(void){
+    /* Turn timer off */
+    T5CONbits.TON = 0;
+}
+
+void SysTick_Resume(void){
+    /* Turn timer on */
+    T5CONbits.TON = 1;
+}
+
 void __attribute__((__interrupt__, __auto_psv__, __shadow__)) _T5Interrupt(void) {
     /* clear timer interrupt Flag*/
     _T5IF = 0;

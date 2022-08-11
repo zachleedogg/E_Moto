@@ -6,7 +6,7 @@ Created on Thu Dec  1 22:27:37 2016
 """
 import serial
 from serial import SerialException
-import serial.tools.list_ports
+from serial.tools.list_ports import comports
 import sys
 
 from time import sleep
@@ -42,7 +42,7 @@ class SerialCom_Thread(threading.Thread):
                         text = self.s.read(self.s.inWaiting())
                         self.serQueue.put_nowait(text)
                         self.lock.release()
-                except SerialException:
+                except serial.SerialException:
                     pass
 
     def pause(self):
@@ -81,7 +81,7 @@ class SerialCom_Thread(threading.Thread):
         return self.s.getSettingsDict();
             
     def getPort(self):
-        result = list(serial.tools.list_ports.comports())
+        result = list(comports())
         comList = []
         for p in range(0,len(result)):
             comList.append(result[p][0])

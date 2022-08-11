@@ -1,1 +1,0 @@
-hexmate r0-5FFF,../../../EMOTO_Bootloader.X/dist/default/production/EMOTO_Bootloader.X.production.hex r6000-54FFF,../../dist/default/production/BMS_Controller_BL_APP.production.hex r55000-FFFFFFFF,../../../EMOTO_Bootloader.X/dist/default/production/EMOTO_Bootloader.X.production.hex -O../../dist/default/production/combined.production.hex

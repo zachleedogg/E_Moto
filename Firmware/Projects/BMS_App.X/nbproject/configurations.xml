@@ -17,6 +17,7 @@
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_sleep.h</itemPath>
         <itemPath>../../Libraries/Standard/movingAverage.h</itemPath>
         <itemPath>../../Libraries/Standard/utils.h</itemPath>
+        <itemPath>../../Libraries/Drivers/ISO_TP_LITE/can_iso_tp_lite.h</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -45,8 +46,9 @@
         <itemPath>../../Libraries/PIC33_plib/inc/bolt_spi.h</itemPath>
         <itemPath>can_populate.h</itemPath>
         <itemPath>ev_charger.h</itemPath>
+        <itemPath>can_iso_tp_lite_config.h</itemPath>
+        <itemPath>bms.h</itemPath>
       </logicalFolder>
-      <itemPath>can_iso_tp.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -67,6 +69,7 @@
         <itemPath>../../Libraries/Standard/movingAverage.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_spi.c</itemPath>
         <itemPath>../../Libraries/Standard/utils.c</itemPath>
+        <itemPath>../../Libraries/Drivers/ISO_TP_LITE/can_iso_tp_lite.c</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -98,8 +101,8 @@
         <itemPath>ltc_6802.c</itemPath>
         <itemPath>can_populate.c</itemPath>
         <itemPath>ev_charger.c</itemPath>
+        <itemPath>bms.c</itemPath>
       </logicalFolder>
-      <itemPath>can_iso_tp.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -125,6 +128,7 @@
     <Elem>../../CAN/generated</Elem>
     <Elem>../../Libraries/Drivers/TFT_LCD/src</Elem>
     <Elem>../../Libraries/Drivers/TFT_LCD/inc</Elem>
+    <Elem>../../Libraries/Drivers/ISO_TP_LITE</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -187,7 +191,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="expand-pragma-config" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated;..\..\Libraries\Standard;..\..\Libraries\Drivers\TFT_LCD\inc;..\..\Libraries\Drivers\TFT_LCD\src;mcc_generated_files\boot;mcc_generated_files"/>
+                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated;..\..\Libraries\Standard;..\..\Libraries\Drivers\TFT_LCD\inc;..\..\Libraries\Drivers\TFT_LCD\src;mcc_generated_files\boot;mcc_generated_files;..\..\Libraries\Drivers\ISO_TP_LITE"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -334,7 +338,6 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
@@ -641,6 +644,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
