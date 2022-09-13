@@ -41,15 +41,16 @@ void HeatedGripControl_Init(void) {
 
 void HeatedGripControl_Run_100ms(void) {
 
-    if (IO_GET_SPARE_SWITCH_2_IN()) {
-        IO_SET_HEATED_GRIPS_EN(HIGH);
-        IO_SET_HEATED_SEAT_EN(HIGH);
+    if (IO_GET_SW_EN()) {
+        if (IO_GET_SPARE_SWITCH_2_IN()) {
+            IO_SET_HEATED_GRIPS_EN(HIGH);
+            IO_SET_HEATED_SEAT_EN(HIGH);
+        }
     } else {
         IO_SET_HEATED_GRIPS_EN(LOW);
         IO_SET_HEATED_SEAT_EN(LOW);
     }
-    
-    //CAN_mcu_status_horn_set(IO_GET_HORN_EN()); change this to heated grip status
+
 }
 
 void HeatedGripControl_Halt(void) {

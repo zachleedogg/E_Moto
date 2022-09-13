@@ -18,7 +18,7 @@
 #include "bolt_OC.h"
 #include "bolt_pps.h"
 #include "mcc_generated_files/clock.h"
-//#include "bolt_sleep.h"
+#include "bolt_sleep.h"
 #include <xc.h>
 
 // *****************************************************************************
@@ -159,6 +159,10 @@ void PinSetup_Init(void) {
     Uart1INIT(UART_TX, UART_RX, UART_BAUD_115200, CLOCK_SystemFrequencyGet());
     /*CAN*/
     CAN_Init(CAN_TX, CAN_RX, CAN_BAUD_500k, CAN_DISABLE, CLOCK_SystemFrequencyGet());
+    
+    //set wakeup sources
+    setWakeUp(PIN, IGNITION_SWITCH_IN);
+    /*CAN is wake source already in CAN_Init()*/
 
 }
 

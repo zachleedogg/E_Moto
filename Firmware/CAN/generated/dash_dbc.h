@@ -70,7 +70,6 @@ void CAN_dash_data2_send(void);
 uint8_t CAN_mcu_status_checkDataIsFresh(void);
 uint16_t CAN_mcu_status_heartbeat_get(void);
 uint16_t CAN_mcu_status_state_get(void);
-uint16_t CAN_mcu_status_throttleMode_get(void);
 uint16_t CAN_mcu_status_highBeam_get(void);
 uint16_t CAN_mcu_status_lowBeam_get(void);
 uint16_t CAN_mcu_status_brakeLight_get(void);
@@ -86,6 +85,14 @@ uint16_t CAN_mcu_status_chargePort_get(void);
 uint16_t CAN_mcu_status_brakeSwitchFront_get(void);
 uint16_t CAN_mcu_status_brakeSwitchRear_get(void);
 uint16_t CAN_mcu_status_throttleVal_get(void);
+uint16_t CAN_mcu_status_killSwitch_get(void);
+uint16_t CAN_mcu_status_ignitionSwitch_get(void);
+uint16_t CAN_mcu_status_leftTurnSwitch_get(void);
+uint16_t CAN_mcu_status_rightTurnSwitch_get(void);
+uint16_t CAN_mcu_status_lightSwitch_get(void);
+uint16_t CAN_mcu_status_assSwitch_get(void);
+uint16_t CAN_mcu_status_hornSwitch_get(void);
+float CAN_mcu_status_batt_voltage_get(void);
 
 #define CAN_mcu_command_interval() 100
 uint8_t CAN_mcu_command_checkDataIsFresh(void);

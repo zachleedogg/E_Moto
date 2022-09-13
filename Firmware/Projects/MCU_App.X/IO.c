@@ -90,76 +90,76 @@ void IO_Efuse_Run_10ms(void) {
         /*Check value of Diag pin to select which HSDs are being read out*/
         uint8_t diagSelect = IO_GET_DIAG_SELECT_EN();
 
-        if (diagSelect == 0) {
+        if (diagSelect == 1) {
 
-            PUMP_current = IO_GET_CURRENT_PUMP();
+            PUMP_current = ADC_GetValue(FAN_ISENSE_AI);
             if (PUMP_current >= 1000) {
                 PUMP_fault = 1;
                 IO_SET_PUMP_1_EN(LOW);
             }
 
-            BRAKELIGHT_current = IO_GET_CURRENT_BRAKELIGHT();
+            BRAKELIGHT_current = ADC_GetValue(TAILLIGHT_ISENSE_AI);
             if (BRAKELIGHT_current >= 1000) {
                 BRAKELIGHT_fault = 1;
                 IO_SET_BRAKE_LIGHT_EN(LOW);
             }
 
-            HIGHBEAM_current = IO_GET_CURRENT_HIGHBEAM();
+            HIGHBEAM_current = ADC_GetValue(HEADLIGHT_ISENSE_AI);
             if (HIGHBEAM_current >= ADC_BIT_DEPTH) {
                 HIGHBEAM_fault = 1;
                 IO_SET_HEADLIGHT_HI_EN(LOW);
             }
 
-            HEATED_SEAT_current = IO_GET_CURRENT_HEATED_SEAT();
+            HEATED_SEAT_current = ADC_GetValue(HEATER_ISENSE_AI);
             if (HEATED_SEAT_current >= 1000) {
                 HEATED_SEAT_fault = 1;
                 IO_SET_HEATED_SEAT_EN(LOW);
             }
 
-            CHARGE_CONTROLLER_current = IO_GET_CURRENT_CHARGE_CONTROLLER();
+            CHARGE_CONTROLLER_current = ADC_GetValue(ECU_2_ISENSE_AI);
             if (CHARGE_CONTROLLER_current >= 1000) {
                 CHARGE_CONTROLLER_fault = 1;
                 IO_SET_CHARGE_CONTROLLER_EN(LOW);
             }
 
-            SPARE_1_CONTROLLER_current = IO_GET_CURRENT_SPARE_1_CONTROLLER();
+            SPARE_1_CONTROLLER_current = ADC_GetValue(ECU_1_ISENSE_AI);
             if (SPARE_1_CONTROLLER_current >= 1000) {
                 SPARE_1_CONTROLLER_fault = 1;
                 IO_SET_J1772_CONTROLLER_EN(LOW);
             }
 
         } else {
-            FAN_current = IO_GET_CURRENT_FAN();
+            FAN_current = ADC_GetValue(FAN_ISENSE_AI);
             if (FAN_current >= 1000) {
                 FAN_fault = 1;
                 IO_SET_FAN_1_EN(LOW);
             }
 
-            TAILLIGHT_current = IO_GET_CURRENT_TAILLIGHT();
+            TAILLIGHT_current = ADC_GetValue(TAILLIGHT_ISENSE_AI);
             if (TAILLIGHT_current >= 1000) {
                 TAILLIGHT_fault = 1;
                 IO_SET_TAILLIGHT_EN(LOW);
             }
 
-            LOWBEAM_current = IO_GET_CURRENT_LOWBEAM();
+            LOWBEAM_current = ADC_GetValue(HEADLIGHT_ISENSE_AI);
             if (LOWBEAM_current >= ADC_BIT_DEPTH) {
                 LOWBEAM_fault = 1;
                 IO_SET_HEADLIGHT_LO_EN(LOW);
             }
 
-            HEATED_GRIPS_current = IO_GET_CURRENT_HEATED_GRIPS();
+            HEATED_GRIPS_current = ADC_GetValue(HEATER_ISENSE_AI);
             if (HEATED_GRIPS_current >= 1000) {
                 HEATED_GRIPS_fault = 1;
                 IO_SET_HEATED_GRIPS_EN(LOW);
             }
 
-            MOTOR_CONTROLLER_current = IO_GET_CURRENT_MOTOR_CONTROLLER();
+            MOTOR_CONTROLLER_current = ADC_GetValue(ECU_2_ISENSE_AI);
             if (MOTOR_CONTROLLER_current >= 1000) {
                 MOTOR_CONTROLLER_fault = 1;
                 IO_SET_MOTOR_CONTROLLER_EN(LOW);
             }
 
-            BMS_CONTROLLER_current = IO_GET_CURRENT_BMS_CONTROLLER();
+            BMS_CONTROLLER_current = ADC_GetValue(ECU_1_ISENSE_AI);
             if (BMS_CONTROLLER_current >= 1000) {
                 BMS_CONTROLLER_fault = 1;
                 IO_SET_BMS_CONTROLLER_EN(LOW);
@@ -583,11 +583,11 @@ uint16_t IO_GET_CURRENT_HIGHBEAM() {
 }
 
 uint16_t IO_GET_CURRENT_HORN() {
-    return HORN_current;
+    return ADC_GetValue(HORN_ISENSE_AI);
 }
 
 uint16_t IO_GET_CURRENT_AUX_PORT() {
-    return AUX_PORT_current;
+    return ADC_GetValue(AUX_PORT_ISENSE_AI);
 }
 
 uint16_t IO_GET_CURRENT_HEATED_GRIPS() {
@@ -614,32 +614,32 @@ uint16_t IO_GET_CURRENT_SPARE_1_CONTROLLER() {
     return SPARE_1_CONTROLLER_current;
 }
 
-uint16_t IO_GET_CURRENT_BATT() {
-    return BATT_current;
+float IO_GET_CURRENT_BATT() {
+    return (ADC_GetValue(BATT_ISENSE_AI)*(ADC_REF_VOLTAGE/ADC_BIT_DEPTH)-1.65)*20;
 }
 
-uint16_t IO_GET_CURRENT_DCDC() {
-    return DCDC_current;
+float IO_GET_CURRENT_DCDC() {
+    return (ADC_GetValue(DCDC_ISENSE_AI)*(ADC_REF_VOLTAGE/ADC_BIT_DEPTH)-1.65)*20;
 }
 
-uint16_t IO_GET_CURRENT_IC_CONTROLLER() {
-    return IC_CONTROLLER_current;
+float IO_GET_CURRENT_IC_CONTROLLER() {
+    return ADC_GetValue(IC_CONTROLLER_ISENSE_AI)*(ADC_REF_VOLTAGE/ADC_BIT_DEPTH)*2;
 }
 
-uint16_t IO_GET_VOLTAGE_PILOT(void) {
-    return (uint16_t)((((float)ADC_GetValue(PILOT_MONITOR_AI))*(ADC_REF_VOLTAGE*PILOT_VOLTAGE_CONVERSION*1000.0)/ADC_BIT_DEPTH));
+float IO_GET_VOLTAGE_PILOT(void) {
+    return (((float)ADC_GetValue(PILOT_MONITOR_AI))*(ADC_REF_VOLTAGE*PILOT_VOLTAGE_CONVERSION)/ADC_BIT_DEPTH);
 }
 
-uint16_t IO_GET_VOLTAGE_PROXIMITY(void) {
-    return (uint16_t)((((float)ADC_GetValue(PROXIMITY_MONITOR_AI))*(ADC_REF_VOLTAGE*PROXIMITY_VOLTAGE_CONVERSION*1000.0)/ADC_BIT_DEPTH));
+float IO_GET_VOLTAGE_PROXIMITY(void) {
+    return (((float)ADC_GetValue(PROXIMITY_MONITOR_AI))*(ADC_REF_VOLTAGE*PROXIMITY_VOLTAGE_CONVERSION)/ADC_BIT_DEPTH);
 }
 
-uint16_t IO_GET_VOLTAGE_VBAT(void) {
-    return (uint16_t)((((float)ADC_GetValue(V12_MONITOR_AI))*(ADC_REF_VOLTAGE*VBAT_VOLTAGE_CONVERSION*1000.0)/ADC_BIT_DEPTH));
+float IO_GET_VOLTAGE_VBAT(void) {
+    return (((float)ADC_GetValue(V12_MONITOR_AI))*(ADC_REF_VOLTAGE*VBAT_VOLTAGE_CONVERSION)/ADC_BIT_DEPTH);
 }
 
-uint16_t IO_GET_VOLTAGE_VBAT_SW(void) {
-    return (uint16_t)((((float)ADC_GetValue(P12_MONITOR_AI))*(ADC_REF_VOLTAGE*VBAT_VOLTAGE_CONVERSION*1000.0)/ADC_BIT_DEPTH));
+float IO_GET_VOLTAGE_VBAT_SW(void) {
+    return (((float)ADC_GetValue(P12_MONITOR_AI))*(ADC_REF_VOLTAGE*VBAT_VOLTAGE_CONVERSION)/ADC_BIT_DEPTH);
 }
 
 

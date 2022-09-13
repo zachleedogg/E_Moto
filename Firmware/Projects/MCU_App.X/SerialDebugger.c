@@ -25,7 +25,7 @@ static uint8_t debugEnable = 1;
 #define I2C_GET 9274659
 #define SPI 193506033
 #define ADC 193486029
-#define RESET_BOOT 177574
+#define RESET_BOOT 273105544
 #define SLEEP 274527774
 
 
@@ -44,13 +44,12 @@ void SerialConsole_Run_100ms(void) {
         char port;
         int pin;
         int state;
-        sscanf(msg, "%16s %*s", cmd);
+        sscanf(msg, "%16s %*s\n", cmd);
         unsigned long newHash = hash(cmd);
         switch (newHash) {
             case GPIO_SET:
                 debuggerService_print("running GPIO_SET\n");
-                sscanf(msg, "%*s %1c%2d %1d", &port, &pin, &state);
-                if (sscanf(msg, "%*s %c%d %d", &port, &pin, &state) == 3) {
+                if (sscanf(msg, "%*s %c%d %d", &port, &pin, &state) == 4) {
                     PINS_pin_S thisPin;
                     thisPin.pin = pin;
                     thisPin.port = (uint8_t) port - 97;
@@ -62,7 +61,7 @@ void SerialConsole_Run_100ms(void) {
                 
             case GPIO_GET:
                 debuggerService_print("running GPIO_GET\n");
-                if (sscanf(msg, "%*s %1c%2d", &port, &pin) == 2) {
+                if (sscanf(msg, "%*s %1c%2d", &port, &pin) == 3) {
                     PINS_pin_S thisPin;
                     thisPin.pin = pin;
                     thisPin.port = (uint8_t) port - 97;
@@ -86,7 +85,7 @@ void SerialConsole_Run_100ms(void) {
                 
             case ADC:
                 debuggerService_print("running ADC\n");
-                if (sscanf(msg, "%*s %2d", &pin) == 1) {
+                if (sscanf(msg, "%*s %2d", &pin) == 2) {
                     debuggerService_print("ADC AN%d value: %d\n", pin, ADC_GetValue(pin));
                 } else {
                     debuggerService_print("ADC failed\n");
@@ -108,7 +107,7 @@ void SerialConsole_Run_100ms(void) {
                 break;
                 
             default:
-                debuggerService_print("invalid command. Type 'ls' to list commands: %s\n", cmd);
+                debuggerService_print("invalid command. Type 'ls' to list commands: %s %lu\n", cmd, newHash);
                 break;
         }
 

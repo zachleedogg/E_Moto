@@ -81,7 +81,7 @@ void Tsk_init(void) {
     StateMachine_Init();
     IO_SET_DEBUG_LED_EN(HIGH);
     BMS_init();
-    
+
 #if DEBUG
     Uart1Write("Hello World, Task Init Done.\n"); //hi
 #endif
@@ -99,11 +99,11 @@ void Tsk(void) {
  * Runs every 1ms
  */
 void Tsk_1ms(void) {
+    
     CAN_populate_1ms();
     run_iso_tp_basic();
-    
-}
 
+}
 
 /**
  * Runs every 5ms
@@ -118,7 +118,7 @@ void Tsk_5ms(void) {
 void Tsk_10ms(void) {
     EV_CHARGER_Run_10ms();
     BMS_run_10ms();
-    
+
     CAN_populate_10ms();
     CAN_send_10ms();
 }
@@ -150,9 +150,9 @@ void Tsk_Sleep(void) {
     CAN_changeOpMode(CAN_DISABLE);
     IO_SET_SW_EN(LOW);
     IO_SET_DEBUG_LED_EN(LOW); //same
-    
+
     SleepNow(); //Go to sleep
-    
+
     SysTick_Resume();
 #if DEBUG
     Uart1Write("waking From Sleep");

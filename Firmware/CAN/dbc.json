@@ -217,13 +217,6 @@
                             "units": ""
                         },
                         {
-                            "name": "throttleMode",
-                            "length": 3,
-                            "scale": 1.0,
-                            "offset": 0,
-                            "units": ""
-                        },
-                        {
                             "name": "highBeam",
                             "length": 1,
                             "scale": 1.0,
@@ -327,6 +320,62 @@
                             "scale": 1.0,
                             "offset": 0,
                             "units": ""
+                        },
+                        {
+                            "name": "killSwitch",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
+                        },
+                        {
+                            "name": "ignitionSwitch",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
+                        },
+                        {
+                            "name": "leftTurnSwitch",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
+                        },
+                        {
+                            "name": "rightTurnSwitch",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
+                        },
+                        {
+                            "name": "lightSwitch",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
+                        },
+                        {
+                            "name": "assSwitch",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
+                        },
+                        {
+                            "name": "hornSwitch",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
+                        },
+                        {
+                            "name": "batt_voltage",
+                            "length": 8,
+                            "scale": 0.1,
+                            "offset": 0,
+                            "units": "V"
                         }
                     ]
                 },

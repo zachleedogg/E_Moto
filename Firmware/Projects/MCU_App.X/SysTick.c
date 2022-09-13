@@ -40,7 +40,7 @@ void SysTick_Init(uint32_t sysClock) {
 }
 
 void SysTick_Stop(void){
-        /* Turn timer on */
+        /* Turn timer off */
     T5CONbits.TON = 0;
 }
 

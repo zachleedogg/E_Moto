@@ -1,11 +1,9 @@
 /******************************************************************************
  * Includes
  *******************************************************************************/
+#include "j1772.h"
 #include "IO.h"
-#include "bolt_ADC.h"
-#include "pinSetup.h"
 #include "movingAverage.h"
-#include <stdint.h>
 
 /******************************************************************************
  * Constants
@@ -25,19 +23,16 @@ static uint8_t debugEnable = 1;
  *******************************************************************************/
 
 /*Proximty Range values in milliVolts*/
-#define PROXIMITY_DISCONNECTED_RANGE_UPPER 2600
-#define PROXIMITY_DISCONNECTED_RANGE_LOWER 2400
+#define PROX_DISCONNECT_UPPER 2600
+#define PROX_DISCONNECT_LOWER 2400
 
-#define PROXIMITY_CONNECTED_RANGE_UPPER 1300
-#define PROXIMITY_CONNECTED_RANGE_LOWER 1100
+#define PROX_CONNECT_UPPER 1300
+#define PROX_CONNECT_LOWER 1100
 
-#define PROXIMITY_REQUEST_DISCONNECT_RANGE_UPPER 1950
-#define PROXIMITY_REQUEST_DISCONNECT_RANGE_LOWER 1750
+#define PROX_REQUEST_DISCONNECT_UPPER 1950
+#define PROX_REQUEST_DISCONNECT_LOWER 1750
 
 #define PROXIMITY_AVERAGE_WINDOW_SIZE 8
-
-
-#define PILOT_AVERAGE_WINDOW_SIZE 8
 
 /******************************************************************************
  * Configuration
@@ -46,34 +41,22 @@ static uint8_t debugEnable = 1;
 /******************************************************************************
  * Typedefs
  *******************************************************************************/
-typedef enum prox_status_E {
-    DISCONNECTED,
-    CONNECTED,
-    REQUEST_DISCONNECT,
-    SNA_PROX
-} prox_status_E;
-
-typedef enum pilot_status_E {
-    NOT_DETECTED,
-    DETECTED,
-    READY,
-    SNA_PILOT
-} pilot_status_E;
 
 /******************************************************************************
  * Variable Declarations
  *******************************************************************************/
-static prox_status_E proximity = SNA_PROX;
-static pilot_status_E pilot = SNA_PILOT;
+static uint8_t j1772run = 1;
+
+static prox_status_E proximity = J1772_SNA_PROX;
 
 NEW_AVERAGE(proximityAverage, PROXIMITY_AVERAGE_WINDOW_SIZE);
 
-NEW_AVERAGE(pilotAverage, PILOT_AVERAGE_WINDOW_SIZE);
+NEW_LOW_PASS_FILTER(pilotFilter, 0.3);
 
-static uint16_t detectedPilotVoltage = 0;
-static uint16_t readyPilotVoltage = 0;
-static uint8_t counter = 0;
-
+static float pilotVoltagePeak = 0;
+static float pilotVoltageFiltered = 0;
+static uint8_t pilotDutyCycle = 0;
+static uint8_t pilotEncodedCurrent = 0;
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
@@ -84,87 +67,96 @@ static uint8_t counter = 0;
 
 
 void j1772Control_Init(void) {
-    detectedPilotVoltage = 0;
-    readyPilotVoltage = 0;
-    counter = 0;
+    pilotVoltagePeak = 0;
+    pilotVoltageFiltered = 0;
+    pilotDutyCycle = 0;
+    pilotEncodedCurrent = 0;
+    j1772run = 1;
+}
+
+void j1772Control_Run_cont(void) {
+    if (j1772run) {
+        float pilot_instantaneousVoltage = IO_GET_VOLTAGE_PILOT();
+        pilotVoltageFiltered = takeLowPassFilter(pilotFilter, pilot_instantaneousVoltage);
+        
+        /*If the value is above 50mV, we assume that we are on a "HIGH" cycle of
+          the PWM. This will represent the peak value of the signal.*/
+        pilotVoltagePeak = (pilot_instantaneousVoltage > 50) ? pilot_instantaneousVoltage : 0;
+        
+        /*If peak voltage greater than 1V, then we can attempt to calculate 
+          the duty cycle*/
+        if (pilotVoltagePeak > 1){
+            pilotDutyCycle = (uint16_t)(pilotVoltageFiltered * 100 / pilotVoltagePeak);
+        }
+        
+        /*If the filtered voltage is less than 1V, assume the signal is low 
+          and there is no duty cycle*/
+        if (pilotVoltageFiltered < 1){
+            pilotDutyCycle = 0;
+        }
+        
+    }
 }
 
 void j1772Control_Run_100ms(void) {
+    if (j1772run) {
+        /*Take moving average of Proximity value*/
+        uint16_t currentProxAve = takeMovingAverage(proximityAverage, IO_GET_VOLTAGE_PROXIMITY());
+
+        j1772Service_print("PILOT Voltage: %d\nPROX Voltage: %d\n\n", pilotVoltagePeak, currentProxAve);
 
 
-    /*Take moving average of Proximity value*/
-    uint16_t currentProxAve = takeMovingAverage(proximityAverage, IO_GET_VOLTAGE_PROXIMITY());
-    //uint16_t currentPilotAve = takeMovingAverage(pilotAverage, IO_GET_VOLTAGE_PILOT());
-    uint16_t currentPilotAve = IO_GET_VOLTAGE_PILOT();
-    j1772Service_print("PILOT Voltage: %d\nPROX Voltage: %d\n\n",currentPilotAve,currentProxAve);
-    
-
-    /*Determine the state of the Proximity Detector*/
-    if (currentProxAve >= PROXIMITY_DISCONNECTED_RANGE_LOWER &&
-            currentProxAve <= PROXIMITY_DISCONNECTED_RANGE_UPPER) {
-        proximity = DISCONNECTED;
-    } else if (currentProxAve >= PROXIMITY_CONNECTED_RANGE_LOWER &&
-            currentProxAve <= PROXIMITY_CONNECTED_RANGE_UPPER) {
-        proximity = CONNECTED;
-    } else if (currentProxAve >= PROXIMITY_REQUEST_DISCONNECT_RANGE_LOWER &&
-            currentProxAve <= PROXIMITY_REQUEST_DISCONNECT_RANGE_UPPER) {
-        proximity = REQUEST_DISCONNECT;
-    }
-
-    /*Run the proximity detection state machine*/
-    switch (proximity) {
-        case DISCONNECTED:
-            j1772Service_print("Disconnected\n")
-            IO_SET_PILOT_EN(LOW);
-            /*Do something*/
-            break;
-
-        case CONNECTED:
-            IO_SET_PILOT_EN(HIGH);
-            j1772Service_print("Connected\n")
-            break;
-
-        case REQUEST_DISCONNECT:
-            IO_SET_PILOT_EN(LOW);
-            j1772Service_print("Request Disconnect\n")
-            /*Send some kind of CAN message to charge to say stop charging*/
-            break;
-        case SNA_PROX:
-        default:
-            break;
-    }
-
-    /*Run the Pilot Signal State Machine*/
-    switch (pilot) {
-        case NOT_DETECTED:
-            IO_SET_PILOT_EN(LOW);
-            if (currentPilotAve >= 1000) {
-                pilot = DETECTED;
-            }
-            break;
-
-        case DETECTED:
-            if (counter++ >= 10) {
-                detectedPilotVoltage = currentPilotAve; //TODO do we need this?
-                IO_SET_PILOT_EN(HIGH);
-                counter = 0;
-                pilot = READY;
-            }
-            break;
-
-        case READY:
-            if (counter++ >= 10){
-                readyPilotVoltage = 0; //TODO do something useful here.
-            }
+        /*Determine the state of the Proximity Detector*/
+        switch (currentProxAve*1000) {
+            case PROX_DISCONNECT_LOWER ... PROX_DISCONNECT_UPPER:
+                proximity = J1772_DISCONNECTED;
+                j1772Service_print("Disconnected\n")
+                IO_SET_PILOT_EN(LOW);
+                /*Do something*/
                 break;
+            case PROX_CONNECT_LOWER ... PROX_CONNECT_UPPER:
+                proximity = J1772_CONNECTED;
+                j1772Service_print("Connected\n")
+                IO_SET_PILOT_EN(HIGH);
+                break;
+            case PROX_REQUEST_DISCONNECT_LOWER ... PROX_REQUEST_DISCONNECT_UPPER:
+                proximity = J1772_REQUEST_DISCONNECT;
+                j1772Service_print("Request Disconnect\n")
+                IO_SET_PILOT_EN(LOW);
+                break;
+            default:
+                proximity = J1772_SNA_PROX;
+                break;
+        }
 
-        case SNA_PILOT:
-        default:
-            break;
+
+        /*Run the Pilot Signal State Machine*/
+        switch (pilotDutyCycle) {
+            case 0 ... 9:
+                pilotEncodedCurrent = 0;
+                break;
+            case 10 ... 84:
+                pilotEncodedCurrent = pilotDutyCycle * 0.6;
+                break;
+            case 85 ... 100:
+                pilotEncodedCurrent = (pilotDutyCycle - 64)*2.5;
+                break;
+            default:
+                pilotEncodedCurrent = 0;
+                break;
+        }
     }
-
 }
 
 void j1772Control_Halt(void) {
-    /*nothing yet...*/
+    j1772run = 0;
+    IO_SET_PILOT_EN(LOW);
+}
+
+prox_status_E j1772getProxState(void) {
+    return proximity;
+}
+
+uint8_t j1772getPilotCurrent(void) {
+    return pilotEncodedCurrent;
 }

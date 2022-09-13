@@ -10,7 +10,15 @@
 
 #include <stdint.h>
 
-uint8_t run_iso_tp_basic(void);
+typedef enum {
+    ISO_TP_NONE,
+    ISO_TP_RESET,
+    ISO_TP_SLEEP,
+    ISO_TP_IO_CONTROL 
+} isoTP_command_E;
 
+uint8_t run_iso_tp_basic(void);
+uint8_t * get_payload(void);
+uint8_t get_payloadLength(void);
 #endif	/* CAN_ISO_TP_H */
 

@@ -60,8 +60,8 @@
 #pragma config FCKSM = CSECMD    //Clock Switching Mode bits->Clock switching is enabled,Fail-safe Clock Monitor is disabled
 
 // FWDT
-#pragma config WDTPOST = PS32768    //Watchdog Timer Postscaler Bits->1:32768
-#pragma config WDTPRE = PR128    //Watchdog Timer Prescaler bit->1:128
+#pragma config WDTPOST = 0x2    //Watchdog Timer Postscaler Bits->1:32768
+#pragma config WDTPRE = 0x0    //Watchdog Timer Prescaler bit->1:128
 #pragma config PLLKEN = ON    //PLL Lock Wait Enable bit->Clock switch to PLL source will wait until the PLL lock signal is valid.
 #pragma config WINDIS = OFF    //Watchdog Timer Window Enable bit->Watchdog Timer in Non-Window mode
 #pragma config FWDTEN = OFF    //Watchdog Timer Enable bit->Watchdog timer enabled/disabled by user software

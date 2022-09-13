@@ -56,7 +56,7 @@ Copyright (c) [2012-2022] Microchip Technology Inc.
 #include "boot_config.h"
     .equ    ERASE_PAGE_MASK,(~((2048) - 1)) 
     .equ    LAST_PAGE_START_ADDRESS, (0x557FE & ERASE_PAGE_MASK)
-    .equ    RESERVED_MEMORY_START, (0x55000)//(0x55012+2) //TODO: Why did I have to modify this value??? Old value was 0x557FE -ZL
+    .equ    RESERVED_MEMORY_START, (0x557FE)//(0x55012+2) //TODO: Why did I have to modify this value??? Old value was 0x557FE -ZL
     .equ    PROGRAM_MEMORY_ORIGIN, (0x200)
     .equ    LAST_ADDRESS_OF_MEMORY, (0x557FE)
    

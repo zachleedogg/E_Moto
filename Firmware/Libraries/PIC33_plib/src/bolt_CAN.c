@@ -13,13 +13,15 @@
  ****************************************************************************************/
 #include "bolt_CAN.h"
 #include <math.h>
+#include <xc.h>
 
 /*DEBUGGING*/
+/*WARNING USING THIS WILL CAUSE ERRORS IF CAN BUS BECOMES DISCONNECTED. TOO MANY ERRORS TO PRINT WILL CAUSE LOCKUP*/
 #define CAN_DEBUG 0
 #if CAN_DEBUG
 #include "bolt_uart.h"
 #include <stdio.h>
-static uint8_t debugEnable = 0;
+static uint8_t debugEnable = 1;
 #define can_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
 #else
 #define can_print(...) 
@@ -30,29 +32,29 @@ static uint8_t debugEnable = 0;
 #define NUM_OF_SW_CAN_BUFFERS NUM_OF_ECAN_BUFFERS-CAN_TX_FIFO_BUFFER_SIZE
 
 /* ECAN message buffer declaration, with buffer alignment */
-#ifdef __dsPIC33EP512MU810__ 
- // CAN1 with DMA Errata workaround: configured CAN1 message object buffer to "Dual Port RAM" (in EDS space))
- // Possible loss of interrupts when DMA is used with CAN.
- // https://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33EPXXX(GP-MC-MU)806-810-814-and-PIC24EPXXX(GP-GU)810-814-Family-Errata.pdf
- __eds__ volatile uint16_t ecanMsgBuf[32][8] __attribute__((space(eds),aligned(NUM_OF_ECAN_BUFFERS*16)));
+#if defined(__dsPIC33EP512MU810__)
+// CAN1 with DMA Errata workaround: configured CAN1 message object buffer to "Dual Port RAM" (in EDS space))
+// Possible loss of interrupts when DMA is used with CAN.
+// https://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33EPXXX(GP-MC-MU)806-810-814-and-PIC24EPXXX(GP-GU)810-814-Family-Errata.pdf
+__eds__ volatile uint16_t ecanMsgBuf[32][8] __attribute__((space(eds), aligned(NUM_OF_ECAN_BUFFERS * 16)));
 #else
-volatile uint16_t ecanMsgBuf[32][8] __attribute__((space(dma),aligned(NUM_OF_ECAN_BUFFERS*16)));
+volatile uint16_t ecanMsgBuf[32][8] __attribute__((aligned(NUM_OF_ECAN_BUFFERS * 16)));
 #endif
 
 /* ECAN SW message buffer declaration*/
-volatile uint16_t ecanRXMsgBuf[NUM_OF_SW_CAN_BUFFERS][8] __attribute__((aligned(NUM_OF_ECAN_BUFFERS*16)));
+volatile uint16_t ecanRXMsgBuf[NUM_OF_SW_CAN_BUFFERS][8] __attribute__((aligned(NUM_OF_ECAN_BUFFERS * 16)));
 
 /* Rx data ready flag */
-static volatile uint8_t CAN_RXdataReady = 0;
-
+static volatile uint32_t CAN_RXdataReady = 0;
 static uint8_t ThisTXBuffer = 0;
-
 static uint8_t mBoxNumber = 0;
-
-static uint8_t opMode = 0;
+static uint8_t currentOpMode = CAN_NORMAL;
 
 uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq) {
-    opMode = mode;
+    currentOpMode = mode;
+    
+    PMD1bits.C1MD = 1;
+    PMD1bits.C1MD = 0;
 
     /*Module must first be placed in configuration mode */
     C1CTRL1bits.REQOP = CAN_CONFIG;
@@ -69,11 +71,11 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq) {
     uint32_t fPerif = system_freq; /*peripheral clock Freq*/
     uint32_t timeQuanta = 20; /*define number TQ per CAN bit.*/
     uint32_t fTQ = timeQuanta*baud; /*define TQ frequency*/
-    uint32_t canBaud = (uint32_t)((((double)(fPerif) / (2.0 * (double)(fTQ))) - 1.0) +0.5); /*calculate baud prescalar*/
-    uint8_t prop_seg = timeQuanta*.15;
-    uint8_t seg2 = timeQuanta*.3;
+    uint32_t canBaud = (uint32_t) ((((double) (fPerif) / (2.0 * (double) (fTQ))) - 1.0) + 0.5); /*calculate baud prescalar*/
+    uint8_t prop_seg = timeQuanta * .15;
+    uint8_t seg2 = timeQuanta * .3;
     uint8_t seg1 = timeQuanta - (4 + prop_seg + seg2);
-#ifdef __dsPIC33EP512MU810__ 
+#if defined(__dsPIC33EP512MU810__)
     // CAN1 Clock Errata workaround: CANCKS bit in C1CTRL1 register is reversed
     // https://ww1.microchip.com/downloads/en/DeviceDoc/dsPIC33EPXXX(GP-MC-MU)806-810-814-and-PIC24EPXXX(GP-GU)810-814-Family-Errata.pdf
     C1CTRL1bits.CANCKS = 0x0; /* set clock source select bit so that Fcan = 2*Fp = ClockFreq*/
@@ -86,12 +88,13 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq) {
 
     C1CFG2bits.SEG2PHTS = 1; /*phase 2 segment is freely programmable */
     C1CFG2bits.SEG2PH = seg2; /* phase 2 segment = 4TQ */
-    C1CFG2bits.SEG1PH =  seg1;/* length of phase 1 segment = 4TQ */
+    C1CFG2bits.SEG1PH = seg1; /* length of phase 1 segment = 4TQ */
     C1CFG2bits.SAM = 0; /* bus line sampled one time at sample point */
     C1CFG2bits.WAKFIL = 1; /* use CAN bus line filter for wakeup */
-    
+
 
     /* Assign 32*8 word message buffers for ECAN1 in device RAM (uses DMA0 for TX) */
+    DMA0CONbits.CHEN = 0x0; /* DMA channel disable */
     DMA0CONbits.SIZE = 0x0; /* word */
     DMA0CONbits.DIR = 0x1; /* read from RAM, write to peripheral */
     DMA0CONbits.AMODE = 0x2; /* peripheral indirect addressing mode */
@@ -99,11 +102,11 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq) {
     DMA0REQ = 70; /*DMA request for CAN transmit */
     DMA0CNT = 7; /* transfer count = 8 */
     DMA0PAD = (volatile unsigned int) &C1TXD; /* peripheral address register */
-    
+
     /* DMA Start addresses */
     DMA0STAL = __builtin_dmaoffset(&ecanMsgBuf);
     DMA0STAH = 0;
-    
+
     DMA0CONbits.CHEN = 0x1; /* DMA channel enable */
 
     /* Configure Message Buffer 0-7 for Transmission and assign priority */
@@ -127,6 +130,7 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq) {
     /*************************************************************************************
      Receive Configuration
      *************************************************************************************/
+    DMA1CONbits.CHEN = 0x0; /* DMA channel disable */
     /* Assign 32*8 word message buffers for ECAN1 in device RAM. (Uses DMA1 for RX) */
     DMA1CONbits.SIZE = 0x0; /* word */
     DMA1CONbits.DIR = 0x0; /* read from peripheral, write to RAM */
@@ -189,8 +193,8 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq) {
     C1RXFUL1 = 0x0000;
     C1RXFUL2 = 0x0000;
     C1RXOVF1 = 0x0000;
-    C1RXOVF2 = 0x0000;	
-    
+    C1RXOVF2 = 0x0000;
+
     /* enable invalid message interrupt*/
     C1INTEbits.IVRIE = 1;
 
@@ -204,21 +208,31 @@ uint8_t CAN_init(uint32_t baud, uint8_t mode, uint32_t system_freq) {
     C1INTF = 0x0000;
 
     /* CAN is ready for transmit / receive, place in normal or loopback mode */
-    C1CTRL1bits.REQOP = opMode;
-        while (C1CTRL1bits.OPMODE != opMode) {
-            ;
-        }
-        /* Enable CAN1 Interrupt */
+    C1CTRL1bits.REQOP = currentOpMode;
+    while (C1CTRL1bits.OPMODE != currentOpMode) {
+        ;
+    }
+    /* Enable CAN1 Interrupt */
     IEC2bits.C1IE = 1;
     return 0;
 }
 
-uint8_t CAN_changeOpMode(uint8_t opMode){
-    /* CAN is ready for transmit / receive, place in normal or loopback mode */
-    C1CTRL1bits.REQOP = opMode;
-        while (C1CTRL1bits.OPMODE != opMode) {
-            ;
-        }
+uint8_t CAN_changeOpMode(uint8_t opMode) {
+    uint8_t tempMode = 0;
+    C1INTF = 0x0000;
+    
+     //For listen only, just change variable, don't actually change modes.
+    if (opMode == CAN_LISTEN) {
+        tempMode = CAN_NORMAL;
+    } else {
+        tempMode = opMode;
+    }
+    
+    C1CTRL1bits.REQOP = tempMode;
+    while (C1CTRL1bits.OPMODE != tempMode) {
+        ;
+    }
+    currentOpMode = opMode;
     return 0;
 }
 
@@ -230,11 +244,11 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
     if (mBoxNumber > 15) {
         returnVal = 0;
     } else {
-        C1CTRL1bits.REQOP = 4;
+        C1CTRL1bits.REQOP = CAN_CONFIG;
         C1CTRL1bits.WIN = 1; /* set window bit to access ECAN filter registers */
-        
 
-        if (newMessage->canXID){
+
+        if (newMessage->canXID) {
             SID = newMessage->canID >> 18;
             XID_upper = (newMessage->canID & 0x0003FFFF) >> 16;
             XID_lower = newMessage->canID & 0x0000FFFF;
@@ -439,8 +453,8 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
                 break;
         }
         C1CTRL1bits.WIN = 0; /* clear window bit*/
-        C1CTRL1bits.REQOP = opMode;
-        while (C1CTRL1bits.OPMODE != opMode) {
+        C1CTRL1bits.REQOP = currentOpMode;
+        while (C1CTRL1bits.OPMODE != currentOpMode) {
             ;
         }
         mBoxNumber++; /*RX mailboxe added*/
@@ -449,101 +463,101 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage) {
 }
 
 uint8_t CAN_write(CAN_message_S data) {
-    /* write to message buffer 0-7 */
-    can_print("sendingCAN\n");
-    uint8_t thisBuffer = ThisTXBuffer++;
-    if (ThisTXBuffer == CAN_TX_FIFO_BUFFER_SIZE) {
-        ThisTXBuffer = 0;
-    }
-    uint16_t SID;
-    uint32_t XID_upper = 0;
-    uint32_t XID_lower = 0;
-    if (data.canXID){
-        SID = data.canID >> 18;
-        XID_upper = (data.canID & 0x0003FFFF) >> 6;
-        XID_lower = data.canID & 0x3F;
-    } else {
-        SID = data.canID;
-    }
+    if (C1CTRL1bits.OPMODE == CAN_NORMAL && currentOpMode != CAN_LISTEN) {
+        /* write to message buffer 0-7 */
+        //can_print("sendingCAN\n");
+        uint8_t thisBuffer = ThisTXBuffer++;
+        if (ThisTXBuffer == CAN_TX_FIFO_BUFFER_SIZE) {
+            ThisTXBuffer = 0;
+        }
+        uint16_t SID;
+        uint32_t XID_upper = 0;
+        uint32_t XID_lower = 0;
+        if (data.canXID) {
+            SID = data.canID >> 18;
+            XID_upper = (data.canID & 0x0003FFFF) >> 6;
+            XID_lower = data.canID & 0x3F;
+        } else {
+            SID = data.canID;
+        }
 
-    /* Here we right the standard ID to the buffer, plus bits for remote request
-     * (off) and extended ID (off). We write frequency to <10:8>, then a Node ID 
-     * to <7:4>, then a message ID code to <3:0> */
-    ecanMsgBuf[thisBuffer][0] = SID << 2;
-    ecanMsgBuf[thisBuffer][0] |= data.canXID << 1;
-    ecanMsgBuf[thisBuffer][0] |= data.canXID;
+        /* Here we right the standard ID to the buffer, plus bits for remote request
+         * (off) and extended ID (off). We write frequency to <10:8>, then a Node ID 
+         * to <7:4>, then a message ID code to <3:0> */
+        ecanMsgBuf[thisBuffer][0] = SID << 2;
+        ecanMsgBuf[thisBuffer][0] |= data.canXID << 1;
+        ecanMsgBuf[thisBuffer][0] |= data.canXID;
 
-    /* This is extended ID upper bits*/
-    /* C1TRBnEID = 0bxxxx 0000 0000 0000
-     EID<17:6> = 0b0000 0000 0000 */
-    ecanMsgBuf[thisBuffer][1] = XID_upper;
+        /* This is extended ID upper bits*/
+        /* C1TRBnEID = 0bxxxx 0000 0000 0000
+         EID<17:6> = 0b0000 0000 0000 */
+        ecanMsgBuf[thisBuffer][1] = XID_upper;
 
-    /* No remote transmit, data length = 8 bytes */
-    /* RTR = 0b0
-     * RB1 = 0b0
-     * RB0 = 0b0
-     * DLC = 0b1000 */
-    ecanMsgBuf[thisBuffer][2] = data.dlc | (XID_lower << 10);
+        /* No remote transmit, data length = 8 bytes */
+        /* RTR = 0b0
+         * RB1 = 0b0
+         * RB0 = 0b0
+         * DLC = 0b1000 */
+        ecanMsgBuf[thisBuffer][2] = data.dlc | (XID_lower << 10);
 
-    /* write message to the data bytes */
+        /* write message to the data bytes */
 
-    ecanMsgBuf[thisBuffer][3] = data.payload->word0;
-    ecanMsgBuf[thisBuffer][4] = data.payload->word1;
-    ecanMsgBuf[thisBuffer][5] = data.payload->word2;
-    ecanMsgBuf[thisBuffer][6] = data.payload->word3;
+        ecanMsgBuf[thisBuffer][3] = data.payload->word0;
+        ecanMsgBuf[thisBuffer][4] = data.payload->word1;
+        ecanMsgBuf[thisBuffer][5] = data.payload->word2;
+        ecanMsgBuf[thisBuffer][6] = data.payload->word3;
 
-    /* Request message buffer 0 transmission */
-    switch (thisBuffer) {
-        case 0:
-            while(C1TR01CONbits.TXREQ0);
-            C1TR01CONbits.TXREQ0 = 0x1;
-            break;
-        case 1:
-            while(C1TR01CONbits.TXREQ1);
-            C1TR01CONbits.TXREQ1 = 0x1;
-            break;
-        case 2:
-            while(C1TR23CONbits.TXREQ2);
-            C1TR23CONbits.TXREQ2 = 0x1;
-            break;
-        case 3:
-            while(C1TR23CONbits.TXREQ3);
-            C1TR23CONbits.TXREQ3 = 0x1;
-            break;
-        case 4:
-            while(C1TR45CONbits.TXREQ4);
-            C1TR45CONbits.TXREQ4 = 0x1;
-            break;
-        case 5:
-            while(C1TR45CONbits.TXREQ5);
-            C1TR45CONbits.TXREQ5 = 0x1;
-            break;
-        case 6:
-            while(C1TR67CONbits.TXREQ6);
-            C1TR67CONbits.TXREQ6 = 0x1;
-            break;
-        case 7:
-            while(C1TR67CONbits.TXREQ7);
-            C1TR67CONbits.TXREQ7 = 0x1;
-            break;
-        default:
-            break;
+        /* Request message buffer 0 transmission */
+        switch (thisBuffer) {
+            case 0:
+                //            while(C1TR01CONbits.TXREQ0);
+                C1TR01CONbits.TXREQ0 = 0x1;
+                break;
+            case 1:
+                //            while(C1TR01CONbits.TXREQ1);
+                C1TR01CONbits.TXREQ1 = 0x1;
+                break;
+            case 2:
+                //            while(C1TR23CONbits.TXREQ2);
+                C1TR23CONbits.TXREQ2 = 0x1;
+                break;
+            case 3:
+                //            while(C1TR23CONbits.TXREQ3);
+                C1TR23CONbits.TXREQ3 = 0x1;
+                break;
+            case 4:
+                //            while(C1TR45CONbits.TXREQ4);
+                C1TR45CONbits.TXREQ4 = 0x1;
+                break;
+            case 5:
+                //            while(C1TR45CONbits.TXREQ5);
+                C1TR45CONbits.TXREQ5 = 0x1;
+                break;
+            case 6:
+                //            while(C1TR67CONbits.TXREQ6);
+                C1TR67CONbits.TXREQ6 = 0x1;
+                break;
+            case 7:
+                //            while(C1TR67CONbits.TXREQ7);
+                C1TR67CONbits.TXREQ7 = 0x1;
+                break;
+            default:
+                break;
+        }
     }
     return 0; /*message placed successfully on the bus */
 }
 
-uint8_t CAN_checkDataIsFresh(CAN_message_S * data){
+uint8_t CAN_checkDataIsFresh(CAN_message_S * data) {
     uint8_t ret = *(data->canMessageStatus);
     *(data->canMessageStatus) = 0;
     return ret;
 }
 
-uint8_t CAN_RxDataIsReady() {
-    return 0;
-    if (C1RXFUL2 || (C1RXFUL1 & 0x8000)) {
-        return 1;
-    }
-    return 0;
+uint32_t CAN_RxDataIsReady() {
+    uint32_t retVal = CAN_RXdataReady;
+    CAN_RXdataReady = 0;
+    return retVal;
 }
 
 /********************************************************************************************************
@@ -556,68 +570,64 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
     /*Clear Interrupt flag*/
     _C1IF = 0;
 
-    can_print("CAN EVENT ");
-
     /*If WAKE-UP Interrupt, do something*/
     if (C1INTFbits.WAKIF) {
         uint16_t temp __attribute__((unused)) = C1VECbits.ICODE;
         C1INTFbits.WAKIF = 0;
         can_print("CAN_WAKE %d\n", temp);
         /*do something here...*/
-        return;
     }
 
     /*If Error Interrupt, do something*/
     if (C1INTFbits.ERRIF) {
         uint16_t temp __attribute__((unused)) = C1VECbits.ICODE;
         C1INTFbits.ERRIF = 0;
+        C1INTFbits.EWARN = 0;
+        C1INTFbits.RXWAR = 0;
         can_print("ERROR %d\n", temp);
         /*do something here...*/
-        return;
     }
-    
-        /*If Error Interrupt, do something*/
+
+    /*If Error Interrupt, do something*/
     if (C1INTFbits.IVRIF) {
         uint16_t temp __attribute__((unused)) = C1VECbits.ICODE;
         C1INTFbits.IVRIF = 0;
         can_print("ERROR %d\n", temp);
         /*do something here...*/
-        return;
     }
-    
+
     /*If Receive buffer overflow Interrupt, do something*/
     if (C1INTFbits.RBOVIF) {
         uint16_t temp __attribute__((unused)) = C1VECbits.ICODE;
         C1INTFbits.RBOVIF = 0;
         C1RXOVF1 = 0x0000;
-        C1RXOVF2 = 0x0000;	
+        C1RXOVF2 = 0x0000;
         C1RXFUL1 = 0x0000;
         C1RXFUL2 = 0x0000;
         can_print("ERROR %d\n", temp);
         /*do something here...*/
-        return;
     }
-    
+
     /*If Transmit Buffer Interrupt, do something*/
     if (C1INTFbits.TBIF) {
         uint16_t temp __attribute__((unused)) = C1VECbits.ICODE;
         C1INTFbits.TBIF = 0;
-        can_print("TX_INT %d\n", temp);
+        //can_print("TX_INT %d\n", temp);
         /*do something here...*/
-        return;
     }
 
     /*If Receive Buffer Interrupt, copy messages to static buffer.*/
     if (C1INTFbits.RBIF) {
         uint16_t temp = C1VECbits.ICODE;
+        CAN_RXdataReady |= 1 << (temp-8);
         C1INTFbits.RBIF = 0;
         if (temp < 15) {/*if RX event was to a static buffer*/
             uint8_t i = 0;
-            for (i=0; i<8; i++){
-                ecanRXMsgBuf[temp-CAN_TX_FIFO_BUFFER_SIZE][i] = ecanMsgBuf[temp][i];
+            for (i = 0; i < 8; i++) {
+                ecanRXMsgBuf[temp - CAN_TX_FIFO_BUFFER_SIZE][i] = ecanMsgBuf[temp][i];
             }
             C1RXFUL1 &= ~(1 << temp);
-            ecanRXMsgBuf[temp-CAN_TX_FIFO_BUFFER_SIZE][7] |= 0x01;
+            ecanRXMsgBuf[temp - CAN_TX_FIFO_BUFFER_SIZE][7] |= 0x01;
         } else {/*if RX event was in the FIFO*/
             uint16_t thisBuff = C1FIFObits.FNRB;
             if (thisBuff == 15) {
@@ -630,11 +640,18 @@ void __attribute__((__interrupt__, auto_psv)) _C1Interrupt(void) {
             for (i = 0; i < 8; i++) {
                 ecanRXMsgBuf[filterHit][i] = ecanMsgBuf[thisBuff][i];
             }
-            ecanRXMsgBuf[filterHit][7] |= 0x01;/*set fresh message flag*/
+            ecanRXMsgBuf[filterHit][7] |= 0x01; /*set fresh message flag*/
         }
         can_print("RX_INT %d\n", temp);
         /*do something here...*/
-        return;
+
+        /*Clear all flags if not handled here.*/
+        C1RXOVF1 = 0x0000;
+        C1RXOVF2 = 0x0000;
+        C1RXFUL1 = 0x0000;
+        C1RXFUL2 = 0x0000;
+        C1INTF = 0x0000;
+
     }
 
     /* ICODE INTERUPT SOURCES

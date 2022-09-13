@@ -13,7 +13,7 @@
 /******************************************************************************
  * Macros
  *******************************************************************************/
-#define HORN_MAX_TIME 50 // x100ms = 5 seconds
+#define HORN_MAX_TIME 500 // x10ms = 5 seconds
 /******************************************************************************
  * Configuration
  *******************************************************************************/
@@ -40,8 +40,8 @@ void HornControl_Init(void) {
 
 void HornControl_Run_10ms(void) {
 
-    static uint8_t counter = 0;
-    if (IO_GET_HORN_SWITCH_IN()) {
+    static uint16_t counter = 0;
+    if (IO_GET_HORN_SWITCH_IN() && IO_GET_SW_EN()) {
         if (counter < HORN_MAX_TIME) {
             IO_SET_HORN_EN(HIGH);
             counter++;
@@ -52,8 +52,7 @@ void HornControl_Run_10ms(void) {
         IO_SET_HORN_EN(LOW);
         counter = 0;
     }
-    
-    CAN_mcu_status_horn_set(IO_GET_HORN_EN());
+
 }
 
 void HornControl_Halt(void) {

@@ -57,53 +57,14 @@ void SleepNow() {
                 break;
         }
     }
-//#ifdef PMD1
-//    //PMD1 = 0xFFFF;
-//    PMD1bits.C1MD = 0;
-//    PMD1bits.T5MD = 0;
-//#endif
-//#ifdef PMD2
-//    PMD2 = 0xFFFF;
-//#endif
-//#ifdef PMD3
-//    PMD3 = 0xFFFF;
-//#endif
-//#ifdef PMD4
-//    PMD4 = 0xFFFF;
-//#endif
-//#ifdef PMD5
-//    PMD5 = 0xFFFF;
-//#endif
-//#ifdef PMD6
-//    PMD6 = 0xFFFF;
-//#endif
-//#ifdef PMD7
-//    PMD7 = 0xFFFF;
-//#endif
-    Nop();
+
+    //Nop();
     Sleep();
-    Nop();
+    //Nop();
 
-//#ifdef PMD1
-//    PMD1 = 0x0000;
-//#endif
-//#ifdef PMD2
-//    PMD2 = 0x0000;
-//#endif
-//#ifdef PMD3
-//    PMD3 = 0x0000;
-//#endif
-//#ifdef PMD4
-//    PMD4 = 0x0000;
-//#endif
-//#ifdef PMD5
-//    PMD5 = 0x0000;
-//#endif
-//#ifdef PMD6
-//    PMD6 = 0x0000;
-//#endif
-//#ifdef PMD7
-//    PMD7 = 0x0000;
-//#endif
+}
 
+/*	Change Notification Interrupt*/
+void __attribute__((__interrupt__, auto_psv)) _CNInterrupt(void) {
+    _CNIF = 0;
 }

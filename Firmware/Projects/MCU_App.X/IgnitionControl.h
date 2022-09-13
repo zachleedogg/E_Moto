@@ -12,6 +12,7 @@ void IgnitionControl_Init(void);
 
 void IgnitionControl_Run_10ms(void);
 
+void IgnitionControl_Halt(void);
 
 #endif	/* IGNITIONCONTROL_H */
 

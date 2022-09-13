@@ -37,7 +37,6 @@ static uint8_t killSwitchDebouncer = 0;
 
 void IgnitionControl_Init(void) {
     killSwitchDebouncer = 0;
-
 }
 
 void IgnitionControl_Run_10ms(void) {
@@ -46,9 +45,13 @@ void IgnitionControl_Run_10ms(void) {
     }
     if(killSwitchDebouncer >= 10){
         killSwitchDebouncer = 0;
-        //Tsk_Sleep();//go to sleep
+        Tsk_Sleep();//go to sleep
     }
   
+}
+
+void IgnitionControl_Halt(void) {
+    Nop();
 }
 
 /*** End of File **************************************************************/

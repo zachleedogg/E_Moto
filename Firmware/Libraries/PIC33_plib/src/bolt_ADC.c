@@ -116,8 +116,8 @@ void ADC_Init(void) {
     _SMPI = 0; /*number of pins + 1 to read per interrupt*/
 
     /*Config Reg 3*/
-    _ADCS = 0x5F; /*ADC Clock Period (TAD = 228ns = (ADCS + 1)/(SYSCLOCK/2)) Should be for 72ns...*/
-    _SAMC = 0x1F; /*Sample for t = SAMC*TAD before converting*/
+    _ADCS = 0x5F; /*ADC clock period: 1/(Fp/2) ? (ADCS + 1) = 1/(120000000Hz/2) * 0x5F = 1.6us*/
+    _SAMC = 0x1F; /*Sampling Time: ADC_clock_period*SAMC = 1.6us * 0x1F = 49.6us*/
 
     /*Config Reg 4*/
     AD1CON4 = 0x0000;
@@ -144,8 +144,8 @@ void ADC_Init(void) {
     AD2CON2bits.SMPI = 0; /*number of pins + 1 to read per interrupt*/
 
     /*Config Reg 3*/
-    AD2CON3bits.ADCS = 0x0F; /*ADC Clock Period (TAD = 228ns = (ADCS + 1)/(SYSCLOCK/2)) Should be for 72ns...*/
-    AD2CON3bits.SAMC = 0x0F; /*Sample for t = SAMC*TAD before converting*/
+    AD2CON3bits.ADCS = 0x5F; /*ADC clock period: 1/(Fp/2) ? (ADCS + 1) = 1/(120000000Hz/2) * 0x5F = 1.6us*/
+    AD2CON3bits.SAMC = 0x1F; /*Sampling Time: ADC_clock_period*SAMC = 1.6us * 0x1F = 49.6us*/
 
     /*Config Reg 4*/
     AD2CON4 = 0x0000;

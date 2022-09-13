@@ -97,10 +97,12 @@ uint8_t CAN_configureMailbox(CAN_message_S * newMessage);
 /*
  function: CAM_RxDataIsReady
  params: none
- return: 0 - Rx data not ready
+ return: 0-24 bits for each RX mailbox.
+         0 - Rx data not ready
          1 - Rx data ready
+ * All flags cleared on read.
  */
-uint8_t CAN_RxDataIsReady();
+uint32_t CAN_RxDataIsReady();
 
 /**
  * Writes a message to the CANbus.

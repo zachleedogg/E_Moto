@@ -20,8 +20,10 @@
 #include "bolt_uart.h"
 #include "bolt_sleep.h"
 
+
 //Task Scheduler system control
 #include "can_iso_tp_lite.h"
+#include "canPopulate.h"
 #include "pinSetup.h"
 #include "SerialDebugger.h"
 #include "LightsControl.h"
@@ -31,6 +33,7 @@
 #include "j1772.h"
 #include "IO.h"
 #include "MCU_dbc.h"
+#include "StateMachine.h"
 
 /******************************************************************************
  * Constants
@@ -78,35 +81,62 @@ void Tsk_init(void) {
 
     /*Init each module once*/
     PinSetup_Init(); //Pin setup should be first
-    IO_Efuse_Init(); //Init the Efuse Service
-    LightsControl_Init(); //Init the Lights Control Service
-    HeatedGripControl_Init(); //Init the heated grips
     CAN_DBC_init(); //Init the CAN System Service
-    IgnitionControl_Init();
-    HornControl_Init();
-
-    IO_SET_IC_CONTROLLER_SLEEP_EN(LOW); //switch enable must be high during noraml operation, this shouldn't go here....
-    CAN_changeOpMode(CAN_NORMAL);
-    IO_SET_CAN_SLEEP_EN(LOW);
+    StateMachine_Init(); //Init state machine
+    
+//    IO_SET_SW_EN(HIGH);
+//    
+//    IO_Efuse_Init(); //Init the Efuse Service
+//    LightsControl_Init(); //Init the Lights Control Service
+//    HeatedGripControl_Init(); //Init the heated grips
+//    IgnitionControl_Init();
+//    HornControl_Init();
+//    j1772Control_Init();
+//
+//    IO_SET_IC_CONTROLLER_SLEEP_EN(LOW); //switch enable must be high during normal operation, this shouldn't go here....
+//    CAN_changeOpMode(CAN_NORMAL);
+//    IO_SET_CAN_SLEEP_EN(LOW);
+//    IO_SET_BATT_EN(HIGH);
     
 
     tskService_print("Hello World, Task Init Done.\n"); //hi
+    tskService_print("Reset Reason: %x %x\n",(uint8_t)(RCON>>8), (uint8_t)RCON); 
+
 }
 
 /**
  * Tsk is for continuously running tasks, will run when scheduler is Idle.
  */
 void Tsk(void) {
-
+    j1772Control_Run_cont();
 }
 
 /**
  * Runs every 10ms
  */
 void Tsk_1ms(void) {
-    //IO_SET_DEBUG_LED_EN(TOGGLE);
+    ClrWdt(); 
+    
+    StateMachine_Run();
+
+    switch(run_iso_tp_basic()){
+        case ISO_TP_NONE:
+            break;
+        case ISO_TP_RESET:
+            CAN_changeOpMode(CAN_DISABLE);
+            asm ("reset");
+            break;
+        case ISO_TP_SLEEP:
+            Tsk_Sleep();
+            break;
+        case ISO_TP_IO_CONTROL:
+            break;
+        default:
+            break;
+    }
+    
+    CAN_populate_1ms();
     CAN_send_1ms();
-    run_iso_tp_basic();
 }
 
 
@@ -118,6 +148,7 @@ void Tsk_10ms(void) {
     IgnitionControl_Run_10ms();
     HornControl_Run_10ms(); //Run Horn. Horn is disabled if button is held for too long.
     
+    CAN_populate_10ms();
     CAN_send_10ms();
 }
 
@@ -130,6 +161,7 @@ void Tsk_100ms(void) {
     HeatedGripControl_Run_100ms(); //Run Heated Grips. Currently activated by spare sw 2
     j1772Control_Run_100ms(); //Run j1772 Proximity and Pilot Signal Control.
     
+    CAN_populate_100ms();
     CAN_send_100ms();
 }
 
@@ -140,34 +172,9 @@ void Tsk_1000ms(void) {
     IO_SET_DEBUG_LED_EN(TOGGLE); //Toggle Debug LED at 1Hz for scheduler running status
 }
 
-/**
- * Tsk Halt will stop the system tick, put any sleep related code here.
- * The service that calls Tsk_Sleep must be damn sure it is allowed to call
- * this function, also, the caller must subsequently call Tsk_Resume to start
- * the scheduler back up again.
- */
-void Tsk_Sleep(void) {
-    tskService_print("going to sleep now");
-    SysTick_Stop(); //does this idea need clean-up? is this the best way?
-    IO_SET_SW_EN(LOW);
-    IO_SET_IC_CONTROLLER_SLEEP_EN(HIGH); //same
-    IO_SET_CAN_SLEEP_EN(HIGH); //same
-    CAN_changeOpMode(CAN_DISABLE);
-    IO_SET_DEBUG_LED_EN(LOW); //same
-    
-    //stop all apps
-    IO_Efuse_Halt();
-    LightsControl_Halt();
-    HeatedGripControl_Halt();
-    HornControl_Halt();
-    j1772Control_Halt();
-    
-    //set wakeup sources
-    setWakeUp(PIN, IGNITION_SWITCH_IN);
-    SleepNow(); //Go to sleep
-    SysTick_Resume();
-    Uart1Write("waking From Sleep");
-    Tsk_init();
+//TODO: Delete this.
+void Tsk_Sleep(void){
+    Sleep();
 }
 
 /**

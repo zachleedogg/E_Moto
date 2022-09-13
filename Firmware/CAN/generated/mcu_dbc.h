@@ -53,7 +53,6 @@ uint16_t CAN_dash_data2_tripB_get(void);
 #define CAN_mcu_status_interval() 10
 void CAN_mcu_status_heartbeat_set(uint16_t heartbeat);
 void CAN_mcu_status_state_set(uint16_t state);
-void CAN_mcu_status_throttleMode_set(uint16_t throttleMode);
 void CAN_mcu_status_highBeam_set(uint16_t highBeam);
 void CAN_mcu_status_lowBeam_set(uint16_t lowBeam);
 void CAN_mcu_status_brakeLight_set(uint16_t brakeLight);
@@ -69,6 +68,14 @@ void CAN_mcu_status_chargePort_set(uint16_t chargePort);
 void CAN_mcu_status_brakeSwitchFront_set(uint16_t brakeSwitchFront);
 void CAN_mcu_status_brakeSwitchRear_set(uint16_t brakeSwitchRear);
 void CAN_mcu_status_throttleVal_set(uint16_t throttleVal);
+void CAN_mcu_status_killSwitch_set(uint16_t killSwitch);
+void CAN_mcu_status_ignitionSwitch_set(uint16_t ignitionSwitch);
+void CAN_mcu_status_leftTurnSwitch_set(uint16_t leftTurnSwitch);
+void CAN_mcu_status_rightTurnSwitch_set(uint16_t rightTurnSwitch);
+void CAN_mcu_status_lightSwitch_set(uint16_t lightSwitch);
+void CAN_mcu_status_assSwitch_set(uint16_t assSwitch);
+void CAN_mcu_status_hornSwitch_set(uint16_t hornSwitch);
+void CAN_mcu_status_batt_voltage_set(float batt_voltage);
 void CAN_mcu_status_dlc_set(uint8_t dlc);
 
 

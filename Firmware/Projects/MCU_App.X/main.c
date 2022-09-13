@@ -54,9 +54,10 @@
  */
 int main(void)
 {
-//    MSTRPR = 0x0020;
     // initialize the device
     SYSTEM_Initialize();
+    // Start Watch Dog at 4ms
+    RCONbits.SWDTEN = 1;
     // put this in memory_partition.s
     //    .equ    RESERVED_MEMORY_START, (0x55012+2) //TODO: Why did I have to modify this value??? Old value was 0x557FE -ZL
     

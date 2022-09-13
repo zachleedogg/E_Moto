@@ -59,7 +59,6 @@
  */
 
 uint8_t rxBuffer[512];
-uint8_t bootByte[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
 uint8_t dummyByte[] = {1,2,3,4,5,6,7,8};
 CAN_MSG_OBJ myMessage;
 CAN_MSG_FIELD myField;
@@ -134,6 +133,9 @@ int main(void)
 
 void send_boot_message(void){
     //Send a boot ID message
+    dummyByte[0] = (uint8_t)RCON;
+    dummyByte[1] = (uint8_t)(RCON>>8);
+    
     myField.idType = 0;
     myField.dlc = 0b1000;
     myField.frameType = 0;

@@ -49,6 +49,7 @@
         <itemPath>HeatedGrips.h</itemPath>
         <itemPath>pinSetup.h</itemPath>
         <itemPath>can_iso_tp_lite_config.h</itemPath>
+        <itemPath>canPopulate.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -104,6 +105,7 @@
         <itemPath>../../CAN/generated/mcu_dbc.c</itemPath>
         <itemPath>HeatedGrips.c</itemPath>
         <itemPath>pinSetup.c</itemPath>
+        <itemPath>canPopulate.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -374,6 +376,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

@@ -76,10 +76,10 @@ void BOOT_DEMO_Initialize(void)
 {    
     TMR1_SoftwareCounterClear();
     bootloadLastTime = 0;
-    if(RCONbits.SWR == 1){
+    if(RCONbits.SWR == 1 || RCONbits.WDTO == 1 || RCONbits.TRAPR || RCONbits.EXTR){
         bootloadTimeOutTime = 5000;
     } else {
-        bootloadTimeOutTime = 0;
+        bootloadTimeOutTime = 250;
     }
     
     char hello[] = "Reset Reason: ";
@@ -103,8 +103,9 @@ void BOOT_DEMO_Initialize(void)
 
 void BOOT_DEMO_Tasks(void)
 {
-    
-    if (BOOT_ProcessCommand() == BOOT_COMMAND_SUCCESS){
+    enum BOOT_COMMAND_RESULT res = BOOT_ProcessCommand();
+    //UART1_Write(res+);//newline
+    if (res == BOOT_COMMAND_SUCCESS){
         bootloadLastTime = TMR1_SoftwareCounterGet();
     }
 
@@ -118,6 +119,7 @@ void BOOT_DEMO_Tasks(void)
 
             TMR1_Stop();
             CAN_SLEEP_SetHigh();
+            CAN1_OperationModeSet(CAN_CONFIGURATION_MODE);
             CAN1_OperationModeSet(CAN_DISABLE_MODE);
             BOOT_StartApplication();
         }

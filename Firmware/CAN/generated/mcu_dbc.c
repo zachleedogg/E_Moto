@@ -201,38 +201,52 @@ static CAN_message_S CAN_mcu_status={
 #define CAN_MCU_STATUS_HEARTBEAT_OFFSET 0
 #define CAN_MCU_STATUS_STATE_RANGE 3
 #define CAN_MCU_STATUS_STATE_OFFSET 4
-#define CAN_MCU_STATUS_THROTTLEMODE_RANGE 3
-#define CAN_MCU_STATUS_THROTTLEMODE_OFFSET 7
 #define CAN_MCU_STATUS_HIGHBEAM_RANGE 1
-#define CAN_MCU_STATUS_HIGHBEAM_OFFSET 10
+#define CAN_MCU_STATUS_HIGHBEAM_OFFSET 7
 #define CAN_MCU_STATUS_LOWBEAM_RANGE 1
-#define CAN_MCU_STATUS_LOWBEAM_OFFSET 11
+#define CAN_MCU_STATUS_LOWBEAM_OFFSET 8
 #define CAN_MCU_STATUS_BRAKELIGHT_RANGE 1
-#define CAN_MCU_STATUS_BRAKELIGHT_OFFSET 12
+#define CAN_MCU_STATUS_BRAKELIGHT_OFFSET 9
 #define CAN_MCU_STATUS_TAILLIGHT_RANGE 1
-#define CAN_MCU_STATUS_TAILLIGHT_OFFSET 13
+#define CAN_MCU_STATUS_TAILLIGHT_OFFSET 10
 #define CAN_MCU_STATUS_HORN_RANGE 1
-#define CAN_MCU_STATUS_HORN_OFFSET 14
+#define CAN_MCU_STATUS_HORN_OFFSET 11
 #define CAN_MCU_STATUS_TURNSIGNALFR_RANGE 1
-#define CAN_MCU_STATUS_TURNSIGNALFR_OFFSET 15
+#define CAN_MCU_STATUS_TURNSIGNALFR_OFFSET 12
 #define CAN_MCU_STATUS_TURNSIGNALFL_RANGE 1
-#define CAN_MCU_STATUS_TURNSIGNALFL_OFFSET 16
+#define CAN_MCU_STATUS_TURNSIGNALFL_OFFSET 13
 #define CAN_MCU_STATUS_TURNSIGNALRR_RANGE 1
-#define CAN_MCU_STATUS_TURNSIGNALRR_OFFSET 17
+#define CAN_MCU_STATUS_TURNSIGNALRR_OFFSET 14
 #define CAN_MCU_STATUS_TURNSIGNALRL_RANGE 1
-#define CAN_MCU_STATUS_TURNSIGNALRL_OFFSET 18
+#define CAN_MCU_STATUS_TURNSIGNALRL_OFFSET 15
 #define CAN_MCU_STATUS_GBSALL_RANGE 1
-#define CAN_MCU_STATUS_GBSALL_OFFSET 19
+#define CAN_MCU_STATUS_GBSALL_OFFSET 16
 #define CAN_MCU_STATUS_CONTACTOR_RANGE 1
-#define CAN_MCU_STATUS_CONTACTOR_OFFSET 20
+#define CAN_MCU_STATUS_CONTACTOR_OFFSET 17
 #define CAN_MCU_STATUS_CHARGEPORT_RANGE 1
-#define CAN_MCU_STATUS_CHARGEPORT_OFFSET 21
+#define CAN_MCU_STATUS_CHARGEPORT_OFFSET 18
 #define CAN_MCU_STATUS_BRAKESWITCHFRONT_RANGE 1
-#define CAN_MCU_STATUS_BRAKESWITCHFRONT_OFFSET 22
+#define CAN_MCU_STATUS_BRAKESWITCHFRONT_OFFSET 19
 #define CAN_MCU_STATUS_BRAKESWITCHREAR_RANGE 1
-#define CAN_MCU_STATUS_BRAKESWITCHREAR_OFFSET 23
+#define CAN_MCU_STATUS_BRAKESWITCHREAR_OFFSET 20
 #define CAN_MCU_STATUS_THROTTLEVAL_RANGE 8
-#define CAN_MCU_STATUS_THROTTLEVAL_OFFSET 24
+#define CAN_MCU_STATUS_THROTTLEVAL_OFFSET 21
+#define CAN_MCU_STATUS_KILLSWITCH_RANGE 1
+#define CAN_MCU_STATUS_KILLSWITCH_OFFSET 29
+#define CAN_MCU_STATUS_IGNITIONSWITCH_RANGE 1
+#define CAN_MCU_STATUS_IGNITIONSWITCH_OFFSET 30
+#define CAN_MCU_STATUS_LEFTTURNSWITCH_RANGE 1
+#define CAN_MCU_STATUS_LEFTTURNSWITCH_OFFSET 31
+#define CAN_MCU_STATUS_RIGHTTURNSWITCH_RANGE 1
+#define CAN_MCU_STATUS_RIGHTTURNSWITCH_OFFSET 32
+#define CAN_MCU_STATUS_LIGHTSWITCH_RANGE 1
+#define CAN_MCU_STATUS_LIGHTSWITCH_OFFSET 33
+#define CAN_MCU_STATUS_ASSSWITCH_RANGE 1
+#define CAN_MCU_STATUS_ASSSWITCH_OFFSET 34
+#define CAN_MCU_STATUS_HORNSWITCH_RANGE 1
+#define CAN_MCU_STATUS_HORNSWITCH_OFFSET 35
+#define CAN_MCU_STATUS_BATT_VOLTAGE_RANGE 8
+#define CAN_MCU_STATUS_BATT_VOLTAGE_OFFSET 36
 
 void CAN_mcu_status_heartbeat_set(uint16_t heartbeat){
 	uint16_t data_scaled = (heartbeat - 0) / 1.0;
@@ -241,10 +255,6 @@ void CAN_mcu_status_heartbeat_set(uint16_t heartbeat){
 void CAN_mcu_status_state_set(uint16_t state){
 	uint16_t data_scaled = (state - 0) / 1.0;
 	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_STATE_OFFSET, CAN_MCU_STATUS_STATE_RANGE, data_scaled);
-}
-void CAN_mcu_status_throttleMode_set(uint16_t throttleMode){
-	uint16_t data_scaled = (throttleMode - 0) / 1.0;
-	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_THROTTLEMODE_OFFSET, CAN_MCU_STATUS_THROTTLEMODE_RANGE, data_scaled);
 }
 void CAN_mcu_status_highBeam_set(uint16_t highBeam){
 	uint16_t data_scaled = (highBeam - 0) / 1.0;
@@ -305,6 +315,38 @@ void CAN_mcu_status_brakeSwitchRear_set(uint16_t brakeSwitchRear){
 void CAN_mcu_status_throttleVal_set(uint16_t throttleVal){
 	uint16_t data_scaled = (throttleVal - 0) / 1.0;
 	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_THROTTLEVAL_OFFSET, CAN_MCU_STATUS_THROTTLEVAL_RANGE, data_scaled);
+}
+void CAN_mcu_status_killSwitch_set(uint16_t killSwitch){
+	uint16_t data_scaled = (killSwitch - 0) / 1.0;
+	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_KILLSWITCH_OFFSET, CAN_MCU_STATUS_KILLSWITCH_RANGE, data_scaled);
+}
+void CAN_mcu_status_ignitionSwitch_set(uint16_t ignitionSwitch){
+	uint16_t data_scaled = (ignitionSwitch - 0) / 1.0;
+	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_IGNITIONSWITCH_OFFSET, CAN_MCU_STATUS_IGNITIONSWITCH_RANGE, data_scaled);
+}
+void CAN_mcu_status_leftTurnSwitch_set(uint16_t leftTurnSwitch){
+	uint16_t data_scaled = (leftTurnSwitch - 0) / 1.0;
+	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_LEFTTURNSWITCH_OFFSET, CAN_MCU_STATUS_LEFTTURNSWITCH_RANGE, data_scaled);
+}
+void CAN_mcu_status_rightTurnSwitch_set(uint16_t rightTurnSwitch){
+	uint16_t data_scaled = (rightTurnSwitch - 0) / 1.0;
+	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_RIGHTTURNSWITCH_OFFSET, CAN_MCU_STATUS_RIGHTTURNSWITCH_RANGE, data_scaled);
+}
+void CAN_mcu_status_lightSwitch_set(uint16_t lightSwitch){
+	uint16_t data_scaled = (lightSwitch - 0) / 1.0;
+	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_LIGHTSWITCH_OFFSET, CAN_MCU_STATUS_LIGHTSWITCH_RANGE, data_scaled);
+}
+void CAN_mcu_status_assSwitch_set(uint16_t assSwitch){
+	uint16_t data_scaled = (assSwitch - 0) / 1.0;
+	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_ASSSWITCH_OFFSET, CAN_MCU_STATUS_ASSSWITCH_RANGE, data_scaled);
+}
+void CAN_mcu_status_hornSwitch_set(uint16_t hornSwitch){
+	uint16_t data_scaled = (hornSwitch - 0) / 1.0;
+	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_HORNSWITCH_OFFSET, CAN_MCU_STATUS_HORNSWITCH_RANGE, data_scaled);
+}
+void CAN_mcu_status_batt_voltage_set(float batt_voltage){
+	uint16_t data_scaled = (batt_voltage - 0) / 0.1;
+	set_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_BATT_VOLTAGE_OFFSET, CAN_MCU_STATUS_BATT_VOLTAGE_RANGE, data_scaled);
 }
 void CAN_mcu_status_dlc_set(uint8_t dlc){
 	CAN_mcu_status.dlc = dlc;
