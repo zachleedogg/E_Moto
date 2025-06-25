@@ -30,6 +30,7 @@
 #include "can_populate.h"
 #include "ev_charger.h"
 #include "bms.h"
+#include "dcdc.h"
 
 /******************************************************************************
  * Constants
@@ -99,10 +100,11 @@ void Tsk(void) {
  * Runs every 1ms
  */
 void Tsk_1ms(void) {
+    ClrWdt(); 
+    run_iso_tp_basic();
+    DCDC_run_1ms();
     
     CAN_populate_1ms();
-    run_iso_tp_basic();
-
 }
 
 /**
@@ -127,6 +129,7 @@ void Tsk_10ms(void) {
  * Runs every 100ms
  */
 void Tsk_100ms(void) {
+    DCDC_run_100ms();
     IO_SET_DEBUG_LED_EN(TOGGLE); //Toggle Debug LED at 10Hz for scheduler running status
 }
 
@@ -146,17 +149,7 @@ void Tsk_1000ms(void) {
  * the scheduler back up again.
  */
 void Tsk_Sleep(void) {
-    SysTick_Stop(); //does this idea need clean-up? is this the best way?
-    CAN_changeOpMode(CAN_DISABLE);
-    IO_SET_SW_EN(LOW);
-    IO_SET_DEBUG_LED_EN(LOW); //same
-
-    SleepNow(); //Go to sleep
-
-    SysTick_Resume();
-#if DEBUG
-    Uart1Write("waking From Sleep");
-#endif
+    Nop();
 }
 
 /**

@@ -202,6 +202,152 @@
 #define SW_EN_SetDigitalOutput() (_TRISB4 = 0)
 /**
   @Summary
+    Sets the GPIO pin, RB7, high using LATB7.
+
+  @Description
+    Sets the GPIO pin, RB7, high using LATB7.
+
+  @Preconditions
+    The RB7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB7 high (1)
+    DCDC_nEN_SetHigh();
+    </code>
+
+*/
+#define DCDC_nEN_SetHigh()          (_LATB7 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RB7, low using LATB7.
+
+  @Description
+    Sets the GPIO pin, RB7, low using LATB7.
+
+  @Preconditions
+    The RB7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB7 low (0)
+    DCDC_nEN_SetLow();
+    </code>
+
+*/
+#define DCDC_nEN_SetLow()           (_LATB7 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RB7, using LATB7.
+
+  @Description
+    Toggles the GPIO pin, RB7, using LATB7.
+
+  @Preconditions
+    The RB7 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RB7
+    DCDC_nEN_Toggle();
+    </code>
+
+*/
+#define DCDC_nEN_Toggle()           (_LATB7 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RB7.
+
+  @Description
+    Reads the value of the GPIO pin, RB7.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RB7
+    postValue = DCDC_nEN_GetValue();
+    </code>
+
+*/
+#define DCDC_nEN_GetValue()         _RB7
+/**
+  @Summary
+    Configures the GPIO pin, RB7, as an input.
+
+  @Description
+    Configures the GPIO pin, RB7, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB7 as an input
+    DCDC_nEN_SetDigitalInput();
+    </code>
+
+*/
+#define DCDC_nEN_SetDigitalInput()  (_TRISB7 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RB7, as an output.
+
+  @Description
+    Configures the GPIO pin, RB7, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB7 as an output
+    DCDC_nEN_SetDigitalOutput();
+    </code>
+
+*/
+#define DCDC_nEN_SetDigitalOutput() (_TRISB7 = 0)
+/**
+  @Summary
     Sets the GPIO pin, RC5, high using LATC5.
 
   @Description

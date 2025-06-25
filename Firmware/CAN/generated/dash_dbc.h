@@ -69,7 +69,6 @@ void CAN_dash_data2_send(void);
 #define CAN_mcu_status_interval() 10
 uint8_t CAN_mcu_status_checkDataIsFresh(void);
 uint16_t CAN_mcu_status_heartbeat_get(void);
-uint16_t CAN_mcu_status_state_get(void);
 uint16_t CAN_mcu_status_highBeam_get(void);
 uint16_t CAN_mcu_status_lowBeam_get(void);
 uint16_t CAN_mcu_status_brakeLight_get(void);
@@ -79,12 +78,8 @@ uint16_t CAN_mcu_status_turnSignalFR_get(void);
 uint16_t CAN_mcu_status_turnSignalFL_get(void);
 uint16_t CAN_mcu_status_turnSignalRR_get(void);
 uint16_t CAN_mcu_status_turnSignalRL_get(void);
-uint16_t CAN_mcu_status_GBSALL_get(void);
-uint16_t CAN_mcu_status_contactor_get(void);
-uint16_t CAN_mcu_status_chargePort_get(void);
 uint16_t CAN_mcu_status_brakeSwitchFront_get(void);
 uint16_t CAN_mcu_status_brakeSwitchRear_get(void);
-uint16_t CAN_mcu_status_throttleVal_get(void);
 uint16_t CAN_mcu_status_killSwitch_get(void);
 uint16_t CAN_mcu_status_ignitionSwitch_get(void);
 uint16_t CAN_mcu_status_leftTurnSwitch_get(void);
@@ -93,6 +88,10 @@ uint16_t CAN_mcu_status_lightSwitch_get(void);
 uint16_t CAN_mcu_status_assSwitch_get(void);
 uint16_t CAN_mcu_status_hornSwitch_get(void);
 float CAN_mcu_status_batt_voltage_get(void);
+float CAN_mcu_status_batt_current_get(void);
+float CAN_mcu_status_dcdc_current_get(void);
+uint16_t CAN_mcu_status_batt_fault_get(void);
+uint16_t CAN_mcu_status_dcdc_fault_get(void);
 
 #define CAN_mcu_command_interval() 100
 uint8_t CAN_mcu_command_checkDataIsFresh(void);
@@ -136,6 +135,7 @@ uint16_t CAN_bms_debug_bool2_get(void);
 uint16_t CAN_bms_debug_bool3_get(void);
 float CAN_bms_debug_float1_get(void);
 float CAN_bms_debug_float2_get(void);
+uint16_t CAN_bms_debug_CPU_USAGE_get(void);
 
 #define CAN_bms_charger_request_interval() 1000
 uint8_t CAN_bms_charger_request_checkDataIsFresh(void);
@@ -175,8 +175,8 @@ float CAN_bms_cellTemperaturs_temp_4_get(void);
  */
 #define CAN_boot_host_dash_interval() 1
 uint8_t CAN_boot_host_dash_checkDataIsFresh(void);
-uint16_t CAN_boot_host_dash_code_get(void);
 uint16_t CAN_boot_host_dash_type_get(void);
+uint16_t CAN_boot_host_dash_code_get(void);
 uint16_t CAN_boot_host_dash_byte1_get(void);
 uint16_t CAN_boot_host_dash_byte2_get(void);
 uint16_t CAN_boot_host_dash_byte3_get(void);

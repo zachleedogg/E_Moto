@@ -47,7 +47,7 @@ void IO_SET_SW_EN(uint8_t state) {
 }
 
 void IO_SET_DCDC_EN(uint8_t state) {
-    PINS_write(DCDC_EN, state);
+    PINS_write(DCDC_EN, !state); //only for first REV. DCDC glitch issue
 }
 
 void IO_SET_EV_CHARGER_EN(uint8_t state) {

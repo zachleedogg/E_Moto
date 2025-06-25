@@ -161,7 +161,7 @@ void PinSetup_Init(void) {
     CAN_Init(CAN_TX, CAN_RX, CAN_BAUD_500k, CAN_DISABLE, CLOCK_SystemFrequencyGet());
     
     //set wakeup sources
-    setWakeUp(PIN, IGNITION_SWITCH_IN);
+    PINS_internalRegisters_SetInterrupt(IGNITION_SWITCH_IN, 1);
     /*CAN is wake source already in CAN_Init()*/
 
 }

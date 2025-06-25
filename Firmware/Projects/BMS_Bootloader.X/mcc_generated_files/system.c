@@ -54,8 +54,8 @@
 #pragma config WDTWIN = WIN25    //Watchdog Window Select bits->WDT Window is 25% of WDT period
 
 // FWDT
-#pragma config WDTPOST = PS32768    //Watchdog Timer Postscaler bits->1:32768
-#pragma config WDTPRE = PR128    //Watchdog Timer Prescaler bit->1:128
+#pragma config WDTPOST = PS256    //Watchdog Timer Postscaler bits->1:256
+#pragma config WDTPRE = PR32    //Watchdog Timer Prescaler bit->1:32
 #pragma config PLLKEN = ON    //PLL Lock Enable bit->Clock switch to PLL source will wait until the PLL lock signal is valid.
 #pragma config WINDIS = OFF    //Watchdog Timer Window Enable bit->Watchdog Timer in Non-Window mode
 #pragma config FWDTEN = OFF    //Watchdog Timer Enable bit->Watchdog timer enabled/disabled by user software
@@ -78,14 +78,14 @@
 #include "clock.h"
 #include "system.h"
 #include "system_types.h"
+#include "uart1.h"
 #include "dma.h"
-#include "boot/boot_process.h"
-#include "memory/flash.h"
-#include "can1.h"
 #include "tmr1.h"
+#include "memory/flash.h"
+#include "boot/boot_process.h"
+#include "can1.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "uart1.h"
 
 void SYSTEM_Initialize(void)
 {

@@ -119,7 +119,7 @@ uint8_t spi2Init(spi_pin_number CLK, spi_pin_number D_OUT) {
                 RP40_SPI_PPS = ppsOut[i];
                 break;
             case RP41_SPI:
-                RP40_SPI_PPS = ppsOut[i];
+                RP41_SPI_PPS = ppsOut[i];
                 break;
             case RP42_SPI:
                 RP42_SPI_PPS = ppsOut[i];
@@ -136,9 +136,9 @@ uint8_t spi2Init(spi_pin_number CLK, spi_pin_number D_OUT) {
     _SPI2IF = 0; // Clear the Interrupt flag
     _SPI2IE = 0; // Disable the interrupt
 
-    _SCK2R = 0x2A; //pin 42 clock in
-    _RP42R = 0x09; //pin 42 clock out
-    _RP43R = 0x08; //Dout to 43
+// This is hardcoding what was in the switch statement above. remove it.
+//    _RP42R = 0x09; //pin 42 clock out
+//    _RP43R = 0x08; //Dout to 43
 
     SPI2CON1bits.DISSCK = 0; /*clock enabled*/
     SPI2CON1bits.DISSDO = 0; /*Data out enabled*/
@@ -152,7 +152,7 @@ uint8_t spi2Init(spi_pin_number CLK, spi_pin_number D_OUT) {
 
     _SPI2IF = 0; // Clear the Interrupt flag
     _SPI2IE = 1; // Enable the interrupt
-    _SI2C1IP = 5; //priority 5
+    _SPI2IP = 5; // Set SPI2 interrupt priority
 
     return 0;
 }

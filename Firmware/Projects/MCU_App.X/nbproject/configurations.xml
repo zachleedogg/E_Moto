@@ -18,6 +18,7 @@
         <itemPath>../../Libraries/Standard/movingAverage.h</itemPath>
         <itemPath>../../Libraries/Standard/utils.h</itemPath>
         <itemPath>../../Libraries/Drivers/ISO_TP_LITE/can_iso_tp_lite.h</itemPath>
+        <itemPath>../../Libraries/Drivers/Buttons/button.h</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -50,6 +51,7 @@
         <itemPath>pinSetup.h</itemPath>
         <itemPath>can_iso_tp_lite_config.h</itemPath>
         <itemPath>canPopulate.h</itemPath>
+        <itemPath>lvBattery.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -66,11 +68,12 @@
         <itemPath>../../Libraries/PIC33_plib/src/pins.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_OC.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
-        <itemPath>SysTick.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_sleep.c</itemPath>
         <itemPath>../../Libraries/Standard/movingAverage.c</itemPath>
         <itemPath>../../Libraries/Standard/utils.c</itemPath>
         <itemPath>../../Libraries/Drivers/ISO_TP_LITE/can_iso_tp_lite.c</itemPath>
+        <itemPath>../../Libraries/Drivers/Buttons/button.c</itemPath>
+        <itemPath>../../RTOS/Scheduler/SysTick.c</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -106,6 +109,7 @@
         <itemPath>HeatedGrips.c</itemPath>
         <itemPath>pinSetup.c</itemPath>
         <itemPath>canPopulate.c</itemPath>
+        <itemPath>lvBattery.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -131,6 +135,7 @@
     <Elem>../../Libraries/Standard</Elem>
     <Elem>../../CAN/generated</Elem>
     <Elem>../../Libraries/Drivers/ISO_TP_LITE</Elem>
+    <Elem>../../Libraries/Drivers/Buttons</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -140,7 +145,7 @@
         <targetDevice>dsPIC33EP512MU810</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>2.00</languageToolchainVersion>
         <platform>3</platform>
@@ -193,7 +198,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="expand-pragma-config" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated;..\..\Libraries\Standard;..\..\Libraries\Drivers\ISO_TP_LITE"/>
+                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated;..\..\Libraries\Standard;..\..\Libraries\Drivers\ISO_TP_LITE;..\..\Libraries\Drivers\Buttons"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -376,7 +381,6 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

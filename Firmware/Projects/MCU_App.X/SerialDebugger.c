@@ -31,7 +31,10 @@ static uint8_t debugEnable = 1;
 
 unsigned long hash(const char *str);
 
-/*Debugging print statement*/
+///*Extra pointer so the compiler is happy*/
+//static unsigned char msgBuff[64] = {};
+//static char * msg = (char*)msgBuff;
+//static unsigned char * msgUart = msgBuff;
 
 void SerialConsole_Run_100ms(void) {
     if (Uart1RXdataReady()) {
@@ -49,7 +52,7 @@ void SerialConsole_Run_100ms(void) {
         switch (newHash) {
             case GPIO_SET:
                 debuggerService_print("running GPIO_SET\n");
-                if (sscanf(msg, "%*s %c%d %d", &port, &pin, &state) == 4) {
+                if (sscanf(msg, "%*s %1c%2d %1d", &port, &pin, &state) == 4) {
                     PINS_pin_S thisPin;
                     thisPin.pin = pin;
                     thisPin.port = (uint8_t) port - 97;

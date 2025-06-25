@@ -28,8 +28,8 @@ uint16_t CAN_mcu_command_motor_controller_enable_get(void);
 
 #define CAN_mcu_boot_response_interval() 
 uint8_t CAN_mcu_boot_response_checkDataIsFresh(void);
-uint16_t CAN_mcu_boot_response_code_get(void);
 uint16_t CAN_mcu_boot_response_type_get(void);
+uint16_t CAN_mcu_boot_response_code_get(void);
 uint16_t CAN_mcu_boot_response_byte1_get(void);
 uint16_t CAN_mcu_boot_response_byte2_get(void);
 uint16_t CAN_mcu_boot_response_byte3_get(void);
@@ -49,11 +49,12 @@ uint16_t CAN_bms_debug_bool2_get(void);
 uint16_t CAN_bms_debug_bool3_get(void);
 float CAN_bms_debug_float1_get(void);
 float CAN_bms_debug_float2_get(void);
+uint16_t CAN_bms_debug_CPU_USAGE_get(void);
 
 #define CAN_bms_boot_response_interval() 
 uint8_t CAN_bms_boot_response_checkDataIsFresh(void);
-uint16_t CAN_bms_boot_response_code_get(void);
 uint16_t CAN_bms_boot_response_type_get(void);
+uint16_t CAN_bms_boot_response_code_get(void);
 uint16_t CAN_bms_boot_response_byte1_get(void);
 uint16_t CAN_bms_boot_response_byte2_get(void);
 uint16_t CAN_bms_boot_response_byte3_get(void);
@@ -72,8 +73,8 @@ uint16_t CAN_bms_boot_response_byte7_get(void);
  * boot_host NODE MESSAGES
  */
 #define CAN_boot_host_bms_interval() 1
-void CAN_boot_host_bms_code_set(uint16_t code);
 void CAN_boot_host_bms_type_set(uint16_t type);
+void CAN_boot_host_bms_code_set(uint16_t code);
 void CAN_boot_host_bms_byte1_set(uint16_t byte1);
 void CAN_boot_host_bms_byte2_set(uint16_t byte2);
 void CAN_boot_host_bms_byte3_set(uint16_t byte3);
@@ -88,8 +89,8 @@ void CAN_boot_host_bms_send(void);
 
 
 #define CAN_boot_host_mcu_interval() 1
-void CAN_boot_host_mcu_code_set(uint16_t code);
 void CAN_boot_host_mcu_type_set(uint16_t type);
+void CAN_boot_host_mcu_code_set(uint16_t code);
 void CAN_boot_host_mcu_byte1_set(uint16_t byte1);
 void CAN_boot_host_mcu_byte2_set(uint16_t byte2);
 void CAN_boot_host_mcu_byte3_set(uint16_t byte3);
@@ -104,8 +105,8 @@ void CAN_boot_host_mcu_send(void);
 
 
 #define CAN_boot_host_dash_interval() 1
-void CAN_boot_host_dash_code_set(uint16_t code);
 void CAN_boot_host_dash_type_set(uint16_t type);
+void CAN_boot_host_dash_code_set(uint16_t code);
 void CAN_boot_host_dash_byte1_set(uint16_t byte1);
 void CAN_boot_host_dash_byte2_set(uint16_t byte2);
 void CAN_boot_host_dash_byte3_set(uint16_t byte3);

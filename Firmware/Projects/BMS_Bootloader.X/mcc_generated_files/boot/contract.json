@@ -1032,10 +1032,6 @@
   "disabledCommands": [],
   "configurationBitSettings": [
     {
-      "key": "WDTPRE",
-      "value": "PR128"
-    },
-    {
       "key": "WINDIS",
       "value": "OFF"
     },
@@ -1072,6 +1068,14 @@
       "value": "CSECMD"
     },
     {
+      "key": "WDTPRE",
+      "value": "PR32"
+    },
+    {
+      "key": "WDTPOST",
+      "value": "PS256"
+    },
+    {
       "key": "FWDTEN",
       "value": "OFF"
     },
@@ -1082,10 +1086,6 @@
     {
       "key": "ALTI2C1",
       "value": "ON"
-    },
-    {
-      "key": "WDTPOST",
-      "value": "PS32768"
     },
     {
       "key": "FNOSC",

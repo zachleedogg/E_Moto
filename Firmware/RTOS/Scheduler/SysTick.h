@@ -8,9 +8,6 @@ typedef struct {
     uint32_t end_value;
 } SysTick_Timer_S;
 
-typedef SysTick_Timer_S *SysTick_Timer;
-
-
 /**
  * @brief SysTick_Init will start the system clock with interupt
  * @param sysClock is the system oscillator frequency
@@ -35,24 +32,25 @@ uint32_t SysTick_Get(void);
 
 
 /**
- * SysTick_Timer will create a timer vaiable with a given name.
+ * SysTick_Timer will create a timer variable with a given name.
  * @param myTimer name of variable
  */
-#define SysTick_Timer_new(x) static SysTick_Timer_S x##_S;\
-static SysTick_Timer x = &x##_S
+#define NEW_TIMER(name, time) static SysTick_Timer_S name##_systimer = \
+{.start_time = 0,\
+.end_value = time};\
+static SysTick_Timer_S *name = &name##_systimer\
 
 /**
  * @brief SysTick_TimerStart will grab the current time and record the time
- * @param time
  * @param timer stuct 
  */
-void SysTick_TimerStart(uint32_t time, SysTick_Timer timer);
+void SysTick_TimerStart(SysTick_Timer_S *timer);
 
 /**
  * @brief SysTick_TimeOut will check if the timer is expired
  * @param timer
  * @return 
  */
-uint8_t SysTick_TimeOut(SysTick_Timer timer);
+uint8_t SysTick_TimeOut(SysTick_Timer_S *timer);
 
 #endif

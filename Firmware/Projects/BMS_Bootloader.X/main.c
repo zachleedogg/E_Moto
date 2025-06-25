@@ -133,6 +133,9 @@ int main(void)
 
 void send_boot_message(void){
     //Send a boot ID message
+    dummyByte[0] = (uint8_t)RCON;
+    dummyByte[1] = (uint8_t)(RCON>>8);
+    
     myField.idType = 0;
     myField.dlc = 0b1000;
     myField.frameType = 0;

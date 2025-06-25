@@ -19,6 +19,8 @@
 #define VBAT_VOLTAGE_CONVERSION 8.234
 #define PILOT_VOLTAGE_CONVERSION 4.6
 #define PROXIMITY_VOLTAGE_CONVERSION 1
+#define VBAT_CURRENT_CONVERSION 20.0
+#define DCDC_CURRENT_CONVERSION 20.0
 /******************************************************************************
  * Configuration
  *******************************************************************************/
@@ -50,7 +52,7 @@ static uint8_t BATT_fault = 0;
 static uint8_t DCDC_fault = 0;
 static uint8_t IC_CONTROLLER_fault = 0;
 
-/*Fault Bits*/
+/*Current values*/
 static uint16_t FAN_current = 0;
 static uint16_t PUMP_current = 0;
 static uint16_t TAILLIGHT_current = 0;
@@ -65,9 +67,6 @@ static uint16_t CHARGE_CONTROLLER_current = 0;
 static uint16_t MOTOR_CONTROLLER_current = 0;
 static uint16_t BMS_CONTROLLER_current = 0;
 static uint16_t SPARE_1_CONTROLLER_current = 0;
-static uint16_t BATT_current = 0;
-static uint16_t DCDC_current = 0;
-static uint16_t IC_CONTROLLER_current = 0;
 
 static uint8_t efuse_run = 1;
 
@@ -323,15 +322,15 @@ void IO_SET_DIAG_SELECT_EN(uint8_t state) {
 }
 
 void IO_SET_DCDC_EN(uint8_t state) {
-    if (DCDC_fault == 0) {
+    //if (DCDC_fault == 0) {
         PINS_write(DCDC_EN, state);
-    }
+    //}
 }
 
 void IO_SET_BATT_EN(uint8_t state) {
-    if (BATT_fault == 0) {
+    //if (BATT_fault == 0) {
         PINS_write(BATT_EN, state);
-    }
+    //}
 }
 
 void IO_SET_CAN_SLEEP_EN(uint8_t state) {
@@ -533,7 +532,7 @@ uint8_t IO_GET_IGNITION_SWITCH_IN(void) {
 }
 
 uint8_t IO_GET_KILL_SWITCH_IN(void) {
-    return PINS_read(KILL_SWITCH_IN) ? 0 : 1;
+    return PINS_read(KILL_SWITCH_IN) ? 1 : 0;
 }
 
 uint8_t IO_GET_TURN_LEFT_SWITCH_IN(void) {
@@ -615,11 +614,11 @@ uint16_t IO_GET_CURRENT_SPARE_1_CONTROLLER() {
 }
 
 float IO_GET_CURRENT_BATT() {
-    return (ADC_GetValue(BATT_ISENSE_AI)*(ADC_REF_VOLTAGE/ADC_BIT_DEPTH)-1.65)*20;
+    return ((ADC_GetValue(BATT_ISENSE_AI))*(ADC_REF_VOLTAGE/ADC_BIT_DEPTH)-1.65)*VBAT_CURRENT_CONVERSION;
 }
 
 float IO_GET_CURRENT_DCDC() {
-    return (ADC_GetValue(DCDC_ISENSE_AI)*(ADC_REF_VOLTAGE/ADC_BIT_DEPTH)-1.65)*20;
+    return (ADC_GetValue(DCDC_ISENSE_AI)*(ADC_REF_VOLTAGE/ADC_BIT_DEPTH)-1.65)*DCDC_CURRENT_CONVERSION;
 }
 
 float IO_GET_CURRENT_IC_CONTROLLER() {
@@ -645,59 +644,59 @@ float IO_GET_VOLTAGE_VBAT_SW(void) {
 
 /*FAULT BITS*/
 
-uint8_t IO_GET_CURRENT_FAN_FAULT(void) {
+uint8_t IO_GET_FAN_FAULT(void) {
     return FAN_fault;
 }
 
-uint8_t IO_GET_CURRENT_PUMP_FAULT(void) {
+uint8_t IO_GET_PUMP_FAULT(void) {
     return PUMP_fault;
 }
 
-uint8_t IO_GET_CURRENT_TAILLIGHT_FAULT(void) {
+uint8_t IO_GET_TAILLIGHT_FAULT(void) {
     return TAILLIGHT_fault;
 }
 
-uint8_t IO_GET_CURRENT_BRAKELIGHT_FAULT(void) {
+uint8_t IO_GET_BRAKELIGHT_FAULT(void) {
     return BRAKELIGHT_fault;
 }
 
-uint8_t IO_GET_CURRENT_LOWBEAM_FAULT(void) {
+uint8_t IO_GET_LOWBEAM_FAULT(void) {
     return LOWBEAM_fault;
 }
 
-uint8_t IO_GET_CURRENT_HIGHBEAM_FAULT(void) {
+uint8_t IO_GET_HIGHBEAM_FAULT(void) {
     return HIGHBEAM_fault;
 }
 
-uint8_t IO_GET_CURRENT_HORN_FAULT(void) {
+uint8_t IO_GET_HORN_FAULT(void) {
     return HORN_fault;
 }
 
-uint8_t IO_GET_CURRENT_AUX_PORT_FAULT(void) {
+uint8_t IO_GET_AUX_PORT_FAULT(void) {
     return AUX_PORT_fault;
 }
 
-uint8_t IO_GET_CURRENT_HEATED_GRIPS_FAULT(void) {
+uint8_t IO_GET_HEATED_GRIPS_FAULT(void) {
     return HEATED_GRIPS_fault;
 }
 
-uint8_t IO_GET_CURRENT_HEATED_SEAT_FAULT(void) {
+uint8_t IO_GET_HEATED_SEAT_FAULT(void) {
     return HEATED_SEAT_fault;
 }
 
-uint8_t IO_GET_CURRENT_CHARGE_CONTROLLER_FAULT(void) {
+uint8_t IO_GET_CHARGE_CONTROLLER_FAULT(void) {
     return CHARGE_CONTROLLER_fault;
 }
 
-uint8_t IO_GET_CURRENT_MOTOR_CONTROLLER_FAULT(void) {
+uint8_t IO_GET_MOTOR_CONTROLLER_FAULT(void) {
     return MOTOR_CONTROLLER_fault;
 }
 
-uint8_t IO_GET_CURRENT_BMS_CONTROLLER_FAULT(void) {
+uint8_t IO_GET_BMS_CONTROLLER_FAULT(void) {
     return BMS_CONTROLLER_fault;
 }
 
-uint8_t IO_GET_CURRENT_SPARE_1_CONTROLLER_FAULT(void) {
+uint8_t IO_GET_SPARE_1_CONTROLLER_FAULT(void) {
     return SPARE_1_CONTROLLER_fault;
 }
 

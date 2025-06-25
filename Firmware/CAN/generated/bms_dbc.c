@@ -21,61 +21,55 @@ uint8_t CAN_mcu_status_checkDataIsFresh(void){
 }
 #define CAN_MCU_STATUS_HEARTBEAT_RANGE 4
 #define CAN_MCU_STATUS_HEARTBEAT_OFFSET 0
-#define CAN_MCU_STATUS_STATE_RANGE 3
-#define CAN_MCU_STATUS_STATE_OFFSET 4
 #define CAN_MCU_STATUS_HIGHBEAM_RANGE 1
-#define CAN_MCU_STATUS_HIGHBEAM_OFFSET 7
+#define CAN_MCU_STATUS_HIGHBEAM_OFFSET 4
 #define CAN_MCU_STATUS_LOWBEAM_RANGE 1
-#define CAN_MCU_STATUS_LOWBEAM_OFFSET 8
+#define CAN_MCU_STATUS_LOWBEAM_OFFSET 5
 #define CAN_MCU_STATUS_BRAKELIGHT_RANGE 1
-#define CAN_MCU_STATUS_BRAKELIGHT_OFFSET 9
+#define CAN_MCU_STATUS_BRAKELIGHT_OFFSET 6
 #define CAN_MCU_STATUS_TAILLIGHT_RANGE 1
-#define CAN_MCU_STATUS_TAILLIGHT_OFFSET 10
+#define CAN_MCU_STATUS_TAILLIGHT_OFFSET 7
 #define CAN_MCU_STATUS_HORN_RANGE 1
-#define CAN_MCU_STATUS_HORN_OFFSET 11
+#define CAN_MCU_STATUS_HORN_OFFSET 8
 #define CAN_MCU_STATUS_TURNSIGNALFR_RANGE 1
-#define CAN_MCU_STATUS_TURNSIGNALFR_OFFSET 12
+#define CAN_MCU_STATUS_TURNSIGNALFR_OFFSET 9
 #define CAN_MCU_STATUS_TURNSIGNALFL_RANGE 1
-#define CAN_MCU_STATUS_TURNSIGNALFL_OFFSET 13
+#define CAN_MCU_STATUS_TURNSIGNALFL_OFFSET 10
 #define CAN_MCU_STATUS_TURNSIGNALRR_RANGE 1
-#define CAN_MCU_STATUS_TURNSIGNALRR_OFFSET 14
+#define CAN_MCU_STATUS_TURNSIGNALRR_OFFSET 11
 #define CAN_MCU_STATUS_TURNSIGNALRL_RANGE 1
-#define CAN_MCU_STATUS_TURNSIGNALRL_OFFSET 15
-#define CAN_MCU_STATUS_GBSALL_RANGE 1
-#define CAN_MCU_STATUS_GBSALL_OFFSET 16
-#define CAN_MCU_STATUS_CONTACTOR_RANGE 1
-#define CAN_MCU_STATUS_CONTACTOR_OFFSET 17
-#define CAN_MCU_STATUS_CHARGEPORT_RANGE 1
-#define CAN_MCU_STATUS_CHARGEPORT_OFFSET 18
+#define CAN_MCU_STATUS_TURNSIGNALRL_OFFSET 12
 #define CAN_MCU_STATUS_BRAKESWITCHFRONT_RANGE 1
-#define CAN_MCU_STATUS_BRAKESWITCHFRONT_OFFSET 19
+#define CAN_MCU_STATUS_BRAKESWITCHFRONT_OFFSET 13
 #define CAN_MCU_STATUS_BRAKESWITCHREAR_RANGE 1
-#define CAN_MCU_STATUS_BRAKESWITCHREAR_OFFSET 20
-#define CAN_MCU_STATUS_THROTTLEVAL_RANGE 8
-#define CAN_MCU_STATUS_THROTTLEVAL_OFFSET 21
+#define CAN_MCU_STATUS_BRAKESWITCHREAR_OFFSET 14
 #define CAN_MCU_STATUS_KILLSWITCH_RANGE 1
-#define CAN_MCU_STATUS_KILLSWITCH_OFFSET 29
+#define CAN_MCU_STATUS_KILLSWITCH_OFFSET 15
 #define CAN_MCU_STATUS_IGNITIONSWITCH_RANGE 1
-#define CAN_MCU_STATUS_IGNITIONSWITCH_OFFSET 30
+#define CAN_MCU_STATUS_IGNITIONSWITCH_OFFSET 16
 #define CAN_MCU_STATUS_LEFTTURNSWITCH_RANGE 1
-#define CAN_MCU_STATUS_LEFTTURNSWITCH_OFFSET 31
+#define CAN_MCU_STATUS_LEFTTURNSWITCH_OFFSET 17
 #define CAN_MCU_STATUS_RIGHTTURNSWITCH_RANGE 1
-#define CAN_MCU_STATUS_RIGHTTURNSWITCH_OFFSET 32
+#define CAN_MCU_STATUS_RIGHTTURNSWITCH_OFFSET 18
 #define CAN_MCU_STATUS_LIGHTSWITCH_RANGE 1
-#define CAN_MCU_STATUS_LIGHTSWITCH_OFFSET 33
+#define CAN_MCU_STATUS_LIGHTSWITCH_OFFSET 19
 #define CAN_MCU_STATUS_ASSSWITCH_RANGE 1
-#define CAN_MCU_STATUS_ASSSWITCH_OFFSET 34
+#define CAN_MCU_STATUS_ASSSWITCH_OFFSET 20
 #define CAN_MCU_STATUS_HORNSWITCH_RANGE 1
-#define CAN_MCU_STATUS_HORNSWITCH_OFFSET 35
+#define CAN_MCU_STATUS_HORNSWITCH_OFFSET 21
 #define CAN_MCU_STATUS_BATT_VOLTAGE_RANGE 8
-#define CAN_MCU_STATUS_BATT_VOLTAGE_OFFSET 36
+#define CAN_MCU_STATUS_BATT_VOLTAGE_OFFSET 22
+#define CAN_MCU_STATUS_BATT_CURRENT_RANGE 16
+#define CAN_MCU_STATUS_BATT_CURRENT_OFFSET 30
+#define CAN_MCU_STATUS_DCDC_CURRENT_RANGE 16
+#define CAN_MCU_STATUS_DCDC_CURRENT_OFFSET 46
+#define CAN_MCU_STATUS_BATT_FAULT_RANGE 1
+#define CAN_MCU_STATUS_BATT_FAULT_OFFSET 62
+#define CAN_MCU_STATUS_DCDC_FAULT_RANGE 1
+#define CAN_MCU_STATUS_DCDC_FAULT_OFFSET 63
 
 uint16_t CAN_mcu_status_heartbeat_get(void){
 	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_HEARTBEAT_OFFSET, CAN_MCU_STATUS_HEARTBEAT_RANGE);
-	return (data * 1.0) + 0;
-}
-uint16_t CAN_mcu_status_state_get(void){
-	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_STATE_OFFSET, CAN_MCU_STATUS_STATE_RANGE);
 	return (data * 1.0) + 0;
 }
 uint16_t CAN_mcu_status_highBeam_get(void){
@@ -114,28 +108,12 @@ uint16_t CAN_mcu_status_turnSignalRL_get(void){
 	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_TURNSIGNALRL_OFFSET, CAN_MCU_STATUS_TURNSIGNALRL_RANGE);
 	return (data * 1.0) + 0;
 }
-uint16_t CAN_mcu_status_GBSALL_get(void){
-	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_GBSALL_OFFSET, CAN_MCU_STATUS_GBSALL_RANGE);
-	return (data * 1.0) + 0;
-}
-uint16_t CAN_mcu_status_contactor_get(void){
-	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_CONTACTOR_OFFSET, CAN_MCU_STATUS_CONTACTOR_RANGE);
-	return (data * 1.0) + 0;
-}
-uint16_t CAN_mcu_status_chargePort_get(void){
-	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_CHARGEPORT_OFFSET, CAN_MCU_STATUS_CHARGEPORT_RANGE);
-	return (data * 1.0) + 0;
-}
 uint16_t CAN_mcu_status_brakeSwitchFront_get(void){
 	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_BRAKESWITCHFRONT_OFFSET, CAN_MCU_STATUS_BRAKESWITCHFRONT_RANGE);
 	return (data * 1.0) + 0;
 }
 uint16_t CAN_mcu_status_brakeSwitchRear_get(void){
 	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_BRAKESWITCHREAR_OFFSET, CAN_MCU_STATUS_BRAKESWITCHREAR_RANGE);
-	return (data * 1.0) + 0;
-}
-uint16_t CAN_mcu_status_throttleVal_get(void){
-	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_THROTTLEVAL_OFFSET, CAN_MCU_STATUS_THROTTLEVAL_RANGE);
 	return (data * 1.0) + 0;
 }
 uint16_t CAN_mcu_status_killSwitch_get(void){
@@ -169,6 +147,22 @@ uint16_t CAN_mcu_status_hornSwitch_get(void){
 float CAN_mcu_status_batt_voltage_get(void){
 	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_BATT_VOLTAGE_OFFSET, CAN_MCU_STATUS_BATT_VOLTAGE_RANGE);
 	return (data * 0.1) + 0;
+}
+float CAN_mcu_status_batt_current_get(void){
+	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_BATT_CURRENT_OFFSET, CAN_MCU_STATUS_BATT_CURRENT_RANGE);
+	return (data * 0.001) + -33;
+}
+float CAN_mcu_status_dcdc_current_get(void){
+	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_DCDC_CURRENT_OFFSET, CAN_MCU_STATUS_DCDC_CURRENT_RANGE);
+	return (data * 0.001) + -33;
+}
+uint16_t CAN_mcu_status_batt_fault_get(void){
+	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_BATT_FAULT_OFFSET, CAN_MCU_STATUS_BATT_FAULT_RANGE);
+	return (data * 1.0) + 0;
+}
+uint16_t CAN_mcu_status_dcdc_fault_get(void){
+	uint16_t data = get_bits((size_t*)CAN_mcu_status.payload, CAN_MCU_STATUS_DCDC_FAULT_OFFSET, CAN_MCU_STATUS_DCDC_FAULT_RANGE);
+	return (data * 1.0) + 0;
 }
 
 #define CAN_mcu_command_ID 0x712
@@ -382,6 +376,8 @@ static CAN_message_S CAN_bms_debug={
 #define CAN_BMS_DEBUG_FLOAT1_OFFSET 4
 #define CAN_BMS_DEBUG_FLOAT2_RANGE 16
 #define CAN_BMS_DEBUG_FLOAT2_OFFSET 20
+#define CAN_BMS_DEBUG_CPU_USAGE_RANGE 16
+#define CAN_BMS_DEBUG_CPU_USAGE_OFFSET 36
 
 void CAN_bms_debug_bool0_set(uint16_t bool0){
 	uint16_t data_scaled = (bool0 - 0) / 1.0;
@@ -407,6 +403,10 @@ void CAN_bms_debug_float2_set(float float2){
 	uint16_t data_scaled = (float2 - 0) / 0.01;
 	set_bits((size_t*)CAN_bms_debug.payload, CAN_BMS_DEBUG_FLOAT2_OFFSET, CAN_BMS_DEBUG_FLOAT2_RANGE, data_scaled);
 }
+void CAN_bms_debug_CPU_USAGE_set(uint16_t CPU_USAGE){
+	uint16_t data_scaled = (CPU_USAGE - 0) / 1;
+	set_bits((size_t*)CAN_bms_debug.payload, CAN_BMS_DEBUG_CPU_USAGE_OFFSET, CAN_BMS_DEBUG_CPU_USAGE_RANGE, data_scaled);
+}
 void CAN_bms_debug_dlc_set(uint8_t dlc){
 	CAN_bms_debug.dlc = dlc;
 }
@@ -425,10 +425,10 @@ static CAN_message_S CAN_bms_boot_response={
 	.canMessageStatus = 0
 };
 
-#define CAN_BMS_BOOT_RESPONSE_CODE_RANGE 4
-#define CAN_BMS_BOOT_RESPONSE_CODE_OFFSET 0
 #define CAN_BMS_BOOT_RESPONSE_TYPE_RANGE 4
-#define CAN_BMS_BOOT_RESPONSE_TYPE_OFFSET 4
+#define CAN_BMS_BOOT_RESPONSE_TYPE_OFFSET 0
+#define CAN_BMS_BOOT_RESPONSE_CODE_RANGE 4
+#define CAN_BMS_BOOT_RESPONSE_CODE_OFFSET 4
 #define CAN_BMS_BOOT_RESPONSE_BYTE1_RANGE 8
 #define CAN_BMS_BOOT_RESPONSE_BYTE1_OFFSET 8
 #define CAN_BMS_BOOT_RESPONSE_BYTE2_RANGE 8
@@ -444,13 +444,13 @@ static CAN_message_S CAN_bms_boot_response={
 #define CAN_BMS_BOOT_RESPONSE_BYTE7_RANGE 8
 #define CAN_BMS_BOOT_RESPONSE_BYTE7_OFFSET 56
 
-void CAN_bms_boot_response_code_set(uint16_t code){
-	uint16_t data_scaled = (code - 0) / 1.0;
-	set_bits((size_t*)CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_CODE_OFFSET, CAN_BMS_BOOT_RESPONSE_CODE_RANGE, data_scaled);
-}
 void CAN_bms_boot_response_type_set(uint16_t type){
 	uint16_t data_scaled = (type - 0) / 1.0;
 	set_bits((size_t*)CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_TYPE_OFFSET, CAN_BMS_BOOT_RESPONSE_TYPE_RANGE, data_scaled);
+}
+void CAN_bms_boot_response_code_set(uint16_t code){
+	uint16_t data_scaled = (code - 0) / 1.0;
+	set_bits((size_t*)CAN_bms_boot_response.payload, CAN_BMS_BOOT_RESPONSE_CODE_OFFSET, CAN_BMS_BOOT_RESPONSE_CODE_RANGE, data_scaled);
 }
 void CAN_bms_boot_response_byte1_set(uint16_t byte1){
 	uint16_t data_scaled = (byte1 - 0) / 1.0;
@@ -755,10 +755,10 @@ static CAN_message_S CAN_boot_host_bms={
 uint8_t CAN_boot_host_bms_checkDataIsFresh(void){
 	return CAN_checkDataIsFresh(&CAN_boot_host_bms);
 }
-#define CAN_BOOT_HOST_BMS_CODE_RANGE 4
-#define CAN_BOOT_HOST_BMS_CODE_OFFSET 0
 #define CAN_BOOT_HOST_BMS_TYPE_RANGE 4
-#define CAN_BOOT_HOST_BMS_TYPE_OFFSET 4
+#define CAN_BOOT_HOST_BMS_TYPE_OFFSET 0
+#define CAN_BOOT_HOST_BMS_CODE_RANGE 4
+#define CAN_BOOT_HOST_BMS_CODE_OFFSET 4
 #define CAN_BOOT_HOST_BMS_BYTE1_RANGE 8
 #define CAN_BOOT_HOST_BMS_BYTE1_OFFSET 8
 #define CAN_BOOT_HOST_BMS_BYTE2_RANGE 8
@@ -774,12 +774,12 @@ uint8_t CAN_boot_host_bms_checkDataIsFresh(void){
 #define CAN_BOOT_HOST_BMS_BYTE7_RANGE 8
 #define CAN_BOOT_HOST_BMS_BYTE7_OFFSET 56
 
-uint16_t CAN_boot_host_bms_code_get(void){
-	uint16_t data = get_bits((size_t*)CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_CODE_OFFSET, CAN_BOOT_HOST_BMS_CODE_RANGE);
-	return (data * 1.0) + 0;
-}
 uint16_t CAN_boot_host_bms_type_get(void){
 	uint16_t data = get_bits((size_t*)CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_TYPE_OFFSET, CAN_BOOT_HOST_BMS_TYPE_RANGE);
+	return (data * 1.0) + 0;
+}
+uint16_t CAN_boot_host_bms_code_get(void){
+	uint16_t data = get_bits((size_t*)CAN_boot_host_bms.payload, CAN_BOOT_HOST_BMS_CODE_OFFSET, CAN_BOOT_HOST_BMS_CODE_RANGE);
 	return (data * 1.0) + 0;
 }
 uint16_t CAN_boot_host_bms_byte1_get(void){

@@ -3,8 +3,6 @@
  *******************************************************************************/
 #include "IgnitionControl.h"
 #include "IO.h"
-#include "tsk.h"
-#include <stdint.h>
 
 /******************************************************************************
  * Constants
@@ -13,7 +11,8 @@
 /******************************************************************************
  * Macros
  *******************************************************************************/
-#define KILL_SWITCH_DEBOUNCE_NUMBER 10
+#define KILL_SWITCH_DEBOUNCE_TIME 10
+#define KILL_SWITCH_HOLD_TIME 100
 /******************************************************************************
  * Configuration
  *******************************************************************************/
@@ -25,7 +24,8 @@
 /******************************************************************************
  * Variable Declarations
  *******************************************************************************/
-static uint8_t killSwitchDebouncer = 0;
+NEW_BUTTON(ignitionButton, KILL_SWITCH_DEBOUNCE_TIME, KILL_SWITCH_HOLD_TIME, IO_GET_IGNITION_SWITCH_IN);
+NEW_BUTTON(killButton, KILL_SWITCH_DEBOUNCE_TIME, KILL_SWITCH_HOLD_TIME, IO_GET_KILL_SWITCH_IN);
 
 /******************************************************************************
  * Function Prototypes
@@ -36,19 +36,23 @@ static uint8_t killSwitchDebouncer = 0;
  *******************************************************************************/
 
 void IgnitionControl_Init(void) {
-    killSwitchDebouncer = 0;
+    //Assume button is in RUN position so that we don't just go to sleep right away.
+    buttonSetState(killButton, BUTTON_NOT_PRESSED);
 }
 
 void IgnitionControl_Run_10ms(void) {
-    if(IO_GET_KILL_SWITCH_IN() == 0){
-        killSwitchDebouncer++;//go to sleep
-    }
-    if(killSwitchDebouncer >= 10){
-        killSwitchDebouncer = 0;
-        Tsk_Sleep();//go to sleep
-    }
-  
+    buttonRun(ignitionButton);
+    buttonRun(killButton);
 }
+
+ButtonStatus_E IgnitionControl_getKillStatus(void) {
+    return buttonGetState(killButton);
+}
+
+ButtonStatus_E IgnitionControl_getIgnitionStatus(void) {
+    return buttonGetState(ignitionButton);
+}
+
 
 void IgnitionControl_Halt(void) {
     Nop();

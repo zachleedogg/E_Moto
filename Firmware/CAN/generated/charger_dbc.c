@@ -79,6 +79,8 @@ uint8_t CAN_bms_debug_checkDataIsFresh(void){
 #define CAN_BMS_DEBUG_FLOAT1_OFFSET 4
 #define CAN_BMS_DEBUG_FLOAT2_RANGE 16
 #define CAN_BMS_DEBUG_FLOAT2_OFFSET 20
+#define CAN_BMS_DEBUG_CPU_USAGE_RANGE 16
+#define CAN_BMS_DEBUG_CPU_USAGE_OFFSET 36
 
 uint16_t CAN_bms_debug_bool0_get(void){
 	uint16_t data = get_bits((size_t*)CAN_bms_debug.payload, CAN_BMS_DEBUG_BOOL0_OFFSET, CAN_BMS_DEBUG_BOOL0_RANGE);
@@ -103,6 +105,10 @@ float CAN_bms_debug_float1_get(void){
 float CAN_bms_debug_float2_get(void){
 	uint16_t data = get_bits((size_t*)CAN_bms_debug.payload, CAN_BMS_DEBUG_FLOAT2_OFFSET, CAN_BMS_DEBUG_FLOAT2_RANGE);
 	return (data * 0.01) + 0;
+}
+uint16_t CAN_bms_debug_CPU_USAGE_get(void){
+	uint16_t data = get_bits((size_t*)CAN_bms_debug.payload, CAN_BMS_DEBUG_CPU_USAGE_OFFSET, CAN_BMS_DEBUG_CPU_USAGE_RANGE);
+	return (data * 1) + 0;
 }
 
 #define CAN_bms_charger_request_ID 0x1806e5f4

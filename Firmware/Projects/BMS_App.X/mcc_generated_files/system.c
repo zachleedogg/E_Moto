@@ -83,7 +83,7 @@
 
 void SYSTEM_Initialize(void)
 {
-    PIN_MANAGER_Initialize();
+    //PIN_MANAGER_Initialize(); //only for first REV. DCDC glitch issue
     CLOCK_Initialize();
     INTERRUPT_Initialize();
     INTERRUPT_GlobalEnable();

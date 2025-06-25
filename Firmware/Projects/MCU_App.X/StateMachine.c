@@ -1,19 +1,24 @@
 /******************************************************************************
  * Includes
  *******************************************************************************/
+#include <stdint.h>
+
+#include "StateMachine.h"
 #include "bolt_CAN.h"
 #include "bolt_sleep.h"
-
 #include "SysTick.h"
+
 #include "LightsControl.h"
 #include "IgnitionControl.h"
 #include "HornControl.h"
 #include "HeatedGrips.h"
 #include "j1772.h"
 #include "IO.h"
+#include "mcu_dbc.h"
+#include "button.h"
+#include "lvBattery.h"
+#include "can_iso_tp_lite.h"
 
-#include <xc.h>
-#include <stdio.h>
 
 /******************************************************************************
  * Constants
@@ -69,6 +74,8 @@ static STATE_MACHINE_states_E prevState = idle_state; /* initialize previous sta
 static STATE_MACHINE_states_E curState = idle_state; /* initialize current state */
 static STATE_MACHINE_states_E nextState = idle_state; /* initialize current state */
 
+uint8_t keepAwake = 0;
+
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
@@ -81,7 +88,37 @@ void StateMachine_Init(void) {
 }
 
 void StateMachine_Run(void) {
-
+    
+    switch(isoTP_getCommand()){
+        case ISO_TP_NONE:
+            keepAwake = 0;
+            break;
+        case ISO_TP_RESET:
+            CAN_changeOpMode(CAN_DISABLE);
+            asm ("reset");
+            break;
+        case ISO_TP_SLEEP:
+            nextState = standby_state;
+            break;
+        case ISO_TP_IO_CONTROL:
+            keepAwake = 1;
+            break;
+        case ISO_TP_TESTER_PRESENT:
+            keepAwake = 1;
+            break;
+        default:
+            break;
+    }
+    
+    //If the kill switch is pressed, go straight to sleep. Regardless of state.
+//    switch(IgnitionControl_getKillStatus()){
+//        case BUTTON_PRESSED:
+//        case BUTTON_HELD:
+//            nextState = sleep_state;
+//        default:
+//            break;
+//    }
+                
     /* This only happens during state transition
      * State transitions thus have priority over posting new events
      * State transitions always consist of an exit event to curState and entry event to nextState */
@@ -90,48 +127,65 @@ void StateMachine_Run(void) {
         prevState = curState;
         curState = nextState;
         state_functions[curState](ENTRY);
-    } else {
-        state_functions[curState](RUN);
     }
+            
+    state_functions[curState](RUN);
 }
 
 void idle(STATE_MACHINE_entry_types_E entry_type) {
-    static const uint32_t idleTimer = 5000;
-    static uint32_t idleTimerStartTime = 0;
+    NEW_TIMER(idleTimer, 120000);
+    NEW_TIMER(SwEnTimer, 1);
+
     switch (entry_type) {
         case ENTRY:
-            idleTimerStartTime = SysTick_Get();
+            SysTick_TimerStart(idleTimer);
+            SysTick_TimerStart(SwEnTimer);
+            IO_SET_BATT_EN(LOW); //TODO: check this enable sequence
+            IO_SET_DCDC_EN(LOW);
+
             //Initialize the board.
             IO_SET_SW_EN(HIGH);
             IO_SET_IC_CONTROLLER_SLEEP_EN(LOW);
             CAN_changeOpMode(CAN_NORMAL);
             IO_SET_CAN_SLEEP_EN(LOW);
-            IO_SET_BATT_EN(HIGH); //TODO: check this enable sequence
 
             //Initialize each application.
+            IgnitionControl_Init();
             IO_Efuse_Init();
             LightsControl_Init();
             HeatedGripControl_Init();
-            IgnitionControl_Init();
             HornControl_Init();
             j1772Control_Init();
+            lvBattery_Init();
+
             break;
 
         case EXIT:
             break;
 
         case RUN:
-            // Always update the timer if there is CAN traffic present.
-            if (CAN_RxDataIsReady()) {
-                idleTimerStartTime = SysTick_Get();
+            if (SysTick_TimeOut(SwEnTimer)) {
+                IO_SET_BATT_EN(HIGH); //TODO: check this enable sequence
+                IO_SET_DCDC_EN(HIGH);
+                IO_SET_BMS_CONTROLLER_EN(HIGH);
+            }
+            // If any keepAwake reason is set, just reset the timer.
+            if(keepAwake){
+                SysTick_TimerStart(idleTimer);
             }
             // Once the timer expires, go to standby and prepare for sleep.
-            if ((SysTick_Get() - idleTimerStartTime) > idleTimer) {
+            if (SysTick_TimeOut(idleTimer)) {
                 nextState = standby_state;
             }
+            // Connection of charged triggers charging
             if (j1772getProxState() == J1772_CONNECTED) {
                 nextState = charging_state;
             }
+            //If the kill switch is pressed, go straight to sleep. Regardless of state.
+            if (IgnitionControl_getKillStatus() == BUTTON_PRESSED || IgnitionControl_getKillStatus() == BUTTON_HELD) {
+                nextState = sleep_state;
+            }
+
             break;
 
         default:
@@ -141,20 +195,24 @@ void idle(STATE_MACHINE_entry_types_E entry_type) {
 }
 
 void standby(STATE_MACHINE_entry_types_E entry_type) {
-    static const uint32_t standbyTimer = 3000;
-    static uint32_t standbyTimerStartTime = 0;
+    NEW_TIMER(quietTimer, 3000);
+    NEW_TIMER(standbyTimer, 6000);
     switch (entry_type) {
         case ENTRY:
-            standbyTimerStartTime = SysTick_Get();
+            SysTick_TimerStart(quietTimer);
+            SysTick_TimerStart(standbyTimer);
             CAN_changeOpMode(CAN_LISTEN);
+            IO_SET_BMS_CONTROLLER_EN(LOW);
             break;
         case EXIT:
             break;
         case RUN:
-            if (CAN_RxDataIsReady()) {
+            // Allow for time for CAN to go quiet on the bus.
+            if (CAN_RxDataIsReady() && SysTick_TimeOut(quietTimer)) {
                 nextState = idle_state;
             }
-            if ((SysTick_Get() - standbyTimerStartTime) > standbyTimer) {
+            // If can goes quiet and we hit this timer, actually go to sleep.
+            if (SysTick_TimeOut(standbyTimer)) {
                 nextState = sleep_state;
             }
             break;
@@ -164,12 +222,56 @@ void standby(STATE_MACHINE_entry_types_E entry_type) {
 }
 
 void silent_wake(STATE_MACHINE_entry_types_E entry_type) {
+    NEW_TIMER(chargeTimer, 10000);
     switch (entry_type) {
         case ENTRY:
+            SysTick_TimerStart(chargeTimer);
+            IO_SET_SW_EN(HIGH);
+            lvBattery_Init();
+            IO_SET_DEBUG_LED_EN(HIGH);
             break;
         case EXIT:
+            IO_SET_DEBUG_LED_EN(LOW);
             break;
         case RUN:
+            switch (lvBattery_GetState()) {
+                case LV_BATTERY_NOMINAL:
+                    //Just go back to sleep if nominal.
+                    nextState = sleep_state;
+                    break;
+                case LV_BATTERY_CHARGE_NEEDED:
+                    //Charge is needed so lets wake up.
+                    IO_SET_BMS_CONTROLLER_EN(HIGH);
+                    IO_SET_DCDC_EN(HIGH);
+                    IO_SET_BATT_EN(HIGH);
+                    CAN_changeOpMode(CAN_NORMAL);
+                    break;
+                case LV_BATTERY_CHARGING:
+                    //Look for wake inputs here...
+                    break;
+                case LV_BATTERY_CHARGED:
+                    //Once charged, go quiet and back to sleep.
+                    CAN_changeOpMode(CAN_LISTEN);
+                    IO_SET_BMS_CONTROLLER_EN(LOW);
+                    IO_SET_DCDC_EN(LOW);
+                    IO_SET_BATT_EN(LOW);
+                    IO_SET_SW_EN(LOW);
+                    lvBattery_Halt();
+                    nextState = sleep_state;
+                    break;
+                default:
+                    break;
+            }
+
+            if (CAN_RxDataIsReady()) {
+                nextState = idle_state;
+            }
+            
+            //If the kill switch is pressed, go straight to sleep. Regardless of state.
+            if (IgnitionControl_getKillStatus() == BUTTON_PRESSED || IgnitionControl_getKillStatus() == BUTTON_HELD) {
+                nextState = sleep_state;
+            }
+            nextState = idle_state;
             break;
         default:
             break;
@@ -183,6 +285,7 @@ void running(STATE_MACHINE_entry_types_E entry_type) {
         case EXIT:
             break;
         case RUN:
+            nextState = idle_state;
             break;
         default:
             break;
@@ -194,9 +297,15 @@ void charging(STATE_MACHINE_entry_types_E entry_type) {
         case ENTRY:
             break;
         case EXIT:
+            CAN_mcu_command_ev_charger_current_set(0);
+            CAN_mcu_command_ev_charger_enable_set(0);
             break;
         case RUN:
-            switch(j1772getProxState()){
+            switch (j1772getProxState()) {
+                case J1772_CONNECTED:
+                    CAN_mcu_command_ev_charger_current_set(j1772getPilotCurrent());
+                    CAN_mcu_command_ev_charger_enable_set(1);
+                    break;
                 case J1772_DISCONNECTED:
                 case J1772_REQUEST_DISCONNECT:
                 case J1772_SNA_PROX:
@@ -215,6 +324,8 @@ void sleep(STATE_MACHINE_entry_types_E entry_type) {
         case ENTRY:
             IO_SET_SW_EN(LOW);
             IO_SET_IC_CONTROLLER_SLEEP_EN(HIGH);
+            IO_SET_BMS_CONTROLLER_EN(LOW);
+            IO_SET_DCDC_EN(LOW);
             CAN_changeOpMode(CAN_DISABLE);
             IO_SET_CAN_SLEEP_EN(HIGH);
             IO_SET_DEBUG_LED_EN(LOW);
@@ -226,9 +337,11 @@ void sleep(STATE_MACHINE_entry_types_E entry_type) {
             HornControl_Halt();
             j1772Control_Halt();
             IgnitionControl_Halt();
+            lvBattery_Halt();
             break;
 
         case EXIT:
+            IO_SET_SW_EN(HIGH);
             break;
         case RUN:
             SysTick_Stop();

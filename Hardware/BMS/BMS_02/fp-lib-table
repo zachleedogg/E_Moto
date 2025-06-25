@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Footprints")(type "KiCad")(uri "C:/REPOS/E_Moto/Hardware/PCBlibrary/Footprints.pretty")(options "")(descr ""))
+)

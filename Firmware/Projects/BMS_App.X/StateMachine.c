@@ -6,9 +6,10 @@
 #include "bolt_CAN.h"
 #include "bms_dbc.h"
 #include "pinSetup.h"
+#include "bolt_sleep.h"
+#include "dcdc.h"
+#include "can_iso_tp_lite.h"
 
-#include <stdio.h>
-#include <string.h>
 
 /******************************************************************************
  * Constants
@@ -66,16 +67,38 @@ static STATE_MACHINE_states_E nextState = standby_state; /* initialize current s
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
-void StateMachine_DCDC_helper(void);
-void StateMachine_precharge_helper(void);
+
 /******************************************************************************
  * Function Definitions
  *******************************************************************************/
 void StateMachine_Init(void) {
-
+    DCDC_init();
 }
 
 void StateMachine_Run(void) {
+
+    switch (isoTP_getCommand()) {
+        case ISO_TP_NONE:
+            break;
+        case ISO_TP_RESET:
+            CAN_changeOpMode(CAN_DISABLE);
+            IO_SET_SW_EN(LOW);
+            {uint32_t i = 0;
+            for (i = 0; i < 3000000; i++){
+                Nop();
+            }}
+            asm ("reset");
+            break;
+        case ISO_TP_SLEEP:
+            nextState = sleep_state;
+            break;
+        case ISO_TP_IO_CONTROL:
+            break;
+        case ISO_TP_TESTER_PRESENT:
+            break;
+        default:
+            break;
+    }
 
     /* This only happens during state transition
      * State transitions thus have priority over posting new events
@@ -85,9 +108,34 @@ void StateMachine_Run(void) {
         prevState = curState;
         curState = nextState;
         state_functions[curState](ENTRY);
-    } else {
-        state_functions[curState](RUN);
     }
+    
+    state_functions[curState](RUN);
+
+}
+
+void idle(STATE_MACHINE_entry_types_E entry_type) {
+    switch (entry_type) {
+        case ENTRY:
+            PINS_pullUp(CAN_TX_PIN, HIGH);
+            IO_SET_SW_EN(HIGH);
+            CAN_changeOpMode(CAN_NORMAL);
+            IO_SET_CHARGEPUMP_PWM(50);
+            break;
+        case EXIT:
+            break;
+        case RUN:
+            //StateMachine_DCDC_helper();
+            //StateMachine_precharge_helper();
+
+            if (IO_GET_V12_POWER_STATUS() == 0) {
+                nextState = standby_state;
+            }
+            break;
+        default:
+            break;
+    }
+
 }
 
 void standby(STATE_MACHINE_entry_types_E entry_type) {
@@ -101,39 +149,17 @@ void standby(STATE_MACHINE_entry_types_E entry_type) {
             IO_SET_CHARGEPUMP_PWM(0);
             break;
         case EXIT:
-            PINS_pullUp(CAN_TX_PIN, HIGH);
-            IO_SET_SW_EN(HIGH);
-            CAN_changeOpMode(CAN_NORMAL);
-            IO_SET_CHARGEPUMP_PWM(50);
             break;
         case RUN:
             if (IO_GET_V12_POWER_STATUS()) {
                 nextState = idle_state;
+            } else {
+                nextState = sleep_state;
             }
             break;
         default:
             break;
     }
-}
-
-void idle(STATE_MACHINE_entry_types_E entry_type) {
-    switch (entry_type) {
-        case ENTRY:
-            break;
-        case EXIT:
-            break;
-        case RUN:
-            StateMachine_DCDC_helper();
-            StateMachine_precharge_helper();
-
-            if (!IO_GET_V12_POWER_STATUS()) {
-                nextState = standby_state;
-            }
-            break;
-        default:
-            break;
-    }
-
 }
 
 void running(STATE_MACHINE_entry_types_E entry_type) {
@@ -167,10 +193,22 @@ void charging(STATE_MACHINE_entry_types_E entry_type) {
 void sleep(STATE_MACHINE_entry_types_E entry_type) {
     switch (entry_type) {
         case ENTRY:
+            DCDC_halt();
+            IO_SET_DEBUG_LED_EN(LOW);
             break;
         case EXIT:
             break;
         case RUN:
+            SysTick_Stop();
+            RCONbits.SWDTEN = 0;
+            SleepNow(); //Go to sleep
+            RCONbits.SWDTEN = 1;
+            SysTick_Resume();
+            if (RCONbits.WDTO) {
+                //nextState = silent_wake_state;
+            } else {
+                nextState = idle_state;
+            }
             break;
         default:
             break;
@@ -179,13 +217,6 @@ void sleep(STATE_MACHINE_entry_types_E entry_type) {
 
 /****Helpers*******************************************************************/
 
-void StateMachine_DCDC_helper(void) {
-    IO_SET_DCDC_EN(CAN_mcu_command_DCDC_enable_get());
-}
-
-void StateMachine_precharge_helper(void) {
-    IO_SET_PRE_CHARGE_EN(CAN_mcu_command_precharge_enable_get());
-}
 
 /*** End of File **************************************************************/
 

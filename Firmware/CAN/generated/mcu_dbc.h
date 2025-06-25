@@ -52,7 +52,6 @@ uint16_t CAN_dash_data2_tripB_get(void);
  */
 #define CAN_mcu_status_interval() 10
 void CAN_mcu_status_heartbeat_set(uint16_t heartbeat);
-void CAN_mcu_status_state_set(uint16_t state);
 void CAN_mcu_status_highBeam_set(uint16_t highBeam);
 void CAN_mcu_status_lowBeam_set(uint16_t lowBeam);
 void CAN_mcu_status_brakeLight_set(uint16_t brakeLight);
@@ -62,12 +61,8 @@ void CAN_mcu_status_turnSignalFR_set(uint16_t turnSignalFR);
 void CAN_mcu_status_turnSignalFL_set(uint16_t turnSignalFL);
 void CAN_mcu_status_turnSignalRR_set(uint16_t turnSignalRR);
 void CAN_mcu_status_turnSignalRL_set(uint16_t turnSignalRL);
-void CAN_mcu_status_GBSALL_set(uint16_t GBSALL);
-void CAN_mcu_status_contactor_set(uint16_t contactor);
-void CAN_mcu_status_chargePort_set(uint16_t chargePort);
 void CAN_mcu_status_brakeSwitchFront_set(uint16_t brakeSwitchFront);
 void CAN_mcu_status_brakeSwitchRear_set(uint16_t brakeSwitchRear);
-void CAN_mcu_status_throttleVal_set(uint16_t throttleVal);
 void CAN_mcu_status_killSwitch_set(uint16_t killSwitch);
 void CAN_mcu_status_ignitionSwitch_set(uint16_t ignitionSwitch);
 void CAN_mcu_status_leftTurnSwitch_set(uint16_t leftTurnSwitch);
@@ -76,6 +71,10 @@ void CAN_mcu_status_lightSwitch_set(uint16_t lightSwitch);
 void CAN_mcu_status_assSwitch_set(uint16_t assSwitch);
 void CAN_mcu_status_hornSwitch_set(uint16_t hornSwitch);
 void CAN_mcu_status_batt_voltage_set(float batt_voltage);
+void CAN_mcu_status_batt_current_set(float batt_current);
+void CAN_mcu_status_dcdc_current_set(float dcdc_current);
+void CAN_mcu_status_batt_fault_set(uint16_t batt_fault);
+void CAN_mcu_status_dcdc_fault_set(uint16_t dcdc_fault);
 void CAN_mcu_status_dlc_set(uint8_t dlc);
 
 
@@ -103,8 +102,8 @@ void CAN_mcu_motorControllerRequest_send(void);
 
 
 #define CAN_mcu_boot_response_interval() 
-void CAN_mcu_boot_response_code_set(uint16_t code);
 void CAN_mcu_boot_response_type_set(uint16_t type);
+void CAN_mcu_boot_response_code_set(uint16_t code);
 void CAN_mcu_boot_response_byte1_set(uint16_t byte1);
 void CAN_mcu_boot_response_byte2_set(uint16_t byte2);
 void CAN_mcu_boot_response_byte3_set(uint16_t byte3);
@@ -152,6 +151,7 @@ uint16_t CAN_bms_debug_bool2_get(void);
 uint16_t CAN_bms_debug_bool3_get(void);
 float CAN_bms_debug_float1_get(void);
 float CAN_bms_debug_float2_get(void);
+uint16_t CAN_bms_debug_CPU_USAGE_get(void);
 
 /**********************************************************
  * motorcontroller NODE MESSAGES
@@ -186,8 +186,8 @@ uint16_t CAN_motorcontroller_response_byte8_get(void);
  */
 #define CAN_boot_host_mcu_interval() 1
 uint8_t CAN_boot_host_mcu_checkDataIsFresh(void);
-uint16_t CAN_boot_host_mcu_code_get(void);
 uint16_t CAN_boot_host_mcu_type_get(void);
+uint16_t CAN_boot_host_mcu_code_get(void);
 uint16_t CAN_boot_host_mcu_byte1_get(void);
 uint16_t CAN_boot_host_mcu_byte2_get(void);
 uint16_t CAN_boot_host_mcu_byte3_get(void);

@@ -48,6 +48,7 @@
         <itemPath>ev_charger.h</itemPath>
         <itemPath>can_iso_tp_lite_config.h</itemPath>
         <itemPath>bms.h</itemPath>
+        <itemPath>dcdc.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -64,12 +65,12 @@
         <itemPath>../../Libraries/PIC33_plib/src/pins.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_OC.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_CAN.c</itemPath>
-        <itemPath>SysTick.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_sleep.c</itemPath>
         <itemPath>../../Libraries/Standard/movingAverage.c</itemPath>
         <itemPath>../../Libraries/PIC33_plib/src/bolt_spi.c</itemPath>
         <itemPath>../../Libraries/Standard/utils.c</itemPath>
         <itemPath>../../Libraries/Drivers/ISO_TP_LITE/can_iso_tp_lite.c</itemPath>
+        <itemPath>../../RTOS/Scheduler/SysTick.c</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -102,6 +103,7 @@
         <itemPath>can_populate.c</itemPath>
         <itemPath>ev_charger.c</itemPath>
         <itemPath>bms.c</itemPath>
+        <itemPath>dcdc.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"

@@ -21,7 +21,6 @@ typedef enum{
 #define CAN_mcu_status_interval() 10
 uint8_t CAN_mcu_status_checkDataIsFresh(void);
 uint16_t CAN_mcu_status_heartbeat_get(void);
-uint16_t CAN_mcu_status_state_get(void);
 uint16_t CAN_mcu_status_highBeam_get(void);
 uint16_t CAN_mcu_status_lowBeam_get(void);
 uint16_t CAN_mcu_status_brakeLight_get(void);
@@ -31,12 +30,8 @@ uint16_t CAN_mcu_status_turnSignalFR_get(void);
 uint16_t CAN_mcu_status_turnSignalFL_get(void);
 uint16_t CAN_mcu_status_turnSignalRR_get(void);
 uint16_t CAN_mcu_status_turnSignalRL_get(void);
-uint16_t CAN_mcu_status_GBSALL_get(void);
-uint16_t CAN_mcu_status_contactor_get(void);
-uint16_t CAN_mcu_status_chargePort_get(void);
 uint16_t CAN_mcu_status_brakeSwitchFront_get(void);
 uint16_t CAN_mcu_status_brakeSwitchRear_get(void);
-uint16_t CAN_mcu_status_throttleVal_get(void);
 uint16_t CAN_mcu_status_killSwitch_get(void);
 uint16_t CAN_mcu_status_ignitionSwitch_get(void);
 uint16_t CAN_mcu_status_leftTurnSwitch_get(void);
@@ -45,6 +40,10 @@ uint16_t CAN_mcu_status_lightSwitch_get(void);
 uint16_t CAN_mcu_status_assSwitch_get(void);
 uint16_t CAN_mcu_status_hornSwitch_get(void);
 float CAN_mcu_status_batt_voltage_get(void);
+float CAN_mcu_status_batt_current_get(void);
+float CAN_mcu_status_dcdc_current_get(void);
+uint16_t CAN_mcu_status_batt_fault_get(void);
+uint16_t CAN_mcu_status_dcdc_fault_get(void);
 
 #define CAN_mcu_command_interval() 100
 uint8_t CAN_mcu_command_checkDataIsFresh(void);
@@ -95,6 +94,7 @@ void CAN_bms_debug_bool2_set(uint16_t bool2);
 void CAN_bms_debug_bool3_set(uint16_t bool3);
 void CAN_bms_debug_float1_set(float float1);
 void CAN_bms_debug_float2_set(float float2);
+void CAN_bms_debug_CPU_USAGE_set(uint16_t CPU_USAGE);
 void CAN_bms_debug_dlc_set(uint8_t dlc);
 
 
@@ -102,8 +102,8 @@ void CAN_bms_debug_send(void);
 
 
 #define CAN_bms_boot_response_interval() 
-void CAN_bms_boot_response_code_set(uint16_t code);
 void CAN_bms_boot_response_type_set(uint16_t type);
+void CAN_bms_boot_response_code_set(uint16_t code);
 void CAN_bms_boot_response_byte1_set(uint16_t byte1);
 void CAN_bms_boot_response_byte2_set(uint16_t byte2);
 void CAN_bms_boot_response_byte3_set(uint16_t byte3);
@@ -181,8 +181,8 @@ uint16_t CAN_charger_status_byte8_get(void);
  */
 #define CAN_boot_host_bms_interval() 1
 uint8_t CAN_boot_host_bms_checkDataIsFresh(void);
-uint16_t CAN_boot_host_bms_code_get(void);
 uint16_t CAN_boot_host_bms_type_get(void);
+uint16_t CAN_boot_host_bms_code_get(void);
 uint16_t CAN_boot_host_bms_byte1_get(void);
 uint16_t CAN_boot_host_bms_byte2_get(void);
 uint16_t CAN_boot_host_bms_byte3_get(void);

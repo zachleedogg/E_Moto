@@ -210,13 +210,6 @@
                             "units": ""
                         },
                         {
-                            "name": "state",
-                            "length": 3,
-                            "scale": 1.0,
-                            "offset": 0,
-                            "units": ""
-                        },
-                        {
                             "name": "highBeam",
                             "length": 1,
                             "scale": 1.0,
@@ -280,27 +273,6 @@
                             "units": "bool"
                         },
                         {
-                            "name": "GBSALL",
-                            "length": 1,
-                            "scale": 1.0,
-                            "offset": 0,
-                            "units": "bool"
-                        },
-                        {
-                            "name": "contactor",
-                            "length": 1,
-                            "scale": 1.0,
-                            "offset": 0,
-                            "units": "bool"
-                        },
-                        {
-                            "name": "chargePort",
-                            "length": 1,
-                            "scale": 1.0,
-                            "offset": 0,
-                            "units": "bool"
-                        },
-                        {
                             "name": "brakeSwitchFront",
                             "length": 1,
                             "scale": 1.0,
@@ -313,13 +285,6 @@
                             "scale": 1.0,
                             "offset": 0,
                             "units": "bool"
-                        },
-                        {
-                            "name": "throttleVal",
-                            "length": 8,
-                            "scale": 1.0,
-                            "offset": 0,
-                            "units": ""
                         },
                         {
                             "name": "killSwitch",
@@ -376,6 +341,34 @@
                             "scale": 0.1,
                             "offset": 0,
                             "units": "V"
+                        },
+                        {
+                            "name": "batt_current",
+                            "length": 16,
+                            "scale": 0.001,
+                            "offset": -33,
+                            "units": "A"
+                        },
+                        {
+                            "name": "dcdc_current",
+                            "length": 16,
+                            "scale": 0.001,
+                            "offset": -33,
+                            "units": "A"
+                        },
+                        {
+                            "name": "batt_fault",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
+                        },
+                        {
+                            "name": "dcdc_fault",
+                            "length": 1,
+                            "scale": 1.0,
+                            "offset": 0,
+                            "units": "bool"
                         }
                     ]
                 },
@@ -450,14 +443,14 @@
                     ],
                     "signals": [
                         {
-                            "name": "code",
+                            "name": "type",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
                             "units": ""
                         },
                         {
-                            "name": "type",
+                            "name": "code",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
@@ -711,6 +704,13 @@
                             "scale": 0.01,
                             "offset": 0,
                             "units": "V"
+                        },
+                        {
+                            "name": "CPU_USAGE",
+                            "length": 16,
+                            "scale": 1,
+                            "offset": 0,
+                            "units": "%"
                         }
                     ]
                 },
@@ -724,14 +724,14 @@
                     ],
                     "signals": [
                         {
-                            "name": "code",
+                            "name": "type",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
                             "units": ""
                         },
                         {
-                            "name": "type",
+                            "name": "code",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
@@ -1195,14 +1195,14 @@
                     ],
                     "signals": [
                         {
-                            "name": "code",
+                            "name": "type",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
                             "units": ""
                         },
                         {
-                            "name": "type",
+                            "name": "code",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
@@ -1269,14 +1269,14 @@
                     ],
                     "signals": [
                         {
-                            "name": "code",
+                            "name": "type",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
                             "units": ""
                         },
                         {
-                            "name": "type",
+                            "name": "code",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
@@ -1343,14 +1343,14 @@
                     ],
                     "signals": [
                         {
-                            "name": "code",
+                            "name": "type",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,
                             "units": ""
                         },
                         {
-                            "name": "type",
+                            "name": "code",
                             "length": 4,
                             "scale": 1.0,
                             "offset": 0,

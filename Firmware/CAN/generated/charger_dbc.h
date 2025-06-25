@@ -37,6 +37,7 @@ uint16_t CAN_bms_debug_bool2_get(void);
 uint16_t CAN_bms_debug_bool3_get(void);
 float CAN_bms_debug_float1_get(void);
 float CAN_bms_debug_float2_get(void);
+uint16_t CAN_bms_debug_CPU_USAGE_get(void);
 
 #define CAN_bms_charger_request_interval() 1000
 uint8_t CAN_bms_charger_request_checkDataIsFresh(void);

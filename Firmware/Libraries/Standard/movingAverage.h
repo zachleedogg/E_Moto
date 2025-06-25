@@ -29,6 +29,7 @@ typedef struct {
  * @brief Creates a moving average object
  * @param x: name of the average object
  * @param y: Window average size
+ * cuttof freq is fs(1??)/(2??)
  * @return none
  */
 #define NEW_AVERAGE(x,y) \
@@ -44,15 +45,16 @@ static movingAverage_S * x = &x##Object\
 /**
  * @brief Creates a moving average object
  * @param x: name of the average object
- * @param y: Weight (alpha)
+ * @param y: Fc Cutoff Frequency in Hz
+ * @param z: Fs Sample time in Hz
  * @return none
  */
-#define NEW_LOW_PASS_FILTER(x,y) \
-static lowPassFilter_S x##Object = {\
-    .alpha = y, \
+#define NEW_LOW_PASS_FILTER(name, Fc, Fs) \
+static lowPassFilter_S name##Object = {\
+    .alpha = Fc/Fs, \
     .accum = 0, \
 };\
-static lowPassFilter_S * x = &x##Object\
+static lowPassFilter_S * name = &name##Object\
 
 
 /**
@@ -77,6 +79,11 @@ void clearMovingAverage(movingAverage_S *x);
  */
 float takeLowPassFilter(lowPassFilter_S *x, float value);
 
+/**
+ * @brief: returns the filtered value.
+ * @param x: Name of the filter object
+ */
+float getLowPassFilter(lowPassFilter_S *x);
 
 /**
  * @brief: clears the low pass filter to 0.

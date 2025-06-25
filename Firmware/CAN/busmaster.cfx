@@ -18,10 +18,10 @@
     <Window_Position>
       <Visibility>SHOWNORMAL</Visibility>
       <WindowPlacement>HIDE</WindowPlacement>
-      <Top>711</Top>
-      <Left>2</Left>
-      <Bottom>959</Bottom>
-      <Right>1534</Right>
+      <Top>505</Top>
+      <Left>79</Left>
+      <Bottom>753</Bottom>
+      <Right>1611</Right>
     </Window_Position>
   </Global_Configuration>
   <Module_Configuration>
@@ -97,10 +97,10 @@
       <Window_Position>
         <Visibility>SHOWNORMAL</Visibility>
         <WindowPlacement>HIDE</WindowPlacement>
-        <Top>83</Top>
-        <Left>14</Left>
-        <Right>504</Right>
-        <Bottom>313</Bottom>
+        <Top>48</Top>
+        <Left>9</Left>
+        <Right>499</Right>
+        <Bottom>278</Bottom>
       </Window_Position>
       <COLUMN_WIDTH>
         <MESSAGE_COLUMN>94</MESSAGE_COLUMN>
@@ -113,10 +113,10 @@
       <Window_Position>
         <Visibility>SHOWNORMAL</Visibility>
         <WindowPlacement>HIDE</WindowPlacement>
-        <Top>89</Top>
-        <Left>16</Left>
-        <Right>506</Right>
-        <Bottom>319</Bottom>
+        <Top>51</Top>
+        <Left>10</Left>
+        <Right>500</Right>
+        <Bottom>281</Bottom>
       </Window_Position>
       <COLUMN_WIDTH>
         <MESSAGE_COLUMN>94</MESSAGE_COLUMN>
@@ -129,10 +129,10 @@
       <Window_Position>
         <Visibility>SHOWNORMAL</Visibility>
         <WindowPlacement>HIDE</WindowPlacement>
-        <Top>89</Top>
-        <Left>16</Left>
-        <Right>506</Right>
-        <Bottom>319</Bottom>
+        <Top>51</Top>
+        <Left>10</Left>
+        <Right>500</Right>
+        <Bottom>281</Bottom>
       </Window_Position>
       <COLUMN_WIDTH>
         <MESSAGE_COLUMN>94</MESSAGE_COLUMN>
@@ -296,7 +296,7 @@
         <ID>Data Byte(s)</ID>
         <Order>2</Order>
         <IsVisible>1</IsVisible>
-        <Width>920</Width>
+        <Width>907</Width>
       </COLUMN>
       <IsHex>1</IsHex>
       <IsAppend>0</IsAppend>
@@ -307,16 +307,16 @@
         <WindowPlacement>SETMINPOSITION</WindowPlacement>
         <Top>5</Top>
         <Left>4</Left>
-        <Bottom>708</Bottom>
+        <Bottom>574</Bottom>
         <Right>1811</Right>
       </Window_Position>
       <Interpretation_Window_Position>
         <Visibility>SHOWNORMAL</Visibility>
         <WindowPlacement>RESTORETOMAXIMIZED</WindowPlacement>
-        <Top>261</Top>
-        <Left>14</Left>
-        <Bottom>544</Bottom>
-        <Right>363</Right>
+        <Top>305</Top>
+        <Left>221</Left>
+        <Bottom>583</Bottom>
+        <Right>570</Right>
       </Interpretation_Window_Position>
     </CAN_Message_Window>
     <J1939_Message_Window>
@@ -413,10 +413,10 @@
       <Interpretation_Window_Position>
         <Visibility>SHOWNORMAL</Visibility>
         <WindowPlacement>RESTORETOMAXIMIZED</WindowPlacement>
-        <Top>261</Top>
-        <Left>14</Left>
-        <Bottom>544</Bottom>
-        <Right>363</Right>
+        <Top>305</Top>
+        <Left>221</Left>
+        <Bottom>583</Bottom>
+        <Right>570</Right>
       </Interpretation_Window_Position>
     </J1939_Message_Window>
     <LIN_Message_Window>
@@ -498,30 +498,30 @@
       <Interpretation_Window_Position>
         <Visibility>SHOWNORMAL</Visibility>
         <WindowPlacement>RESTORETOMAXIMIZED</WindowPlacement>
-        <Top>261</Top>
-        <Left>14</Left>
-        <Bottom>544</Bottom>
-        <Right>363</Right>
+        <Top>305</Top>
+        <Left>221</Left>
+        <Bottom>583</Bottom>
+        <Right>570</Right>
       </Interpretation_Window_Position>
     </LIN_Message_Window>
     <CAN_Tx_Window>
       <Window_Position>
         <Visibility>SHOWNORMAL</Visibility>
         <WindowPlacement>SETMINPOSITION</WindowPlacement>
-        <Top>202</Top>
-        <Left>620</Left>
-        <Bottom>857</Bottom>
-        <Right>1480</Right>
+        <Top>18</Top>
+        <Left>840</Left>
+        <Bottom>673</Bottom>
+        <Right>1700</Right>
       </Window_Position>
       <Message_List>
         <Message>
           <Channel>1</Channel>
-          <Message_ID>1810</Message_ID>
+          <Message_ID>1793</Message_ID>
           <IsExtended>FALSE</IsExtended>
           <IsRtr>FALSE</IsRtr>
           <DLC>8</DLC>
           <DataBytes>0,0,0,0,0,0,0,0</DataBytes>
-          <Repetion>100</Repetion>
+          <Repetion>10</Repetion>
           <Repetition_Enabled>FALSE</Repetition_Enabled>
           <Key_Value>a</Key_Value>
           <Key_Enabled>FALSE</Key_Enabled>

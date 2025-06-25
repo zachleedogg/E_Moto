@@ -271,7 +271,7 @@ uint16_t ADC_GetValue(ADC_pinNumber_E thisPin) {
 
 static void ADC_selectPin(ADC_pinNumber_E thisPin, uint8_t state) {
     switch (thisPin) {
-#if defined(__dsPIC33EP32GP502__) || defined(__dsPIC33EP256MC502__) || defined(__dsPIC33EP64GP506__)
+#if defined(__dsPIC33EP32GP502__) || defined(__dsPIC33EP256MC502__) || defined(__dsPIC33EP64GP506__) || defined(__dsPIC33EP256MC506__)
 
 #ifdef _ANSA0
         case AN0:

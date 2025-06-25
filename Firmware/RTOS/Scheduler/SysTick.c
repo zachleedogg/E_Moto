@@ -3,13 +3,14 @@
 #include <xc.h>
 
 static uint32_t volatile Tick = 0;
+static uint32_t TicksPerMS = 0;
 
 uint32_t SysTick_Get(void) {
     return Tick;
 }
 
 void SysTick_Init(uint32_t sysClock) {
-    uint32_t TicksPerMS = ((sysClock / 2) / 1000);
+    TicksPerMS = ((sysClock / 2) / 1000);
     uint8_t preScaler = 0;
 
     if (TicksPerMS > 0x0000FFFF) {
@@ -40,13 +41,40 @@ void SysTick_Init(uint32_t sysClock) {
 }
 
 void SysTick_Stop(void){
-    /* Turn timer off */
+        /* Turn timer off */
     T5CONbits.TON = 0;
 }
 
 void SysTick_Resume(void){
-    /* Turn timer on */
+        /* Turn timer on */
     T5CONbits.TON = 1;
+}
+
+void SysTick_TimerStart(SysTick_Timer_S *timer){
+    timer->start_time = SysTick_Get();
+}
+
+uint8_t SysTick_TimeOut(SysTick_Timer_S *timer){
+    if (SysTick_Get() - timer->start_time > timer->end_value){
+        return 1;
+    }
+    return 0;
+}
+
+uint8_t SysTick_PrecisionTimerStart(SysTick_Timer_S *timer){
+    timer->start_time = TMR5;
+    return 1;
+}
+
+uint16_t SysTick_PrecisionTimerEnd(SysTick_Timer_S *timer){
+    timer->end_value = TMR5;
+    uint16_t delta_ticks = 0;
+    if (timer->end_value >= timer->start_time) {
+        delta_ticks = (uint16_t)(timer->end_value - timer->start_time);
+    } else {
+        delta_ticks = (uint16_t)((TicksPerMS - timer->start_time) + timer->end_value); // wrapped around
+    }
+    return (uint16_t)((delta_ticks*100) / TicksPerMS);
 }
 
 void __attribute__((__interrupt__, __auto_psv__, __shadow__)) _T5Interrupt(void) {

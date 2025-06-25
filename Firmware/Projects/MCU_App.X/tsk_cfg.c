@@ -47,7 +47,7 @@
 /******************************************************************************
 * Macros
 *******************************************************************************/
-
+#define TSK_OFFSET(x) 0xFFFFFFFF-x
 /******************************************************************************
 * Configuration
 *******************************************************************************/
@@ -62,15 +62,15 @@
 /**
  * Task configuration table.  Holds the task interval, last time executed, and
  * the function to be executed.  A continuous task is defined as a task with
- * an interval of 0.  Last time executed is set to 0.
+ * an interval of 0.  Last time executed is set staggard.
  */
 static TaskType Tasks[] =
 {
   	{ 0             ,  0, Tsk        },
-    { INTERVAL_1MS  ,  0, Tsk_1ms    },
-	{ INTERVAL_10MS ,  0, Tsk_10ms   },
-  	{ INTERVAL_100MS,  0, Tsk_100ms  },
-    { INTERVAL_1000MS,  0, Tsk_1000ms},
+    { INTERVAL_1MS  ,  TSK_OFFSET(0), Tsk_1ms    },
+	{ INTERVAL_10MS ,  TSK_OFFSET(3), Tsk_10ms   },
+  	{ INTERVAL_100MS,  TSK_OFFSET(6), Tsk_100ms  },
+    { INTERVAL_1000MS,  TSK_OFFSET(9), Tsk_1000ms},
 };
 
 /**

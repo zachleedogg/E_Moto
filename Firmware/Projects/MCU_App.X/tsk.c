@@ -46,6 +46,7 @@
 #if DEBUG
 #include <stdio.h>
 #include "bolt_uart.h"
+#include "lvBattery.h"
 
 static uint8_t debugEnable = 1;
 #define tskService_print(...) if(debugEnable){char tempArray[125]={};sprintf(tempArray,__VA_ARGS__);Uart1Write(tempArray);}
@@ -83,21 +84,6 @@ void Tsk_init(void) {
     PinSetup_Init(); //Pin setup should be first
     CAN_DBC_init(); //Init the CAN System Service
     StateMachine_Init(); //Init state machine
-    
-//    IO_SET_SW_EN(HIGH);
-//    
-//    IO_Efuse_Init(); //Init the Efuse Service
-//    LightsControl_Init(); //Init the Lights Control Service
-//    HeatedGripControl_Init(); //Init the heated grips
-//    IgnitionControl_Init();
-//    HornControl_Init();
-//    j1772Control_Init();
-//
-//    IO_SET_IC_CONTROLLER_SLEEP_EN(LOW); //switch enable must be high during normal operation, this shouldn't go here....
-//    CAN_changeOpMode(CAN_NORMAL);
-//    IO_SET_CAN_SLEEP_EN(LOW);
-//    IO_SET_BATT_EN(HIGH);
-    
 
     tskService_print("Hello World, Task Init Done.\n"); //hi
     tskService_print("Reset Reason: %x %x\n",(uint8_t)(RCON>>8), (uint8_t)RCON); 
@@ -116,25 +102,10 @@ void Tsk(void) {
  */
 void Tsk_1ms(void) {
     ClrWdt(); 
+    run_iso_tp_basic();
     
     StateMachine_Run();
-
-    switch(run_iso_tp_basic()){
-        case ISO_TP_NONE:
-            break;
-        case ISO_TP_RESET:
-            CAN_changeOpMode(CAN_DISABLE);
-            asm ("reset");
-            break;
-        case ISO_TP_SLEEP:
-            Tsk_Sleep();
-            break;
-        case ISO_TP_IO_CONTROL:
-            break;
-        default:
-            break;
-    }
-    
+   
     CAN_populate_1ms();
     CAN_send_1ms();
 }
@@ -147,6 +118,7 @@ void Tsk_10ms(void) {
     IO_Efuse_Run_10ms(); //Run the Efuse System
     IgnitionControl_Run_10ms();
     HornControl_Run_10ms(); //Run Horn. Horn is disabled if button is held for too long.
+    lvBattery_Run_10ms();
     
     CAN_populate_10ms();
     CAN_send_10ms();
@@ -174,7 +146,7 @@ void Tsk_1000ms(void) {
 
 //TODO: Delete this.
 void Tsk_Sleep(void){
-    Sleep();
+    Nop();
 }
 
 /**

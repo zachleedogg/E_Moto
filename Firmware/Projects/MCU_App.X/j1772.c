@@ -51,7 +51,7 @@ static prox_status_E proximity = J1772_SNA_PROX;
 
 NEW_AVERAGE(proximityAverage, PROXIMITY_AVERAGE_WINDOW_SIZE);
 
-NEW_LOW_PASS_FILTER(pilotFilter, 0.3);
+NEW_LOW_PASS_FILTER(pilotFilter, 1.0, 10.0);
 
 static float pilotVoltagePeak = 0;
 static float pilotVoltageFiltered = 0;
@@ -105,7 +105,6 @@ void j1772Control_Run_100ms(void) {
 
         j1772Service_print("PILOT Voltage: %d\nPROX Voltage: %d\n\n", pilotVoltagePeak, currentProxAve);
 
-
         /*Determine the state of the Proximity Detector*/
         switch (currentProxAve*1000) {
             case PROX_DISCONNECT_LOWER ... PROX_DISCONNECT_UPPER:
@@ -149,8 +148,15 @@ void j1772Control_Run_100ms(void) {
 }
 
 void j1772Control_Halt(void) {
-    j1772run = 0;
     IO_SET_PILOT_EN(LOW);
+    j1772run = 0;
+    pilotVoltagePeak = 0;
+    pilotVoltageFiltered = 0;
+    pilotDutyCycle = 0;
+    pilotEncodedCurrent = 0;
+    clearMovingAverage(proximityAverage);
+    clearLowPassFilter(pilotFilter);   
+    proximity = J1772_SNA_PROX;
 }
 
 prox_status_E j1772getProxState(void) {

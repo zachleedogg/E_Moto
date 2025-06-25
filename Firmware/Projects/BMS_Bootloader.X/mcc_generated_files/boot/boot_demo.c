@@ -73,13 +73,12 @@ static uint32_t bootloadLastTime = 0;
 
 void BOOT_DEMO_Initialize(void)
 {    
-    
     TMR1_SoftwareCounterClear();
     bootloadLastTime = 0;
-    if(RCONbits.SWR == 1){
+    if(RCONbits.SWR == 1 || RCONbits.WDTO == 1 || RCONbits.TRAPR || RCONbits.EXTR){
         bootloadTimeOutTime = 5000;
     } else {
-        bootloadTimeOutTime = 0;
+        bootloadTimeOutTime = 250;
     }
     
     char hello[] = "Reset Reason: ";
@@ -117,8 +116,6 @@ void BOOT_DEMO_Tasks(void)
              //#warning "All interrupt sources and peripherals should be disabled before starting the application.  Add any code required here to disable all interrupts and peripherals used in the bootloader."
 
             TMR1_Stop();
-            //CAN1_OperationModeSet(CAN_DISABLE_MODE);
-            //SW_EN_SetLow();
             BOOT_StartApplication();
         }
     }

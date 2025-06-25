@@ -25,7 +25,7 @@
 /******************************************************************************
  * Variable Declarations
  *******************************************************************************/
-
+static uint8_t heatedGripsRun = 0;
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
@@ -35,13 +35,14 @@
  *******************************************************************************/
 
 void HeatedGripControl_Init(void) {
+    heatedGripsRun = 1;
     IO_SET_HEATED_GRIPS_EN(LOW);
     IO_SET_HEATED_SEAT_EN(LOW);
 }
 
 void HeatedGripControl_Run_100ms(void) {
 
-    if (IO_GET_SW_EN()) {
+    if (heatedGripsRun && IO_GET_SW_EN()) {
         if (IO_GET_SPARE_SWITCH_2_IN()) {
             IO_SET_HEATED_GRIPS_EN(HIGH);
             IO_SET_HEATED_SEAT_EN(HIGH);
@@ -54,6 +55,7 @@ void HeatedGripControl_Run_100ms(void) {
 }
 
 void HeatedGripControl_Halt(void) {
+    heatedGripsRun = 0;
     IO_SET_HEATED_GRIPS_EN(LOW);
     IO_SET_HEATED_SEAT_EN(LOW);
 }
