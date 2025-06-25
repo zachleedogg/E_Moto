@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "DCDC_01-rescue")(type "KiCad")(uri "${KIPRJMOD}/DCDC_01-rescue.kicad_sym")(options "")(descr ""))
+)

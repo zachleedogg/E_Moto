@@ -142,7 +142,7 @@
         <targetDevice>dsPIC33EP256MC506</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PICkit3PlatformTool</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>2.00</languageToolchainVersion>
         <platform>3</platform>
@@ -195,7 +195,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="expand-pragma-config" value="false"/>
         <property key="extra-include-directories"
-                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated;..\..\Libraries\Standard;..\..\Libraries\Drivers\TFT_LCD\inc;..\..\Libraries\Drivers\TFT_LCD\src;mcc_generated_files\boot;mcc_generated_files;..\..\Libraries\Drivers\ISO_TP_LITE"/>
+                  value=".;..\..\RTOS\Scheduler;..\..\Libraries\PIC33_plib\inc;..\..\Libraries\PIC33_plib\src;..\..\CAN\generated;..\..\Libraries\Standard;mcc_generated_files\boot;mcc_generated_files;..\..\Libraries\Drivers\ISO_TP_LITE"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
         <property key="oXC16gcc-align-arr" value="false"/>
@@ -343,7 +343,6 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
